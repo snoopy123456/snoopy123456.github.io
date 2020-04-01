@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>telegraf建立-ubuntu | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="1. &amp;#x53D6;&amp;#x5F97; telegraf &amp;#x5B89;&amp;#x88DD;&amp;#x5305;1wget https://dl.influxdata.com/telegraf/releases/telegraf_1.5.3-1_amd64.deb 2. &amp;#x5B89;&amp;#x88DD; telegraf1sudo dpkg -i telegraf_1.5.3-1_amd64.deb 3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="telegraf建立-ubuntu">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/telegraf建立-ubuntu/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="1. &amp;#x53D6;&amp;#x5F97; telegraf &amp;#x5B89;&amp;#x88DD;&amp;#x5305;1wget https://dl.influxdata.com/telegraf/releases/telegraf_1.5.3-1_amd64.deb 2. &amp;#x5B89;&amp;#x88DD; telegraf1sudo dpkg -i telegraf_1.5.3-1_amd64.deb 3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="telegraf建立-ubuntu">
+<meta name="twitter:description" content="1. &amp;#x53D6;&amp;#x5F97; telegraf &amp;#x5B89;&amp;#x88DD;&amp;#x5305;1wget https://dl.influxdata.com/telegraf/releases/telegraf_1.5.3-1_amd64.deb 2. &amp;#x5B89;&amp;#x88DD; telegraf1sudo dpkg -i telegraf_1.5.3-1_amd64.deb 3">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-telegraf建立-ubuntu" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    telegraf建立-ubuntu
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h4 id="1-&#x53D6;&#x5F97;-telegraf-&#x5B89;&#x88DD;&#x5305;"><a href="#1-&#x53D6;&#x5F97;-telegraf-&#x5B89;&#x88DD;&#x5305;" class="headerlink" title="1. &#x53D6;&#x5F97; telegraf &#x5B89;&#x88DD;&#x5305;"></a>1. &#x53D6;&#x5F97; telegraf &#x5B89;&#x88DD;&#x5305;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.influxdata.com/telegraf/releases/telegraf_1.5.3-1_amd64.deb</span><br></pre></td></tr></table></figure>
+<h4 id="2-&#x5B89;&#x88DD;-telegraf"><a href="#2-&#x5B89;&#x88DD;-telegraf" class="headerlink" title="2. &#x5B89;&#x88DD; telegraf"></a>2. &#x5B89;&#x88DD; telegraf</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i telegraf_1.5.3-1_amd64.deb</span><br></pre></td></tr></table></figure>
+<h4 id="3-&#x7DE8;&#x8F2F;-telegraf-config-&#x6A94;"><a href="#3-&#x7DE8;&#x8F2F;-telegraf-config-&#x6A94;" class="headerlink" title="3. &#x7DE8;&#x8F2F; telegraf config &#x6A94;"></a>3. &#x7DE8;&#x8F2F; telegraf config &#x6A94;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/telegraf/telegraf.conf</span><br></pre></td></tr></table></figure>
+<h4 id="telegraf-&#x5167;&#x5BB9;&#xFF1A;https-snoopy30485-github-io-2018-08-03-telegraf-ubuntu"><a href="#telegraf-&#x5167;&#x5BB9;&#xFF1A;https-snoopy30485-github-io-2018-08-03-telegraf-ubuntu" class="headerlink" title="telegraf &#x5167;&#x5BB9;&#xFF1A;https://snoopy30485.github.io/2018/08/03/telegraf-ubuntu/"></a>telegraf &#x5167;&#x5BB9;&#xFF1A;<a href="https://snoopy30485.github.io/2018/08/03/telegraf-ubuntu/" target="_blank" rel="noopener">https://snoopy30485.github.io/2018/08/03/telegraf-ubuntu/</a></h4><h4 id="4-&#x4EE5;&#x4E0A;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x5F8C;&#x5B58;&#x6A94;&#x4E26;&#x91CD;&#x555F;telegraf&#x670D;&#x52D9;"><a href="#4-&#x4EE5;&#x4E0A;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x5F8C;&#x5B58;&#x6A94;&#x4E26;&#x91CD;&#x555F;telegraf&#x670D;&#x52D9;" class="headerlink" title="4. &#x4EE5;&#x4E0A;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x5F8C;&#x5B58;&#x6A94;&#x4E26;&#x91CD;&#x555F;telegraf&#x670D;&#x52D9;"></a>4. &#x4EE5;&#x4E0A;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x5F8C;&#x5B58;&#x6A94;&#x4E26;&#x91CD;&#x555F;telegraf&#x670D;&#x52D9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service telegraf restart</span><br></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-08-03T06:12:08.000Z" itemprop="datePublished">2018-08-03</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/08/03/telegraf-ubuntu/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    telegraf-ubuntu
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/08/03/telegraf-windows/" class="ui tiny button">
+                    
+                    telegraf-windows
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#1-取得-telegraf-安裝包"><span>1. 取得 telegraf 安裝包</span></a></li><li><a href="#2-安裝-telegraf"><span>2. 安裝 telegraf</span></a></li><li><a href="#3-編輯-telegraf-config-檔"><span>3. 編輯 telegraf config 檔</span></a></li><li><a href="#telegraf-內容：https-snoopy30485-github-io-2018-08-03-telegraf-ubuntu"><span>telegraf 內容：https://snoopy30485.github.io/2018/08/03/telegraf-ubuntu/</span></a></li><li><a href="#4-以上設定完成後存檔並重啟telegraf服務"><span>4. 以上設定完成後存檔並重啟telegraf服務</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

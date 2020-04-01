@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>wowza-stream-engine串流輸出到wowza-streaming-cloud | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; wowza-engine &amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; wowza-cloud &amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x64CD;&amp;#x4F5C;&amp;#x9996;&amp;#x5148;&amp;#x767B;&amp;#x5165; wowza stream">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wowza-stream-engine串流輸出到wowza-streaming-cloud">
+<meta property="og:url" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; wowza-engine &amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; wowza-cloud &amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x64CD;&amp;#x4F5C;&amp;#x9996;&amp;#x5148;&amp;#x767B;&amp;#x5165; wowza stream">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/18.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/21.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/22.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/23.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/24.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wowza-stream-engine串流輸出到wowza-streaming-cloud">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; wowza-engine &amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; wowza-cloud &amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x64CD;&amp;#x4F5C;&amp;#x9996;&amp;#x5148;&amp;#x767B;&amp;#x5165; wowza stream">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-wowza-stream-engine串流輸出到wowza-streaming-cloud" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    wowza-stream-engine串流輸出到wowza-streaming-cloud
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-wowza-engine-&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;-wowza-cloud-&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-wowza-engine-&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;-wowza-cloud-&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; wowza-engine &#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230; wowza-cloud &#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; wowza-engine &#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230; wowza-cloud &#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;</h3><h4 id="&#x9996;&#x5148;&#x767B;&#x5165;-wowza-streaming-cloud"><a href="#&#x9996;&#x5148;&#x767B;&#x5165;-wowza-streaming-cloud" class="headerlink" title="&#x9996;&#x5148;&#x767B;&#x5165; wowza streaming cloud"></a>&#x9996;&#x5148;&#x767B;&#x5165; wowza streaming cloud</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9EDE;&#x9078;-Live-Streams"><a href="#&#x9EDE;&#x9078;-Live-Streams" class="headerlink" title="&#x9EDE;&#x9078; Live Streams"></a>&#x9EDE;&#x9078; Live Streams</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9EDE;&#x64CA;&#x5DE6;&#x4E0A;&#x65B9;&#x6216;&#x4E0B;&#x65B9;&#x7684;-Add-Live-Stream-&#x65B0;&#x589E;&#x76F4;&#x64AD;"><a href="#&#x9EDE;&#x64CA;&#x5DE6;&#x4E0A;&#x65B9;&#x6216;&#x4E0B;&#x65B9;&#x7684;-Add-Live-Stream-&#x65B0;&#x589E;&#x76F4;&#x64AD;" class="headerlink" title="&#x9EDE;&#x64CA;&#x5DE6;&#x4E0A;&#x65B9;&#x6216;&#x4E0B;&#x65B9;&#x7684; Add Live Stream &#x65B0;&#x589E;&#x76F4;&#x64AD;"></a>&#x9EDE;&#x64CA;&#x5DE6;&#x4E0A;&#x65B9;&#x6216;&#x4E0B;&#x65B9;&#x7684; Add Live Stream &#x65B0;&#x589E;&#x76F4;&#x64AD;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8F38;&#x5165;-live-stream-&#x9078;&#x64C7;&#x5730;&#x5340;"><a href="#&#x8F38;&#x5165;-live-stream-&#x9078;&#x64C7;&#x5730;&#x5340;" class="headerlink" title="&#x8F38;&#x5165; live stream &#x9078;&#x64C7;&#x5730;&#x5340;"></a>&#x8F38;&#x5165; live stream &#x9078;&#x64C7;&#x5730;&#x5340;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9078;&#x64C7;&#x8F38;&#x5165;&#x9032;&#x4F86;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-wowza-streaming-engine&#xFF0C;&#x4E0B;&#x65B9;&#x8A2D;&#x5B9A;&#x5206;&#x5225;&#x70BA;&#x9577;&#x5BEC;&#x3001;&#x662F;&#x5426;&#x9304;&#x88FD;&#x6210;&#x5F71;&#x7247;&#x3001;&#x96B1;&#x85CF;&#x5B57;&#x5E55;&#x985E;&#x578B;"><a href="#&#x9078;&#x64C7;&#x8F38;&#x5165;&#x9032;&#x4F86;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-wowza-streaming-engine&#xFF0C;&#x4E0B;&#x65B9;&#x8A2D;&#x5B9A;&#x5206;&#x5225;&#x70BA;&#x9577;&#x5BEC;&#x3001;&#x662F;&#x5426;&#x9304;&#x88FD;&#x6210;&#x5F71;&#x7247;&#x3001;&#x96B1;&#x85CF;&#x5B57;&#x5E55;&#x985E;&#x578B;" class="headerlink" title="&#x9078;&#x64C7;&#x8F38;&#x5165;&#x9032;&#x4F86;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; wowza streaming engine&#xFF0C;&#x4E0B;&#x65B9;&#x8A2D;&#x5B9A;&#x5206;&#x5225;&#x70BA;&#x9577;&#x5BEC;&#x3001;&#x662F;&#x5426;&#x9304;&#x88FD;&#x6210;&#x5F71;&#x7247;&#x3001;&#x96B1;&#x85CF;&#x5B57;&#x5E55;&#x985E;&#x578B;"></a>&#x9078;&#x64C7;&#x8F38;&#x5165;&#x9032;&#x4F86;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; wowza streaming engine&#xFF0C;&#x4E0B;&#x65B9;&#x8A2D;&#x5B9A;&#x5206;&#x5225;&#x70BA;&#x9577;&#x5BEC;&#x3001;&#x662F;&#x5426;&#x9304;&#x88FD;&#x6210;&#x5F71;&#x7247;&#x3001;&#x96B1;&#x85CF;&#x5B57;&#x5E55;&#x985E;&#x578B;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x64A5;&#x653E;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x4EFD;&#x5225;&#x70BA;&#xFF1A;&#x64A5;&#x653E;&#x700F;&#x89BD;&#x5668;&#x9078;&#x64C7;&#x3001;&#x64A5;&#x653E;&#x5668;&#x5BEC;&#x5EA6;&#x3001;&#x76F4;&#x64AD;&#x958B;&#x59CB;&#x524D;&#x64A5;&#x653E;&#x5668;&#x986F;&#x793A;&#x6642;&#x9593;&#x5012;&#x6578;&#x3001;&#x64A5;&#x653E;&#x524D;&#x756B;&#x9762;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x64A5;&#x653E;&#x4E2D;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x5716;&#x7247;&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;"><a href="#&#x64A5;&#x653E;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x4EFD;&#x5225;&#x70BA;&#xFF1A;&#x64A5;&#x653E;&#x700F;&#x89BD;&#x5668;&#x9078;&#x64C7;&#x3001;&#x64A5;&#x653E;&#x5668;&#x5BEC;&#x5EA6;&#x3001;&#x76F4;&#x64AD;&#x958B;&#x59CB;&#x524D;&#x64A5;&#x653E;&#x5668;&#x986F;&#x793A;&#x6642;&#x9593;&#x5012;&#x6578;&#x3001;&#x64A5;&#x653E;&#x524D;&#x756B;&#x9762;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x64A5;&#x653E;&#x4E2D;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x5716;&#x7247;&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;" class="headerlink" title="&#x64A5;&#x653E;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x4EFD;&#x5225;&#x70BA;&#xFF1A;&#x64A5;&#x653E;&#x700F;&#x89BD;&#x5668;&#x9078;&#x64C7;&#x3001;&#x64A5;&#x653E;&#x5668;&#x5BEC;&#x5EA6;&#x3001;&#x76F4;&#x64AD;&#x958B;&#x59CB;&#x524D;&#x64A5;&#x653E;&#x5668;&#x986F;&#x793A;&#x6642;&#x9593;&#x5012;&#x6578;&#x3001;&#x64A5;&#x653E;&#x524D;&#x756B;&#x9762;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x64A5;&#x653E;&#x4E2D;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x5716;&#x7247;&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;"></a>&#x64A5;&#x653E;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x4EFD;&#x5225;&#x70BA;&#xFF1A;&#x64A5;&#x653E;&#x700F;&#x89BD;&#x5668;&#x9078;&#x64C7;&#x3001;&#x64A5;&#x653E;&#x5668;&#x5BEC;&#x5EA6;&#x3001;&#x76F4;&#x64AD;&#x958B;&#x59CB;&#x524D;&#x64A5;&#x653E;&#x5668;&#x986F;&#x793A;&#x6642;&#x9593;&#x5012;&#x6578;&#x3001;&#x64A5;&#x653E;&#x524D;&#x756B;&#x9762;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x64A5;&#x653E;&#x4E2D;&#x986F;&#x793A;&#x5716;&#x7247;&#x3001;&#x5716;&#x7247;&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8A17;&#x7BA1;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x5206;&#x5225;&#x70BA;&#xFF1A;&#x662F;&#x5426;&#x8B93;-wowza-&#x8A17;&#x7BA1;&#x64A5;&#x653E;&#x662F;&#x983B;&#x7DB2;&#x9801;&#x3001;&#x6A19;&#x984C;&#x3001;&#x8A17;&#x7BA1;&#x8449;&#x9762;&#x4E0A;&#x653E;&#x7F6E;&#x5716;&#x7247;&#x3001;&#x8AAA;&#x660E;"><a href="#&#x8A17;&#x7BA1;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x5206;&#x5225;&#x70BA;&#xFF1A;&#x662F;&#x5426;&#x8B93;-wowza-&#x8A17;&#x7BA1;&#x64A5;&#x653E;&#x662F;&#x983B;&#x7DB2;&#x9801;&#x3001;&#x6A19;&#x984C;&#x3001;&#x8A17;&#x7BA1;&#x8449;&#x9762;&#x4E0A;&#x653E;&#x7F6E;&#x5716;&#x7247;&#x3001;&#x8AAA;&#x660E;" class="headerlink" title="&#x8A17;&#x7BA1;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x5206;&#x5225;&#x70BA;&#xFF1A;&#x662F;&#x5426;&#x8B93; wowza &#x8A17;&#x7BA1;&#x64A5;&#x653E;&#x662F;&#x983B;&#x7DB2;&#x9801;&#x3001;&#x6A19;&#x984C;&#x3001;&#x8A17;&#x7BA1;&#x8449;&#x9762;&#x4E0A;&#x653E;&#x7F6E;&#x5716;&#x7247;&#x3001;&#x8AAA;&#x660E;"></a>&#x8A17;&#x7BA1;&#x8A2D;&#x7F6E;&#x4F9D;&#x5E8F;&#x5206;&#x5225;&#x70BA;&#xFF1A;&#x662F;&#x5426;&#x8B93; wowza &#x8A17;&#x7BA1;&#x64A5;&#x653E;&#x662F;&#x983B;&#x7DB2;&#x9801;&#x3001;&#x6A19;&#x984C;&#x3001;&#x8A17;&#x7BA1;&#x8449;&#x9762;&#x4E0A;&#x653E;&#x7F6E;&#x5716;&#x7247;&#x3001;&#x8AAA;&#x660E;</h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x6700;&#x5F8C;&#x4E00;&#x9801;&#x6703;&#x628A;&#x4F60;&#x7684;&#x8A2D;&#x7F6E;&#x5217;&#x51FA;&#x4F86;&#x7D66;&#x4F60;&#x770B;"><a href="#&#x6700;&#x5F8C;&#x4E00;&#x9801;&#x6703;&#x628A;&#x4F60;&#x7684;&#x8A2D;&#x7F6E;&#x5217;&#x51FA;&#x4F86;&#x7D66;&#x4F60;&#x770B;" class="headerlink" title="&#x6700;&#x5F8C;&#x4E00;&#x9801;&#x6703;&#x628A;&#x4F60;&#x7684;&#x8A2D;&#x7F6E;&#x5217;&#x51FA;&#x4F86;&#x7D66;&#x4F60;&#x770B;"></a>&#x6700;&#x5F8C;&#x4E00;&#x9801;&#x6703;&#x628A;&#x4F60;&#x7684;&#x8A2D;&#x7F6E;&#x5217;&#x51FA;&#x4F86;&#x7D66;&#x4F60;&#x770B;</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x5168;&#x90E8;&#x8A2D;&#x5B9A;&#x597D;&#x6703;&#x9032;&#x5165;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x8907;&#x88FD;&#x7D05;&#x6846;&#x4EE3;&#x78BC;"><a href="#&#x5168;&#x90E8;&#x8A2D;&#x5B9A;&#x597D;&#x6703;&#x9032;&#x5165;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x8907;&#x88FD;&#x7D05;&#x6846;&#x4EE3;&#x78BC;" class="headerlink" title="&#x5168;&#x90E8;&#x8A2D;&#x5B9A;&#x597D;&#x6703;&#x9032;&#x5165;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x8907;&#x88FD;&#x7D05;&#x6846;&#x4EE3;&#x78BC;"></a>&#x5168;&#x90E8;&#x8A2D;&#x5B9A;&#x597D;&#x6703;&#x9032;&#x5165;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x8907;&#x88FD;&#x7D05;&#x6846;&#x4EE3;&#x78BC;</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x63A5;&#x4E0B;&#x4F86;&#x5230;-wowza-streaming-engine-&#x2192;-Stream-Targets-&#x9078;&#x64C7;-wowza-streaming-cloud"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x5230;-wowza-streaming-engine-&#x2192;-Stream-Targets-&#x9078;&#x64C7;-wowza-streaming-cloud" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x5230; wowza streaming engine &#x2192; Stream Targets &#x9078;&#x64C7; wowza streaming cloud"></a>&#x63A5;&#x4E0B;&#x4F86;&#x5230; wowza streaming engine &#x2192; Stream Targets &#x9078;&#x64C7; wowza streaming cloud</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8F38;&#x5165;-Stream-Target-Name&#x3001;&#x518D;&#x8F38;&#x5165;&#x5F9E;-wowza-streaming-cloud-&#x62FF;&#x5230;&#x7684;&#x4EE3;&#x78BC;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x64CA;-Check-Code-&#x505A;&#x78BA;&#x8A8D;"><a href="#&#x8F38;&#x5165;-Stream-Target-Name&#x3001;&#x518D;&#x8F38;&#x5165;&#x5F9E;-wowza-streaming-cloud-&#x62FF;&#x5230;&#x7684;&#x4EE3;&#x78BC;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x64CA;-Check-Code-&#x505A;&#x78BA;&#x8A8D;" class="headerlink" title="&#x8F38;&#x5165; Stream Target Name&#x3001;&#x518D;&#x8F38;&#x5165;&#x5F9E; wowza streaming cloud &#x62FF;&#x5230;&#x7684;&#x4EE3;&#x78BC;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x64CA; Check Code &#x505A;&#x78BA;&#x8A8D;"></a>&#x8F38;&#x5165; Stream Target Name&#x3001;&#x518D;&#x8F38;&#x5165;&#x5F9E; wowza streaming cloud &#x62FF;&#x5230;&#x7684;&#x4EE3;&#x78BC;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x64CA; Check Code &#x505A;&#x78BA;&#x8A8D;</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9EDE;&#x64CA;&#x5B8C;-Check-Code-&#x6703;&#x51FA;&#x73FE;-Source-Stream-Name-&#x8F38;&#x5165;&#x4F60;-Incoming-Stream-&#x4E32;&#x6D41;&#x7684;&#x540D;&#x7A31;"><a href="#&#x9EDE;&#x64CA;&#x5B8C;-Check-Code-&#x6703;&#x51FA;&#x73FE;-Source-Stream-Name-&#x8F38;&#x5165;&#x4F60;-Incoming-Stream-&#x4E32;&#x6D41;&#x7684;&#x540D;&#x7A31;" class="headerlink" title="&#x9EDE;&#x64CA;&#x5B8C; Check Code &#x6703;&#x51FA;&#x73FE; Source Stream Name &#x8F38;&#x5165;&#x4F60; Incoming Stream &#x4E32;&#x6D41;&#x7684;&#x540D;&#x7A31;"></a>&#x9EDE;&#x64CA;&#x5B8C; Check Code &#x6703;&#x51FA;&#x73FE; Source Stream Name &#x8F38;&#x5165;&#x4F60; Incoming Stream &#x4E32;&#x6D41;&#x7684;&#x540D;&#x7A31;</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x518D;&#x4F86;&#x56DE;&#x5230;-wowza-streaming-cloud-&#x2192;-live-streams-&#x9EDE;&#x9078;&#x4E0B;&#x5716;&#x7D05;&#x6846;&#x7684;-Start-Live-Stream-&#x958B;&#x59CB;&#x76F4;&#x64AD;"><a href="#&#x518D;&#x4F86;&#x56DE;&#x5230;-wowza-streaming-cloud-&#x2192;-live-streams-&#x9EDE;&#x9078;&#x4E0B;&#x5716;&#x7D05;&#x6846;&#x7684;-Start-Live-Stream-&#x958B;&#x59CB;&#x76F4;&#x64AD;" class="headerlink" title="&#x518D;&#x4F86;&#x56DE;&#x5230; wowza streaming cloud &#x2192; live streams &#x9EDE;&#x9078;&#x4E0B;&#x5716;&#x7D05;&#x6846;&#x7684; Start Live Stream &#x958B;&#x59CB;&#x76F4;&#x64AD;"></a>&#x518D;&#x4F86;&#x56DE;&#x5230; wowza streaming cloud &#x2192; live streams &#x9EDE;&#x9078;&#x4E0B;&#x5716;&#x7D05;&#x6846;&#x7684; Start Live Stream &#x958B;&#x59CB;&#x76F4;&#x64AD;</h4><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9EDE;&#x64CA;-Start-Live-Stream-&#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x63D0;&#x793A;&#x9EDE;&#x64CA;-Start"><a href="#&#x9EDE;&#x64CA;-Start-Live-Stream-&#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x63D0;&#x793A;&#x9EDE;&#x64CA;-Start" class="headerlink" title="&#x9EDE;&#x64CA; Start Live Stream &#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x63D0;&#x793A;&#x9EDE;&#x64CA; Start"></a>&#x9EDE;&#x64CA; Start Live Stream &#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x63D0;&#x793A;&#x9EDE;&#x64CA; Start</h4><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x63A5;&#x4E0B;&#x4F86;&#x6703;&#x8DD1;&#x8B80;&#x689D;&#x6210;&#x529F;&#x5C31;&#x51FA;&#x73FE;-Ready"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x6703;&#x8DD1;&#x8B80;&#x689D;&#x6210;&#x529F;&#x5C31;&#x51FA;&#x73FE;-Ready" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x6703;&#x8DD1;&#x8B80;&#x689D;&#x6210;&#x529F;&#x5C31;&#x51FA;&#x73FE; Ready"></a>&#x63A5;&#x4E0B;&#x4F86;&#x6703;&#x8DD1;&#x8B80;&#x689D;&#x6210;&#x529F;&#x5C31;&#x51FA;&#x73FE; Ready</h4><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x76F4;&#x64AD;&#x5C31;&#x958B;&#x59CB;&#x4E86;&#xFF0C;&#x4E0B;&#x65B9;&#x7D05;&#x6846;&#x70BA;&#x624B;&#x6A5F;&#x4F7F;&#x7528;&#x4E32;&#x6D41;&#x7DB2;&#x5740;"><a href="#&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x76F4;&#x64AD;&#x5C31;&#x958B;&#x59CB;&#x4E86;&#xFF0C;&#x4E0B;&#x65B9;&#x7D05;&#x6846;&#x70BA;&#x624B;&#x6A5F;&#x4F7F;&#x7528;&#x4E32;&#x6D41;&#x7DB2;&#x5740;" class="headerlink" title="&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x76F4;&#x64AD;&#x5C31;&#x958B;&#x59CB;&#x4E86;&#xFF0C;&#x4E0B;&#x65B9;&#x7D05;&#x6846;&#x70BA;&#x624B;&#x6A5F;&#x4F7F;&#x7528;&#x4E32;&#x6D41;&#x7DB2;&#x5740;"></a>&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x76F4;&#x64AD;&#x5C31;&#x958B;&#x59CB;&#x4E86;&#xFF0C;&#x4E0B;&#x65B9;&#x7D05;&#x6846;&#x70BA;&#x624B;&#x6A5F;&#x4F7F;&#x7528;&#x4E32;&#x6D41;&#x7DB2;&#x5740;</h4><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x4E5F;&#x53EF;&#x4EE5;&#x9EDE;&#x9078;&#x5206;&#x9801;&#x7684;-Playback-&#x89C0;&#x770B;"><a href="#&#x4E5F;&#x53EF;&#x4EE5;&#x9EDE;&#x9078;&#x5206;&#x9801;&#x7684;-Playback-&#x89C0;&#x770B;" class="headerlink" title="&#x4E5F;&#x53EF;&#x4EE5;&#x9EDE;&#x9078;&#x5206;&#x9801;&#x7684; Playback &#x89C0;&#x770B;"></a>&#x4E5F;&#x53EF;&#x4EE5;&#x9EDE;&#x9078;&#x5206;&#x9801;&#x7684; Playback &#x89C0;&#x770B;</h4><p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x6216;&#x662F;&#x9EDE;&#x9078;-Monitior-&#x4E0B;&#x5716;&#x9EDE;&#x64CA;&#x7D05;&#x6846;&#x5716;&#x6848;&#x6703;&#x53E6;&#x5916;&#x958B;&#x555F;&#x4E00;&#x500B;&#x5206;&#x9801;&#x76F4;&#x64AD;&#x756B;&#x9762;"><a href="#&#x6216;&#x662F;&#x9EDE;&#x9078;-Monitior-&#x4E0B;&#x5716;&#x9EDE;&#x64CA;&#x7D05;&#x6846;&#x5716;&#x6848;&#x6703;&#x53E6;&#x5916;&#x958B;&#x555F;&#x4E00;&#x500B;&#x5206;&#x9801;&#x76F4;&#x64AD;&#x756B;&#x9762;" class="headerlink" title="&#x6216;&#x662F;&#x9EDE;&#x9078; Monitior &#x4E0B;&#x5716;&#x9EDE;&#x64CA;&#x7D05;&#x6846;&#x5716;&#x6848;&#x6703;&#x53E6;&#x5916;&#x958B;&#x555F;&#x4E00;&#x500B;&#x5206;&#x9801;&#x76F4;&#x64AD;&#x756B;&#x9762;"></a>&#x6216;&#x662F;&#x9EDE;&#x9078; Monitior &#x4E0B;&#x5716;&#x9EDE;&#x64CA;&#x7D05;&#x6846;&#x5716;&#x6848;&#x6703;&#x53E6;&#x5916;&#x958B;&#x555F;&#x4E00;&#x500B;&#x5206;&#x9801;&#x76F4;&#x64AD;&#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a></p>
+<h4 id="PS-&#x5982;&#x679C;&#x6709;&#x505C;&#x6B62;&#x6216;&#x662F;&#x91CD;&#x555F;&#x52D5;&#x4F5C;&#xFF0C;&#x6703;&#x9700;&#x8981;&#x518D;&#x91CD;&#x65B0;&#x8F38;&#x5165;&#x4E00;&#x6B21;&#x4EE3;&#x78BC;"><a href="#PS-&#x5982;&#x679C;&#x6709;&#x505C;&#x6B62;&#x6216;&#x662F;&#x91CD;&#x555F;&#x52D5;&#x4F5C;&#xFF0C;&#x6703;&#x9700;&#x8981;&#x518D;&#x91CD;&#x65B0;&#x8F38;&#x5165;&#x4E00;&#x6B21;&#x4EE3;&#x78BC;" class="headerlink" title="PS.&#x5982;&#x679C;&#x6709;&#x505C;&#x6B62;&#x6216;&#x662F;&#x91CD;&#x555F;&#x52D5;&#x4F5C;&#xFF0C;&#x6703;&#x9700;&#x8981;&#x518D;&#x91CD;&#x65B0;&#x8F38;&#x5165;&#x4E00;&#x6B21;&#x4EE3;&#x78BC;"></a>PS.&#x5982;&#x679C;&#x6709;&#x505C;&#x6B62;&#x6216;&#x662F;&#x91CD;&#x555F;&#x52D5;&#x4F5C;&#xFF0C;&#x6703;&#x9700;&#x8981;&#x518D;&#x91CD;&#x65B0;&#x8F38;&#x5165;&#x4E00;&#x6B21;&#x4EE3;&#x78BC;</h4><p><a class="magnific-img" href="images/22.png"><img src="images/22.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8981;&#x5230;-Video-Source-and-Transcoder-&#x4E0B;&#x65B9;-Regenerate-Connection-Code-&#x91CD;&#x65B0;&#x53D6;&#x5F97;&#x4EE3;&#x78BC;"><a href="#&#x8981;&#x5230;-Video-Source-and-Transcoder-&#x4E0B;&#x65B9;-Regenerate-Connection-Code-&#x91CD;&#x65B0;&#x53D6;&#x5F97;&#x4EE3;&#x78BC;" class="headerlink" title="&#x8981;&#x5230; Video Source and Transcoder &#x4E0B;&#x65B9; Regenerate Connection Code &#x91CD;&#x65B0;&#x53D6;&#x5F97;&#x4EE3;&#x78BC;"></a>&#x8981;&#x5230; Video Source and Transcoder &#x4E0B;&#x65B9; Regenerate Connection Code &#x91CD;&#x65B0;&#x53D6;&#x5F97;&#x4EE3;&#x78BC;</h4><p><a class="magnific-img" href="images/23.png"><img src="images/23.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/24.png"><img src="images/24.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"><a href="#&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"></a>&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-11-23T03:36:19.000Z" itemprop="datePublished">2018-11-23</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/11/15/wowza串流輸出Youtube直播/" class="ui tiny button">
+                    
+                    wowza串流輸出Youtube直播
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹-wowza-engine-串流輸出到-wowza-cloud-的基本操作"><span>本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作</span></a><ol><li><a href="#首先登入-wowza-streaming-cloud"><span>首先登入 wowza streaming cloud</span></a></li><li><a href="#點選-Live-Streams"><span>點選 Live Streams</span></a></li><li><a href="#點擊左上方或下方的-Add-Live-Stream-新增直播"><span>點擊左上方或下方的 Add Live Stream 新增直播</span></a></li><li><a href="#輸入-live-stream-選擇地區"><span>輸入 live stream 選擇地區</span></a></li><li><a href="#選擇輸入進來的方式，本文章使用-wowza-streaming-engine，下方設定分別為長寬、是否錄製成影片、隱藏字幕類型"><span>選擇輸入進來的方式，本文章使用 wowza streaming engine，下方設定分別為長寬、是否錄製成影片、隱藏字幕類型</span></a></li><li><a href="#撥放設置依序份別為：撥放瀏覽器選擇、撥放器寬度、直播開始前撥放器顯示時間倒數、撥放前畫面顯示圖片、撥放中顯示圖片、圖片放置位置"><span>撥放設置依序份別為：撥放瀏覽器選擇、撥放器寬度、直播開始前撥放器顯示時間倒數、撥放前畫面顯示圖片、撥放中顯示圖片、圖片放置位置</span></a></li><li><a href="#託管設置依序分別為：是否讓-wowza-託管撥放是頻網頁、標題、託管葉面上放置圖片、說明"><span>託管設置依序分別為：是否讓 wowza 託管撥放是頻網頁、標題、託管葉面上放置圖片、說明</span></a></li><li><a href="#最後一頁會把你的設置列出來給你看"><span>最後一頁會把你的設置列出來給你看</span></a></li><li><a href="#全部設定好會進入下圖畫面，複製紅框代碼"><span>全部設定好會進入下圖畫面，複製紅框代碼</span></a></li><li><a href="#接下來到-wowza-streaming-engine-→-Stream-Targets-選擇-wowza-streaming-cloud"><span>接下來到 wowza streaming engine → Stream Targets 選擇 wowza streaming cloud</span></a></li><li><a href="#輸入-Stream-Target-Name、再輸入從-wowza-streaming-cloud-拿到的代碼，輸入完點擊-Check-Code-做確認"><span>輸入 Stream Target Name、再輸入從 wowza streaming cloud 拿到的代碼，輸入完點擊 Check Code 做確認</span></a></li><li><a href="#點擊完-Check-Code-會出現-Source-Stream-Name-輸入你-Incoming-Stream-串流的名稱"><span>點擊完 Check Code 會出現 Source Stream Name 輸入你 Incoming Stream 串流的名稱</span></a></li><li><a href="#再來回到-wowza-streaming-cloud-→-live-streams-點選下圖紅框的-Start-Live-Stream-開始直播"><span>再來回到 wowza streaming cloud → live streams 點選下圖紅框的 Start Live Stream 開始直播</span></a></li><li><a href="#點擊-Start-Live-Stream-會出現下圖提示點擊-Start"><span>點擊 Start Live Stream 會出現下圖提示點擊 Start</span></a></li><li><a href="#接下來會跑讀條成功就出現-Ready"><span>接下來會跑讀條成功就出現 Ready</span></a></li><li><a href="#下圖出現畫面直播就開始了，下方紅框為手機使用串流網址"><span>下圖出現畫面直播就開始了，下方紅框為手機使用串流網址</span></a></li><li><a href="#也可以點選分頁的-Playback-觀看"><span>也可以點選分頁的 Playback 觀看</span></a></li><li><a href="#或是點選-Monitior-下圖點擊紅框圖案會另外開啟一個分頁直播畫面"><span>或是點選 Monitior 下圖點擊紅框圖案會另外開啟一個分頁直播畫面</span></a></li><li><a href="#PS-如果有停止或是重啟動作，會需要再重新輸入一次代碼"><span>PS.如果有停止或是重啟動作，會需要再重新輸入一次代碼</span></a></li><li><a href="#要到-Video-Source-and-Transcoder-下方-Regenerate-Connection-Code-重新取得代碼"><span>要到 Video Source and Transcoder 下方 Regenerate Connection Code 重新取得代碼</span></a></li><li><a href="#到這邊就完成了"><span>到這邊就完成了</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

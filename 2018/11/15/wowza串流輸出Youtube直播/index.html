@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>wowza串流輸出Youtube直播 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; GoCoder &amp;#x4E32;&amp;#x6D41;&amp;#x5230; wowza &amp;#x5728;&amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; youtube &amp;#x76F4;&amp;#x64AD;ps.youtube &amp;#x8F38;&amp;#x5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wowza串流輸出Youtube直播">
+<meta property="og:url" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; GoCoder &amp;#x4E32;&amp;#x6D41;&amp;#x5230; wowza &amp;#x5728;&amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; youtube &amp;#x76F4;&amp;#x64AD;ps.youtube &amp;#x8F38;&amp;#x5">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/12.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.599Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wowza串流輸出Youtube直播">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; GoCoder &amp;#x4E32;&amp;#x6D41;&amp;#x5230; wowza &amp;#x5728;&amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; youtube &amp;#x76F4;&amp;#x64AD;ps.youtube &amp;#x8F38;&amp;#x5">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/15/wowza串流輸出Youtube直播/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-wowza串流輸出Youtube直播" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    wowza串流輸出Youtube直播
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-GoCoder-&#x4E32;&#x6D41;&#x5230;-wowza-&#x5728;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;-youtube-&#x76F4;&#x64AD;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-GoCoder-&#x4E32;&#x6D41;&#x5230;-wowza-&#x5728;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;-youtube-&#x76F4;&#x64AD;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; GoCoder &#x4E32;&#x6D41;&#x5230; wowza &#x5728;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230; youtube &#x76F4;&#x64AD;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; GoCoder &#x4E32;&#x6D41;&#x5230; wowza &#x5728;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230; youtube &#x76F4;&#x64AD;</h3><h4 id="ps-youtube-&#x8F38;&#x51FA;&#x65B9;&#x6CD5;&#x5176;&#x4ED6;&#x4E32;&#x6D41;&#x65B9;&#x5F0F;&#x4E5F;&#x662F;&#x76F8;&#x540C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6BD4;&#x8F03;&#x65B9;&#x4FBF;&#x7684;&#x624B;&#x6A5F;-GoCoder-&#x4ECB;&#x7D39;"><a href="#ps-youtube-&#x8F38;&#x51FA;&#x65B9;&#x6CD5;&#x5176;&#x4ED6;&#x4E32;&#x6D41;&#x65B9;&#x5F0F;&#x4E5F;&#x662F;&#x76F8;&#x540C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6BD4;&#x8F03;&#x65B9;&#x4FBF;&#x7684;&#x624B;&#x6A5F;-GoCoder-&#x4ECB;&#x7D39;" class="headerlink" title="ps.youtube &#x8F38;&#x51FA;&#x65B9;&#x6CD5;&#x5176;&#x4ED6;&#x4E32;&#x6D41;&#x65B9;&#x5F0F;&#x4E5F;&#x662F;&#x76F8;&#x540C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6BD4;&#x8F03;&#x65B9;&#x4FBF;&#x7684;&#x624B;&#x6A5F; GoCoder &#x4ECB;&#x7D39;"></a>ps.youtube &#x8F38;&#x51FA;&#x65B9;&#x6CD5;&#x5176;&#x4ED6;&#x4E32;&#x6D41;&#x65B9;&#x5F0F;&#x4E5F;&#x662F;&#x76F8;&#x540C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6BD4;&#x8F03;&#x65B9;&#x4FBF;&#x7684;&#x624B;&#x6A5F; GoCoder &#x4ECB;&#x7D39;</h4><h4 id="&#x9996;&#x5148;&#x958B;&#x555F;-youtube-&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x9032;&#x884C;&#x76F4;&#x64AD;"><a href="#&#x9996;&#x5148;&#x958B;&#x555F;-youtube-&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x9032;&#x884C;&#x76F4;&#x64AD;" class="headerlink" title="&#x9996;&#x5148;&#x958B;&#x555F; youtube &#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x9032;&#x884C;&#x76F4;&#x64AD;"></a>&#x9996;&#x5148;&#x958B;&#x555F; youtube &#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x9032;&#x884C;&#x76F4;&#x64AD;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x4E0B;&#x5716;&#x70BA;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;"><a href="#&#x4E0B;&#x5716;&#x70BA;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;" class="headerlink" title="&#x4E0B;&#x5716;&#x70BA;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;"></a>&#x4E0B;&#x5716;&#x70BA;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x63A5;&#x4E0B;&#x4F86;&#x5230;-wowza-&#x2192;-Stream-Targets-&#x2192;-Add-Stream-Targts-&#x8A2D;&#x5B9A;&#x8F38;&#x51FA;"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x5230;-wowza-&#x2192;-Stream-Targets-&#x2192;-Add-Stream-Targts-&#x8A2D;&#x5B9A;&#x8F38;&#x51FA;" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x5230; wowza &#x2192; Stream Targets &#x2192; Add Stream Targts &#x8A2D;&#x5B9A;&#x8F38;&#x51FA;"></a>&#x63A5;&#x4E0B;&#x4F86;&#x5230; wowza &#x2192; Stream Targets &#x2192; Add Stream Targts &#x8A2D;&#x5B9A;&#x8F38;&#x51FA;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9078;&#x64C7;-youtube"><a href="#&#x9078;&#x64C7;-youtube" class="headerlink" title="&#x9078;&#x64C7; youtube"></a>&#x9078;&#x64C7; youtube</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8A2D;&#x5B9A;&#x53C3;&#x6578;-Stream-Targets-Name&#xFF1A;&#x96A8;&#x610F;&#x547D;&#x540D;&#x3001;Source-Stream-Name&#xFF1A;Stream-File-Name"><a href="#&#x8A2D;&#x5B9A;&#x53C3;&#x6578;-Stream-Targets-Name&#xFF1A;&#x96A8;&#x610F;&#x547D;&#x540D;&#x3001;Source-Stream-Name&#xFF1A;Stream-File-Name" class="headerlink" title="&#x8A2D;&#x5B9A;&#x53C3;&#x6578; Stream Targets Name&#xFF1A;&#x96A8;&#x610F;&#x547D;&#x540D;&#x3001;Source Stream Name&#xFF1A;Stream File Name"></a>&#x8A2D;&#x5B9A;&#x53C3;&#x6578; Stream Targets Name&#xFF1A;&#x96A8;&#x610F;&#x547D;&#x540D;&#x3001;Source Stream Name&#xFF1A;Stream File Name</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Destination-Application-Name-&#x5C0D;&#x7167;-youtube-&#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;-&#x2192;-&#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A;-&#x2192;-&#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684;-live2&#x3001;Destination-Host-&#x5C0D;&#x7167;-youtube-&#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;-&#x2192;-&#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A;-&#x2192;-&#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684;-a-rtmp-youtube-com"><a href="#Destination-Application-Name-&#x5C0D;&#x7167;-youtube-&#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;-&#x2192;-&#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A;-&#x2192;-&#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684;-live2&#x3001;Destination-Host-&#x5C0D;&#x7167;-youtube-&#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;-&#x2192;-&#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A;-&#x2192;-&#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684;-a-rtmp-youtube-com" class="headerlink" title="Destination Application Name &#x5C0D;&#x7167; youtube &#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762; &#x2192; &#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A; &#x2192; &#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684; live2&#x3001;Destination Host &#x5C0D;&#x7167; youtube &#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762; &#x2192; &#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A; &#x2192; &#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684; a.rtmp.youtube.com"></a>Destination Application Name &#x5C0D;&#x7167; youtube &#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762; &#x2192; &#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A; &#x2192; &#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684; live2&#x3001;Destination Host &#x5C0D;&#x7167; youtube &#x7684;&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762; &#x2192; &#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A; &#x2192; &#x4F3A;&#x670D;&#x5668;&#x7DB2;&#x5740;&#x7684; a.rtmp.youtube.com</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x5230;-youtube-&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;-&#x2192;-&#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A;-&#x2192;-&#x4E32;&#x6D41;&#x540D;&#x7A31;-&#x91D1;&#x9470;&#xFF0C;&#x9EDE;&#x64CA;&#x986F;&#x793A;&#x6703;&#x51FA;&#x73FE;&#x91D1;&#x9470;&#xFF0C;&#x91D1;&#x9470;&#x91CD;&#x8A2D;&#x4E5F;&#x662F;&#x5728;&#x9019;&#x908A;&#x9032;&#x884C;"><a href="#&#x5230;-youtube-&#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762;-&#x2192;-&#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A;-&#x2192;-&#x4E32;&#x6D41;&#x540D;&#x7A31;-&#x91D1;&#x9470;&#xFF0C;&#x9EDE;&#x64CA;&#x986F;&#x793A;&#x6703;&#x51FA;&#x73FE;&#x91D1;&#x9470;&#xFF0C;&#x91D1;&#x9470;&#x91CD;&#x8A2D;&#x4E5F;&#x662F;&#x5728;&#x9019;&#x908A;&#x9032;&#x884C;" class="headerlink" title="&#x5230; youtube &#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762; &#x2192; &#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A; &#x2192; &#x4E32;&#x6D41;&#x540D;&#x7A31;/&#x91D1;&#x9470;&#xFF0C;&#x9EDE;&#x64CA;&#x986F;&#x793A;&#x6703;&#x51FA;&#x73FE;&#x91D1;&#x9470;&#xFF0C;&#x91D1;&#x9470;&#x91CD;&#x8A2D;&#x4E5F;&#x662F;&#x5728;&#x9019;&#x908A;&#x9032;&#x884C;"></a>&#x5230; youtube &#x76F4;&#x64AD;&#x8A2D;&#x5B9A;&#x756B;&#x9762; &#x2192; &#x7DE8;&#x78BC;&#x5668;&#x8A2D;&#x5B9A; &#x2192; &#x4E32;&#x6D41;&#x540D;&#x7A31;/&#x91D1;&#x9470;&#xFF0C;&#x9EDE;&#x64CA;&#x986F;&#x793A;&#x6703;&#x51FA;&#x73FE;&#x91D1;&#x9470;&#xFF0C;&#x91D1;&#x9470;&#x91CD;&#x8A2D;&#x4E5F;&#x662F;&#x5728;&#x9019;&#x908A;&#x9032;&#x884C;</h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x7372;&#x5F97;&#x7684;&#x91D1;&#x9470;&#x8F38;&#x5165;&#x5728;-Destination-Stream-Name"><a href="#&#x7372;&#x5F97;&#x7684;&#x91D1;&#x9470;&#x8F38;&#x5165;&#x5728;-Destination-Stream-Name" class="headerlink" title="&#x7372;&#x5F97;&#x7684;&#x91D1;&#x9470;&#x8F38;&#x5165;&#x5728; Destination Stream Name"></a>&#x7372;&#x5F97;&#x7684;&#x91D1;&#x9470;&#x8F38;&#x5165;&#x5728; Destination Stream Name</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230;-youtube-&#x6703;&#x767C;&#x73FE;&#x4E0A;&#x65B9;&#x6703;&#x51FA;&#x73FE;&#x5C07;&#x958B;&#x59CB;&#x5373;&#x5C07;&#x958B;&#x59CB;&#xFF0C;&#x7B49;&#x5F85;&#x4E00;&#x4E0B;&#x5F8C;&#x76F4;&#x64AD;&#x5C31;&#x6703;&#x6B63;&#x5F0F;&#x958B;&#x59CB;&#x4E86;"><a href="#&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230;-youtube-&#x6703;&#x767C;&#x73FE;&#x4E0A;&#x65B9;&#x6703;&#x51FA;&#x73FE;&#x5C07;&#x958B;&#x59CB;&#x5373;&#x5C07;&#x958B;&#x59CB;&#xFF0C;&#x7B49;&#x5F85;&#x4E00;&#x4E0B;&#x5F8C;&#x76F4;&#x64AD;&#x5C31;&#x6703;&#x6B63;&#x5F0F;&#x958B;&#x59CB;&#x4E86;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230; youtube &#x6703;&#x767C;&#x73FE;&#x4E0A;&#x65B9;&#x6703;&#x51FA;&#x73FE;&#x5C07;&#x958B;&#x59CB;&#x5373;&#x5C07;&#x958B;&#x59CB;&#xFF0C;&#x7B49;&#x5F85;&#x4E00;&#x4E0B;&#x5F8C;&#x76F4;&#x64AD;&#x5C31;&#x6703;&#x6B63;&#x5F0F;&#x958B;&#x59CB;&#x4E86;"></a>&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230; youtube &#x6703;&#x767C;&#x73FE;&#x4E0A;&#x65B9;&#x6703;&#x51FA;&#x73FE;&#x5C07;&#x958B;&#x59CB;&#x5373;&#x5C07;&#x958B;&#x59CB;&#xFF0C;&#x7B49;&#x5F85;&#x4E00;&#x4E0B;&#x5F8C;&#x76F4;&#x64AD;&#x5C31;&#x6703;&#x6B63;&#x5F0F;&#x958B;&#x59CB;&#x4E86;</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x756B;&#x9762;&#x6709;&#x51FA;&#x73FE;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF01;"><a href="#&#x756B;&#x9762;&#x6709;&#x51FA;&#x73FE;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF01;" class="headerlink" title="&#x756B;&#x9762;&#x6709;&#x51FA;&#x73FE;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF01;"></a>&#x756B;&#x9762;&#x6709;&#x51FA;&#x73FE;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF01;</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-11-15T05:44:29.000Z" itemprop="datePublished">2018-11-15</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    wowza-stream-engine串流輸出到wowza-streaming-cloud
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/11/15/wowza使用GoCoder串流/" class="ui tiny button">
+                    
+                    wowza使用GoCoder串流
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹使用-GoCoder-串流到-wowza-在串流輸出到-youtube-直播"><span>本文章將介紹使用 GoCoder 串流到 wowza 在串流輸出到 youtube 直播</span></a><ol><li><a href="#ps-youtube-輸出方法其他串流方式也是相同，本文章使用比較方便的手機-GoCoder-介紹"><span>ps.youtube 輸出方法其他串流方式也是相同，本文章使用比較方便的手機 GoCoder 介紹</span></a></li><li><a href="#首先開啟-youtube-點擊右上角進行直播"><span>首先開啟 youtube 點擊右上角進行直播</span></a></li><li><a href="#下圖為直播設定畫面"><span>下圖為直播設定畫面</span></a></li><li><a href="#接下來到-wowza-→-Stream-Targets-→-Add-Stream-Targts-設定輸出"><span>接下來到 wowza → Stream Targets → Add Stream Targts 設定輸出</span></a></li><li><a href="#選擇-youtube"><span>選擇 youtube</span></a></li><li><a href="#設定參數-Stream-Targets-Name：隨意命名、Source-Stream-Name：Stream-File-Name"><span>設定參數 Stream Targets Name：隨意命名、Source Stream Name：Stream File Name</span></a></li><li><a href="#Destination-Application-Name-對照-youtube-的直播設定畫面-→-編碼器設定-→-伺服器網址的-live2、Destination-Host-對照-youtube-的直播設定畫面-→-編碼器設定-→-伺服器網址的-a-rtmp-youtube-com"><span>Destination Application Name 對照 youtube 的直播設定畫面 → 編碼器設定 → 伺服器網址的 live2、Destination Host 對照 youtube 的直播設定畫面 → 編碼器設定 → 伺服器網址的 a.rtmp.youtube.com</span></a></li><li><a href="#到-youtube-直播設定畫面-→-編碼器設定-→-串流名稱-金鑰，點擊顯示會出現金鑰，金鑰重設也是在這邊進行"><span>到 youtube 直播設定畫面 → 編碼器設定 → 串流名稱/金鑰，點擊顯示會出現金鑰，金鑰重設也是在這邊進行</span></a></li><li><a href="#獲得的金鑰輸入在-Destination-Stream-Name"><span>獲得的金鑰輸入在 Destination Stream Name</span></a></li><li><a href="#設定好後回到-youtube-會發現上方會出現將開始即將開始，等待一下後直播就會正式開始了"><span>設定好後回到 youtube 會發現上方會出現將開始即將開始，等待一下後直播就會正式開始了</span></a></li><li><a href="#畫面有出現就是成功了！"><span>畫面有出現就是成功了！</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

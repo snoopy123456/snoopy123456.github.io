@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>安裝ansible-windows | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; ubuntu-ansible &amp;#x9023;&amp;#x7DDA;&amp;#x63A7;&amp;#x5236; windows&amp;#xFF0C;&amp;#x4F46;&amp;#x662F; windows &amp;#x662F;&amp;#x6C92;&amp;#x6709; ssh &amp;#x9023;&amp;#x7DDA;&amp;#x7684;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安裝ansible-windows">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/安裝ansible-windows/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; ubuntu-ansible &amp;#x9023;&amp;#x7DDA;&amp;#x63A7;&amp;#x5236; windows&amp;#xFF0C;&amp;#x4F46;&amp;#x662F; windows &amp;#x662F;&amp;#x6C92;&amp;#x6709; ssh &amp;#x9023;&amp;#x7DDA;&amp;#x7684;&amp;#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/19.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/20.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/21.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/22.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/23.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/24.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/17.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/18.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/13.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安裝ansible-windows">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; ubuntu-ansible &amp;#x9023;&amp;#x7DDA;&amp;#x63A7;&amp;#x5236; windows&amp;#xFF0C;&amp;#x4F46;&amp;#x662F; windows &amp;#x662F;&amp;#x6C92;&amp;#x6709; ssh &amp;#x9023;&amp;#x7DDA;&amp;#x7684;&amp;#">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/03/安裝ansible-windows/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-安裝ansible-windows" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    安裝ansible-windows
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-ubuntu-ansible-&#x9023;&#x7DDA;&#x63A7;&#x5236;-windows&#xFF0C;&#x4F46;&#x662F;-windows-&#x662F;&#x6C92;&#x6709;-ssh-&#x9023;&#x7DDA;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230;-pywinrm"><a href="#&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-ubuntu-ansible-&#x9023;&#x7DDA;&#x63A7;&#x5236;-windows&#xFF0C;&#x4F46;&#x662F;-windows-&#x662F;&#x6C92;&#x6709;-ssh-&#x9023;&#x7DDA;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230;-pywinrm" class="headerlink" title="&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; ubuntu-ansible &#x9023;&#x7DDA;&#x63A7;&#x5236; windows&#xFF0C;&#x4F46;&#x662F; windows &#x662F;&#x6C92;&#x6709; ssh &#x9023;&#x7DDA;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230; pywinrm"></a>&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; ubuntu-ansible &#x9023;&#x7DDA;&#x63A7;&#x5236; windows&#xFF0C;&#x4F46;&#x662F; windows &#x662F;&#x6C92;&#x6709; ssh &#x9023;&#x7DDA;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230; pywinrm</h3><h4 id="1-&#x5B89;&#x88DD;-ansible"><a href="#1-&#x5B89;&#x88DD;-ansible" class="headerlink" title="1. &#x5B89;&#x88DD; ansible"></a>1. &#x5B89;&#x88DD; ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x5C07; PPA &#x6DFB;&#x52A0;&#x5230;&#x7CFB;&#x7D71;&#x4E2D;&#xFF0C;&#x4E2D;&#x9593;&#x9700;&#x8981;&#x6848; Enter &#x63A5;&#x53D7; PPA &#x589E;&#x52A0;</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x66F4;&#x65B0;&#x4E26;&#x5B89;&#x88DD;</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y ansible</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h4 id="2-&#x5B89;&#x88DD;-pywinrm"><a href="#2-&#x5B89;&#x88DD;-pywinrm" class="headerlink" title="2. &#x5B89;&#x88DD; pywinrm"></a>2. &#x5B89;&#x88DD; pywinrm</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x5B89;&#x88DD; pywinrm &#x6A21;&#x7D44;</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y python-pip</span><br><span class="line"></span><br><span class="line">pip install pywinrm</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="3-&#x914D;&#x7F6E;-ansible"><a href="#3-&#x914D;&#x7F6E;-ansible" class="headerlink" title="3. &#x914D;&#x7F6E; ansible"></a>3. &#x914D;&#x7F6E; ansible</h4><h4 id="Ansible-&#x901A;&#x904E;-hosts-&#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;"><a href="#Ansible-&#x901A;&#x904E;-hosts-&#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;" class="headerlink" title="Ansible &#x901A;&#x904E; hosts &#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;"></a>Ansible &#x901A;&#x904E; hosts &#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">host &#x6587;&#x4EF6;&#x8DEF;&#x5F91;</span><br><span class="line">/etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">&#x66F4;&#x6539;&#x6307;&#x4EE4;</span><br><span class="line">sudo vi /etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">&#x66F4;&#x6539;&#x5167;&#x5BB9;</span><br><span class="line">[&#x96A8;&#x610F;&#x7FA4;&#x7D44;&#x540D;&#x7A31;]</span><br><span class="line">&#x96A8;&#x610F;&#x540D;&#x7A31; ansible_ssh_host=&#x8981;&#x9023;&#x7DDA;&#x6A5F;&#x5668; ip</span><br><span class="line"></span><br><span class="line">ex&#xFF1A;</span><br><span class="line">[windows]</span><br><span class="line">test ansible_ssh_host=127.0.0.1</span><br><span class="line"></span><br><span class="line">&#x6216;&#x662F; ( &#x9019;&#x6A23;&#x8981;&#x55AE;&#x7368;&#x64CD;&#x63A7;&#x6307;&#x4EE4;&#x5C31;&#x8981;&#x4F7F;&#x7528; IP )</span><br><span class="line">[windows]</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+<h4 id="4-&#x65B0;&#x589E;&#x7FA4;&#x7D44;&#x8CC7;&#x6599;&#x593E;&#xFF0C;windows-&#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x8F38;&#x5165;&#x9060;&#x7AEF;&#x5E33;&#x5BC6;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x5728;-ansible-&#x4E0B;&#x5EFA;&#x7ACB;-group-vars-&#x8F38;&#x5165;&#x9060;&#x7AEF;&#x9700;&#x8981;&#x8A2D;&#x5B9A;"><a href="#4-&#x65B0;&#x589E;&#x7FA4;&#x7D44;&#x8CC7;&#x6599;&#x593E;&#xFF0C;windows-&#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x8F38;&#x5165;&#x9060;&#x7AEF;&#x5E33;&#x5BC6;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x5728;-ansible-&#x4E0B;&#x5EFA;&#x7ACB;-group-vars-&#x8F38;&#x5165;&#x9060;&#x7AEF;&#x9700;&#x8981;&#x8A2D;&#x5B9A;" class="headerlink" title="4. &#x65B0;&#x589E;&#x7FA4;&#x7D44;&#x8CC7;&#x6599;&#x593E;&#xFF0C;windows &#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x8F38;&#x5165;&#x9060;&#x7AEF;&#x5E33;&#x5BC6;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x5728; ansible &#x4E0B;&#x5EFA;&#x7ACB; group_vars &#x8F38;&#x5165;&#x9060;&#x7AEF;&#x9700;&#x8981;&#x8A2D;&#x5B9A;"></a>4. &#x65B0;&#x589E;&#x7FA4;&#x7D44;&#x8CC7;&#x6599;&#x593E;&#xFF0C;windows &#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x8F38;&#x5165;&#x9060;&#x7AEF;&#x5E33;&#x5BC6;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x5728; ansible &#x4E0B;&#x5EFA;&#x7ACB; group_vars &#x8F38;&#x5165;&#x9060;&#x7AEF;&#x9700;&#x8981;&#x8A2D;&#x5B9A;</h4><h4 id="PS-&#x6A94;&#x6848;&#x540D;&#x7A31;&#x8981;&#x8DDF;&#x7FA4;&#x7D44;&#x4E00;&#x6A23;&#xFF0C;&#x624D;&#x6703;&#x8B80;&#x53D6;&#x5230;-YMAL-&#x6A94;&#x7684;&#x5167;&#x5BB9;"><a href="#PS-&#x6A94;&#x6848;&#x540D;&#x7A31;&#x8981;&#x8DDF;&#x7FA4;&#x7D44;&#x4E00;&#x6A23;&#xFF0C;&#x624D;&#x6703;&#x8B80;&#x53D6;&#x5230;-YMAL-&#x6A94;&#x7684;&#x5167;&#x5BB9;" class="headerlink" title="PS.&#x6A94;&#x6848;&#x540D;&#x7A31;&#x8981;&#x8DDF;&#x7FA4;&#x7D44;&#x4E00;&#x6A23;&#xFF0C;&#x624D;&#x6703;&#x8B80;&#x53D6;&#x5230; YMAL &#x6A94;&#x7684;&#x5167;&#x5BB9;"></a>PS.&#x6A94;&#x6848;&#x540D;&#x7A31;&#x8981;&#x8DDF;&#x7FA4;&#x7D44;&#x4E00;&#x6A23;&#xFF0C;&#x624D;&#x6703;&#x8B80;&#x53D6;&#x5230; YMAL &#x6A94;&#x7684;&#x5167;&#x5BB9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/ansible/group_vars</span><br><span class="line"></span><br><span class="line">sudo vi /etc/ansible/group_vars/windows.yml</span><br><span class="line"></span><br><span class="line">ansible_user: &#x9060;&#x7AEF;&#x5E33;&#x865F;</span><br><span class="line">ansible_password: &#x9060;&#x7AEF;&#x5BC6;&#x78BC;</span><br><span class="line">ansible_port: 5986</span><br><span class="line">ansible_connection: winrm</span><br><span class="line">ansible_winrm_server_cert_validation: ignore</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h4 id="5-&#x88FD;&#x4F5C;-powershell-&#x8173;&#x672C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528;-windows-server-2016-Datacenter"><a href="#5-&#x88FD;&#x4F5C;-powershell-&#x8173;&#x672C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528;-windows-server-2016-Datacenter" class="headerlink" title="5. &#x88FD;&#x4F5C; powershell &#x8173;&#x672C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528; windows server 2016 Datacenter"></a>5. &#x88FD;&#x4F5C; powershell &#x8173;&#x672C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528; windows server 2016 Datacenter</h4><h4 id="&#x684C;&#x9762;&#x53F3;&#x9375;-&#x2192;-&#x65B0;&#x589E;-&#x2192;-&#x6587;&#x4EF6;&#x8CC7;&#x6599;&#x593E;"><a href="#&#x684C;&#x9762;&#x53F3;&#x9375;-&#x2192;-&#x65B0;&#x589E;-&#x2192;-&#x6587;&#x4EF6;&#x8CC7;&#x6599;&#x593E;" class="headerlink" title="&#x684C;&#x9762;&#x53F3;&#x9375; &#x2192; &#x65B0;&#x589E; &#x2192; &#x6587;&#x4EF6;&#x8CC7;&#x6599;&#x593E;"></a>&#x684C;&#x9762;&#x53F3;&#x9375; &#x2192; &#x65B0;&#x589E; &#x2192; &#x6587;&#x4EF6;&#x8CC7;&#x6599;&#x593E;</h4><p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x96A8;&#x610F;&#x8CC7;&#x6599;&#x593E;&#x53F3;&#x4E0A;&#x7BAD;&#x982D;-&#x2192;-&#x9EDE;&#x9078;&#x5206;&#x9801;&#x6AA2;&#x8996;-&#x2192;-&#x526F;&#x6A94;&#x540D;&#x6253;&#x52FE;&#xFF0C;&#x9019;&#x6A23;&#x5C31;&#x770B;&#x7684;&#x5230;&#x6A94;&#x6848;&#x526F;&#x6A94;&#x540D;"><a href="#&#x96A8;&#x610F;&#x8CC7;&#x6599;&#x593E;&#x53F3;&#x4E0A;&#x7BAD;&#x982D;-&#x2192;-&#x9EDE;&#x9078;&#x5206;&#x9801;&#x6AA2;&#x8996;-&#x2192;-&#x526F;&#x6A94;&#x540D;&#x6253;&#x52FE;&#xFF0C;&#x9019;&#x6A23;&#x5C31;&#x770B;&#x7684;&#x5230;&#x6A94;&#x6848;&#x526F;&#x6A94;&#x540D;" class="headerlink" title="&#x96A8;&#x610F;&#x8CC7;&#x6599;&#x593E;&#x53F3;&#x4E0A;&#x7BAD;&#x982D; &#x2192; &#x9EDE;&#x9078;&#x5206;&#x9801;&#x6AA2;&#x8996; &#x2192; &#x526F;&#x6A94;&#x540D;&#x6253;&#x52FE;&#xFF0C;&#x9019;&#x6A23;&#x5C31;&#x770B;&#x7684;&#x5230;&#x6A94;&#x6848;&#x526F;&#x6A94;&#x540D;"></a>&#x96A8;&#x610F;&#x8CC7;&#x6599;&#x593E;&#x53F3;&#x4E0A;&#x7BAD;&#x982D; &#x2192; &#x9EDE;&#x9078;&#x5206;&#x9801;&#x6AA2;&#x8996; &#x2192; &#x526F;&#x6A94;&#x540D;&#x6253;&#x52FE;&#xFF0C;&#x9019;&#x6A23;&#x5C31;&#x770B;&#x7684;&#x5230;&#x6A94;&#x6848;&#x526F;&#x6A94;&#x540D;</h4><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/22.png"><img src="images/22.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x547D;&#x540D;-ConfigureRemotingForAnsible-ps1-&#x8CBC;&#x4E0A;&#x7DB2;&#x5740;&#x5167;&#x5BB9;&#xFF0C;&#x6A94;&#x6848;&#x5167;&#x5BB9;&#xFF1A;https-goo-gl-t5BWTN"><a href="#&#x547D;&#x540D;-ConfigureRemotingForAnsible-ps1-&#x8CBC;&#x4E0A;&#x7DB2;&#x5740;&#x5167;&#x5BB9;&#xFF0C;&#x6A94;&#x6848;&#x5167;&#x5BB9;&#xFF1A;https-goo-gl-t5BWTN" class="headerlink" title="&#x547D;&#x540D; ConfigureRemotingForAnsible.ps1 &#x8CBC;&#x4E0A;&#x7DB2;&#x5740;&#x5167;&#x5BB9;&#xFF0C;&#x6A94;&#x6848;&#x5167;&#x5BB9;&#xFF1A;https://goo.gl/t5BWTN"></a>&#x547D;&#x540D; ConfigureRemotingForAnsible.ps1 &#x8CBC;&#x4E0A;&#x7DB2;&#x5740;&#x5167;&#x5BB9;&#xFF0C;&#x6A94;&#x6848;&#x5167;&#x5BB9;&#xFF1A;<a href="https://goo.gl/t5BWTN" target="_blank" rel="noopener">https://goo.gl/t5BWTN</a></h4><h4 id="&#x8CBC;&#x4E0A;&#x5167;&#x5BB9;&#x5F8C;&#x66F4;&#x6539;&#x6A94;&#x540D;-ps1"><a href="#&#x8CBC;&#x4E0A;&#x5167;&#x5BB9;&#x5F8C;&#x66F4;&#x6539;&#x6A94;&#x540D;-ps1" class="headerlink" title="&#x8CBC;&#x4E0A;&#x5167;&#x5BB9;&#x5F8C;&#x66F4;&#x6539;&#x6A94;&#x540D; .ps1"></a>&#x8CBC;&#x4E0A;&#x5167;&#x5BB9;&#x5F8C;&#x66F4;&#x6539;&#x6A94;&#x540D; .ps1</h4><p><a class="magnific-img" href="images/23.png"><img src="images/23.png" alt=" " class="ui centered image"></a></p>
+<h4 id="6-windows-&#x958B;&#x555F;-powershell-&#x8A2D;&#x5B9A;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528;-windows-server-2016-Datacenter-&#x4E0D;&#x7528;&#x4E0B;&#x5217;&#x6B65;&#x9A5F;&#x53EF;&#x4EE5;&#x8DF3;&#x7B2C;-7-&#x6B65;&#x9A5F;"><a href="#6-windows-&#x958B;&#x555F;-powershell-&#x8A2D;&#x5B9A;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528;-windows-server-2016-Datacenter-&#x4E0D;&#x7528;&#x4E0B;&#x5217;&#x6B65;&#x9A5F;&#x53EF;&#x4EE5;&#x8DF3;&#x7B2C;-7-&#x6B65;&#x9A5F;" class="headerlink" title="6. windows &#x958B;&#x555F; powershell &#x8A2D;&#x5B9A;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528; windows server 2016 Datacenter &#x4E0D;&#x7528;&#x4E0B;&#x5217;&#x6B65;&#x9A5F;&#x53EF;&#x4EE5;&#x8DF3;&#x7B2C; 7 &#x6B65;&#x9A5F;"></a>6. windows &#x958B;&#x555F; powershell &#x8A2D;&#x5B9A;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F7F;&#x7528; windows server 2016 Datacenter &#x4E0D;&#x7528;&#x4E0B;&#x5217;&#x6B65;&#x9A5F;&#x53EF;&#x4EE5;&#x8DF3;&#x7B2C; 7 &#x6B65;&#x9A5F;</h4><h4 id="&#x958B;&#x555F;-powershell&#xFF0C;&#x5DE6;&#x4E0B;&#x641C;&#x5C0B;-&#x2192;-&#x8F38;&#x5165;-powershell-&#x2192;-&#x53F3;&#x9375;&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x8EAB;&#x5206;&#x57F7;&#x884C;"><a href="#&#x958B;&#x555F;-powershell&#xFF0C;&#x5DE6;&#x4E0B;&#x641C;&#x5C0B;-&#x2192;-&#x8F38;&#x5165;-powershell-&#x2192;-&#x53F3;&#x9375;&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x8EAB;&#x5206;&#x57F7;&#x884C;" class="headerlink" title="&#x958B;&#x555F; powershell&#xFF0C;&#x5DE6;&#x4E0B;&#x641C;&#x5C0B; &#x2192; &#x8F38;&#x5165; powershell &#x2192; &#x53F3;&#x9375;&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x8EAB;&#x5206;&#x57F7;&#x884C;"></a>&#x958B;&#x555F; powershell&#xFF0C;&#x5DE6;&#x4E0B;&#x641C;&#x5C0B; &#x2192; &#x8F38;&#x5165; powershell &#x2192; &#x53F3;&#x9375;&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x8EAB;&#x5206;&#x57F7;&#x884C;</h4><p><a class="magnific-img" href="images/24.png"><img src="images/24.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x5B89;&#x88DD; .NET Framework 4.5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x66F4;&#x6539; powershell &#x7B56;&#x7565;&#x70BA; remotesigned &#x8F38;&#x5165; y &#x78BA;&#x8A8D;</span><br><span class="line"></span><br><span class="line">Set-ExecutionPolicy remotesigned</span><br><span class="line"></span><br><span class="line">&#x6AA2;&#x67E5;&#x7B56;&#x7565;</span><br><span class="line"></span><br><span class="line">Get-ExecutionPolicy</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x67E5;&#x770B;&#x7248;&#x672C;&#xFF08; &#x9808;&#x70BA;3.0&#x4EE5;&#x4E0A; &#xFF09;</span><br><span class="line"></span><br><span class="line">$PSVersionTable.PSVersion</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x958B;&#x555F; Winrm service</span><br><span class="line"></span><br><span class="line">winrm enumerate winrm/config/listener</span><br><span class="line"></span><br><span class="line">&#x5982;&#x679C;&#x6C92;&#x6709;&#x56DE;&#x61C9;&#xFF0C;&#x8868;&#x793A;&#x8A72;&#x670D;&#x52D9;&#x6C92;&#x6709;&#x555F;&#x52D5;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x4E0D;&#x555F;&#x52D5;&#x7684;</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
+<h4 id="7-&#x5C0D;-winrm-service-&#x9032;&#x884C;&#x57FA;&#x790E;&#x914D;&#x7F6E;"><a href="#7-&#x5C0D;-winrm-service-&#x9032;&#x884C;&#x57FA;&#x790E;&#x914D;&#x7F6E;" class="headerlink" title="7. &#x5C0D; winrm service &#x9032;&#x884C;&#x57FA;&#x790E;&#x914D;&#x7F6E;"></a>7. &#x5C0D; winrm service &#x9032;&#x884C;&#x57FA;&#x790E;&#x914D;&#x7F6E;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">winrm quickconfig</span><br><span class="line"></span><br><span class="line">&#x5982;&#x679C;&#x5DF2;&#x7D93;&#x555F;&#x52D5;&#x8A2D;&#x5B9A;&#x6703;&#x9700;&#x8981;&#x7528;&#x6307;&#x4EE4;&#x4FEE;&#x6539;</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">winrm service &#x914D;&#x7F6E; auth</span><br><span class="line"></span><br><span class="line">winrm set winrm/config/service/auth &#x2018;@{Basic=&quot;true&quot;}&#x2018;</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">winrm service &#x914D;&#x7F6E;&#x52A0;&#x5BC6;&#x65B9;&#x5F0F;&#x70BA;&#x5141;&#x8A31;&#x975E;&#x52A0;&#x5BC6;</span><br><span class="line"></span><br><span class="line">winrm set winrm/config/service &#x2018;@{AllowUnencrypted=&quot;true&quot;}&#x2018;</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x5728;&#x653E;&#x7F6E; ConfigureRemotingForAnsible.ps1 &#x8DEF;&#x5F91;&#x4E0B;&#x57F7;&#x884C;&#x914D;&#x7F6E; winrm &#x8207; https &#x8B49;&#x66F8;&#x8A0A;&#x606F;</span><br><span class="line"></span><br><span class="line">powershell.exe -File ConfigureRemotingForAnsible.ps1</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x6AA2;&#x67E5; config &#x5167;&#x5BB9;</span><br><span class="line"></span><br><span class="line">winrm get winrm/config</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
+<h4 id="8-&#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;"><a href="#8-&#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;" class="headerlink" title="8. &#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;"></a>8. &#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m win_ping</span><br><span class="line"></span><br><span class="line">ansible test -m win_ping ( &#x6307;&#x5B9A;&#x55AE;&#x500B;&#x4E3B;&#x6A5F; )</span><br><span class="line"></span><br><span class="line">ansible 127.0.0.1 -m win_ping ( &#x6307;&#x5B9A;&#x55AE;&#x500B;&#x4E3B;&#x6A5F; )</span><br><span class="line"></span><br><span class="line">ansible windows -m win_ping ( &#x6307;&#x5B9A;&#x7FA4;&#x7D44; )</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
+<h4 id="9-&#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;"><a href="#9-&#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;" class="headerlink" title="9. &#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;"></a>9. &#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ansible name -m win_command -a &quot;command&quot;</span><br><span class="line"></span><br><span class="line">ex&#xFF1A;ansible windows -m win_command -a &quot;shutdown -r -t 10&quot; ( &#x9060;&#x7AEF;&#x64CD;&#x4F5C;&#x91CD;&#x555F;&#x6307;&#x4EE4; )</span><br></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2019-01-03T06:29:23.000Z" itemprop="datePublished">2019-01-03</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2019/01/03/配置winrm與https證書訊息/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    配置winrm與https證書訊息
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2019/01/03/安裝ansible-ubuntu/" class="ui tiny button">
+                    
+                    安裝ansible-ubuntu
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本章將介紹使用-ubuntu-ansible-連線控制-windows，但是-windows-是沒有-ssh-連線的，所以會需要用到-pywinrm"><span>本章將介紹使用 ubuntu-ansible 連線控制 windows，但是 windows 是沒有 ssh 連線的，所以會需要用到 pywinrm</span></a><ol><li><a href="#1-安裝-ansible"><span>1. 安裝 ansible</span></a></li><li><a href="#2-安裝-pywinrm"><span>2. 安裝 pywinrm</span></a></li><li><a href="#3-配置-ansible"><span>3. 配置 ansible</span></a></li><li><a href="#Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"><span>Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線</span></a></li><li><a href="#4-新增群組資料夾，windows-連線會需要輸入遠端帳密，因此我們在-ansible-下建立-group-vars-輸入遠端需要設定"><span>4. 新增群組資料夾，windows 連線會需要輸入遠端帳密，因此我們在 ansible 下建立 group_vars 輸入遠端需要設定</span></a></li><li><a href="#PS-檔案名稱要跟群組一樣，才會讀取到-YMAL-檔的內容"><span>PS.檔案名稱要跟群組一樣，才會讀取到 YMAL 檔的內容</span></a></li><li><a href="#5-製作-powershell-腳本，本文章是使用-windows-server-2016-Datacenter"><span>5. 製作 powershell 腳本，本文章是使用 windows server 2016 Datacenter</span></a></li><li><a href="#桌面右鍵-→-新增-→-文件資料夾"><span>桌面右鍵 → 新增 → 文件資料夾</span></a></li><li><a href="#隨意資料夾右上箭頭-→-點選分頁檢視-→-副檔名打勾，這樣就看的到檔案副檔名"><span>隨意資料夾右上箭頭 → 點選分頁檢視 → 副檔名打勾，這樣就看的到檔案副檔名</span></a></li><li><a href="#命名-ConfigureRemotingForAnsible-ps1-貼上網址內容，檔案內容：https-goo-gl-t5BWTN"><span>命名 ConfigureRemotingForAnsible.ps1 貼上網址內容，檔案內容：https://goo.gl/t5BWTN</span></a></li><li><a href="#貼上內容後更改檔名-ps1"><span>貼上內容後更改檔名 .ps1</span></a></li><li><a href="#6-windows-開啟-powershell-設定，本文章是使用-windows-server-2016-Datacenter-不用下列步驟可以跳第-7-步驟"><span>6. windows 開啟 powershell 設定，本文章是使用 windows server 2016 Datacenter 不用下列步驟可以跳第 7 步驟</span></a></li><li><a href="#開啟-powershell，左下搜尋-→-輸入-powershell-→-右鍵以系統管理員身分執行"><span>開啟 powershell，左下搜尋 → 輸入 powershell → 右鍵以系統管理員身分執行</span></a></li><li><a href="#7-對-winrm-service-進行基礎配置"><span>7. 對 winrm service 進行基礎配置</span></a></li><li><a href="#8-測試，如下圖就成功了接下來可以下其他指令對機器做控制"><span>8. 測試，如下圖就成功了接下來可以下其他指令對機器做控制</span></a></li><li><a href="#9-下指令方式操作機器"><span>9. 下指令方式操作機器</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

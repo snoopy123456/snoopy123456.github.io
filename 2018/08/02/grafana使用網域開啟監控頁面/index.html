@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>grafana使用網域開啟監控頁面 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; GCP &amp;#x52A0;&amp;#x5165; DNS &amp;#x7DB2;&amp;#x57DF;&amp;#x958B;&amp;#x555F; grafana &amp;#x76E3;&amp;#x63A7;&amp;#x9801;&amp;#x9762;&amp;#x5728; GCP &amp;#x52A0;&amp;#x5165; DNS &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grafana使用網域開啟監控頁面">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; GCP &amp;#x52A0;&amp;#x5165; DNS &amp;#x7DB2;&amp;#x57DF;&amp;#x958B;&amp;#x555F; grafana &amp;#x76E3;&amp;#x63A7;&amp;#x9801;&amp;#x9762;&amp;#x5728; GCP &amp;#x52A0;&amp;#x5165; DNS &amp;#x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/images/1.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="grafana使用網域開啟監控頁面">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; GCP &amp;#x52A0;&amp;#x5165; DNS &amp;#x7DB2;&amp;#x57DF;&amp;#x958B;&amp;#x555F; grafana &amp;#x76E3;&amp;#x63A7;&amp;#x9801;&amp;#x9762;&amp;#x5728; GCP &amp;#x52A0;&amp;#x5165; DNS &amp;#x">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-grafana使用網域開啟監控頁面" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    grafana使用網域開啟監控頁面
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-GCP-&#x52A0;&#x5165;-DNS-&#x7DB2;&#x57DF;&#x958B;&#x555F;-grafana-&#x76E3;&#x63A7;&#x9801;&#x9762;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-GCP-&#x52A0;&#x5165;-DNS-&#x7DB2;&#x57DF;&#x958B;&#x555F;-grafana-&#x76E3;&#x63A7;&#x9801;&#x9762;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; GCP &#x52A0;&#x5165; DNS &#x7DB2;&#x57DF;&#x958B;&#x555F; grafana &#x76E3;&#x63A7;&#x9801;&#x9762;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; GCP &#x52A0;&#x5165; DNS &#x7DB2;&#x57DF;&#x958B;&#x555F; grafana &#x76E3;&#x63A7;&#x9801;&#x9762;</h2><h3 id="&#x5728;-GCP-&#x52A0;&#x5165;-DNS-&#x7DB2;&#x57DF;&#x6587;&#x7AE0;-&#x50B3;&#x9001;&#x9580;"><a href="#&#x5728;-GCP-&#x52A0;&#x5165;-DNS-&#x7DB2;&#x57DF;&#x6587;&#x7AE0;-&#x50B3;&#x9001;&#x9580;" class="headerlink" title="&#x5728; GCP &#x52A0;&#x5165; DNS &#x7DB2;&#x57DF;&#x6587;&#x7AE0; &#x50B3;&#x9001;&#x9580;"></a>&#x5728; GCP &#x52A0;&#x5165; DNS &#x7DB2;&#x57DF;&#x6587;&#x7AE0; <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E8%A8%AD%E5%AE%9ADNS%E7%B6%B2%E5%9F%9F/" target="_blank" rel="noopener">&#x50B3;&#x9001;&#x9580;</a></h3><h3 id="GCP-&#x7DB2;&#x57DF;&#x52A0;&#x597D;&#x5F8C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6307;&#x4EE4;&#x591A;&#x52A0;-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-&#x201D;&#x4F60;&#x7684;&#x7DB2;&#x57DF;&#x201D;-&#x9019;&#x6A23;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;"><a href="#GCP-&#x7DB2;&#x57DF;&#x52A0;&#x597D;&#x5F8C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6307;&#x4EE4;&#x591A;&#x52A0;-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-&#x201D;&#x4F60;&#x7684;&#x7DB2;&#x57DF;&#x201D;-&#x9019;&#x6A23;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;" class="headerlink" title="GCP &#x7DB2;&#x57DF;&#x52A0;&#x597D;&#x5F8C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6307;&#x4EE4;&#x591A;&#x52A0; -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=&#x201D;&#x4F60;&#x7684;&#x7DB2;&#x57DF;&#x201D; &#x9019;&#x6A23;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;"></a>GCP &#x7DB2;&#x57DF;&#x52A0;&#x597D;&#x5F8C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6307;&#x4EE4;&#x591A;&#x52A0; -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=&#x201D;&#x4F60;&#x7684;&#x7DB2;&#x57DF;&#x201D; &#x9019;&#x6A23;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;</h3><h3 id="grafana-&#x5EFA;&#x7ACB;&#x6587;&#x7AE0;-&#x50B3;&#x9001;&#x9580;"><a href="#grafana-&#x5EFA;&#x7ACB;&#x6587;&#x7AE0;-&#x50B3;&#x9001;&#x9580;" class="headerlink" title="grafana &#x5EFA;&#x7ACB;&#x6587;&#x7AE0; &#x50B3;&#x9001;&#x9580;"></a>grafana &#x5EFA;&#x7ACB;&#x6587;&#x7AE0; <a href="https://snoopy30485.github.io/2018/08/02/grafana%E5%BB%BA%E7%AB%8B/" target="_blank" rel="noopener">&#x50B3;&#x9001;&#x9580;</a></h3><h3 id="grafana-&#x6307;&#x4EE4;-&#x672C;&#x7AE0;&#x4F7F;&#x7528;&#x7684;&#x7DB2;&#x57DF;&#x70BA;-grafana-costworlds-com"><a href="#grafana-&#x6307;&#x4EE4;-&#x672C;&#x7AE0;&#x4F7F;&#x7528;&#x7684;&#x7DB2;&#x57DF;&#x70BA;-grafana-costworlds-com" class="headerlink" title="grafana &#x6307;&#x4EE4; ( &#x672C;&#x7AE0;&#x4F7F;&#x7528;&#x7684;&#x7DB2;&#x57DF;&#x70BA; grafana.costworlds.com )"></a>grafana &#x6307;&#x4EE4; ( &#x672C;&#x7AE0;&#x4F7F;&#x7528;&#x7684;&#x7DB2;&#x57DF;&#x70BA; grafana.costworlds.com )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name grafana --restart=always -p 80:3000 -v /data/grafana:/var/lib/grafana --user root --link influxdb:influxdb -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com grafana/grafana:5.2.4</span><br></pre></td></tr></table></figure>
+<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  influxdb:</span><br><span class="line">    container_name: influxdb</span><br><span class="line">    image: influxdb:1.7.2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8086:8086&quot;</span><br><span class="line">      - &quot;8083:8083&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/influxdb:/var/lib/influxdb</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line"></span><br><span class="line">  grafana:</span><br><span class="line">    container_name: grafana</span><br><span class="line">    image: grafana/grafana:5.2.4</span><br><span class="line">    user: root</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:3000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/grafana:/var/lib/grafana</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line">    depends_on:</span><br><span class="line">      - influxdb</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  grafana:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6E2C;&#x8A66;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;&#xFF0C;&#x770B;&#x5230;&#x756B;&#x9762;&#x5C31;&#x6210;&#x529F;&#x4E86;"><a href="#&#x6E2C;&#x8A66;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;&#xFF0C;&#x770B;&#x5230;&#x756B;&#x9762;&#x5C31;&#x6210;&#x529F;&#x4E86;" class="headerlink" title="&#x6E2C;&#x8A66;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;&#xFF0C;&#x770B;&#x5230;&#x756B;&#x9762;&#x5C31;&#x6210;&#x529F;&#x4E86;"></a>&#x6E2C;&#x8A66;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x7DB2;&#x57DF;&#x958B;&#x555F;&#x76E3;&#x63A7;&#x9801;&#x9762;&#xFF0C;&#x770B;&#x5230;&#x756B;&#x9762;&#x5C31;&#x6210;&#x529F;&#x4E86;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-08-02T09:59:38.000Z" itemprop="datePublished">2018-08-02</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/08/02/grafana開啟google第三方登入驗證/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    grafana開啟google第三方登入驗證
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/08/02/grafana建立/" class="ui tiny button">
+                    
+                    grafana建立
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹使用-GCP-加入-DNS-網域開啟-grafana-監控頁面"><span>本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面</span></a><ol><li><a href="#在-GCP-加入-DNS-網域文章-傳送門"><span>在 GCP 加入 DNS 網域文章 傳送門</span></a></li><li><a href="#GCP-網域加好後，只需要在指令多加-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-”你的網域”-這樣就可以使用網域開啟監控頁面"><span>GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面</span></a></li><li><a href="#grafana-建立文章-傳送門"><span>grafana 建立文章 傳送門</span></a></li><li><a href="#grafana-指令-本章使用的網域為-grafana-costworlds-com"><span>grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )</span></a></li><li><a href="#docker-compose"><span>docker-compose</span></a></li><li><a href="#測試，直接使用網域開啟監控頁面，看到畫面就成功了"><span>測試，直接使用網域開啟監控頁面，看到畫面就成功了</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>telegraf建立好後設定grafana抓取資料建立圖表 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; telegraf &amp;#x6536;&amp;#x96C6;&amp;#x5B8C;&amp;#x8CC7;&amp;#x6599;&amp;#x50B3;&amp;#x5230; influxdb &amp;#x5F8C; grafana &amp;#x6293;&amp;#x53D6;&amp;#x8CC7;&amp;#x6599;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5716;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="telegraf建立好後設定grafana抓取資料建立圖表">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; telegraf &amp;#x6536;&amp;#x96C6;&amp;#x5B8C;&amp;#x8CC7;&amp;#x6599;&amp;#x50B3;&amp;#x5230; influxdb &amp;#x5F8C; grafana &amp;#x6293;&amp;#x53D6;&amp;#x8CC7;&amp;#x6599;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5716;&amp;#x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/18.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="telegraf建立好後設定grafana抓取資料建立圖表">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; telegraf &amp;#x6536;&amp;#x96C6;&amp;#x5B8C;&amp;#x8CC7;&amp;#x6599;&amp;#x50B3;&amp;#x5230; influxdb &amp;#x5F8C; grafana &amp;#x6293;&amp;#x53D6;&amp;#x8CC7;&amp;#x6599;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5716;&amp;#x">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-telegraf建立好後設定grafana抓取資料建立圖表" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    telegraf建立好後設定grafana抓取資料建立圖表
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-telegraf-&#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230;-influxdb-&#x5F8C;-grafana-&#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-telegraf-&#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230;-influxdb-&#x5F8C;-grafana-&#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; telegraf &#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230; influxdb &#x5F8C; grafana &#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; telegraf &#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230; influxdb &#x5F8C; grafana &#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;</h2><h3 id="&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801;-install-grafana-&#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA;-add-data-source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90;-ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;"><a href="#&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801;-install-grafana-&#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA;-add-data-source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90;-ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;" class="headerlink" title="&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801; install grafana &#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA; add data source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90; ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;"></a>&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801; install grafana &#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA; add data source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90; ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7;-data-sources"><a href="#&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7;-data-sources" class="headerlink" title="&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7; data sources"></a>&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7; data sources</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E;-data-sources"><a href="#&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E;-data-sources" class="headerlink" title="&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E; data sources"></a>&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E; data sources</h3><h3 id="&#x9032;&#x5165;&#x756B;&#x9762;"><a href="#&#x9032;&#x5165;&#x756B;&#x9762;" class="headerlink" title="&#x9032;&#x5165;&#x756B;&#x9762;"></a>&#x9032;&#x5165;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h3 id="type-&#x9078;&#x64C7;-influxdb"><a href="#type-&#x9078;&#x64C7;-influxdb" class="headerlink" title="type &#x9078;&#x64C7; influxdb"></a>type &#x9078;&#x64C7; influxdb</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h3 id="http-&#x8F38;&#x5165;-http-influxdb-8086&#xFF0C;database-&#x8F38;&#x5165;&#x4F60;&#x5728;-telegraf-&#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;"><a href="#http-&#x8F38;&#x5165;-http-influxdb-8086&#xFF0C;database-&#x8F38;&#x5165;&#x4F60;&#x5728;-telegraf-&#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;" class="headerlink" title="http &#x8F38;&#x5165; http://influxdb:8086&#xFF0C;database &#x8F38;&#x5165;&#x4F60;&#x5728; telegraf &#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;"></a>http &#x8F38;&#x5165; <a href="http://influxdb:8086&#xFF0C;database" target="_blank" rel="noopener">http://influxdb:8086&#xFF0C;database</a> &#x8F38;&#x5165;&#x4F60;&#x5728; telegraf &#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA;-save-amp-test-&#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A;-datasource-added"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA;-save-amp-test-&#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A;-datasource-added" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA; save &amp; test &#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A; datasource added"></a>&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA; save &amp; test &#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A; datasource added</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DE;&#x5230;-data-sources-&#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684;-data-sources"><a href="#&#x56DE;&#x5230;-data-sources-&#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684;-data-sources" class="headerlink" title="&#x56DE;&#x5230; data sources &#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684; data sources"></a>&#x56DE;&#x5230; data sources &#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684; data sources</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;"><a href="#&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;" class="headerlink" title="&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;"></a>&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;</h3><h3 id="&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7;-home-&#x56DE;&#x5230;&#x9996;&#x9801;"><a href="#&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7;-home-&#x56DE;&#x5230;&#x9996;&#x9801;" class="headerlink" title="&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7; home &#x56DE;&#x5230;&#x9996;&#x9801;"></a>&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7; home &#x56DE;&#x5230;&#x9996;&#x9801;</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9078;&#x64C7;-new-dashboard"><a href="#&#x9078;&#x64C7;-new-dashboard" class="headerlink" title="&#x9078;&#x64C7; new dashboard"></a>&#x9078;&#x64C7; new dashboard</h3><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;-&#x9078;&#x64C7;-dashboard"><a href="#&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;-&#x9078;&#x64C7;-dashboard" class="headerlink" title="&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA; + &#x9078;&#x64C7; dashboard"></a>&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA; + &#x9078;&#x64C7; dashboard</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;"><a href="#&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;" class="headerlink" title="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;"></a>&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9EDE;&#x64CA;-panel-title-&#x9078;&#x64C7;-edit-&#x7DE8;&#x8F2F;&#x5716;&#x8868;"><a href="#&#x9EDE;&#x64CA;-panel-title-&#x9078;&#x64C7;-edit-&#x7DE8;&#x8F2F;&#x5716;&#x8868;" class="headerlink" title="&#x9EDE;&#x64CA; panel title &#x9078;&#x64C7; edit &#x7DE8;&#x8F2F;&#x5716;&#x8868;"></a>&#x9EDE;&#x64CA; panel title &#x9078;&#x64C7; edit &#x7DE8;&#x8F2F;&#x5716;&#x8868;</h3><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9032;&#x5165;&#x756B;&#x9762;-1"><a href="#&#x9032;&#x5165;&#x756B;&#x9762;-1" class="headerlink" title="&#x9032;&#x5165;&#x756B;&#x9762;"></a>&#x9032;&#x5165;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5728;-data-source-&#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684;-data-source"><a href="#&#x5728;-data-source-&#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684;-data-source" class="headerlink" title="&#x5728; data source &#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684; data source"></a>&#x5728; data source &#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684; data source</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;"><a href="#&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;" class="headerlink" title="&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;"></a>&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;</h3><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x8A18;&#x5F97;&#x5132;&#x5B58;"><a href="#&#x8A18;&#x5F97;&#x5132;&#x5B58;" class="headerlink" title="&#x8A18;&#x5F97;&#x5132;&#x5B58;"></a>&#x8A18;&#x5F97;&#x5132;&#x5B58;</h3><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DE;&#x5230;-dashborad-&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;"><a href="#&#x56DE;&#x5230;-dashborad-&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;" class="headerlink" title="&#x56DE;&#x5230; dashborad &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;"></a>&#x56DE;&#x5230; dashborad &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;</h3><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-08-03T06:12:10.000Z" itemprop="datePublished">2018-08-03</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/08/03/grafana搭配slack告警/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    grafana搭配slack告警
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/08/03/telegraf-ubuntu/" class="ui tiny button">
+                    
+                    telegraf-ubuntu
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表"><span>本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表</span></a><ol><li><a href="#一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…"><span>一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…</span></a></li><li><a href="#也可以到左邊列表點擊齒輪，選擇-data-sources"><span>也可以到左邊列表點擊齒輪，選擇 data sources</span></a></li><li><a href="#二、開始配置-data-sources"><span>二、開始配置 data sources</span></a></li><li><a href="#進入畫面"><span>進入畫面</span></a></li><li><a href="#type-選擇-influxdb"><span>type 選擇 influxdb</span></a></li><li><a href="#http-輸入-http-influxdb-8086，database-輸入你在-telegraf-設定的名稱"><span>http 輸入 http://influxdb:8086，database 輸入你在 telegraf 設定的名稱</span></a></li><li><a href="#接下來到最下面，點擊-save-amp-test-資料都正確且有抓到右上角就會顯示-datasource-added"><span>接下來到最下面，點擊 save & test 資料都正確且有抓到右上角就會顯示 datasource added</span></a></li><li><a href="#回到-data-sources-畫面，就會看到已經新增的-data-sources"><span>回到 data sources 畫面，就會看到已經新增的 data sources</span></a></li><li><a href="#三、拉圖表測試"><span>三、拉圖表測試</span></a></li><li><a href="#點擊左邊列表四個方塊，選擇-home-回到首頁"><span>點擊左邊列表四個方塊，選擇 home 回到首頁</span></a></li><li><a href="#選擇-new-dashboard"><span>選擇 new dashboard</span></a></li><li><a href="#或是左邊列表點擊-選擇-dashboard"><span>或是左邊列表點擊 + 選擇 dashboard</span></a></li><li><a href="#選擇想要的圖表類型"><span>選擇想要的圖表類型</span></a></li><li><a href="#點擊-panel-title-選擇-edit-編輯圖表"><span>點擊 panel title 選擇 edit 編輯圖表</span></a></li><li><a href="#進入畫面-1"><span>進入畫面</span></a></li><li><a href="#在-data-source-選擇你建立好的-data-source"><span>在 data source 選擇你建立好的 data source</span></a></li><li><a href="#如圖下方調整你想看的參數，設定有正確上方就會顯示數據"><span>如圖下方調整你想看的參數，設定有正確上方就會顯示數據</span></a></li><li><a href="#記得儲存"><span>記得儲存</span></a></li><li><a href="#回到-dashborad-就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧"><span>回到 dashborad 就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

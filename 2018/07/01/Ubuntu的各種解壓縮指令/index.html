@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>Ubuntu的各種解壓縮指令 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content=".tar&amp;#x6253;&amp;#x5305;&amp;#xFF1A;tar cvf FileName.tar DirName&amp;#x89E3;&amp;#x5305;&amp;#xFF1A; tar xvf FileName.tar .gz&amp;#x58D3;&amp;#x7E2E;&amp;#xFF1A;gzip FileName&amp;#x89E3;&amp;#x58D3;1&amp;#xFF1A;gunzip FileName.gz&amp;#x89E3;&amp;#x58D3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu的各種解壓縮指令">
+<meta property="og:url" content="http://yoursite.com/2018/07/01/Ubuntu的各種解壓縮指令/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content=".tar&amp;#x6253;&amp;#x5305;&amp;#xFF1A;tar cvf FileName.tar DirName&amp;#x89E3;&amp;#x5305;&amp;#xFF1A; tar xvf FileName.tar .gz&amp;#x58D3;&amp;#x7E2E;&amp;#xFF1A;gzip FileName&amp;#x89E3;&amp;#x58D3;1&amp;#xFF1A;gunzip FileName.gz&amp;#x89E3;&amp;#x58D3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu的各種解壓縮指令">
+<meta name="twitter:description" content=".tar&amp;#x6253;&amp;#x5305;&amp;#xFF1A;tar cvf FileName.tar DirName&amp;#x89E3;&amp;#x5305;&amp;#xFF1A; tar xvf FileName.tar .gz&amp;#x58D3;&amp;#x7E2E;&amp;#xFF1A;gzip FileName&amp;#x89E3;&amp;#x58D3;1&amp;#xFF1A;gunzip FileName.gz&amp;#x89E3;&amp;#x58D3">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-Ubuntu的各種解壓縮指令" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    Ubuntu的各種解壓縮指令
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="tar"><a href="#tar" class="headerlink" title=".tar"></a>.tar</h3><h4 id="&#x6253;&#x5305;&#xFF1A;tar-cvf-FileName-tar-DirName"><a href="#&#x6253;&#x5305;&#xFF1A;tar-cvf-FileName-tar-DirName" class="headerlink" title="&#x6253;&#x5305;&#xFF1A;tar cvf FileName.tar DirName"></a>&#x6253;&#x5305;&#xFF1A;tar cvf FileName.tar DirName</h4><h4 id="&#x89E3;&#x5305;&#xFF1A;-tar-xvf-FileName-tar"><a href="#&#x89E3;&#x5305;&#xFF1A;-tar-xvf-FileName-tar" class="headerlink" title="&#x89E3;&#x5305;&#xFF1A; tar xvf FileName.tar"></a>&#x89E3;&#x5305;&#xFF1A; tar xvf FileName.tar</h4><hr>
+<h3 id="gz"><a href="#gz" class="headerlink" title=".gz"></a>.gz</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;gzip-FileName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;gzip-FileName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;gzip FileName"></a>&#x58D3;&#x7E2E;&#xFF1A;gzip FileName</h4><h4 id="&#x89E3;&#x58D3;1&#xFF1A;gunzip-FileName-gz"><a href="#&#x89E3;&#x58D3;1&#xFF1A;gunzip-FileName-gz" class="headerlink" title="&#x89E3;&#x58D3;1&#xFF1A;gunzip FileName.gz"></a>&#x89E3;&#x58D3;1&#xFF1A;gunzip FileName.gz</h4><h4 id="&#x89E3;&#x58D3;2&#xFF1A;gzip-d-FileName-gz"><a href="#&#x89E3;&#x58D3;2&#xFF1A;gzip-d-FileName-gz" class="headerlink" title="&#x89E3;&#x58D3;2&#xFF1A;gzip -d FileName.gz"></a>&#x89E3;&#x58D3;2&#xFF1A;gzip -d FileName.gz</h4><hr>
+<h3 id="tar-gz"><a href="#tar-gz" class="headerlink" title=".tar.gz"></a>.tar.gz</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;tar-zcvf-FileName-tar-gz-DirName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;tar-zcvf-FileName-tar-gz-DirName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;tar zcvf FileName.tar.gz DirName"></a>&#x58D3;&#x7E2E;&#xFF1A;tar zcvf FileName.tar.gz DirName</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;tar-zxvf-FileName-tar-gz"><a href="#&#x89E3;&#x58D3;&#xFF1A;tar-zxvf-FileName-tar-gz" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;tar zxvf FileName.tar.gz"></a>&#x89E3;&#x58D3;&#xFF1A;tar zxvf FileName.tar.gz</h4><hr>
+<h3 id="bz2"><a href="#bz2" class="headerlink" title=".bz2"></a>.bz2</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;-bzip2-z-FileName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;-bzip2-z-FileName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A; bzip2 -z FileName"></a>&#x58D3;&#x7E2E;&#xFF1A; bzip2 -z FileName</h4><h4 id="&#x89E3;&#x58D3;1&#xFF1A;bzip2-d-FileName-bz2"><a href="#&#x89E3;&#x58D3;1&#xFF1A;bzip2-d-FileName-bz2" class="headerlink" title="&#x89E3;&#x58D3;1&#xFF1A;bzip2 -d FileName.bz2"></a>&#x89E3;&#x58D3;1&#xFF1A;bzip2 -d FileName.bz2</h4><h4 id="&#x89E3;&#x58D3;2&#xFF1A;bunzip2-FileName-bz2"><a href="#&#x89E3;&#x58D3;2&#xFF1A;bunzip2-FileName-bz2" class="headerlink" title="&#x89E3;&#x58D3;2&#xFF1A;bunzip2 FileName.bz2"></a>&#x89E3;&#x58D3;2&#xFF1A;bunzip2 FileName.bz2</h4><hr>
+<h3 id="tar-bz2"><a href="#tar-bz2" class="headerlink" title=".tar.bz2"></a>.tar.bz2</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;tar-jcvf-FileName-tar-bz2-DirName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;tar-jcvf-FileName-tar-bz2-DirName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;tar jcvf FileName.tar.bz2 DirName"></a>&#x58D3;&#x7E2E;&#xFF1A;tar jcvf FileName.tar.bz2 DirName</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;tar-jxvf-FileName-tar-bz2"><a href="#&#x89E3;&#x58D3;&#xFF1A;tar-jxvf-FileName-tar-bz2" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;tar jxvf FileName.tar.bz2"></a>&#x89E3;&#x58D3;&#xFF1A;tar jxvf FileName.tar.bz2</h4><hr>
+<h3 id="tgz"><a href="#tgz" class="headerlink" title=".tgz"></a>.tgz</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;unkown"><a href="#&#x58D3;&#x7E2E;&#xFF1A;unkown" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;unkown"></a>&#x58D3;&#x7E2E;&#xFF1A;unkown</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;tar-zxvf-FileName-tgz"><a href="#&#x89E3;&#x58D3;&#xFF1A;tar-zxvf-FileName-tgz" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;tar zxvf FileName.tgz"></a>&#x89E3;&#x58D3;&#xFF1A;tar zxvf FileName.tgz</h4><hr>
+<h3 id="tar-tgz"><a href="#tar-tgz" class="headerlink" title=".tar.tgz"></a>.tar.tgz</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;tar-zcvf-FileName-tar-tgz-FileName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;tar-zcvf-FileName-tar-tgz-FileName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;tar zcvf FileName.tar.tgz FileName"></a>&#x58D3;&#x7E2E;&#xFF1A;tar zcvf FileName.tar.tgz FileName</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;tar-zxvf-FileName-tar-tgz"><a href="#&#x89E3;&#x58D3;&#xFF1A;tar-zxvf-FileName-tar-tgz" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;tar zxvf FileName.tar.tgz"></a>&#x89E3;&#x58D3;&#xFF1A;tar zxvf FileName.tar.tgz</h4><hr>
+<h3 id="zip"><a href="#zip" class="headerlink" title=".zip"></a>.zip</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;zip-FileName-zip-DirName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;zip-FileName-zip-DirName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;zip FileName.zip DirName"></a>&#x58D3;&#x7E2E;&#xFF1A;zip FileName.zip DirName</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;unzip-FileName-zip"><a href="#&#x89E3;&#x58D3;&#xFF1A;unzip-FileName-zip" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;unzip FileName.zip"></a>&#x89E3;&#x58D3;&#xFF1A;unzip FileName.zip</h4><hr>
+<h3 id="rar"><a href="#rar" class="headerlink" title=".rar"></a>.rar</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;rar-a-FileName-rar"><a href="#&#x58D3;&#x7E2E;&#xFF1A;rar-a-FileName-rar" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;rar a FileName.rar"></a>&#x58D3;&#x7E2E;&#xFF1A;rar a FileName.rar</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;rar-e-FileName-rar"><a href="#&#x89E3;&#x58D3;&#xFF1A;rar-e-FileName-rar" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;rar e FileName.rar"></a>&#x89E3;&#x58D3;&#xFF1A;rar e FileName.rar</h4><hr>
+<h3 id="lha"><a href="#lha" class="headerlink" title=".lha"></a>.lha</h3><h4 id="&#x58D3;&#x7E2E;&#xFF1A;lha-a-FileName-lha-FileName"><a href="#&#x58D3;&#x7E2E;&#xFF1A;lha-a-FileName-lha-FileName" class="headerlink" title="&#x58D3;&#x7E2E;&#xFF1A;lha -a FileName.lha FileName"></a>&#x58D3;&#x7E2E;&#xFF1A;lha -a FileName.lha FileName</h4><h4 id="&#x89E3;&#x58D3;&#xFF1A;lha-e-FileName-lha"><a href="#&#x89E3;&#x58D3;&#xFF1A;lha-e-FileName-lha" class="headerlink" title="&#x89E3;&#x58D3;&#xFF1A;lha -e FileName.lha"></a>&#x89E3;&#x58D3;&#xFF1A;lha -e FileName.lha</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-07-01T00:43:53.000Z" itemprop="datePublished">2018-07-01</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/07/26/ELK介紹/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    ELK介紹
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/06/30/VirtualBox複製已經建立好虛擬機/" class="ui tiny button">
+                    
+                    VirtualBox複製已經建立好虛擬機
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#tar"><span>.tar</span></a><ol><li><a href="#打包：tar-cvf-FileName-tar-DirName"><span>打包：tar cvf FileName.tar DirName</span></a></li><li><a href="#解包：-tar-xvf-FileName-tar"><span>解包： tar xvf FileName.tar</span></a></li></ol></li><li><a href="#gz"><span>.gz</span></a><ol><li><a href="#壓縮：gzip-FileName"><span>壓縮：gzip FileName</span></a></li><li><a href="#解壓1：gunzip-FileName-gz"><span>解壓1：gunzip FileName.gz</span></a></li><li><a href="#解壓2：gzip-d-FileName-gz"><span>解壓2：gzip -d FileName.gz</span></a></li></ol></li><li><a href="#tar-gz"><span>.tar.gz</span></a><ol><li><a href="#壓縮：tar-zcvf-FileName-tar-gz-DirName"><span>壓縮：tar zcvf FileName.tar.gz DirName</span></a></li><li><a href="#解壓：tar-zxvf-FileName-tar-gz"><span>解壓：tar zxvf FileName.tar.gz</span></a></li></ol></li><li><a href="#bz2"><span>.bz2</span></a><ol><li><a href="#壓縮：-bzip2-z-FileName"><span>壓縮： bzip2 -z FileName</span></a></li><li><a href="#解壓1：bzip2-d-FileName-bz2"><span>解壓1：bzip2 -d FileName.bz2</span></a></li><li><a href="#解壓2：bunzip2-FileName-bz2"><span>解壓2：bunzip2 FileName.bz2</span></a></li></ol></li><li><a href="#tar-bz2"><span>.tar.bz2</span></a><ol><li><a href="#壓縮：tar-jcvf-FileName-tar-bz2-DirName"><span>壓縮：tar jcvf FileName.tar.bz2 DirName</span></a></li><li><a href="#解壓：tar-jxvf-FileName-tar-bz2"><span>解壓：tar jxvf FileName.tar.bz2</span></a></li></ol></li><li><a href="#tgz"><span>.tgz</span></a><ol><li><a href="#壓縮：unkown"><span>壓縮：unkown</span></a></li><li><a href="#解壓：tar-zxvf-FileName-tgz"><span>解壓：tar zxvf FileName.tgz</span></a></li></ol></li><li><a href="#tar-tgz"><span>.tar.tgz</span></a><ol><li><a href="#壓縮：tar-zcvf-FileName-tar-tgz-FileName"><span>壓縮：tar zcvf FileName.tar.tgz FileName</span></a></li><li><a href="#解壓：tar-zxvf-FileName-tar-tgz"><span>解壓：tar zxvf FileName.tar.tgz</span></a></li></ol></li><li><a href="#zip"><span>.zip</span></a><ol><li><a href="#壓縮：zip-FileName-zip-DirName"><span>壓縮：zip FileName.zip DirName</span></a></li><li><a href="#解壓：unzip-FileName-zip"><span>解壓：unzip FileName.zip</span></a></li></ol></li><li><a href="#rar"><span>.rar</span></a><ol><li><a href="#壓縮：rar-a-FileName-rar"><span>壓縮：rar a FileName.rar</span></a></li><li><a href="#解壓：rar-e-FileName-rar"><span>解壓：rar e FileName.rar</span></a></li></ol></li><li><a href="#lha"><span>.lha</span></a><ol><li><a href="#壓縮：lha-a-FileName-lha-FileName"><span>壓縮：lha -a FileName.lha FileName</span></a></li><li><a href="#解壓：lha-e-FileName-lha"><span>解壓：lha -e FileName.lha</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

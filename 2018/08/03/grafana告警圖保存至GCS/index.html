@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>grafana告警圖保存至GCS | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5C07; grafana &amp;#x544A;&amp;#x8B66;&amp;#x5716;&amp;#x7247;&amp;#x4E0A;&amp;#x50B3;&amp;#x5230; gcs&amp;#x4E00;&amp;#x3001;&amp;#x9032;&amp;#x5165; gcp &amp;#x7136;&amp;#x5F8C;&amp;#x5230;&amp;#x5C0E;&amp;#x89B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grafana告警圖保存至GCS">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5C07; grafana &amp;#x544A;&amp;#x8B66;&amp;#x5716;&amp;#x7247;&amp;#x4E0A;&amp;#x50B3;&amp;#x5230; gcs&amp;#x4E00;&amp;#x3001;&amp;#x9032;&amp;#x5165; gcp &amp;#x7136;&amp;#x5F8C;&amp;#x5230;&amp;#x5C0E;&amp;#x89B">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/18.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/21.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/22.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="grafana告警圖保存至GCS">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5C07; grafana &amp;#x544A;&amp;#x8B66;&amp;#x5716;&amp;#x7247;&amp;#x4E0A;&amp;#x50B3;&amp;#x5230; gcs&amp;#x4E00;&amp;#x3001;&amp;#x9032;&amp;#x5165; gcp &amp;#x7136;&amp;#x5F8C;&amp;#x5230;&amp;#x5C0E;&amp;#x89B">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-grafana告警圖保存至GCS" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    grafana告警圖保存至GCS
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5C07;-grafana-&#x544A;&#x8B66;&#x5716;&#x7247;&#x4E0A;&#x50B3;&#x5230;-gcs"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5C07;-grafana-&#x544A;&#x8B66;&#x5716;&#x7247;&#x4E0A;&#x50B3;&#x5230;-gcs" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5C07; grafana &#x544A;&#x8B66;&#x5716;&#x7247;&#x4E0A;&#x50B3;&#x5230; gcs"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5C07; grafana &#x544A;&#x8B66;&#x5716;&#x7247;&#x4E0A;&#x50B3;&#x5230; gcs</h2><h3 id="&#x4E00;&#x3001;&#x9032;&#x5165;-gcp-&#x7136;&#x5F8C;&#x5230;&#x5C0E;&#x89BD;&#x9078;&#x55AE;-storage-&#x2192;-&#x700F;&#x89BD;&#x5668;"><a href="#&#x4E00;&#x3001;&#x9032;&#x5165;-gcp-&#x7136;&#x5F8C;&#x5230;&#x5C0E;&#x89BD;&#x9078;&#x55AE;-storage-&#x2192;-&#x700F;&#x89BD;&#x5668;" class="headerlink" title="&#x4E00;&#x3001;&#x9032;&#x5165; gcp &#x7136;&#x5F8C;&#x5230;&#x5C0E;&#x89BD;&#x9078;&#x55AE; storage &#x2192; &#x700F;&#x89BD;&#x5668;"></a>&#x4E00;&#x3001;&#x9032;&#x5165; gcp &#x7136;&#x5F8C;&#x5230;&#x5C0E;&#x89BD;&#x9078;&#x55AE; storage &#x2192; &#x700F;&#x89BD;&#x5668;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;-bucket"><a href="#&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;-bucket" class="headerlink" title="&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB; bucket"></a>&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB; bucket</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E09;&#x3001;&#x70BA;&#x503C;&#x5340;&#x547D;&#x540D;&#xFF0C;&#x9EDE;&#x64CA;&#x7E7C;&#x7E8C;"><a href="#&#x4E09;&#x3001;&#x70BA;&#x503C;&#x5340;&#x547D;&#x540D;&#xFF0C;&#x9EDE;&#x64CA;&#x7E7C;&#x7E8C;" class="headerlink" title="&#x4E09;&#x3001;&#x70BA;&#x503C;&#x5340;&#x547D;&#x540D;&#xFF0C;&#x9EDE;&#x64CA;&#x7E7C;&#x7E8C;"></a>&#x4E09;&#x3001;&#x70BA;&#x503C;&#x5340;&#x547D;&#x540D;&#xFF0C;&#x9EDE;&#x64CA;&#x7E7C;&#x7E8C;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DB;&#x3001;&#x9078;&#x64C7;&#x5132;&#x5B58;&#x7A7A;&#x9593;&#x7D1A;&#x5225;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-regional-&#x6BCF;&#x500B;&#x7D1A;&#x5225;-gcp-&#x90FD;&#x6709;&#x89E3;&#x91CB;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x505A;&#x9078;&#x64C7;"><a href="#&#x56DB;&#x3001;&#x9078;&#x64C7;&#x5132;&#x5B58;&#x7A7A;&#x9593;&#x7D1A;&#x5225;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-regional-&#x6BCF;&#x500B;&#x7D1A;&#x5225;-gcp-&#x90FD;&#x6709;&#x89E3;&#x91CB;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x505A;&#x9078;&#x64C7;" class="headerlink" title="&#x56DB;&#x3001;&#x9078;&#x64C7;&#x5132;&#x5B58;&#x7A7A;&#x9593;&#x7D1A;&#x5225;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; regional &#x6BCF;&#x500B;&#x7D1A;&#x5225; gcp &#x90FD;&#x6709;&#x89E3;&#x91CB;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x505A;&#x9078;&#x64C7;"></a>&#x56DB;&#x3001;&#x9078;&#x64C7;&#x5132;&#x5B58;&#x7A7A;&#x9593;&#x7D1A;&#x5225;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; regional &#x6BCF;&#x500B;&#x7D1A;&#x5225; gcp &#x90FD;&#x6709;&#x89E3;&#x91CB;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x505A;&#x9078;&#x64C7;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E94;&#x3001;&#x9078;&#x64C7;&#x63A7;&#x5236;&#x7269;&#x4EF6;&#x7684;&#x5B58;&#x53D6;&#x6B0A;&#xFF0C;&#x9078;&#x64C7;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x5C64;&#x7D1A;&#x548C;&#x503C;&#x5340;&#x5C64;&#x7D1A;&#x6B0A;&#x9650;"><a href="#&#x4E94;&#x3001;&#x9078;&#x64C7;&#x63A7;&#x5236;&#x7269;&#x4EF6;&#x7684;&#x5B58;&#x53D6;&#x6B0A;&#xFF0C;&#x9078;&#x64C7;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x5C64;&#x7D1A;&#x548C;&#x503C;&#x5340;&#x5C64;&#x7D1A;&#x6B0A;&#x9650;" class="headerlink" title="&#x4E94;&#x3001;&#x9078;&#x64C7;&#x63A7;&#x5236;&#x7269;&#x4EF6;&#x7684;&#x5B58;&#x53D6;&#x6B0A;&#xFF0C;&#x9078;&#x64C7;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x5C64;&#x7D1A;&#x548C;&#x503C;&#x5340;&#x5C64;&#x7D1A;&#x6B0A;&#x9650;"></a>&#x4E94;&#x3001;&#x9078;&#x64C7;&#x63A7;&#x5236;&#x7269;&#x4EF6;&#x7684;&#x5B58;&#x53D6;&#x6B0A;&#xFF0C;&#x9078;&#x64C7;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x5C64;&#x7D1A;&#x548C;&#x503C;&#x5340;&#x5C64;&#x7D1A;&#x6B0A;&#x9650;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x516D;&#x3001;&#x9032;&#x968E;&#x8A2D;&#x5B9A;&#x9810;&#x8A2D;&#xFF0C;&#x5168;&#x90E8;&#x9078;&#x597D;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"><a href="#&#x516D;&#x3001;&#x9032;&#x968E;&#x8A2D;&#x5B9A;&#x9810;&#x8A2D;&#xFF0C;&#x5168;&#x90E8;&#x9078;&#x597D;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;" class="headerlink" title="&#x516D;&#x3001;&#x9032;&#x968E;&#x8A2D;&#x5B9A;&#x9810;&#x8A2D;&#xFF0C;&#x5168;&#x90E8;&#x9078;&#x597D;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"></a>&#x516D;&#x3001;&#x9032;&#x968E;&#x8A2D;&#x5B9A;&#x9810;&#x8A2D;&#xFF0C;&#x5168;&#x90E8;&#x9078;&#x597D;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E03;&#x3001;&#x56DE;&#x5230;&#x700F;&#x89BD;&#x5668;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x7684;-bucket&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x9EDE;&#x9078;&#x751F;&#x547D;&#x9031;&#x671F;&#x4E0B;&#x7684;&#x7121;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;"><a href="#&#x4E03;&#x3001;&#x56DE;&#x5230;&#x700F;&#x89BD;&#x5668;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x7684;-bucket&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x9EDE;&#x9078;&#x751F;&#x547D;&#x9031;&#x671F;&#x4E0B;&#x7684;&#x7121;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;" class="headerlink" title="&#x4E03;&#x3001;&#x56DE;&#x5230;&#x700F;&#x89BD;&#x5668;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x7684; bucket&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x9EDE;&#x9078;&#x751F;&#x547D;&#x9031;&#x671F;&#x4E0B;&#x7684;&#x7121;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;"></a>&#x4E03;&#x3001;&#x56DE;&#x5230;&#x700F;&#x89BD;&#x5668;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x7684; bucket&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x9EDE;&#x9078;&#x751F;&#x547D;&#x9031;&#x671F;&#x4E0B;&#x7684;&#x7121;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;</h3><h3 id="&#x56E0;&#x70BA;-grafana-&#x544A;&#x8B66;&#x5716;&#x7247;&#x4E26;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x9577;&#x4E45;&#x4FDD;&#x5B58;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;&#x5B9A;&#x671F;&#x522A;&#x9664;&#x8CC7;&#x6599;&#xFF0C;&#x4E0D;&#x8981;&#x8B93;&#x5716;&#x7247;&#x8D8A;&#x5B58;&#x8D8A;&#x591A;"><a href="#&#x56E0;&#x70BA;-grafana-&#x544A;&#x8B66;&#x5716;&#x7247;&#x4E26;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x9577;&#x4E45;&#x4FDD;&#x5B58;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;&#x5B9A;&#x671F;&#x522A;&#x9664;&#x8CC7;&#x6599;&#xFF0C;&#x4E0D;&#x8981;&#x8B93;&#x5716;&#x7247;&#x8D8A;&#x5B58;&#x8D8A;&#x591A;" class="headerlink" title="&#x56E0;&#x70BA; grafana &#x544A;&#x8B66;&#x5716;&#x7247;&#x4E26;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x9577;&#x4E45;&#x4FDD;&#x5B58;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;&#x5B9A;&#x671F;&#x522A;&#x9664;&#x8CC7;&#x6599;&#xFF0C;&#x4E0D;&#x8981;&#x8B93;&#x5716;&#x7247;&#x8D8A;&#x5B58;&#x8D8A;&#x591A;"></a>&#x56E0;&#x70BA; grafana &#x544A;&#x8B66;&#x5716;&#x7247;&#x4E26;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x9577;&#x4E45;&#x4FDD;&#x5B58;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x5011;&#x8A2D;&#x5B9A;&#x751F;&#x547D;&#x9031;&#x671F;&#x5B9A;&#x671F;&#x522A;&#x9664;&#x8CC7;&#x6599;&#xFF0C;&#x4E0D;&#x8981;&#x8B93;&#x5716;&#x7247;&#x8D8A;&#x5B58;&#x8D8A;&#x591A;</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x516B;&#x3001;&#x9EDE;&#x64CA;&#x65B0;&#x589E;&#x898F;&#x5247;"><a href="#&#x516B;&#x3001;&#x9EDE;&#x64CA;&#x65B0;&#x589E;&#x898F;&#x5247;" class="headerlink" title="&#x516B;&#x3001;&#x9EDE;&#x64CA;&#x65B0;&#x589E;&#x898F;&#x5247;"></a>&#x516B;&#x3001;&#x9EDE;&#x64CA;&#x65B0;&#x589E;&#x898F;&#x5247;</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E5D;&#x3001;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x9078;&#x53D6;&#x689D;&#x4EF6;&#x548C;&#x9078;&#x53D6;&#x52D5;&#x4F5C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x9078;&#x64C7;30&#x5929;&#x522A;&#x9664;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x9078;&#x64C7;"><a href="#&#x4E5D;&#x3001;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x9078;&#x53D6;&#x689D;&#x4EF6;&#x548C;&#x9078;&#x53D6;&#x52D5;&#x4F5C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x9078;&#x64C7;30&#x5929;&#x522A;&#x9664;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x9078;&#x64C7;" class="headerlink" title="&#x4E5D;&#x3001;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x9078;&#x53D6;&#x689D;&#x4EF6;&#x548C;&#x9078;&#x53D6;&#x52D5;&#x4F5C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x9078;&#x64C7;30&#x5929;&#x522A;&#x9664;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x9078;&#x64C7;"></a>&#x4E5D;&#x3001;&#x8A2D;&#x5B9A;&#x7269;&#x4EF6;&#x9078;&#x53D6;&#x689D;&#x4EF6;&#x548C;&#x9078;&#x53D6;&#x52D5;&#x4F5C;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x9078;&#x64C7;30&#x5929;&#x522A;&#x9664;&#xFF0C;&#x8ACB;&#x4F9D;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x9078;&#x64C7;</h3><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5169;&#x500B;&#x689D;&#x4EF6;&#x90FD;&#x9EDE;&#x9078;&#x7E7C;&#x7E8C;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5132;&#x5B58;&#x4E86;"><a href="#&#x5169;&#x500B;&#x689D;&#x4EF6;&#x90FD;&#x9EDE;&#x9078;&#x7E7C;&#x7E8C;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5132;&#x5B58;&#x4E86;" class="headerlink" title="&#x5169;&#x500B;&#x689D;&#x4EF6;&#x90FD;&#x9EDE;&#x9078;&#x7E7C;&#x7E8C;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5132;&#x5B58;&#x4E86;"></a>&#x5169;&#x500B;&#x689D;&#x4EF6;&#x90FD;&#x9EDE;&#x9078;&#x7E7C;&#x7E8C;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5132;&#x5B58;&#x4E86;</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DE;&#x5230;-bucket-&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x751F;&#x547D;&#x9031;&#x671F;&#x5DF2;&#x555F;&#x7528;"><a href="#&#x56DE;&#x5230;-bucket-&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x751F;&#x547D;&#x9031;&#x671F;&#x5DF2;&#x555F;&#x7528;" class="headerlink" title="&#x56DE;&#x5230; bucket &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x751F;&#x547D;&#x9031;&#x671F;&#x5DF2;&#x555F;&#x7528;"></a>&#x56DE;&#x5230; bucket &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x751F;&#x547D;&#x9031;&#x671F;&#x5DF2;&#x555F;&#x7528;</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x5230;-iam-&#x8207;&#x7BA1;&#x7406;&#x54E1;-&#x2192;-&#x670D;&#x52D9;&#x5E33;&#x6236;"><a href="#&#x5341;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x5230;-iam-&#x8207;&#x7BA1;&#x7406;&#x54E1;-&#x2192;-&#x670D;&#x52D9;&#x5E33;&#x6236;" class="headerlink" title="&#x5341;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x5230; iam &#x8207;&#x7BA1;&#x7406;&#x54E1; &#x2192; &#x670D;&#x52D9;&#x5E33;&#x6236;"></a>&#x5341;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x5230; iam &#x8207;&#x7BA1;&#x7406;&#x54E1; &#x2192; &#x670D;&#x52D9;&#x5E33;&#x6236;</h3><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x4E00;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x670D;&#x52D9;&#x5E33;&#x865F;"><a href="#&#x5341;&#x4E00;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x670D;&#x52D9;&#x5E33;&#x865F;" class="headerlink" title="&#x5341;&#x4E00;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x670D;&#x52D9;&#x5E33;&#x865F;"></a>&#x5341;&#x4E00;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x670D;&#x52D9;&#x5E33;&#x865F;</h3><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x4E8C;&#x3001;&#x8F38;&#x5165;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;"><a href="#&#x5341;&#x4E8C;&#x3001;&#x8F38;&#x5165;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;" class="headerlink" title="&#x5341;&#x4E8C;&#x3001;&#x8F38;&#x5165;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;"></a>&#x5341;&#x4E8C;&#x3001;&#x8F38;&#x5165;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x4E09;&#x3001;&#x9078;&#x64C7;&#x89D2;&#x8272;"><a href="#&#x5341;&#x4E09;&#x3001;&#x9078;&#x64C7;&#x89D2;&#x8272;" class="headerlink" title="&#x5341;&#x4E09;&#x3001;&#x9078;&#x64C7;&#x89D2;&#x8272;"></a>&#x5341;&#x4E09;&#x3001;&#x9078;&#x64C7;&#x89D2;&#x8272;</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x89D2;&#x8272;&#x9078;&#x64C7;-&#x5132;&#x5B58;&#x7A7A;&#x9593;-&#x2192;-storage-&#x7269;&#x4EF6;&#x5EFA;&#x7ACB;&#x8005;"><a href="#&#x89D2;&#x8272;&#x9078;&#x64C7;-&#x5132;&#x5B58;&#x7A7A;&#x9593;-&#x2192;-storage-&#x7269;&#x4EF6;&#x5EFA;&#x7ACB;&#x8005;" class="headerlink" title="&#x89D2;&#x8272;&#x9078;&#x64C7; &#x5132;&#x5B58;&#x7A7A;&#x9593; &#x2192; storage &#x7269;&#x4EF6;&#x5EFA;&#x7ACB;&#x8005;"></a>&#x89D2;&#x8272;&#x9078;&#x64C7; &#x5132;&#x5B58;&#x7A7A;&#x9593; &#x2192; storage &#x7269;&#x4EF6;&#x5EFA;&#x7ACB;&#x8005;</h3><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x56DB;&#x3001;&#x9EDE;&#x9078;-create-key-&#x4E0B;&#x8F09;&#x91D1;&#x9470;"><a href="#&#x5341;&#x56DB;&#x3001;&#x9EDE;&#x9078;-create-key-&#x4E0B;&#x8F09;&#x91D1;&#x9470;" class="headerlink" title="&#x5341;&#x56DB;&#x3001;&#x9EDE;&#x9078; create key &#x4E0B;&#x8F09;&#x91D1;&#x9470;"></a>&#x5341;&#x56DB;&#x3001;&#x9EDE;&#x9078; create key &#x4E0B;&#x8F09;&#x91D1;&#x9470;</h3><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9078;&#x64C7;-josn-&#x6A94;&#xFF0C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x5E6B;&#x4F60;&#x4E0B;&#x8F09;&#x4E86;"><a href="#&#x9078;&#x64C7;-josn-&#x6A94;&#xFF0C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x5E6B;&#x4F60;&#x4E0B;&#x8F09;&#x4E86;" class="headerlink" title="&#x9078;&#x64C7; josn &#x6A94;&#xFF0C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x5E6B;&#x4F60;&#x4E0B;&#x8F09;&#x4E86;"></a>&#x9078;&#x64C7; josn &#x6A94;&#xFF0C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x5E6B;&#x4F60;&#x4E0B;&#x8F09;&#x4E86;</h3><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DE;&#x5230;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x670D;&#x52D9;&#x5E33;&#x6236;"><a href="#&#x56DE;&#x5230;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x670D;&#x52D9;&#x5E33;&#x6236;" class="headerlink" title="&#x56DE;&#x5230;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x670D;&#x52D9;&#x5E33;&#x6236;"></a>&#x56DE;&#x5230;&#x670D;&#x52D9;&#x5E33;&#x6236;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x670D;&#x52D9;&#x5E33;&#x6236;</h3><p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x4E94;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230;-grafana-vm-&#x628A;&#x4E0B;&#x8F09;&#x7684;-josn-&#x6A94;&#x6848;&#x653E;&#x5230;-vm-&#x7684;&#x8DEF;&#x5F91;-data-grafana-&#x5E95;&#x4E0B;&#xFF0C;&#x56E0;&#x6709;&#x5C07;&#x5BE6;&#x9AD4;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x6307;&#x5411;-container-&#x8DEF;&#x5F91;&#xFF0C;&#x6240;&#x4EE5;&#x653E;&#x6B64;&#x8DEF;&#x5F91;&#x5E95;&#x4E0B;"><a href="#&#x5341;&#x4E94;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230;-grafana-vm-&#x628A;&#x4E0B;&#x8F09;&#x7684;-josn-&#x6A94;&#x6848;&#x653E;&#x5230;-vm-&#x7684;&#x8DEF;&#x5F91;-data-grafana-&#x5E95;&#x4E0B;&#xFF0C;&#x56E0;&#x6709;&#x5C07;&#x5BE6;&#x9AD4;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x6307;&#x5411;-container-&#x8DEF;&#x5F91;&#xFF0C;&#x6240;&#x4EE5;&#x653E;&#x6B64;&#x8DEF;&#x5F91;&#x5E95;&#x4E0B;" class="headerlink" title="&#x5341;&#x4E94;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230; grafana vm &#x628A;&#x4E0B;&#x8F09;&#x7684; josn &#x6A94;&#x6848;&#x653E;&#x5230; vm &#x7684;&#x8DEF;&#x5F91; /data/grafana &#x5E95;&#x4E0B;&#xFF0C;&#x56E0;&#x6709;&#x5C07;&#x5BE6;&#x9AD4;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x6307;&#x5411; container &#x8DEF;&#x5F91;&#xFF0C;&#x6240;&#x4EE5;&#x653E;&#x6B64;&#x8DEF;&#x5F91;&#x5E95;&#x4E0B;"></a>&#x5341;&#x4E94;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230; grafana vm &#x628A;&#x4E0B;&#x8F09;&#x7684; josn &#x6A94;&#x6848;&#x653E;&#x5230; vm &#x7684;&#x8DEF;&#x5F91; /data/grafana &#x5E95;&#x4E0B;&#xFF0C;&#x56E0;&#x6709;&#x5C07;&#x5BE6;&#x9AD4;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x6307;&#x5411; container &#x8DEF;&#x5F91;&#xFF0C;&#x6240;&#x4EE5;&#x653E;&#x6B64;&#x8DEF;&#x5F91;&#x5E95;&#x4E0B;</h3><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x516D;&#x3001;&#x589E;&#x52A0;-grafana-GCP-&#x5B58;&#x653E;&#x544A;&#x8B66;&#x5716;&#x7247;&#x74B0;&#x5883;&#x53C3;&#x6578;"><a href="#&#x5341;&#x516D;&#x3001;&#x589E;&#x52A0;-grafana-GCP-&#x5B58;&#x653E;&#x544A;&#x8B66;&#x5716;&#x7247;&#x74B0;&#x5883;&#x53C3;&#x6578;" class="headerlink" title="&#x5341;&#x516D;&#x3001;&#x589E;&#x52A0; grafana GCP &#x5B58;&#x653E;&#x544A;&#x8B66;&#x5716;&#x7247;&#x74B0;&#x5883;&#x53C3;&#x6578;"></a>&#x5341;&#x516D;&#x3001;&#x589E;&#x52A0; grafana GCP &#x5B58;&#x653E;&#x544A;&#x8B66;&#x5716;&#x7247;&#x74B0;&#x5883;&#x53C3;&#x6578;</h3><h3 id="GF-EXTERNAL-IMAGE-STORAGE-PROVIDER-gcs"><a href="#GF-EXTERNAL-IMAGE-STORAGE-PROVIDER-gcs" class="headerlink" title="GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs"></a>GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs</h3><h3 id="GF-EXTERNAL-IMAGE-STORAGE-GCS-KEY-FILE-var-lib-grafana-&#x670D;&#x52D9;&#x5E33;&#x6236;&#x91D1;&#x9470;-JOSN&#x6A94;&#x540D;&#x7A31;-josn"><a href="#GF-EXTERNAL-IMAGE-STORAGE-GCS-KEY-FILE-var-lib-grafana-&#x670D;&#x52D9;&#x5E33;&#x6236;&#x91D1;&#x9470;-JOSN&#x6A94;&#x540D;&#x7A31;-josn" class="headerlink" title="GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/&#x670D;&#x52D9;&#x5E33;&#x6236;&#x91D1;&#x9470; JOSN&#x6A94;&#x540D;&#x7A31;+.josn"></a>GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/&#x670D;&#x52D9;&#x5E33;&#x6236;&#x91D1;&#x9470; JOSN&#x6A94;&#x540D;&#x7A31;+.josn</h3><h3 id="GF-EXTERNAL-IMAGE-STORAGE-GCS-BUCKET-&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;"><a href="#GF-EXTERNAL-IMAGE-STORAGE-GCS-BUCKET-&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;" class="headerlink" title="GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;"></a>GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=&#x670D;&#x52D9;&#x5E33;&#x6236;&#x540D;&#x7A31;</h3><h3 id="&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6307;&#x4EE4;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6307;&#x4EE4;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6307;&#x4EE4;"></a>&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name grafana --user root -p 80:3000 -v /data/grafana:/var/lib/grafana --link influxdb:influxdb --restart=always -e GF_SERVER_ROOT_URL=http://grafana.costworlds.com -e GF_AUTH_DISABLE_LOGIN_FORM=false -e GF_AUTH_GOOGLE_ENABLED=true -e GF_AUTH_GOOGLE_CLIENT_ID=33574658051-0f9glecg4ujag71t3r2r6i96lc1bdgqe.apps.googleusercontent.com -e GF_AUTH_GOOGLE_CLIENT_SECRET=NNDaKWcBni51U7Ya4uYL6-Ay -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=gmail.com -e GF_AUTH_GOOGLE_ALLOW_SIGN_UP=true -e GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs -e GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/proven-cosine-207802-ec7a854d7ba9.json -e GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=test-grafana  grafana/grafana:5.2.4</span><br></pre></td></tr></table></figure>
+<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  influxdb:</span><br><span class="line">    container_name: influxdb</span><br><span class="line">    image: influxdb:1.7.2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8086:8086&quot;</span><br><span class="line">      - &quot;8083:8083&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/influxdb:/var/lib/influxdb</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line"></span><br><span class="line">  grafana:</span><br><span class="line">    container_name: grafana</span><br><span class="line">    image: grafana/grafana:5.2.4</span><br><span class="line">    user: root</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:3000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/grafana:/var/lib/grafana</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com</span><br><span class="line">      -e GF_AUTH_DISABLE_LOGIN_FORM=false -e GF_AUTH_GOOGLE_ENABLED=true </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_ID=33574658051-0f9glecg4ujag71t3r2r6i96lc1bdgqe.apps.googleusercontent.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_SECRET=NNDaKWcBni51U7Ya4uYL6-Ay </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=gmail.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOW_SIGN_UP=true</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/proven-cosine-207802-ec7a854d7ba9.json</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=test-grafana</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line">    depends_on:</span><br><span class="line">      - influxdb</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  grafana:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5341;&#x4E03;&#x3001;&#x67E5;&#x770B;"><a href="#&#x5341;&#x4E03;&#x3001;&#x67E5;&#x770B;" class="headerlink" title="&#x5341;&#x4E03;&#x3001;&#x67E5;&#x770B;"></a>&#x5341;&#x4E03;&#x3001;&#x67E5;&#x770B;</h3><h3 id="container-log-&#x6307;&#x4EE4;"><a href="#container-log-&#x6307;&#x4EE4;" class="headerlink" title="container log &#x6307;&#x4EE4;"></a>container log &#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs (Container ID)</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5341;&#x516B;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230;-grafana-&#x76E3;&#x63A7;&#x9801;&#x9762;&#x6E2C;&#x8A66;&#x544A;&#x8B66;"><a href="#&#x5341;&#x516B;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230;-grafana-&#x76E3;&#x63A7;&#x9801;&#x9762;&#x6E2C;&#x8A66;&#x544A;&#x8B66;" class="headerlink" title="&#x5341;&#x516B;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230; grafana &#x76E3;&#x63A7;&#x9801;&#x9762;&#x6E2C;&#x8A66;&#x544A;&#x8B66;"></a>&#x5341;&#x516B;&#x3001;&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230; grafana &#x76E3;&#x63A7;&#x9801;&#x9762;&#x6E2C;&#x8A66;&#x544A;&#x8B66;</h3><p><a class="magnific-img" href="images/22.png"><img src="images/22.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x770B;&#x5230;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;"><a href="#&#x770B;&#x5230;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;" class="headerlink" title="&#x770B;&#x5230;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;"></a>&#x770B;&#x5230;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;</h3>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-08-03T06:12:12.000Z" itemprop="datePublished">2018-08-03</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/09/10/Cisco-Switch指令-持續更新/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    Cisco-Switch指令-持續更新
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/08/03/grafana搭配slack告警/" class="ui tiny button">
+                    
+                    grafana搭配slack告警
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹將-grafana-告警圖片上傳到-gcs"><span>本文章將介紹將 grafana 告警圖片上傳到 gcs</span></a><ol><li><a href="#一、進入-gcp-然後到導覽選單-storage-→-瀏覽器"><span>一、進入 gcp 然後到導覽選單 storage → 瀏覽器</span></a></li><li><a href="#二、點選建立-bucket"><span>二、點選建立 bucket</span></a></li><li><a href="#三、為值區命名，點擊繼續"><span>三、為值區命名，點擊繼續</span></a></li><li><a href="#四、選擇儲存空間級別，本文章使用-regional-每個級別-gcp-都有解釋，請依個人需求做選擇"><span>四、選擇儲存空間級別，本文章使用 regional 每個級別 gcp 都有解釋，請依個人需求做選擇</span></a></li><li><a href="#五、選擇控制物件的存取權，選擇設定物件層級和值區層級權限"><span>五、選擇控制物件的存取權，選擇設定物件層級和值區層級權限</span></a></li><li><a href="#六、進階設定預設，全部選好後點選建立"><span>六、進階設定預設，全部選好後點選建立</span></a></li><li><a href="#七、回到瀏覽器畫面可以看到設定好的-bucket，接下來點選生命週期下的無設定生命週期"><span>七、回到瀏覽器畫面可以看到設定好的 bucket，接下來點選生命週期下的無設定生命週期</span></a></li><li><a href="#因為-grafana-告警圖片並不是需要長久保存的資料，因此我們設定生命週期定期刪除資料，不要讓圖片越存越多"><span>因為 grafana 告警圖片並不是需要長久保存的資料，因此我們設定生命週期定期刪除資料，不要讓圖片越存越多</span></a></li><li><a href="#八、點擊新增規則"><span>八、點擊新增規則</span></a></li><li><a href="#九、設定物件選取條件和選取動作，本文章選擇30天刪除，請依個人需求選擇"><span>九、設定物件選取條件和選取動作，本文章選擇30天刪除，請依個人需求選擇</span></a></li><li><a href="#兩個條件都點選繼續後就可以儲存了"><span>兩個條件都點選繼續後就可以儲存了</span></a></li><li><a href="#回到-bucket-可以看到生命週期已啟用"><span>回到 bucket 可以看到生命週期已啟用</span></a></li><li><a href="#十、接下來到-iam-與管理員-→-服務帳戶"><span>十、接下來到 iam 與管理員 → 服務帳戶</span></a></li><li><a href="#十一、點選建立服務帳號"><span>十一、點選建立服務帳號</span></a></li><li><a href="#十二、輸入服務帳戶名稱"><span>十二、輸入服務帳戶名稱</span></a></li><li><a href="#十三、選擇角色"><span>十三、選擇角色</span></a></li><li><a href="#角色選擇-儲存空間-→-storage-物件建立者"><span>角色選擇 儲存空間 → storage 物件建立者</span></a></li><li><a href="#十四、點選-create-key-下載金鑰"><span>十四、點選 create key 下載金鑰</span></a></li><li><a href="#選擇-josn-檔，點選建立後就會自動幫你下載了"><span>選擇 josn 檔，點選建立後就會自動幫你下載了</span></a></li><li><a href="#回到服務帳戶可以看到已建立好的服務帳戶"><span>回到服務帳戶可以看到已建立好的服務帳戶</span></a></li><li><a href="#十五、接下來回到-grafana-vm-把下載的-josn-檔案放到-vm-的路徑-data-grafana-底下，因有將實體機器資料夾指向-container-路徑，所以放此路徑底下"><span>十五、接下來回到 grafana vm 把下載的 josn 檔案放到 vm 的路徑 /data/grafana 底下，因有將實體機器資料夾指向 container 路徑，所以放此路徑底下</span></a></li><li><a href="#十六、增加-grafana-GCP-存放告警圖片環境參數"><span>十六、增加 grafana GCP 存放告警圖片環境參數</span></a></li><li><a href="#GF-EXTERNAL-IMAGE-STORAGE-PROVIDER-gcs"><span>GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs</span></a></li><li><a href="#GF-EXTERNAL-IMAGE-STORAGE-GCS-KEY-FILE-var-lib-grafana-服務帳戶金鑰-JOSN檔名稱-josn"><span>GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/服務帳戶金鑰 JOSN檔名稱+.josn</span></a></li><li><a href="#GF-EXTERNAL-IMAGE-STORAGE-GCS-BUCKET-服務帳戶名稱"><span>GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=服務帳戶名稱</span></a></li><li><a href="#本文章使用指令"><span>本文章使用指令</span></a></li><li><a href="#docker-compose"><span>docker-compose</span></a></li><li><a href="#十七、查看"><span>十七、查看</span></a></li><li><a href="#container-log-指令"><span>container log 指令</span></a></li><li><a href="#十八、接下來回到-grafana-監控頁面測試告警"><span>十八、接下來回到 grafana 監控頁面測試告警</span></a></li><li><a href="#看到告警圖片就是成功了"><span>看到告警圖片就是成功了</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>git指令 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x4F5C;&amp;#x7B46;&amp;#x8A18;&amp;#x7528;&amp;#xFF0C;&amp;#x6703;&amp;#x6301;&amp;#x7E8C;&amp;#x66F4;&amp;#x65B0; git &amp;#x6307;&amp;#x4EE4;git &amp;#x6307;&amp;#x4EE4;&amp;#x67E5;&amp;#x770B;+&amp;#x8B8A;&amp;#x66F4;&amp;#x5E33;&amp;#x865F;&amp;#x4FE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git指令">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/git指令/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x4F5C;&amp;#x7B46;&amp;#x8A18;&amp;#x7528;&amp;#xFF0C;&amp;#x6703;&amp;#x6301;&amp;#x7E8C;&amp;#x66F4;&amp;#x65B0; git &amp;#x6307;&amp;#x4EE4;git &amp;#x6307;&amp;#x4EE4;&amp;#x67E5;&amp;#x770B;+&amp;#x8B8A;&amp;#x66F4;&amp;#x5E33;&amp;#x865F;&amp;#x4FE">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.277Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git指令">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x4F5C;&amp;#x7B46;&amp;#x8A18;&amp;#x7528;&amp;#xFF0C;&amp;#x6703;&amp;#x6301;&amp;#x7E8C;&amp;#x66F4;&amp;#x65B0; git &amp;#x6307;&amp;#x4EE4;git &amp;#x6307;&amp;#x4EE4;&amp;#x67E5;&amp;#x770B;+&amp;#x8B8A;&amp;#x66F4;&amp;#x5E33;&amp;#x865F;&amp;#x4FE">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-git指令" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    git指令
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h4 id="&#x672C;&#x6587;&#x7AE0;&#x4F5C;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x6301;&#x7E8C;&#x66F4;&#x65B0;-git-&#x6307;&#x4EE4;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x4F5C;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x6301;&#x7E8C;&#x66F4;&#x65B0;-git-&#x6307;&#x4EE4;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x4F5C;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x6301;&#x7E8C;&#x66F4;&#x65B0; git &#x6307;&#x4EE4;"></a>&#x672C;&#x6587;&#x7AE0;&#x4F5C;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x6301;&#x7E8C;&#x66F4;&#x65B0; git &#x6307;&#x4EE4;</h4><h4 id="git-&#x6307;&#x4EE4;&#x67E5;&#x770B;-&#x8B8A;&#x66F4;&#x5E33;&#x865F;&#x4FE1;&#x7BB1;"><a href="#git-&#x6307;&#x4EE4;&#x67E5;&#x770B;-&#x8B8A;&#x66F4;&#x5E33;&#x865F;&#x4FE1;&#x7BB1;" class="headerlink" title="git &#x6307;&#x4EE4;&#x67E5;&#x770B;+&#x8B8A;&#x66F4;&#x5E33;&#x865F;&#x4FE1;&#x7BB1;"></a>git &#x6307;&#x4EE4;&#x67E5;&#x770B;+&#x8B8A;&#x66F4;&#x5E33;&#x865F;&#x4FE1;&#x7BB1;</h4><h4 id="git-config-user-name"><a href="#git-config-user-name" class="headerlink" title="git config user.name"></a>git config user.name</h4><h4 id="git-config-user-email"><a href="#git-config-user-email" class="headerlink" title="git config user.email"></a>git config user.email</h4><h4 id="git-config-&#x2013;global-user-name-&#x201C;Your-username&#x201D;"><a href="#git-config-&#x2013;global-user-name-&#x201C;Your-username&#x201D;" class="headerlink" title="git config &#x2013;global user.name &#x201C;Your_username&#x201D;"></a>git config &#x2013;global user.name &#x201C;Your_username&#x201D;</h4><h4 id="git-config-&#x2013;global-user-email-&#x201C;Your-email&#x201D;"><a href="#git-config-&#x2013;global-user-email-&#x201C;Your-email&#x201D;" class="headerlink" title="git config &#x2013;global user.email &#x201C;Your_email&#x201D;"></a>git config &#x2013;global user.email &#x201C;Your_email&#x201D;</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2019-02-26T07:22:06.000Z" itemprop="datePublished">2019-02-26</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a class="ui tiny button disabled"><i class="angle left icon"></i>前一篇</a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2019/01/23/使用工作排程器執行批次檔/" class="ui tiny button">
+                    
+                    使用工作排程器執行批次檔
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章作筆記用，會持續更新-git-指令"><span>本文章作筆記用，會持續更新 git 指令</span></a></li><li><a href="#git-指令查看-變更帳號信箱"><span>git 指令查看+變更帳號信箱</span></a></li><li><a href="#git-config-user-name"><span>git config user.name</span></a></li><li><a href="#git-config-user-email"><span>git config user.email</span></a></li><li><a href="#git-config-–global-user-name-“Your-username”"><span>git config –global user.name “Your_username”</span></a></li><li><a href="#git-config-–global-user-email-“Your-email”"><span>git config –global user.email “Your_email”</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>VirtualBox掛載虛擬硬碟 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x522A;&amp;#x9664;&amp;#x865B;&amp;#x64EC;&amp;#x6A5F;&amp;#x662F;&amp;#x53EF;&amp;#x4EE5;&amp;#x9078;&amp;#x64C7;&amp;#x53EA;&amp;#x79FB;&amp;#x9664;&amp;#x6A5F;&amp;#x5668;&amp;#x4E0D;&amp;#x522A;&amp;#x9664;&amp;#x865B;&amp;#x64EC;&amp;#x786C;&amp;#x789F;&amp;#xFF0C;&amp;#x7136;&amp;#x5F8C;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VirtualBox掛載虛擬硬碟">
+<meta property="og:url" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x522A;&amp;#x9664;&amp;#x865B;&amp;#x64EC;&amp;#x6A5F;&amp;#x662F;&amp;#x53EF;&amp;#x4EE5;&amp;#x9078;&amp;#x64C7;&amp;#x53EA;&amp;#x79FB;&amp;#x9664;&amp;#x6A5F;&amp;#x5668;&amp;#x4E0D;&amp;#x522A;&amp;#x9664;&amp;#x865B;&amp;#x64EC;&amp;#x786C;&amp;#x789F;&amp;#xFF0C;&amp;#x7136;&amp;#x5F8C;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/12.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.224Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VirtualBox掛載虛擬硬碟">
+<meta name="twitter:description" content="&amp;#x522A;&amp;#x9664;&amp;#x865B;&amp;#x64EC;&amp;#x6A5F;&amp;#x662F;&amp;#x53EF;&amp;#x4EE5;&amp;#x9078;&amp;#x64C7;&amp;#x53EA;&amp;#x79FB;&amp;#x9664;&amp;#x6A5F;&amp;#x5668;&amp;#x4E0D;&amp;#x522A;&amp;#x9664;&amp;#x865B;&amp;#x64EC;&amp;#x786C;&amp;#x789F;&amp;#xFF0C;&amp;#x7136;&amp;#x5F8C;">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/29/VirtualBox掛載虛擬硬碟/images/19.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-VirtualBox掛載虛擬硬碟" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    VirtualBox掛載虛擬硬碟
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x522A;&#x9664;&#x865B;&#x64EC;&#x6A5F;&#x662F;&#x53EF;&#x4EE5;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x6A5F;&#x5668;&#x4E0D;&#x522A;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x7136;&#x5F8C;&#x5728;&#x91CD;&#x65B0;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x672C;&#x7BC7;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x639B;&#x4E0A;&#x53BB;"><a href="#&#x522A;&#x9664;&#x865B;&#x64EC;&#x6A5F;&#x662F;&#x53EF;&#x4EE5;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x6A5F;&#x5668;&#x4E0D;&#x522A;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x7136;&#x5F8C;&#x5728;&#x91CD;&#x65B0;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x672C;&#x7BC7;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x639B;&#x4E0A;&#x53BB;" class="headerlink" title="&#x522A;&#x9664;&#x865B;&#x64EC;&#x6A5F;&#x662F;&#x53EF;&#x4EE5;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x6A5F;&#x5668;&#x4E0D;&#x522A;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x7136;&#x5F8C;&#x5728;&#x91CD;&#x65B0;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x672C;&#x7BC7;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x639B;&#x4E0A;&#x53BB;"></a>&#x522A;&#x9664;&#x865B;&#x64EC;&#x6A5F;&#x662F;&#x53EF;&#x4EE5;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x6A5F;&#x5668;&#x4E0D;&#x522A;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x7136;&#x5F8C;&#x5728;&#x91CD;&#x65B0;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x672C;&#x7BC7;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x639B;&#x4E0A;&#x53BB;</h3><h4 id="1-&#x60F3;&#x8981;&#x522A;&#x9664;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x5728;&#x5EFA;&#x597D;&#x7684;&#x6A5F;&#x5668;&#x5217;&#x8868;&#x4E0A;&#x53F3;&#x9375;-&#x2192;-&#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x79FB;&#x9664;&#x5F8C;&#x6703;&#x8A62;&#x554F;&#x522A;&#x9664;&#x6240;&#x6709;&#x6A94;&#x6848;&#x6216;&#x662F;&#x53EA;&#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#x6703;&#x7559;&#x8457;&#x53EF;&#x4EE5;&#x4E0B;&#x6B21;&#x518D;&#x639B;&#x8F09;&#x51FA;&#x4F86;"><a href="#1-&#x60F3;&#x8981;&#x522A;&#x9664;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x5728;&#x5EFA;&#x597D;&#x7684;&#x6A5F;&#x5668;&#x5217;&#x8868;&#x4E0A;&#x53F3;&#x9375;-&#x2192;-&#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x79FB;&#x9664;&#x5F8C;&#x6703;&#x8A62;&#x554F;&#x522A;&#x9664;&#x6240;&#x6709;&#x6A94;&#x6848;&#x6216;&#x662F;&#x53EA;&#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#x6703;&#x7559;&#x8457;&#x53EF;&#x4EE5;&#x4E0B;&#x6B21;&#x518D;&#x639B;&#x8F09;&#x51FA;&#x4F86;" class="headerlink" title="1.&#x60F3;&#x8981;&#x522A;&#x9664;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x5728;&#x5EFA;&#x597D;&#x7684;&#x6A5F;&#x5668;&#x5217;&#x8868;&#x4E0A;&#x53F3;&#x9375; &#x2192; &#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x79FB;&#x9664;&#x5F8C;&#x6703;&#x8A62;&#x554F;&#x522A;&#x9664;&#x6240;&#x6709;&#x6A94;&#x6848;&#x6216;&#x662F;&#x53EA;&#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#x6703;&#x7559;&#x8457;&#x53EF;&#x4EE5;&#x4E0B;&#x6B21;&#x518D;&#x639B;&#x8F09;&#x51FA;&#x4F86;"></a>1.&#x60F3;&#x8981;&#x522A;&#x9664;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x5728;&#x5EFA;&#x597D;&#x7684;&#x6A5F;&#x5668;&#x5217;&#x8868;&#x4E0A;&#x53F3;&#x9375; &#x2192; &#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x79FB;&#x9664;&#x5F8C;&#x6703;&#x8A62;&#x554F;&#x522A;&#x9664;&#x6240;&#x6709;&#x6A94;&#x6848;&#x6216;&#x662F;&#x53EA;&#x79FB;&#x9664;&#xFF0C;&#x9078;&#x64C7;&#x53EA;&#x79FB;&#x9664;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#x6703;&#x7559;&#x8457;&#x53EF;&#x4EE5;&#x4E0B;&#x6B21;&#x518D;&#x639B;&#x8F09;&#x51FA;&#x4F86;</h4><p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a></p>
+<h4 id="2-&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x4F86;&#x589E;&#x52A0;&#x865B;&#x64EC;&#x6A5F;&#x5668;"><a href="#2-&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x4F86;&#x589E;&#x52A0;&#x865B;&#x64EC;&#x6A5F;&#x5668;" class="headerlink" title="2. &#x9EDE;&#x9078;&#x65B0;&#x589E;&#x4F86;&#x589E;&#x52A0;&#x865B;&#x64EC;&#x6A5F;&#x5668;"></a>2. &#x9EDE;&#x9078;&#x65B0;&#x589E;&#x4F86;&#x589E;&#x52A0;&#x865B;&#x64EC;&#x6A5F;&#x5668;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h4 id="3-&#x540D;&#x7A31;&#xFF1A;&#x547D;&#x540D;&#xFF0C;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#xFF1A;&#x8A2D;&#x5B9A;&#x597D;&#x60F3;&#x8981;&#x653E;&#x865B;&#x64EC;&#x6A5F;&#x6A94;&#x6848;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x985E;&#x578B;&#xFF1A;&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x7CFB;&#x7D71;&#xFF0C;&#x7248;&#x672C;&#xFF1A;&#x9078;&#x64C7;&#x7CFB;&#x7D71;&#x7248;&#x672C;"><a href="#3-&#x540D;&#x7A31;&#xFF1A;&#x547D;&#x540D;&#xFF0C;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#xFF1A;&#x8A2D;&#x5B9A;&#x597D;&#x60F3;&#x8981;&#x653E;&#x865B;&#x64EC;&#x6A5F;&#x6A94;&#x6848;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x985E;&#x578B;&#xFF1A;&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x7CFB;&#x7D71;&#xFF0C;&#x7248;&#x672C;&#xFF1A;&#x9078;&#x64C7;&#x7CFB;&#x7D71;&#x7248;&#x672C;" class="headerlink" title="3. &#x540D;&#x7A31;&#xFF1A;&#x547D;&#x540D;&#xFF0C;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#xFF1A;&#x8A2D;&#x5B9A;&#x597D;&#x60F3;&#x8981;&#x653E;&#x865B;&#x64EC;&#x6A5F;&#x6A94;&#x6848;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x985E;&#x578B;&#xFF1A;&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x7CFB;&#x7D71;&#xFF0C;&#x7248;&#x672C;&#xFF1A;&#x9078;&#x64C7;&#x7CFB;&#x7D71;&#x7248;&#x672C;"></a>3. &#x540D;&#x7A31;&#xFF1A;&#x547D;&#x540D;&#xFF0C;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#xFF1A;&#x8A2D;&#x5B9A;&#x597D;&#x60F3;&#x8981;&#x653E;&#x865B;&#x64EC;&#x6A5F;&#x6A94;&#x6848;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x985E;&#x578B;&#xFF1A;&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x7CFB;&#x7D71;&#xFF0C;&#x7248;&#x672C;&#xFF1A;&#x9078;&#x64C7;&#x7CFB;&#x7D71;&#x7248;&#x672C;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h4 id="4-&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;"><a href="#4-&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;" class="headerlink" title="4. &#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;"></a>4. &#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h4 id="5-&#x9078;&#x64C7;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x8CC7;&#x6599;&#x593E;&#x5716;&#x6848;"><a href="#5-&#x9078;&#x64C7;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x8CC7;&#x6599;&#x593E;&#x5716;&#x6848;" class="headerlink" title="5. &#x9078;&#x64C7;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x8CC7;&#x6599;&#x593E;&#x5716;&#x6848;"></a>5. &#x9078;&#x64C7;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x865B;&#x64EC;&#x786C;&#x789F;&#x6A94;&#x6848;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x8CC7;&#x6599;&#x593E;&#x5716;&#x6848;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="6-&#x9EDE;&#x9078;&#x52A0;&#x5165;&#xFF0C;&#x5230;&#x653E;&#x8A2D;&#x5B9A;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x8DEF;&#x5F91;&#x4E0B;&#xFF0C;&#x9078;&#x64C7;-vdi-&#x865B;&#x64EC;&#x786C;&#x789F;"><a href="#6-&#x9EDE;&#x9078;&#x52A0;&#x5165;&#xFF0C;&#x5230;&#x653E;&#x8A2D;&#x5B9A;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x8DEF;&#x5F91;&#x4E0B;&#xFF0C;&#x9078;&#x64C7;-vdi-&#x865B;&#x64EC;&#x786C;&#x789F;" class="headerlink" title="6. &#x9EDE;&#x9078;&#x52A0;&#x5165;&#xFF0C;&#x5230;&#x653E;&#x8A2D;&#x5B9A;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x8DEF;&#x5F91;&#x4E0B;&#xFF0C;&#x9078;&#x64C7; vdi &#x865B;&#x64EC;&#x786C;&#x789F;"></a>6. &#x9EDE;&#x9078;&#x52A0;&#x5165;&#xFF0C;&#x5230;&#x653E;&#x8A2D;&#x5B9A;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x8DEF;&#x5F91;&#x4E0B;&#xFF0C;&#x9078;&#x64C7; vdi &#x865B;&#x64EC;&#x786C;&#x789F;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h4 id="7-&#x9EDE;&#x9078;-vdi-&#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x518D;&#x9EDE;&#x9078;-Choose"><a href="#7-&#x9EDE;&#x9078;-vdi-&#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x518D;&#x9EDE;&#x9078;-Choose" class="headerlink" title="7. &#x9EDE;&#x9078; vdi &#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x518D;&#x9EDE;&#x9078; Choose"></a>7. &#x9EDE;&#x9078; vdi &#x865B;&#x64EC;&#x786C;&#x789F;&#xFF0C;&#x518D;&#x9EDE;&#x9078; Choose</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h4 id="8-&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"><a href="#8-&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;" class="headerlink" title="8. &#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"></a>8. &#x9EDE;&#x9078;&#x5EFA;&#x7ACB;</h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h4 id="9-&#x9EDE;&#x9078;&#x555F;&#x52D5;&#xFF0C;&#x7136;&#x5F8C;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;&#x958B;&#x555F;-ubuntu"><a href="#9-&#x9EDE;&#x9078;&#x555F;&#x52D5;&#xFF0C;&#x7136;&#x5F8C;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;&#x958B;&#x555F;-ubuntu" class="headerlink" title="9. &#x9EDE;&#x9078;&#x555F;&#x52D5;&#xFF0C;&#x7136;&#x5F8C;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;&#x958B;&#x555F; ubuntu"></a>9. &#x9EDE;&#x9078;&#x555F;&#x52D5;&#xFF0C;&#x7136;&#x5F8C;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;&#x958B;&#x555F; ubuntu</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h4 id="10-&#x5982;&#x5716;&#x865B;&#x64EC;&#x786C;&#x789F;&#x639B;&#x8F09;&#x6210;&#x529F;"><a href="#10-&#x5982;&#x5716;&#x865B;&#x64EC;&#x786C;&#x789F;&#x639B;&#x8F09;&#x6210;&#x529F;" class="headerlink" title="10. &#x5982;&#x5716;&#x865B;&#x64EC;&#x786C;&#x789F;&#x639B;&#x8F09;&#x6210;&#x529F;"></a>10. &#x5982;&#x5716;&#x865B;&#x64EC;&#x786C;&#x789F;&#x639B;&#x8F09;&#x6210;&#x529F;</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
+<h4 id="PS-&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x4E26;&#x4E0D;&#x662F;&#x8907;&#x88FD;&#x53EA;&#x662F;&#x5728;&#x628A;&#x540C;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x786C;&#x789F;&#x518D;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x56E0;&#x6B64;&#x540C;&#x6642;&#x555F;&#x52D5;&#x540C;&#x4E00;&#x500B;-vdi-&#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0C;&#x60F3;&#x8981;&#x6709;&#x591A;&#x500B;&#x540C;&#x6A23;&#x865B;&#x64EC;&#x786C;&#x789F;&#x8981;&#x4F7F;&#x7528;&#x518D;&#x88FD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x6703;&#x4ECB;&#x7D39;"><a href="#PS-&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x4E26;&#x4E0D;&#x662F;&#x8907;&#x88FD;&#x53EA;&#x662F;&#x5728;&#x628A;&#x540C;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x786C;&#x789F;&#x518D;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x56E0;&#x6B64;&#x540C;&#x6642;&#x555F;&#x52D5;&#x540C;&#x4E00;&#x500B;-vdi-&#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0C;&#x60F3;&#x8981;&#x6709;&#x591A;&#x500B;&#x540C;&#x6A23;&#x865B;&#x64EC;&#x786C;&#x789F;&#x8981;&#x4F7F;&#x7528;&#x518D;&#x88FD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x6703;&#x4ECB;&#x7D39;" class="headerlink" title="PS. &#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x4E26;&#x4E0D;&#x662F;&#x8907;&#x88FD;&#x53EA;&#x662F;&#x5728;&#x628A;&#x540C;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x786C;&#x789F;&#x518D;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x56E0;&#x6B64;&#x540C;&#x6642;&#x555F;&#x52D5;&#x540C;&#x4E00;&#x500B; vdi &#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0C;&#x60F3;&#x8981;&#x6709;&#x591A;&#x500B;&#x540C;&#x6A23;&#x865B;&#x64EC;&#x786C;&#x789F;&#x8981;&#x4F7F;&#x7528;&#x518D;&#x88FD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x6703;&#x4ECB;&#x7D39;"></a>PS. &#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x4E26;&#x4E0D;&#x662F;&#x8907;&#x88FD;&#x53EA;&#x662F;&#x5728;&#x628A;&#x540C;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x786C;&#x789F;&#x518D;&#x639B;&#x4E0A;&#x53BB;&#xFF0C;&#x56E0;&#x6B64;&#x540C;&#x6642;&#x555F;&#x52D5;&#x540C;&#x4E00;&#x500B; vdi &#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0C;&#x60F3;&#x8981;&#x6709;&#x591A;&#x500B;&#x540C;&#x6A23;&#x865B;&#x64EC;&#x786C;&#x789F;&#x8981;&#x4F7F;&#x7528;&#x518D;&#x88FD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0B;&#x7BC7;&#x6587;&#x7AE0;&#x6703;&#x4ECB;&#x7D39;</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-29T04:44:07.000Z" itemprop="datePublished">2018-06-29</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/06/30/VirtualBox複製已經建立好虛擬機/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    VirtualBox複製已經建立好虛擬機
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/06/29/VirtualBox安裝系統練習/" class="ui tiny button">
+                    
+                    VirtualBox安裝系統練習
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#刪除虛擬機是可以選擇只移除機器不刪除虛擬硬碟，然後在重新掛上去，本篇將介紹如何掛上去"><span>刪除虛擬機是可以選擇只移除機器不刪除虛擬硬碟，然後在重新掛上去，本篇將介紹如何掛上去</span></a><ol><li><a href="#1-想要刪除已建立好的虛擬機，在建好的機器列表上右鍵-→-移除，選擇移除後會詢問刪除所有檔案或是只移除，選擇只移除虛擬硬碟檔案會留著可以下次再掛載出來"><span>1.想要刪除已建立好的虛擬機，在建好的機器列表上右鍵 → 移除，選擇移除後會詢問刪除所有檔案或是只移除，選擇只移除虛擬硬碟檔案會留著可以下次再掛載出來</span></a></li><li><a href="#2-點選新增來增加虛擬機器"><span>2. 點選新增來增加虛擬機器</span></a></li><li><a href="#3-名稱：命名，機器資料夾：設定好想要放虛擬機檔案的地方，類型：選擇想要的系統，版本：選擇系統版本"><span>3. 名稱：命名，機器資料夾：設定好想要放虛擬機檔案的地方，類型：選擇想要的系統，版本：選擇系統版本</span></a></li><li><a href="#4-設定記憶體大小"><span>4. 設定記憶體大小</span></a></li><li><a href="#5-選擇使用現有虛擬硬碟檔案，然後點擊右邊資料夾圖案"><span>5. 選擇使用現有虛擬硬碟檔案，然後點擊右邊資料夾圖案</span></a></li><li><a href="#6-點選加入，到放設定機器資料夾路徑下，選擇-vdi-虛擬硬碟"><span>6. 點選加入，到放設定機器資料夾路徑下，選擇 vdi 虛擬硬碟</span></a></li><li><a href="#7-點選-vdi-虛擬硬碟，再點選-Choose"><span>7. 點選 vdi 虛擬硬碟，再點選 Choose</span></a></li><li><a href="#8-點選建立"><span>8. 點選建立</span></a></li><li><a href="#9-點選啟動，然後第一個選項開啟-ubuntu"><span>9. 點選啟動，然後第一個選項開啟 ubuntu</span></a></li><li><a href="#10-如圖虛擬硬碟掛載成功"><span>10. 如圖虛擬硬碟掛載成功</span></a></li><li><a href="#PS-使用此方法並不是複製只是在把同一個虛擬硬碟再掛上去，因此同時啟動同一個-vdi-會出現錯誤訊息，想要有多個同樣虛擬硬碟要使用再製方法，下篇文章會介紹"><span>PS. 使用此方法並不是複製只是在把同一個虛擬硬碟再掛上去，因此同時啟動同一個 vdi 會出現錯誤訊息，想要有多個同樣虛擬硬碟要使用再製方法，下篇文章會介紹</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>ELK建立-redis-elasticsearch-logstash-kibana | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="( &amp;#x6587;&amp;#x7AE0;&amp;#x6709;&amp;#x554F;&amp;#x984C;&amp;#xFF0C;&amp;#x6703;&amp;#x518D;&amp;#x505A;&amp;#x4FEE;&amp;#x6539; )&amp;#x4E00;&amp;#x3001; ELK + Redis ( &amp;#x5728; gcp &amp;#x9632;&amp;#x706B;&amp;#x7246;&amp;#x8981;&amp;#x958B;&amp;#x555F; port 6379 ) &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK建立-redis-elasticsearch-logstash-kibana">
+<meta property="og:url" content="http://yoursite.com/2018/07/26/ELK建立-redis-elasticsearch-logstash-kibana/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="( &amp;#x6587;&amp;#x7AE0;&amp;#x6709;&amp;#x554F;&amp;#x984C;&amp;#xFF0C;&amp;#x6703;&amp;#x518D;&amp;#x505A;&amp;#x4FEE;&amp;#x6539; )&amp;#x4E00;&amp;#x3001; ELK + Redis ( &amp;#x5728; gcp &amp;#x9632;&amp;#x706B;&amp;#x7246;&amp;#x8981;&amp;#x958B;&amp;#x555F; port 6379 ) &amp;#x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-01T03:30:24.978Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK建立-redis-elasticsearch-logstash-kibana">
+<meta name="twitter:description" content="( &amp;#x6587;&amp;#x7AE0;&amp;#x6709;&amp;#x554F;&amp;#x984C;&amp;#xFF0C;&amp;#x6703;&amp;#x518D;&amp;#x505A;&amp;#x4FEE;&amp;#x6539; )&amp;#x4E00;&amp;#x3001; ELK + Redis ( &amp;#x5728; gcp &amp;#x9632;&amp;#x706B;&amp;#x7246;&amp;#x8981;&amp;#x958B;&amp;#x555F; port 6379 ) &amp;#x">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-ELK建立-redis-elasticsearch-logstash-kibana" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    ELK建立-redis-elasticsearch-logstash-kibana
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h1 id="&#x6587;&#x7AE0;&#x6709;&#x554F;&#x984C;&#xFF0C;&#x6703;&#x518D;&#x505A;&#x4FEE;&#x6539;"><a href="#&#x6587;&#x7AE0;&#x6709;&#x554F;&#x984C;&#xFF0C;&#x6703;&#x518D;&#x505A;&#x4FEE;&#x6539;" class="headerlink" title="( &#x6587;&#x7AE0;&#x6709;&#x554F;&#x984C;&#xFF0C;&#x6703;&#x518D;&#x505A;&#x4FEE;&#x6539; )"></a>( &#x6587;&#x7AE0;&#x6709;&#x554F;&#x984C;&#xFF0C;&#x6703;&#x518D;&#x505A;&#x4FEE;&#x6539; )</h1><h4 id="&#x4E00;&#x3001;-ELK-Redis-&#x5728;-gcp-&#x9632;&#x706B;&#x7246;&#x8981;&#x958B;&#x555F;-port-6379-&#x6307;&#x4EE4;-&#x524D;&#x9762;&#x6587;&#x7AE0;&#x6709;-ELK-&#x5EFA;&#x7ACB;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x4E0A;&#x5EFA;&#x7ACB;&#x5BB9;&#x5668;&#x6307;&#x4EE4;"><a href="#&#x4E00;&#x3001;-ELK-Redis-&#x5728;-gcp-&#x9632;&#x706B;&#x7246;&#x8981;&#x958B;&#x555F;-port-6379-&#x6307;&#x4EE4;-&#x524D;&#x9762;&#x6587;&#x7AE0;&#x6709;-ELK-&#x5EFA;&#x7ACB;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x4E0A;&#x5EFA;&#x7ACB;&#x5BB9;&#x5668;&#x6307;&#x4EE4;" class="headerlink" title="&#x4E00;&#x3001; ELK + Redis ( &#x5728; gcp &#x9632;&#x706B;&#x7246;&#x8981;&#x958B;&#x555F; port 6379 ) &#x6307;&#x4EE4; ( &#x524D;&#x9762;&#x6587;&#x7AE0;&#x6709; ELK &#x5EFA;&#x7ACB;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x4E0A;&#x5EFA;&#x7ACB;&#x5BB9;&#x5668;&#x6307;&#x4EE4; )"></a>&#x4E00;&#x3001; ELK + Redis ( &#x5728; gcp &#x9632;&#x706B;&#x7246;&#x8981;&#x958B;&#x555F; port 6379 ) &#x6307;&#x4EE4; ( &#x524D;&#x9762;&#x6587;&#x7AE0;&#x6709; ELK &#x5EFA;&#x7ACB;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x4E0A;&#x5EFA;&#x7ACB;&#x5BB9;&#x5668;&#x6307;&#x4EE4; )</h4><h4 id="&#x4E00;&#x6A23;&#x8981;&#x5148;&#x914D;&#x7F6E;-logstash-&#x6587;&#x4EF6;"><a href="#&#x4E00;&#x6A23;&#x8981;&#x5148;&#x914D;&#x7F6E;-logstash-&#x6587;&#x4EF6;" class="headerlink" title="&#x4E00;&#x6A23;&#x8981;&#x5148;&#x914D;&#x7F6E; logstash &#x6587;&#x4EF6;"></a>&#x4E00;&#x6A23;&#x8981;&#x5148;&#x914D;&#x7F6E; logstash &#x6587;&#x4EF6;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">input {</span><br><span class="line">    redis {</span><br><span class="line">        host =&gt; &quot;redis&quot;</span><br><span class="line">        port =&gt; 6379</span><br><span class="line">        data_type =&gt; &quot;list&quot;</span><br><span class="line">        key =&gt; &quot;vplaylog&quot;</span><br><span class="line">        password =&gt; &quot;QFkXXBZkLD6MgcEL1y8l&quot;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">filter {</span><br><span class="line">    if [type] == &quot;wineventlog&quot; {</span><br><span class="line">        mutate {</span><br><span class="line">            add_field =&gt; { </span><br><span class="line">                &quot;hostname&quot; =&gt; &quot;%{[beat][hostname]}&quot;</span><br><span class="line">                &quot;[@metadata][env]&quot; =&gt; &quot;%{[fields][env]]}&quot; </span><br><span class="line">            }</span><br><span class="line">            remove_field =&gt; [ &quot;beat&quot;, &quot;fields&quot; ]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">output {</span><br><span class="line">    elasticsearch {</span><br><span class="line">        hosts =&gt; [&quot;elasticsearch&quot;]</span><br><span class="line">        index =&gt; &quot;%{[@metadata][env]}_%{[type]}-%{+YYYY.MM.dd}&quot;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5BB9;&#x5668;-run-&#x8D77;&#x4F86;"><a href="#&#x5BB9;&#x5668;-run-&#x8D77;&#x4F86;" class="headerlink" title="&#x5BB9;&#x5668; run &#x8D77;&#x4F86;"></a>&#x5BB9;&#x5668; run &#x8D77;&#x4F86;</h4><h4 id="Redis-&#x53C3;&#x6578;&#x4ECB;&#x7D39;&#xFF1A;"><a href="#Redis-&#x53C3;&#x6578;&#x4ECB;&#x7D39;&#xFF1A;" class="headerlink" title="Redis &#x53C3;&#x6578;&#x4ECB;&#x7D39;&#xFF1A;"></a>Redis &#x53C3;&#x6578;&#x4ECB;&#x7D39;&#xFF1A;</h4><h4 id="redis-server&#xFF1A;&#x5EFA;&#x7ACB;-redis-&#x7684;-server&#xFF08;-&#x53E6;&#x6709;-redis-client-&#x7684;&#x5BA2;&#x7AEF;&#x7248;&#x672C;-&#xFF09;"><a href="#redis-server&#xFF1A;&#x5EFA;&#x7ACB;-redis-&#x7684;-server&#xFF08;-&#x53E6;&#x6709;-redis-client-&#x7684;&#x5BA2;&#x7AEF;&#x7248;&#x672C;-&#xFF09;" class="headerlink" title="redis-server&#xFF1A;&#x5EFA;&#x7ACB; redis &#x7684; server&#xFF08; &#x53E6;&#x6709; redis-client &#x7684;&#x5BA2;&#x7AEF;&#x7248;&#x672C; &#xFF09;"></a>redis-server&#xFF1A;&#x5EFA;&#x7ACB; redis &#x7684; server&#xFF08; &#x53E6;&#x6709; redis-client &#x7684;&#x5BA2;&#x7AEF;&#x7248;&#x672C; &#xFF09;</h4><h4 id="&#x2013;appendonly-yes&#xFF1A;&#x662F;&#x5426;&#x505A;&#x8CC7;&#x6599;&#x6301;&#x4E45;&#x5316;"><a href="#&#x2013;appendonly-yes&#xFF1A;&#x662F;&#x5426;&#x505A;&#x8CC7;&#x6599;&#x6301;&#x4E45;&#x5316;" class="headerlink" title="&#x2013;appendonly yes&#xFF1A;&#x662F;&#x5426;&#x505A;&#x8CC7;&#x6599;&#x6301;&#x4E45;&#x5316;"></a>&#x2013;appendonly yes&#xFF1A;&#x662F;&#x5426;&#x505A;&#x8CC7;&#x6599;&#x6301;&#x4E45;&#x5316;</h4><h4 id="&#x2013;maxmemory-4gb&#xFF1A;&#x8A2D;&#x5B9A;-Redis-Container-&#x5360;&#x7528;&#x8A18;&#x61B6;&#x9AD4;&#x7684;&#x6700;&#x5927;&#x5BB9;&#x91CF;"><a href="#&#x2013;maxmemory-4gb&#xFF1A;&#x8A2D;&#x5B9A;-Redis-Container-&#x5360;&#x7528;&#x8A18;&#x61B6;&#x9AD4;&#x7684;&#x6700;&#x5927;&#x5BB9;&#x91CF;" class="headerlink" title="&#x2013;maxmemory 4gb&#xFF1A;&#x8A2D;&#x5B9A; Redis Container &#x5360;&#x7528;&#x8A18;&#x61B6;&#x9AD4;&#x7684;&#x6700;&#x5927;&#x5BB9;&#x91CF;"></a>&#x2013;maxmemory 4gb&#xFF1A;&#x8A2D;&#x5B9A; Redis Container &#x5360;&#x7528;&#x8A18;&#x61B6;&#x9AD4;&#x7684;&#x6700;&#x5927;&#x5BB9;&#x91CF;</h4><h4 id="&#x2013;requirepass&#xFF1A;&#x5BA2;&#x7AEF;-VM-&#x5C07;-Log-&#x8CC7;&#x6599;&#x50B3;&#x9001;&#x5230;-Redis-&#x6642;&#x9A57;&#x8B49;&#x7528;&#x7684;-key-&#x8DDF;-logstash-&#x914D;&#x7F6E;&#x7684;&#x8981;&#x4E00;&#x6A23;"><a href="#&#x2013;requirepass&#xFF1A;&#x5BA2;&#x7AEF;-VM-&#x5C07;-Log-&#x8CC7;&#x6599;&#x50B3;&#x9001;&#x5230;-Redis-&#x6642;&#x9A57;&#x8B49;&#x7528;&#x7684;-key-&#x8DDF;-logstash-&#x914D;&#x7F6E;&#x7684;&#x8981;&#x4E00;&#x6A23;" class="headerlink" title="&#x2013;requirepass&#xFF1A;&#x5BA2;&#x7AEF; VM &#x5C07; Log &#x8CC7;&#x6599;&#x50B3;&#x9001;&#x5230; Redis &#x6642;&#x9A57;&#x8B49;&#x7528;&#x7684; key ( &#x8DDF; logstash &#x914D;&#x7F6E;&#x7684;&#x8981;&#x4E00;&#x6A23; )"></a>&#x2013;requirepass&#xFF1A;&#x5BA2;&#x7AEF; VM &#x5C07; Log &#x8CC7;&#x6599;&#x50B3;&#x9001;&#x5230; Redis &#x6642;&#x9A57;&#x8B49;&#x7528;&#x7684; key ( &#x8DDF; logstash &#x914D;&#x7F6E;&#x7684;&#x8981;&#x4E00;&#x6A23; )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name redis -p 6379:6379 -v /data/redis:/data --restart=always redis:3.2.4 redis-server --appendonly yes --maxmemory 4gb --requirepass QFkXXBZkLD6MgcEL1y8l</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name es -p 9200:9200 --restart=always -v /data/elasticsearch:/usr/share/elasticsearch/data -e ES_JAVA_OPTS:-Xmx6g -e ES_JAVA_OPTS:-Xms6g elasticsearch:5.6.7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name logstash -p 5044:5044 --link es:elasticsearch --link redis:redis --restart=always -v /logstash.conf:/usr/share/logstash/pipeline/logstash.conf -e LS_JAVA_OPTS:-Xms6g -e LS_JAVA_OPTS:-Xmx6g docker.elastic.co/logstash/logstash:5.6.7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name kibana --restart=always -p 80:5601 --link es:elasticsearch kibana:5.6.7</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="&#x4E8C;&#x3001;-docker-compose-&#x5EFA;&#x7ACB;-logstash-&#x914D;&#x7F6E;&#x8DDF;-docker-compose-&#x540C;&#x4E00;&#x5C64;"><a href="#&#x4E8C;&#x3001;-docker-compose-&#x5EFA;&#x7ACB;-logstash-&#x914D;&#x7F6E;&#x8DDF;-docker-compose-&#x540C;&#x4E00;&#x5C64;" class="headerlink" title="&#x4E8C;&#x3001; docker-compose &#x5EFA;&#x7ACB; ( logstash &#x914D;&#x7F6E;&#x8DDF; docker-compose &#x540C;&#x4E00;&#x5C64; )"></a>&#x4E8C;&#x3001; docker-compose &#x5EFA;&#x7ACB; ( logstash &#x914D;&#x7F6E;&#x8DDF; docker-compose &#x540C;&#x4E00;&#x5C64; )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  redis:</span><br><span class="line">    container_name: redis</span><br><span class="line">    image: redis:3.2.4</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;6379:6379&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/redis:/data</span><br><span class="line">    entrypoint: redis-server --maxmemory &quot;1gb&quot; --appendonly yes --requirepass QFkXXBZkLD6MgcEL1y8l</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line"></span><br><span class="line">  elasticsearch:</span><br><span class="line">    container_name: elasticsearch</span><br><span class="line">    image: elasticsearch:5.6.7</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9200:9200&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/elasticsearch:/usr/share/elasticsearch/data</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line"></span><br><span class="line">  logstash:</span><br><span class="line">    container_name: logstash</span><br><span class="line">    image: docker.elastic.co/logstash/logstash:5.6.7</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;5044:5044&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line">    depends_on:</span><br><span class="line">      - redis</span><br><span class="line">      - elasticsearch</span><br><span class="line"></span><br><span class="line">  kibana:</span><br><span class="line">    container_name: kibana</span><br><span class="line">    image: kibana:5.6.7</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:5601&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line">    depends_on:</span><br><span class="line">      - elasticsearch</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  docker_elk:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-07-26T11:58:11.000Z" itemprop="datePublished">2018-07-26</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/07/31/winlogbeat建立/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    winlogbeat建立
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/07/26/ELK建立-elasticsearch-logstash-kibana/" class="ui tiny button">
+                    
+                    ELK建立-elasticsearch-logstash-kibana
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#文章有問題，會再做修改"><span>( 文章有問題，會再做修改 )</span></a><ol><li><a href="#一、-ELK-Redis-在-gcp-防火牆要開啟-port-6379-指令-前面文章有-ELK-建立，所以只上建立容器指令"><span>一、 ELK + Redis ( 在 gcp 防火牆要開啟 port 6379 ) 指令 ( 前面文章有 ELK 建立，所以只上建立容器指令 )</span></a></li><li><a href="#一樣要先配置-logstash-文件"><span>一樣要先配置 logstash 文件</span></a></li><li><a href="#容器-run-起來"><span>容器 run 起來</span></a></li><li><a href="#Redis-參數介紹："><span>Redis 參數介紹：</span></a></li><li><a href="#redis-server：建立-redis-的-server（-另有-redis-client-的客端版本-）"><span>redis-server：建立 redis 的 server（ 另有 redis-client 的客端版本 ）</span></a></li><li><a href="#–appendonly-yes：是否做資料持久化"><span>–appendonly yes：是否做資料持久化</span></a></li><li><a href="#–maxmemory-4gb：設定-Redis-Container-占用記憶體的最大容量"><span>–maxmemory 4gb：設定 Redis Container 占用記憶體的最大容量</span></a></li><li><a href="#–requirepass：客端-VM-將-Log-資料傳送到-Redis-時驗證用的-key-跟-logstash-配置的要一樣"><span>–requirepass：客端 VM 將 Log 資料傳送到 Redis 時驗證用的 key ( 跟 logstash 配置的要一樣 )</span></a></li><li><a href="#二、-docker-compose-建立-logstash-配置跟-docker-compose-同一層"><span>二、 docker-compose 建立 ( logstash 配置跟 docker-compose 同一層 )</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

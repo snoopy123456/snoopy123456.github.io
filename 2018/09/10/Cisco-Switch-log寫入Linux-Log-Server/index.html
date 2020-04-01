@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>Cisco-Switch-log寫入Linux-Log-Server | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x4E00;&amp;#x3001; &amp;#x9032;&amp;#x5165; Switch &amp;#x8A2D;&amp;#x5B9A;&amp;#x8F38;&amp;#x5165; log &amp;#x5230;&amp;#x6307;&amp;#x5B9A; ip &amp;#x6A5F;&amp;#x5668;1. en &amp;#x8F38;&amp;#x5165;&amp;#x5BC6;&amp;#x78BC;&amp;#xFF0C;&amp;#x9032;&amp;#x5165;&amp;#x7BA1;&amp;#x7406;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cisco-Switch-log寫入Linux-Log-Server">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x4E00;&amp;#x3001; &amp;#x9032;&amp;#x5165; Switch &amp;#x8A2D;&amp;#x5B9A;&amp;#x8F38;&amp;#x5165; log &amp;#x5230;&amp;#x6307;&amp;#x5B9A; ip &amp;#x6A5F;&amp;#x5668;1. en &amp;#x8F38;&amp;#x5165;&amp;#x5BC6;&amp;#x78BC;&amp;#xFF0C;&amp;#x9032;&amp;#x5165;&amp;#x7BA1;&amp;#x7406;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/7.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:24.967Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cisco-Switch-log寫入Linux-Log-Server">
+<meta name="twitter:description" content="&amp;#x4E00;&amp;#x3001; &amp;#x9032;&amp;#x5165; Switch &amp;#x8A2D;&amp;#x5B9A;&amp;#x8F38;&amp;#x5165; log &amp;#x5230;&amp;#x6307;&amp;#x5B9A; ip &amp;#x6A5F;&amp;#x5668;1. en &amp;#x8F38;&amp;#x5165;&amp;#x5BC6;&amp;#x78BC;&amp;#xFF0C;&amp;#x9032;&amp;#x5165;&amp;#x7BA1;&amp;#x7406;">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-Cisco-Switch-log寫入Linux-Log-Server" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    Cisco-Switch-log寫入Linux-Log-Server
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x4E00;&#x3001;-&#x9032;&#x5165;-Switch-&#x8A2D;&#x5B9A;&#x8F38;&#x5165;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x6A5F;&#x5668;"><a href="#&#x4E00;&#x3001;-&#x9032;&#x5165;-Switch-&#x8A2D;&#x5B9A;&#x8F38;&#x5165;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x6A5F;&#x5668;" class="headerlink" title="&#x4E00;&#x3001; &#x9032;&#x5165; Switch &#x8A2D;&#x5B9A;&#x8F38;&#x5165; log &#x5230;&#x6307;&#x5B9A; ip &#x6A5F;&#x5668;"></a>&#x4E00;&#x3001; &#x9032;&#x5165; Switch &#x8A2D;&#x5B9A;&#x8F38;&#x5165; log &#x5230;&#x6307;&#x5B9A; ip &#x6A5F;&#x5668;</h3><h3 id="1-en-&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;"><a href="#1-en-&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;" class="headerlink" title="1. en &#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;"></a>1. en &#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="2-conf-t-&#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x2192;-logging-host-ip"><a href="#2-conf-t-&#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x2192;-logging-host-ip" class="headerlink" title="2. conf t &#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A; log &#x5230;&#x6307;&#x5B9A; ip &#x2192; logging host ip"></a>2. conf t &#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A; log &#x5230;&#x6307;&#x5B9A; ip &#x2192; logging host ip</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="3-exit-&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;"><a href="#3-exit-&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;" class="headerlink" title="3. exit &#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;"></a>3. exit &#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;</h3><h3 id="4-sh-run-&#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A;-logging-ip-&#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA;-ip"><a href="#4-sh-run-&#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A;-logging-ip-&#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA;-ip" class="headerlink" title="4. sh run &#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A; logging ip ( &#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA; ip )"></a>4. sh run &#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A; logging ip ( &#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA; ip )</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E8C;&#x3001;-&#x8A2D;&#x5B9A;-linux-&#x63A5;&#x6536;-log"><a href="#&#x4E8C;&#x3001;-&#x8A2D;&#x5B9A;-linux-&#x63A5;&#x6536;-log" class="headerlink" title="&#x4E8C;&#x3001; &#x8A2D;&#x5B9A; linux &#x63A5;&#x6536; log"></a>&#x4E8C;&#x3001; &#x8A2D;&#x5B9A; linux &#x63A5;&#x6536; log</h3><h3 id="1-&#x914D;&#x7F6E;-config&#xFF1A;"><a href="#1-&#x914D;&#x7F6E;-config&#xFF1A;" class="headerlink" title="1. &#x914D;&#x7F6E; config&#xFF1A;"></a>1. &#x914D;&#x7F6E; config&#xFF1A;</h3><h3 id="1-vi-etc-syslog-conf-&#x9032;&#x5165;-config-&#x62FF;&#x6389;-TCP-&#x8207;-UDP-reception-&#x7684;&#x8A3B;&#x89E3;"><a href="#1-vi-etc-syslog-conf-&#x9032;&#x5165;-config-&#x62FF;&#x6389;-TCP-&#x8207;-UDP-reception-&#x7684;&#x8A3B;&#x89E3;" class="headerlink" title="(1) vi /etc/syslog.conf &#x9032;&#x5165; config &#x62FF;&#x6389; TCP &#x8207; UDP reception &#x7684;&#x8A3B;&#x89E3;"></a>(1) vi /etc/syslog.conf &#x9032;&#x5165; config &#x62FF;&#x6389; TCP &#x8207; UDP reception &#x7684;&#x8A3B;&#x89E3;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h3 id="2-Config-&#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536;-Log-&#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;"><a href="#2-Config-&#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536;-Log-&#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;" class="headerlink" title="(2) Config &#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536; Log &#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;"></a>(2) Config &#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536; Log &#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x539F;&#x7248;-config"><a href="#&#x539F;&#x7248;-config" class="headerlink" title="&#x539F;&#x7248; config"></a>&#x539F;&#x7248; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">#  /etc/rsyslog.conf    Configuration file for rsyslog.</span><br><span class="line">#</span><br><span class="line">#                       For more information see</span><br><span class="line">#                       /usr/share/doc/rsyslog-doc/html/rsyslog_conf.html</span><br><span class="line">#</span><br><span class="line">#  Default logging rules can be found in /etc/rsyslog.d/50-default.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#################</span><br><span class="line">#### MODULES ####</span><br><span class="line">#################</span><br><span class="line"></span><br><span class="line">module(load=&quot;imuxsock&quot;) # provides support for local system logging</span><br><span class="line">module(load=&quot;imklog&quot;)   # provides kernel logging support</span><br><span class="line">#module(load=&quot;immark&quot;)  # provides --MARK-- message capability</span><br><span class="line"></span><br><span class="line"># provides UDP syslog reception</span><br><span class="line">#module(load=&quot;imudp&quot;)</span><br><span class="line">#input(type=&quot;imudp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># provides TCP syslog reception</span><br><span class="line">#module(load=&quot;imtcp&quot;)</span><br><span class="line">#input(type=&quot;imtcp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># Enable non-kernel facility klog messages</span><br><span class="line">$KLogPermitNonKernelFacility on</span><br><span class="line"></span><br><span class="line">###########################</span><br><span class="line">#### GLOBAL DIRECTIVES ####</span><br><span class="line">###########################</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Use traditional timestamp format.</span><br><span class="line"># To enable high precision timestamps, comment out the following line.</span><br><span class="line">#</span><br><span class="line">$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat</span><br><span class="line"></span><br><span class="line"># Filter duplicated messages</span><br><span class="line">$RepeatedMsgReduction on</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Set the default permissions for all log files.</span><br><span class="line">#</span><br><span class="line">$FileOwner syslog</span><br><span class="line">$FileGroup adm</span><br><span class="line">$FileCreateMode 0640</span><br><span class="line">$DirCreateMode 0755</span><br><span class="line">$Umask 0022</span><br><span class="line">$PrivDropToUser syslog</span><br><span class="line">$PrivDropToGroup syslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Where to place spool and state files</span><br><span class="line">#</span><br><span class="line">$WorkDirectory /var/spool/rsyslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Include all config files in /etc/rsyslog.d/</span><br><span class="line">#</span><br><span class="line">$IncludeConfig /etc/rsyslog.d/*.conf</span><br></pre></td></tr></table></figure>
+<h3 id="&#x66F4;&#x6539;&#x904E;&#x5F8C;-config"><a href="#&#x66F4;&#x6539;&#x904E;&#x5F8C;-config" class="headerlink" title="&#x66F4;&#x6539;&#x904E;&#x5F8C; config"></a>&#x66F4;&#x6539;&#x904E;&#x5F8C; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#  /etc/rsyslog.conf    Configuration file for rsyslog.</span><br><span class="line">#</span><br><span class="line">#                       For more information see</span><br><span class="line">#                       /usr/share/doc/rsyslog-doc/html/rsyslog_conf.html</span><br><span class="line">#</span><br><span class="line">#  Default logging rules can be found in /etc/rsyslog.d/50-default.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#################</span><br><span class="line">#### MODULES ####</span><br><span class="line">#################</span><br><span class="line"></span><br><span class="line">module(load=&quot;imuxsock&quot;) # provides support for local system logging</span><br><span class="line">module(load=&quot;imklog&quot;)   # provides kernel logging support</span><br><span class="line">#module(load=&quot;immark&quot;)  # provides --MARK-- message capability</span><br><span class="line"></span><br><span class="line"># provides UDP syslog reception</span><br><span class="line">module(load=&quot;imudp&quot;)</span><br><span class="line">input(type=&quot;imudp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># provides TCP syslog reception</span><br><span class="line">module(load=&quot;imtcp&quot;)</span><br><span class="line">input(type=&quot;imtcp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># Enable non-kernel facility klog messages</span><br><span class="line">$KLogPermitNonKernelFacility on</span><br><span class="line"></span><br><span class="line">###########################</span><br><span class="line">#### GLOBAL DIRECTIVES ####</span><br><span class="line">###########################</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Use traditional timestamp format.</span><br><span class="line"># To enable high precision timestamps, comment out the following line.</span><br><span class="line">#</span><br><span class="line">$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat</span><br><span class="line"></span><br><span class="line"># Filter duplicated messages</span><br><span class="line">$RepeatedMsgReduction on</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Set the default permissions for all log files.</span><br><span class="line">#</span><br><span class="line">$FileOwner syslog</span><br><span class="line">$FileGroup adm</span><br><span class="line">$FileCreateMode 0640</span><br><span class="line">$DirCreateMode 0755</span><br><span class="line">$Umask 0022</span><br><span class="line">$PrivDropToUser syslog</span><br><span class="line">$PrivDropToGroup syslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Where to place spool and state files</span><br><span class="line">#</span><br><span class="line">$WorkDirectory /var/spool/rsyslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Include all config files in /etc/rsyslog.d/</span><br><span class="line">#</span><br><span class="line">$IncludeConfig /etc/rsyslog.d/*.conf</span><br><span class="line">local7.*        /var/log/cisco.log</span><br></pre></td></tr></table></figure>
+<h3 id="2-&#x914D;&#x7F6E;-config&#xFF1A;"><a href="#2-&#x914D;&#x7F6E;-config&#xFF1A;" class="headerlink" title="2. &#x914D;&#x7F6E; config&#xFF1A;"></a>2. &#x914D;&#x7F6E; config&#xFF1A;</h3><h3 id="vi-etc-default-rsyslog-&#x9032;&#x5165;-config-&#x627E;&#x5230;-RSYSLOG-OPTIONS-&#x52A0;&#x5165;&#x53C3;&#x6578;-r"><a href="#vi-etc-default-rsyslog-&#x9032;&#x5165;-config-&#x627E;&#x5230;-RSYSLOG-OPTIONS-&#x52A0;&#x5165;&#x53C3;&#x6578;-r" class="headerlink" title="vi /etc/default/rsyslog &#x9032;&#x5165; config &#x627E;&#x5230; RSYSLOG_OPTIONS &#x52A0;&#x5165;&#x53C3;&#x6578; -r"></a>vi /etc/default/rsyslog &#x9032;&#x5165; config &#x627E;&#x5230; RSYSLOG_OPTIONS &#x52A0;&#x5165;&#x53C3;&#x6578; -r</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x539F;&#x7248;-config-1"><a href="#&#x539F;&#x7248;-config-1" class="headerlink" title="&#x539F;&#x7248; config"></a>&#x539F;&#x7248; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Options for rsyslogd</span><br><span class="line"># -x disables DNS lookups for remote messages</span><br><span class="line"># See rsyslogd(8) for more details</span><br><span class="line">RSYSLOGD_OPTIONS=&quot;&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x66F4;&#x6539;&#x904E;&#x5F8C;-config-1"><a href="#&#x66F4;&#x6539;&#x904E;&#x5F8C;-config-1" class="headerlink" title="&#x66F4;&#x6539;&#x904E;&#x5F8C; config"></a>&#x66F4;&#x6539;&#x904E;&#x5F8C; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Options for rsyslogd</span><br><span class="line"># -x disables DNS lookups for remote messages</span><br><span class="line"># See rsyslogd(8) for more details</span><br><span class="line">RSYSLOGD_OPTIONS=&quot;-r&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="4-&#x91CD;&#x555F;-Rsyslog-Service"><a href="#4-&#x91CD;&#x555F;-Rsyslog-Service" class="headerlink" title="4. &#x91CD;&#x555F; Rsyslog Service"></a>4. &#x91CD;&#x555F; Rsyslog Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service rsyslog restart</span><br></pre></td></tr></table></figure>
+<h3 id="3-&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E;-log-&#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B;-log-&#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;"><a href="#3-&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E;-log-&#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B;-log-&#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;" class="headerlink" title="3. &#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E; log &#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B; log &#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;"></a>3. &#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E; log &#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B; log &#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /var/log/cisco.log</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-09-10T08:03:44.000Z" itemprop="datePublished">2018-09-10</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/09/13/ELK抓取syslog/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    ELK抓取syslog
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/09/10/Cisco-Switch指令-持續更新/" class="ui tiny button">
+                    
+                    Cisco-Switch指令-持續更新
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#一、-進入-Switch-設定輸入-log-到指定-ip-機器"><span>一、 進入 Switch 設定輸入 log 到指定 ip 機器</span></a></li><li><a href="#1-en-輸入密碼，進入管理者模式"><span>1. en 輸入密碼，進入管理者模式</span></a></li><li><a href="#2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip"><span>2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip</span></a></li><li><a href="#3-exit-回到上一層"><span>3. exit 回到上一層</span></a></li><li><a href="#4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip"><span>4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )</span></a></li><li><a href="#二、-設定-linux-接收-log"><span>二、 設定 linux 接收 log</span></a></li><li><a href="#1-配置-config："><span>1. 配置 config：</span></a></li><li><a href="#1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解"><span>(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解</span></a></li><li><a href="#2-Config-最後加上接收-Log-類型與寫入位置"><span>(2) Config 最後加上接收 Log 類型與寫入位置</span></a></li><li><a href="#原版-config"><span>原版 config</span></a></li><li><a href="#更改過後-config"><span>更改過後 config</span></a></li><li><a href="#2-配置-config："><span>2. 配置 config：</span></a></li><li><a href="#vi-etc-default-rsyslog-進入-config-找到-RSYSLOG-OPTIONS-加入參數-r"><span>vi /etc/default/rsyslog 進入 config 找到 RSYSLOG_OPTIONS 加入參數 -r</span></a></li><li><a href="#原版-config-1"><span>原版 config</span></a></li><li><a href="#更改過後-config-1"><span>更改過後 config</span></a></li><li><a href="#4-重啟-Rsyslog-Service"><span>4. 重啟 Rsyslog Service</span></a></li><li><a href="#3-到設定好放-log-的地方查看-log-有沒有進入"><span>3. 到設定好放 log 的地方查看 log 有沒有進入</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

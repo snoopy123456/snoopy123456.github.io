@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>GCP-GoogleCloudPlatform-creat-vm-指令 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4;&amp;#x5EFA;&amp;#x7ACB; GCP VMGCP &amp;#x66F4;&amp;#x591A;&amp;#x6307;&amp;#x4EE4;&amp;#x7528;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x5230;&amp;#x90">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCP-GoogleCloudPlatform-creat-vm-指令">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4;&amp;#x5EFA;&amp;#x7ACB; GCP VMGCP &amp;#x66F4;&amp;#x591A;&amp;#x6307;&amp;#x4EE4;&amp;#x7528;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x5230;&amp;#x90">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/2.2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/3.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/4.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/13.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/6.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCP-GoogleCloudPlatform-creat-vm-指令">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4;&amp;#x5EFA;&amp;#x7ACB; GCP VMGCP &amp;#x66F4;&amp;#x591A;&amp;#x6307;&amp;#x4EE4;&amp;#x7528;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x5230;&amp;#x90">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-GCP-GoogleCloudPlatform-creat-vm-指令" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    GCP-GoogleCloudPlatform-creat-vm-指令
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB;-GCP-VM"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB;-GCP-VM" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB; GCP VM"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB; GCP VM</h2><h3 id="GCP-&#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;https-cloud-google-com-sdk-docs"><a href="#GCP-&#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;https-cloud-google-com-sdk-docs" class="headerlink" title="GCP &#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;https://cloud.google.com/sdk/docs/"></a>GCP &#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;<a href="https://cloud.google.com/sdk/docs/" target="_blank" rel="noopener">https://cloud.google.com/sdk/docs/</a></h3><h3 id="&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;"><a href="#&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;" class="headerlink" title="&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;"></a>&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;</h3><h3 id="1-&#x9032;&#x5165;-GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https-cloud-google-com"><a href="#1-&#x9032;&#x5165;-GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https-cloud-google-com" class="headerlink" title="1. &#x9032;&#x5165; GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https://cloud.google.com/"></a>1. &#x9032;&#x5165; GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;<a href="https://cloud.google.com/" target="_blank" rel="noopener">https://cloud.google.com/</a></h3><h3 id="2-&#x767B;&#x5165;-Google-&#x5E33;&#x865F;"><a href="#2-&#x767B;&#x5165;-Google-&#x5E33;&#x865F;" class="headerlink" title="2. &#x767B;&#x5165; Google &#x5E33;&#x865F;"></a>2. &#x767B;&#x5165; Google &#x5E33;&#x865F;</h3><h3 id="3-&#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;"><a href="#3-&#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;" class="headerlink" title="3. &#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;"></a>3. &#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<hr>
+<h3 id="4-&#x958B;&#x555F;-Cloud-Shell"><a href="#4-&#x958B;&#x555F;-Cloud-Shell" class="headerlink" title="4. &#x958B;&#x555F; Cloud Shell"></a>4. &#x958B;&#x555F; Cloud Shell</h3><h3 id="Cloud-Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;-5GB-&#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728;-Google-Cloud-&#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216;-Google-Chromebook-&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;"><a href="#Cloud-Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;-5GB-&#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728;-Google-Cloud-&#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216;-Google-Chromebook-&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;" class="headerlink" title="Cloud Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684; 5GB &#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728; Google Cloud &#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216; Google Chromebook &#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;"></a>Cloud Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684; 5GB &#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728; Google Cloud &#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216; Google Chromebook &#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;</h3><h3 id="&#x5728;-GCP-&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684;-Cloud-Shell-&#x5716;&#x6A19;"><a href="#&#x5728;-GCP-&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684;-Cloud-Shell-&#x5716;&#x6A19;" class="headerlink" title="&#x5728; GCP &#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684; Cloud Shell &#x5716;&#x6A19;"></a>&#x5728; GCP &#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684; Cloud Shell &#x5716;&#x6A19;</h3><p><a class="magnific-img" href="images/2.2.png"><img src="images/2.2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x555F;&#x52D5;-Cloud-Shell"><a href="#&#x555F;&#x52D5;-Cloud-Shell" class="headerlink" title="&#x555F;&#x52D5; Cloud Shell"></a>&#x555F;&#x52D5; Cloud Shell</h3><p><a class="magnific-img" href="images/3.1.png"><img src="images/3.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x555F;&#x52D5;&#x756B;&#x9762;"><a href="#&#x555F;&#x52D5;&#x756B;&#x9762;" class="headerlink" title="&#x555F;&#x52D5;&#x756B;&#x9762;"></a>&#x555F;&#x52D5;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/4.1.png"><img src="images/4.1.png" alt=" " class="ui centered image"></a></p>
+<hr>
+<h3 id="5-&#x5EFA;&#x7ACB;-VM"><a href="#5-&#x5EFA;&#x7ACB;-VM" class="headerlink" title="5. &#x5EFA;&#x7ACB; VM"></a>5. &#x5EFA;&#x7ACB; VM</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances create (VM&#x540D;&#x7A31;) --zone (&#x5340;&#x57DF;) --image-project (project) --image (name) --tags (&#x540D;&#x7A31;) --custom-cpu (&#x6578;&#x5B57;) --custom-memory (&#x6578;&#x5B57;) --boot-disk-size (&#x6578;&#x5B57;) --create-disk size=(&#x6578;&#x5B57;&#x55AE;&#x4F4D;),type=(&#x786C;&#x789F;&#x985E;&#x578B;),name=(&#x540D;&#x7A31;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create test --zone asia-east1-c --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20180522 --tags test --custom-cpu 4 --custom-memory 8 --boot-disk-size 30 --create-disk size=10GB,type=pd-ssd,name=test-disk</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;"><a href="#&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;"></a>&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;</h3><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5EFA;&#x7ACB;-VM-&#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;"><a href="#&#x5EFA;&#x7ACB;-VM-&#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;" class="headerlink" title="&#x5EFA;&#x7ACB; VM &#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;"></a>&#x5EFA;&#x7ACB; VM &#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;</h3><h3 id="&#x5275;&#x5EFA;-VM&#xFF1A;-&#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C;-&#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;"><a href="#&#x5275;&#x5EFA;-VM&#xFF1A;-&#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C;-&#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;" class="headerlink" title="&#x5275;&#x5EFA; VM&#xFF1A;( &#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C; ) &#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? &#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;"></a>&#x5275;&#x5EFA; VM&#xFF1A;( &#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C; ) &#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? &#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances create (name) --zone (&#x5340;&#x57DF;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create test --zone asia-east1-a</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;"><a href="#&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;" class="headerlink" title="&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;"></a>&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;"><a href="#&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;" class="headerlink" title="&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;"></a>&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create test</span><br></pre></td></tr></table></figure>
+<h3 id="&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;"><a href="#&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;" class="headerlink" title="&#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;"></a>&#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DE;&#x7B54;-n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;"><a href="#&#x56DE;&#x7B54;-n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;" class="headerlink" title="&#x56DE;&#x7B54; n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;"></a>&#x56DE;&#x7B54; n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;</h3><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/13.1.png"><img src="images/13.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x8A2D;&#x5B9A;-image&#xFF1A;&#x4F7F;&#x7528;-gcloud-compute-images-list-&#x67E5;&#x8A62;-project-&#x548C;-image"><a href="#&#x8A2D;&#x5B9A;-image&#xFF1A;&#x4F7F;&#x7528;-gcloud-compute-images-list-&#x67E5;&#x8A62;-project-&#x548C;-image" class="headerlink" title="&#x8A2D;&#x5B9A; image&#xFF1A;&#x4F7F;&#x7528; gcloud compute images list &#x67E5;&#x8A62; project &#x548C; image"></a>&#x8A2D;&#x5B9A; image&#xFF1A;&#x4F7F;&#x7528; gcloud compute images list &#x67E5;&#x8A62; project &#x548C; image</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute images list</span><br></pre></td></tr></table></figure>
+<h3 id="&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684;-project-&#x548C;-name"><a href="#&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684;-project-&#x548C;-name" class="headerlink" title="&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684; project &#x548C; name"></a>&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684; project &#x548C; name</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--image-project (project) --image (name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create gcelab2 --zone us-central1-c --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20180522</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;"><a href="#&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;"></a>&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--tags (&#x4F60;&#x8A2D;&#x5B9A;&#x7684;&#x6A19;&#x8A18;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A; gcloud compute instances create --tags test</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF;-cpu"><a href="#&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF;-cpu" class="headerlink" title="&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF; cpu"></a>&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF; cpu</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--custom-cpu (&#x6578;&#x5B57;) --custom-memory (&#x6578;&#x5B57;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --custom-cpu 4 --custom-memory 8</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB"><a href="#&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB" class="headerlink" title="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB"></a>&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--boot-disk-size (&#x6578;&#x5B57;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --boot-disk-size 30GB</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;"><a href="#&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;"></a>&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;</h3><h3 id="&#x4F7F;&#x7528;-gcloud-compute-disk-types-list-&#x67E5;&#x8A62;"><a href="#&#x4F7F;&#x7528;-gcloud-compute-disk-types-list-&#x67E5;&#x8A62;" class="headerlink" title="&#x4F7F;&#x7528; gcloud compute disk-types list &#x67E5;&#x8A62;"></a>&#x4F7F;&#x7528; gcloud compute disk-types list &#x67E5;&#x8A62;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute disk-types list</span><br></pre></td></tr></table></figure>
+<h3 id="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;"><a href="#&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;" class="headerlink" title="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;"></a>&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--boot-disk-type (&#x786C;&#x789F;&#x985E;&#x578B;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --boot-disk-type pd-ssd</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8A2D;&#x5B9A;&#x522A;&#x9664;-VM-&#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;"><a href="#&#x8A2D;&#x5B9A;&#x522A;&#x9664;-VM-&#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x522A;&#x9664; VM &#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;"></a>&#x8A2D;&#x5B9A;&#x522A;&#x9664; VM &#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-boot-disk-auto-delete</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB"><a href="#&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB" class="headerlink" title="&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB"></a>&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--create-disk name=(name),type=(&#x786C;&#x789F;&#x985E;&#x578B;),size=(&#x5BB9;&#x91CF;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --create-disk name=test,type=pd-ssd,size=10GB</span><br></pre></td></tr></table></figure>
+<h3 id="PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;"><a href="#PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;" class="headerlink" title="PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB; VM &#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB; VM &#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;"></a>PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB; VM &#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB; VM &#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728;-CLOUD-SHELL-&#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;-Shell-&#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;"><a href="#&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728;-CLOUD-SHELL-&#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;-Shell-&#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;" class="headerlink" title="&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728; CLOUD SHELL &#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; Shell &#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;"></a>&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728; CLOUD SHELL &#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; Shell &#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h3 id="GCP-VM-&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"><a href="#GCP-VM-&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;" class="headerlink" title="GCP VM &#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"></a>GCP VM &#x5EFA;&#x7ACB;&#x5B8C;&#x6210;</h3>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-19T07:42:47.000Z" itemprop="datePublished">2018-06-19</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/06/19/GCP-VM建立其它功能介紹/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    GCP-VM建立其它功能介紹
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/" class="ui tiny button">
+                    
+                    GCP-GoogleCloudPlatform-creat-vm-gui
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹如何使用指令建立-GCP-VM"><span>本文章將介紹如何使用指令建立 GCP VM</span></a><ol><li><a href="#GCP-更多指令用法可以到連結查看，指令網站連結：https-cloud-google-com-sdk-docs"><span>GCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/</span></a></li><li><a href="#本篇開始："><span>本篇開始：</span></a></li><li><a href="#1-進入-GCP，網址：https-cloud-google-com"><span>1. 進入 GCP，網址：https://cloud.google.com/</span></a></li><li><a href="#2-登入-Google-帳號"><span>2. 登入 Google 帳號</span></a></li><li><a href="#3-點擊畫面右上角控制台進入"><span>3. 點擊畫面右上角控制台進入</span></a></li><li><a href="#4-開啟-Cloud-Shell"><span>4. 開啟 Cloud Shell</span></a></li><li><a href="#Cloud-Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的-5GB-主目錄並在-Google-Cloud-上運行，只需使用瀏覽器或-Google-Chromebook-即可完成中大部分工作"><span>Cloud Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的 5GB 主目錄並在 Google Cloud 上運行，只需使用瀏覽器或 Google Chromebook 即可完成中大部分工作</span></a></li><li><a href="#在-GCP-控制台中，點擊右上角工具欄上的-Cloud-Shell-圖標"><span>在 GCP 控制台中，點擊右上角工具欄上的 Cloud Shell 圖標</span></a></li><li><a href="#啟動-Cloud-Shell"><span>啟動 Cloud Shell</span></a></li><li><a href="#啟動畫面"><span>啟動畫面</span></a></li><li><a href="#5-建立-VM"><span>5. 建立 VM</span></a></li><li><a href="#建立成功後訊息"><span>建立成功後訊息</span></a></li><li><a href="#建立-VM-指令分解介紹"><span>建立 VM 指令分解介紹</span></a></li><li><a href="#創建-VM：-除了名稱跟區域不設定的值會給預設值-沒有下區域指令會詢問是否在此區域，Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-回答-y-會直接在這個預設區域，n-會讓你選區域"><span>創建 VM：( 除了名稱跟區域不設定的值會給預設值 ) 沒有下區域指令會詢問是否在此區域，Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? 回答 y 會直接在這個預設區域，n 會讓你選區域</span></a></li><li><a href="#有給區域會直接建好"><span>有給區域會直接建好</span></a></li><li><a href="#沒給區域指令"><span>沒給區域指令</span></a></li><li><a href="#回答-y-會直接在預設區域"><span>回答 y 會直接在預設區域</span></a></li><li><a href="#回答-n-會讓你選區域，輸入想要的區域的數字就會變成該區域了"><span>回答 n 會讓你選區域，輸入想要的區域的數字就會變成該區域了</span></a></li><li><a href="#設定-image：使用-gcloud-compute-images-list-查詢-project-和-image"><span>設定 image：使用 gcloud compute images list 查詢 project 和 image</span></a></li><li><a href="#選想要使用的-project-和-name"><span>選想要使用的 project 和 name</span></a></li><li><a href="#設定網路標記：目前防火牆要先設定好標記"><span>設定網路標記：目前防火牆要先設定好標記</span></a></li><li><a href="#設定記憶體跟-cpu"><span>設定記憶體跟 cpu</span></a></li><li><a href="#設定開機硬碟容量：容量沒給單位預設是-GB"><span>設定開機硬碟容量：容量沒給單位預設是 GB</span></a></li><li><a href="#設定開機硬碟類型："><span>設定開機硬碟類型：</span></a></li><li><a href="#使用-gcloud-compute-disk-types-list-查詢"><span>使用 gcloud compute disk-types list 查詢</span></a></li><li><a href="#選擇想要的硬碟類型"><span>選擇想要的硬碟類型</span></a></li><li><a href="#設定刪除-VM-開機硬碟會保留，預設是會刪除開機硬碟"><span>設定刪除 VM 開機硬碟會保留，預設是會刪除開機硬碟</span></a></li><li><a href="#設定掛載其他硬碟：容量沒給單位預設是-GB"><span>設定掛載其他硬碟：容量沒給單位預設是 GB</span></a></li><li><a href="#PS：在建立-VM-的最下方會有指令列，點開會有建立-VM-的所有指令，也可以使用這個參考"><span>PS：在建立 VM 的最下方會有指令列，點開會有建立 VM 的所有指令，也可以使用這個參考</span></a></li><li><a href="#點擊右下在-CLOUD-SHELL-中執行，可以在-Shell-做編輯修改"><span>點擊右下在 CLOUD SHELL 中執行，可以在 Shell 做編輯修改</span></a></li><li><a href="#GCP-VM-建立完成"><span>GCP VM 建立完成</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

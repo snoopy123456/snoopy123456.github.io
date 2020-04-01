@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>GCP-建立專案 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x5EFA;&amp;#x7ACB; GCP &amp;#x5C08;&amp;#x6848;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5C08;&amp;#x6848; ( GUI )1. &amp;#x9032;&amp;#x5165; GCP&amp;#xFF0C;&amp;#x7DB2;&amp;#x5740;&amp;#xFF1A;http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCP-建立專案">
+<meta property="og:url" content="http://yoursite.com/2018/06/18/GCP-建立專案/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x5EFA;&amp;#x7ACB; GCP &amp;#x5C08;&amp;#x6848;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5C08;&amp;#x6848; ( GUI )1. &amp;#x9032;&amp;#x5165; GCP&amp;#xFF0C;&amp;#x7DB2;&amp;#x5740;&amp;#xFF1A;http">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/3.3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/3.4.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/3.5.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/3.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/3.2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/26.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/5.2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/28.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/29.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/30.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/31.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/32.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/2.2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/4.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/5.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/6.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCP-建立專案">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x5EFA;&amp;#x7ACB; GCP &amp;#x5C08;&amp;#x6848;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5C08;&amp;#x6848; ( GUI )1. &amp;#x9032;&amp;#x5165; GCP&amp;#xFF0C;&amp;#x7DB2;&amp;#x5740;&amp;#xFF1A;http">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/18/GCP-建立專案/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-GCP-建立專案" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    GCP-建立專案
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5EFA;&#x7ACB;-GCP-&#x5C08;&#x6848;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5EFA;&#x7ACB;-GCP-&#x5C08;&#x6848;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5EFA;&#x7ACB; GCP &#x5C08;&#x6848;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5EFA;&#x7ACB; GCP &#x5C08;&#x6848;</h2><h3 id="&#x5EFA;&#x7ACB;&#x5C08;&#x6848;-GUI"><a href="#&#x5EFA;&#x7ACB;&#x5C08;&#x6848;-GUI" class="headerlink" title="&#x5EFA;&#x7ACB;&#x5C08;&#x6848; ( GUI )"></a>&#x5EFA;&#x7ACB;&#x5C08;&#x6848; ( GUI )</h3><h3 id="1-&#x9032;&#x5165;-GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https-cloud-google-com"><a href="#1-&#x9032;&#x5165;-GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https-cloud-google-com" class="headerlink" title="1. &#x9032;&#x5165; GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https://cloud.google.com/"></a>1. &#x9032;&#x5165; GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;<a href="https://cloud.google.com/" target="_blank" rel="noopener">https://cloud.google.com/</a></h3><h3 id="2-&#x767B;&#x5165;-Google-&#x5E33;&#x865F;"><a href="#2-&#x767B;&#x5165;-Google-&#x5E33;&#x865F;" class="headerlink" title="2. &#x767B;&#x5165; Google &#x5E33;&#x865F;"></a>2. &#x767B;&#x5165; Google &#x5E33;&#x865F;</h3><h3 id="3-&#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;-&#x4E3B;&#x9801;&#x6709;&#x5404;&#x7A2E;&#x8CC7;&#x8A0A;&#x53EF;&#x4EE5;&#x67E5;&#x770B;"><a href="#3-&#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;-&#x4E3B;&#x9801;&#x6709;&#x5404;&#x7A2E;&#x8CC7;&#x8A0A;&#x53EF;&#x4EE5;&#x67E5;&#x770B;" class="headerlink" title="3. &#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165; ( &#x4E3B;&#x9801;&#x6709;&#x5404;&#x7A2E;&#x8CC7;&#x8A0A;&#x53EF;&#x4EE5;&#x67E5;&#x770B; )"></a>3. &#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165; ( &#x4E3B;&#x9801;&#x6709;&#x5404;&#x7A2E;&#x8CC7;&#x8A0A;&#x53EF;&#x4EE5;&#x67E5;&#x770B; )</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="4-&#x7B2C;&#x4E00;&#x6B21;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x6709;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x9078;&#x53D6;&#xFF0C;&#x7121;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"><a href="#4-&#x7B2C;&#x4E00;&#x6B21;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x6709;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x9078;&#x53D6;&#xFF0C;&#x7121;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;" class="headerlink" title="4. &#x7B2C;&#x4E00;&#x6B21;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x6709;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x9078;&#x53D6;&#xFF0C;&#x7121;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"></a>4. &#x7B2C;&#x4E00;&#x6B21;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x6709;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x9078;&#x53D6;&#xFF0C;&#x7121;&#x5C08;&#x6848;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="4-1-&#x9078;&#x53D6;&#x5C08;&#x6848;-&#x627F;-4-&#x9EDE;&#x9078;&#x9078;&#x53D6;&#x6703;&#x51FA;&#x73FE;&#x4EE5;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x8B93;&#x4F60;&#x9078;&#x64C7;-&#xFF0C;1-&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848;-2-&#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;"><a href="#4-1-&#x9078;&#x53D6;&#x5C08;&#x6848;-&#x627F;-4-&#x9EDE;&#x9078;&#x9078;&#x53D6;&#x6703;&#x51FA;&#x73FE;&#x4EE5;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x8B93;&#x4F60;&#x9078;&#x64C7;-&#xFF0C;1-&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848;-2-&#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;" class="headerlink" title="4.1. &#x9078;&#x53D6;&#x5C08;&#x6848; ( &#x627F; 4. &#x9EDE;&#x9078;&#x9078;&#x53D6;&#x6703;&#x51FA;&#x73FE;&#x4EE5;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x8B93;&#x4F60;&#x9078;&#x64C7; )&#xFF0C;1. &#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848; 2. &#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;"></a>4.1. &#x9078;&#x53D6;&#x5C08;&#x6848; ( &#x627F; 4. &#x9EDE;&#x9078;&#x9078;&#x53D6;&#x6703;&#x51FA;&#x73FE;&#x4EE5;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x8B93;&#x4F60;&#x9078;&#x64C7; )&#xFF0C;1. &#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848; 2. &#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;</h3><p><a class="magnific-img" href="images/3.3.png"><img src="images/3.3.png" alt=" " class="ui centered image"></a></p>
+<h3 id="4-2-&#x5EFA;&#x7ACB;&#x5C08;&#x6848;-&#x627F;-4-&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x756B;&#x9762;-&#xFF0C;&#x547D;&#x540D;&#x540D;&#x7A31;&#x548C;-ID-&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"><a href="#4-2-&#x5EFA;&#x7ACB;&#x5C08;&#x6848;-&#x627F;-4-&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x756B;&#x9762;-&#xFF0C;&#x547D;&#x540D;&#x540D;&#x7A31;&#x548C;-ID-&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;" class="headerlink" title="4.2. &#x5EFA;&#x7ACB;&#x5C08;&#x6848; ( &#x627F; 4. &#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x756B;&#x9762; )&#xFF0C;&#x547D;&#x540D;&#x540D;&#x7A31;&#x548C; ID &#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"></a>4.2. &#x5EFA;&#x7ACB;&#x5C08;&#x6848; ( &#x627F; 4. &#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x5EFA;&#x7ACB;&#x5C08;&#x6848;&#x756B;&#x9762; )&#xFF0C;&#x547D;&#x540D;&#x540D;&#x7A31;&#x548C; ID &#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;</h3><p><a class="magnific-img" href="images/3.4.png"><img src="images/3.4.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E0A;&#x5716;&#x9EDE;&#x64CA;&#x7DE8;&#x8F2F;&#x5F8C;&#x6703;&#x51FA;&#x73FE;-ID-&#x7684;&#x540D;&#x7A31;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#xFF0C;&#x4F46;&#x662F;-ID-&#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4;"><a href="#&#x4E0A;&#x5716;&#x9EDE;&#x64CA;&#x7DE8;&#x8F2F;&#x5F8C;&#x6703;&#x51FA;&#x73FE;-ID-&#x7684;&#x540D;&#x7A31;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#xFF0C;&#x4F46;&#x662F;-ID-&#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4;" class="headerlink" title="&#x4E0A;&#x5716;&#x9EDE;&#x64CA;&#x7DE8;&#x8F2F;&#x5F8C;&#x6703;&#x51FA;&#x73FE; ID &#x7684;&#x540D;&#x7A31;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#xFF0C;&#x4F46;&#x662F; ID &#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4;"></a>&#x4E0A;&#x5716;&#x9EDE;&#x64CA;&#x7DE8;&#x8F2F;&#x5F8C;&#x6703;&#x51FA;&#x73FE; ID &#x7684;&#x540D;&#x7A31;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#xFF0C;&#x4F46;&#x662F; ID &#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4;</h3><p><a class="magnific-img" href="images/3.5.png"><img src="images/3.5.png" alt=" " class="ui centered image"></a></p>
+<h3 id="5-&#x5C08;&#x6848;&#x5DF2;&#x5EFA;&#x7ACB;&#xFF0C;&#x518D;&#x6B21;&#x9032;&#x5165;-GCP-&#x6703;&#x4EE5;&#x6700;&#x5F8C;&#x96E2;&#x958B;&#x5C08;&#x6848;&#x70BA;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x5728;&#x5C08;&#x6848;&#x524D;&#x65B9;&#x6703;&#x6253;&#x52FE;"><a href="#5-&#x5C08;&#x6848;&#x5DF2;&#x5EFA;&#x7ACB;&#xFF0C;&#x518D;&#x6B21;&#x9032;&#x5165;-GCP-&#x6703;&#x4EE5;&#x6700;&#x5F8C;&#x96E2;&#x958B;&#x5C08;&#x6848;&#x70BA;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x5728;&#x5C08;&#x6848;&#x524D;&#x65B9;&#x6703;&#x6253;&#x52FE;" class="headerlink" title="5. &#x5C08;&#x6848;&#x5DF2;&#x5EFA;&#x7ACB;&#xFF0C;&#x518D;&#x6B21;&#x9032;&#x5165; GCP &#x6703;&#x4EE5;&#x6700;&#x5F8C;&#x96E2;&#x958B;&#x5C08;&#x6848;&#x70BA;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x5728;&#x5C08;&#x6848;&#x524D;&#x65B9;&#x6703;&#x6253;&#x52FE;"></a>5. &#x5C08;&#x6848;&#x5DF2;&#x5EFA;&#x7ACB;&#xFF0C;&#x518D;&#x6B21;&#x9032;&#x5165; GCP &#x6703;&#x4EE5;&#x6700;&#x5F8C;&#x96E2;&#x958B;&#x5C08;&#x6848;&#x70BA;&#x9032;&#x5165;&#x756B;&#x9762;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x5728;&#x5C08;&#x6848;&#x524D;&#x65B9;&#x6703;&#x6253;&#x52FE;</h3><h3 id="&#x5728;&#x5C08;&#x6848;&#x4E2D;&#x9078;&#x64C7;&#x5176;&#x4ED6;&#x5C08;&#x6848;-&#x9EDE;&#x5DE6;&#x4E0A;-&#x25BC;-&#x6703;&#x8DD1;&#x51FA;&#x9078;&#x53D6;&#x5C08;&#x6848;&#xFF0C;1-&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848;-2-&#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;"><a href="#&#x5728;&#x5C08;&#x6848;&#x4E2D;&#x9078;&#x64C7;&#x5176;&#x4ED6;&#x5C08;&#x6848;-&#x9EDE;&#x5DE6;&#x4E0A;-&#x25BC;-&#x6703;&#x8DD1;&#x51FA;&#x9078;&#x53D6;&#x5C08;&#x6848;&#xFF0C;1-&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848;-2-&#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;" class="headerlink" title="( &#x5728;&#x5C08;&#x6848;&#x4E2D;&#x9078;&#x64C7;&#x5176;&#x4ED6;&#x5C08;&#x6848; ) &#x9EDE;&#x5DE6;&#x4E0A; &#x25BC; &#x6703;&#x8DD1;&#x51FA;&#x9078;&#x53D6;&#x5C08;&#x6848;&#xFF0C;1. &#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848; 2. &#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;"></a>( &#x5728;&#x5C08;&#x6848;&#x4E2D;&#x9078;&#x64C7;&#x5176;&#x4ED6;&#x5C08;&#x6848; ) &#x9EDE;&#x5DE6;&#x4E0A; &#x25BC; &#x6703;&#x8DD1;&#x51FA;&#x9078;&#x53D6;&#x5C08;&#x6848;&#xFF0C;1. &#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x5C08;&#x6848;&#x540D;&#x7A31;2&#x4E0B;&#x9032;&#x5165;&#x5C08;&#x6848; 2. &#x5C08;&#x6848;&#x540D;&#x7A31;&#x524D;&#x65B9;3&#x500B;&#x9EDE;&#xFF0C;&#x9EDE;&#x4E00;&#x4E0B;&#x9EDE;&#x9078;&#x53F3;&#x4E0B;&#x958B;&#x555F;&#x9032;&#x5165;&#x5C08;&#x6848;</h3><p><a class="magnific-img" href="images/3.1.png"><img src="images/3.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5728;&#x5C08;&#x6848;&#x4E2D;&#x65B0;&#x589E;&#x5176;&#x4ED6;&#x5C08;&#x6848;-&#x53F3;&#x4E0A;&#x89D2;&#x65B0;&#x589E;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x65B0;&#x5C08;&#x6848;"><a href="#&#x5728;&#x5C08;&#x6848;&#x4E2D;&#x65B0;&#x589E;&#x5176;&#x4ED6;&#x5C08;&#x6848;-&#x53F3;&#x4E0A;&#x89D2;&#x65B0;&#x589E;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x65B0;&#x5C08;&#x6848;" class="headerlink" title="( &#x5728;&#x5C08;&#x6848;&#x4E2D;&#x65B0;&#x589E;&#x5176;&#x4ED6;&#x5C08;&#x6848; ) &#x53F3;&#x4E0A;&#x89D2;&#x65B0;&#x589E;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x65B0;&#x5C08;&#x6848;"></a>( &#x5728;&#x5C08;&#x6848;&#x4E2D;&#x65B0;&#x589E;&#x5176;&#x4ED6;&#x5C08;&#x6848; ) &#x53F3;&#x4E0A;&#x89D2;&#x65B0;&#x589E;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x65B0;&#x5C08;&#x6848;</h3><p><a class="magnific-img" href="images/3.2.png"><img src="images/3.2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x70BA;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x547D;&#x540D;&#xFF0C;&#x4E0B;&#x65B9;&#x7DE8;&#x8F2F;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x5C08;&#x6848;-ID-&#x540C;&#x6A23;-ID-&#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4;"><a href="#&#x70BA;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x547D;&#x540D;&#xFF0C;&#x4E0B;&#x65B9;&#x7DE8;&#x8F2F;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x5C08;&#x6848;-ID-&#x540C;&#x6A23;-ID-&#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4;" class="headerlink" title="&#x70BA;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x547D;&#x540D;&#xFF0C;&#x4E0B;&#x65B9;&#x7DE8;&#x8F2F;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x5C08;&#x6848; ID ( &#x540C;&#x6A23; ID &#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4; )"></a>&#x70BA;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x547D;&#x540D;&#xFF0C;&#x4E0B;&#x65B9;&#x7DE8;&#x8F2F;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x5C08;&#x6848; ID ( &#x540C;&#x6A23; ID &#x66F4;&#x6539;&#x5B8C;&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5F8C;&#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8B8A;&#x66F4; )</h3><p><a class="magnific-img" href="images/26.png"><img src="images/26.png" alt=" " class="ui centered image"></a></p>
+<h3 id="6-&#x9032;&#x5165;&#x5C08;&#x6848;&#x756B;&#x9762;&#xFF0C;&#x4E3B;&#x9801;&#x5C08;&#x6848;&#x8CC7;&#x8A0A;&#x6709;&#x4E00;&#x4E9B;&#x9810;&#x8A2D;&#x8A0A;&#x606F;&#x53EF;&#x4EE5;&#x770B;&#x53F3;&#x4E0A;&#x81EA;&#x8A02;&#x53EF;&#x4EE5;&#x8ABF;&#x6574;"><a href="#6-&#x9032;&#x5165;&#x5C08;&#x6848;&#x756B;&#x9762;&#xFF0C;&#x4E3B;&#x9801;&#x5C08;&#x6848;&#x8CC7;&#x8A0A;&#x6709;&#x4E00;&#x4E9B;&#x9810;&#x8A2D;&#x8A0A;&#x606F;&#x53EF;&#x4EE5;&#x770B;&#x53F3;&#x4E0A;&#x81EA;&#x8A02;&#x53EF;&#x4EE5;&#x8ABF;&#x6574;" class="headerlink" title="6. &#x9032;&#x5165;&#x5C08;&#x6848;&#x756B;&#x9762;&#xFF0C;&#x4E3B;&#x9801;&#x5C08;&#x6848;&#x8CC7;&#x8A0A;&#x6709;&#x4E00;&#x4E9B;&#x9810;&#x8A2D;&#x8A0A;&#x606F;&#x53EF;&#x4EE5;&#x770B;&#x53F3;&#x4E0A;&#x81EA;&#x8A02;&#x53EF;&#x4EE5;&#x8ABF;&#x6574;"></a>6. &#x9032;&#x5165;&#x5C08;&#x6848;&#x756B;&#x9762;&#xFF0C;&#x4E3B;&#x9801;&#x5C08;&#x6848;&#x8CC7;&#x8A0A;&#x6709;&#x4E00;&#x4E9B;&#x9810;&#x8A2D;&#x8A0A;&#x606F;&#x53EF;&#x4EE5;&#x770B;&#x53F3;&#x4E0A;&#x81EA;&#x8A02;&#x53EF;&#x4EE5;&#x8ABF;&#x6574;</h3><p><a class="magnific-img" href="images/5.2.png"><img src="images/5.2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/28.png"><img src="images/28.png" alt=" " class="ui centered image"></a></p>
+<h3 id="7-&#x5982;&#x679C;&#x60F3;&#x6539;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x6216;&#x662F;&#x522A;&#x9664;&#x5C08;&#x6848;&#x53EF;&#x4EE5;&#x9EDE;&#x53F3;&#x4E0A;&#x4E09;&#x500B;&#x9EDE;-&#x2192;-&#x5C08;&#x6848;&#x8A2D;&#x5B9A;"><a href="#7-&#x5982;&#x679C;&#x60F3;&#x6539;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x6216;&#x662F;&#x522A;&#x9664;&#x5C08;&#x6848;&#x53EF;&#x4EE5;&#x9EDE;&#x53F3;&#x4E0A;&#x4E09;&#x500B;&#x9EDE;-&#x2192;-&#x5C08;&#x6848;&#x8A2D;&#x5B9A;" class="headerlink" title="7. &#x5982;&#x679C;&#x60F3;&#x6539;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x6216;&#x662F;&#x522A;&#x9664;&#x5C08;&#x6848;&#x53EF;&#x4EE5;&#x9EDE;&#x53F3;&#x4E0A;&#x4E09;&#x500B;&#x9EDE; &#x2192; &#x5C08;&#x6848;&#x8A2D;&#x5B9A;"></a>7. &#x5982;&#x679C;&#x60F3;&#x6539;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x6216;&#x662F;&#x522A;&#x9664;&#x5C08;&#x6848;&#x53EF;&#x4EE5;&#x9EDE;&#x53F3;&#x4E0A;&#x4E09;&#x500B;&#x9EDE; &#x2192; &#x5C08;&#x6848;&#x8A2D;&#x5B9A;</h3><p><a class="magnific-img" href="images/29.png"><img src="images/29.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x6216;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x7684;&#x4E09;&#x689D;&#x69D3;-&#x5C0E;&#x89BD;&#x9078;&#x55AE;-&#x2192;-IAM-&#x8207;&#x7BA1;&#x7406;&#x54E1;-&#x2192;-&#x8A2D;&#x5B9A;&#xFF0C;&#x505A;&#x5C08;&#x6848;&#x66F4;&#x540D;&#x6216;&#x522A;&#x9664;"><a href="#&#x6216;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x7684;&#x4E09;&#x689D;&#x69D3;-&#x5C0E;&#x89BD;&#x9078;&#x55AE;-&#x2192;-IAM-&#x8207;&#x7BA1;&#x7406;&#x54E1;-&#x2192;-&#x8A2D;&#x5B9A;&#xFF0C;&#x505A;&#x5C08;&#x6848;&#x66F4;&#x540D;&#x6216;&#x522A;&#x9664;" class="headerlink" title="&#x6216;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x7684;&#x4E09;&#x689D;&#x69D3; ( &#x5C0E;&#x89BD;&#x9078;&#x55AE; ) &#x2192; IAM &#x8207;&#x7BA1;&#x7406;&#x54E1; &#x2192; &#x8A2D;&#x5B9A;&#xFF0C;&#x505A;&#x5C08;&#x6848;&#x66F4;&#x540D;&#x6216;&#x522A;&#x9664;"></a>&#x6216;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x7684;&#x4E09;&#x689D;&#x69D3; ( &#x5C0E;&#x89BD;&#x9078;&#x55AE; ) &#x2192; IAM &#x8207;&#x7BA1;&#x7406;&#x54E1; &#x2192; &#x8A2D;&#x5B9A;&#xFF0C;&#x505A;&#x5C08;&#x6848;&#x66F4;&#x540D;&#x6216;&#x522A;&#x9664;</h3><p><a class="magnific-img" href="images/30.1.png"><img src="images/30.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9032;&#x5165;&#x8A2D;&#x5B9A;&#x756B;&#x9762;&#xFF0C;&#x66F4;&#x6539;&#x5B8C;&#x540D;&#x7A31;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x5132;&#x5B58;&#x5373;&#x53EF;-ID-&#x4E0A;&#x8FF0;&#x6709;&#x8AAA;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539;"><a href="#&#x9032;&#x5165;&#x8A2D;&#x5B9A;&#x756B;&#x9762;&#xFF0C;&#x66F4;&#x6539;&#x5B8C;&#x540D;&#x7A31;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x5132;&#x5B58;&#x5373;&#x53EF;-ID-&#x4E0A;&#x8FF0;&#x6709;&#x8AAA;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539;" class="headerlink" title="&#x9032;&#x5165;&#x8A2D;&#x5B9A;&#x756B;&#x9762;&#xFF0C;&#x66F4;&#x6539;&#x5B8C;&#x540D;&#x7A31;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x5132;&#x5B58;&#x5373;&#x53EF; ( ID &#x4E0A;&#x8FF0;&#x6709;&#x8AAA;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539; )"></a>&#x9032;&#x5165;&#x8A2D;&#x5B9A;&#x756B;&#x9762;&#xFF0C;&#x66F4;&#x6539;&#x5B8C;&#x540D;&#x7A31;&#x5F8C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x5132;&#x5B58;&#x5373;&#x53EF; ( ID &#x4E0A;&#x8FF0;&#x6709;&#x8AAA;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539; )</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x522A;&#x9664;&#x5C08;&#x6848;&#xFF0C;&#x522A;&#x9664;&#x5C08;&#x6848;&#x9700;&#x8981;-30-&#x5929;&#x522A;&#x9664;&#x9700;&#x8981;&#x8F38;&#x5165;&#x5C08;&#x6848;-ID"><a href="#&#x522A;&#x9664;&#x5C08;&#x6848;&#xFF0C;&#x522A;&#x9664;&#x5C08;&#x6848;&#x9700;&#x8981;-30-&#x5929;&#x522A;&#x9664;&#x9700;&#x8981;&#x8F38;&#x5165;&#x5C08;&#x6848;-ID" class="headerlink" title="&#x522A;&#x9664;&#x5C08;&#x6848;&#xFF0C;&#x522A;&#x9664;&#x5C08;&#x6848;&#x9700;&#x8981; 30 &#x5929;&#x522A;&#x9664;&#x9700;&#x8981;&#x8F38;&#x5165;&#x5C08;&#x6848; ID"></a>&#x522A;&#x9664;&#x5C08;&#x6848;&#xFF0C;&#x522A;&#x9664;&#x5C08;&#x6848;&#x9700;&#x8981; 30 &#x5929;&#x522A;&#x9664;&#x9700;&#x8981;&#x8F38;&#x5165;&#x5C08;&#x6848; ID</h3><p><a class="magnific-img" href="images/31.png"><img src="images/31.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/32.1.png"><img src="images/32.1.png" alt=" " class="ui centered image"></a></p>
+<hr>
+<h3 id="&#x5EFA;&#x7ACB;&#x5C08;&#x6848;-&#x6307;&#x4EE4;"><a href="#&#x5EFA;&#x7ACB;&#x5C08;&#x6848;-&#x6307;&#x4EE4;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x5C08;&#x6848; ( &#x6307;&#x4EE4; )"></a>&#x5EFA;&#x7ACB;&#x5C08;&#x6848; ( &#x6307;&#x4EE4; )</h3><h3 id="1-&#x5728;-GCP-&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684;-Cloud-Shell-&#x5716;&#x6A19;"><a href="#1-&#x5728;-GCP-&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684;-Cloud-Shell-&#x5716;&#x6A19;" class="headerlink" title="1. &#x5728; GCP &#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684; Cloud Shell &#x5716;&#x6A19;"></a>1. &#x5728; GCP &#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684; Cloud Shell &#x5716;&#x6A19;</h3><p><a class="magnific-img" href="images/2.2.png"><img src="images/2.2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="2-&#x555F;&#x52D5;-Cloud-Shell-&#x7B2C;&#x4E00;&#x6B21;&#x555F;&#x52D5;&#x9700;&#x9EDE;&#x9078;-&#x555F;&#x52D5;-CLOUD-SHELL-&#x5982;&#x4E0B;&#x5716;"><a href="#2-&#x555F;&#x52D5;-Cloud-Shell-&#x7B2C;&#x4E00;&#x6B21;&#x555F;&#x52D5;&#x9700;&#x9EDE;&#x9078;-&#x555F;&#x52D5;-CLOUD-SHELL-&#x5982;&#x4E0B;&#x5716;" class="headerlink" title="2. &#x555F;&#x52D5; Cloud Shell  ( &#x7B2C;&#x4E00;&#x6B21;&#x555F;&#x52D5;&#x9700;&#x9EDE;&#x9078; &#x555F;&#x52D5; CLOUD SHELL &#x5982;&#x4E0B;&#x5716; )"></a>2. &#x555F;&#x52D5; Cloud Shell  ( &#x7B2C;&#x4E00;&#x6B21;&#x555F;&#x52D5;&#x9700;&#x9EDE;&#x9078; &#x555F;&#x52D5; CLOUD SHELL &#x5982;&#x4E0B;&#x5716; )</h3><h3 id="PS&#xFF1A;Cloud-Shell-&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#x3002;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;5GB&#x4E3B;&#x76EE;&#x9304;&#xFF0C;&#x4E26;&#x5728;-Google-Cloud-&#x4E0A;&#x904B;&#x884C;&#x3002;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216;-Google-Chromebook-&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#xFF08;-&#x5982;&#x679C;&#x4E0D;&#x662F;&#x5168;&#x90E8;&#x7684;&#x8A71;-&#xFF09;&#x5DE5;&#x4F5C;&#x3002;"><a href="#PS&#xFF1A;Cloud-Shell-&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#x3002;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;5GB&#x4E3B;&#x76EE;&#x9304;&#xFF0C;&#x4E26;&#x5728;-Google-Cloud-&#x4E0A;&#x904B;&#x884C;&#x3002;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216;-Google-Chromebook-&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#xFF08;-&#x5982;&#x679C;&#x4E0D;&#x662F;&#x5168;&#x90E8;&#x7684;&#x8A71;-&#xFF09;&#x5DE5;&#x4F5C;&#x3002;" class="headerlink" title="PS&#xFF1A;Cloud Shell &#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#x3002;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;5GB&#x4E3B;&#x76EE;&#x9304;&#xFF0C;&#x4E26;&#x5728; Google Cloud &#x4E0A;&#x904B;&#x884C;&#x3002;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216; Google Chromebook &#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#xFF08; &#x5982;&#x679C;&#x4E0D;&#x662F;&#x5168;&#x90E8;&#x7684;&#x8A71; &#xFF09;&#x5DE5;&#x4F5C;&#x3002;"></a>PS&#xFF1A;Cloud Shell &#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#x3002;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;5GB&#x4E3B;&#x76EE;&#x9304;&#xFF0C;&#x4E26;&#x5728; Google Cloud &#x4E0A;&#x904B;&#x884C;&#x3002;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216; Google Chromebook &#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#xFF08; &#x5982;&#x679C;&#x4E0D;&#x662F;&#x5168;&#x90E8;&#x7684;&#x8A71; &#xFF09;&#x5DE5;&#x4F5C;&#x3002;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h3 id="Cloud-Shell-&#x555F;&#x52D5;&#x756B;&#x9762;"><a href="#Cloud-Shell-&#x555F;&#x52D5;&#x756B;&#x9762;" class="headerlink" title="Cloud Shell &#x555F;&#x52D5;&#x756B;&#x9762;"></a>Cloud Shell &#x555F;&#x52D5;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/4.1.png"><img src="images/4.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="3-&#x958B;&#x555F;&#x5C08;&#x6848;&#x6307;&#x4EE4;"><a href="#3-&#x958B;&#x555F;&#x5C08;&#x6848;&#x6307;&#x4EE4;" class="headerlink" title="3. &#x958B;&#x555F;&#x5C08;&#x6848;&#x6307;&#x4EE4;"></a>3. &#x958B;&#x555F;&#x5C08;&#x6848;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud projects create (&#x5C08;&#x6848;ID) --name=(&#x5C08;&#x6848;&#x540D;&#x7A31;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud projects create  gvuriegh --name=123456789</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/5.1.png"><img src="images/5.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="4-&#x67E5;&#x770B;&#x5E33;&#x6236;&#x6307;&#x4EE4;"><a href="#4-&#x67E5;&#x770B;&#x5E33;&#x6236;&#x6307;&#x4EE4;" class="headerlink" title="4. &#x67E5;&#x770B;&#x5E33;&#x6236;&#x6307;&#x4EE4;"></a>4. &#x67E5;&#x770B;&#x5E33;&#x6236;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth list</span><br></pre></td></tr></table></figure>
+<h3 id="&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x662F;&#x8AB0;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F;-google-&#x767B;&#x5165;&#x5E33;&#x865F;"><a href="#&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x662F;&#x8AB0;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F;-google-&#x767B;&#x5165;&#x5E33;&#x865F;" class="headerlink" title="&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x662F;&#x8AB0;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F; google &#x767B;&#x5165;&#x5E33;&#x865F;"></a>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x662F;&#x8AB0;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F; google &#x767B;&#x5165;&#x5E33;&#x865F;</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h3 id="5-&#x67E5;&#x770B;&#x5C08;&#x6848;&#x6307;&#x4EE4;"><a href="#5-&#x67E5;&#x770B;&#x5C08;&#x6848;&#x6307;&#x4EE4;" class="headerlink" title="5. &#x67E5;&#x770B;&#x5C08;&#x6848;&#x6307;&#x4EE4;"></a>5. &#x67E5;&#x770B;&#x5C08;&#x6848;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud config list project</span><br></pre></td></tr></table></figure>
+<h3 id="&#x986F;&#x793A;&#x5C08;&#x6848;-ID-ID-&#x76E1;&#x53EF;&#x80FD;&#x90FD;&#x662F;&#x81EA;&#x5DF1;&#x53D6;&#x6BD4;&#x8F03;&#x597D;&#x5206;&#x985E;"><a href="#&#x986F;&#x793A;&#x5C08;&#x6848;-ID-ID-&#x76E1;&#x53EF;&#x80FD;&#x90FD;&#x662F;&#x81EA;&#x5DF1;&#x53D6;&#x6BD4;&#x8F03;&#x597D;&#x5206;&#x985E;" class="headerlink" title="&#x986F;&#x793A;&#x5C08;&#x6848; ID ( ID &#x76E1;&#x53EF;&#x80FD;&#x90FD;&#x662F;&#x81EA;&#x5DF1;&#x53D6;&#x6BD4;&#x8F03;&#x597D;&#x5206;&#x985E; )"></a>&#x986F;&#x793A;&#x5C08;&#x6848; ID ( ID &#x76E1;&#x53EF;&#x80FD;&#x90FD;&#x662F;&#x81EA;&#x5DF1;&#x53D6;&#x6BD4;&#x8F03;&#x597D;&#x5206;&#x985E; )</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h3 id="6-&#x66F4;&#x63DB;&#x5C08;&#x6848;&#x6307;&#x4EE4;"><a href="#6-&#x66F4;&#x63DB;&#x5C08;&#x6848;&#x6307;&#x4EE4;" class="headerlink" title="6. &#x66F4;&#x63DB;&#x5C08;&#x6848;&#x6307;&#x4EE4;"></a>6. &#x66F4;&#x63DB;&#x5C08;&#x6848;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud config set project (&#x5C08;&#x6848;ID)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud config set project proven-cosine-207802</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5EFA;&#x597D;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F9E;-GUI-&#x5DE6;&#x4E0A;&#x9EDE;-&#x25BC;-&#x67E5;&#x770B;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x8DDF;-ID"><a href="#&#x5EFA;&#x597D;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F9E;-GUI-&#x5DE6;&#x4E0A;&#x9EDE;-&#x25BC;-&#x67E5;&#x770B;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x8DDF;-ID" class="headerlink" title="&#x5EFA;&#x597D;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F9E; GUI &#x5DE6;&#x4E0A;&#x9EDE; &#x25BC; &#x67E5;&#x770B;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x8DDF; ID"></a>&#x5EFA;&#x597D;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F9E; GUI &#x5DE6;&#x4E0A;&#x9EDE; &#x25BC; &#x67E5;&#x770B;&#x4F60;&#x7684;&#x5C08;&#x6848;&#x540D;&#x7A31;&#x8DDF; ID</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"><a href="#&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;" class="headerlink" title="&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"></a>&#x5C08;&#x6848;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;</h3>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-18T02:00:00.000Z" itemprop="datePublished">2018-06-18</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    GCP-GoogleCloudPlatform-creat-vm-gui
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a class="ui tiny button disabled">下一篇<i class="angle right icon"></i></a>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹如何建立-GCP-專案"><span>本文章將介紹如何建立 GCP 專案</span></a><ol><li><a href="#建立專案-GUI"><span>建立專案 ( GUI )</span></a></li><li><a href="#1-進入-GCP，網址：https-cloud-google-com"><span>1. 進入 GCP，網址：https://cloud.google.com/</span></a></li><li><a href="#2-登入-Google-帳號"><span>2. 登入 Google 帳號</span></a></li><li><a href="#3-點擊畫面右上角控制台進入-主頁有各種資訊可以查看"><span>3. 點擊畫面右上角控制台進入 ( 主頁有各種資訊可以查看 )</span></a></li><li><a href="#4-第一次進入畫面，有專案點選選取，無專案點選建立"><span>4. 第一次進入畫面，有專案點選選取，無專案點選建立</span></a></li><li><a href="#4-1-選取專案-承-4-點選選取會出現以建立專案讓你選擇-，1-直接點擊專案名稱2下進入專案-2-專案名稱前方3個點，點一下點選右下開啟進入專案"><span>4.1. 選取專案 ( 承 4. 點選選取會出現以建立專案讓你選擇 )，1. 直接點擊專案名稱2下進入專案 2. 專案名稱前方3個點，點一下點選右下開啟進入專案</span></a></li><li><a href="#4-2-建立專案-承-4-點選建立後會出現建立專案畫面-，命名名稱和-ID-後點選建立完成"><span>4.2. 建立專案 ( 承 4. 點選建立後會出現建立專案畫面 )，命名名稱和 ID 後點選建立完成</span></a></li><li><a href="#上圖點擊編輯後會出現-ID-的名稱可以更改，但是-ID-更改完專案建立後就無法再變更"><span>上圖點擊編輯後會出現 ID 的名稱可以更改，但是 ID 更改完專案建立後就無法再變更</span></a></li><li><a href="#5-專案已建立，再次進入-GCP-會以最後離開專案為進入畫面，目前所在專案前方會打勾"><span>5. 專案已建立，再次進入 GCP 會以最後離開專案為進入畫面，目前所在專案前方會打勾</span></a></li><li><a href="#在專案中選擇其他專案-點左上-▼-會跑出選取專案，1-直接點擊專案名稱2下進入專案-2-專案名稱前方3個點，點一下點選右下開啟進入專案"><span>( 在專案中選擇其他專案 ) 點左上 ▼ 會跑出選取專案，1. 直接點擊專案名稱2下進入專案 2. 專案名稱前方3個點，點一下點選右下開啟進入專案</span></a></li><li><a href="#在專案中新增其他專案-右上角新增專案建立新專案"><span>( 在專案中新增其他專案 ) 右上角新增專案建立新專案</span></a></li><li><a href="#為你的專案命名，下方編輯可以更改專案-ID-同樣-ID-更改完專案建立後就無法再變更"><span>為你的專案命名，下方編輯可以更改專案 ID ( 同樣 ID 更改完專案建立後就無法再變更 )</span></a></li><li><a href="#6-進入專案畫面，主頁專案資訊有一些預設訊息可以看右上自訂可以調整"><span>6. 進入專案畫面，主頁專案資訊有一些預設訊息可以看右上自訂可以調整</span></a></li><li><a href="#7-如果想改專案名稱或是刪除專案可以點右上三個點-→-專案設定"><span>7. 如果想改專案名稱或是刪除專案可以點右上三個點 → 專案設定</span></a></li><li><a href="#或選擇左上的三條槓-導覽選單-→-IAM-與管理員-→-設定，做專案更名或刪除"><span>或選擇左上的三條槓 ( 導覽選單 ) → IAM 與管理員 → 設定，做專案更名或刪除</span></a></li><li><a href="#進入設定畫面，更改完名稱後點擊右邊儲存即可-ID-上述有說無法再更改"><span>進入設定畫面，更改完名稱後點擊右邊儲存即可 ( ID 上述有說無法再更改 )</span></a></li><li><a href="#刪除專案，刪除專案需要-30-天刪除需要輸入專案-ID"><span>刪除專案，刪除專案需要 30 天刪除需要輸入專案 ID</span></a></li><li><a href="#建立專案-指令"><span>建立專案 ( 指令 )</span></a></li><li><a href="#1-在-GCP-控制台中，點擊右上角工具欄上的-Cloud-Shell-圖標"><span>1. 在 GCP 控制台中，點擊右上角工具欄上的 Cloud Shell 圖標</span></a></li><li><a href="#2-啟動-Cloud-Shell-第一次啟動需點選-啟動-CLOUD-SHELL-如下圖"><span>2. 啟動 Cloud Shell  ( 第一次啟動需點選 啟動 CLOUD SHELL 如下圖 )</span></a></li><li><a href="#PS：Cloud-Shell-虛擬機裝載了所有您需要的開發工具。它提供了一個持久的5GB主目錄，並在-Google-Cloud-上運行。只需使用瀏覽器或-Google-Chromebook-即可完成中大部分（-如果不是全部的話-）工作。"><span>PS：Cloud Shell 虛擬機裝載了所有您需要的開發工具。它提供了一個持久的5GB主目錄，並在 Google Cloud 上運行。只需使用瀏覽器或 Google Chromebook 即可完成中大部分（ 如果不是全部的話 ）工作。</span></a></li><li><a href="#Cloud-Shell-啟動畫面"><span>Cloud Shell 啟動畫面</span></a></li><li><a href="#3-開啟專案指令"><span>3. 開啟專案指令</span></a></li><li><a href="#4-查看帳戶指令"><span>4. 查看帳戶指令</span></a></li><li><a href="#可以看到使用者是誰，其實就是-google-登入帳號"><span>可以看到使用者是誰，其實就是 google 登入帳號</span></a></li><li><a href="#5-查看專案指令"><span>5. 查看專案指令</span></a></li><li><a href="#顯示專案-ID-ID-盡可能都是自己取比較好分類"><span>顯示專案 ID ( ID 盡可能都是自己取比較好分類 )</span></a></li><li><a href="#6-更換專案指令"><span>6. 更換專案指令</span></a></li><li><a href="#建好後也可以從-GUI-左上點-▼-查看你的專案名稱跟-ID"><span>建好後也可以從 GUI 左上點 ▼ 查看你的專案名稱跟 ID</span></a></li><li><a href="#專案建立完成"><span>專案建立完成</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

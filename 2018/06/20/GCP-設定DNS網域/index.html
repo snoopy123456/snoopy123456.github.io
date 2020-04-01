@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>GCP-設定DNS網域 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x964D;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x5728; GCP &amp;#x8A2D;&amp;#x5B9A; DNS &amp;#x7DB2;&amp;#x57DF;&amp;#x79DF;&amp;#x597D;&amp;#x7DB2;&amp;#x57DF;&amp;#x5F8C;&amp;#xFF0C;&amp;#x63A5;&amp;#x4E0B;&amp;#x4F86;&amp;#x523">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCP-設定DNS網域">
+<meta property="og:url" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x964D;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x5728; GCP &amp;#x8A2D;&amp;#x5B9A; DNS &amp;#x7DB2;&amp;#x57DF;&amp;#x79DF;&amp;#x597D;&amp;#x7DB2;&amp;#x57DF;&amp;#x5F8C;&amp;#xFF0C;&amp;#x63A5;&amp;#x4E0B;&amp;#x4F86;&amp;#x523">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/9.png">
+<meta property="og:updated_time" content="2020-04-01T03:30:25.140Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCP-設定DNS網域">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x964D;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x5728; GCP &amp;#x8A2D;&amp;#x5B9A; DNS &amp;#x7DB2;&amp;#x57DF;&amp;#x79DF;&amp;#x597D;&amp;#x7DB2;&amp;#x57DF;&amp;#x5F8C;&amp;#xFF0C;&amp;#x63A5;&amp;#x4E0B;&amp;#x4F86;&amp;#x523">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/10.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-GCP-設定DNS網域" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    GCP-設定DNS網域
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x964D;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5728;-GCP-&#x8A2D;&#x5B9A;-DNS-&#x7DB2;&#x57DF;"><a href="#&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x964D;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5728;-GCP-&#x8A2D;&#x5B9A;-DNS-&#x7DB2;&#x57DF;" class="headerlink" title="&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x964D;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5728; GCP &#x8A2D;&#x5B9A; DNS &#x7DB2;&#x57DF;"></a>&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x964D;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x5728; GCP &#x8A2D;&#x5B9A; DNS &#x7DB2;&#x57DF;</h2><h3 id="&#x79DF;&#x597D;&#x7DB2;&#x57DF;&#x5F8C;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5230;-GCP-&#x8A2D;&#x5B9A;-DNS-&#x7DB2;&#x57DF;-&#x672C;&#x6587;&#x7AE0;&#x662F;&#x79DF;&#x7528;-GoDaddy-&#x7DB2;&#x57DF;"><a href="#&#x79DF;&#x597D;&#x7DB2;&#x57DF;&#x5F8C;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5230;-GCP-&#x8A2D;&#x5B9A;-DNS-&#x7DB2;&#x57DF;-&#x672C;&#x6587;&#x7AE0;&#x662F;&#x79DF;&#x7528;-GoDaddy-&#x7DB2;&#x57DF;" class="headerlink" title="&#x79DF;&#x597D;&#x7DB2;&#x57DF;&#x5F8C;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5230; GCP &#x8A2D;&#x5B9A; DNS &#x7DB2;&#x57DF; ( &#x672C;&#x6587;&#x7AE0;&#x662F;&#x79DF;&#x7528; GoDaddy &#x7DB2;&#x57DF; )"></a>&#x79DF;&#x597D;&#x7DB2;&#x57DF;&#x5F8C;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5230; GCP &#x8A2D;&#x5B9A; DNS &#x7DB2;&#x57DF; ( &#x672C;&#x6587;&#x7AE0;&#x662F;&#x79DF;&#x7528; GoDaddy &#x7DB2;&#x57DF; )</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E00;&#x3001;&#x958B;&#x555F;-GCP-&#x5C0E;&#x89BD;&#x9078;&#x55AE;&#x9078;&#x64C7;&#x7DB2;&#x8DEF;-&#x2192;-Cloud-DNS"><a href="#&#x4E00;&#x3001;&#x958B;&#x555F;-GCP-&#x5C0E;&#x89BD;&#x9078;&#x55AE;&#x9078;&#x64C7;&#x7DB2;&#x8DEF;-&#x2192;-Cloud-DNS" class="headerlink" title="&#x4E00;&#x3001;&#x958B;&#x555F; GCP &#x5C0E;&#x89BD;&#x9078;&#x55AE;&#x9078;&#x64C7;&#x7DB2;&#x8DEF; &#x2192; Cloud DNS"></a>&#x4E00;&#x3001;&#x958B;&#x555F; GCP &#x5C0E;&#x89BD;&#x9078;&#x55AE;&#x9078;&#x64C7;&#x7DB2;&#x8DEF; &#x2192; Cloud DNS</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5340;&#x57DF;"><a href="#&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5340;&#x57DF;" class="headerlink" title="&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5340;&#x57DF;"></a>&#x4E8C;&#x3001;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5340;&#x57DF;</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E09;&#x3001;&#x8F38;&#x5165;&#x5340;&#x57DF;&#x540D;&#x7A31;-&#x540D;&#x7A31;&#x96A8;&#x610F;-&#xFF0C;DNS-&#x8981;&#x8F38;&#x5165;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"><a href="#&#x4E09;&#x3001;&#x8F38;&#x5165;&#x5340;&#x57DF;&#x540D;&#x7A31;-&#x540D;&#x7A31;&#x96A8;&#x610F;-&#xFF0C;DNS-&#x8981;&#x8F38;&#x5165;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;" class="headerlink" title="&#x4E09;&#x3001;&#x8F38;&#x5165;&#x5340;&#x57DF;&#x540D;&#x7A31; (&#x540D;&#x7A31;&#x96A8;&#x610F;)&#xFF0C;DNS &#x8981;&#x8F38;&#x5165;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"></a>&#x4E09;&#x3001;&#x8F38;&#x5165;&#x5340;&#x57DF;&#x540D;&#x7A31; (&#x540D;&#x7A31;&#x96A8;&#x610F;)&#xFF0C;DNS &#x8981;&#x8F38;&#x5165;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x56DB;&#x3001;&#x5EFA;&#x7ACB;&#x597D;&#x4E86;&#x4E4B;&#x5F8C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5C07;&#x8A18;&#x9304;&#x985E;&#x884C;&#x70BA;-NS-&#x7684;&#x540D;&#x7A31;&#x4F3A;&#x670D;&#x5668;&#x8907;&#x88FD;&#x5230;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x7A7A;&#x9593;&#x90A3;&#x908A;&#x7684;-DNS-&#x8A2D;&#x5B9A;&#x88E1;"><a href="#&#x56DB;&#x3001;&#x5EFA;&#x7ACB;&#x597D;&#x4E86;&#x4E4B;&#x5F8C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5C07;&#x8A18;&#x9304;&#x985E;&#x884C;&#x70BA;-NS-&#x7684;&#x540D;&#x7A31;&#x4F3A;&#x670D;&#x5668;&#x8907;&#x88FD;&#x5230;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x7A7A;&#x9593;&#x90A3;&#x908A;&#x7684;-DNS-&#x8A2D;&#x5B9A;&#x88E1;" class="headerlink" title="&#x56DB;&#x3001;&#x5EFA;&#x7ACB;&#x597D;&#x4E86;&#x4E4B;&#x5F8C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5C07;&#x8A18;&#x9304;&#x985E;&#x884C;&#x70BA; NS &#x7684;&#x540D;&#x7A31;&#x4F3A;&#x670D;&#x5668;&#x8907;&#x88FD;&#x5230;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x7A7A;&#x9593;&#x90A3;&#x908A;&#x7684; DNS &#x8A2D;&#x5B9A;&#x88E1;"></a>&#x56DB;&#x3001;&#x5EFA;&#x7ACB;&#x597D;&#x4E86;&#x4E4B;&#x5F8C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5C07;&#x8A18;&#x9304;&#x985E;&#x884C;&#x70BA; NS &#x7684;&#x540D;&#x7A31;&#x4F3A;&#x670D;&#x5668;&#x8907;&#x88FD;&#x5230;&#x4F60;&#x79DF;&#x7684;&#x7DB2;&#x57DF;&#x7A7A;&#x9593;&#x90A3;&#x908A;&#x7684; DNS &#x8A2D;&#x5B9A;&#x88E1;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x9EDE;&#x4E00;&#x4E0B;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x53EF;&#x4EE5;&#x505A;&#x7DE8;&#x8F2F;"><a href="#&#x9EDE;&#x4E00;&#x4E0B;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x53EF;&#x4EE5;&#x505A;&#x7DE8;&#x8F2F;" class="headerlink" title="&#x9EDE;&#x4E00;&#x4E0B;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x53EF;&#x4EE5;&#x505A;&#x7DE8;&#x8F2F;"></a>&#x9EDE;&#x4E00;&#x4E0B;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x53EF;&#x4EE5;&#x505A;&#x7DE8;&#x8F2F;</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h3 id="ex&#xFF1A;GoDaddy-&#x7684;-DNS-&#x8A2D;&#x5B9A;"><a href="#ex&#xFF1A;GoDaddy-&#x7684;-DNS-&#x8A2D;&#x5B9A;" class="headerlink" title="ex&#xFF1A;GoDaddy &#x7684; DNS &#x8A2D;&#x5B9A;"></a>ex&#xFF1A;GoDaddy &#x7684; DNS &#x8A2D;&#x5B9A;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x4E94;&#x3001;&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;"><a href="#&#x4E94;&#x3001;&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;" class="headerlink" title="&#x4E94;&#x3001;&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;"></a>&#x4E94;&#x3001;&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x8A18;&#x9304;&#x96C6;&#xFF0C;&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x516D;&#x3001;&#x8CC7;&#x6E90;&#x985E;&#x578B;&#x9078;-A&#x3001;IPv4-&#x4F4D;&#x5740;&#x8F38;&#x5165;-VM-&#x5916;&#x7DB2;-IP&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"><a href="#&#x516D;&#x3001;&#x8CC7;&#x6E90;&#x985E;&#x578B;&#x9078;-A&#x3001;IPv4-&#x4F4D;&#x5740;&#x8F38;&#x5165;-VM-&#x5916;&#x7DB2;-IP&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;" class="headerlink" title="&#x516D;&#x3001;&#x8CC7;&#x6E90;&#x985E;&#x578B;&#x9078; A&#x3001;IPv4 &#x4F4D;&#x5740;&#x8F38;&#x5165; VM &#x5916;&#x7DB2; IP&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;"></a>&#x516D;&#x3001;&#x8CC7;&#x6E90;&#x985E;&#x578B;&#x9078; A&#x3001;IPv4 &#x4F4D;&#x5740;&#x8F38;&#x5165; VM &#x5916;&#x7DB2; IP&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x5F8C;&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h3 id="&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;&#x56DE;&#x5230;-Cloud-DNS-&#x6703;&#x770B;&#x5230;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;&#x51FA;&#x73FE;&#xFF0C;&#x534A;&#x5C0F;&#x6642;&#x5167;&#x5C31;&#x6703;&#x7D81;&#x5B9A;&#x6210;&#x529F;"><a href="#&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;&#x56DE;&#x5230;-Cloud-DNS-&#x6703;&#x770B;&#x5230;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;&#x51FA;&#x73FE;&#xFF0C;&#x534A;&#x5C0F;&#x6642;&#x5167;&#x5C31;&#x6703;&#x7D81;&#x5B9A;&#x6210;&#x529F;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;&#x56DE;&#x5230; Cloud DNS &#x6703;&#x770B;&#x5230;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;&#x51FA;&#x73FE;&#xFF0C;&#x534A;&#x5C0F;&#x6642;&#x5167;&#x5C31;&#x6703;&#x7D81;&#x5B9A;&#x6210;&#x529F;"></a>&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;&#x56DE;&#x5230; Cloud DNS &#x6703;&#x770B;&#x5230;&#x65B0;&#x7684;&#x8A18;&#x9304;&#x96C6;&#x51FA;&#x73FE;&#xFF0C;&#x534A;&#x5C0F;&#x6642;&#x5167;&#x5C31;&#x6703;&#x7D81;&#x5B9A;&#x6210;&#x529F;</h3><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-20T01:51:16.000Z" itemprop="datePublished">2018-06-20</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/06/21/GCP-ubuntu-連線進入VM/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    GCP-ubuntu-連線進入VM
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/06/20/GCP-網路/" class="ui tiny button">
+                    
+                    GCP-網路
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本篇文章降介紹如何在-GCP-設定-DNS-網域"><span>本篇文章降介紹如何在 GCP 設定 DNS 網域</span></a><ol><li><a href="#租好網域後，接下來到-GCP-設定-DNS-網域-本文章是租用-GoDaddy-網域"><span>租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 )</span></a></li><li><a href="#一、開啟-GCP-導覽選單選擇網路-→-Cloud-DNS"><span>一、開啟 GCP 導覽選單選擇網路 → Cloud DNS</span></a></li><li><a href="#二、點選建立區域"><span>二、點選建立區域</span></a></li><li><a href="#三、輸入區域名稱-名稱隨意-，DNS-要輸入你租的網域名稱，輸入完點選建立"><span>三、輸入區域名稱 (名稱隨意)，DNS 要輸入你租的網域名稱，輸入完點選建立</span></a></li><li><a href="#四、建立好了之後會產生兩個記錄集，將記錄類行為-NS-的名稱伺服器複製到你租的網域空間那邊的-DNS-設定裡"><span>四、建立好了之後會產生兩個記錄集，將記錄類行為 NS 的名稱伺服器複製到你租的網域空間那邊的 DNS 設定裡</span></a></li><li><a href="#點一下右邊鉛筆可以做編輯"><span>點一下右邊鉛筆可以做編輯</span></a></li><li><a href="#ex：GoDaddy-的-DNS-設定"><span>ex：GoDaddy 的 DNS 設定</span></a></li><li><a href="#五、點選新增記錄集，建立新的記錄集"><span>五、點選新增記錄集，建立新的記錄集</span></a></li><li><a href="#六、資源類型選-A、IPv4-位址輸入-VM-外網-IP，輸入完後點選建立"><span>六、資源類型選 A、IPv4 位址輸入 VM 外網 IP，輸入完後點選建立</span></a></li><li><a href="#建立完成回到-Cloud-DNS-會看到新的記錄集出現，半小時內就會綁定成功"><span>建立完成回到 Cloud DNS 會看到新的記錄集出現，半小時內就會綁定成功</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
