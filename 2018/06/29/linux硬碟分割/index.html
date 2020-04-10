@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>linux硬碟分割 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; linux &amp;#x786C;&amp;#x789F;&amp;#x5206;&amp;#x5272;&amp;#x4E0A;&amp;#x4E00;&amp;#x7AE0; VirtualBox &amp;#x5B89;&amp;#x88DD;&amp;#x7CFB;&amp;#x7D71;&amp;#x7DF4;&amp;#x7FD2;&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528;&amp;#x7C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux硬碟分割">
+<meta property="og:url" content="http://yoursite.com/2018/06/29/linux硬碟分割/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; linux &amp;#x786C;&amp;#x789F;&amp;#x5206;&amp;#x5272;&amp;#x4E0A;&amp;#x4E00;&amp;#x7AE0; VirtualBox &amp;#x5B89;&amp;#x88DD;&amp;#x7CFB;&amp;#x7D71;&amp;#x7DF4;&amp;#x7FD2;&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528;&amp;#x7C">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/18.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/21.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/22.png">
+<meta property="og:updated_time" content="2020-04-10T05:46:19.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux硬碟分割">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; linux &amp;#x786C;&amp;#x789F;&amp;#x5206;&amp;#x5272;&amp;#x4E0A;&amp;#x4E00;&amp;#x7AE0; VirtualBox &amp;#x5B89;&amp;#x88DD;&amp;#x7CFB;&amp;#x7D71;&amp;#x7DF4;&amp;#x7FD2;&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528;&amp;#x7C">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-linux硬碟分割" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    linux硬碟分割
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-linux-&#x786C;&#x789F;&#x5206;&#x5272;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-linux-&#x786C;&#x789F;&#x5206;&#x5272;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; linux &#x786C;&#x789F;&#x5206;&#x5272;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; linux &#x786C;&#x789F;&#x5206;&#x5272;</h3><h4 id="&#x4E0A;&#x4E00;&#x7AE0;-VirtualBox-&#x5B89;&#x88DD;&#x7CFB;&#x7D71;&#x7DF4;&#x7FD2;&#xFF0C;&#x4F7F;&#x7528;&#x7CFB;&#x7D71;&#x7D66;&#x7684;&#x81EA;&#x52D5;&#x5206;&#x5272;&#xFF0C;&#x672C;&#x7AE0;&#x5C07;&#x4F7F;&#x7528;&#x624B;&#x52D5;&#x5206;&#x5272;&#x786C;&#x789F;"><a href="#&#x4E0A;&#x4E00;&#x7AE0;-VirtualBox-&#x5B89;&#x88DD;&#x7CFB;&#x7D71;&#x7DF4;&#x7FD2;&#xFF0C;&#x4F7F;&#x7528;&#x7CFB;&#x7D71;&#x7D66;&#x7684;&#x81EA;&#x52D5;&#x5206;&#x5272;&#xFF0C;&#x672C;&#x7AE0;&#x5C07;&#x4F7F;&#x7528;&#x624B;&#x52D5;&#x5206;&#x5272;&#x786C;&#x789F;" class="headerlink" title="&#x4E0A;&#x4E00;&#x7AE0; VirtualBox &#x5B89;&#x88DD;&#x7CFB;&#x7D71;&#x7DF4;&#x7FD2;&#xFF0C;&#x4F7F;&#x7528;&#x7CFB;&#x7D71;&#x7D66;&#x7684;&#x81EA;&#x52D5;&#x5206;&#x5272;&#xFF0C;&#x672C;&#x7AE0;&#x5C07;&#x4F7F;&#x7528;&#x624B;&#x52D5;&#x5206;&#x5272;&#x786C;&#x789F;"></a>&#x4E0A;&#x4E00;&#x7AE0; VirtualBox &#x5B89;&#x88DD;&#x7CFB;&#x7D71;&#x7DF4;&#x7FD2;&#xFF0C;&#x4F7F;&#x7528;&#x7CFB;&#x7D71;&#x7D66;&#x7684;&#x81EA;&#x52D5;&#x5206;&#x5272;&#xFF0C;&#x672C;&#x7AE0;&#x5C07;&#x4F7F;&#x7528;&#x624B;&#x52D5;&#x5206;&#x5272;&#x786C;&#x789F;</h4><h4 id="1-&#x5B89;&#x88DD;-linux-&#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x756B;&#x9762;&#x9078;&#x64C7;&#x624B;&#x52D5;&#x5206;&#x5272;"><a href="#1-&#x5B89;&#x88DD;-linux-&#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x756B;&#x9762;&#x9078;&#x64C7;&#x624B;&#x52D5;&#x5206;&#x5272;" class="headerlink" title="1. &#x5B89;&#x88DD; linux &#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x756B;&#x9762;&#x9078;&#x64C7;&#x624B;&#x52D5;&#x5206;&#x5272;"></a>1. &#x5B89;&#x88DD; linux &#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x756B;&#x9762;&#x9078;&#x64C7;&#x624B;&#x52D5;&#x5206;&#x5272;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h4 id="2-&#x6E05;&#x9664;&#x539F;&#x672C;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8868;"><a href="#2-&#x6E05;&#x9664;&#x539F;&#x672C;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8868;" class="headerlink" title="2. &#x6E05;&#x9664;&#x539F;&#x672C;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8868;"></a>2. &#x6E05;&#x9664;&#x539F;&#x672C;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8868;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h4 id="3-&#x4F86;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x78C1;&#x789F;"><a href="#3-&#x4F86;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x78C1;&#x789F;" class="headerlink" title="3. &#x4F86;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x78C1;&#x789F;"></a>3. &#x4F86;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x78C1;&#x789F;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="4-&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x78C1;&#x789F;&#x5206;&#x5272;&#x8868;"><a href="#4-&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x78C1;&#x789F;&#x5206;&#x5272;&#x8868;" class="headerlink" title="4. &#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x78C1;&#x789F;&#x5206;&#x5272;&#x8868;"></a>4. &#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x78C1;&#x789F;&#x5206;&#x5272;&#x8868;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h4 id="5-&#x9078;&#x64C7;&#x7A7A;&#x767D;&#x78C1;&#x789F;"><a href="#5-&#x9078;&#x64C7;&#x7A7A;&#x767D;&#x78C1;&#x789F;" class="headerlink" title="5. &#x9078;&#x64C7;&#x7A7A;&#x767D;&#x78C1;&#x789F;"></a>5. &#x9078;&#x64C7;&#x7A7A;&#x767D;&#x78C1;&#x789F;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h4 id="6-&#x9078;&#x64C7;&#x5EFA;&#x7ACB;&#x65B0;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x7136;&#x5F8C;&#x8F38;&#x5165;&#x8981;&#x5206;&#x5272;&#x7684;&#x78C1;&#x789F;&#x5BB9;&#x91CF;"><a href="#6-&#x9078;&#x64C7;&#x5EFA;&#x7ACB;&#x65B0;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x7136;&#x5F8C;&#x8F38;&#x5165;&#x8981;&#x5206;&#x5272;&#x7684;&#x78C1;&#x789F;&#x5BB9;&#x91CF;" class="headerlink" title="6. &#x9078;&#x64C7;&#x5EFA;&#x7ACB;&#x65B0;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x7136;&#x5F8C;&#x8F38;&#x5165;&#x8981;&#x5206;&#x5272;&#x7684;&#x78C1;&#x789F;&#x5BB9;&#x91CF;"></a>6. &#x9078;&#x64C7;&#x5EFA;&#x7ACB;&#x65B0;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x7136;&#x5F8C;&#x8F38;&#x5165;&#x8981;&#x5206;&#x5272;&#x7684;&#x78C1;&#x789F;&#x5BB9;&#x91CF;</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h4 id="7-&#x985E;&#x578B;&#x9078;&#x64C7;&#xFF1A;&#x4E3B;&#x5206;&#x5272;&#x5340;&#x3001;&#x5206;&#x5272;&#x4F4D;&#x7F6E;&#xFF1A;&#x958B;&#x59CB;&#x4F4D;&#x7F6E;"><a href="#7-&#x985E;&#x578B;&#x9078;&#x64C7;&#xFF1A;&#x4E3B;&#x5206;&#x5272;&#x5340;&#x3001;&#x5206;&#x5272;&#x4F4D;&#x7F6E;&#xFF1A;&#x958B;&#x59CB;&#x4F4D;&#x7F6E;" class="headerlink" title="7. &#x985E;&#x578B;&#x9078;&#x64C7;&#xFF1A;&#x4E3B;&#x5206;&#x5272;&#x5340;&#x3001;&#x5206;&#x5272;&#x4F4D;&#x7F6E;&#xFF1A;&#x958B;&#x59CB;&#x4F4D;&#x7F6E;"></a>7. &#x985E;&#x578B;&#x9078;&#x64C7;&#xFF1A;&#x4E3B;&#x5206;&#x5272;&#x5340;&#x3001;&#x5206;&#x5272;&#x4F4D;&#x7F6E;&#xFF1A;&#x958B;&#x59CB;&#x4F4D;&#x7F6E;</h4><h4 id="PS&#xFF1A;&#x6B64;&#x6B65;&#x9A5F;&#x4F7F;&#x7528;&#x6839;&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x4E00;&#x6A23;&#x8A2D;&#x5B9A;&#xFF0C;&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;"><a href="#PS&#xFF1A;&#x6B64;&#x6B65;&#x9A5F;&#x4F7F;&#x7528;&#x6839;&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x4E00;&#x6A23;&#x8A2D;&#x5B9A;&#xFF0C;&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;" class="headerlink" title="PS&#xFF1A;&#x6B64;&#x6B65;&#x9A5F;&#x4F7F;&#x7528;&#x6839;&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x4E00;&#x6A23;&#x8A2D;&#x5B9A;&#xFF0C;&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;"></a>PS&#xFF1A;&#x6B64;&#x6B65;&#x9A5F;&#x4F7F;&#x7528;&#x6839;&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x4E00;&#x6A23;&#x8A2D;&#x5B9A;&#xFF0C;&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h4 id="8-&#x9032;&#x5165;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x7528;&#x9014;"><a href="#8-&#x9032;&#x5165;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x7528;&#x9014;" class="headerlink" title="8. &#x9032;&#x5165;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x7528;&#x9014;"></a>8. &#x9032;&#x5165;&#x5206;&#x5272;&#x78C1;&#x789F;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x7528;&#x9014;</h4><h4 id="PS&#xFF1A;&#x4E00;&#x822C;-linux-&#x90FD;&#x9078;&#x64C7;-Ext4-&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;"><a href="#PS&#xFF1A;&#x4E00;&#x822C;-linux-&#x90FD;&#x9078;&#x64C7;-Ext4-&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;" class="headerlink" title="PS&#xFF1A;&#x4E00;&#x822C; linux &#x90FD;&#x9078;&#x64C7; Ext4 &#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;"></a>PS&#xFF1A;&#x4E00;&#x822C; linux &#x90FD;&#x9078;&#x64C7; Ext4 &#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
+<h4 id="9-&#x639B;&#x8F09;&#x9EDE;&#x9078;&#x64C7;&#xFF0C;&#x5206;&#x914D;-linux-&#x6B64;&#x5206;&#x5272;&#x78C1;&#x5340;&#x7684;&#x76EE;&#x9304;"><a href="#9-&#x639B;&#x8F09;&#x9EDE;&#x9078;&#x64C7;&#xFF0C;&#x5206;&#x914D;-linux-&#x6B64;&#x5206;&#x5272;&#x78C1;&#x5340;&#x7684;&#x76EE;&#x9304;" class="headerlink" title="9. &#x639B;&#x8F09;&#x9EDE;&#x9078;&#x64C7;&#xFF0C;&#x5206;&#x914D; linux &#x6B64;&#x5206;&#x5272;&#x78C1;&#x5340;&#x7684;&#x76EE;&#x9304;"></a>9. &#x639B;&#x8F09;&#x9EDE;&#x9078;&#x64C7;&#xFF0C;&#x5206;&#x914D; linux &#x6B64;&#x5206;&#x5272;&#x78C1;&#x5340;&#x7684;&#x76EE;&#x9304;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/boot &#x653E;&#x7F6E;&#x958B;&#x6A5F;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x6A94;&#x6848;</span><br><span class="line">/home &#x7CFB;&#x7D71;&#x9810;&#x8A2D;&#x4F7F;&#x7528;&#x8005;&#x5BB6;&#x76EE;&#x9304;&#xFF0C;&#x65B0;&#x589E;&#x5E33;&#x865F;&#x90FD;&#x6703;&#x898F;&#x7BC4;&#x5230;&#x9019;&#x88E1;</span><br><span class="line">/tmp &#x66AB;&#x5B58;&#x6A94;&#x653E;&#x7F6E;&#x5730;&#x65B9;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x88AB;&#x81EA;&#x52D5;&#x6E05;&#x9664;&#x7684;(&#x91CD;&#x8981;&#x8CC7;&#x6599;&#x4E0D;&#x9069;&#x5408;&#x653E;&#x7F6E;&#x5728;&#x6B64;)</span><br><span class="line">/usr &#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x8EDF;&#x9AD4;&#x8CC7;&#x6E90;&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;&#xFF0C;&#x985E;&#x4F3C;windows&#x7684;C&#x69FD;</span><br><span class="line">/var &#x5E38;&#x614B;&#x6027;&#x8B8A;&#x52D5;&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x8655;&#xFF0C;&#x7CFB;&#x7D71;&#x904B;&#x4F5C;&#x5F8C;&#x624D;&#x6703;&#x5EFA;&#x5EFA;&#x4F54;&#x64DA;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF0C;EX&#xFF1A;&#x5FEB;&#x53D6;&#x3001;&#x767B;&#x5165;&#x6A94;&#x3001;&#x90F5;&#x4EF6;</span><br><span class="line">/srv service &#x7E2E;&#x5BEB;&#x7DB2;&#x8DEF;&#x670D;&#x52D9;&#x555F;&#x52D5;&#x5F8C;&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;&#xFF0C;EX&#xFF1A;WWW&#x3001;FTP</span><br><span class="line">/opt &#x7B2C;&#x4E09;&#x65B9;&#x5354;&#x529B;&#x8EDF;&#x9AD4;&#x653E;&#x7F6E;&#xFF0C;EX&#xFF1A;mysql&#x3001;apache</span><br><span class="line">/usr/local &#x65E9;&#x671F;linux&#x653E;&#x7F6E;&#x7B2C;&#x4E09;&#x65B9;&#x5354;&#x529B;&#x8EDF;&#x9AD4;&#x4F4D;&#x7F6E;&#xFF0C;&#x529F;&#x80FD;&#x8DDF;/opt&#x4E00;&#x6A23;</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
+<h4 id="10-&#x639B;&#x8F09;&#x9078;&#x9805;&#x9078;&#x64C7;&#xFF0C;&#x4E4B;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B89;&#x88DD;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x5728;&#x9019;&#x908A;&#x9078;&#x64C7;"><a href="#10-&#x639B;&#x8F09;&#x9078;&#x9805;&#x9078;&#x64C7;&#xFF0C;&#x4E4B;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B89;&#x88DD;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x5728;&#x9019;&#x908A;&#x9078;&#x64C7;" class="headerlink" title="10. &#x639B;&#x8F09;&#x9078;&#x9805;&#x9078;&#x64C7;&#xFF0C;&#x4E4B;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B89;&#x88DD;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x5728;&#x9019;&#x908A;&#x9078;&#x64C7;"></a>10. &#x639B;&#x8F09;&#x9078;&#x9805;&#x9078;&#x64C7;&#xFF0C;&#x4E4B;&#x5F8C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B89;&#x88DD;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x5728;&#x9019;&#x908A;&#x9078;&#x64C7;</h4><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
+<h4 id="11-&#x9078;&#x64C7;&#x6A94;&#x6309;&#x5340;&#x584A;&#x5927;&#x5C0F;"><a href="#11-&#x9078;&#x64C7;&#x6A94;&#x6309;&#x5340;&#x584A;&#x5927;&#x5C0F;" class="headerlink" title="11. &#x9078;&#x64C7;&#x6A94;&#x6309;&#x5340;&#x584A;&#x5927;&#x5C0F;"></a>11. &#x9078;&#x64C7;&#x6A94;&#x6309;&#x5340;&#x584A;&#x5927;&#x5C0F;</h4><h4 id="PS&#xFF1A;&#x4E00;&#x822C;-linux-&#x90FD;&#x9078;&#x64C7;-standard-&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;"><a href="#PS&#xFF1A;&#x4E00;&#x822C;-linux-&#x90FD;&#x9078;&#x64C7;-standard-&#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;" class="headerlink" title="PS&#xFF1A;&#x4E00;&#x822C; linux &#x90FD;&#x9078;&#x64C7; standard &#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;"></a>PS&#xFF1A;&#x4E00;&#x822C; linux &#x90FD;&#x9078;&#x64C7; standard &#x4E4B;&#x5F8C;&#x6703;&#x518D;&#x505A;&#x4ECB;&#x7D39;</h4><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
+<h4 id="12-&#x57FA;&#x672C;&#x4E0A;&#x9664;&#x4E86;&#x5404;&#x76EE;&#x9304;&#x5272;&#x78C1;&#x5340;&#x5916;&#xFF0C;&#x6703;&#x5728;&#x5272;&#x4E00;&#x500B;-sawp-&#x78C1;&#x5340;&#xFF0C;&#x4E2D;&#x6587;&#x540D;&#x5B50;&#x662F;&#x7F6E;&#x63DB;&#x7A7A;&#x9593;"><a href="#12-&#x57FA;&#x672C;&#x4E0A;&#x9664;&#x4E86;&#x5404;&#x76EE;&#x9304;&#x5272;&#x78C1;&#x5340;&#x5916;&#xFF0C;&#x6703;&#x5728;&#x5272;&#x4E00;&#x500B;-sawp-&#x78C1;&#x5340;&#xFF0C;&#x4E2D;&#x6587;&#x540D;&#x5B50;&#x662F;&#x7F6E;&#x63DB;&#x7A7A;&#x9593;" class="headerlink" title="12. &#x57FA;&#x672C;&#x4E0A;&#x9664;&#x4E86;&#x5404;&#x76EE;&#x9304;&#x5272;&#x78C1;&#x5340;&#x5916;&#xFF0C;&#x6703;&#x5728;&#x5272;&#x4E00;&#x500B; sawp &#x78C1;&#x5340;&#xFF0C;&#x4E2D;&#x6587;&#x540D;&#x5B50;&#x662F;&#x7F6E;&#x63DB;&#x7A7A;&#x9593;"></a>12. &#x57FA;&#x672C;&#x4E0A;&#x9664;&#x4E86;&#x5404;&#x76EE;&#x9304;&#x5272;&#x78C1;&#x5340;&#x5916;&#xFF0C;&#x6703;&#x5728;&#x5272;&#x4E00;&#x500B; sawp &#x78C1;&#x5340;&#xFF0C;&#x4E2D;&#x6587;&#x540D;&#x5B50;&#x662F;&#x7F6E;&#x63DB;&#x7A7A;&#x9593;</h4><h4 id="PS&#xFF1A;&#x5728;-linux-&#x4E0A;&#x7684;-Swap-&#x7A7A;&#x9593;&#x662F;&#x5728;&#x7576;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4;-RAM-&#x7528;&#x5B8C;&#x6642;&#x624D;&#x6703;&#x4F7F;&#x7528;&#x5230;&#xFF0C;&#x5047;&#x5982;&#x7CFB;&#x7D71;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x8CC7;&#x6E90;&#xFF0C;&#x800C;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4;&#x5DF2;&#x7D93;&#x7528;&#x5B8C;&#xFF0C;&#x8A18;&#x61B6;&#x9AD4;&#x4E0A;&#x4E0D;&#x6D3B;&#x52D5;&#x7684;&#x9801;&#x9762;&#x5C07;&#x6703;&#x88AB;&#x79FB;&#x5230;-swap-&#x7A7A;&#x9593;&#xFF0C;&#x4F46;&#x4EE5;&#x73FE;&#x5728;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;&#x8DDF;&#x4F7F;&#x7528;&#x91CF;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x7528;&#x4E0D;&#x5230;&#x5982;&#x679C;&#x7528;&#x4E0A;&#x4E86;&#x4E5F;&#x4EE3;&#x8868;GG&#x4E86;&#xFF0C;&#x55AE;&#x57FA;&#x672C;&#x4E0A;&#x9084;&#x662F;&#x6703;&#x5272;&#x4E00;&#x500B;&#x51FA;&#x4F86;"><a href="#PS&#xFF1A;&#x5728;-linux-&#x4E0A;&#x7684;-Swap-&#x7A7A;&#x9593;&#x662F;&#x5728;&#x7576;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4;-RAM-&#x7528;&#x5B8C;&#x6642;&#x624D;&#x6703;&#x4F7F;&#x7528;&#x5230;&#xFF0C;&#x5047;&#x5982;&#x7CFB;&#x7D71;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x8CC7;&#x6E90;&#xFF0C;&#x800C;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4;&#x5DF2;&#x7D93;&#x7528;&#x5B8C;&#xFF0C;&#x8A18;&#x61B6;&#x9AD4;&#x4E0A;&#x4E0D;&#x6D3B;&#x52D5;&#x7684;&#x9801;&#x9762;&#x5C07;&#x6703;&#x88AB;&#x79FB;&#x5230;-swap-&#x7A7A;&#x9593;&#xFF0C;&#x4F46;&#x4EE5;&#x73FE;&#x5728;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;&#x8DDF;&#x4F7F;&#x7528;&#x91CF;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x7528;&#x4E0D;&#x5230;&#x5982;&#x679C;&#x7528;&#x4E0A;&#x4E86;&#x4E5F;&#x4EE3;&#x8868;GG&#x4E86;&#xFF0C;&#x55AE;&#x57FA;&#x672C;&#x4E0A;&#x9084;&#x662F;&#x6703;&#x5272;&#x4E00;&#x500B;&#x51FA;&#x4F86;" class="headerlink" title="PS&#xFF1A;&#x5728; linux &#x4E0A;&#x7684; Swap &#x7A7A;&#x9593;&#x662F;&#x5728;&#x7576;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4; ( RAM ) &#x7528;&#x5B8C;&#x6642;&#x624D;&#x6703;&#x4F7F;&#x7528;&#x5230;&#xFF0C;&#x5047;&#x5982;&#x7CFB;&#x7D71;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x8CC7;&#x6E90;&#xFF0C;&#x800C;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4;&#x5DF2;&#x7D93;&#x7528;&#x5B8C;&#xFF0C;&#x8A18;&#x61B6;&#x9AD4;&#x4E0A;&#x4E0D;&#x6D3B;&#x52D5;&#x7684;&#x9801;&#x9762;&#x5C07;&#x6703;&#x88AB;&#x79FB;&#x5230; swap &#x7A7A;&#x9593;&#xFF0C;&#x4F46;&#x4EE5;&#x73FE;&#x5728;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;&#x8DDF;&#x4F7F;&#x7528;&#x91CF;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x7528;&#x4E0D;&#x5230;&#x5982;&#x679C;&#x7528;&#x4E0A;&#x4E86;&#x4E5F;&#x4EE3;&#x8868;GG&#x4E86;&#xFF0C;&#x55AE;&#x57FA;&#x672C;&#x4E0A;&#x9084;&#x662F;&#x6703;&#x5272;&#x4E00;&#x500B;&#x51FA;&#x4F86;"></a>PS&#xFF1A;&#x5728; linux &#x4E0A;&#x7684; Swap &#x7A7A;&#x9593;&#x662F;&#x5728;&#x7576;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4; ( RAM ) &#x7528;&#x5B8C;&#x6642;&#x624D;&#x6703;&#x4F7F;&#x7528;&#x5230;&#xFF0C;&#x5047;&#x5982;&#x7CFB;&#x7D71;&#x9700;&#x8981;&#x66F4;&#x591A;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x8CC7;&#x6E90;&#xFF0C;&#x800C;&#x5BE6;&#x9AD4;&#x8A18;&#x61B6;&#x9AD4;&#x5DF2;&#x7D93;&#x7528;&#x5B8C;&#xFF0C;&#x8A18;&#x61B6;&#x9AD4;&#x4E0A;&#x4E0D;&#x6D3B;&#x52D5;&#x7684;&#x9801;&#x9762;&#x5C07;&#x6703;&#x88AB;&#x79FB;&#x5230; swap &#x7A7A;&#x9593;&#xFF0C;&#x4F46;&#x4EE5;&#x73FE;&#x5728;&#x8A18;&#x61B6;&#x9AD4;&#x5927;&#x5C0F;&#x8DDF;&#x4F7F;&#x7528;&#x91CF;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x7528;&#x4E0D;&#x5230;&#x5982;&#x679C;&#x7528;&#x4E0A;&#x4E86;&#x4E5F;&#x4EE3;&#x8868;GG&#x4E86;&#xFF0C;&#x55AE;&#x57FA;&#x672C;&#x4E0A;&#x9084;&#x662F;&#x6703;&#x5272;&#x4E00;&#x500B;&#x51FA;&#x4F86;</h4><p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a></p>
+<h4 id="13-&#x8A2D;&#x5B9A;&#x5B8C;&#x9078;&#x64C7;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;"><a href="#13-&#x8A2D;&#x5B9A;&#x5B8C;&#x9078;&#x64C7;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;" class="headerlink" title="13. &#x8A2D;&#x5B9A;&#x5B8C;&#x9078;&#x64C7;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;"></a>13. &#x8A2D;&#x5B9A;&#x5B8C;&#x9078;&#x64C7;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;</h4><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a></p>
+<h4 id="14-&#x56DE;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x7D50;&#x675F;&#x78C1;&#x789F;&#x5206;&#x5272;&#x4F5C;&#x696D;&#x4E26;&#x5C07;&#x8B8A;&#x66F4;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x4E2D;"><a href="#14-&#x56DE;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x7D50;&#x675F;&#x78C1;&#x789F;&#x5206;&#x5272;&#x4F5C;&#x696D;&#x4E26;&#x5C07;&#x8B8A;&#x66F4;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x4E2D;" class="headerlink" title="14. &#x56DE;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x7D50;&#x675F;&#x78C1;&#x789F;&#x5206;&#x5272;&#x4F5C;&#x696D;&#x4E26;&#x5C07;&#x8B8A;&#x66F4;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x4E2D;"></a>14. &#x56DE;&#x5230;&#x78C1;&#x789F;&#x5206;&#x5272;&#xFF0C;&#x9078;&#x64C7;&#x7D50;&#x675F;&#x78C1;&#x789F;&#x5206;&#x5272;&#x4F5C;&#x696D;&#x4E26;&#x5C07;&#x8B8A;&#x66F4;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x4E2D;</h4><p><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a></p>
+<h4 id="15-&#x9078;&#x64C7;&#x662F;&#x683C;&#x5F0F;&#x5316;"><a href="#15-&#x9078;&#x64C7;&#x662F;&#x683C;&#x5F0F;&#x5316;" class="headerlink" title="15. &#x9078;&#x64C7;&#x662F;&#x683C;&#x5F0F;&#x5316;"></a>15. &#x9078;&#x64C7;&#x662F;&#x683C;&#x5F0F;&#x5316;</h4><p><a class="magnific-img" href="images/22.png"><img src="images/22.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x5230;&#x9019;&#x908A;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"><a href="#&#x5230;&#x9019;&#x908A;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x5C31;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="&#x5230;&#x9019;&#x908A;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"></a>&#x5230;&#x9019;&#x908A;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-29T03:50:58.000Z" itemprop="datePublished">2018-06-29</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/06/29/VirtualBox掛載虛擬硬碟/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    VirtualBox掛載虛擬硬碟
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/06/29/VirtualBox安裝系統練習/" class="ui tiny button">
+                    
+                    VirtualBox安裝系統練習
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹-linux-硬碟分割"><span>本文章將介紹 linux 硬碟分割</span></a><ol><li><a href="#上一章-VirtualBox-安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟"><span>上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟</span></a></li><li><a href="#1-安裝-linux-的硬碟分割畫面選擇手動分割"><span>1. 安裝 linux 的硬碟分割畫面選擇手動分割</span></a></li><li><a href="#2-清除原本分割磁碟表"><span>2. 清除原本分割磁碟表</span></a></li><li><a href="#3-來到磁碟分割，選擇磁碟"><span>3. 來到磁碟分割，選擇磁碟</span></a></li><li><a href="#4-建立新的磁碟分割表"><span>4. 建立新的磁碟分割表</span></a></li><li><a href="#5-選擇空白磁碟"><span>5. 選擇空白磁碟</span></a></li><li><a href="#6-選擇建立新分割區，然後輸入要分割的磁碟容量"><span>6. 選擇建立新分割區，然後輸入要分割的磁碟容量</span></a></li><li><a href="#7-類型選擇：主分割區、分割位置：開始位置"><span>7. 類型選擇：主分割區、分割位置：開始位置</span></a></li><li><a href="#PS：此步驟使用根本篇文章一樣設定，之後會再做介紹"><span>PS：此步驟使用根本篇文章一樣設定，之後會再做介紹</span></a></li><li><a href="#8-進入分割磁碟設定，選擇用途"><span>8. 進入分割磁碟設定，選擇用途</span></a></li><li><a href="#PS：一般-linux-都選擇-Ext4-之後會再做介紹"><span>PS：一般 linux 都選擇 Ext4 之後會再做介紹</span></a></li><li><a href="#9-掛載點選擇，分配-linux-此分割磁區的目錄"><span>9. 掛載點選擇，分配 linux 此分割磁區的目錄</span></a></li><li><a href="#10-掛載選項選擇，之後也可以下命令安裝不一定要在這邊選擇"><span>10. 掛載選項選擇，之後也可以下命令安裝不一定要在這邊選擇</span></a></li><li><a href="#11-選擇檔按區塊大小"><span>11. 選擇檔按區塊大小</span></a></li><li><a href="#PS：一般-linux-都選擇-standard-之後會再做介紹"><span>PS：一般 linux 都選擇 standard 之後會再做介紹</span></a></li><li><a href="#12-基本上除了各目錄割磁區外，會在割一個-sawp-磁區，中文名子是置換空間"><span>12. 基本上除了各目錄割磁區外，會在割一個 sawp 磁區，中文名子是置換空間</span></a></li><li><a href="#PS：在-linux-上的-Swap-空間是在當實體記憶體-RAM-用完時才會使用到，假如系統需要更多的記憶體資源，而實體記憶體已經用完，記憶體上不活動的頁面將會被移到-swap-空間，但以現在記憶體大小跟使用量，基本上用不到如果用上了也代表GG了，單基本上還是會割一個出來"><span>PS：在 linux 上的 Swap 空間是在當實體記憶體 ( RAM ) 用完時才會使用到，假如系統需要更多的記憶體資源，而實體記憶體已經用完，記憶體上不活動的頁面將會被移到 swap 空間，但以現在記憶體大小跟使用量，基本上用不到如果用上了也代表GG了，單基本上還是會割一個出來</span></a></li><li><a href="#13-設定完選擇分割區設定完成"><span>13. 設定完選擇分割區設定完成</span></a></li><li><a href="#14-回到磁碟分割，選擇結束磁碟分割作業並將變更寫入磁碟中"><span>14. 回到磁碟分割，選擇結束磁碟分割作業並將變更寫入磁碟中</span></a></li><li><a href="#15-選擇是格式化"><span>15. 選擇是格式化</span></a></li><li><a href="#到這邊硬碟的分割就完成了"><span>到這邊硬碟的分割就完成了</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
