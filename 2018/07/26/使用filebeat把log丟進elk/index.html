@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>使用filebeat把log丟進elk | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; filebeat &amp;#x5C07; log &amp;#x4E1F;&amp;#x9032; elkfilebeat &amp;#x4E0B;&amp;#x8F09;&amp;#xFF1A;https://www.elastic.co/downloads/beats/filebeatPS&amp;#xFF1A;filebeat &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用filebeat把log丟進elk">
+<meta property="og:url" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; filebeat &amp;#x5C07; log &amp;#x4E1F;&amp;#x9032; elkfilebeat &amp;#x4E0B;&amp;#x8F09;&amp;#xFF1A;https://www.elastic.co/downloads/beats/filebeatPS&amp;#xFF1A;filebeat &amp;#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/10.png">
+<meta property="og:updated_time" content="2020-04-27T09:02:38.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用filebeat把log丟進elk">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; filebeat &amp;#x5C07; log &amp;#x4E1F;&amp;#x9032; elkfilebeat &amp;#x4E0B;&amp;#x8F09;&amp;#xFF1A;https://www.elastic.co/downloads/beats/filebeatPS&amp;#xFF1A;filebeat &amp;#">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-使用filebeat把log丟進elk" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    使用filebeat把log丟進elk
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-filebeat-&#x5C07;-log-&#x4E1F;&#x9032;-elk"><a href="#&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-filebeat-&#x5C07;-log-&#x4E1F;&#x9032;-elk" class="headerlink" title="&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; filebeat &#x5C07; log &#x4E1F;&#x9032; elk"></a>&#x672C;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; filebeat &#x5C07; log &#x4E1F;&#x9032; elk</h3><h4 id="filebeat-&#x4E0B;&#x8F09;&#xFF1A;https-www-elastic-co-downloads-beats-filebeat"><a href="#filebeat-&#x4E0B;&#x8F09;&#xFF1A;https-www-elastic-co-downloads-beats-filebeat" class="headerlink" title="filebeat &#x4E0B;&#x8F09;&#xFF1A;https://www.elastic.co/downloads/beats/filebeat"></a>filebeat &#x4E0B;&#x8F09;&#xFF1A;<a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank" rel="noopener">https://www.elastic.co/downloads/beats/filebeat</a></h4><h4 id="PS&#xFF1A;filebeat-&#x76E1;&#x91CF;&#x8DDF;-elk-&#x540C;&#x7248;&#x672C;"><a href="#PS&#xFF1A;filebeat-&#x76E1;&#x91CF;&#x8DDF;-elk-&#x540C;&#x7248;&#x672C;" class="headerlink" title="PS&#xFF1A;filebeat &#x76E1;&#x91CF;&#x8DDF; elk &#x540C;&#x7248;&#x672C;"></a>PS&#xFF1A;filebeat &#x76E1;&#x91CF;&#x8DDF; elk &#x540C;&#x7248;&#x672C;</h4><h4 id="&#x89E3;&#x58D3;&#x7E2E;-filebeat-&#x5230;&#x4F60;&#x8981;&#x7684;&#x8DEF;&#x5F91;&#x4E0B;"><a href="#&#x89E3;&#x58D3;&#x7E2E;-filebeat-&#x5230;&#x4F60;&#x8981;&#x7684;&#x8DEF;&#x5F91;&#x4E0B;" class="headerlink" title="&#x89E3;&#x58D3;&#x7E2E; filebeat &#x5230;&#x4F60;&#x8981;&#x7684;&#x8DEF;&#x5F91;&#x4E0B;"></a>&#x89E3;&#x58D3;&#x7E2E; filebeat &#x5230;&#x4F60;&#x8981;&#x7684;&#x8DEF;&#x5F91;&#x4E0B;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x958B;&#x555F;-filebeat-&#x8CC7;&#x6599;&#x593E;&#x5E95;&#x4E0B;&#x7684;-filebeat-yml-&#x6A94;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8490;&#x96C6;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x8DEF;&#x5F91;&#x4EE5;&#x81EA;&#x5DF1;&#x672C;&#x6A5F;-log-&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;&#x70BA;&#x4E3B;"><a href="#&#x958B;&#x555F;-filebeat-&#x8CC7;&#x6599;&#x593E;&#x5E95;&#x4E0B;&#x7684;-filebeat-yml-&#x6A94;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8490;&#x96C6;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x8DEF;&#x5F91;&#x4EE5;&#x81EA;&#x5DF1;&#x672C;&#x6A5F;-log-&#x653E;&#x7F6E;&#x4F4D;&#x7F6E;&#x70BA;&#x4E3B;" class="headerlink" title="&#x958B;&#x555F; filebeat &#x8CC7;&#x6599;&#x593E;&#x5E95;&#x4E0B;&#x7684; filebeat.yml &#x6A94;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8490;&#x96C6;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x8DEF;&#x5F91;&#x4EE5;&#x81EA;&#x5DF1;&#x672C;&#x6A5F; log &#x653E;&#x7F6E;&#x4F4D;&#x7F6E;&#x70BA;&#x4E3B;"></a>&#x958B;&#x555F; filebeat &#x8CC7;&#x6599;&#x593E;&#x5E95;&#x4E0B;&#x7684; filebeat.yml &#x6A94;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8490;&#x96C6;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x8DEF;&#x5F91;&#x4EE5;&#x81EA;&#x5DF1;&#x672C;&#x6A5F; log &#x653E;&#x7F6E;&#x4F4D;&#x7F6E;&#x70BA;&#x4E3B;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x7B2C;183&#x884C;&#x7684;-env-&#x7684;&#x503C;&#xFF0C;&#x8ACB;&#x4FEE;&#x6539;&#x70BA;&#x5C46;&#x6642;&#x8981;&#x5728;-Kibana-Fields-&#x7684;&#x540D;&#x7A31;"><a href="#&#x7B2C;183&#x884C;&#x7684;-env-&#x7684;&#x503C;&#xFF0C;&#x8ACB;&#x4FEE;&#x6539;&#x70BA;&#x5C46;&#x6642;&#x8981;&#x5728;-Kibana-Fields-&#x7684;&#x540D;&#x7A31;" class="headerlink" title="&#x7B2C;183&#x884C;&#x7684; env &#x7684;&#x503C;&#xFF0C;&#x8ACB;&#x4FEE;&#x6539;&#x70BA;&#x5C46;&#x6642;&#x8981;&#x5728; Kibana Fields &#x7684;&#x540D;&#x7A31;"></a>&#x7B2C;183&#x884C;&#x7684; env &#x7684;&#x503C;&#xFF0C;&#x8ACB;&#x4FEE;&#x6539;&#x70BA;&#x5C46;&#x6642;&#x8981;&#x5728; Kibana Fields &#x7684;&#x540D;&#x7A31;</h4><h4 id="&#x7B2C;198&#x884C;&#x8ACB;&#x8F38;&#x5165;-ELK-&#x6A5F;&#x5668;&#x7684;&#x5167;&#x7DB2;-IP"><a href="#&#x7B2C;198&#x884C;&#x8ACB;&#x8F38;&#x5165;-ELK-&#x6A5F;&#x5668;&#x7684;&#x5167;&#x7DB2;-IP" class="headerlink" title="&#x7B2C;198&#x884C;&#x8ACB;&#x8F38;&#x5165; ELK &#x6A5F;&#x5668;&#x7684;&#x5167;&#x7DB2; IP"></a>&#x7B2C;198&#x884C;&#x8ACB;&#x8F38;&#x5165; ELK &#x6A5F;&#x5668;&#x7684;&#x5167;&#x7DB2; IP</h4><h4 id="&#x7B2C;206&#x884C;&#x7684;-key-&#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC;-Logstash-conf-&#x5167;-input-&#x5E95;&#x4E0B;-key-&#x503C;"><a href="#&#x7B2C;206&#x884C;&#x7684;-key-&#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC;-Logstash-conf-&#x5167;-input-&#x5E95;&#x4E0B;-key-&#x503C;" class="headerlink" title="&#x7B2C;206&#x884C;&#x7684; key &#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC; Logstash.conf &#x5167; input &#x5E95;&#x4E0B; key &#x503C;"></a>&#x7B2C;206&#x884C;&#x7684; key &#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC; Logstash.conf &#x5167; input &#x5E95;&#x4E0B; key &#x503C;</h4><h4 id="&#x7B2C;357&#x884C;&#x7684;-password-&#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC;-Logstash-conf-&#x5167;-input-&#x5E95;&#x4E0B;&#x7684;-password-&#x503C;"><a href="#&#x7B2C;357&#x884C;&#x7684;-password-&#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC;-Logstash-conf-&#x5167;-input-&#x5E95;&#x4E0B;&#x7684;-password-&#x503C;" class="headerlink" title="&#x7B2C;357&#x884C;&#x7684; password &#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC; Logstash.conf &#x5167; input &#x5E95;&#x4E0B;&#x7684; password &#x503C;"></a>&#x7B2C;357&#x884C;&#x7684; password &#x503C;&#xFF0C;&#x8ACB;&#x8F38;&#x5165;&#x76F8;&#x540C;&#x65BC; Logstash.conf &#x5167; input &#x5E95;&#x4E0B;&#x7684; password &#x503C;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x958B;&#x555F;-Windows-Power-Shell&#xFF0C;&#x8F38;&#x5165;&#x6307;&#x4EE4;&#x57F7;&#x884C;&#x5B89;&#x88DD;-filebeat-&#x670D;&#x52D9;&#xFF0C;&#x4E26;&#x555F;&#x52D5;&#x670D;&#x52D9;"><a href="#&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x958B;&#x555F;-Windows-Power-Shell&#xFF0C;&#x8F38;&#x5165;&#x6307;&#x4EE4;&#x57F7;&#x884C;&#x5B89;&#x88DD;-filebeat-&#x670D;&#x52D9;&#xFF0C;&#x4E26;&#x555F;&#x52D5;&#x670D;&#x52D9;" class="headerlink" title="&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x958B;&#x555F; Windows Power Shell&#xFF0C;&#x8F38;&#x5165;&#x6307;&#x4EE4;&#x57F7;&#x884C;&#x5B89;&#x88DD; filebeat &#x670D;&#x52D9;&#xFF0C;&#x4E26;&#x555F;&#x52D5;&#x670D;&#x52D9;"></a>&#x4EE5;&#x7CFB;&#x7D71;&#x7BA1;&#x7406;&#x54E1;&#x958B;&#x555F; Windows Power Shell&#xFF0C;&#x8F38;&#x5165;&#x6307;&#x4EE4;&#x57F7;&#x884C;&#x5B89;&#x88DD; filebeat &#x670D;&#x52D9;&#xFF0C;&#x4E26;&#x555F;&#x52D5;&#x670D;&#x52D9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line"></span><br><span class="line">cd .\service\filebeat-5.6.7-windows-x86_64 ( &#x6A94;&#x6848;&#x8DEF;&#x5F91; )  </span><br><span class="line"></span><br><span class="line">.\install-service-filebeat.ps1</span><br><span class="line"></span><br><span class="line">net start filebeat</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x5230;-windows-&#x670D;&#x52D9;&#x53BB;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x555F;&#x52D5;"><a href="#&#x5230;-windows-&#x670D;&#x52D9;&#x53BB;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x555F;&#x52D5;" class="headerlink" title="&#x5230; windows &#x670D;&#x52D9;&#x53BB;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x555F;&#x52D5;"></a>&#x5230; windows &#x670D;&#x52D9;&#x53BB;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x555F;&#x52D5;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x56DE;&#x5230;-ELK-&#x4E0B;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x770B;&#x5230;-index"><a href="#&#x56DE;&#x5230;-ELK-&#x4E0B;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x770B;&#x5230;-index" class="headerlink" title="&#x56DE;&#x5230; ELK &#x4E0B;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x770B;&#x5230; index"></a>&#x56DE;&#x5230; ELK &#x4E0B;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x770B;&#x5230; index</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET http://127.0.0.1:9200/_cat/indices?v</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x958B;&#x555F;-web-&#x8F38;&#x5165;-elk-&#x6A5F;&#x5668;&#x5916;&#x7DB2;-IP-&#x9032;&#x5165;-elk"><a href="#&#x958B;&#x555F;-web-&#x8F38;&#x5165;-elk-&#x6A5F;&#x5668;&#x5916;&#x7DB2;-IP-&#x9032;&#x5165;-elk" class="headerlink" title="&#x958B;&#x555F; web &#x8F38;&#x5165; elk &#x6A5F;&#x5668;&#x5916;&#x7DB2; IP &#x9032;&#x5165; elk"></a>&#x958B;&#x555F; web &#x8F38;&#x5165; elk &#x6A5F;&#x5668;&#x5916;&#x7DB2; IP &#x9032;&#x5165; elk</h4><h4 id="&#x9032;&#x5165;-kibana-&#x756B;&#x9762;"><a href="#&#x9032;&#x5165;-kibana-&#x756B;&#x9762;" class="headerlink" title="&#x9032;&#x5165; kibana &#x756B;&#x9762;"></a>&#x9032;&#x5165; kibana &#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x8F38;&#x5165;&#x525B;&#x525B;&#x5728;-elk-&#x770B;&#x5230;&#x7684;-index"><a href="#&#x8F38;&#x5165;&#x525B;&#x525B;&#x5728;-elk-&#x770B;&#x5230;&#x7684;-index" class="headerlink" title="&#x8F38;&#x5165;&#x525B;&#x525B;&#x5728; elk &#x770B;&#x5230;&#x7684; index"></a>&#x8F38;&#x5165;&#x525B;&#x525B;&#x5728; elk &#x770B;&#x5230;&#x7684; index</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x9EDE;&#x64CA;&#x5DE6;&#x908A;-discover-&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x532F;&#x5165;&#x7684;-log-&#x4E86;"><a href="#&#x9EDE;&#x64CA;&#x5DE6;&#x908A;-discover-&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x532F;&#x5165;&#x7684;-log-&#x4E86;" class="headerlink" title="&#x9EDE;&#x64CA;&#x5DE6;&#x908A; discover &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x532F;&#x5165;&#x7684; log &#x4E86;"></a>&#x9EDE;&#x64CA;&#x5DE6;&#x908A; discover &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x532F;&#x5165;&#x7684; log &#x4E86;</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-07-26T08:13:07.000Z" itemprop="datePublished">2018-07-26</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/08/01/elasticsearch-log刪除/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    elasticsearch-log刪除
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/07/26/ELK建立/" class="ui tiny button">
+                    
+                    ELK建立
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本章將介紹使用-filebeat-將-log-丟進-elk"><span>本章將介紹使用 filebeat 將 log 丟進 elk</span></a><ol><li><a href="#filebeat-下載：https-www-elastic-co-downloads-beats-filebeat"><span>filebeat 下載：https://www.elastic.co/downloads/beats/filebeat</span></a></li><li><a href="#PS：filebeat-盡量跟-elk-同版本"><span>PS：filebeat 盡量跟 elk 同版本</span></a></li><li><a href="#解壓縮-filebeat-到你要的路徑下"><span>解壓縮 filebeat 到你要的路徑下</span></a></li><li><a href="#開啟-filebeat-資料夾底下的-filebeat-yml-檔，可以看到蒐集器的設定，路徑以自己本機-log-放置位置為主"><span>開啟 filebeat 資料夾底下的 filebeat.yml 檔，可以看到蒐集器的設定，路徑以自己本機 log 放置位置為主</span></a></li><li><a href="#第183行的-env-的值，請修改為屆時要在-Kibana-Fields-的名稱"><span>第183行的 env 的值，請修改為屆時要在 Kibana Fields 的名稱</span></a></li><li><a href="#第198行請輸入-ELK-機器的內網-IP"><span>第198行請輸入 ELK 機器的內網 IP</span></a></li><li><a href="#第206行的-key-值，請輸入相同於-Logstash-conf-內-input-底下-key-值"><span>第206行的 key 值，請輸入相同於 Logstash.conf 內 input 底下 key 值</span></a></li><li><a href="#第357行的-password-值，請輸入相同於-Logstash-conf-內-input-底下的-password-值"><span>第357行的 password 值，請輸入相同於 Logstash.conf 內 input 底下的 password 值</span></a></li><li><a href="#以系統管理員開啟-Windows-Power-Shell，輸入指令執行安裝-filebeat-服務，並啟動服務"><span>以系統管理員開啟 Windows Power Shell，輸入指令執行安裝 filebeat 服務，並啟動服務</span></a></li><li><a href="#到-windows-服務去檢查是否啟動"><span>到 windows 服務去檢查是否啟動</span></a></li><li><a href="#回到-ELK-下指令可以看到-index"><span>回到 ELK 下指令可以看到 index</span></a></li><li><a href="#開啟-web-輸入-elk-機器外網-IP-進入-elk"><span>開啟 web 輸入 elk 機器外網 IP 進入 elk</span></a></li><li><a href="#進入-kibana-畫面"><span>進入 kibana 畫面</span></a></li><li><a href="#輸入剛剛在-elk-看到的-index"><span>輸入剛剛在 elk 看到的 index</span></a></li><li><a href="#點擊左邊-discover-就可以看到匯入的-log-了"><span>點擊左邊 discover 就可以看到匯入的 log 了</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
