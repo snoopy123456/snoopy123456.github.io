@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>linux終端機管理tmux | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4; tmux &amp;#x7D42;&amp;#x7AEF;&amp;#x6A5F;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;&amp;#xFF0C;&amp;#x5206;&amp;#x5272;&amp;#x8996;&amp;#x7A97;&amp;#x3001;&amp;#x540C;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux終端機管理tmux">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4; tmux &amp;#x7D42;&amp;#x7AEF;&amp;#x6A5F;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;&amp;#xFF0C;&amp;#x5206;&amp;#x5272;&amp;#x8996;&amp;#x7A97;&amp;#x3001;&amp;#x540C;&amp;#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/11.png">
+<meta property="og:updated_time" content="2020-04-28T07:45:40.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux終端機管理tmux">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4; tmux &amp;#x7D42;&amp;#x7AEF;&amp;#x6A5F;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;&amp;#xFF0C;&amp;#x5206;&amp;#x5272;&amp;#x8996;&amp;#x7A97;&amp;#x3001;&amp;#x540C;&amp;#">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-linux終端機管理tmux" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    linux終端機管理tmux
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;&#x6307;&#x4EE4;-tmux-&#x7D42;&#x7AEF;&#x6A5F;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x5206;&#x5272;&#x8996;&#x7A97;&#x3001;&#x540C;&#x6642;&#x958B;&#x555F;&#x591A;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;&#x6307;&#x4EE4;-tmux-&#x7D42;&#x7AEF;&#x6A5F;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x5206;&#x5272;&#x8996;&#x7A97;&#x3001;&#x540C;&#x6642;&#x958B;&#x555F;&#x591A;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;&#x6307;&#x4EE4; tmux &#x7D42;&#x7AEF;&#x6A5F;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x5206;&#x5272;&#x8996;&#x7A97;&#x3001;&#x540C;&#x6642;&#x958B;&#x555F;&#x591A;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;&#x6307;&#x4EE4; tmux &#x7D42;&#x7AEF;&#x6A5F;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x5206;&#x5272;&#x8996;&#x7A97;&#x3001;&#x540C;&#x6642;&#x958B;&#x555F;&#x591A;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;</h3><h4 id="&#x5B89;&#x88DD;-tmux"><a href="#&#x5B89;&#x88DD;-tmux" class="headerlink" title="&#x5B89;&#x88DD; tmux"></a>&#x5B89;&#x88DD; tmux</h4><h4 id="ubuntu-16-04-&#x9810;&#x8A2D;&#x6709;&#x5B89;&#x88DD;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x6B64;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x8DF3;&#x904E;&#x5B89;&#x88DD;"><a href="#ubuntu-16-04-&#x9810;&#x8A2D;&#x6709;&#x5B89;&#x88DD;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x6B64;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x8DF3;&#x904E;&#x5B89;&#x88DD;" class="headerlink" title="ubuntu 16.04 &#x9810;&#x8A2D;&#x6709;&#x5B89;&#x88DD;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x6B64;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x8DF3;&#x904E;&#x5B89;&#x88DD;"></a>ubuntu 16.04 &#x9810;&#x8A2D;&#x6709;&#x5B89;&#x88DD;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x6B64;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x8DF3;&#x904E;&#x5B89;&#x88DD;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y tmux</span><br></pre></td></tr></table></figure>
+<h4 id="&#x4E0B;&#x6307;&#x4EE4;&#x9032;&#x5165;-tmux-&#x74B0;&#x5883;"><a href="#&#x4E0B;&#x6307;&#x4EE4;&#x9032;&#x5165;-tmux-&#x74B0;&#x5883;" class="headerlink" title="&#x4E0B;&#x6307;&#x4EE4;&#x9032;&#x5165; tmux &#x74B0;&#x5883;"></a>&#x4E0B;&#x6307;&#x4EE4;&#x9032;&#x5165; tmux &#x74B0;&#x5883;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x57FA;&#x672C;&#x4ECB;&#x7D39;&#xFF1A;"><a href="#&#x57FA;&#x672C;&#x4ECB;&#x7D39;&#xFF1A;" class="headerlink" title="&#x57FA;&#x672C;&#x4ECB;&#x7D39;&#xFF1A;"></a>&#x57FA;&#x672C;&#x4ECB;&#x7D39;&#xFF1A;</h4><h4 id="&#x7576;&#x6211;&#x5011;&#x57F7;&#x884C;-tmux-&#x6307;&#x4EE4;&#x6642;&#xFF0C;&#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;-session&#xFF0C;&#x5728;&#x4E00;&#x500B;-session-&#x4E2D;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x591A;&#x500B;-windows&#xFF0C;&#x800C;&#x6BCF;&#x500B;-window-&#x53C8;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B;-panes&#xFF0C;&#x5728;&#x4E0B;&#x65B9;&#x7684;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6703;&#x986F;&#x793A;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684;-session-&#x8207;-window-&#x7DE8;&#x865F;"><a href="#&#x7576;&#x6211;&#x5011;&#x57F7;&#x884C;-tmux-&#x6307;&#x4EE4;&#x6642;&#xFF0C;&#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;-session&#xFF0C;&#x5728;&#x4E00;&#x500B;-session-&#x4E2D;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x591A;&#x500B;-windows&#xFF0C;&#x800C;&#x6BCF;&#x500B;-window-&#x53C8;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B;-panes&#xFF0C;&#x5728;&#x4E0B;&#x65B9;&#x7684;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6703;&#x986F;&#x793A;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684;-session-&#x8207;-window-&#x7DE8;&#x865F;" class="headerlink" title="&#x7576;&#x6211;&#x5011;&#x57F7;&#x884C; tmux &#x6307;&#x4EE4;&#x6642;&#xFF0C;&#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684; session&#xFF0C;&#x5728;&#x4E00;&#x500B; session &#x4E2D;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x591A;&#x500B; windows&#xFF0C;&#x800C;&#x6BCF;&#x500B; window &#x53C8;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B; panes&#xFF0C;&#x5728;&#x4E0B;&#x65B9;&#x7684;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6703;&#x986F;&#x793A;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684; session &#x8207; window &#x7DE8;&#x865F;"></a>&#x7576;&#x6211;&#x5011;&#x57F7;&#x884C; tmux &#x6307;&#x4EE4;&#x6642;&#xFF0C;&#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684; session&#xFF0C;&#x5728;&#x4E00;&#x500B; session &#x4E2D;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x591A;&#x500B; windows&#xFF0C;&#x800C;&#x6BCF;&#x500B; window &#x53C8;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B; panes&#xFF0C;&#x5728;&#x4E0B;&#x65B9;&#x7684;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6703;&#x986F;&#x793A;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684; session &#x8207; window &#x7DE8;&#x865F;</h4><h4 id="&#x5728;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6700;&#x5DE6;&#x5074;&#x7684;&#x7DE8;&#x865F;&#x662F;&#x76EE;&#x524D;&#x7684;-session-&#x7DE8;&#x865F;&#xFF0C;&#x63A5;&#x8457;&#x662F;&#x76EE;&#x524D;-session-&#x4E4B;&#x4E2D;&#x6240;&#x6709;&#x7684;-windows-&#x7DE8;&#x865F;&#x4EE5;&#x53CA;&#x6B63;&#x5728;&#x57F7;&#x884C;&#x7684;&#x7A0B;&#x5F0F;&#x540D;&#x7A31;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684;-windows-&#x6703;&#x4EE5;&#x661F;&#x865F;&#xFF08;-&#xFF09;&#x6A19;&#x793A;&#xFF0C;&#x4EE5;&#x9019;&#x500B;&#x4F8B;&#x5B50;&#x4F86;&#x8AAA;&#x76EE;&#x524D;&#x5C31;&#x662F;&#x8655;&#x65BC;&#x7DE8;&#x865F;-2-&#x7684;-window-&#x4E2D;"><a href="#&#x5728;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6700;&#x5DE6;&#x5074;&#x7684;&#x7DE8;&#x865F;&#x662F;&#x76EE;&#x524D;&#x7684;-session-&#x7DE8;&#x865F;&#xFF0C;&#x63A5;&#x8457;&#x662F;&#x76EE;&#x524D;-session-&#x4E4B;&#x4E2D;&#x6240;&#x6709;&#x7684;-windows-&#x7DE8;&#x865F;&#x4EE5;&#x53CA;&#x6B63;&#x5728;&#x57F7;&#x884C;&#x7684;&#x7A0B;&#x5F0F;&#x540D;&#x7A31;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684;-windows-&#x6703;&#x4EE5;&#x661F;&#x865F;&#xFF08;-&#xFF09;&#x6A19;&#x793A;&#xFF0C;&#x4EE5;&#x9019;&#x500B;&#x4F8B;&#x5B50;&#x4F86;&#x8AAA;&#x76EE;&#x524D;&#x5C31;&#x662F;&#x8655;&#x65BC;&#x7DE8;&#x865F;-2-&#x7684;-window-&#x4E2D;" class="headerlink" title="&#x5728;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6700;&#x5DE6;&#x5074;&#x7684;&#x7DE8;&#x865F;&#x662F;&#x76EE;&#x524D;&#x7684; session &#x7DE8;&#x865F;&#xFF0C;&#x63A5;&#x8457;&#x662F;&#x76EE;&#x524D; session &#x4E4B;&#x4E2D;&#x6240;&#x6709;&#x7684; windows &#x7DE8;&#x865F;&#x4EE5;&#x53CA;&#x6B63;&#x5728;&#x57F7;&#x884C;&#x7684;&#x7A0B;&#x5F0F;&#x540D;&#x7A31;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684; windows &#x6703;&#x4EE5;&#x661F;&#x865F;&#xFF08;*&#xFF09;&#x6A19;&#x793A;&#xFF0C;&#x4EE5;&#x9019;&#x500B;&#x4F8B;&#x5B50;&#x4F86;&#x8AAA;&#x76EE;&#x524D;&#x5C31;&#x662F;&#x8655;&#x65BC;&#x7DE8;&#x865F; 2 &#x7684; window &#x4E2D;"></a>&#x5728;&#x72C0;&#x614B;&#x5217;&#x4E2D;&#x6700;&#x5DE6;&#x5074;&#x7684;&#x7DE8;&#x865F;&#x662F;&#x76EE;&#x524D;&#x7684; session &#x7DE8;&#x865F;&#xFF0C;&#x63A5;&#x8457;&#x662F;&#x76EE;&#x524D; session &#x4E4B;&#x4E2D;&#x6240;&#x6709;&#x7684; windows &#x7DE8;&#x865F;&#x4EE5;&#x53CA;&#x6B63;&#x5728;&#x57F7;&#x884C;&#x7684;&#x7A0B;&#x5F0F;&#x540D;&#x7A31;&#xFF0C;&#x76EE;&#x524D;&#x6240;&#x8655;&#x7684; windows &#x6703;&#x4EE5;&#x661F;&#x865F;&#xFF08;*&#xFF09;&#x6A19;&#x793A;&#xFF0C;&#x4EE5;&#x9019;&#x500B;&#x4F8B;&#x5B50;&#x4F86;&#x8AAA;&#x76EE;&#x524D;&#x5C31;&#x662F;&#x8655;&#x65BC;&#x7DE8;&#x865F; 2 &#x7684; window &#x4E2D;</h4><h4 id="&#x6BCF;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;&#x90FD;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B;-panes&#xFF0C;&#x6BCF;&#x4E00;&#x500B;-pane-&#x90FD;&#x662F;&#x5404;&#x81EA;&#x7368;&#x7ACB;&#x7684;-shell&#xFF0C;&#x53EF;&#x4EE5;&#x500B;&#x5225;&#x9032;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x4E00;&#x908A;&#x4F7F;&#x7528;-Vim-&#x5BEB;&#x7A0B;&#x5F0F;&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x908A;&#x5728;-shell-&#x4E2D;&#x7DE8;&#x8B6F;&#x3001;&#x57F7;&#x884C;&#x7A0B;&#x5F0F;&#x7B49;"><a href="#&#x6BCF;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;&#x90FD;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B;-panes&#xFF0C;&#x6BCF;&#x4E00;&#x500B;-pane-&#x90FD;&#x662F;&#x5404;&#x81EA;&#x7368;&#x7ACB;&#x7684;-shell&#xFF0C;&#x53EF;&#x4EE5;&#x500B;&#x5225;&#x9032;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x4E00;&#x908A;&#x4F7F;&#x7528;-Vim-&#x5BEB;&#x7A0B;&#x5F0F;&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x908A;&#x5728;-shell-&#x4E2D;&#x7DE8;&#x8B6F;&#x3001;&#x57F7;&#x884C;&#x7A0B;&#x5F0F;&#x7B49;" class="headerlink" title="&#x6BCF;&#x4E00;&#x500B; window &#x8996;&#x7A97;&#x90FD;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B; panes&#xFF0C;&#x6BCF;&#x4E00;&#x500B; pane &#x90FD;&#x662F;&#x5404;&#x81EA;&#x7368;&#x7ACB;&#x7684; shell&#xFF0C;&#x53EF;&#x4EE5;&#x500B;&#x5225;&#x9032;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x4E00;&#x908A;&#x4F7F;&#x7528; Vim &#x5BEB;&#x7A0B;&#x5F0F;&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x908A;&#x5728; shell &#x4E2D;&#x7DE8;&#x8B6F;&#x3001;&#x57F7;&#x884C;&#x7A0B;&#x5F0F;&#x7B49;"></a>&#x6BCF;&#x4E00;&#x500B; window &#x8996;&#x7A97;&#x90FD;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B; panes&#xFF0C;&#x6BCF;&#x4E00;&#x500B; pane &#x90FD;&#x662F;&#x5404;&#x81EA;&#x7368;&#x7ACB;&#x7684; shell&#xFF0C;&#x53EF;&#x4EE5;&#x500B;&#x5225;&#x9032;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x4E00;&#x908A;&#x4F7F;&#x7528; Vim &#x5BEB;&#x7A0B;&#x5F0F;&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x908A;&#x5728; shell &#x4E2D;&#x7DE8;&#x8B6F;&#x3001;&#x57F7;&#x884C;&#x7A0B;&#x5F0F;&#x7B49;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x5206;&#x5272;&#x8996;&#x7A97;-Panes-&#xFF1A;"><a href="#&#x5206;&#x5272;&#x8996;&#x7A97;-Panes-&#xFF1A;" class="headerlink" title="&#x5206;&#x5272;&#x8996;&#x7A97; ( Panes )&#xFF1A;"></a>&#x5206;&#x5272;&#x8996;&#x7A97; ( Panes )&#xFF1A;</h4><h4 id="&#x5728;-tmux-&#x7684;&#x74B0;&#x5883;&#x4E2D;&#xFF0C;&#x82E5;&#x60F3;&#x8981;&#x5C07;-window-&#x8996;&#x7A97;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B;-pane&#xFF0C;&#x4E26;&#x7BA1;&#x7406;&#x5EFA;&#x7ACB;&#x7684;-panes&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#x7D44;&#x5408;&#x9375;&#xFF1A;"><a href="#&#x5728;-tmux-&#x7684;&#x74B0;&#x5883;&#x4E2D;&#xFF0C;&#x82E5;&#x60F3;&#x8981;&#x5C07;-window-&#x8996;&#x7A97;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B;-pane&#xFF0C;&#x4E26;&#x7BA1;&#x7406;&#x5EFA;&#x7ACB;&#x7684;-panes&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#x7D44;&#x5408;&#x9375;&#xFF1A;" class="headerlink" title="&#x5728; tmux &#x7684;&#x74B0;&#x5883;&#x4E2D;&#xFF0C;&#x82E5;&#x60F3;&#x8981;&#x5C07; window &#x8996;&#x7A97;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B; pane&#xFF0C;&#x4E26;&#x7BA1;&#x7406;&#x5EFA;&#x7ACB;&#x7684; panes&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#x7D44;&#x5408;&#x9375;&#xFF1A;"></a>&#x5728; tmux &#x7684;&#x74B0;&#x5883;&#x4E2D;&#xFF0C;&#x82E5;&#x60F3;&#x8981;&#x5C07; window &#x8996;&#x7A97;&#x5206;&#x5272;&#x6210;&#x591A;&#x500B; pane&#xFF0C;&#x4E26;&#x7BA1;&#x7406;&#x5EFA;&#x7ACB;&#x7684; panes&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#x7D44;&#x5408;&#x9375;&#xFF1A;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5782;&#x76F4;&#x5206;&#x5272;&#x8996;&#x7A97;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5782;&#x76F4;&#x5206;&#x5272;&#x8996;&#x7A97;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; % &#xFF0C;&#x5782;&#x76F4;&#x5206;&#x5272;&#x8996;&#x7A97;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; % &#xFF0C;&#x5782;&#x76F4;&#x5206;&#x5272;&#x8996;&#x7A97;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x201C;-&#xFF0C;&#x6C34;&#x5E73;&#x5206;&#x5272;&#x8996;&#x7A97;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x201C;-&#xFF0C;&#x6C34;&#x5E73;&#x5206;&#x5272;&#x8996;&#x7A97;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; &#x201C; &#xFF0C;&#x6C34;&#x5E73;&#x5206;&#x5272;&#x8996;&#x7A97;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; &#x201C; &#xFF0C;&#x6C34;&#x5E73;&#x5206;&#x5272;&#x8996;&#x7A97;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
+<h4 id="PS&#xFF1A;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x518D;&#x5206;&#x5272;"><a href="#PS&#xFF1A;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x518D;&#x5206;&#x5272;" class="headerlink" title="PS&#xFF1A;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x518D;&#x5206;&#x5272;"></a>PS&#xFF1A;&#x53EF;&#x4EE5;&#x5206;&#x5272;&#x518D;&#x5206;&#x5272;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-o-&#xFF0C;&#x4EE5;&#x8F2A;&#x6D41;&#x65B9;&#x5F0F;&#x8F2A;&#x6D41;&#x5207;&#x63DB;-pane"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-o-&#xFF0C;&#x4EE5;&#x8F2A;&#x6D41;&#x65B9;&#x5F0F;&#x8F2A;&#x6D41;&#x5207;&#x63DB;-pane" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; o &#xFF0C;&#x4EE5;&#x8F2A;&#x6D41;&#x65B9;&#x5F0F;&#x8F2A;&#x6D41;&#x5207;&#x63DB; pane"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; o &#xFF0C;&#x4EE5;&#x8F2A;&#x6D41;&#x65B9;&#x5F0F;&#x8F2A;&#x6D41;&#x5207;&#x63DB; pane</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x65B9;&#x5411;&#x9375;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x65B9;&#x5411;&#x7684;-pane"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x65B9;&#x5411;&#x9375;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x65B9;&#x5411;&#x7684;-pane" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; &#x65B9;&#x5411;&#x9375; &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x65B9;&#x5411;&#x7684; pane"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; &#x65B9;&#x5411;&#x9375; &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x65B9;&#x5411;&#x7684; pane</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x7A7A;&#x767D;&#x9375;-&#xFF0C;&#x5207;&#x63DB;&#x4F48;&#x5C40;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x7A7A;&#x767D;&#x9375;-&#xFF0C;&#x5207;&#x63DB;&#x4F48;&#x5C40;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; &#x7A7A;&#x767D;&#x9375; &#xFF0C;&#x5207;&#x63DB;&#x4F48;&#x5C40;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; &#x7A7A;&#x767D;&#x9375; &#xFF0C;&#x5207;&#x63DB;&#x4F48;&#x5C40;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5C07;&#x76EE;&#x524D;&#x7684;-pane-&#x62BD;&#x51FA;&#x4F86;&#xFF0C;&#x7368;&#x7ACB;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5C07;&#x76EE;&#x524D;&#x7684;-pane-&#x62BD;&#x51FA;&#x4F86;&#xFF0C;&#x7368;&#x7ACB;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; ! &#xFF0C;&#x5C07;&#x76EE;&#x524D;&#x7684; pane &#x62BD;&#x51FA;&#x4F86;&#xFF0C;&#x7368;&#x7ACB;&#x5EFA;&#x7ACB;&#x4E00;&#x500B; window &#x8996;&#x7A97;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; ! &#xFF0C;&#x5C07;&#x76EE;&#x524D;&#x7684; pane &#x62BD;&#x51FA;&#x4F86;&#xFF0C;&#x7368;&#x7ACB;&#x5EFA;&#x7ACB;&#x4E00;&#x500B; window &#x8996;&#x7A97;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-x-&#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684;-pane"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-x-&#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684;-pane" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; x &#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684; pane"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; x &#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684; pane</h4><h4 id="Windows&#xFF1A;"><a href="#Windows&#xFF1A;" class="headerlink" title="Windows&#xFF1A;"></a>Windows&#xFF1A;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-c-&#xFF0C;&#x5EFA;&#x7ACB;&#x65B0;-window-&#x8996;&#x7A97;&#xFF08;create&#xFF09;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-c-&#xFF0C;&#x5EFA;&#x7ACB;&#x65B0;-window-&#x8996;&#x7A97;&#xFF08;create&#xFF09;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; c &#xFF0C;&#x5EFA;&#x7ACB;&#x65B0; window &#x8996;&#x7A97;&#xFF08;create&#xFF09;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; c &#xFF0C;&#x5EFA;&#x7ACB;&#x65B0; window &#x8996;&#x7A97;&#xFF08;create&#xFF09;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-w-&#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB;-window-&#x8996;&#x7A97;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-w-&#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB;-window-&#x8996;&#x7A97;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; w &#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB; window &#x8996;&#x7A97;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; w &#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB; window &#x8996;&#x7A97;</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x6578;&#x5B57;&#x9375;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x7684;-window-&#x8996;&#x7A97;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#x6578;&#x5B57;&#x9375;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x7684;-window-&#x8996;&#x7A97;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; &#x6578;&#x5B57;&#x9375; &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x7684; window &#x8996;&#x7A97;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; &#x6578;&#x5B57;&#x9375; &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x6307;&#x5B9A;&#x7684; window &#x8996;&#x7A97;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-n-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;&#xFF08;next&#xFF09;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-n-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;&#xFF08;next&#xFF09;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; n &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B; window &#x8996;&#x7A97;&#xFF08;next&#xFF09;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; n &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B; window &#x8996;&#x7A97;&#xFF08;next&#xFF09;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-p-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;&#xFF08;previous&#xFF09;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-p-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;-window-&#x8996;&#x7A97;&#xFF08;previous&#xFF09;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; p &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B; window &#x8996;&#x7A97;&#xFF08;previous&#xFF09;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; p &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B; window &#x8996;&#x7A97;&#xFF08;previous&#xFF09;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-amp-&#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684;-window-&#x8996;&#x7A97;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-amp-&#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684;-window-&#x8996;&#x7A97;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; &amp; &#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684; window &#x8996;&#x7A97;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; &amp; &#xFF0C;&#x95DC;&#x9589;&#x76EE;&#x524D;&#x7684; window &#x8996;&#x7A97;</h4><h4 id="Sessions&#xFF1A;"><a href="#Sessions&#xFF1A;" class="headerlink" title="Sessions&#xFF1A;"></a>Sessions&#xFF1A;</h4><h4 id="&#x6BCF;&#x57F7;&#x884C;&#x4E00;&#x500B;-tmux-&#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;-session&#xFF0C;&#x82E5;&#x8981;&#x5217;&#x51FA;&#x76EE;&#x524D;&#x6240;&#x6709;&#x7684;-sessions&#xFF0C;&#x4E0B;&#x6307;&#x4EE4;"><a href="#&#x6BCF;&#x57F7;&#x884C;&#x4E00;&#x500B;-tmux-&#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;-session&#xFF0C;&#x82E5;&#x8981;&#x5217;&#x51FA;&#x76EE;&#x524D;&#x6240;&#x6709;&#x7684;-sessions&#xFF0C;&#x4E0B;&#x6307;&#x4EE4;" class="headerlink" title="&#x6BCF;&#x57F7;&#x884C;&#x4E00;&#x500B; tmux &#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B; session&#xFF0C;&#x82E5;&#x8981;&#x5217;&#x51FA;&#x76EE;&#x524D;&#x6240;&#x6709;&#x7684; sessions&#xFF0C;&#x4E0B;&#x6307;&#x4EE4;"></a>&#x6BCF;&#x57F7;&#x884C;&#x4E00;&#x500B; tmux &#x5C31;&#x6703;&#x5EFA;&#x7ACB;&#x4E00;&#x500B; session&#xFF0C;&#x82E5;&#x8981;&#x5217;&#x51FA;&#x76EE;&#x524D;&#x6240;&#x6709;&#x7684; sessions&#xFF0C;&#x4E0B;&#x6307;&#x4EE4;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux ls</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
+<h4 id="&#x82E5;&#x8981;&#x7E7C;&#x7E8C;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684;-session&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-attach-&#x4E26;&#x6307;&#x5B9A;&#x8981;&#x7E8C;&#x7528;&#x7684;-session-&#x7DE8;&#x865F;"><a href="#&#x82E5;&#x8981;&#x7E7C;&#x7E8C;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684;-session&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-attach-&#x4E26;&#x6307;&#x5B9A;&#x8981;&#x7E8C;&#x7528;&#x7684;-session-&#x7DE8;&#x865F;" class="headerlink" title="&#x82E5;&#x8981;&#x7E7C;&#x7E8C;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684; session&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; attach &#x4E26;&#x6307;&#x5B9A;&#x8981;&#x7E8C;&#x7528;&#x7684; session &#x7DE8;&#x865F;"></a>&#x82E5;&#x8981;&#x7E7C;&#x7E8C;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7684; session&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; attach &#x4E26;&#x6307;&#x5B9A;&#x8981;&#x7E8C;&#x7528;&#x7684; session &#x7DE8;&#x865F;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux attach -t 0</span><br></pre></td></tr></table></figure>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x91CD;&#x65B0;&#x547D;&#x540D;&#x76EE;&#x524D;&#x7684;-session"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x91CD;&#x65B0;&#x547D;&#x540D;&#x76EE;&#x524D;&#x7684;-session" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; $ &#xFF0C;&#x91CD;&#x65B0;&#x547D;&#x540D;&#x76EE;&#x524D;&#x7684; session"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; $ &#xFF0C;&#x91CD;&#x65B0;&#x547D;&#x540D;&#x76EE;&#x524D;&#x7684; session</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-d-&#xFF0C;&#x96E2;&#x958B;-tmux-&#x74B0;&#x5883;&#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C;"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-d-&#xFF0C;&#x96E2;&#x958B;-tmux-&#x74B0;&#x5883;&#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C;" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; d &#xFF0C;&#x96E2;&#x958B; tmux &#x74B0;&#x5883;&#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C;"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; d &#xFF0C;&#x96E2;&#x958B; tmux &#x74B0;&#x5883;&#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C;</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-s-&#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB;-session"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-s-&#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB;-session" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; s &#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB; session"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; s &#xFF0C;&#x4EE5;&#x8996;&#x89BA;&#x5316;&#x9078;&#x55AE;&#x5207;&#x63DB; session</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
+<h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-L-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;&#x4F7F;&#x7528;&#x904E;&#x7684;-session"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-L-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;&#x4F7F;&#x7528;&#x904E;&#x7684;-session" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; L &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;&#x4F7F;&#x7528;&#x904E;&#x7684; session"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; L &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;&#x4F7F;&#x7528;&#x904E;&#x7684; session</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;-session"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B;-session" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; ( &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B; session"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; ( &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0A;&#x4E00;&#x500B; session</h4><h4 id="Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B;-session"><a href="#Ctrl-b-&#x518D;&#x8F38;&#x5165;-&#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B;-session" class="headerlink" title="Ctrl+b &#x518D;&#x8F38;&#x5165; ) &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B; session"></a>Ctrl+b &#x518D;&#x8F38;&#x5165; ) &#xFF0C;&#x5207;&#x63DB;&#x81F3;&#x4E0B;&#x4E00;&#x500B; session</h4><h4 id="tmux-&#x9084;&#x6709;&#x5F88;&#x591A;&#x9032;&#x968E;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x8A73;&#x7D30;&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x53C3;&#x8003;-tmux-&#x7684;&#x7DDA;&#x4E0A;&#x624B;&#x518A;"><a href="#tmux-&#x9084;&#x6709;&#x5F88;&#x591A;&#x9032;&#x968E;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x8A73;&#x7D30;&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x53C3;&#x8003;-tmux-&#x7684;&#x7DDA;&#x4E0A;&#x624B;&#x518A;" class="headerlink" title="tmux &#x9084;&#x6709;&#x5F88;&#x591A;&#x9032;&#x968E;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x8A73;&#x7D30;&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x53C3;&#x8003; tmux &#x7684;&#x7DDA;&#x4E0A;&#x624B;&#x518A;"></a>tmux &#x9084;&#x6709;&#x5F88;&#x591A;&#x9032;&#x968E;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x8A73;&#x7D30;&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x53C3;&#x8003; tmux &#x7684;&#x7DDA;&#x4E0A;&#x624B;&#x518A;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man tmux</span><br></pre></td></tr></table></figure>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-06-29T22:41:17.000Z" itemprop="datePublished">2018-06-30</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/07/01/Ubuntu的各種解壓縮指令/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    Ubuntu的各種解壓縮指令
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/06/30/Ubuntu修改IP以后，IP没有改變/" class="ui tiny button">
+                    
+                    Ubuntu修改IP以后，IP没有改變
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹使用指令-tmux-終端機管理工具，分割視窗、同時開啟多個終端機"><span>本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機</span></a><ol><li><a href="#安裝-tmux"><span>安裝 tmux</span></a></li><li><a href="#ubuntu-16-04-預設有安裝，如果使用此版本可以跳過安裝"><span>ubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝</span></a></li><li><a href="#下指令進入-tmux-環境"><span>下指令進入 tmux 環境</span></a></li><li><a href="#基本介紹："><span>基本介紹：</span></a></li><li><a href="#當我們執行-tmux-指令時，就會建立一個新的-session，在一個-session-中可以建立多個-windows，而每個-window-又可以分割成多個-panes，在下方的狀態列中會顯示目前所處的-session-與-window-編號"><span>當我們執行 tmux 指令時，就會建立一個新的 session，在一個 session 中可以建立多個 windows，而每個 window 又可以分割成多個 panes，在下方的狀態列中會顯示目前所處的 session 與 window 編號</span></a></li><li><a href="#在狀態列中最左側的編號是目前的-session-編號，接著是目前-session-之中所有的-windows-編號以及正在執行的程式名稱，目前所處的-windows-會以星號（-）標示，以這個例子來說目前就是處於編號-2-的-window-中"><span>在狀態列中最左側的編號是目前的 session 編號，接著是目前 session 之中所有的 windows 編號以及正在執行的程式名稱，目前所處的 windows 會以星號（*）標示，以這個例子來說目前就是處於編號 2 的 window 中</span></a></li><li><a href="#每一個-window-視窗都可以分割成多個-panes，每一個-pane-都是各自獨立的-shell，可以個別進行不同的工作，例如一邊使用-Vim-寫程式，另外一邊在-shell-中編譯、執行程式等"><span>每一個 window 視窗都可以分割成多個 panes，每一個 pane 都是各自獨立的 shell，可以個別進行不同的工作，例如一邊使用 Vim 寫程式，另外一邊在 shell 中編譯、執行程式等</span></a></li><li><a href="#分割視窗-Panes-："><span>分割視窗 ( Panes )：</span></a></li><li><a href="#在-tmux-的環境中，若想要將-window-視窗分割成多個-pane，並管理建立的-panes，可以使用以下的操作組合鍵："><span>在 tmux 的環境中，若想要將 window 視窗分割成多個 pane，並管理建立的 panes，可以使用以下的操作組合鍵：</span></a></li><li><a href="#Ctrl-b-再輸入-，垂直分割視窗"><span>Ctrl+b 再輸入 % ，垂直分割視窗</span></a></li><li><a href="#Ctrl-b-再輸入-“-，水平分割視窗"><span>Ctrl+b 再輸入 “ ，水平分割視窗</span></a></li><li><a href="#PS：可以分割再分割"><span>PS：可以分割再分割</span></a></li><li><a href="#Ctrl-b-再輸入-o-，以輪流方式輪流切換-pane"><span>Ctrl+b 再輸入 o ，以輪流方式輪流切換 pane</span></a></li><li><a href="#Ctrl-b-再輸入-方向鍵-，切換至指定方向的-pane"><span>Ctrl+b 再輸入 方向鍵 ，切換至指定方向的 pane</span></a></li><li><a href="#Ctrl-b-再輸入-空白鍵-，切換佈局"><span>Ctrl+b 再輸入 空白鍵 ，切換佈局</span></a></li><li><a href="#Ctrl-b-再輸入-，將目前的-pane-抽出來，獨立建立一個-window-視窗"><span>Ctrl+b 再輸入 ! ，將目前的 pane 抽出來，獨立建立一個 window 視窗</span></a></li><li><a href="#Ctrl-b-再輸入-x-，關閉目前的-pane"><span>Ctrl+b 再輸入 x ，關閉目前的 pane</span></a></li><li><a href="#Windows："><span>Windows：</span></a></li><li><a href="#Ctrl-b-再輸入-c-，建立新-window-視窗（create）"><span>Ctrl+b 再輸入 c ，建立新 window 視窗（create）</span></a></li><li><a href="#Ctrl-b-再輸入-w-，以視覺化選單切換-window-視窗"><span>Ctrl+b 再輸入 w ，以視覺化選單切換 window 視窗</span></a></li><li><a href="#Ctrl-b-再輸入-數字鍵-，切換至指定的-window-視窗"><span>Ctrl+b 再輸入 數字鍵 ，切換至指定的 window 視窗</span></a></li><li><a href="#Ctrl-b-再輸入-n-，切換至下一個-window-視窗（next）"><span>Ctrl+b 再輸入 n ，切換至下一個 window 視窗（next）</span></a></li><li><a href="#Ctrl-b-再輸入-p-，切換至上一個-window-視窗（previous）"><span>Ctrl+b 再輸入 p ，切換至上一個 window 視窗（previous）</span></a></li><li><a href="#Ctrl-b-再輸入-amp-，關閉目前的-window-視窗"><span>Ctrl+b 再輸入 & ，關閉目前的 window 視窗</span></a></li><li><a href="#Sessions："><span>Sessions：</span></a></li><li><a href="#每執行一個-tmux-就會建立一個-session，若要列出目前所有的-sessions，下指令"><span>每執行一個 tmux 就會建立一個 session，若要列出目前所有的 sessions，下指令</span></a></li><li><a href="#若要繼續使用指定的-session，可以使用-attach-並指定要續用的-session-編號"><span>若要繼續使用指定的 session，可以使用 attach 並指定要續用的 session 編號</span></a></li><li><a href="#Ctrl-b-再輸入-，重新命名目前的-session"><span>Ctrl+b 再輸入 $ ，重新命名目前的 session</span></a></li><li><a href="#Ctrl-b-再輸入-d-，離開-tmux-環境在背景執行"><span>Ctrl+b 再輸入 d ，離開 tmux 環境在背景執行</span></a></li><li><a href="#Ctrl-b-再輸入-s-，以視覺化選單切換-session"><span>Ctrl+b 再輸入 s ，以視覺化選單切換 session</span></a></li><li><a href="#Ctrl-b-再輸入-L-，切換至上一個使用過的-session"><span>Ctrl+b 再輸入 L ，切換至上一個使用過的 session</span></a></li><li><a href="#Ctrl-b-再輸入-，切換至上一個-session"><span>Ctrl+b 再輸入 ( ，切換至上一個 session</span></a></li><li><a href="#Ctrl-b-再輸入-，切換至下一個-session"><span>Ctrl+b 再輸入 ) ，切換至下一個 session</span></a></li><li><a href="#tmux-還有很多進階的功能，詳細的用法可以參考-tmux-的線上手冊"><span>tmux 還有很多進階的功能，詳細的用法可以參考 tmux 的線上手冊</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
