@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>使用docker-compose建立ELK | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; docker-compose &amp;#x5EFA;&amp;#x7ACB; ELK&amp;#x6307;&amp;#x4EE4;&amp;#x5B89;&amp;#x88DD; docker-compose1apt-get install -y docker-compose &amp;#x5EFA;&amp;#x7ACB; d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用docker-compose建立ELK">
+<meta property="og:url" content="http://yoursite.com/2018/07/26/使用docker-compose建立ELK/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; docker-compose &amp;#x5EFA;&amp;#x7ACB; ELK&amp;#x6307;&amp;#x4EE4;&amp;#x5B89;&amp;#x88DD; docker-compose1apt-get install -y docker-compose &amp;#x5EFA;&amp;#x7ACB; d">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-06T06:57:16.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用docker-compose建立ELK">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; docker-compose &amp;#x5EFA;&amp;#x7ACB; ELK&amp;#x6307;&amp;#x4EE4;&amp;#x5B89;&amp;#x88DD; docker-compose1apt-get install -y docker-compose &amp;#x5EFA;&amp;#x7ACB; d">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-使用docker-compose建立ELK" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    使用docker-compose建立ELK
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-docker-compose-&#x5EFA;&#x7ACB;-ELK"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-docker-compose-&#x5EFA;&#x7ACB;-ELK" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; docker-compose &#x5EFA;&#x7ACB; ELK"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; docker-compose &#x5EFA;&#x7ACB; ELK</h3><h4 id="&#x6307;&#x4EE4;&#x5B89;&#x88DD;-docker-compose"><a href="#&#x6307;&#x4EE4;&#x5B89;&#x88DD;-docker-compose" class="headerlink" title="&#x6307;&#x4EE4;&#x5B89;&#x88DD; docker-compose"></a>&#x6307;&#x4EE4;&#x5B89;&#x88DD; docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y docker-compose</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5EFA;&#x7ACB;-docker-compose-yml"><a href="#&#x5EFA;&#x7ACB;-docker-compose-yml" class="headerlink" title="&#x5EFA;&#x7ACB; docker-compose.yml"></a>&#x5EFA;&#x7ACB; docker-compose.yml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir docker-compose.yml</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5BEB;&#x5165;-docker-compose-&#x5167;&#x5BB9;"><a href="#&#x5BEB;&#x5165;-docker-compose-&#x5167;&#x5BB9;" class="headerlink" title="&#x5BEB;&#x5165; docker-compose &#x5167;&#x5BB9;"></a>&#x5BEB;&#x5165; docker-compose &#x5167;&#x5BB9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5EFA;&#x7ACB;-logstash-&#x8CC7;&#x6599;&#x593E;&#x4E26;&#x9032;&#x5165;"><a href="#&#x5EFA;&#x7ACB;-logstash-&#x8CC7;&#x6599;&#x593E;&#x4E26;&#x9032;&#x5165;" class="headerlink" title="&#x5EFA;&#x7ACB; logstash &#x8CC7;&#x6599;&#x593E;&#x4E26;&#x9032;&#x5165;"></a>&#x5EFA;&#x7ACB; logstash &#x8CC7;&#x6599;&#x593E;&#x4E26;&#x9032;&#x5165;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir logstash</span><br><span class="line"></span><br><span class="line">cd logstash</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x593E;-conf-d-&#x88E1;&#x9762;&#x653E;&#x5165;-logstash-config-&#x8DDF;-logstash-filter-config"><a href="#&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x593E;-conf-d-&#x88E1;&#x9762;&#x653E;&#x5165;-logstash-config-&#x8DDF;-logstash-filter-config" class="headerlink" title="&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x593E; conf.d &#x88E1;&#x9762;&#x653E;&#x5165; logstash config &#x8DDF; logstash filter config"></a>&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x593E; conf.d &#x88E1;&#x9762;&#x653E;&#x5165; logstash config &#x8DDF; logstash filter config</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir conf.d</span><br><span class="line"></span><br><span class="line">cd conf.d</span><br><span class="line"></span><br><span class="line">vi logstash.conf</span><br><span class="line"></span><br><span class="line">vi serverlog.conf</span><br></pre></td></tr></table></figure>
+<h4 id="logstash-conf"><a href="#logstash-conf" class="headerlink" title="logstash.conf"></a>logstash.conf</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input {</span><br><span class="line">    redis {</span><br><span class="line">        host =&gt; &quot;redis&quot;</span><br><span class="line">        port =&gt; 6379</span><br><span class="line">        data_type =&gt; &quot;list&quot;</span><br><span class="line">        key =&gt; &quot;vplaylog&quot;</span><br><span class="line">        password =&gt; &quot;QFkXXBZkLD6MgcEL1y8l&quot;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">output {</span><br><span class="line">    elasticsearch {</span><br><span class="line">        hosts =&gt; [&quot;elasticsearch&quot;]</span><br><span class="line">        index =&gt; &quot;%{[@metadata][env]}_%{[type]}-%{+YYYY.MM.dd}&quot;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h4 id="serverlog-conf"><a href="#serverlog-conf" class="headerlink" title="serverlog.conf"></a>serverlog.conf</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">filter {</span><br><span class="line">    if [type] == &quot;serverlog&quot; {</span><br><span class="line">        grok {</span><br><span class="line">            match =&gt; [&quot;message&quot;, &quot;%{TIMESTAMP_ISO8601:[@metadata][timestamp]} %{NUMBER:threadid} %{LOGLEVEL:loglevel} %{NOTSPACE:logger} %{GREEDYDATA:message}&quot;]</span><br><span class="line">            overwrite =&gt; [ &quot;message&quot; ]</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        date {</span><br><span class="line">            match =&gt; [ &quot;[@metadata][timestamp]&quot;, &quot;YYYY-MM-dd HH:mm:ss.SSS&quot; ]</span><br><span class="line">            timezone =&gt; &quot;UTC&quot;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        mutate {</span><br><span class="line">            convert =&gt; {</span><br><span class="line">                &quot;threadid&quot; =&gt; &quot;integer&quot;</span><br><span class="line">            }</span><br><span class="line">            add_field =&gt; { </span><br><span class="line">                &quot;hostname&quot; =&gt; &quot;%{[beat][hostname]}&quot;</span><br><span class="line">                &quot;servertype&quot; =&gt; &quot;%{[fields][servertype]]}&quot;</span><br><span class="line">                &quot;[@metadata][env]&quot; =&gt; &quot;%{[fields][env]]}&quot;</span><br><span class="line">            }</span><br><span class="line">            remove_field =&gt; [&quot;beat&quot;, &quot;fields&quot;]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h4 id="&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;&#x5EFA;&#x7ACB;-Dockerfile"><a href="#&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;&#x5EFA;&#x7ACB;-Dockerfile" class="headerlink" title="&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;&#x5EFA;&#x7ACB; Dockerfile"></a>&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;&#x5EFA;&#x7ACB; Dockerfile</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">vi Dockerfile</span><br></pre></td></tr></table></figure>
+<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM  logstash:5.6.7</span><br><span class="line">COPY conf.d /home/ben.yu/logstash/conf.d</span><br><span class="line">CMD [&quot;-f&quot;, &quot;/home/ben.yu/logstash/conf.d&quot;]</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5BEB;&#x5165;&#x5167;&#x5BB9;"><a href="#&#x5BEB;&#x5165;&#x5167;&#x5BB9;" class="headerlink" title="&#x5BEB;&#x5165;&#x5167;&#x5BB9;"></a>&#x5BEB;&#x5165;&#x5167;&#x5BB9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  redis:</span><br><span class="line">    container_name: redis</span><br><span class="line">    image: redis:3.2.4</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;6379:6379&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/redis:/data</span><br><span class="line">    entrypoint: redis-server --maxmemory &quot;4gb&quot; --appendonly yes --requirepass QFkXXBZkLD6MgcEL1y8l</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line"></span><br><span class="line">  elasticsearch:</span><br><span class="line">    container_name: elasticsearch</span><br><span class="line">    image: elasticsearch:5.6.7</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9200:9200&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/elasticsearch:/usr/share/elasticsearch/data</span><br><span class="line">    environment:</span><br><span class="line">      ES_JAVA_OPTS: &quot;-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line"></span><br><span class="line">  logstash:</span><br><span class="line">    build: logstash/</span><br><span class="line">    container_name: logstash</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;5044:5044&quot;</span><br><span class="line">    environment:</span><br><span class="line">      LS_JAVA_OPTS: &quot;-Xmx2g -Xms2g&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line">    depends_on:</span><br><span class="line">      - elasticsearch</span><br><span class="line">      - redis</span><br><span class="line"></span><br><span class="line">  kibana:</span><br><span class="line">    container_name: kibana</span><br><span class="line">    image: kibana:5.6.7</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:5601&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - docker_elk</span><br><span class="line">    depends_on:</span><br><span class="line">      - elasticsearch</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  docker_elk:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4;-run-docker-compose"><a href="#&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4;-run-docker-compose" class="headerlink" title="&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4; run docker-compose"></a>&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4; run docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<h4 id="&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"><a href="#&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"></a>&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-07-26T08:13:07.000Z" itemprop="datePublished">2018-07-26</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/08/01/elasticsearch-log刪除/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    elasticsearch-log刪除
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/07/26/使用filebeat把log丟進elk/" class="ui tiny button">
+                    
+                    使用filebeat把log丟進elk
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#本文章將介紹使用-docker-compose-建立-ELK"><span>本文章將介紹使用 docker-compose 建立 ELK</span></a><ol><li><a href="#指令安裝-docker-compose"><span>指令安裝 docker-compose</span></a></li><li><a href="#建立-docker-compose-yml"><span>建立 docker-compose.yml</span></a></li><li><a href="#寫入-docker-compose-內容"><span>寫入 docker-compose 內容</span></a></li><li><a href="#建立-logstash-資料夾並進入"><span>建立 logstash 資料夾並進入</span></a></li><li><a href="#建立資料夾-conf-d-裡面放入-logstash-config-跟-logstash-filter-config"><span>建立資料夾 conf.d 裡面放入 logstash config 跟 logstash filter config</span></a></li><li><a href="#logstash-conf"><span>logstash.conf</span></a></li><li><a href="#serverlog-conf"><span>serverlog.conf</span></a></li><li><a href="#回到上一層建立-Dockerfile"><span>回到上一層建立 Dockerfile</span></a></li><li><a href="#Dockerfile"><span>Dockerfile</span></a></li><li><a href="#寫入內容"><span>寫入內容</span></a></li><li><a href="#儲存後下指令-run-docker-compose"><span>儲存後下指令 run docker-compose</span></a></li><li><a href="#到這邊就完成了"><span>到這邊就完成了</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
