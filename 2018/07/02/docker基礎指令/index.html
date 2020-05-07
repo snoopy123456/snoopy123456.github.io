@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>docker基礎指令 | 佛系筆記</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x9019;&amp;#x908A;&amp;#x5217;&amp;#x51FA; docker&amp;#x6709;&amp;#x95DC; Container &amp;#x6307;&amp;#x4EE4;&amp;#x7684;&amp;#x5206;&amp;#x985E;&amp;#xFF0C;&amp;#x4F9B;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x67E5;&amp;#x8A62;create&amp;#xFF1A;&amp;#x5EFA;&amp;#x7ACB;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker基礎指令">
+<meta property="og:url" content="http://yoursite.com/2018/07/02/docker基礎指令/index.html">
+<meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="&amp;#x9019;&amp;#x908A;&amp;#x5217;&amp;#x51FA; docker&amp;#x6709;&amp;#x95DC; Container &amp;#x6307;&amp;#x4EE4;&amp;#x7684;&amp;#x5206;&amp;#x985E;&amp;#xFF0C;&amp;#x4F9B;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x67E5;&amp;#x8A62;create&amp;#xFF1A;&amp;#x5EFA;&amp;#x7ACB;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-07T06:37:20.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker基礎指令">
+<meta name="twitter:description" content="&amp;#x9019;&amp;#x908A;&amp;#x5217;&amp;#x51FA; docker&amp;#x6709;&amp;#x95DC; Container &amp;#x6307;&amp;#x4EE4;&amp;#x7684;&amp;#x5206;&amp;#x985E;&amp;#xFF0C;&amp;#x4F9B;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x67E5;&amp;#x8A62;create&amp;#xFF1A;&amp;#x5EFA;&amp;#x7ACB;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "緣分到了，文件自然就做好了！",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>佛系筆記</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">緣分到了，文件自然就做好了！</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-docker基礎指令" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    docker基礎指令
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h4 id="&#x9019;&#x908A;&#x5217;&#x51FA;-docker&#x6709;&#x95DC;-Container-&#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;"><a href="#&#x9019;&#x908A;&#x5217;&#x51FA;-docker&#x6709;&#x95DC;-Container-&#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;" class="headerlink" title="&#x9019;&#x908A;&#x5217;&#x51FA; docker&#x6709;&#x95DC; Container &#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;"></a>&#x9019;&#x908A;&#x5217;&#x51FA; docker&#x6709;&#x95DC; Container &#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;</h4><h4 id="create&#xFF1A;&#x5EFA;&#x7ACB;-Container-&#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;"><a href="#create&#xFF1A;&#x5EFA;&#x7ACB;-Container-&#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;" class="headerlink" title="create&#xFF1A;&#x5EFA;&#x7ACB; Container &#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;"></a>create&#xFF1A;&#x5EFA;&#x7ACB; Container &#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;</h4><h4 id="run&#xFF1A;&#x540C;-create"><a href="#run&#xFF1A;&#x540C;-create" class="headerlink" title="run&#xFF1A;&#x540C; create"></a>run&#xFF1A;&#x540C; create</h4><h4 id="kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;-Container-&#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;"><a href="#kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;-Container-&#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;" class="headerlink" title="kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46; Container &#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;"></a>kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46; Container &#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;</h4><h4 id="rm&#xFF1A;&#x522A;&#x9664;-Container-&#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C;-&#xFF0C;Container-&#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;"><a href="#rm&#xFF1A;&#x522A;&#x9664;-Container-&#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C;-&#xFF0C;Container-&#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;" class="headerlink" title="rm&#xFF1A;&#x522A;&#x9664; Container ( &#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C; )&#xFF0C;Container &#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;"></a>rm&#xFF1A;&#x522A;&#x9664; Container ( &#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C; )&#xFF0C;Container &#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;</h4><h4 id="pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;"><a href="#pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;" class="headerlink" title="pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;"></a>pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;</h4><h4 id="unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684;-Container"><a href="#unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684;-Container" class="headerlink" title="unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684; Container"></a>unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684; Container</h4><h4 id="stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;"><a href="#stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;" class="headerlink" title="stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;"></a>stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;</h4><h4 id="start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684;-Container"><a href="#start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684;-Container" class="headerlink" title="start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684; Container"></a>start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684; Container</h4><h4 id="restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5;-Container"><a href="#restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5;-Container" class="headerlink" title="restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5; Container"></a>restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5; Container</h4><h4 id="wait&#xFF1A;&#x8B93;-Container-&#x66AB;&#x505C;&#x76F4;&#x5230;-Container-&#x505C;&#x6B62;&#x70BA;&#x6B62;"><a href="#wait&#xFF1A;&#x8B93;-Container-&#x66AB;&#x505C;&#x76F4;&#x5230;-Container-&#x505C;&#x6B62;&#x70BA;&#x6B62;" class="headerlink" title="wait&#xFF1A;&#x8B93; Container &#x66AB;&#x505C;&#x76F4;&#x5230; Container &#x505C;&#x6B62;&#x70BA;&#x6B62;"></a>wait&#xFF1A;&#x8B93; Container &#x66AB;&#x505C;&#x76F4;&#x5230; Container &#x505C;&#x6B62;&#x70BA;&#x6B62;</h4><h4 id="rename&#xFF1A;&#x66F4;&#x540D;-Container"><a href="#rename&#xFF1A;&#x66F4;&#x540D;-Container" class="headerlink" title="rename&#xFF1A;&#x66F4;&#x540D; Container"></a>rename&#xFF1A;&#x66F4;&#x540D; Container</h4><h4 id="Container-&#x7684;&#x72C0;&#x614B;"><a href="#Container-&#x7684;&#x72C0;&#x614B;" class="headerlink" title="Container &#x7684;&#x72C0;&#x614B;"></a>Container &#x7684;&#x72C0;&#x614B;</h4><h4 id="inspect&#xFF1A;&#x6AA2;&#x67E5;-Container-&#x7684;&#x72C0;&#x614B;"><a href="#inspect&#xFF1A;&#x6AA2;&#x67E5;-Container-&#x7684;&#x72C0;&#x614B;" class="headerlink" title="inspect&#xFF1A;&#x6AA2;&#x67E5; Container &#x7684;&#x72C0;&#x614B;"></a>inspect&#xFF1A;&#x6AA2;&#x67E5; Container &#x7684;&#x72C0;&#x614B;</h4><h4 id="stats&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;"><a href="#stats&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;" class="headerlink" title="stats&#xFF1A;&#x67E5;&#x770B; Container &#x7684; CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;"></a>stats&#xFF1A;&#x67E5;&#x770B; Container &#x7684; CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;</h4><h4 id="port&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;"><a href="#port&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;" class="headerlink" title="port&#xFF1A;&#x67E5;&#x770B; Container &#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;"></a>port&#xFF1A;&#x67E5;&#x770B; Container &#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;</h4><h4 id="ps&#xFF1A;&#x67E5;&#x770B;-Container-&#x4F7F;&#x7528;&#x72C0;&#x614B;"><a href="#ps&#xFF1A;&#x67E5;&#x770B;-Container-&#x4F7F;&#x7528;&#x72C0;&#x614B;" class="headerlink" title="ps&#xFF1A;&#x67E5;&#x770B; Container &#x4F7F;&#x7528;&#x72C0;&#x614B;"></a>ps&#xFF1A;&#x67E5;&#x770B; Container &#x4F7F;&#x7528;&#x72C0;&#x614B;</h4><h4 id="top&#xFF1A;&#x67E5;&#x770B;-Container-&#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;"><a href="#top&#xFF1A;&#x67E5;&#x770B;-Container-&#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;" class="headerlink" title="top&#xFF1A;&#x67E5;&#x770B; Container &#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;"></a>top&#xFF1A;&#x67E5;&#x770B; Container &#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;</h4><h4 id="dip&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-IP"><a href="#dip&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-IP" class="headerlink" title="dip&#xFF1A;&#x67E5;&#x770B; Container &#x7684; IP"></a>dip&#xFF1A;&#x67E5;&#x770B; Container &#x7684; IP</h4><h4 id="dpid&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-pid"><a href="#dpid&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-pid" class="headerlink" title="dpid&#xFF1A;&#x67E5;&#x770B; Container &#x7684; pid"></a>dpid&#xFF1A;&#x67E5;&#x770B; Container &#x7684; pid</h4><h4 id="Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;"><a href="#Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;" class="headerlink" title="Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;"></a>Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;</h4><h4 id="exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;"><a href="#exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;" class="headerlink" title="exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;"></a>exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;</h4><h4 id="exec-it-contain-bin-bash"><a href="#exec-it-contain-bin-bash" class="headerlink" title="exec -it contain /bin/bash"></a>exec -it contain /bin/bash</h4><h4 id="logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;"><a href="#logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;" class="headerlink" title="logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;"></a>logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;</h4><h4 id="docker-logs-&#x2013;tail-50-container"><a href="#docker-logs-&#x2013;tail-50-container" class="headerlink" title="docker logs &#x2013;tail=50 container"></a>docker logs &#x2013;tail=50 container</h4><h4 id="Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;"><a href="#Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;" class="headerlink" title="Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;"></a>Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;</h4><h4 id="cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;"><a href="#cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;" class="headerlink" title="cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;"></a>cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;</h4><h4 id="container-log"><a href="#container-log" class="headerlink" title="container log"></a>container log</h4><h4 id="var-lib-docker-contains-contain-id"><a href="#var-lib-docker-contains-contain-id" class="headerlink" title="var/lib/docker/contains/contain id"></a>var/lib/docker/contains/contain id</h4><h4 id="exec-it-influxdb-influxd"><a href="#exec-it-influxdb-influxd" class="headerlink" title="exec -it influxdb influxd"></a>exec -it influxdb influxd</h4><h4 id="show-datebase"><a href="#show-datebase" class="headerlink" title="show datebase"></a>show datebase</h4><h4 id="show-table"><a href="#show-table" class="headerlink" title="show (table)"></a>show (table)</h4><h4 id="docker-rm-f-docker-ps-aq-&#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;"><a href="#docker-rm-f-docker-ps-aq-&#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;" class="headerlink" title="docker rm -f $(docker ps -aq) &#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;"></a>docker rm -f $(docker ps -aq) &#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;</h4><h4 id="docker-rmi-f-docker-images-aq-&#x522A;&#x9664;&#x5168;&#x90E8;-images"><a href="#docker-rmi-f-docker-images-aq-&#x522A;&#x9664;&#x5168;&#x90E8;-images" class="headerlink" title="docker rmi -f $(docker images -aq) &#x522A;&#x9664;&#x5168;&#x90E8; images"></a>docker rmi -f $(docker images -aq) &#x522A;&#x9664;&#x5168;&#x90E8; images</h4>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-07-02T08:13:05.000Z" itemprop="datePublished">2018-07-02</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/07/26/ELK介紹/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    ELK介紹
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/07/01/Ubuntu的各種解壓縮指令/" class="ui tiny button">
+                    
+                    Ubuntu的各種解壓縮指令
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#這邊列出-docker有關-Container-指令的分類，供作者自己查詢"><span>這邊列出 docker有關 Container 指令的分類，供作者自己查詢</span></a></li><li><a href="#create：建立-Container-並執行指令"><span>create：建立 Container 並執行指令</span></a></li><li><a href="#run：同-create"><span>run：同 create</span></a></li><li><a href="#kill：刪除執行中的-Container，但-Container-還是存在，只是死了。"><span>kill：刪除執行中的 Container，但 Container 還是存在，只是死了。</span></a></li><li><a href="#rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了"><span>rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了</span></a></li><li><a href="#pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷"><span>pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷</span></a></li><li><a href="#unpause：恢復暫停中的-Container"><span>unpause：恢復暫停中的 Container</span></a></li><li><a href="#stop：停止執行中的-Container，但不暫有記憶體，服務中斷"><span>stop：停止執行中的 Container，但不暫有記憶體，服務中斷</span></a></li><li><a href="#start：啟動停止中的-Container"><span>start：啟動停止中的 Container</span></a></li><li><a href="#restart：重新啟動-Container"><span>restart：重新啟動 Container</span></a></li><li><a href="#wait：讓-Container-暫停直到-Container-停止為止"><span>wait：讓 Container 暫停直到 Container 停止為止</span></a></li><li><a href="#rename：更名-Container"><span>rename：更名 Container</span></a></li><li><a href="#Container-的狀態"><span>Container 的狀態</span></a></li><li><a href="#inspect：檢查-Container-的狀態"><span>inspect：檢查 Container 的狀態</span></a></li><li><a href="#stats：查看-Container-的-CPU、記憶體及網路使用"><span>stats：查看 Container 的 CPU、記憶體及網路使用</span></a></li><li><a href="#port：查看-Container-的通訊埠使用"><span>port：查看 Container 的通訊埠使用</span></a></li><li><a href="#ps：查看-Container-使用狀態"><span>ps：查看 Container 使用狀態</span></a></li><li><a href="#top：查看-Container-在主系統中的記憶體使用"><span>top：查看 Container 在主系統中的記憶體使用</span></a></li><li><a href="#dip：查看-Container-的-IP"><span>dip：查看 Container 的 IP</span></a></li><li><a href="#dpid：查看-Container-的-pid"><span>dpid：查看 Container 的 pid</span></a></li><li><a href="#Container執行時的操作"><span>Container執行時的操作</span></a></li><li><a href="#exec：在外部向Container內執行指令"><span>exec：在外部向Container內執行指令</span></a></li><li><a href="#exec-it-contain-bin-bash"><span>exec -it contain /bin/bash</span></a></li><li><a href="#logs：將Container內的輸出顯示到螢幕上"><span>logs：將Container內的輸出顯示到螢幕上</span></a></li><li><a href="#docker-logs-–tail-50-container"><span>docker logs –tail=50 container</span></a></li><li><a href="#Container和主系統之間的操作"><span>Container和主系統之間的操作</span></a></li><li><a href="#cp：複製Container內的檔案到主系統"><span>cp：複製Container內的檔案到主系統</span></a></li><li><a href="#container-log"><span>container log</span></a></li><li><a href="#var-lib-docker-contains-contain-id"><span>var/lib/docker/contains/contain id</span></a></li><li><a href="#exec-it-influxdb-influxd"><span>exec -it influxdb influxd</span></a></li><li><a href="#show-datebase"><span>show datebase</span></a></li><li><a href="#show-table"><span>show (table)</span></a></li><li><a href="#docker-rm-f-docker-ps-aq-刪除全部容器"><span>docker rm -f $(docker ps -aq) 刪除全部容器</span></a></li><li><a href="#docker-rmi-f-docker-images-aq-刪除全部-images"><span>docker rmi -f $(docker images -aq) 刪除全部 images</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
