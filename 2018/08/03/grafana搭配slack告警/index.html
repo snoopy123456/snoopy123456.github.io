@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>grafana搭配slack告警 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x628A;&amp;#x544A;&amp;#x8B66;&amp;#x50B3;&amp;#x9001;&amp;#x5230; slack&amp;#x4E00;&amp;#x3001;&amp;#x9996;&amp;#x5148;&amp;#x5148;&amp;#x8A3B;&amp;#x518A;&amp;#x4E00;&amp;#x500B; slack &amp;#x7684;&amp;#x">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本篇文章將介紹把告警傳送到 slack一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app 二、slack 點選 channel，創建頻道 三、為頻道命名 四、點選 got it 正式啟用頻道 五、點選 add people to this channel 加入團隊成員到頻道中 六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知">
 <meta property="og:type" content="article">
 <meta property="og:title" content="grafana搭配slack告警">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x628A;&amp;#x544A;&amp;#x8B66;&amp;#x50B3;&amp;#x9001;&amp;#x5230; slack&amp;#x4E00;&amp;#x3001;&amp;#x9996;&amp;#x5148;&amp;#x5148;&amp;#x8A3B;&amp;#x518A;&amp;#x4E00;&amp;#x500B; slack &amp;#x7684;&amp;#x">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本篇文章將介紹把告警傳送到 slack一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app 二、slack 點選 channel，創建頻道 三、為頻道命名 四、點選 got it 正式啟用頻道 五、點選 add people to this channel 加入團隊成員到頻道中 六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/3.png">
@@ -44,254 +55,365 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="grafana搭配slack告警">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x628A;&amp;#x544A;&amp;#x8B66;&amp;#x50B3;&amp;#x9001;&amp;#x5230; slack&amp;#x4E00;&amp;#x3001;&amp;#x9996;&amp;#x5148;&amp;#x5148;&amp;#x8A3B;&amp;#x518A;&amp;#x4E00;&amp;#x500B; slack &amp;#x7684;&amp;#x">
+<meta name="twitter:description" content="本篇文章將介紹把告警傳送到 slack一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app 二、slack 點選 channel，創建頻道 三、為頻道命名 四、點選 got it 正式啟用頻道 五、點選 add people to this channel 加入團隊成員到頻道中 六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/08/03/grafana搭配slack告警/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>grafana搭配slack告警 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-grafana搭配slack告警" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    grafana搭配slack告警
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/grafana搭配slack告警/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h2 id="&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x628A;&#x544A;&#x8B66;&#x50B3;&#x9001;&#x5230;-slack"><a href="#&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x628A;&#x544A;&#x8B66;&#x50B3;&#x9001;&#x5230;-slack" class="headerlink" title="&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x628A;&#x544A;&#x8B66;&#x50B3;&#x9001;&#x5230; slack"></a>&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x628A;&#x544A;&#x8B66;&#x50B3;&#x9001;&#x5230; slack</h2><h3 id="&#x4E00;&#x3001;&#x9996;&#x5148;&#x5148;&#x8A3B;&#x518A;&#x4E00;&#x500B;-slack-&#x7684;&#x5E33;&#x865F;&#x8207;&#x4E0B;&#x8F09;-slack-&#x7684;&#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#x6216;-app"><a href="#&#x4E00;&#x3001;&#x9996;&#x5148;&#x5148;&#x8A3B;&#x518A;&#x4E00;&#x500B;-slack-&#x7684;&#x5E33;&#x865F;&#x8207;&#x4E0B;&#x8F09;-slack-&#x7684;&#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#x6216;-app" class="headerlink" title="&#x4E00;&#x3001;&#x9996;&#x5148;&#x5148;&#x8A3B;&#x518A;&#x4E00;&#x500B; slack &#x7684;&#x5E33;&#x865F;&#x8207;&#x4E0B;&#x8F09; slack &#x7684;&#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#x6216; app"></a>&#x4E00;&#x3001;&#x9996;&#x5148;&#x5148;&#x8A3B;&#x518A;&#x4E00;&#x500B; slack &#x7684;&#x5E33;&#x865F;&#x8207;&#x4E0B;&#x8F09; slack &#x7684;&#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#x6216; app</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E8C;&#x3001;slack-&#x9EDE;&#x9078;-channel&#xFF0C;&#x5275;&#x5EFA;&#x983B;&#x9053;"><a href="#&#x4E8C;&#x3001;slack-&#x9EDE;&#x9078;-channel&#xFF0C;&#x5275;&#x5EFA;&#x983B;&#x9053;" class="headerlink" title="&#x4E8C;&#x3001;slack &#x9EDE;&#x9078; channel&#xFF0C;&#x5275;&#x5EFA;&#x983B;&#x9053;"></a>&#x4E8C;&#x3001;slack &#x9EDE;&#x9078; channel&#xFF0C;&#x5275;&#x5EFA;&#x983B;&#x9053;</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E09;&#x3001;&#x70BA;&#x983B;&#x9053;&#x547D;&#x540D;"><a href="#&#x4E09;&#x3001;&#x70BA;&#x983B;&#x9053;&#x547D;&#x540D;" class="headerlink" title="&#x4E09;&#x3001;&#x70BA;&#x983B;&#x9053;&#x547D;&#x540D;"></a>&#x4E09;&#x3001;&#x70BA;&#x983B;&#x9053;&#x547D;&#x540D;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DB;&#x3001;&#x9EDE;&#x9078;-got-it-&#x6B63;&#x5F0F;&#x555F;&#x7528;&#x983B;&#x9053;"><a href="#&#x56DB;&#x3001;&#x9EDE;&#x9078;-got-it-&#x6B63;&#x5F0F;&#x555F;&#x7528;&#x983B;&#x9053;" class="headerlink" title="&#x56DB;&#x3001;&#x9EDE;&#x9078; got it &#x6B63;&#x5F0F;&#x555F;&#x7528;&#x983B;&#x9053;"></a>&#x56DB;&#x3001;&#x9EDE;&#x9078; got it &#x6B63;&#x5F0F;&#x555F;&#x7528;&#x983B;&#x9053;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E94;&#x3001;&#x9EDE;&#x9078;-add-people-to-this-channel-&#x52A0;&#x5165;&#x5718;&#x968A;&#x6210;&#x54E1;&#x5230;&#x983B;&#x9053;&#x4E2D;"><a href="#&#x4E94;&#x3001;&#x9EDE;&#x9078;-add-people-to-this-channel-&#x52A0;&#x5165;&#x5718;&#x968A;&#x6210;&#x54E1;&#x5230;&#x983B;&#x9053;&#x4E2D;" class="headerlink" title="&#x4E94;&#x3001;&#x9EDE;&#x9078; add people to this channel &#x52A0;&#x5165;&#x5718;&#x968A;&#x6210;&#x54E1;&#x5230;&#x983B;&#x9053;&#x4E2D;"></a>&#x4E94;&#x3001;&#x9EDE;&#x9078; add people to this channel &#x52A0;&#x5165;&#x5718;&#x968A;&#x6210;&#x54E1;&#x5230;&#x983B;&#x9053;&#x4E2D;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x516D;&#x3001;&#x524D;&#x5F80;-slack-&#x7684;a-pp-Directory-&#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x767B;&#x5165;&#x5F8C;&#x53F3;&#x4E0A;&#x89D2;&#x9078;&#x64C7;&#x8981;&#x767C;&#x9001;&#x544A;&#x8B66;&#x901A;&#x77E5;&#x7684;-channel"><a href="#&#x516D;&#x3001;&#x524D;&#x5F80;-slack-&#x7684;a-pp-Directory-&#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x767B;&#x5165;&#x5F8C;&#x53F3;&#x4E0A;&#x89D2;&#x9078;&#x64C7;&#x8981;&#x767C;&#x9001;&#x544A;&#x8B66;&#x901A;&#x77E5;&#x7684;-channel" class="headerlink" title="&#x516D;&#x3001;&#x524D;&#x5F80; slack &#x7684;a pp Directory &#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x767B;&#x5165;&#x5F8C;&#x53F3;&#x4E0A;&#x89D2;&#x9078;&#x64C7;&#x8981;&#x767C;&#x9001;&#x544A;&#x8B66;&#x901A;&#x77E5;&#x7684; channel"></a>&#x516D;&#x3001;&#x524D;&#x5F80; slack &#x7684;a pp Directory &#x61C9;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x767B;&#x5165;&#x5F8C;&#x53F3;&#x4E0A;&#x89D2;&#x9078;&#x64C7;&#x8981;&#x767C;&#x9001;&#x544A;&#x8B66;&#x901A;&#x77E5;&#x7684; channel</h3><h3 id="&#x7DB2;&#x5740;&#xFF1A;https-slack-com-apps"><a href="#&#x7DB2;&#x5740;&#xFF1A;https-slack-com-apps" class="headerlink" title="&#x7DB2;&#x5740;&#xFF1A;https://slack.com/apps"></a>&#x7DB2;&#x5740;&#xFF1A;<a href="https://slack.com/apps" target="_blank" rel="noopener">https://slack.com/apps</a></h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E03;&#x3001;&#x5728;&#x4E0B;&#x65B9;&#x641C;&#x5C0B;&#x5730;&#x65B9;&#x8F38;&#x5165;-incoming-webhooks-&#x641C;&#x5C0B;"><a href="#&#x4E03;&#x3001;&#x5728;&#x4E0B;&#x65B9;&#x641C;&#x5C0B;&#x5730;&#x65B9;&#x8F38;&#x5165;-incoming-webhooks-&#x641C;&#x5C0B;" class="headerlink" title="&#x4E03;&#x3001;&#x5728;&#x4E0B;&#x65B9;&#x641C;&#x5C0B;&#x5730;&#x65B9;&#x8F38;&#x5165; incoming webhooks &#x641C;&#x5C0B;"></a>&#x4E03;&#x3001;&#x5728;&#x4E0B;&#x65B9;&#x641C;&#x5C0B;&#x5730;&#x65B9;&#x8F38;&#x5165; incoming webhooks &#x641C;&#x5C0B;</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x516B;&#x3001;&#x9EDE;&#x9078;-add-configuration-&#x7533;&#x8ACB;-channel-&#x7684;-url"><a href="#&#x516B;&#x3001;&#x9EDE;&#x9078;-add-configuration-&#x7533;&#x8ACB;-channel-&#x7684;-url" class="headerlink" title="&#x516B;&#x3001;&#x9EDE;&#x9078; add configuration &#x7533;&#x8ACB; channel &#x7684; url"></a>&#x516B;&#x3001;&#x9EDE;&#x9078; add configuration &#x7533;&#x8ACB; channel &#x7684; url</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E5D;&#x3001;&#x9078;&#x64C7;&#x983B;&#x9053;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;-add-incoming-webhooks-integration"><a href="#&#x4E5D;&#x3001;&#x9078;&#x64C7;&#x983B;&#x9053;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;-add-incoming-webhooks-integration" class="headerlink" title="&#x4E5D;&#x3001;&#x9078;&#x64C7;&#x983B;&#x9053;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA; add incoming webhooks integration"></a>&#x4E5D;&#x3001;&#x9078;&#x64C7;&#x983B;&#x9053;&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA; add incoming webhooks integration</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x3001;&#x7533;&#x8ACB;&#x597D;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x983B;&#x9053;-url&#xFF0C;&#x8907;&#x88FD;&#x4E0B;&#x4F86;-grafana-&#x544A;&#x8B66;&#x6703;&#x7528;&#x5230;"><a href="#&#x5341;&#x3001;&#x7533;&#x8ACB;&#x597D;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x983B;&#x9053;-url&#xFF0C;&#x8907;&#x88FD;&#x4E0B;&#x4F86;-grafana-&#x544A;&#x8B66;&#x6703;&#x7528;&#x5230;" class="headerlink" title="&#x5341;&#x3001;&#x7533;&#x8ACB;&#x597D;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x983B;&#x9053; url&#xFF0C;&#x8907;&#x88FD;&#x4E0B;&#x4F86; grafana &#x544A;&#x8B66;&#x6703;&#x7528;&#x5230;"></a>&#x5341;&#x3001;&#x7533;&#x8ACB;&#x597D;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x983B;&#x9053; url&#xFF0C;&#x8907;&#x88FD;&#x4E0B;&#x4F86; grafana &#x544A;&#x8B66;&#x6703;&#x7528;&#x5230;</h3><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x6C92;&#x8907;&#x88FD;&#x5230;-url-&#x56DE;&#x5230;-incoming-webhooks-&#x756B;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x7533;&#x8ACB;&#x597D;&#x7684;&#x983B;&#x9053;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x770B;&#x5230;-url"><a href="#&#x6C92;&#x8907;&#x88FD;&#x5230;-url-&#x56DE;&#x5230;-incoming-webhooks-&#x756B;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x7533;&#x8ACB;&#x597D;&#x7684;&#x983B;&#x9053;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x770B;&#x5230;-url" class="headerlink" title="&#x6C92;&#x8907;&#x88FD;&#x5230; url &#x56DE;&#x5230; incoming webhooks &#x756B;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x7533;&#x8ACB;&#x597D;&#x7684;&#x983B;&#x9053;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x770B;&#x5230; url"></a>&#x6C92;&#x8907;&#x88FD;&#x5230; url &#x56DE;&#x5230; incoming webhooks &#x756B;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x7533;&#x8ACB;&#x597D;&#x7684;&#x983B;&#x9053;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x908A;&#x925B;&#x7B46;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x770B;&#x5230; url</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x4E00;&#x3001;&#x5728;&#x4F86;&#x56DE;&#x5230;-grafana-&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x9078;&#x9234;&#x943A;&#xFF0C;&#x9078;&#x64C7;-notification-channels"><a href="#&#x5341;&#x4E00;&#x3001;&#x5728;&#x4F86;&#x56DE;&#x5230;-grafana-&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x9078;&#x9234;&#x943A;&#xFF0C;&#x9078;&#x64C7;-notification-channels" class="headerlink" title="&#x5341;&#x4E00;&#x3001;&#x5728;&#x4F86;&#x56DE;&#x5230; grafana &#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x9078;&#x9234;&#x943A;&#xFF0C;&#x9078;&#x64C7; notification channels"></a>&#x5341;&#x4E00;&#x3001;&#x5728;&#x4F86;&#x56DE;&#x5230; grafana &#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x9078;&#x9234;&#x943A;&#xFF0C;&#x9078;&#x64C7; notification channels</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x4E8C;&#x3001;&#x9EDE;&#x64CA;-add-channel-&#x5275;&#x5EFA;&#x544A;&#x8B66;&#x983B;&#x9053;"><a href="#&#x5341;&#x4E8C;&#x3001;&#x9EDE;&#x64CA;-add-channel-&#x5275;&#x5EFA;&#x544A;&#x8B66;&#x983B;&#x9053;" class="headerlink" title="&#x5341;&#x4E8C;&#x3001;&#x9EDE;&#x64CA; add channel &#x5275;&#x5EFA;&#x544A;&#x8B66;&#x983B;&#x9053;"></a>&#x5341;&#x4E8C;&#x3001;&#x9EDE;&#x64CA; add channel &#x5275;&#x5EFA;&#x544A;&#x8B66;&#x983B;&#x9053;</h3><p><a class="magnific-img" href="images/22.png"><img src="images/22.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9032;&#x5165;&#x756B;&#x9762;"><a href="#&#x9032;&#x5165;&#x756B;&#x9762;" class="headerlink" title="&#x9032;&#x5165;&#x756B;&#x9762;"></a>&#x9032;&#x5165;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x4E09;&#x3001;-type-&#x9078;&#x64C7;-slack&#xFF0C;url-&#x8F38;&#x5165;&#x525B;&#x525B;&#x5728;-incoming-webhooks-&#x7372;&#x5F97;&#x7684;-url&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;-sent-test-&#x6703;&#x767C;&#x4E00;&#x500B;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;&#x5230;-slack"><a href="#&#x5341;&#x4E09;&#x3001;-type-&#x9078;&#x64C7;-slack&#xFF0C;url-&#x8F38;&#x5165;&#x525B;&#x525B;&#x5728;-incoming-webhooks-&#x7372;&#x5F97;&#x7684;-url&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA;-sent-test-&#x6703;&#x767C;&#x4E00;&#x500B;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;&#x5230;-slack" class="headerlink" title="&#x5341;&#x4E09;&#x3001; type &#x9078;&#x64C7; slack&#xFF0C;url &#x8F38;&#x5165;&#x525B;&#x525B;&#x5728; incoming webhooks &#x7372;&#x5F97;&#x7684; url&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA; sent test &#x6703;&#x767C;&#x4E00;&#x500B;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;&#x5230; slack"></a>&#x5341;&#x4E09;&#x3001; type &#x9078;&#x64C7; slack&#xFF0C;url &#x8F38;&#x5165;&#x525B;&#x525B;&#x5728; incoming webhooks &#x7372;&#x5F97;&#x7684; url&#xFF0C;&#x7136;&#x5F8C;&#x9EDE;&#x64CA; sent test &#x6703;&#x767C;&#x4E00;&#x500B;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;&#x5230; slack</h3><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x767C;&#x9001;&#x7684;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;"><a href="#&#x767C;&#x9001;&#x7684;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;" class="headerlink" title="&#x767C;&#x9001;&#x7684;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;"></a>&#x767C;&#x9001;&#x7684;&#x6E2C;&#x8A66;&#x8A0A;&#x606F;</h3><p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x767C;&#x9001;&#x6210;&#x529F;&#x5F8C;&#x5C31;&#x9EDE;&#x9078;-save-&#x5132;&#x5B58;"><a href="#&#x767C;&#x9001;&#x6210;&#x529F;&#x5F8C;&#x5C31;&#x9EDE;&#x9078;-save-&#x5132;&#x5B58;" class="headerlink" title="&#x767C;&#x9001;&#x6210;&#x529F;&#x5F8C;&#x5C31;&#x9EDE;&#x9078; save &#x5132;&#x5B58;"></a>&#x767C;&#x9001;&#x6210;&#x529F;&#x5F8C;&#x5C31;&#x9EDE;&#x9078; save &#x5132;&#x5B58;</h3><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DE;&#x5230;-notification-channels-&#x6703;&#x770B;&#x5230;&#x8A2D;&#x7F6E;&#x597D;&#x7684;&#x544A;&#x8B66;&#x983B;&#x9053;"><a href="#&#x56DE;&#x5230;-notification-channels-&#x6703;&#x770B;&#x5230;&#x8A2D;&#x7F6E;&#x597D;&#x7684;&#x544A;&#x8B66;&#x983B;&#x9053;" class="headerlink" title="&#x56DE;&#x5230; notification channels &#x6703;&#x770B;&#x5230;&#x8A2D;&#x7F6E;&#x597D;&#x7684;&#x544A;&#x8B66;&#x983B;&#x9053;"></a>&#x56DE;&#x5230; notification channels &#x6703;&#x770B;&#x5230;&#x8A2D;&#x7F6E;&#x597D;&#x7684;&#x544A;&#x8B66;&#x983B;&#x9053;</h3><p><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x56DB;&#x3001;&#x544A;&#x8B66;&#x6E2C;&#x8A66;&#xFF0C;&#x5230;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x5206;&#x9801;&#x7684;-alert-&#x9078;&#x64C7;&#x5DE6;&#x5217;&#x7684;-alert-config-&#x8A2D;&#x5B9A;&#x6210;&#x6703;&#x544A;&#x8B66;&#x7684;&#x72C0;&#x614B;"><a href="#&#x5341;&#x56DB;&#x3001;&#x544A;&#x8B66;&#x6E2C;&#x8A66;&#xFF0C;&#x5230;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x5206;&#x9801;&#x7684;-alert-&#x9078;&#x64C7;&#x5DE6;&#x5217;&#x7684;-alert-config-&#x8A2D;&#x5B9A;&#x6210;&#x6703;&#x544A;&#x8B66;&#x7684;&#x72C0;&#x614B;" class="headerlink" title="&#x5341;&#x56DB;&#x3001;&#x544A;&#x8B66;&#x6E2C;&#x8A66;&#xFF0C;&#x5230;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x5206;&#x9801;&#x7684; alert &#x9078;&#x64C7;&#x5DE6;&#x5217;&#x7684; alert config &#x8A2D;&#x5B9A;&#x6210;&#x6703;&#x544A;&#x8B66;&#x7684;&#x72C0;&#x614B;"></a>&#x5341;&#x56DB;&#x3001;&#x544A;&#x8B66;&#x6E2C;&#x8A66;&#xFF0C;&#x5230;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#x8A2D;&#x5B9A;&#xFF0C;&#x9078;&#x64C7;&#x5206;&#x9801;&#x7684; alert &#x9078;&#x64C7;&#x5DE6;&#x5217;&#x7684; alert config &#x8A2D;&#x5B9A;&#x6210;&#x6703;&#x544A;&#x8B66;&#x7684;&#x72C0;&#x614B;</h3><p><a class="magnific-img" href="images/23.png"><img src="images/23.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x4E94;&#x3001;&#x5728;&#x5230;&#x5DE6;&#x5217;&#x7684;-notifications-&#x9078;&#x64C7;&#x544A;&#x8B66;&#x983B;&#x9053;"><a href="#&#x5341;&#x4E94;&#x3001;&#x5728;&#x5230;&#x5DE6;&#x5217;&#x7684;-notifications-&#x9078;&#x64C7;&#x544A;&#x8B66;&#x983B;&#x9053;" class="headerlink" title="&#x5341;&#x4E94;&#x3001;&#x5728;&#x5230;&#x5DE6;&#x5217;&#x7684; notifications &#x9078;&#x64C7;&#x544A;&#x8B66;&#x983B;&#x9053;"></a>&#x5341;&#x4E94;&#x3001;&#x5728;&#x5230;&#x5DE6;&#x5217;&#x7684; notifications &#x9078;&#x64C7;&#x544A;&#x8B66;&#x983B;&#x9053;</h3><p><a class="magnific-img" href="images/24.png"><img src="images/24.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5341;&#x516D;&#x3001;&#x544A;&#x8B66;&#x767C;&#x9001;&#x5F8C;&#x6703;&#x767C;&#x73FE;-slack-&#x53EA;&#x6709;&#x8A0A;&#x606F;&#x6C92;&#x6709;&#x5716;&#x7247;&#xFF0C;&#x4E0B;&#x4E00;&#x5F35;&#x5C07;&#x4ECB;&#x7D39;&#x4FDD;&#x5B58;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5230;-gcs"><a href="#&#x5341;&#x516D;&#x3001;&#x544A;&#x8B66;&#x767C;&#x9001;&#x5F8C;&#x6703;&#x767C;&#x73FE;-slack-&#x53EA;&#x6709;&#x8A0A;&#x606F;&#x6C92;&#x6709;&#x5716;&#x7247;&#xFF0C;&#x4E0B;&#x4E00;&#x5F35;&#x5C07;&#x4ECB;&#x7D39;&#x4FDD;&#x5B58;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5230;-gcs" class="headerlink" title="&#x5341;&#x516D;&#x3001;&#x544A;&#x8B66;&#x767C;&#x9001;&#x5F8C;&#x6703;&#x767C;&#x73FE; slack &#x53EA;&#x6709;&#x8A0A;&#x606F;&#x6C92;&#x6709;&#x5716;&#x7247;&#xFF0C;&#x4E0B;&#x4E00;&#x5F35;&#x5C07;&#x4ECB;&#x7D39;&#x4FDD;&#x5B58;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5230; gcs"></a>&#x5341;&#x516D;&#x3001;&#x544A;&#x8B66;&#x767C;&#x9001;&#x5F8C;&#x6703;&#x767C;&#x73FE; slack &#x53EA;&#x6709;&#x8A0A;&#x606F;&#x6C92;&#x6709;&#x5716;&#x7247;&#xFF0C;&#x4E0B;&#x4E00;&#x5F35;&#x5C07;&#x4ECB;&#x7D39;&#x4FDD;&#x5B58;&#x544A;&#x8B66;&#x5716;&#x7247;&#x5230; gcs</h3><p><a class="magnific-img" href="images/25.png"><img src="images/25.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-08-03T06:12:11.000Z" itemprop="datePublished">2018-08-03</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          grafana搭配slack告警
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-08-03 14:12:11" itemprop="dateCreated datePublished" datetime="2018-08-03T14:12:11+08:00">2018-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="本篇文章將介紹把告警傳送到-slack"><a href="#本篇文章將介紹把告警傳送到-slack" class="headerlink" title="本篇文章將介紹把告警傳送到 slack"></a>本篇文章將介紹把告警傳送到 slack</h2><h3 id="一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app"><a href="#一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app" class="headerlink" title="一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app"></a>一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app</h3><p><img src="images/1.png" alt=" "></p>
+<h3 id="二、slack-點選-channel，創建頻道"><a href="#二、slack-點選-channel，創建頻道" class="headerlink" title="二、slack 點選 channel，創建頻道"></a>二、slack 點選 channel，創建頻道</h3><p><img src="images/2.png" alt=" "></p>
+<h3 id="三、為頻道命名"><a href="#三、為頻道命名" class="headerlink" title="三、為頻道命名"></a>三、為頻道命名</h3><p><img src="images/3.png" alt=" "></p>
+<h3 id="四、點選-got-it-正式啟用頻道"><a href="#四、點選-got-it-正式啟用頻道" class="headerlink" title="四、點選 got it 正式啟用頻道"></a>四、點選 got it 正式啟用頻道</h3><p><img src="images/4.png" alt=" "></p>
+<h3 id="五、點選-add-people-to-this-channel-加入團隊成員到頻道中"><a href="#五、點選-add-people-to-this-channel-加入團隊成員到頻道中" class="headerlink" title="五、點選 add people to this channel 加入團隊成員到頻道中"></a>五、點選 add people to this channel 加入團隊成員到頻道中</h3><p><img src="images/5.png" alt=" "><br><img src="images/6.png" alt=" "></p>
+<h3 id="六、前往-slack-的a-pp-Directory-應用程序，登入後右上角選擇要發送告警通知的-channel"><a href="#六、前往-slack-的a-pp-Directory-應用程序，登入後右上角選擇要發送告警通知的-channel" class="headerlink" title="六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知的 channel"></a>六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知的 channel</h3><h3 id="網址：https-slack-com-apps"><a href="#網址：https-slack-com-apps" class="headerlink" title="網址：https://slack.com/apps"></a>網址：<a href="https://slack.com/apps" target="_blank" rel="noopener">https://slack.com/apps</a></h3><p><img src="images/7.png" alt=" "></p>
+<h3 id="七、在下方搜尋地方輸入-incoming-webhooks-搜尋"><a href="#七、在下方搜尋地方輸入-incoming-webhooks-搜尋" class="headerlink" title="七、在下方搜尋地方輸入 incoming webhooks 搜尋"></a>七、在下方搜尋地方輸入 incoming webhooks 搜尋</h3><p><img src="images/8.png" alt=" "><br><img src="images/9.png" alt=" "></p>
+<h3 id="八、點選-add-configuration-申請-channel-的-url"><a href="#八、點選-add-configuration-申請-channel-的-url" class="headerlink" title="八、點選 add configuration 申請 channel 的 url"></a>八、點選 add configuration 申請 channel 的 url</h3><p><img src="images/10.png" alt=" "></p>
+<h3 id="九、選擇頻道，然後點擊-add-incoming-webhooks-integration"><a href="#九、選擇頻道，然後點擊-add-incoming-webhooks-integration" class="headerlink" title="九、選擇頻道，然後點擊 add incoming webhooks integration"></a>九、選擇頻道，然後點擊 add incoming webhooks integration</h3><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h3 id="十、申請好就可以看到頻道-url，複製下來-grafana-告警會用到"><a href="#十、申請好就可以看到頻道-url，複製下來-grafana-告警會用到" class="headerlink" title="十、申請好就可以看到頻道 url，複製下來 grafana 告警會用到"></a>十、申請好就可以看到頻道 url，複製下來 grafana 告警會用到</h3><p><img src="images/13.png" alt=" "></p>
+<h3 id="沒複製到-url-回到-incoming-webhooks-畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到-url"><a href="#沒複製到-url-回到-incoming-webhooks-畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到-url" class="headerlink" title="沒複製到 url 回到 incoming webhooks 畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到 url"></a>沒複製到 url 回到 incoming webhooks 畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到 url</h3><p><img src="images/14.png" alt=" "></p>
+<h3 id="十一、在來回到-grafana-左邊列表點選鈴鐺，選擇-notification-channels"><a href="#十一、在來回到-grafana-左邊列表點選鈴鐺，選擇-notification-channels" class="headerlink" title="十一、在來回到 grafana 左邊列表點選鈴鐺，選擇 notification channels"></a>十一、在來回到 grafana 左邊列表點選鈴鐺，選擇 notification channels</h3><p><img src="images/15.png" alt=" "></p>
+<h3 id="十二、點擊-add-channel-創建告警頻道"><a href="#十二、點擊-add-channel-創建告警頻道" class="headerlink" title="十二、點擊 add channel 創建告警頻道"></a>十二、點擊 add channel 創建告警頻道</h3><p><img src="images/22.png" alt=" "></p>
+<h3 id="進入畫面"><a href="#進入畫面" class="headerlink" title="進入畫面"></a>進入畫面</h3><p><img src="images/16.png" alt=" "></p>
+<h3 id="十三、-type-選擇-slack，url-輸入剛剛在-incoming-webhooks-獲得的-url，然後點擊-sent-test-會發一個測試訊息到-slack"><a href="#十三、-type-選擇-slack，url-輸入剛剛在-incoming-webhooks-獲得的-url，然後點擊-sent-test-會發一個測試訊息到-slack" class="headerlink" title="十三、 type 選擇 slack，url 輸入剛剛在 incoming webhooks 獲得的 url，然後點擊 sent test 會發一個測試訊息到 slack"></a>十三、 type 選擇 slack，url 輸入剛剛在 incoming webhooks 獲得的 url，然後點擊 sent test 會發一個測試訊息到 slack</h3><p><img src="images/17.png" alt=" "><br><img src="images/18.png" alt=" "></p>
+<h3 id="發送的測試訊息"><a href="#發送的測試訊息" class="headerlink" title="發送的測試訊息"></a>發送的測試訊息</h3><p><img src="images/19.png" alt=" "></p>
+<h3 id="發送成功後就點選-save-儲存"><a href="#發送成功後就點選-save-儲存" class="headerlink" title="發送成功後就點選 save 儲存"></a>發送成功後就點選 save 儲存</h3><p><img src="images/20.png" alt=" "></p>
+<h3 id="回到-notification-channels-會看到設置好的告警頻道"><a href="#回到-notification-channels-會看到設置好的告警頻道" class="headerlink" title="回到 notification channels 會看到設置好的告警頻道"></a>回到 notification channels 會看到設置好的告警頻道</h3><p><img src="images/21.png" alt=" "></p>
+<h3 id="十四、告警測試，到拉好的圖表設定，選擇分頁的-alert-選擇左列的-alert-config-設定成會告警的狀態"><a href="#十四、告警測試，到拉好的圖表設定，選擇分頁的-alert-選擇左列的-alert-config-設定成會告警的狀態" class="headerlink" title="十四、告警測試，到拉好的圖表設定，選擇分頁的 alert 選擇左列的 alert config 設定成會告警的狀態"></a>十四、告警測試，到拉好的圖表設定，選擇分頁的 alert 選擇左列的 alert config 設定成會告警的狀態</h3><p><img src="images/23.png" alt=" "></p>
+<h3 id="十五、在到左列的-notifications-選擇告警頻道"><a href="#十五、在到左列的-notifications-選擇告警頻道" class="headerlink" title="十五、在到左列的 notifications 選擇告警頻道"></a>十五、在到左列的 notifications 選擇告警頻道</h3><p><img src="images/24.png" alt=" "></p>
+<h3 id="十六、告警發送後會發現-slack-只有訊息沒有圖片，下一張將介紹保存告警圖片到-gcs"><a href="#十六、告警發送後會發現-slack-只有訊息沒有圖片，下一張將介紹保存告警圖片到-gcs" class="headerlink" title="十六、告警發送後會發現 slack 只有訊息沒有圖片，下一張將介紹保存告警圖片到 gcs"></a>十六、告警發送後會發現 slack 只有訊息沒有圖片，下一張將介紹保存告警圖片到 gcs</h3><p><img src="images/25.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/08/03/grafana告警圖保存至GCS/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    grafana告警圖保存至GCS
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/" class="ui tiny button">
-                    
-                    telegraf建立好後設定grafana抓取資料建立圖表
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/" rel="prev" title="telegraf建立好後設定grafana抓取資料建立圖表">
+      <i class="fa fa-chevron-left"></i> telegraf建立好後設定grafana抓取資料建立圖表
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/03/grafana告警圖保存至GCS/" rel="next" title="grafana告警圖保存至GCS">
+      grafana告警圖保存至GCS <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本篇文章將介紹把告警傳送到-slack"><span>本篇文章將介紹把告警傳送到 slack</span></a><ol><li><a href="#一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app"><span>一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app</span></a></li><li><a href="#二、slack-點選-channel，創建頻道"><span>二、slack 點選 channel，創建頻道</span></a></li><li><a href="#三、為頻道命名"><span>三、為頻道命名</span></a></li><li><a href="#四、點選-got-it-正式啟用頻道"><span>四、點選 got it 正式啟用頻道</span></a></li><li><a href="#五、點選-add-people-to-this-channel-加入團隊成員到頻道中"><span>五、點選 add people to this channel 加入團隊成員到頻道中</span></a></li><li><a href="#六、前往-slack-的a-pp-Directory-應用程序，登入後右上角選擇要發送告警通知的-channel"><span>六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知的 channel</span></a></li><li><a href="#網址：https-slack-com-apps"><span>網址：https://slack.com/apps</span></a></li><li><a href="#七、在下方搜尋地方輸入-incoming-webhooks-搜尋"><span>七、在下方搜尋地方輸入 incoming webhooks 搜尋</span></a></li><li><a href="#八、點選-add-configuration-申請-channel-的-url"><span>八、點選 add configuration 申請 channel 的 url</span></a></li><li><a href="#九、選擇頻道，然後點擊-add-incoming-webhooks-integration"><span>九、選擇頻道，然後點擊 add incoming webhooks integration</span></a></li><li><a href="#十、申請好就可以看到頻道-url，複製下來-grafana-告警會用到"><span>十、申請好就可以看到頻道 url，複製下來 grafana 告警會用到</span></a></li><li><a href="#沒複製到-url-回到-incoming-webhooks-畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到-url"><span>沒複製到 url 回到 incoming webhooks 畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到 url</span></a></li><li><a href="#十一、在來回到-grafana-左邊列表點選鈴鐺，選擇-notification-channels"><span>十一、在來回到 grafana 左邊列表點選鈴鐺，選擇 notification channels</span></a></li><li><a href="#十二、點擊-add-channel-創建告警頻道"><span>十二、點擊 add channel 創建告警頻道</span></a></li><li><a href="#進入畫面"><span>進入畫面</span></a></li><li><a href="#十三、-type-選擇-slack，url-輸入剛剛在-incoming-webhooks-獲得的-url，然後點擊-sent-test-會發一個測試訊息到-slack"><span>十三、 type 選擇 slack，url 輸入剛剛在 incoming webhooks 獲得的 url，然後點擊 sent test 會發一個測試訊息到 slack</span></a></li><li><a href="#發送的測試訊息"><span>發送的測試訊息</span></a></li><li><a href="#發送成功後就點選-save-儲存"><span>發送成功後就點選 save 儲存</span></a></li><li><a href="#回到-notification-channels-會看到設置好的告警頻道"><span>回到 notification channels 會看到設置好的告警頻道</span></a></li><li><a href="#十四、告警測試，到拉好的圖表設定，選擇分頁的-alert-選擇左列的-alert-config-設定成會告警的狀態"><span>十四、告警測試，到拉好的圖表設定，選擇分頁的 alert 選擇左列的 alert config 設定成會告警的狀態</span></a></li><li><a href="#十五、在到左列的-notifications-選擇告警頻道"><span>十五、在到左列的 notifications 選擇告警頻道</span></a></li><li><a href="#十六、告警發送後會發現-slack-只有訊息沒有圖片，下一張將介紹保存告警圖片到-gcs"><span>十六、告警發送後會發現 slack 只有訊息沒有圖片，下一張將介紹保存告警圖片到 gcs</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇文章將介紹把告警傳送到-slack"><span class="nav-number">1.</span> <span class="nav-text">本篇文章將介紹把告警傳送到 slack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app"><span class="nav-number">1.1.</span> <span class="nav-text">一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、slack-點選-channel，創建頻道"><span class="nav-number">1.2.</span> <span class="nav-text">二、slack 點選 channel，創建頻道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、為頻道命名"><span class="nav-number">1.3.</span> <span class="nav-text">三、為頻道命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、點選-got-it-正式啟用頻道"><span class="nav-number">1.4.</span> <span class="nav-text">四、點選 got it 正式啟用頻道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、點選-add-people-to-this-channel-加入團隊成員到頻道中"><span class="nav-number">1.5.</span> <span class="nav-text">五、點選 add people to this channel 加入團隊成員到頻道中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、前往-slack-的a-pp-Directory-應用程序，登入後右上角選擇要發送告警通知的-channel"><span class="nav-number">1.6.</span> <span class="nav-text">六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知的 channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#網址：https-slack-com-apps"><span class="nav-number">1.7.</span> <span class="nav-text">網址：https://slack.com/apps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、在下方搜尋地方輸入-incoming-webhooks-搜尋"><span class="nav-number">1.8.</span> <span class="nav-text">七、在下方搜尋地方輸入 incoming webhooks 搜尋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、點選-add-configuration-申請-channel-的-url"><span class="nav-number">1.9.</span> <span class="nav-text">八、點選 add configuration 申請 channel 的 url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、選擇頻道，然後點擊-add-incoming-webhooks-integration"><span class="nav-number">1.10.</span> <span class="nav-text">九、選擇頻道，然後點擊 add incoming webhooks integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、申請好就可以看到頻道-url，複製下來-grafana-告警會用到"><span class="nav-number">1.11.</span> <span class="nav-text">十、申請好就可以看到頻道 url，複製下來 grafana 告警會用到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#沒複製到-url-回到-incoming-webhooks-畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到-url"><span class="nav-number">1.12.</span> <span class="nav-text">沒複製到 url 回到 incoming webhooks 畫面，可以看到你申請好的頻道，點擊右邊鉛筆進入編輯就可以在看到 url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十一、在來回到-grafana-左邊列表點選鈴鐺，選擇-notification-channels"><span class="nav-number">1.13.</span> <span class="nav-text">十一、在來回到 grafana 左邊列表點選鈴鐺，選擇 notification channels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十二、點擊-add-channel-創建告警頻道"><span class="nav-number">1.14.</span> <span class="nav-text">十二、點擊 add channel 創建告警頻道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進入畫面"><span class="nav-number">1.15.</span> <span class="nav-text">進入畫面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十三、-type-選擇-slack，url-輸入剛剛在-incoming-webhooks-獲得的-url，然後點擊-sent-test-會發一個測試訊息到-slack"><span class="nav-number">1.16.</span> <span class="nav-text">十三、 type 選擇 slack，url 輸入剛剛在 incoming webhooks 獲得的 url，然後點擊 sent test 會發一個測試訊息到 slack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#發送的測試訊息"><span class="nav-number">1.17.</span> <span class="nav-text">發送的測試訊息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#發送成功後就點選-save-儲存"><span class="nav-number">1.18.</span> <span class="nav-text">發送成功後就點選 save 儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到-notification-channels-會看到設置好的告警頻道"><span class="nav-number">1.19.</span> <span class="nav-text">回到 notification channels 會看到設置好的告警頻道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十四、告警測試，到拉好的圖表設定，選擇分頁的-alert-選擇左列的-alert-config-設定成會告警的狀態"><span class="nav-number">1.20.</span> <span class="nav-text">十四、告警測試，到拉好的圖表設定，選擇分頁的 alert 選擇左列的 alert config 設定成會告警的狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十五、在到左列的-notifications-選擇告警頻道"><span class="nav-number">1.21.</span> <span class="nav-text">十五、在到左列的 notifications 選擇告警頻道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十六、告警發送後會發現-slack-只有訊息沒有圖片，下一張將介紹保存告警圖片到-gcs"><span class="nav-number">1.22.</span> <span class="nav-text">十六、告警發送後會發現 slack 只有訊息沒有圖片，下一張將介紹保存告警圖片到 gcs</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

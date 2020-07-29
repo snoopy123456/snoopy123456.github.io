@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>設定wowza-HLS低延遲 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x8ABF;&amp;#x6574; HLS &amp;#x4F4E;&amp;#x5EF6;&amp;#x9072;1. &amp;#x9996;&amp;#x5148;&amp;#x5728; Applications &amp;#x9078;&amp;#x64C7;&amp;#x60F3;&amp;#x8A2D;&amp;#x5B9A;&amp;#x4F4E;&amp;#">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹如何調整 HLS 低延遲1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit 2. 選擇 Low-latency stream ( ideal for chat applications ) 3. 設定好後點選 Save 需要重新整理 4. 也可以再建立 Live Applications 的時候先設定好 5. 設定好 Low-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="設定wowza-HLS低延遲">
 <meta property="og:url" content="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x8ABF;&amp;#x6574; HLS &amp;#x4F4E;&amp;#x5EF6;&amp;#x9072;1. &amp;#x9996;&amp;#x5148;&amp;#x5728; Applications &amp;#x9078;&amp;#x64C7;&amp;#x60F3;&amp;#x8A2D;&amp;#x5B9A;&amp;#x4F4E;&amp;#">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹如何調整 HLS 低延遲1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit 2. 選擇 Low-latency stream ( ideal for chat applications ) 3. 設定好後點選 Save 需要重新整理 4. 也可以再建立 Live Applications 的時候先設定好 5. 設定好 Low-">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/images/3.png">
@@ -33,245 +44,356 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="設定wowza-HLS低延遲">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x8ABF;&amp;#x6574; HLS &amp;#x4F4E;&amp;#x5EF6;&amp;#x9072;1. &amp;#x9996;&amp;#x5148;&amp;#x5728; Applications &amp;#x9078;&amp;#x64C7;&amp;#x60F3;&amp;#x8A2D;&amp;#x5B9A;&amp;#x4F4E;&amp;#">
+<meta name="twitter:description" content="本文章將介紹如何調整 HLS 低延遲1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit 2. 選擇 Low-latency stream ( ideal for chat applications ) 3. 設定好後點選 Save 需要重新整理 4. 也可以再建立 Live Applications 的時候先設定好 5. 設定好 Low-">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>設定wowza-HLS低延遲 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-設定wowza-HLS低延遲" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    設定wowza-HLS低延遲
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x8ABF;&#x6574;-HLS-&#x4F4E;&#x5EF6;&#x9072;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x8ABF;&#x6574;-HLS-&#x4F4E;&#x5EF6;&#x9072;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x8ABF;&#x6574; HLS &#x4F4E;&#x5EF6;&#x9072;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x8ABF;&#x6574; HLS &#x4F4E;&#x5EF6;&#x9072;</h3><h4 id="1-&#x9996;&#x5148;&#x5728;-Applications-&#x9078;&#x64C7;&#x60F3;&#x8A2D;&#x5B9A;&#x4F4E;&#x5EF6;&#x9072;&#x7684;-Live-Applications-&#x9EDE;&#x64CA;-Edit"><a href="#1-&#x9996;&#x5148;&#x5728;-Applications-&#x9078;&#x64C7;&#x60F3;&#x8A2D;&#x5B9A;&#x4F4E;&#x5EF6;&#x9072;&#x7684;-Live-Applications-&#x9EDE;&#x64CA;-Edit" class="headerlink" title="1. &#x9996;&#x5148;&#x5728; Applications &#x9078;&#x64C7;&#x60F3;&#x8A2D;&#x5B9A;&#x4F4E;&#x5EF6;&#x9072;&#x7684; Live Applications &#x9EDE;&#x64CA; Edit"></a>1. &#x9996;&#x5148;&#x5728; Applications &#x9078;&#x64C7;&#x60F3;&#x8A2D;&#x5B9A;&#x4F4E;&#x5EF6;&#x9072;&#x7684; Live Applications &#x9EDE;&#x64CA; Edit</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="2-&#x9078;&#x64C7;-Low-latency-stream-ideal-for-chat-applications"><a href="#2-&#x9078;&#x64C7;-Low-latency-stream-ideal-for-chat-applications" class="headerlink" title="2. &#x9078;&#x64C7; Low-latency stream ( ideal for chat applications )"></a>2. &#x9078;&#x64C7; Low-latency stream ( ideal for chat applications )</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h4 id="3-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x9078;-Save-&#x9700;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;"><a href="#3-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x9078;-Save-&#x9700;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;" class="headerlink" title="3. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x9078; Save &#x9700;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;"></a>3. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x9078; Save &#x9700;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="4-&#x4E5F;&#x53EF;&#x4EE5;&#x518D;&#x5EFA;&#x7ACB;-Live-Applications-&#x7684;&#x6642;&#x5019;&#x5148;&#x8A2D;&#x5B9A;&#x597D;"><a href="#4-&#x4E5F;&#x53EF;&#x4EE5;&#x518D;&#x5EFA;&#x7ACB;-Live-Applications-&#x7684;&#x6642;&#x5019;&#x5148;&#x8A2D;&#x5B9A;&#x597D;" class="headerlink" title="4. &#x4E5F;&#x53EF;&#x4EE5;&#x518D;&#x5EFA;&#x7ACB; Live Applications &#x7684;&#x6642;&#x5019;&#x5148;&#x8A2D;&#x5B9A;&#x597D;"></a>4. &#x4E5F;&#x53EF;&#x4EE5;&#x518D;&#x5EFA;&#x7ACB; Live Applications &#x7684;&#x6642;&#x5019;&#x5148;&#x8A2D;&#x5B9A;&#x597D;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h4 id="5-&#x8A2D;&#x5B9A;&#x597D;-Low-latency-stream-&#x9EDE;&#x9078;&#x4E0A;&#x9762;&#x5206;&#x9801;-Properties"><a href="#5-&#x8A2D;&#x5B9A;&#x597D;-Low-latency-stream-&#x9EDE;&#x9078;&#x4E0A;&#x9762;&#x5206;&#x9801;-Properties" class="headerlink" title="5. &#x8A2D;&#x5B9A;&#x597D; Low-latency stream &#x9EDE;&#x9078;&#x4E0A;&#x9762;&#x5206;&#x9801; Properties"></a>5. &#x8A2D;&#x5B9A;&#x597D; Low-latency stream &#x9EDE;&#x9078;&#x4E0A;&#x9762;&#x5206;&#x9801; Properties</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="6-Quick-Links-&#x9078;&#x64C7;-Cupertino-Streaming-Packetizer"><a href="#6-Quick-Links-&#x9078;&#x64C7;-Cupertino-Streaming-Packetizer" class="headerlink" title="6. Quick Links &#x9078;&#x64C7; Cupertino Streaming Packetizer"></a>6. Quick Links &#x9078;&#x64C7; Cupertino Streaming Packetizer</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="7-&#x9EDE;&#x9078;-Edit-&#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x88E1;&#x9762;&#x53C3;&#x6578;-cupertinoChunkDurationTarget-&#x8A2D;&#x5B9A;-1000-1000&#x6BEB;&#x79D2;&#x7B49;&#x65BC;1&#x79D2;-&#x3001;cupertinoMaxChunkCount-&#x8A2D;&#x5B9A;-50&#x3001;cupertinoPlaylistChunkCount-&#x8A2D;&#x5B9A;-12"><a href="#7-&#x9EDE;&#x9078;-Edit-&#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x88E1;&#x9762;&#x53C3;&#x6578;-cupertinoChunkDurationTarget-&#x8A2D;&#x5B9A;-1000-1000&#x6BEB;&#x79D2;&#x7B49;&#x65BC;1&#x79D2;-&#x3001;cupertinoMaxChunkCount-&#x8A2D;&#x5B9A;-50&#x3001;cupertinoPlaylistChunkCount-&#x8A2D;&#x5B9A;-12" class="headerlink" title="7. &#x9EDE;&#x9078; Edit &#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x88E1;&#x9762;&#x53C3;&#x6578; cupertinoChunkDurationTarget &#x8A2D;&#x5B9A; 1000 ( 1000&#x6BEB;&#x79D2;&#x7B49;&#x65BC;1&#x79D2; )&#x3001;cupertinoMaxChunkCount &#x8A2D;&#x5B9A; 50&#x3001;cupertinoPlaylistChunkCount &#x8A2D;&#x5B9A; 12"></a>7. &#x9EDE;&#x9078; Edit &#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x88E1;&#x9762;&#x53C3;&#x6578; cupertinoChunkDurationTarget &#x8A2D;&#x5B9A; 1000 ( 1000&#x6BEB;&#x79D2;&#x7B49;&#x65BC;1&#x79D2; )&#x3001;cupertinoMaxChunkCount &#x8A2D;&#x5B9A; 50&#x3001;cupertinoPlaylistChunkCount &#x8A2D;&#x5B9A; 12</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="8-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;"><a href="#8-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;" class="headerlink" title="8. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;"></a>8. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="9-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230;-Quick-Links-&#x9078;&#x64C7;-Custom"><a href="#9-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230;-Quick-Links-&#x9078;&#x64C7;-Custom" class="headerlink" title="9. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230; Quick Links &#x9078;&#x64C7; Custom"></a>9. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x56DE;&#x5230; Quick Links &#x9078;&#x64C7; Custom</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h4 id="10-&#x9EDE;&#x9078;-Edit-&#x9EDE;&#x9078;-Add-Custom-Property-&#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;"><a href="#10-&#x9EDE;&#x9078;-Edit-&#x9EDE;&#x9078;-Add-Custom-Property-&#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;" class="headerlink" title="10. &#x9EDE;&#x9078; Edit &#x9EDE;&#x9078; Add Custom Property &#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;"></a>10. &#x9EDE;&#x9078; Edit &#x9EDE;&#x9078; Add Custom Property &#x5F8C;&#x958B;&#x59CB;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h4 id="11-&#x53C3;&#x6578;&#x70BA;-Path&#xFF1A;-Root-Application-LiveStreamPacketizer&#x3001;Name&#xFF1A;cupertinoMinPlaylistChunkCount&#x3001;Type&#xFF1A;Integer&#x3001;Value&#xFF1A;6"><a href="#11-&#x53C3;&#x6578;&#x70BA;-Path&#xFF1A;-Root-Application-LiveStreamPacketizer&#x3001;Name&#xFF1A;cupertinoMinPlaylistChunkCount&#x3001;Type&#xFF1A;Integer&#x3001;Value&#xFF1A;6" class="headerlink" title="11. &#x53C3;&#x6578;&#x70BA; Path&#xFF1A;/Root/Application/LiveStreamPacketizer&#x3001;Name&#xFF1A;cupertinoMinPlaylistChunkCount&#x3001;Type&#xFF1A;Integer&#x3001;Value&#xFF1A;6"></a>11. &#x53C3;&#x6578;&#x70BA; Path&#xFF1A;/Root/Application/LiveStreamPacketizer&#x3001;Name&#xFF1A;cupertinoMinPlaylistChunkCount&#x3001;Type&#xFF1A;Integer&#x3001;Value&#xFF1A;6</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h4 id="12-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;"><a href="#12-&#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;" class="headerlink" title="12. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;"></a>12. &#x8A2D;&#x5B9A;&#x597D;&#x5F8C;&#x4E00;&#x6A23;&#x8981;&#x91CD;&#x65B0;&#x6574;&#x7406;</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5230;&#x9019;&#x908A;&#x5C31;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x4E86;"><a href="#&#x5230;&#x9019;&#x908A;&#x5C31;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="&#x5230;&#x9019;&#x908A;&#x5C31;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x4E86;"></a>&#x5230;&#x9019;&#x908A;&#x5C31;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x4E86;</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-11-23T03:36:21.000Z" itemprop="datePublished">2018-11-23</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          設定wowza-HLS低延遲
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-11-23 11:36:21" itemprop="dateCreated datePublished" datetime="2018-11-23T11:36:21+08:00">2018-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本文章將介紹如何調整-HLS-低延遲"><a href="#本文章將介紹如何調整-HLS-低延遲" class="headerlink" title="本文章將介紹如何調整 HLS 低延遲"></a>本文章將介紹如何調整 HLS 低延遲</h3><h4 id="1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit"><a href="#1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit" class="headerlink" title="1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit"></a>1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="2-選擇-Low-latency-stream-ideal-for-chat-applications"><a href="#2-選擇-Low-latency-stream-ideal-for-chat-applications" class="headerlink" title="2. 選擇 Low-latency stream ( ideal for chat applications )"></a>2. 選擇 Low-latency stream ( ideal for chat applications )</h4><p><img src="images/2.png" alt=" "></p>
+<h4 id="3-設定好後點選-Save-需要重新整理"><a href="#3-設定好後點選-Save-需要重新整理" class="headerlink" title="3. 設定好後點選 Save 需要重新整理"></a>3. 設定好後點選 Save 需要重新整理</h4><p><img src="images/3.png" alt=" "></p>
+<h4 id="4-也可以再建立-Live-Applications-的時候先設定好"><a href="#4-也可以再建立-Live-Applications-的時候先設定好" class="headerlink" title="4. 也可以再建立 Live Applications 的時候先設定好"></a>4. 也可以再建立 Live Applications 的時候先設定好</h4><p><img src="images/4.png" alt=" "></p>
+<h4 id="5-設定好-Low-latency-stream-點選上面分頁-Properties"><a href="#5-設定好-Low-latency-stream-點選上面分頁-Properties" class="headerlink" title="5. 設定好 Low-latency stream 點選上面分頁 Properties"></a>5. 設定好 Low-latency stream 點選上面分頁 Properties</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="6-Quick-Links-選擇-Cupertino-Streaming-Packetizer"><a href="#6-Quick-Links-選擇-Cupertino-Streaming-Packetizer" class="headerlink" title="6. Quick Links 選擇 Cupertino Streaming Packetizer"></a>6. Quick Links 選擇 Cupertino Streaming Packetizer</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12"><a href="#7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12" class="headerlink" title="7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12"></a>7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12</h4><p><img src="images/7.png" alt=" "><br><img src="images/8.png" alt=" "></p>
+<h4 id="8-設定好後一樣要重新整理"><a href="#8-設定好後一樣要重新整理" class="headerlink" title="8. 設定好後一樣要重新整理"></a>8. 設定好後一樣要重新整理</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="9-設定好後回到-Quick-Links-選擇-Custom"><a href="#9-設定好後回到-Quick-Links-選擇-Custom" class="headerlink" title="9. 設定好後回到 Quick Links 選擇 Custom"></a>9. 設定好後回到 Quick Links 選擇 Custom</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="10-點選-Edit-點選-Add-Custom-Property-後開始設定參數"><a href="#10-點選-Edit-點選-Add-Custom-Property-後開始設定參數" class="headerlink" title="10. 點選 Edit 點選 Add Custom Property 後開始設定參數"></a>10. 點選 Edit 點選 Add Custom Property 後開始設定參數</h4><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h4 id="11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"><a href="#11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6" class="headerlink" title="11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"></a>11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="12-設定好後一樣要重新整理"><a href="#12-設定好後一樣要重新整理" class="headerlink" title="12. 設定好後一樣要重新整理"></a>12. 設定好後一樣要重新整理</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="到這邊就設定完成了"><a href="#到這邊就設定完成了" class="headerlink" title="到這邊就設定完成了"></a>到這邊就設定完成了</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/11/24/VXG建立/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    VXG建立
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/" class="ui tiny button">
-                    
-                    wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/" rel="prev" title="wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN">
+      <i class="fa fa-chevron-left"></i> wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/24/VXG建立/" rel="next" title="VXG建立">
+      VXG建立 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹如何調整-HLS-低延遲"><span>本文章將介紹如何調整 HLS 低延遲</span></a><ol><li><a href="#1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit"><span>1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit</span></a></li><li><a href="#2-選擇-Low-latency-stream-ideal-for-chat-applications"><span>2. 選擇 Low-latency stream ( ideal for chat applications )</span></a></li><li><a href="#3-設定好後點選-Save-需要重新整理"><span>3. 設定好後點選 Save 需要重新整理</span></a></li><li><a href="#4-也可以再建立-Live-Applications-的時候先設定好"><span>4. 也可以再建立 Live Applications 的時候先設定好</span></a></li><li><a href="#5-設定好-Low-latency-stream-點選上面分頁-Properties"><span>5. 設定好 Low-latency stream 點選上面分頁 Properties</span></a></li><li><a href="#6-Quick-Links-選擇-Cupertino-Streaming-Packetizer"><span>6. Quick Links 選擇 Cupertino Streaming Packetizer</span></a></li><li><a href="#7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12"><span>7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12</span></a></li><li><a href="#8-設定好後一樣要重新整理"><span>8. 設定好後一樣要重新整理</span></a></li><li><a href="#9-設定好後回到-Quick-Links-選擇-Custom"><span>9. 設定好後回到 Quick Links 選擇 Custom</span></a></li><li><a href="#10-點選-Edit-點選-Add-Custom-Property-後開始設定參數"><span>10. 點選 Edit 點選 Add Custom Property 後開始設定參數</span></a></li><li><a href="#11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"><span>11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6</span></a></li><li><a href="#12-設定好後一樣要重新整理"><span>12. 設定好後一樣要重新整理</span></a></li><li><a href="#到這邊就設定完成了"><span>到這邊就設定完成了</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文章將介紹如何調整-HLS-低延遲"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹如何調整 HLS 低延遲</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit"><span class="nav-number">1.1.</span> <span class="nav-text">1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-選擇-Low-latency-stream-ideal-for-chat-applications"><span class="nav-number">1.2.</span> <span class="nav-text">2. 選擇 Low-latency stream ( ideal for chat applications )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-設定好後點選-Save-需要重新整理"><span class="nav-number">1.3.</span> <span class="nav-text">3. 設定好後點選 Save 需要重新整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-也可以再建立-Live-Applications-的時候先設定好"><span class="nav-number">1.4.</span> <span class="nav-text">4. 也可以再建立 Live Applications 的時候先設定好</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-設定好-Low-latency-stream-點選上面分頁-Properties"><span class="nav-number">1.5.</span> <span class="nav-text">5. 設定好 Low-latency stream 點選上面分頁 Properties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Quick-Links-選擇-Cupertino-Streaming-Packetizer"><span class="nav-number">1.6.</span> <span class="nav-text">6. Quick Links 選擇 Cupertino Streaming Packetizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12"><span class="nav-number">1.7.</span> <span class="nav-text">7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-設定好後一樣要重新整理"><span class="nav-number">1.8.</span> <span class="nav-text">8. 設定好後一樣要重新整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-設定好後回到-Quick-Links-選擇-Custom"><span class="nav-number">1.9.</span> <span class="nav-text">9. 設定好後回到 Quick Links 選擇 Custom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-點選-Edit-點選-Add-Custom-Property-後開始設定參數"><span class="nav-number">1.10.</span> <span class="nav-text">10. 點選 Edit 點選 Add Custom Property 後開始設定參數</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"><span class="nav-number">1.11.</span> <span class="nav-text">11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-設定好後一樣要重新整理"><span class="nav-number">1.12.</span> <span class="nav-text">12. 設定好後一樣要重新整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#到這邊就設定完成了"><span class="nav-number">1.13.</span> <span class="nav-text">到這邊就設定完成了</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

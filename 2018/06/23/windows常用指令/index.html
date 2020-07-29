@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>windows常用指令 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x662F;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x7B46;&amp;#x8A18;&amp;#x7528;&amp;#xFF0C;&amp;#x6703;&amp;#x4E0D;&amp;#x5B9A;&amp;#x6642;&amp;#x66F4;&amp;#x65B0;&amp;#x6307;&amp;#x4EE4;&amp;#x958B;&amp;#x555F;&amp;#x6307;&amp;#x4EE4;&amp;#x65B9;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章是作者自己筆記用，會不定時更新指令開啟指令方式 鍵盤開始鍵 + R 輸入常用指令services.msc ( 本機服務設定 ) regedit.exe ( 登入檔編輯程式 ) mstsc ( 遠端桌面 ) eventvwr.msc ( 事件檢視器 ) control ( 控制台 ) taskmgr ( 工作管理員 ) secpol.msc ( 本機安全性原則 ) gpedit.msc ( 本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows常用指令">
 <meta property="og:url" content="http://yoursite.com/2018/06/23/windows常用指令/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x662F;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x7B46;&amp;#x8A18;&amp;#x7528;&amp;#xFF0C;&amp;#x6703;&amp;#x4E0D;&amp;#x5B9A;&amp;#x6642;&amp;#x66F4;&amp;#x65B0;&amp;#x6307;&amp;#x4EE4;&amp;#x958B;&amp;#x555F;&amp;#x6307;&amp;#x4EE4;&amp;#x65B9;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章是作者自己筆記用，會不定時更新指令開啟指令方式 鍵盤開始鍵 + R 輸入常用指令services.msc ( 本機服務設定 ) regedit.exe ( 登入檔編輯程式 ) mstsc ( 遠端桌面 ) eventvwr.msc ( 事件檢視器 ) control ( 控制台 ) taskmgr ( 工作管理員 ) secpol.msc ( 本機安全性原則 ) gpedit.msc ( 本">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/windows常用指令/images/10.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/windows常用指令/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/windows常用指令/images/2.png">
@@ -29,243 +40,354 @@
 <meta property="og:updated_time" content="2020-04-29T08:32:35.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows常用指令">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x662F;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x7B46;&amp;#x8A18;&amp;#x7528;&amp;#xFF0C;&amp;#x6703;&amp;#x4E0D;&amp;#x5B9A;&amp;#x6642;&amp;#x66F4;&amp;#x65B0;&amp;#x6307;&amp;#x4EE4;&amp;#x958B;&amp;#x555F;&amp;#x6307;&amp;#x4EE4;&amp;#x65B9;">
+<meta name="twitter:description" content="本文章是作者自己筆記用，會不定時更新指令開啟指令方式 鍵盤開始鍵 + R 輸入常用指令services.msc ( 本機服務設定 ) regedit.exe ( 登入檔編輯程式 ) mstsc ( 遠端桌面 ) eventvwr.msc ( 事件檢視器 ) control ( 控制台 ) taskmgr ( 工作管理員 ) secpol.msc ( 本機安全性原則 ) gpedit.msc ( 本">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/23/windows常用指令/images/10.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/23/windows常用指令/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>windows常用指令 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-windows常用指令" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    windows常用指令
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/windows常用指令/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h4 id="&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x4E0D;&#x5B9A;&#x6642;&#x66F4;&#x65B0;&#x6307;&#x4EE4;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x4E0D;&#x5B9A;&#x6642;&#x66F4;&#x65B0;&#x6307;&#x4EE4;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x4E0D;&#x5B9A;&#x6642;&#x66F4;&#x65B0;&#x6307;&#x4EE4;"></a>&#x672C;&#x6587;&#x7AE0;&#x662F;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x7B46;&#x8A18;&#x7528;&#xFF0C;&#x6703;&#x4E0D;&#x5B9A;&#x6642;&#x66F4;&#x65B0;&#x6307;&#x4EE4;</h4><h4 id="&#x958B;&#x555F;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;-&#x9375;&#x76E4;&#x958B;&#x59CB;&#x9375;-R"><a href="#&#x958B;&#x555F;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;-&#x9375;&#x76E4;&#x958B;&#x59CB;&#x9375;-R" class="headerlink" title="&#x958B;&#x555F;&#x6307;&#x4EE4;&#x65B9;&#x5F0F; &#x9375;&#x76E4;&#x958B;&#x59CB;&#x9375; + R"></a>&#x958B;&#x555F;&#x6307;&#x4EE4;&#x65B9;&#x5F0F; &#x9375;&#x76E4;&#x958B;&#x59CB;&#x9375; + R</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8F38;&#x5165;&#x5E38;&#x7528;&#x6307;&#x4EE4;"><a href="#&#x8F38;&#x5165;&#x5E38;&#x7528;&#x6307;&#x4EE4;" class="headerlink" title="&#x8F38;&#x5165;&#x5E38;&#x7528;&#x6307;&#x4EE4;"></a>&#x8F38;&#x5165;&#x5E38;&#x7528;&#x6307;&#x4EE4;</h4><h4 id="services-msc-&#x672C;&#x6A5F;&#x670D;&#x52D9;&#x8A2D;&#x5B9A;"><a href="#services-msc-&#x672C;&#x6A5F;&#x670D;&#x52D9;&#x8A2D;&#x5B9A;" class="headerlink" title="services.msc ( &#x672C;&#x6A5F;&#x670D;&#x52D9;&#x8A2D;&#x5B9A; )"></a>services.msc ( &#x672C;&#x6A5F;&#x670D;&#x52D9;&#x8A2D;&#x5B9A; )</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="regedit-exe-&#x767B;&#x5165;&#x6A94;&#x7DE8;&#x8F2F;&#x7A0B;&#x5F0F;"><a href="#regedit-exe-&#x767B;&#x5165;&#x6A94;&#x7DE8;&#x8F2F;&#x7A0B;&#x5F0F;" class="headerlink" title="regedit.exe ( &#x767B;&#x5165;&#x6A94;&#x7DE8;&#x8F2F;&#x7A0B;&#x5F0F; )"></a>regedit.exe ( &#x767B;&#x5165;&#x6A94;&#x7DE8;&#x8F2F;&#x7A0B;&#x5F0F; )</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h4 id="mstsc-&#x9060;&#x7AEF;&#x684C;&#x9762;"><a href="#mstsc-&#x9060;&#x7AEF;&#x684C;&#x9762;" class="headerlink" title="mstsc ( &#x9060;&#x7AEF;&#x684C;&#x9762; )"></a>mstsc ( &#x9060;&#x7AEF;&#x684C;&#x9762; )</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="eventvwr-msc-&#x4E8B;&#x4EF6;&#x6AA2;&#x8996;&#x5668;"><a href="#eventvwr-msc-&#x4E8B;&#x4EF6;&#x6AA2;&#x8996;&#x5668;" class="headerlink" title="eventvwr.msc ( &#x4E8B;&#x4EF6;&#x6AA2;&#x8996;&#x5668; )"></a>eventvwr.msc ( &#x4E8B;&#x4EF6;&#x6AA2;&#x8996;&#x5668; )</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h4 id="control-&#x63A7;&#x5236;&#x53F0;"><a href="#control-&#x63A7;&#x5236;&#x53F0;" class="headerlink" title="control ( &#x63A7;&#x5236;&#x53F0; )"></a>control ( &#x63A7;&#x5236;&#x53F0; )</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="taskmgr-&#x5DE5;&#x4F5C;&#x7BA1;&#x7406;&#x54E1;"><a href="#taskmgr-&#x5DE5;&#x4F5C;&#x7BA1;&#x7406;&#x54E1;" class="headerlink" title="taskmgr ( &#x5DE5;&#x4F5C;&#x7BA1;&#x7406;&#x54E1; )"></a>taskmgr ( &#x5DE5;&#x4F5C;&#x7BA1;&#x7406;&#x54E1; )</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="secpol-msc-&#x672C;&#x6A5F;&#x5B89;&#x5168;&#x6027;&#x539F;&#x5247;"><a href="#secpol-msc-&#x672C;&#x6A5F;&#x5B89;&#x5168;&#x6027;&#x539F;&#x5247;" class="headerlink" title="secpol.msc ( &#x672C;&#x6A5F;&#x5B89;&#x5168;&#x6027;&#x539F;&#x5247; )"></a>secpol.msc ( &#x672C;&#x6A5F;&#x5B89;&#x5168;&#x6027;&#x539F;&#x5247; )</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h4 id="gpedit-msc-&#x672C;&#x6A5F;&#x7FA4;&#x7D44;&#x539F;&#x5247;&#x7DE8;&#x8F2F;&#x5668;"><a href="#gpedit-msc-&#x672C;&#x6A5F;&#x7FA4;&#x7D44;&#x539F;&#x5247;&#x7DE8;&#x8F2F;&#x5668;" class="headerlink" title="gpedit.msc ( &#x672C;&#x6A5F;&#x7FA4;&#x7D44;&#x539F;&#x5247;&#x7DE8;&#x8F2F;&#x5668; )"></a>gpedit.msc ( &#x672C;&#x6A5F;&#x7FA4;&#x7D44;&#x539F;&#x5247;&#x7DE8;&#x8F2F;&#x5668; )</h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="certmgr-msc-&#x6191;&#x8B49;"><a href="#certmgr-msc-&#x6191;&#x8B49;" class="headerlink" title="certmgr.msc ( &#x6191;&#x8B49; )"></a>certmgr.msc ( &#x6191;&#x8B49; )</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="explorer-&#x6A94;&#x6848;&#x7E3D;&#x7BA1;"><a href="#explorer-&#x6A94;&#x6848;&#x7E3D;&#x7BA1;" class="headerlink" title="explorer ( &#x6A94;&#x6848;&#x7E3D;&#x7BA1; )"></a>explorer ( &#x6A94;&#x6848;&#x7E3D;&#x7BA1; )</h4><h4 id="notepad-&#x958B;&#x555F;&#x8A18;&#x4E8B;&#x672C;"><a href="#notepad-&#x958B;&#x555F;&#x8A18;&#x4E8B;&#x672C;" class="headerlink" title="notepad ( &#x958B;&#x555F;&#x8A18;&#x4E8B;&#x672C; )"></a>notepad ( &#x958B;&#x555F;&#x8A18;&#x4E8B;&#x672C; )</h4><h4 id="mspaint-&#x5C0F;&#x756B;&#x5BB6;"><a href="#mspaint-&#x5C0F;&#x756B;&#x5BB6;" class="headerlink" title="mspaint ( &#x5C0F;&#x756B;&#x5BB6; )"></a>mspaint ( &#x5C0F;&#x756B;&#x5BB6; )</h4><h4 id="sticky-notes-&#x4FBF;&#x7C3D;"><a href="#sticky-notes-&#x4FBF;&#x7C3D;" class="headerlink" title="sticky notes ( &#x4FBF;&#x7C3D; )"></a>sticky notes ( &#x4FBF;&#x7C3D; )</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-23T04:52:37.000Z" itemprop="datePublished">2018-06-23</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          windows常用指令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-23 12:52:37" itemprop="dateCreated datePublished" datetime="2018-06-23T12:52:37+08:00">2018-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-29 16:32:35" itemprop="dateModified" datetime="2020-04-29T16:32:35+08:00">2020-04-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="本文章是作者自己筆記用，會不定時更新指令"><a href="#本文章是作者自己筆記用，會不定時更新指令" class="headerlink" title="本文章是作者自己筆記用，會不定時更新指令"></a>本文章是作者自己筆記用，會不定時更新指令</h4><h4 id="開啟指令方式-鍵盤開始鍵-R"><a href="#開啟指令方式-鍵盤開始鍵-R" class="headerlink" title="開啟指令方式 鍵盤開始鍵 + R"></a>開啟指令方式 鍵盤開始鍵 + R</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="輸入常用指令"><a href="#輸入常用指令" class="headerlink" title="輸入常用指令"></a>輸入常用指令</h4><h4 id="services-msc-本機服務設定"><a href="#services-msc-本機服務設定" class="headerlink" title="services.msc ( 本機服務設定 )"></a>services.msc ( 本機服務設定 )</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="regedit-exe-登入檔編輯程式"><a href="#regedit-exe-登入檔編輯程式" class="headerlink" title="regedit.exe ( 登入檔編輯程式 )"></a>regedit.exe ( 登入檔編輯程式 )</h4><p><img src="images/2.png" alt=" "></p>
+<h4 id="mstsc-遠端桌面"><a href="#mstsc-遠端桌面" class="headerlink" title="mstsc ( 遠端桌面 )"></a>mstsc ( 遠端桌面 )</h4><p><img src="images/3.png" alt=" "></p>
+<h4 id="eventvwr-msc-事件檢視器"><a href="#eventvwr-msc-事件檢視器" class="headerlink" title="eventvwr.msc ( 事件檢視器 )"></a>eventvwr.msc ( 事件檢視器 )</h4><p><img src="images/4.png" alt=" "></p>
+<h4 id="control-控制台"><a href="#control-控制台" class="headerlink" title="control ( 控制台 )"></a>control ( 控制台 )</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="taskmgr-工作管理員"><a href="#taskmgr-工作管理員" class="headerlink" title="taskmgr ( 工作管理員 )"></a>taskmgr ( 工作管理員 )</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="secpol-msc-本機安全性原則"><a href="#secpol-msc-本機安全性原則" class="headerlink" title="secpol.msc ( 本機安全性原則 )"></a>secpol.msc ( 本機安全性原則 )</h4><p><img src="images/7.png" alt=" "></p>
+<h4 id="gpedit-msc-本機群組原則編輯器"><a href="#gpedit-msc-本機群組原則編輯器" class="headerlink" title="gpedit.msc ( 本機群組原則編輯器 )"></a>gpedit.msc ( 本機群組原則編輯器 )</h4><p><img src="images/8.png" alt=" "></p>
+<h4 id="certmgr-msc-憑證"><a href="#certmgr-msc-憑證" class="headerlink" title="certmgr.msc ( 憑證 )"></a>certmgr.msc ( 憑證 )</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="explorer-檔案總管"><a href="#explorer-檔案總管" class="headerlink" title="explorer ( 檔案總管 )"></a>explorer ( 檔案總管 )</h4><h4 id="notepad-開啟記事本"><a href="#notepad-開啟記事本" class="headerlink" title="notepad ( 開啟記事本 )"></a>notepad ( 開啟記事本 )</h4><h4 id="mspaint-小畫家"><a href="#mspaint-小畫家" class="headerlink" title="mspaint ( 小畫家 )"></a>mspaint ( 小畫家 )</h4><h4 id="sticky-notes-便簽"><a href="#sticky-notes-便簽" class="headerlink" title="sticky notes ( 便簽 )"></a>sticky notes ( 便簽 )</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/23/linux更改時區/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    linux更改時區
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/" class="ui tiny button">
-                    
-                    設定遠端帳號權限為Remote-Desktop-Users
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/23/修改遠端桌面的連接埠-port/" rel="prev" title="修改遠端桌面的連接埠-port">
+      <i class="fa fa-chevron-left"></i> 修改遠端桌面的連接埠-port
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/" rel="next" title="設定遠端帳號權限為Remote-Desktop-Users">
+      設定遠端帳號權限為Remote-Desktop-Users <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章是作者自己筆記用，會不定時更新指令"><span>本文章是作者自己筆記用，會不定時更新指令</span></a></li><li><a href="#開啟指令方式-鍵盤開始鍵-R"><span>開啟指令方式 鍵盤開始鍵 + R</span></a></li><li><a href="#輸入常用指令"><span>輸入常用指令</span></a></li><li><a href="#services-msc-本機服務設定"><span>services.msc ( 本機服務設定 )</span></a></li><li><a href="#regedit-exe-登入檔編輯程式"><span>regedit.exe ( 登入檔編輯程式 )</span></a></li><li><a href="#mstsc-遠端桌面"><span>mstsc ( 遠端桌面 )</span></a></li><li><a href="#eventvwr-msc-事件檢視器"><span>eventvwr.msc ( 事件檢視器 )</span></a></li><li><a href="#control-控制台"><span>control ( 控制台 )</span></a></li><li><a href="#taskmgr-工作管理員"><span>taskmgr ( 工作管理員 )</span></a></li><li><a href="#secpol-msc-本機安全性原則"><span>secpol.msc ( 本機安全性原則 )</span></a></li><li><a href="#gpedit-msc-本機群組原則編輯器"><span>gpedit.msc ( 本機群組原則編輯器 )</span></a></li><li><a href="#certmgr-msc-憑證"><span>certmgr.msc ( 憑證 )</span></a></li><li><a href="#explorer-檔案總管"><span>explorer ( 檔案總管 )</span></a></li><li><a href="#notepad-開啟記事本"><span>notepad ( 開啟記事本 )</span></a></li><li><a href="#mspaint-小畫家"><span>mspaint ( 小畫家 )</span></a></li><li><a href="#sticky-notes-便簽"><span>sticky notes ( 便簽 )</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#本文章是作者自己筆記用，會不定時更新指令"><span class="nav-number">1.</span> <span class="nav-text">本文章是作者自己筆記用，會不定時更新指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#開啟指令方式-鍵盤開始鍵-R"><span class="nav-number">2.</span> <span class="nav-text">開啟指令方式 鍵盤開始鍵 + R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#輸入常用指令"><span class="nav-number">3.</span> <span class="nav-text">輸入常用指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#services-msc-本機服務設定"><span class="nav-number">4.</span> <span class="nav-text">services.msc ( 本機服務設定 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#regedit-exe-登入檔編輯程式"><span class="nav-number">5.</span> <span class="nav-text">regedit.exe ( 登入檔編輯程式 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mstsc-遠端桌面"><span class="nav-number">6.</span> <span class="nav-text">mstsc ( 遠端桌面 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#eventvwr-msc-事件檢視器"><span class="nav-number">7.</span> <span class="nav-text">eventvwr.msc ( 事件檢視器 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#control-控制台"><span class="nav-number">8.</span> <span class="nav-text">control ( 控制台 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#taskmgr-工作管理員"><span class="nav-number">9.</span> <span class="nav-text">taskmgr ( 工作管理員 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#secpol-msc-本機安全性原則"><span class="nav-number">10.</span> <span class="nav-text">secpol.msc ( 本機安全性原則 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gpedit-msc-本機群組原則編輯器"><span class="nav-number">11.</span> <span class="nav-text">gpedit.msc ( 本機群組原則編輯器 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#certmgr-msc-憑證"><span class="nav-number">12.</span> <span class="nav-text">certmgr.msc ( 憑證 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#explorer-檔案總管"><span class="nav-number">13.</span> <span class="nav-text">explorer ( 檔案總管 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#notepad-開啟記事本"><span class="nav-number">14.</span> <span class="nav-text">notepad ( 開啟記事本 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mspaint-小畫家"><span class="nav-number">15.</span> <span class="nav-text">mspaint ( 小畫家 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sticky-notes-便簽"><span class="nav-number">16.</span> <span class="nav-text">sticky notes ( 便簽 )</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

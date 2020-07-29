@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>wowza使用GoCoder串流 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x7528;&amp;#x624B;&amp;#x6A5F; GoCoder &amp;#x4E32;&amp;#x6D41; wowza&amp;#x9996;&amp;#x5148;&amp;#x624B;&amp;#x6A5F;&amp;#x5148;&amp;#x4E0B;&amp;#x8F09; GoCoder &amp;#x4E0B;&amp;#x5716;&amp;#x70BA;&amp;#x958B;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹用手機 GoCoder 串流 wowza首先手機先下載 GoCoder 下圖為開啟畫面 點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine ) 進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入 點擊 Wowza St">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wowza使用GoCoder串流">
 <meta property="og:url" content="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x7528;&amp;#x624B;&amp;#x6A5F; GoCoder &amp;#x4E32;&amp;#x6D41; wowza&amp;#x9996;&amp;#x5148;&amp;#x624B;&amp;#x6A5F;&amp;#x5148;&amp;#x4E0B;&amp;#x8F09; GoCoder &amp;#x4E0B;&amp;#x5716;&amp;#x70BA;&amp;#x958B;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹用手機 GoCoder 串流 wowza首先手機先下載 GoCoder 下圖為開啟畫面 點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine ) 進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入 點擊 Wowza St">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/images/1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/images/2.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/images/3.jpg">
@@ -35,247 +46,358 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wowza使用GoCoder串流">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x7528;&amp;#x624B;&amp;#x6A5F; GoCoder &amp;#x4E32;&amp;#x6D41; wowza&amp;#x9996;&amp;#x5148;&amp;#x624B;&amp;#x6A5F;&amp;#x5148;&amp;#x4E0B;&amp;#x8F09; GoCoder &amp;#x4E0B;&amp;#x5716;&amp;#x70BA;&amp;#x958B;">
+<meta name="twitter:description" content="本文章將介紹用手機 GoCoder 串流 wowza首先手機先下載 GoCoder 下圖為開啟畫面 點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine ) 進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入 點擊 Wowza St">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/images/1.jpg">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>wowza使用GoCoder串流 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-wowza使用GoCoder串流" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    wowza使用GoCoder串流
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/wowza使用GoCoder串流/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x7528;&#x624B;&#x6A5F;-GoCoder-&#x4E32;&#x6D41;-wowza"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x7528;&#x624B;&#x6A5F;-GoCoder-&#x4E32;&#x6D41;-wowza" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x7528;&#x624B;&#x6A5F; GoCoder &#x4E32;&#x6D41; wowza"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x7528;&#x624B;&#x6A5F; GoCoder &#x4E32;&#x6D41; wowza</h3><h4 id="&#x9996;&#x5148;&#x624B;&#x6A5F;&#x5148;&#x4E0B;&#x8F09;-GoCoder"><a href="#&#x9996;&#x5148;&#x624B;&#x6A5F;&#x5148;&#x4E0B;&#x8F09;-GoCoder" class="headerlink" title="&#x9996;&#x5148;&#x624B;&#x6A5F;&#x5148;&#x4E0B;&#x8F09; GoCoder"></a>&#x9996;&#x5148;&#x624B;&#x6A5F;&#x5148;&#x4E0B;&#x8F09; GoCoder</h4><p><a class="magnific-img" href="images/1.jpg"><img src="images/1.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E0B;&#x5716;&#x70BA;&#x958B;&#x555F;&#x756B;&#x9762;"><a href="#&#x4E0B;&#x5716;&#x70BA;&#x958B;&#x555F;&#x756B;&#x9762;" class="headerlink" title="&#x4E0B;&#x5716;&#x70BA;&#x958B;&#x555F;&#x756B;&#x9762;"></a>&#x4E0B;&#x5716;&#x70BA;&#x958B;&#x555F;&#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/2.jpg"><img src="images/2.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x505A;&#x8A2D;&#x5B9A;-&#x4E32;&#x6D41;-wowza-engine-&#x53EA;&#x9700;&#x8981;&#x8A2D;&#x5B9A;-Wowza-Stream-Engine"><a href="#&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x505A;&#x8A2D;&#x5B9A;-&#x4E32;&#x6D41;-wowza-engine-&#x53EA;&#x9700;&#x8981;&#x8A2D;&#x5B9A;-Wowza-Stream-Engine" class="headerlink" title="&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x505A;&#x8A2D;&#x5B9A; ( &#x4E32;&#x6D41; wowza engine &#x53EA;&#x9700;&#x8981;&#x8A2D;&#x5B9A; Wowza Stream Engine )"></a>&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x505A;&#x8A2D;&#x5B9A; ( &#x4E32;&#x6D41; wowza engine &#x53EA;&#x9700;&#x8981;&#x8A2D;&#x5B9A; Wowza Stream Engine )</h4><p><a class="magnific-img" href="images/3.jpg"><img src="images/3.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9032;&#x5165;-wowza-web-&#x2192;-Source-Live-&#xFF0C;&#x9EDE;&#x64CA;-wowza-GoCoder-&#x88E1;&#x9762;&#x6709;&#x4E00;&#x4E9B;&#x53C3;&#x6578;&#xFF0C;&#x9664;&#x4E86;-IP-&#x9700;&#x8981;&#x8F38;&#x5165;&#x5916;&#x7DB2;-IP-&#x5176;&#x4ED6;&#x53EF;&#x4EE5;&#x5C0D;&#x7167;&#x8F38;&#x5165;"><a href="#&#x9032;&#x5165;-wowza-web-&#x2192;-Source-Live-&#xFF0C;&#x9EDE;&#x64CA;-wowza-GoCoder-&#x88E1;&#x9762;&#x6709;&#x4E00;&#x4E9B;&#x53C3;&#x6578;&#xFF0C;&#x9664;&#x4E86;-IP-&#x9700;&#x8981;&#x8F38;&#x5165;&#x5916;&#x7DB2;-IP-&#x5176;&#x4ED6;&#x53EF;&#x4EE5;&#x5C0D;&#x7167;&#x8F38;&#x5165;" class="headerlink" title="&#x9032;&#x5165; wowza web &#x2192; Source ( Live )&#xFF0C;&#x9EDE;&#x64CA; wowza GoCoder &#x88E1;&#x9762;&#x6709;&#x4E00;&#x4E9B;&#x53C3;&#x6578;&#xFF0C;&#x9664;&#x4E86; IP ( &#x9700;&#x8981;&#x8F38;&#x5165;&#x5916;&#x7DB2; IP ) &#x5176;&#x4ED6;&#x53EF;&#x4EE5;&#x5C0D;&#x7167;&#x8F38;&#x5165;"></a>&#x9032;&#x5165; wowza web &#x2192; Source ( Live )&#xFF0C;&#x9EDE;&#x64CA; wowza GoCoder &#x88E1;&#x9762;&#x6709;&#x4E00;&#x4E9B;&#x53C3;&#x6578;&#xFF0C;&#x9664;&#x4E86; IP ( &#x9700;&#x8981;&#x8F38;&#x5165;&#x5916;&#x7DB2; IP ) &#x5176;&#x4ED6;&#x53EF;&#x4EE5;&#x5C0D;&#x7167;&#x8F38;&#x5165;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x64CA;-Wowza-Stream-Engine-&#x6703;&#x51FA;&#x73FE;3&#x500B;&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x9078;&#x9805;"><a href="#&#x9EDE;&#x64CA;-Wowza-Stream-Engine-&#x6703;&#x51FA;&#x73FE;3&#x500B;&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x9078;&#x9805;" class="headerlink" title="&#x9EDE;&#x64CA; Wowza Stream Engine &#x6703;&#x51FA;&#x73FE;3&#x500B;&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x9078;&#x9805;"></a>&#x9EDE;&#x64CA; Wowza Stream Engine &#x6703;&#x51FA;&#x73FE;3&#x500B;&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x9078;&#x9805;</h4><p><a class="magnific-img" href="images/6.jpg"><img src="images/6.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8A2D;&#x5B9A;-Host&#xFF1A;&#x8F38;&#x5165;&#x5916;&#x7DB2;-IP&#xFF0C;Port&#xFF1A;1935-wowza-&#x9810;&#x8A2D;&#x4E32;&#x6D41;-port"><a href="#&#x8A2D;&#x5B9A;-Host&#xFF1A;&#x8F38;&#x5165;&#x5916;&#x7DB2;-IP&#xFF0C;Port&#xFF1A;1935-wowza-&#x9810;&#x8A2D;&#x4E32;&#x6D41;-port" class="headerlink" title="&#x8A2D;&#x5B9A; Host&#xFF1A;&#x8F38;&#x5165;&#x5916;&#x7DB2; IP&#xFF0C;Port&#xFF1A;1935 ( wowza &#x9810;&#x8A2D;&#x4E32;&#x6D41; port )"></a>&#x8A2D;&#x5B9A; Host&#xFF1A;&#x8F38;&#x5165;&#x5916;&#x7DB2; IP&#xFF0C;Port&#xFF1A;1935 ( wowza &#x9810;&#x8A2D;&#x4E32;&#x6D41; port )</h4><p><a class="magnific-img" href="images/7.jpg"><img src="images/7.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8A2D;&#x5B9A;-Application&#xFF1A;wowza-live-application-name&#xFF0C;Stream-Name&#xFF1A;GoCoder-&#x9810;&#x8A2D;&#x90FD;&#x662F;-myStream-&#x66F4;&#x6539;&#x5F8C;-Incoming-Streams-&#x6703;&#x986F;&#x793A;&#x66F4;&#x6539;&#x5F8C;&#x540D;&#x7A31;&#xFF0C;PS-&#x540C;&#x6A23;&#x540D;&#x7A31;&#x4E8C;&#x652F;&#x624B;&#x6A5F;&#x6703;&#x4E92;&#x6436;"><a href="#&#x8A2D;&#x5B9A;-Application&#xFF1A;wowza-live-application-name&#xFF0C;Stream-Name&#xFF1A;GoCoder-&#x9810;&#x8A2D;&#x90FD;&#x662F;-myStream-&#x66F4;&#x6539;&#x5F8C;-Incoming-Streams-&#x6703;&#x986F;&#x793A;&#x66F4;&#x6539;&#x5F8C;&#x540D;&#x7A31;&#xFF0C;PS-&#x540C;&#x6A23;&#x540D;&#x7A31;&#x4E8C;&#x652F;&#x624B;&#x6A5F;&#x6703;&#x4E92;&#x6436;" class="headerlink" title="&#x8A2D;&#x5B9A; Application&#xFF1A;wowza live application name&#xFF0C;Stream Name&#xFF1A;GoCoder &#x9810;&#x8A2D;&#x90FD;&#x662F; myStream ( &#x66F4;&#x6539;&#x5F8C; Incoming Streams &#x6703;&#x986F;&#x793A;&#x66F4;&#x6539;&#x5F8C;&#x540D;&#x7A31;&#xFF0C;PS.&#x540C;&#x6A23;&#x540D;&#x7A31;&#x4E8C;&#x652F;&#x624B;&#x6A5F;&#x6703;&#x4E92;&#x6436; )"></a>&#x8A2D;&#x5B9A; Application&#xFF1A;wowza live application name&#xFF0C;Stream Name&#xFF1A;GoCoder &#x9810;&#x8A2D;&#x90FD;&#x662F; myStream ( &#x66F4;&#x6539;&#x5F8C; Incoming Streams &#x6703;&#x986F;&#x793A;&#x66F4;&#x6539;&#x5F8C;&#x540D;&#x7A31;&#xFF0C;PS.&#x540C;&#x6A23;&#x540D;&#x7A31;&#x4E8C;&#x652F;&#x624B;&#x6A5F;&#x6703;&#x4E92;&#x6436; )</h4><p><a class="magnific-img" href="images/8.jpg"><img src="images/8.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x624B;&#x6A5F;-GoCoder-Source-Authentication-&#x8981;&#x5230;-wowza-Server-&#x2192;-Source-Authentication-&#x2192;-Add-Source-&#x65B0;&#x589E;-Source"><a href="#&#x624B;&#x6A5F;-GoCoder-Source-Authentication-&#x8981;&#x5230;-wowza-Server-&#x2192;-Source-Authentication-&#x2192;-Add-Source-&#x65B0;&#x589E;-Source" class="headerlink" title="&#x624B;&#x6A5F; GoCoder Source Authentication &#x8981;&#x5230; wowza Server &#x2192; Source Authentication &#x2192; Add Source &#x65B0;&#x589E; Source"></a>&#x624B;&#x6A5F; GoCoder Source Authentication &#x8981;&#x5230; wowza Server &#x2192; Source Authentication &#x2192; Add Source &#x65B0;&#x589E; Source</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8A2D;&#x5B9A;-Source-Authentication&#xFF1A;wowza-&#x6240;&#x8A2D;&#x5B9A;&#x7684;-Source-Authentication"><a href="#&#x8A2D;&#x5B9A;-Source-Authentication&#xFF1A;wowza-&#x6240;&#x8A2D;&#x5B9A;&#x7684;-Source-Authentication" class="headerlink" title="&#x8A2D;&#x5B9A; Source Authentication&#xFF1A;wowza &#x6240;&#x8A2D;&#x5B9A;&#x7684; Source Authentication"></a>&#x8A2D;&#x5B9A; Source Authentication&#xFF1A;wowza &#x6240;&#x8A2D;&#x5B9A;&#x7684; Source Authentication</h4><p><a class="magnific-img" href="images/9.jpg"><img src="images/9.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x7D05;&#x9EDE;&#x958B;&#x59CB;&#x4E32;&#x6D41;"><a href="#&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x7D05;&#x9EDE;&#x958B;&#x59CB;&#x4E32;&#x6D41;" class="headerlink" title="&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x7D05;&#x9EDE;&#x958B;&#x59CB;&#x4E32;&#x6D41;"></a>&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x7D05;&#x9EDE;&#x958B;&#x59CB;&#x4E32;&#x6D41;</h4><p><a class="magnific-img" href="images/12.jpg"><img src="images/12.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E32;&#x6D41;&#x5F8C;&#x756B;&#x9762;&#x5982;&#x4E0B;&#x5716;-&#x4E00;&#x4E9B;-GoCoder-&#x5176;&#x4ED6;&#x8A2D;&#x5B9A;&#x6709;&#x7A7A;&#x6703;&#x518D;&#x505A;&#x6587;&#x7AE0;&#x4ECB;&#x7D39;"><a href="#&#x4E32;&#x6D41;&#x5F8C;&#x756B;&#x9762;&#x5982;&#x4E0B;&#x5716;-&#x4E00;&#x4E9B;-GoCoder-&#x5176;&#x4ED6;&#x8A2D;&#x5B9A;&#x6709;&#x7A7A;&#x6703;&#x518D;&#x505A;&#x6587;&#x7AE0;&#x4ECB;&#x7D39;" class="headerlink" title="&#x4E32;&#x6D41;&#x5F8C;&#x756B;&#x9762;&#x5982;&#x4E0B;&#x5716; ( &#x4E00;&#x4E9B; GoCoder &#x5176;&#x4ED6;&#x8A2D;&#x5B9A;&#x6709;&#x7A7A;&#x6703;&#x518D;&#x505A;&#x6587;&#x7AE0;&#x4ECB;&#x7D39; )"></a>&#x4E32;&#x6D41;&#x5F8C;&#x756B;&#x9762;&#x5982;&#x4E0B;&#x5716; ( &#x4E00;&#x4E9B; GoCoder &#x5176;&#x4ED6;&#x8A2D;&#x5B9A;&#x6709;&#x7A7A;&#x6703;&#x518D;&#x505A;&#x6587;&#x7AE0;&#x4ECB;&#x7D39; )</h4><p><a class="magnific-img" href="images/13.jpg"><img src="images/13.jpg" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x53EF;&#x4EE5;&#x5230;-Inconing-Streams-&#x6703;&#x767C;&#x73FE;&#x4E32;&#x6D41;&#x6B63;&#x5728;&#x5728;&#x57F7;&#x884C;-&#x4F7F;&#x7528;-GoCoder-&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4E0D;&#x6703;&#x6709;-Stream-Files"><a href="#&#x53EF;&#x4EE5;&#x5230;-Inconing-Streams-&#x6703;&#x767C;&#x73FE;&#x4E32;&#x6D41;&#x6B63;&#x5728;&#x5728;&#x57F7;&#x884C;-&#x4F7F;&#x7528;-GoCoder-&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4E0D;&#x6703;&#x6709;-Stream-Files" class="headerlink" title="&#x53EF;&#x4EE5;&#x5230; Inconing Streams &#x6703;&#x767C;&#x73FE;&#x4E32;&#x6D41;&#x6B63;&#x5728;&#x5728;&#x57F7;&#x884C; ( &#x4F7F;&#x7528; GoCoder &#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4E0D;&#x6703;&#x6709; Stream Files )"></a>&#x53EF;&#x4EE5;&#x5230; Inconing Streams &#x6703;&#x767C;&#x73FE;&#x4E32;&#x6D41;&#x6B63;&#x5728;&#x5728;&#x57F7;&#x884C; ( &#x4F7F;&#x7528; GoCoder &#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4E0D;&#x6703;&#x6709; Stream Files )</h4><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8A2D;&#x5B9A;&#x5B8C;&#x5F8C;&#x505A;&#x6E2C;&#x8A66;&#xFF0C;&#x6253;&#x958B;-VLC-&#x8F38;&#x5165;&#x4E32;&#x6D41;&#x7DB2;&#x5740;"><a href="#&#x8A2D;&#x5B9A;&#x5B8C;&#x5F8C;&#x505A;&#x6E2C;&#x8A66;&#xFF0C;&#x6253;&#x958B;-VLC-&#x8F38;&#x5165;&#x4E32;&#x6D41;&#x7DB2;&#x5740;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x5B8C;&#x5F8C;&#x505A;&#x6E2C;&#x8A66;&#xFF0C;&#x6253;&#x958B; VLC &#x8F38;&#x5165;&#x4E32;&#x6D41;&#x7DB2;&#x5740;"></a>&#x8A2D;&#x5B9A;&#x5B8C;&#x5F8C;&#x505A;&#x6E2C;&#x8A66;&#xFF0C;&#x6253;&#x958B; VLC &#x8F38;&#x5165;&#x4E32;&#x6D41;&#x7DB2;&#x5740;</h4><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E0B;&#x5716;&#x6709;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;"><a href="#&#x4E0B;&#x5716;&#x6709;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;" class="headerlink" title="&#x4E0B;&#x5716;&#x6709;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;"></a>&#x4E0B;&#x5716;&#x6709;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;</h4><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-11-15T05:43:22.000Z" itemprop="datePublished">2018-11-15</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          wowza使用GoCoder串流
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-11-15 13:43:22" itemprop="dateCreated datePublished" datetime="2018-11-15T13:43:22+08:00">2018-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本文章將介紹用手機-GoCoder-串流-wowza"><a href="#本文章將介紹用手機-GoCoder-串流-wowza" class="headerlink" title="本文章將介紹用手機 GoCoder 串流 wowza"></a>本文章將介紹用手機 GoCoder 串流 wowza</h3><h4 id="首先手機先下載-GoCoder"><a href="#首先手機先下載-GoCoder" class="headerlink" title="首先手機先下載 GoCoder"></a>首先手機先下載 GoCoder</h4><p><img src="images/1.jpg" alt=" "></p>
+<h4 id="下圖為開啟畫面"><a href="#下圖為開啟畫面" class="headerlink" title="下圖為開啟畫面"></a>下圖為開啟畫面</h4><p><img src="images/2.jpg" alt=" "></p>
+<h4 id="點擊右上做設定-串流-wowza-engine-只需要設定-Wowza-Stream-Engine"><a href="#點擊右上做設定-串流-wowza-engine-只需要設定-Wowza-Stream-Engine" class="headerlink" title="點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine )"></a>點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine )</h4><p><img src="images/3.jpg" alt=" "></p>
+<h4 id="進入-wowza-web-→-Source-Live-，點擊-wowza-GoCoder-裡面有一些參數，除了-IP-需要輸入外網-IP-其他可以對照輸入"><a href="#進入-wowza-web-→-Source-Live-，點擊-wowza-GoCoder-裡面有一些參數，除了-IP-需要輸入外網-IP-其他可以對照輸入" class="headerlink" title="進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入"></a>進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入</h4><p><img src="images/4.png" alt=" "><br><img src="images/5.png" alt=" "></p>
+<h4 id="點擊-Wowza-Stream-Engine-會出現3個需要設定選項"><a href="#點擊-Wowza-Stream-Engine-會出現3個需要設定選項" class="headerlink" title="點擊 Wowza Stream Engine 會出現3個需要設定選項"></a>點擊 Wowza Stream Engine 會出現3個需要設定選項</h4><p><img src="images/6.jpg" alt=" "></p>
+<h4 id="設定-Host：輸入外網-IP，Port：1935-wowza-預設串流-port"><a href="#設定-Host：輸入外網-IP，Port：1935-wowza-預設串流-port" class="headerlink" title="設定 Host：輸入外網 IP，Port：1935 ( wowza 預設串流 port )"></a>設定 Host：輸入外網 IP，Port：1935 ( wowza 預設串流 port )</h4><p><img src="images/7.jpg" alt=" "></p>
+<h4 id="設定-Application：wowza-live-application-name，Stream-Name：GoCoder-預設都是-myStream-更改後-Incoming-Streams-會顯示更改後名稱，PS-同樣名稱二支手機會互搶"><a href="#設定-Application：wowza-live-application-name，Stream-Name：GoCoder-預設都是-myStream-更改後-Incoming-Streams-會顯示更改後名稱，PS-同樣名稱二支手機會互搶" class="headerlink" title="設定 Application：wowza live application name，Stream Name：GoCoder 預設都是 myStream ( 更改後 Incoming Streams 會顯示更改後名稱，PS.同樣名稱二支手機會互搶 )"></a>設定 Application：wowza live application name，Stream Name：GoCoder 預設都是 myStream ( 更改後 Incoming Streams 會顯示更改後名稱，PS.同樣名稱二支手機會互搶 )</h4><p><img src="images/8.jpg" alt=" "></p>
+<h4 id="手機-GoCoder-Source-Authentication-要到-wowza-Server-→-Source-Authentication-→-Add-Source-新增-Source"><a href="#手機-GoCoder-Source-Authentication-要到-wowza-Server-→-Source-Authentication-→-Add-Source-新增-Source" class="headerlink" title="手機 GoCoder Source Authentication 要到 wowza Server → Source Authentication → Add Source 新增 Source"></a>手機 GoCoder Source Authentication 要到 wowza Server → Source Authentication → Add Source 新增 Source</h4><p><img src="images/10.png" alt=" "><br><img src="images/11.png" alt=" "></p>
+<h4 id="設定-Source-Authentication：wowza-所設定的-Source-Authentication"><a href="#設定-Source-Authentication：wowza-所設定的-Source-Authentication" class="headerlink" title="設定 Source Authentication：wowza 所設定的 Source Authentication"></a>設定 Source Authentication：wowza 所設定的 Source Authentication</h4><p><img src="images/9.jpg" alt=" "></p>
+<h4 id="點擊右下紅點開始串流"><a href="#點擊右下紅點開始串流" class="headerlink" title="點擊右下紅點開始串流"></a>點擊右下紅點開始串流</h4><p><img src="images/12.jpg" alt=" "></p>
+<h4 id="串流後畫面如下圖-一些-GoCoder-其他設定有空會再做文章介紹"><a href="#串流後畫面如下圖-一些-GoCoder-其他設定有空會再做文章介紹" class="headerlink" title="串流後畫面如下圖 ( 一些 GoCoder 其他設定有空會再做文章介紹 )"></a>串流後畫面如下圖 ( 一些 GoCoder 其他設定有空會再做文章介紹 )</h4><p><img src="images/13.jpg" alt=" "></p>
+<h4 id="可以到-Inconing-Streams-會發現串流正在在執行-使用-GoCoder-的方式是不會有-Stream-Files"><a href="#可以到-Inconing-Streams-會發現串流正在在執行-使用-GoCoder-的方式是不會有-Stream-Files" class="headerlink" title="可以到 Inconing Streams 會發現串流正在在執行 ( 使用 GoCoder 的方式是不會有 Stream Files )"></a>可以到 Inconing Streams 會發現串流正在在執行 ( 使用 GoCoder 的方式是不會有 Stream Files )</h4><p><img src="images/14.png" alt=" "></p>
+<h4 id="設定完後做測試，打開-VLC-輸入串流網址"><a href="#設定完後做測試，打開-VLC-輸入串流網址" class="headerlink" title="設定完後做測試，打開 VLC 輸入串流網址"></a>設定完後做測試，打開 VLC 輸入串流網址</h4><p><img src="images/15.png" alt=" "></p>
+<h4 id="下圖有畫面就是成功了"><a href="#下圖有畫面就是成功了" class="headerlink" title="下圖有畫面就是成功了"></a>下圖有畫面就是成功了</h4><p><img src="images/16.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/11/15/wowza串流輸出Youtube直播/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    wowza串流輸出Youtube直播
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/11/09/wowza串流輸出original-eage抓取original串流/" class="ui tiny button">
-                    
-                    wowza串流輸出original-edge抓取original串流
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/09/wowza串流輸出original-eage抓取original串流/" rel="prev" title="wowza串流輸出original-edge抓取original串流">
+      <i class="fa fa-chevron-left"></i> wowza串流輸出original-edge抓取original串流
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/15/wowza串流輸出Youtube直播/" rel="next" title="wowza串流輸出Youtube直播">
+      wowza串流輸出Youtube直播 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹用手機-GoCoder-串流-wowza"><span>本文章將介紹用手機 GoCoder 串流 wowza</span></a><ol><li><a href="#首先手機先下載-GoCoder"><span>首先手機先下載 GoCoder</span></a></li><li><a href="#下圖為開啟畫面"><span>下圖為開啟畫面</span></a></li><li><a href="#點擊右上做設定-串流-wowza-engine-只需要設定-Wowza-Stream-Engine"><span>點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine )</span></a></li><li><a href="#進入-wowza-web-→-Source-Live-，點擊-wowza-GoCoder-裡面有一些參數，除了-IP-需要輸入外網-IP-其他可以對照輸入"><span>進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入</span></a></li><li><a href="#點擊-Wowza-Stream-Engine-會出現3個需要設定選項"><span>點擊 Wowza Stream Engine 會出現3個需要設定選項</span></a></li><li><a href="#設定-Host：輸入外網-IP，Port：1935-wowza-預設串流-port"><span>設定 Host：輸入外網 IP，Port：1935 ( wowza 預設串流 port )</span></a></li><li><a href="#設定-Application：wowza-live-application-name，Stream-Name：GoCoder-預設都是-myStream-更改後-Incoming-Streams-會顯示更改後名稱，PS-同樣名稱二支手機會互搶"><span>設定 Application：wowza live application name，Stream Name：GoCoder 預設都是 myStream ( 更改後 Incoming Streams 會顯示更改後名稱，PS.同樣名稱二支手機會互搶 )</span></a></li><li><a href="#手機-GoCoder-Source-Authentication-要到-wowza-Server-→-Source-Authentication-→-Add-Source-新增-Source"><span>手機 GoCoder Source Authentication 要到 wowza Server → Source Authentication → Add Source 新增 Source</span></a></li><li><a href="#設定-Source-Authentication：wowza-所設定的-Source-Authentication"><span>設定 Source Authentication：wowza 所設定的 Source Authentication</span></a></li><li><a href="#點擊右下紅點開始串流"><span>點擊右下紅點開始串流</span></a></li><li><a href="#串流後畫面如下圖-一些-GoCoder-其他設定有空會再做文章介紹"><span>串流後畫面如下圖 ( 一些 GoCoder 其他設定有空會再做文章介紹 )</span></a></li><li><a href="#可以到-Inconing-Streams-會發現串流正在在執行-使用-GoCoder-的方式是不會有-Stream-Files"><span>可以到 Inconing Streams 會發現串流正在在執行 ( 使用 GoCoder 的方式是不會有 Stream Files )</span></a></li><li><a href="#設定完後做測試，打開-VLC-輸入串流網址"><span>設定完後做測試，打開 VLC 輸入串流網址</span></a></li><li><a href="#下圖有畫面就是成功了"><span>下圖有畫面就是成功了</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文章將介紹用手機-GoCoder-串流-wowza"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹用手機 GoCoder 串流 wowza</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先手機先下載-GoCoder"><span class="nav-number">1.1.</span> <span class="nav-text">首先手機先下載 GoCoder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下圖為開啟畫面"><span class="nav-number">1.2.</span> <span class="nav-text">下圖為開啟畫面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點擊右上做設定-串流-wowza-engine-只需要設定-Wowza-Stream-Engine"><span class="nav-number">1.3.</span> <span class="nav-text">點擊右上做設定 ( 串流 wowza engine 只需要設定 Wowza Stream Engine )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#進入-wowza-web-→-Source-Live-，點擊-wowza-GoCoder-裡面有一些參數，除了-IP-需要輸入外網-IP-其他可以對照輸入"><span class="nav-number">1.4.</span> <span class="nav-text">進入 wowza web → Source ( Live )，點擊 wowza GoCoder 裡面有一些參數，除了 IP ( 需要輸入外網 IP ) 其他可以對照輸入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點擊-Wowza-Stream-Engine-會出現3個需要設定選項"><span class="nav-number">1.5.</span> <span class="nav-text">點擊 Wowza Stream Engine 會出現3個需要設定選項</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定-Host：輸入外網-IP，Port：1935-wowza-預設串流-port"><span class="nav-number">1.6.</span> <span class="nav-text">設定 Host：輸入外網 IP，Port：1935 ( wowza 預設串流 port )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定-Application：wowza-live-application-name，Stream-Name：GoCoder-預設都是-myStream-更改後-Incoming-Streams-會顯示更改後名稱，PS-同樣名稱二支手機會互搶"><span class="nav-number">1.7.</span> <span class="nav-text">設定 Application：wowza live application name，Stream Name：GoCoder 預設都是 myStream ( 更改後 Incoming Streams 會顯示更改後名稱，PS.同樣名稱二支手機會互搶 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手機-GoCoder-Source-Authentication-要到-wowza-Server-→-Source-Authentication-→-Add-Source-新增-Source"><span class="nav-number">1.8.</span> <span class="nav-text">手機 GoCoder Source Authentication 要到 wowza Server → Source Authentication → Add Source 新增 Source</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定-Source-Authentication：wowza-所設定的-Source-Authentication"><span class="nav-number">1.9.</span> <span class="nav-text">設定 Source Authentication：wowza 所設定的 Source Authentication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點擊右下紅點開始串流"><span class="nav-number">1.10.</span> <span class="nav-text">點擊右下紅點開始串流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串流後畫面如下圖-一些-GoCoder-其他設定有空會再做文章介紹"><span class="nav-number">1.11.</span> <span class="nav-text">串流後畫面如下圖 ( 一些 GoCoder 其他設定有空會再做文章介紹 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以到-Inconing-Streams-會發現串流正在在執行-使用-GoCoder-的方式是不會有-Stream-Files"><span class="nav-number">1.12.</span> <span class="nav-text">可以到 Inconing Streams 會發現串流正在在執行 ( 使用 GoCoder 的方式是不會有 Stream Files )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定完後做測試，打開-VLC-輸入串流網址"><span class="nav-number">1.13.</span> <span class="nav-text">設定完後做測試，打開 VLC 輸入串流網址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下圖有畫面就是成功了"><span class="nav-number">1.14.</span> <span class="nav-text">下圖有畫面就是成功了</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

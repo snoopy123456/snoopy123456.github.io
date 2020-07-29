@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>安裝VirtualBox | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x4E00;&amp;#x3001;&amp;#x4EC0;&amp;#x9EBC;&amp;#x662F; VirtualBox&amp;#xFF1F;VirtualBox &amp;#x662F;&amp;#x4E00;&amp;#x5957;&amp;#x7531; Oracle &amp;#x516C;&amp;#x53F8;&amp;#x6240;&amp;#x958B;&amp;#x767C;&amp;#x7684;&amp;#x514D;&amp;#x8CBB;&amp;#x4E14;&amp;#x4E2D;&amp;#x6587;&amp;#">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、什麼是 VirtualBox？VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝VirtualBox">
 <meta property="og:url" content="http://yoursite.com/2018/06/28/安裝VirtualBox/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x4E00;&amp;#x3001;&amp;#x4EC0;&amp;#x9EBC;&amp;#x662F; VirtualBox&amp;#xFF1F;VirtualBox &amp;#x662F;&amp;#x4E00;&amp;#x5957;&amp;#x7531; Oracle &amp;#x516C;&amp;#x53F8;&amp;#x6240;&amp;#x958B;&amp;#x767C;&amp;#x7684;&amp;#x514D;&amp;#x8CBB;&amp;#x4E14;&amp;#x4E2D;&amp;#x6587;&amp;#">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="一、什麼是 VirtualBox？VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/28/安裝VirtualBox/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/28/安裝VirtualBox/images/3.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/28/安裝VirtualBox/images/4.png">
@@ -37,249 +48,360 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝VirtualBox">
-<meta name="twitter:description" content="&amp;#x4E00;&amp;#x3001;&amp;#x4EC0;&amp;#x9EBC;&amp;#x662F; VirtualBox&amp;#xFF1F;VirtualBox &amp;#x662F;&amp;#x4E00;&amp;#x5957;&amp;#x7531; Oracle &amp;#x516C;&amp;#x53F8;&amp;#x6240;&amp;#x958B;&amp;#x767C;&amp;#x7684;&amp;#x514D;&amp;#x8CBB;&amp;#x4E14;&amp;#x4E2D;&amp;#x6587;&amp;#">
+<meta name="twitter:description" content="一、什麼是 VirtualBox？VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/28/安裝VirtualBox/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/28/安裝VirtualBox/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>安裝VirtualBox | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-安裝VirtualBox" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    安裝VirtualBox
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/安裝VirtualBox/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x4E00;&#x3001;&#x4EC0;&#x9EBC;&#x662F;-VirtualBox&#xFF1F;"><a href="#&#x4E00;&#x3001;&#x4EC0;&#x9EBC;&#x662F;-VirtualBox&#xFF1F;" class="headerlink" title="&#x4E00;&#x3001;&#x4EC0;&#x9EBC;&#x662F; VirtualBox&#xFF1F;"></a>&#x4E00;&#x3001;&#x4EC0;&#x9EBC;&#x662F; VirtualBox&#xFF1F;</h3><h4 id="VirtualBox-&#x662F;&#x4E00;&#x5957;&#x7531;-Oracle-&#x516C;&#x53F8;&#x6240;&#x958B;&#x767C;&#x7684;&#x514D;&#x8CBB;&#x4E14;&#x4E2D;&#x6587;&#x5316;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668;-Virtual-Machine-&#x8EDF;&#x9AD4;&#xFF0C;&#x76EE;&#x524D;&#x5DF2;&#x7D93;&#x767C;&#x8868;-6-0-0-&#x7248;&#xFF0C;&#x5B89;&#x88DD;-VirtualBox-&#x4E4B;&#x5F8C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4F60;&#x7684;&#x96FB;&#x8166;&#x65B0;&#x589E;&#x591A;&#x90E8;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x5728;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#x4E2D;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4E0D;&#x540C;&#x7684;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;Windows&#x3001;Linux&#x3001;Solaris&#x3001;BSD&#x3001;IBM-OS-2-&#x7B49;&#xFF0C;&#x7576;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4EFB;&#x4F55;&#x7684;&#x8EDF;&#x9AD4;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x5728;&#x4F7F;&#x7528;&#x5BE6;&#x9AD4;&#x96FB;&#x8166;&#x4E00;&#x6A23;&#xFF0C;VirtualBox-&#x5F88;&#x9069;&#x5408;&#x7528;&#x4F86;&#x7DF4;&#x7FD2;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x8207;&#x8ABF;&#x6574;&#x3001;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x548C;&#x8EDF;&#x9AD4;&#x7684;&#x5B89;&#x88DD;&#x8207;&#x6E2C;&#x8A66;&#xFF0C;&#x4E0D;&#x7BA1;&#x4F60;&#x5728;&#x865B;&#x64EC;&#x96FB;&#x8166;&#x505A;&#x4EFB;&#x4F55;&#x7684;&#x6E2C;&#x8A66;&#xFF0C;&#x5B8C;&#x5168;&#x4E0D;&#x6703;&#x5F71;&#x97FF;&#x96FB;&#x8166;&#x7684;&#x6B63;&#x5E38;&#x904B;&#x4F5C;&#x3002;"><a href="#VirtualBox-&#x662F;&#x4E00;&#x5957;&#x7531;-Oracle-&#x516C;&#x53F8;&#x6240;&#x958B;&#x767C;&#x7684;&#x514D;&#x8CBB;&#x4E14;&#x4E2D;&#x6587;&#x5316;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668;-Virtual-Machine-&#x8EDF;&#x9AD4;&#xFF0C;&#x76EE;&#x524D;&#x5DF2;&#x7D93;&#x767C;&#x8868;-6-0-0-&#x7248;&#xFF0C;&#x5B89;&#x88DD;-VirtualBox-&#x4E4B;&#x5F8C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4F60;&#x7684;&#x96FB;&#x8166;&#x65B0;&#x589E;&#x591A;&#x90E8;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x5728;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#x4E2D;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4E0D;&#x540C;&#x7684;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;Windows&#x3001;Linux&#x3001;Solaris&#x3001;BSD&#x3001;IBM-OS-2-&#x7B49;&#xFF0C;&#x7576;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4EFB;&#x4F55;&#x7684;&#x8EDF;&#x9AD4;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x5728;&#x4F7F;&#x7528;&#x5BE6;&#x9AD4;&#x96FB;&#x8166;&#x4E00;&#x6A23;&#xFF0C;VirtualBox-&#x5F88;&#x9069;&#x5408;&#x7528;&#x4F86;&#x7DF4;&#x7FD2;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x8207;&#x8ABF;&#x6574;&#x3001;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x548C;&#x8EDF;&#x9AD4;&#x7684;&#x5B89;&#x88DD;&#x8207;&#x6E2C;&#x8A66;&#xFF0C;&#x4E0D;&#x7BA1;&#x4F60;&#x5728;&#x865B;&#x64EC;&#x96FB;&#x8166;&#x505A;&#x4EFB;&#x4F55;&#x7684;&#x6E2C;&#x8A66;&#xFF0C;&#x5B8C;&#x5168;&#x4E0D;&#x6703;&#x5F71;&#x97FF;&#x96FB;&#x8166;&#x7684;&#x6B63;&#x5E38;&#x904B;&#x4F5C;&#x3002;" class="headerlink" title="VirtualBox &#x662F;&#x4E00;&#x5957;&#x7531; Oracle &#x516C;&#x53F8;&#x6240;&#x958B;&#x767C;&#x7684;&#x514D;&#x8CBB;&#x4E14;&#x4E2D;&#x6587;&#x5316;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668; ( Virtual Machine ) &#x8EDF;&#x9AD4;&#xFF0C;&#x76EE;&#x524D;&#x5DF2;&#x7D93;&#x767C;&#x8868; 6.0.0 &#x7248;&#xFF0C;&#x5B89;&#x88DD; VirtualBox &#x4E4B;&#x5F8C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4F60;&#x7684;&#x96FB;&#x8166;&#x65B0;&#x589E;&#x591A;&#x90E8;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x5728;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#x4E2D;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4E0D;&#x540C;&#x7684;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;Windows&#x3001;Linux&#x3001;Solaris&#x3001;BSD&#x3001;IBM OS/2 &#x7B49;&#xFF0C;&#x7576;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4EFB;&#x4F55;&#x7684;&#x8EDF;&#x9AD4;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x5728;&#x4F7F;&#x7528;&#x5BE6;&#x9AD4;&#x96FB;&#x8166;&#x4E00;&#x6A23;&#xFF0C;VirtualBox &#x5F88;&#x9069;&#x5408;&#x7528;&#x4F86;&#x7DF4;&#x7FD2;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x8207;&#x8ABF;&#x6574;&#x3001;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x548C;&#x8EDF;&#x9AD4;&#x7684;&#x5B89;&#x88DD;&#x8207;&#x6E2C;&#x8A66;&#xFF0C;&#x4E0D;&#x7BA1;&#x4F60;&#x5728;&#x865B;&#x64EC;&#x96FB;&#x8166;&#x505A;&#x4EFB;&#x4F55;&#x7684;&#x6E2C;&#x8A66;&#xFF0C;&#x5B8C;&#x5168;&#x4E0D;&#x6703;&#x5F71;&#x97FF;&#x96FB;&#x8166;&#x7684;&#x6B63;&#x5E38;&#x904B;&#x4F5C;&#x3002;"></a>VirtualBox &#x662F;&#x4E00;&#x5957;&#x7531; Oracle &#x516C;&#x53F8;&#x6240;&#x958B;&#x767C;&#x7684;&#x514D;&#x8CBB;&#x4E14;&#x4E2D;&#x6587;&#x5316;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668; ( Virtual Machine ) &#x8EDF;&#x9AD4;&#xFF0C;&#x76EE;&#x524D;&#x5DF2;&#x7D93;&#x767C;&#x8868; 6.0.0 &#x7248;&#xFF0C;&#x5B89;&#x88DD; VirtualBox &#x4E4B;&#x5F8C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4F60;&#x7684;&#x96FB;&#x8166;&#x65B0;&#x589E;&#x591A;&#x90E8;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x5728;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#x4E2D;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4E0D;&#x540C;&#x7684;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;Windows&#x3001;Linux&#x3001;Solaris&#x3001;BSD&#x3001;IBM OS/2 &#x7B49;&#xFF0C;&#x7576;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x5B89;&#x88DD;&#x4EFB;&#x4F55;&#x7684;&#x8EDF;&#x9AD4;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x5728;&#x4F7F;&#x7528;&#x5BE6;&#x9AD4;&#x96FB;&#x8166;&#x4E00;&#x6A23;&#xFF0C;VirtualBox &#x5F88;&#x9069;&#x5408;&#x7528;&#x4F86;&#x7DF4;&#x7FD2;&#x786C;&#x789F;&#x7684;&#x5206;&#x5272;&#x8207;&#x8ABF;&#x6574;&#x3001;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x548C;&#x8EDF;&#x9AD4;&#x7684;&#x5B89;&#x88DD;&#x8207;&#x6E2C;&#x8A66;&#xFF0C;&#x4E0D;&#x7BA1;&#x4F60;&#x5728;&#x865B;&#x64EC;&#x96FB;&#x8166;&#x505A;&#x4EFB;&#x4F55;&#x7684;&#x6E2C;&#x8A66;&#xFF0C;&#x5B8C;&#x5168;&#x4E0D;&#x6703;&#x5F71;&#x97FF;&#x96FB;&#x8166;&#x7684;&#x6B63;&#x5E38;&#x904B;&#x4F5C;&#x3002;</h4><h3 id="&#x4E8C;&#x3001;&#x5B89;&#x88DD;-VirtualBox"><a href="#&#x4E8C;&#x3001;&#x5B89;&#x88DD;-VirtualBox" class="headerlink" title="&#x4E8C;&#x3001;&#x5B89;&#x88DD; VirtualBox"></a>&#x4E8C;&#x3001;&#x5B89;&#x88DD; VirtualBox</h3><h4 id="&#x5B98;&#x65B9;&#x4E0B;&#x8F09;&#x7DB2;&#x5740;&#xFF1A;https-www-virtualbox-org-wiki-Downloads"><a href="#&#x5B98;&#x65B9;&#x4E0B;&#x8F09;&#x7DB2;&#x5740;&#xFF1A;https-www-virtualbox-org-wiki-Downloads" class="headerlink" title="&#x5B98;&#x65B9;&#x4E0B;&#x8F09;&#x7DB2;&#x5740;&#xFF1A;https://www.virtualbox.org/wiki/Downloads"></a>&#x5B98;&#x65B9;&#x4E0B;&#x8F09;&#x7DB2;&#x5740;&#xFF1A;<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads</a></h4><h4 id="&#x672C;&#x6587;&#x7AE0;&#x662F;&#x5C07;-VirtualBox-&#x5B89;&#x88DD;&#x5728;-Windows-&#x7CFB;&#x7D71;&#xFF0C;&#x6240;&#x4EE5;&#x9EDE;&#x9078;-Windows-hosts"><a href="#&#x672C;&#x6587;&#x7AE0;&#x662F;&#x5C07;-VirtualBox-&#x5B89;&#x88DD;&#x5728;-Windows-&#x7CFB;&#x7D71;&#xFF0C;&#x6240;&#x4EE5;&#x9EDE;&#x9078;-Windows-hosts" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x662F;&#x5C07; VirtualBox &#x5B89;&#x88DD;&#x5728; Windows &#x7CFB;&#x7D71;&#xFF0C;&#x6240;&#x4EE5;&#x9EDE;&#x9078; Windows hosts"></a>&#x672C;&#x6587;&#x7AE0;&#x662F;&#x5C07; VirtualBox &#x5B89;&#x88DD;&#x5728; Windows &#x7CFB;&#x7D71;&#xFF0C;&#x6240;&#x4EE5;&#x9EDE;&#x9078; Windows hosts</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x6A94;"><a href="#&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x6A94;" class="headerlink" title="&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x6A94;"></a>&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x6A94;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8A2D;&#x5B9A;&#x5B89;&#x88DD;&#x8DEF;&#x5F91;"><a href="#&#x8A2D;&#x5B9A;&#x5B89;&#x88DD;&#x8DEF;&#x5F91;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x5B89;&#x88DD;&#x8DEF;&#x5F91;"></a>&#x8A2D;&#x5B9A;&#x5B89;&#x88DD;&#x8DEF;&#x5F91;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="win-10-&#x7684;&#x5FEB;&#x901F;&#x555F;&#x52D5;&#x5217;&#x9810;&#x8A2D;&#x662F;&#x88AB;&#x5C01;&#x5370;&#x7684;&#x8981;&#x53E6;&#x5916;&#x958B;&#x555F;&#xFF0C;&#x5982;&#x679C;&#x6C92;&#x6709;&#x8981;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x628A;&#x52FE;&#x9078;&#x53D6;&#x6D88;&#x6389;&#xFF0C;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x6309;&#x7167;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x81EA;&#x884C;&#x52FE;&#x9078;"><a href="#win-10-&#x7684;&#x5FEB;&#x901F;&#x555F;&#x52D5;&#x5217;&#x9810;&#x8A2D;&#x662F;&#x88AB;&#x5C01;&#x5370;&#x7684;&#x8981;&#x53E6;&#x5916;&#x958B;&#x555F;&#xFF0C;&#x5982;&#x679C;&#x6C92;&#x6709;&#x8981;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x628A;&#x52FE;&#x9078;&#x53D6;&#x6D88;&#x6389;&#xFF0C;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x6309;&#x7167;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x81EA;&#x884C;&#x52FE;&#x9078;" class="headerlink" title="win 10 &#x7684;&#x5FEB;&#x901F;&#x555F;&#x52D5;&#x5217;&#x9810;&#x8A2D;&#x662F;&#x88AB;&#x5C01;&#x5370;&#x7684;&#x8981;&#x53E6;&#x5916;&#x958B;&#x555F;&#xFF0C;&#x5982;&#x679C;&#x6C92;&#x6709;&#x8981;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x628A;&#x52FE;&#x9078;&#x53D6;&#x6D88;&#x6389;&#xFF0C;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x6309;&#x7167;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x81EA;&#x884C;&#x52FE;&#x9078;"></a>win 10 &#x7684;&#x5FEB;&#x901F;&#x555F;&#x52D5;&#x5217;&#x9810;&#x8A2D;&#x662F;&#x88AB;&#x5C01;&#x5370;&#x7684;&#x8981;&#x53E6;&#x5916;&#x958B;&#x555F;&#xFF0C;&#x5982;&#x679C;&#x6C92;&#x6709;&#x8981;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x628A;&#x52FE;&#x9078;&#x53D6;&#x6D88;&#x6389;&#xFF0C;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x6309;&#x7167;&#x500B;&#x4EBA;&#x9700;&#x6C42;&#x81EA;&#x884C;&#x52FE;&#x9078;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5728;&#x5B89;&#x88DD;-VirtualBox-&#x7684;&#x6642;&#x5019;&#x7DB2;&#x8DEF;&#x6703;&#x66AB;&#x6642;&#x4E2D;&#x65B7;&#xFF0C;&#x9EDE;&#x9078;&#x662F;"><a href="#&#x5728;&#x5B89;&#x88DD;-VirtualBox-&#x7684;&#x6642;&#x5019;&#x7DB2;&#x8DEF;&#x6703;&#x66AB;&#x6642;&#x4E2D;&#x65B7;&#xFF0C;&#x9EDE;&#x9078;&#x662F;" class="headerlink" title="&#x5728;&#x5B89;&#x88DD; VirtualBox &#x7684;&#x6642;&#x5019;&#x7DB2;&#x8DEF;&#x6703;&#x66AB;&#x6642;&#x4E2D;&#x65B7;&#xFF0C;&#x9EDE;&#x9078;&#x662F;"></a>&#x5728;&#x5B89;&#x88DD; VirtualBox &#x7684;&#x6642;&#x5019;&#x7DB2;&#x8DEF;&#x6703;&#x66AB;&#x6642;&#x4E2D;&#x65B7;&#xFF0C;&#x9EDE;&#x9078;&#x662F;</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x57F7;&#x884C;&#x5B89;&#x88DD;"><a href="#&#x57F7;&#x884C;&#x5B89;&#x88DD;" class="headerlink" title="&#x57F7;&#x884C;&#x5B89;&#x88DD;"></a>&#x57F7;&#x884C;&#x5B89;&#x88DD;</h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5B89;&#x88DD;&#x5B8C;&#x5F8C;&#x555F;&#x52D5;&#xFF0C;&#x81EA;&#x884C;&#x52FE;&#x9078;"><a href="#&#x5B89;&#x88DD;&#x5B8C;&#x5F8C;&#x555F;&#x52D5;&#xFF0C;&#x81EA;&#x884C;&#x52FE;&#x9078;" class="headerlink" title="&#x5B89;&#x88DD;&#x5B8C;&#x5F8C;&#x555F;&#x52D5;&#xFF0C;&#x81EA;&#x884C;&#x52FE;&#x9078;"></a>&#x5B89;&#x88DD;&#x5B8C;&#x5F8C;&#x555F;&#x52D5;&#xFF0C;&#x81EA;&#x884C;&#x52FE;&#x9078;</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x555F;&#x52D5;&#x756B;&#x9762;"><a href="#&#x555F;&#x52D5;&#x756B;&#x9762;" class="headerlink" title="&#x555F;&#x52D5;&#x756B;&#x9762;"></a>&#x555F;&#x52D5;&#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E09;&#x3001;&#x5B89;&#x88DD;-USB-2-0-&#x8207;-USB-3-0-&#x7684;&#x64F4;&#x5145;&#x5305;"><a href="#&#x4E09;&#x3001;&#x5B89;&#x88DD;-USB-2-0-&#x8207;-USB-3-0-&#x7684;&#x64F4;&#x5145;&#x5305;" class="headerlink" title="&#x4E09;&#x3001;&#x5B89;&#x88DD; USB 2.0 &#x8207; USB 3.0 &#x7684;&#x64F4;&#x5145;&#x5305;"></a>&#x4E09;&#x3001;&#x5B89;&#x88DD; USB 2.0 &#x8207; USB 3.0 &#x7684;&#x64F4;&#x5145;&#x5305;</h3><h4 id="&#x9EDE;&#x9078;-All-supported-platforms&#xFF0C;&#x4E0B;&#x8F09;&#x652F;&#x63F4;-USB-2-0-&#x8207;-USB-3-0-&#x7684;&#x64F4;&#x5145;&#x5305;"><a href="#&#x9EDE;&#x9078;-All-supported-platforms&#xFF0C;&#x4E0B;&#x8F09;&#x652F;&#x63F4;-USB-2-0-&#x8207;-USB-3-0-&#x7684;&#x64F4;&#x5145;&#x5305;" class="headerlink" title="&#x9EDE;&#x9078; All supported platforms&#xFF0C;&#x4E0B;&#x8F09;&#x652F;&#x63F4; USB 2.0 &#x8207; USB 3.0 &#x7684;&#x64F4;&#x5145;&#x5305;"></a>&#x9EDE;&#x9078; All supported platforms&#xFF0C;&#x4E0B;&#x8F09;&#x652F;&#x63F4; USB 2.0 &#x8207; USB 3.0 &#x7684;&#x64F4;&#x5145;&#x5305;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x5305;"><a href="#&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x5305;" class="headerlink" title="&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x5305;"></a>&#x57F7;&#x884C;&#x5B89;&#x88DD;&#x5305;</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;&#x5B89;&#x88DD;"><a href="#&#x9EDE;&#x9078;&#x5B89;&#x88DD;" class="headerlink" title="&#x9EDE;&#x9078;&#x5B89;&#x88DD;"></a>&#x9EDE;&#x9078;&#x5B89;&#x88DD;</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x689D;&#x6B3E;&#x540C;&#x610F;"><a href="#&#x689D;&#x6B3E;&#x540C;&#x610F;" class="headerlink" title="&#x689D;&#x6B3E;&#x540C;&#x610F;"></a>&#x689D;&#x6B3E;&#x540C;&#x610F;</h4><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;&#x78BA;&#x5B9A;&#x5F8C;&#x5B8C;&#x6210;"><a href="#&#x9EDE;&#x9078;&#x78BA;&#x5B9A;&#x5F8C;&#x5B8C;&#x6210;" class="headerlink" title="&#x9EDE;&#x9078;&#x78BA;&#x5B9A;&#x5F8C;&#x5B8C;&#x6210;"></a>&#x9EDE;&#x9078;&#x78BA;&#x5B9A;&#x5F8C;&#x5B8C;&#x6210;</h4><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DB;&#x3001;&#x8A2D;&#x5B9A;"><a href="#&#x56DB;&#x3001;&#x8A2D;&#x5B9A;" class="headerlink" title="&#x56DB;&#x3001;&#x8A2D;&#x5B9A;"></a>&#x56DB;&#x3001;&#x8A2D;&#x5B9A;</h3><h4 id="&#x9EDE;&#x9078;&#x6A94;&#x6848;-&#x2192;-&#x559C;&#x597D;&#x8A2D;&#x5B9A;"><a href="#&#x9EDE;&#x9078;&#x6A94;&#x6848;-&#x2192;-&#x559C;&#x597D;&#x8A2D;&#x5B9A;" class="headerlink" title="&#x9EDE;&#x9078;&#x6A94;&#x6848; &#x2192; &#x559C;&#x597D;&#x8A2D;&#x5B9A;"></a>&#x9EDE;&#x9078;&#x6A94;&#x6848; &#x2192; &#x559C;&#x597D;&#x8A2D;&#x5B9A;</h4><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5728;&#x4E00;&#x822C;-&#x2192;-&#x6A5F;&#x5668;&#x9810;&#x8A2D;&#x8CC7;&#x6599;&#x593E;-&#x2192;-&#x5176;&#x5B83;&#x9078;&#x9805;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x7684;&#x5132;&#x5B58;&#x4F4D;&#x7F6E;&#xFF0C;&#x9810;&#x8A2D;&#x8DEF;&#x5F91;&#x5728;-C-&#x78C1;&#x789F;&#xFF0C;&#x5EFA;&#x8B70;&#x5C07;&#x8DEF;&#x5F91;&#x6539;&#x5230;&#x7A7A;&#x9593;&#x6BD4;&#x8F03;&#x5927;&#x7684;&#x78C1;&#x789F;"><a href="#&#x5728;&#x4E00;&#x822C;-&#x2192;-&#x6A5F;&#x5668;&#x9810;&#x8A2D;&#x8CC7;&#x6599;&#x593E;-&#x2192;-&#x5176;&#x5B83;&#x9078;&#x9805;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x7684;&#x5132;&#x5B58;&#x4F4D;&#x7F6E;&#xFF0C;&#x9810;&#x8A2D;&#x8DEF;&#x5F91;&#x5728;-C-&#x78C1;&#x789F;&#xFF0C;&#x5EFA;&#x8B70;&#x5C07;&#x8DEF;&#x5F91;&#x6539;&#x5230;&#x7A7A;&#x9593;&#x6BD4;&#x8F03;&#x5927;&#x7684;&#x78C1;&#x789F;" class="headerlink" title="&#x5728;&#x4E00;&#x822C; &#x2192; &#x6A5F;&#x5668;&#x9810;&#x8A2D;&#x8CC7;&#x6599;&#x593E; &#x2192; &#x5176;&#x5B83;&#x9078;&#x9805;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x7684;&#x5132;&#x5B58;&#x4F4D;&#x7F6E;&#xFF0C;&#x9810;&#x8A2D;&#x8DEF;&#x5F91;&#x5728; C &#x78C1;&#x789F;&#xFF0C;&#x5EFA;&#x8B70;&#x5C07;&#x8DEF;&#x5F91;&#x6539;&#x5230;&#x7A7A;&#x9593;&#x6BD4;&#x8F03;&#x5927;&#x7684;&#x78C1;&#x789F;"></a>&#x5728;&#x4E00;&#x822C; &#x2192; &#x6A5F;&#x5668;&#x9810;&#x8A2D;&#x8CC7;&#x6599;&#x593E; &#x2192; &#x5176;&#x5B83;&#x9078;&#x9805;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x6A5F;&#x5668;&#x8CC7;&#x6599;&#x593E;&#x7684;&#x5132;&#x5B58;&#x4F4D;&#x7F6E;&#xFF0C;&#x9810;&#x8A2D;&#x8DEF;&#x5F91;&#x5728; C &#x78C1;&#x789F;&#xFF0C;&#x5EFA;&#x8B70;&#x5C07;&#x8DEF;&#x5F91;&#x6539;&#x5230;&#x7A7A;&#x9593;&#x6BD4;&#x8F03;&#x5927;&#x7684;&#x78C1;&#x789F;</h4><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5728;&#x8F38;&#x5165;-&#x2192;-&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x6309;&#x9375;&#x7D44;&#x5408;"><a href="#&#x5728;&#x8F38;&#x5165;-&#x2192;-&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x6309;&#x9375;&#x7D44;&#x5408;" class="headerlink" title="&#x5728;&#x8F38;&#x5165; &#x2192; &#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x6309;&#x9375;&#x7D44;&#x5408;"></a>&#x5728;&#x8F38;&#x5165; &#x2192; &#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x6309;&#x9375;&#x7D44;&#x5408;</h4><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5230;&#x9019;&#x908A;&#x5B89;&#x88DD;&#x8A2D;&#x5B9A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"><a href="#&#x5230;&#x9019;&#x908A;&#x5B89;&#x88DD;&#x8A2D;&#x5B9A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="&#x5230;&#x9019;&#x908A;&#x5B89;&#x88DD;&#x8A2D;&#x5B9A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"></a>&#x5230;&#x9019;&#x908A;&#x5B89;&#x88DD;&#x8A2D;&#x5B9A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-28T03:32:09.000Z" itemprop="datePublished">2018-06-28</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安裝VirtualBox
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-28 11:32:09" itemprop="dateCreated datePublished" datetime="2018-06-28T11:32:09+08:00">2018-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、什麼是-VirtualBox？"><a href="#一、什麼是-VirtualBox？" class="headerlink" title="一、什麼是 VirtualBox？"></a>一、什麼是 VirtualBox？</h3><h4 id="VirtualBox-是一套由-Oracle-公司所開發的免費且中文化的虛擬機器-Virtual-Machine-軟體，目前已經發表-6-0-0-版，安裝-VirtualBox-之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM-OS-2-等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox-很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。"><a href="#VirtualBox-是一套由-Oracle-公司所開發的免費且中文化的虛擬機器-Virtual-Machine-軟體，目前已經發表-6-0-0-版，安裝-VirtualBox-之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM-OS-2-等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox-很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。" class="headerlink" title="VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox 很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。"></a>VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox 很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。</h4><h3 id="二、安裝-VirtualBox"><a href="#二、安裝-VirtualBox" class="headerlink" title="二、安裝 VirtualBox"></a>二、安裝 VirtualBox</h3><h4 id="官方下載網址：https-www-virtualbox-org-wiki-Downloads"><a href="#官方下載網址：https-www-virtualbox-org-wiki-Downloads" class="headerlink" title="官方下載網址：https://www.virtualbox.org/wiki/Downloads"></a>官方下載網址：<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads</a></h4><h4 id="本文章是將-VirtualBox-安裝在-Windows-系統，所以點選-Windows-hosts"><a href="#本文章是將-VirtualBox-安裝在-Windows-系統，所以點選-Windows-hosts" class="headerlink" title="本文章是將 VirtualBox 安裝在 Windows 系統，所以點選 Windows hosts"></a>本文章是將 VirtualBox 安裝在 Windows 系統，所以點選 Windows hosts</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="執行安裝檔"><a href="#執行安裝檔" class="headerlink" title="執行安裝檔"></a>執行安裝檔</h4><p><img src="images/3.png" alt=" "><br><img src="images/4.png" alt=" "></p>
+<h4 id="設定安裝路徑"><a href="#設定安裝路徑" class="headerlink" title="設定安裝路徑"></a>設定安裝路徑</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="win-10-的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選"><a href="#win-10-的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選" class="headerlink" title="win 10 的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選"></a>win 10 的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="在安裝-VirtualBox-的時候網路會暫時中斷，點選是"><a href="#在安裝-VirtualBox-的時候網路會暫時中斷，點選是" class="headerlink" title="在安裝 VirtualBox 的時候網路會暫時中斷，點選是"></a>在安裝 VirtualBox 的時候網路會暫時中斷，點選是</h4><p><img src="images/7.png" alt=" "></p>
+<h4 id="執行安裝"><a href="#執行安裝" class="headerlink" title="執行安裝"></a>執行安裝</h4><p><img src="images/8.png" alt=" "><br><img src="images/9.png" alt=" "></p>
+<h4 id="安裝完後啟動，自行勾選"><a href="#安裝完後啟動，自行勾選" class="headerlink" title="安裝完後啟動，自行勾選"></a>安裝完後啟動，自行勾選</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="啟動畫面"><a href="#啟動畫面" class="headerlink" title="啟動畫面"></a>啟動畫面</h4><p><img src="images/11.png" alt=" "></p>
+<h3 id="三、安裝-USB-2-0-與-USB-3-0-的擴充包"><a href="#三、安裝-USB-2-0-與-USB-3-0-的擴充包" class="headerlink" title="三、安裝 USB 2.0 與 USB 3.0 的擴充包"></a>三、安裝 USB 2.0 與 USB 3.0 的擴充包</h3><h4 id="點選-All-supported-platforms，下載支援-USB-2-0-與-USB-3-0-的擴充包"><a href="#點選-All-supported-platforms，下載支援-USB-2-0-與-USB-3-0-的擴充包" class="headerlink" title="點選 All supported platforms，下載支援 USB 2.0 與 USB 3.0 的擴充包"></a>點選 All supported platforms，下載支援 USB 2.0 與 USB 3.0 的擴充包</h4><p><img src="images/2.png" alt=" "></p>
+<h4 id="執行安裝包"><a href="#執行安裝包" class="headerlink" title="執行安裝包"></a>執行安裝包</h4><p><img src="images/12.png" alt=" "></p>
+<h4 id="點選安裝"><a href="#點選安裝" class="headerlink" title="點選安裝"></a>點選安裝</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="條款同意"><a href="#條款同意" class="headerlink" title="條款同意"></a>條款同意</h4><p><img src="images/14.png" alt=" "></p>
+<h4 id="點選確定後完成"><a href="#點選確定後完成" class="headerlink" title="點選確定後完成"></a>點選確定後完成</h4><p><img src="images/15.png" alt=" "></p>
+<h3 id="四、設定"><a href="#四、設定" class="headerlink" title="四、設定"></a>四、設定</h3><h4 id="點選檔案-→-喜好設定"><a href="#點選檔案-→-喜好設定" class="headerlink" title="點選檔案 → 喜好設定"></a>點選檔案 → 喜好設定</h4><p><img src="images/16.png" alt=" "></p>
+<h4 id="在一般-→-機器預設資料夾-→-其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在-C-磁碟，建議將路徑改到空間比較大的磁碟"><a href="#在一般-→-機器預設資料夾-→-其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在-C-磁碟，建議將路徑改到空間比較大的磁碟" class="headerlink" title="在一般 → 機器預設資料夾 → 其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在 C 磁碟，建議將路徑改到空間比較大的磁碟"></a>在一般 → 機器預設資料夾 → 其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在 C 磁碟，建議將路徑改到空間比較大的磁碟</h4><p><img src="images/17.png" alt=" "></p>
+<h4 id="在輸入-→-虛擬機器，可以更改按鍵組合"><a href="#在輸入-→-虛擬機器，可以更改按鍵組合" class="headerlink" title="在輸入 → 虛擬機器，可以更改按鍵組合"></a>在輸入 → 虛擬機器，可以更改按鍵組合</h4><p><img src="images/18.png" alt=" "></p>
+<h4 id="到這邊安裝設定就完成了"><a href="#到這邊安裝設定就完成了" class="headerlink" title="到這邊安裝設定就完成了"></a>到這邊安裝設定就完成了</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/29/VirtualBox建立虛擬機器設定/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    VirtualBox建立虛擬機器設定
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/27/GCP-iap遠端連線/" class="ui tiny button">
-                    
-                    GCP-iap遠端連線
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/27/GCP-iap遠端連線/" rel="prev" title="GCP-iap遠端連線">
+      <i class="fa fa-chevron-left"></i> GCP-iap遠端連線
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/29/VirtualBox建立虛擬機器設定/" rel="next" title="VirtualBox建立虛擬機器設定">
+      VirtualBox建立虛擬機器設定 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#一、什麼是-VirtualBox？"><span>一、什麼是 VirtualBox？</span></a><ol><li><a href="#VirtualBox-是一套由-Oracle-公司所開發的免費且中文化的虛擬機器-Virtual-Machine-軟體，目前已經發表-6-0-0-版，安裝-VirtualBox-之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM-OS-2-等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox-很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。"><span>VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox 很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。</span></a></li></ol></li><li><a href="#二、安裝-VirtualBox"><span>二、安裝 VirtualBox</span></a><ol><li><a href="#官方下載網址：https-www-virtualbox-org-wiki-Downloads"><span>官方下載網址：https://www.virtualbox.org/wiki/Downloads</span></a></li><li><a href="#本文章是將-VirtualBox-安裝在-Windows-系統，所以點選-Windows-hosts"><span>本文章是將 VirtualBox 安裝在 Windows 系統，所以點選 Windows hosts</span></a></li><li><a href="#執行安裝檔"><span>執行安裝檔</span></a></li><li><a href="#設定安裝路徑"><span>設定安裝路徑</span></a></li><li><a href="#win-10-的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選"><span>win 10 的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選</span></a></li><li><a href="#在安裝-VirtualBox-的時候網路會暫時中斷，點選是"><span>在安裝 VirtualBox 的時候網路會暫時中斷，點選是</span></a></li><li><a href="#執行安裝"><span>執行安裝</span></a></li><li><a href="#安裝完後啟動，自行勾選"><span>安裝完後啟動，自行勾選</span></a></li><li><a href="#啟動畫面"><span>啟動畫面</span></a></li></ol></li><li><a href="#三、安裝-USB-2-0-與-USB-3-0-的擴充包"><span>三、安裝 USB 2.0 與 USB 3.0 的擴充包</span></a><ol><li><a href="#點選-All-supported-platforms，下載支援-USB-2-0-與-USB-3-0-的擴充包"><span>點選 All supported platforms，下載支援 USB 2.0 與 USB 3.0 的擴充包</span></a></li><li><a href="#執行安裝包"><span>執行安裝包</span></a></li><li><a href="#點選安裝"><span>點選安裝</span></a></li><li><a href="#條款同意"><span>條款同意</span></a></li><li><a href="#點選確定後完成"><span>點選確定後完成</span></a></li></ol></li><li><a href="#四、設定"><span>四、設定</span></a><ol><li><a href="#點選檔案-→-喜好設定"><span>點選檔案 → 喜好設定</span></a></li><li><a href="#在一般-→-機器預設資料夾-→-其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在-C-磁碟，建議將路徑改到空間比較大的磁碟"><span>在一般 → 機器預設資料夾 → 其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在 C 磁碟，建議將路徑改到空間比較大的磁碟</span></a></li><li><a href="#在輸入-→-虛擬機器，可以更改按鍵組合"><span>在輸入 → 虛擬機器，可以更改按鍵組合</span></a></li><li><a href="#到這邊安裝設定就完成了"><span>到這邊安裝設定就完成了</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、什麼是-VirtualBox？"><span class="nav-number">1.</span> <span class="nav-text">一、什麼是 VirtualBox？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VirtualBox-是一套由-Oracle-公司所開發的免費且中文化的虛擬機器-Virtual-Machine-軟體，目前已經發表-6-0-0-版，安裝-VirtualBox-之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM-OS-2-等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox-很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。"><span class="nav-number">1.1.</span> <span class="nav-text">VirtualBox 是一套由 Oracle 公司所開發的免費且中文化的虛擬機器 ( Virtual Machine ) 軟體，目前已經發表 6.0.0 版，安裝 VirtualBox 之後，可以在你的電腦新增多部的虛擬機器，在虛擬機器中可以安裝不同的作業系統，例如：Windows、Linux、Solaris、BSD、IBM OS/2 等，當然也可以安裝任何的軟體，就好像在使用實體電腦一樣，VirtualBox 很適合用來練習硬碟的分割與調整、作業系統和軟體的安裝與測試，不管你在虛擬電腦做任何的測試，完全不會影響電腦的正常運作。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安裝-VirtualBox"><span class="nav-number">2.</span> <span class="nav-text">二、安裝 VirtualBox</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官方下載網址：https-www-virtualbox-org-wiki-Downloads"><span class="nav-number">2.1.</span> <span class="nav-text">官方下載網址：https://www.virtualbox.org/wiki/Downloads</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本文章是將-VirtualBox-安裝在-Windows-系統，所以點選-Windows-hosts"><span class="nav-number">2.2.</span> <span class="nav-text">本文章是將 VirtualBox 安裝在 Windows 系統，所以點選 Windows hosts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#執行安裝檔"><span class="nav-number">2.3.</span> <span class="nav-text">執行安裝檔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定安裝路徑"><span class="nav-number">2.4.</span> <span class="nav-text">設定安裝路徑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#win-10-的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選"><span class="nav-number">2.5.</span> <span class="nav-text">win 10 的快速啟動列預設是被封印的要另外開啟，如果沒有要使用可以把勾選取消掉，其他選項按照個人需求自行勾選</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在安裝-VirtualBox-的時候網路會暫時中斷，點選是"><span class="nav-number">2.6.</span> <span class="nav-text">在安裝 VirtualBox 的時候網路會暫時中斷，點選是</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#執行安裝"><span class="nav-number">2.7.</span> <span class="nav-text">執行安裝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安裝完後啟動，自行勾選"><span class="nav-number">2.8.</span> <span class="nav-text">安裝完後啟動，自行勾選</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#啟動畫面"><span class="nav-number">2.9.</span> <span class="nav-text">啟動畫面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、安裝-USB-2-0-與-USB-3-0-的擴充包"><span class="nav-number">3.</span> <span class="nav-text">三、安裝 USB 2.0 與 USB 3.0 的擴充包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#點選-All-supported-platforms，下載支援-USB-2-0-與-USB-3-0-的擴充包"><span class="nav-number">3.1.</span> <span class="nav-text">點選 All supported platforms，下載支援 USB 2.0 與 USB 3.0 的擴充包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#執行安裝包"><span class="nav-number">3.2.</span> <span class="nav-text">執行安裝包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選安裝"><span class="nav-number">3.3.</span> <span class="nav-text">點選安裝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#條款同意"><span class="nav-number">3.4.</span> <span class="nav-text">條款同意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選確定後完成"><span class="nav-number">3.5.</span> <span class="nav-text">點選確定後完成</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、設定"><span class="nav-number">4.</span> <span class="nav-text">四、設定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#點選檔案-→-喜好設定"><span class="nav-number">4.1.</span> <span class="nav-text">點選檔案 → 喜好設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在一般-→-機器預設資料夾-→-其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在-C-磁碟，建議將路徑改到空間比較大的磁碟"><span class="nav-number">4.2.</span> <span class="nav-text">在一般 → 機器預設資料夾 → 其它選項，可以更改預設機器資料夾的儲存位置，預設路徑在 C 磁碟，建議將路徑改到空間比較大的磁碟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在輸入-→-虛擬機器，可以更改按鍵組合"><span class="nav-number">4.3.</span> <span class="nav-text">在輸入 → 虛擬機器，可以更改按鍵組合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#到這邊安裝設定就完成了"><span class="nav-number">4.4.</span> <span class="nav-text">到這邊安裝設定就完成了</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

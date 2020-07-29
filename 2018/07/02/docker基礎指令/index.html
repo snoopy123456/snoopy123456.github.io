@@ -1,250 +1,372 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>docker基礎指令 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x9019;&amp;#x908A;&amp;#x5217;&amp;#x51FA; docker&amp;#x6709;&amp;#x95DC; Container &amp;#x6307;&amp;#x4EE4;&amp;#x7684;&amp;#x5206;&amp;#x985E;&amp;#xFF0C;&amp;#x4F9B;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x67E5;&amp;#x8A62;create&amp;#xFF1A;&amp;#x5EFA;&amp;#x7ACB;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢create：建立 Container 並執行指令run：同 createkill：刪除執行中的 Container，但 Container 還是存在，只是死了。rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了pause：暫停執行中的 Container，仍暫有記憶體停，服務不中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker基礎指令">
 <meta property="og:url" content="http://yoursite.com/2018/07/02/docker基礎指令/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x9019;&amp;#x908A;&amp;#x5217;&amp;#x51FA; docker&amp;#x6709;&amp;#x95DC; Container &amp;#x6307;&amp;#x4EE4;&amp;#x7684;&amp;#x5206;&amp;#x985E;&amp;#xFF0C;&amp;#x4F9B;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x67E5;&amp;#x8A62;create&amp;#xFF1A;&amp;#x5EFA;&amp;#x7ACB;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢create：建立 Container 並執行指令run：同 createkill：刪除執行中的 Container，但 Container 還是存在，只是死了。rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了pause：暫停執行中的 Container，仍暫有記憶體停，服務不中">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2020-05-07T06:37:20.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker基礎指令">
-<meta name="twitter:description" content="&amp;#x9019;&amp;#x908A;&amp;#x5217;&amp;#x51FA; docker&amp;#x6709;&amp;#x95DC; Container &amp;#x6307;&amp;#x4EE4;&amp;#x7684;&amp;#x5206;&amp;#x985E;&amp;#xFF0C;&amp;#x4F9B;&amp;#x4F5C;&amp;#x8005;&amp;#x81EA;&amp;#x5DF1;&amp;#x67E5;&amp;#x8A62;create&amp;#xFF1A;&amp;#x5EFA;&amp;#x7ACB;">
+<meta name="twitter:description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢create：建立 Container 並執行指令run：同 createkill：刪除執行中的 Container，但 Container 還是存在，只是死了。rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了pause：暫停執行中的 Container，仍暫有記憶體停，服務不中">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/07/02/docker基礎指令/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>docker基礎指令 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-docker基礎指令" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    docker基礎指令
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/02/docker基礎指令/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h4 id="&#x9019;&#x908A;&#x5217;&#x51FA;-docker&#x6709;&#x95DC;-Container-&#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;"><a href="#&#x9019;&#x908A;&#x5217;&#x51FA;-docker&#x6709;&#x95DC;-Container-&#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;" class="headerlink" title="&#x9019;&#x908A;&#x5217;&#x51FA; docker&#x6709;&#x95DC; Container &#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;"></a>&#x9019;&#x908A;&#x5217;&#x51FA; docker&#x6709;&#x95DC; Container &#x6307;&#x4EE4;&#x7684;&#x5206;&#x985E;&#xFF0C;&#x4F9B;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#x67E5;&#x8A62;</h4><h4 id="create&#xFF1A;&#x5EFA;&#x7ACB;-Container-&#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;"><a href="#create&#xFF1A;&#x5EFA;&#x7ACB;-Container-&#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;" class="headerlink" title="create&#xFF1A;&#x5EFA;&#x7ACB; Container &#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;"></a>create&#xFF1A;&#x5EFA;&#x7ACB; Container &#x4E26;&#x57F7;&#x884C;&#x6307;&#x4EE4;</h4><h4 id="run&#xFF1A;&#x540C;-create"><a href="#run&#xFF1A;&#x540C;-create" class="headerlink" title="run&#xFF1A;&#x540C; create"></a>run&#xFF1A;&#x540C; create</h4><h4 id="kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;-Container-&#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;"><a href="#kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;-Container-&#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;" class="headerlink" title="kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46; Container &#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;"></a>kill&#xFF1A;&#x522A;&#x9664;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46; Container &#x9084;&#x662F;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x662F;&#x6B7B;&#x4E86;&#x3002;</h4><h4 id="rm&#xFF1A;&#x522A;&#x9664;-Container-&#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C;-&#xFF0C;Container-&#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;"><a href="#rm&#xFF1A;&#x522A;&#x9664;-Container-&#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C;-&#xFF0C;Container-&#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;" class="headerlink" title="rm&#xFF1A;&#x522A;&#x9664; Container ( &#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C; )&#xFF0C;Container &#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;"></a>rm&#xFF1A;&#x522A;&#x9664; Container ( &#x505C;&#x6B62;&#x6216;&#x904B;&#x884C;&#x4E2D;&#x90FD;&#x884C; )&#xFF0C;Container &#x5C31;&#x5F9E;&#x9019;&#x4E16;&#x4E0A;&#x6D88;&#x5931;&#x4E86;</h4><h4 id="pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;"><a href="#pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;" class="headerlink" title="pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;"></a>pause&#xFF1A;&#x66AB;&#x505C;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4ECD;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#x505C;&#xFF0C;&#x670D;&#x52D9;&#x4E0D;&#x4E2D;&#x65B7;</h4><h4 id="unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684;-Container"><a href="#unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684;-Container" class="headerlink" title="unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684; Container"></a>unpause&#xFF1A;&#x6062;&#x5FA9;&#x66AB;&#x505C;&#x4E2D;&#x7684; Container</h4><h4 id="stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;"><a href="#stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684;-Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;" class="headerlink" title="stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;"></a>stop&#xFF1A;&#x505C;&#x6B62;&#x57F7;&#x884C;&#x4E2D;&#x7684; Container&#xFF0C;&#x4F46;&#x4E0D;&#x66AB;&#x6709;&#x8A18;&#x61B6;&#x9AD4;&#xFF0C;&#x670D;&#x52D9;&#x4E2D;&#x65B7;</h4><h4 id="start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684;-Container"><a href="#start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684;-Container" class="headerlink" title="start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684; Container"></a>start&#xFF1A;&#x555F;&#x52D5;&#x505C;&#x6B62;&#x4E2D;&#x7684; Container</h4><h4 id="restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5;-Container"><a href="#restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5;-Container" class="headerlink" title="restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5; Container"></a>restart&#xFF1A;&#x91CD;&#x65B0;&#x555F;&#x52D5; Container</h4><h4 id="wait&#xFF1A;&#x8B93;-Container-&#x66AB;&#x505C;&#x76F4;&#x5230;-Container-&#x505C;&#x6B62;&#x70BA;&#x6B62;"><a href="#wait&#xFF1A;&#x8B93;-Container-&#x66AB;&#x505C;&#x76F4;&#x5230;-Container-&#x505C;&#x6B62;&#x70BA;&#x6B62;" class="headerlink" title="wait&#xFF1A;&#x8B93; Container &#x66AB;&#x505C;&#x76F4;&#x5230; Container &#x505C;&#x6B62;&#x70BA;&#x6B62;"></a>wait&#xFF1A;&#x8B93; Container &#x66AB;&#x505C;&#x76F4;&#x5230; Container &#x505C;&#x6B62;&#x70BA;&#x6B62;</h4><h4 id="rename&#xFF1A;&#x66F4;&#x540D;-Container"><a href="#rename&#xFF1A;&#x66F4;&#x540D;-Container" class="headerlink" title="rename&#xFF1A;&#x66F4;&#x540D; Container"></a>rename&#xFF1A;&#x66F4;&#x540D; Container</h4><h4 id="Container-&#x7684;&#x72C0;&#x614B;"><a href="#Container-&#x7684;&#x72C0;&#x614B;" class="headerlink" title="Container &#x7684;&#x72C0;&#x614B;"></a>Container &#x7684;&#x72C0;&#x614B;</h4><h4 id="inspect&#xFF1A;&#x6AA2;&#x67E5;-Container-&#x7684;&#x72C0;&#x614B;"><a href="#inspect&#xFF1A;&#x6AA2;&#x67E5;-Container-&#x7684;&#x72C0;&#x614B;" class="headerlink" title="inspect&#xFF1A;&#x6AA2;&#x67E5; Container &#x7684;&#x72C0;&#x614B;"></a>inspect&#xFF1A;&#x6AA2;&#x67E5; Container &#x7684;&#x72C0;&#x614B;</h4><h4 id="stats&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;"><a href="#stats&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;" class="headerlink" title="stats&#xFF1A;&#x67E5;&#x770B; Container &#x7684; CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;"></a>stats&#xFF1A;&#x67E5;&#x770B; Container &#x7684; CPU&#x3001;&#x8A18;&#x61B6;&#x9AD4;&#x53CA;&#x7DB2;&#x8DEF;&#x4F7F;&#x7528;</h4><h4 id="port&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;"><a href="#port&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;" class="headerlink" title="port&#xFF1A;&#x67E5;&#x770B; Container &#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;"></a>port&#xFF1A;&#x67E5;&#x770B; Container &#x7684;&#x901A;&#x8A0A;&#x57E0;&#x4F7F;&#x7528;</h4><h4 id="ps&#xFF1A;&#x67E5;&#x770B;-Container-&#x4F7F;&#x7528;&#x72C0;&#x614B;"><a href="#ps&#xFF1A;&#x67E5;&#x770B;-Container-&#x4F7F;&#x7528;&#x72C0;&#x614B;" class="headerlink" title="ps&#xFF1A;&#x67E5;&#x770B; Container &#x4F7F;&#x7528;&#x72C0;&#x614B;"></a>ps&#xFF1A;&#x67E5;&#x770B; Container &#x4F7F;&#x7528;&#x72C0;&#x614B;</h4><h4 id="top&#xFF1A;&#x67E5;&#x770B;-Container-&#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;"><a href="#top&#xFF1A;&#x67E5;&#x770B;-Container-&#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;" class="headerlink" title="top&#xFF1A;&#x67E5;&#x770B; Container &#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;"></a>top&#xFF1A;&#x67E5;&#x770B; Container &#x5728;&#x4E3B;&#x7CFB;&#x7D71;&#x4E2D;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F7F;&#x7528;</h4><h4 id="dip&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-IP"><a href="#dip&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-IP" class="headerlink" title="dip&#xFF1A;&#x67E5;&#x770B; Container &#x7684; IP"></a>dip&#xFF1A;&#x67E5;&#x770B; Container &#x7684; IP</h4><h4 id="dpid&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-pid"><a href="#dpid&#xFF1A;&#x67E5;&#x770B;-Container-&#x7684;-pid" class="headerlink" title="dpid&#xFF1A;&#x67E5;&#x770B; Container &#x7684; pid"></a>dpid&#xFF1A;&#x67E5;&#x770B; Container &#x7684; pid</h4><h4 id="Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;"><a href="#Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;" class="headerlink" title="Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;"></a>Container&#x57F7;&#x884C;&#x6642;&#x7684;&#x64CD;&#x4F5C;</h4><h4 id="exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;"><a href="#exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;" class="headerlink" title="exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;"></a>exec&#xFF1A;&#x5728;&#x5916;&#x90E8;&#x5411;Container&#x5167;&#x57F7;&#x884C;&#x6307;&#x4EE4;</h4><h4 id="exec-it-contain-bin-bash"><a href="#exec-it-contain-bin-bash" class="headerlink" title="exec -it contain /bin/bash"></a>exec -it contain /bin/bash</h4><h4 id="logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;"><a href="#logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;" class="headerlink" title="logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;"></a>logs&#xFF1A;&#x5C07;Container&#x5167;&#x7684;&#x8F38;&#x51FA;&#x986F;&#x793A;&#x5230;&#x87A2;&#x5E55;&#x4E0A;</h4><h4 id="docker-logs-&#x2013;tail-50-container"><a href="#docker-logs-&#x2013;tail-50-container" class="headerlink" title="docker logs &#x2013;tail=50 container"></a>docker logs &#x2013;tail=50 container</h4><h4 id="Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;"><a href="#Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;" class="headerlink" title="Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;"></a>Container&#x548C;&#x4E3B;&#x7CFB;&#x7D71;&#x4E4B;&#x9593;&#x7684;&#x64CD;&#x4F5C;</h4><h4 id="cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;"><a href="#cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;" class="headerlink" title="cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;"></a>cp&#xFF1A;&#x8907;&#x88FD;Container&#x5167;&#x7684;&#x6A94;&#x6848;&#x5230;&#x4E3B;&#x7CFB;&#x7D71;</h4><h4 id="container-log"><a href="#container-log" class="headerlink" title="container log"></a>container log</h4><h4 id="var-lib-docker-contains-contain-id"><a href="#var-lib-docker-contains-contain-id" class="headerlink" title="var/lib/docker/contains/contain id"></a>var/lib/docker/contains/contain id</h4><h4 id="exec-it-influxdb-influxd"><a href="#exec-it-influxdb-influxd" class="headerlink" title="exec -it influxdb influxd"></a>exec -it influxdb influxd</h4><h4 id="show-datebase"><a href="#show-datebase" class="headerlink" title="show datebase"></a>show datebase</h4><h4 id="show-table"><a href="#show-table" class="headerlink" title="show (table)"></a>show (table)</h4><h4 id="docker-rm-f-docker-ps-aq-&#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;"><a href="#docker-rm-f-docker-ps-aq-&#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;" class="headerlink" title="docker rm -f $(docker ps -aq) &#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;"></a>docker rm -f $(docker ps -aq) &#x522A;&#x9664;&#x5168;&#x90E8;&#x5BB9;&#x5668;</h4><h4 id="docker-rmi-f-docker-images-aq-&#x522A;&#x9664;&#x5168;&#x90E8;-images"><a href="#docker-rmi-f-docker-images-aq-&#x522A;&#x9664;&#x5168;&#x90E8;-images" class="headerlink" title="docker rmi -f $(docker images -aq) &#x522A;&#x9664;&#x5168;&#x90E8; images"></a>docker rmi -f $(docker images -aq) &#x522A;&#x9664;&#x5168;&#x90E8; images</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-07-02T08:13:05.000Z" itemprop="datePublished">2018-07-02</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker基礎指令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-07-02 16:13:05" itemprop="dateCreated datePublished" datetime="2018-07-02T16:13:05+08:00">2018-07-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-05-07 14:37:20" itemprop="dateModified" datetime="2020-05-07T14:37:20+08:00">2020-05-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="這邊列出-docker有關-Container-指令的分類，供作者自己查詢"><a href="#這邊列出-docker有關-Container-指令的分類，供作者自己查詢" class="headerlink" title="這邊列出 docker有關 Container 指令的分類，供作者自己查詢"></a>這邊列出 docker有關 Container 指令的分類，供作者自己查詢</h4><h4 id="create：建立-Container-並執行指令"><a href="#create：建立-Container-並執行指令" class="headerlink" title="create：建立 Container 並執行指令"></a>create：建立 Container 並執行指令</h4><h4 id="run：同-create"><a href="#run：同-create" class="headerlink" title="run：同 create"></a>run：同 create</h4><h4 id="kill：刪除執行中的-Container，但-Container-還是存在，只是死了。"><a href="#kill：刪除執行中的-Container，但-Container-還是存在，只是死了。" class="headerlink" title="kill：刪除執行中的 Container，但 Container 還是存在，只是死了。"></a>kill：刪除執行中的 Container，但 Container 還是存在，只是死了。</h4><h4 id="rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了"><a href="#rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了" class="headerlink" title="rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了"></a>rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了</h4><h4 id="pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷"><a href="#pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷" class="headerlink" title="pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷"></a>pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷</h4><h4 id="unpause：恢復暫停中的-Container"><a href="#unpause：恢復暫停中的-Container" class="headerlink" title="unpause：恢復暫停中的 Container"></a>unpause：恢復暫停中的 Container</h4><h4 id="stop：停止執行中的-Container，但不暫有記憶體，服務中斷"><a href="#stop：停止執行中的-Container，但不暫有記憶體，服務中斷" class="headerlink" title="stop：停止執行中的 Container，但不暫有記憶體，服務中斷"></a>stop：停止執行中的 Container，但不暫有記憶體，服務中斷</h4><h4 id="start：啟動停止中的-Container"><a href="#start：啟動停止中的-Container" class="headerlink" title="start：啟動停止中的 Container"></a>start：啟動停止中的 Container</h4><h4 id="restart：重新啟動-Container"><a href="#restart：重新啟動-Container" class="headerlink" title="restart：重新啟動 Container"></a>restart：重新啟動 Container</h4><h4 id="wait：讓-Container-暫停直到-Container-停止為止"><a href="#wait：讓-Container-暫停直到-Container-停止為止" class="headerlink" title="wait：讓 Container 暫停直到 Container 停止為止"></a>wait：讓 Container 暫停直到 Container 停止為止</h4><h4 id="rename：更名-Container"><a href="#rename：更名-Container" class="headerlink" title="rename：更名 Container"></a>rename：更名 Container</h4><h4 id="Container-的狀態"><a href="#Container-的狀態" class="headerlink" title="Container 的狀態"></a>Container 的狀態</h4><h4 id="inspect：檢查-Container-的狀態"><a href="#inspect：檢查-Container-的狀態" class="headerlink" title="inspect：檢查 Container 的狀態"></a>inspect：檢查 Container 的狀態</h4><h4 id="stats：查看-Container-的-CPU、記憶體及網路使用"><a href="#stats：查看-Container-的-CPU、記憶體及網路使用" class="headerlink" title="stats：查看 Container 的 CPU、記憶體及網路使用"></a>stats：查看 Container 的 CPU、記憶體及網路使用</h4><h4 id="port：查看-Container-的通訊埠使用"><a href="#port：查看-Container-的通訊埠使用" class="headerlink" title="port：查看 Container 的通訊埠使用"></a>port：查看 Container 的通訊埠使用</h4><h4 id="ps：查看-Container-使用狀態"><a href="#ps：查看-Container-使用狀態" class="headerlink" title="ps：查看 Container 使用狀態"></a>ps：查看 Container 使用狀態</h4><h4 id="top：查看-Container-在主系統中的記憶體使用"><a href="#top：查看-Container-在主系統中的記憶體使用" class="headerlink" title="top：查看 Container 在主系統中的記憶體使用"></a>top：查看 Container 在主系統中的記憶體使用</h4><h4 id="dip：查看-Container-的-IP"><a href="#dip：查看-Container-的-IP" class="headerlink" title="dip：查看 Container 的 IP"></a>dip：查看 Container 的 IP</h4><h4 id="dpid：查看-Container-的-pid"><a href="#dpid：查看-Container-的-pid" class="headerlink" title="dpid：查看 Container 的 pid"></a>dpid：查看 Container 的 pid</h4><h4 id="Container執行時的操作"><a href="#Container執行時的操作" class="headerlink" title="Container執行時的操作"></a>Container執行時的操作</h4><h4 id="exec：在外部向Container內執行指令"><a href="#exec：在外部向Container內執行指令" class="headerlink" title="exec：在外部向Container內執行指令"></a>exec：在外部向Container內執行指令</h4><h4 id="exec-it-contain-bin-bash"><a href="#exec-it-contain-bin-bash" class="headerlink" title="exec -it contain /bin/bash"></a>exec -it contain /bin/bash</h4><h4 id="logs：將Container內的輸出顯示到螢幕上"><a href="#logs：將Container內的輸出顯示到螢幕上" class="headerlink" title="logs：將Container內的輸出顯示到螢幕上"></a>logs：將Container內的輸出顯示到螢幕上</h4><h4 id="docker-logs-–tail-50-container"><a href="#docker-logs-–tail-50-container" class="headerlink" title="docker logs –tail=50 container"></a>docker logs –tail=50 container</h4><h4 id="Container和主系統之間的操作"><a href="#Container和主系統之間的操作" class="headerlink" title="Container和主系統之間的操作"></a>Container和主系統之間的操作</h4><h4 id="cp：複製Container內的檔案到主系統"><a href="#cp：複製Container內的檔案到主系統" class="headerlink" title="cp：複製Container內的檔案到主系統"></a>cp：複製Container內的檔案到主系統</h4><h4 id="container-log"><a href="#container-log" class="headerlink" title="container log"></a>container log</h4><h4 id="var-lib-docker-contains-contain-id"><a href="#var-lib-docker-contains-contain-id" class="headerlink" title="var/lib/docker/contains/contain id"></a>var/lib/docker/contains/contain id</h4><h4 id="exec-it-influxdb-influxd"><a href="#exec-it-influxdb-influxd" class="headerlink" title="exec -it influxdb influxd"></a>exec -it influxdb influxd</h4><h4 id="show-datebase"><a href="#show-datebase" class="headerlink" title="show datebase"></a>show datebase</h4><h4 id="show-table"><a href="#show-table" class="headerlink" title="show (table)"></a>show (table)</h4><h4 id="docker-rm-f-docker-ps-aq-刪除全部容器"><a href="#docker-rm-f-docker-ps-aq-刪除全部容器" class="headerlink" title="docker rm -f $(docker ps -aq) 刪除全部容器"></a>docker rm -f $(docker ps -aq) 刪除全部容器</h4><h4 id="docker-rmi-f-docker-images-aq-刪除全部-images"><a href="#docker-rmi-f-docker-images-aq-刪除全部-images" class="headerlink" title="docker rmi -f $(docker images -aq) 刪除全部 images"></a>docker rmi -f $(docker images -aq) 刪除全部 images</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/07/26/ELK介紹/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    ELK介紹
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/07/01/Ubuntu的各種解壓縮指令/" class="ui tiny button">
-                    
-                    Ubuntu的各種解壓縮指令
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/07/01/Ubuntu的各種解壓縮指令/" rel="prev" title="Ubuntu的各種解壓縮指令">
+      <i class="fa fa-chevron-left"></i> Ubuntu的各種解壓縮指令
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/07/26/ELK介紹/" rel="next" title="ELK介紹">
+      ELK介紹 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#這邊列出-docker有關-Container-指令的分類，供作者自己查詢"><span>這邊列出 docker有關 Container 指令的分類，供作者自己查詢</span></a></li><li><a href="#create：建立-Container-並執行指令"><span>create：建立 Container 並執行指令</span></a></li><li><a href="#run：同-create"><span>run：同 create</span></a></li><li><a href="#kill：刪除執行中的-Container，但-Container-還是存在，只是死了。"><span>kill：刪除執行中的 Container，但 Container 還是存在，只是死了。</span></a></li><li><a href="#rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了"><span>rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了</span></a></li><li><a href="#pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷"><span>pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷</span></a></li><li><a href="#unpause：恢復暫停中的-Container"><span>unpause：恢復暫停中的 Container</span></a></li><li><a href="#stop：停止執行中的-Container，但不暫有記憶體，服務中斷"><span>stop：停止執行中的 Container，但不暫有記憶體，服務中斷</span></a></li><li><a href="#start：啟動停止中的-Container"><span>start：啟動停止中的 Container</span></a></li><li><a href="#restart：重新啟動-Container"><span>restart：重新啟動 Container</span></a></li><li><a href="#wait：讓-Container-暫停直到-Container-停止為止"><span>wait：讓 Container 暫停直到 Container 停止為止</span></a></li><li><a href="#rename：更名-Container"><span>rename：更名 Container</span></a></li><li><a href="#Container-的狀態"><span>Container 的狀態</span></a></li><li><a href="#inspect：檢查-Container-的狀態"><span>inspect：檢查 Container 的狀態</span></a></li><li><a href="#stats：查看-Container-的-CPU、記憶體及網路使用"><span>stats：查看 Container 的 CPU、記憶體及網路使用</span></a></li><li><a href="#port：查看-Container-的通訊埠使用"><span>port：查看 Container 的通訊埠使用</span></a></li><li><a href="#ps：查看-Container-使用狀態"><span>ps：查看 Container 使用狀態</span></a></li><li><a href="#top：查看-Container-在主系統中的記憶體使用"><span>top：查看 Container 在主系統中的記憶體使用</span></a></li><li><a href="#dip：查看-Container-的-IP"><span>dip：查看 Container 的 IP</span></a></li><li><a href="#dpid：查看-Container-的-pid"><span>dpid：查看 Container 的 pid</span></a></li><li><a href="#Container執行時的操作"><span>Container執行時的操作</span></a></li><li><a href="#exec：在外部向Container內執行指令"><span>exec：在外部向Container內執行指令</span></a></li><li><a href="#exec-it-contain-bin-bash"><span>exec -it contain /bin/bash</span></a></li><li><a href="#logs：將Container內的輸出顯示到螢幕上"><span>logs：將Container內的輸出顯示到螢幕上</span></a></li><li><a href="#docker-logs-–tail-50-container"><span>docker logs –tail=50 container</span></a></li><li><a href="#Container和主系統之間的操作"><span>Container和主系統之間的操作</span></a></li><li><a href="#cp：複製Container內的檔案到主系統"><span>cp：複製Container內的檔案到主系統</span></a></li><li><a href="#container-log"><span>container log</span></a></li><li><a href="#var-lib-docker-contains-contain-id"><span>var/lib/docker/contains/contain id</span></a></li><li><a href="#exec-it-influxdb-influxd"><span>exec -it influxdb influxd</span></a></li><li><a href="#show-datebase"><span>show datebase</span></a></li><li><a href="#show-table"><span>show (table)</span></a></li><li><a href="#docker-rm-f-docker-ps-aq-刪除全部容器"><span>docker rm -f $(docker ps -aq) 刪除全部容器</span></a></li><li><a href="#docker-rmi-f-docker-images-aq-刪除全部-images"><span>docker rmi -f $(docker images -aq) 刪除全部 images</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#這邊列出-docker有關-Container-指令的分類，供作者自己查詢"><span class="nav-number">1.</span> <span class="nav-text">這邊列出 docker有關 Container 指令的分類，供作者自己查詢</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#create：建立-Container-並執行指令"><span class="nav-number">2.</span> <span class="nav-text">create：建立 Container 並執行指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#run：同-create"><span class="nav-number">3.</span> <span class="nav-text">run：同 create</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kill：刪除執行中的-Container，但-Container-還是存在，只是死了。"><span class="nav-number">4.</span> <span class="nav-text">kill：刪除執行中的 Container，但 Container 還是存在，只是死了。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了"><span class="nav-number">5.</span> <span class="nav-text">rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷"><span class="nav-number">6.</span> <span class="nav-text">pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unpause：恢復暫停中的-Container"><span class="nav-number">7.</span> <span class="nav-text">unpause：恢復暫停中的 Container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stop：停止執行中的-Container，但不暫有記憶體，服務中斷"><span class="nav-number">8.</span> <span class="nav-text">stop：停止執行中的 Container，但不暫有記憶體，服務中斷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#start：啟動停止中的-Container"><span class="nav-number">9.</span> <span class="nav-text">start：啟動停止中的 Container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#restart：重新啟動-Container"><span class="nav-number">10.</span> <span class="nav-text">restart：重新啟動 Container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wait：讓-Container-暫停直到-Container-停止為止"><span class="nav-number">11.</span> <span class="nav-text">wait：讓 Container 暫停直到 Container 停止為止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rename：更名-Container"><span class="nav-number">12.</span> <span class="nav-text">rename：更名 Container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Container-的狀態"><span class="nav-number">13.</span> <span class="nav-text">Container 的狀態</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inspect：檢查-Container-的狀態"><span class="nav-number">14.</span> <span class="nav-text">inspect：檢查 Container 的狀態</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stats：查看-Container-的-CPU、記憶體及網路使用"><span class="nav-number">15.</span> <span class="nav-text">stats：查看 Container 的 CPU、記憶體及網路使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#port：查看-Container-的通訊埠使用"><span class="nav-number">16.</span> <span class="nav-text">port：查看 Container 的通訊埠使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ps：查看-Container-使用狀態"><span class="nav-number">17.</span> <span class="nav-text">ps：查看 Container 使用狀態</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#top：查看-Container-在主系統中的記憶體使用"><span class="nav-number">18.</span> <span class="nav-text">top：查看 Container 在主系統中的記憶體使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dip：查看-Container-的-IP"><span class="nav-number">19.</span> <span class="nav-text">dip：查看 Container 的 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dpid：查看-Container-的-pid"><span class="nav-number">20.</span> <span class="nav-text">dpid：查看 Container 的 pid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Container執行時的操作"><span class="nav-number">21.</span> <span class="nav-text">Container執行時的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec：在外部向Container內執行指令"><span class="nav-number">22.</span> <span class="nav-text">exec：在外部向Container內執行指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec-it-contain-bin-bash"><span class="nav-number">23.</span> <span class="nav-text">exec -it contain /bin/bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logs：將Container內的輸出顯示到螢幕上"><span class="nav-number">24.</span> <span class="nav-text">logs：將Container內的輸出顯示到螢幕上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-logs-–tail-50-container"><span class="nav-number">25.</span> <span class="nav-text">docker logs –tail=50 container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Container和主系統之間的操作"><span class="nav-number">26.</span> <span class="nav-text">Container和主系統之間的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cp：複製Container內的檔案到主系統"><span class="nav-number">27.</span> <span class="nav-text">cp：複製Container內的檔案到主系統</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#container-log"><span class="nav-number">28.</span> <span class="nav-text">container log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#var-lib-docker-contains-contain-id"><span class="nav-number">29.</span> <span class="nav-text">var/lib/docker/contains/contain id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec-it-influxdb-influxd"><span class="nav-number">30.</span> <span class="nav-text">exec -it influxdb influxd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#show-datebase"><span class="nav-number">31.</span> <span class="nav-text">show datebase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#show-table"><span class="nav-number">32.</span> <span class="nav-text">show (table)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-rm-f-docker-ps-aq-刪除全部容器"><span class="nav-number">33.</span> <span class="nav-text">docker rm -f $(docker ps -aq) 刪除全部容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-rmi-f-docker-images-aq-刪除全部-images"><span class="nav-number">34.</span> <span class="nav-text">docker rmi -f $(docker images -aq) 刪除全部 images</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

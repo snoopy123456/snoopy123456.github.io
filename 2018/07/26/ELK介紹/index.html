@@ -1,253 +1,375 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>ELK介紹 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x4F55;&amp;#x8B02; ELK&amp;#xFF1F;ELK &amp;#x662F;&amp;#x6307; ElasticSearch&amp;#x3001;Logstash &amp;#x548C; Kibana &amp;#x9019;&amp;#x4E09;&amp;#x500B;&amp;#x958B;&amp;#x6E90;&amp;#x8EDF;&amp;#x9AD4;&amp;#x7684;&amp;#x96C6;&amp;#x5408;&amp;#x5957;&amp;#x4EF6;&amp;#xFF0C;&amp;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK介紹">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/ELK介紹/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x4F55;&amp;#x8B02; ELK&amp;#xFF1F;ELK &amp;#x662F;&amp;#x6307; ElasticSearch&amp;#x3001;Logstash &amp;#x548C; Kibana &amp;#x9019;&amp;#x4E09;&amp;#x500B;&amp;#x958B;&amp;#x6E90;&amp;#x8EDF;&amp;#x9AD4;&amp;#x7684;&amp;#x96C6;&amp;#x5408;&amp;#x5957;&amp;#x4EF6;&amp;#xFF0C;&amp;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/ELK介紹/images/1.png">
 <meta property="og:updated_time" content="2020-04-01T03:30:24.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK介紹">
-<meta name="twitter:description" content="&amp;#x4F55;&amp;#x8B02; ELK&amp;#xFF1F;ELK &amp;#x662F;&amp;#x6307; ElasticSearch&amp;#x3001;Logstash &amp;#x548C; Kibana &amp;#x9019;&amp;#x4E09;&amp;#x500B;&amp;#x958B;&amp;#x6E90;&amp;#x8EDF;&amp;#x9AD4;&amp;#x7684;&amp;#x96C6;&amp;#x5408;&amp;#x5957;&amp;#x4EF6;&amp;#xFF0C;&amp;">
+<meta name="twitter:description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/26/ELK介紹/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/07/26/ELK介紹/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>ELK介紹 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-ELK介紹" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    ELK介紹
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/ELK介紹/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x4F55;&#x8B02;-ELK&#xFF1F;"><a href="#&#x4F55;&#x8B02;-ELK&#xFF1F;" class="headerlink" title="&#x4F55;&#x8B02; ELK&#xFF1F;"></a>&#x4F55;&#x8B02; ELK&#xFF1F;</h3><h3 id="ELK-&#x662F;&#x6307;-ElasticSearch&#x3001;Logstash-&#x548C;-Kibana-&#x9019;&#x4E09;&#x500B;&#x958B;&#x6E90;&#x8EDF;&#x9AD4;&#x7684;&#x96C6;&#x5408;&#x5957;&#x4EF6;&#xFF0C;&#x9019;&#x4E09;&#x500B;&#x8EDF;&#x9AD4;&#x53EF;&#x4EE5;&#x7D44;&#x6210;&#x4E00;&#x5957;&#x65E5;&#x8A8C;-log-&#x5206;&#x6790;&#x548C;&#x76E3;&#x63A7;&#x67B6;&#x69CB;&#x4F46;&#x9019;&#x4E26;&#x975E;&#x5168;&#x90E8;&#xFF0C;&#x67B6;&#x69CB;&#x6703;&#x96A8;&#x8457;&#x4F7F;&#x7528;&#x8005;&#x9700;&#x6C42;&#x74B0;&#x5883;&#x7B49;&#x56E0;&#x6578;&#x589E;&#x52A0;&#x6216;&#x6E1B;&#x5C11;&#xFF0C;&#x6216;&#x8005;&#x589E;&#x52A0;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x5957;&#x4EF6;"><a href="#ELK-&#x662F;&#x6307;-ElasticSearch&#x3001;Logstash-&#x548C;-Kibana-&#x9019;&#x4E09;&#x500B;&#x958B;&#x6E90;&#x8EDF;&#x9AD4;&#x7684;&#x96C6;&#x5408;&#x5957;&#x4EF6;&#xFF0C;&#x9019;&#x4E09;&#x500B;&#x8EDF;&#x9AD4;&#x53EF;&#x4EE5;&#x7D44;&#x6210;&#x4E00;&#x5957;&#x65E5;&#x8A8C;-log-&#x5206;&#x6790;&#x548C;&#x76E3;&#x63A7;&#x67B6;&#x69CB;&#x4F46;&#x9019;&#x4E26;&#x975E;&#x5168;&#x90E8;&#xFF0C;&#x67B6;&#x69CB;&#x6703;&#x96A8;&#x8457;&#x4F7F;&#x7528;&#x8005;&#x9700;&#x6C42;&#x74B0;&#x5883;&#x7B49;&#x56E0;&#x6578;&#x589E;&#x52A0;&#x6216;&#x6E1B;&#x5C11;&#xFF0C;&#x6216;&#x8005;&#x589E;&#x52A0;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x5957;&#x4EF6;" class="headerlink" title="ELK &#x662F;&#x6307; ElasticSearch&#x3001;Logstash &#x548C; Kibana &#x9019;&#x4E09;&#x500B;&#x958B;&#x6E90;&#x8EDF;&#x9AD4;&#x7684;&#x96C6;&#x5408;&#x5957;&#x4EF6;&#xFF0C;&#x9019;&#x4E09;&#x500B;&#x8EDF;&#x9AD4;&#x53EF;&#x4EE5;&#x7D44;&#x6210;&#x4E00;&#x5957;&#x65E5;&#x8A8C; ( log ) &#x5206;&#x6790;&#x548C;&#x76E3;&#x63A7;&#x67B6;&#x69CB;&#x4F46;&#x9019;&#x4E26;&#x975E;&#x5168;&#x90E8;&#xFF0C;&#x67B6;&#x69CB;&#x6703;&#x96A8;&#x8457;&#x4F7F;&#x7528;&#x8005;&#x9700;&#x6C42;&#x74B0;&#x5883;&#x7B49;&#x56E0;&#x6578;&#x589E;&#x52A0;&#x6216;&#x6E1B;&#x5C11;&#xFF0C;&#x6216;&#x8005;&#x589E;&#x52A0;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x5957;&#x4EF6;"></a>ELK &#x662F;&#x6307; ElasticSearch&#x3001;Logstash &#x548C; Kibana &#x9019;&#x4E09;&#x500B;&#x958B;&#x6E90;&#x8EDF;&#x9AD4;&#x7684;&#x96C6;&#x5408;&#x5957;&#x4EF6;&#xFF0C;&#x9019;&#x4E09;&#x500B;&#x8EDF;&#x9AD4;&#x53EF;&#x4EE5;&#x7D44;&#x6210;&#x4E00;&#x5957;&#x65E5;&#x8A8C; ( log ) &#x5206;&#x6790;&#x548C;&#x76E3;&#x63A7;&#x67B6;&#x69CB;&#x4F46;&#x9019;&#x4E26;&#x975E;&#x5168;&#x90E8;&#xFF0C;&#x67B6;&#x69CB;&#x6703;&#x96A8;&#x8457;&#x4F7F;&#x7528;&#x8005;&#x9700;&#x6C42;&#x74B0;&#x5883;&#x7B49;&#x56E0;&#x6578;&#x589E;&#x52A0;&#x6216;&#x6E1B;&#x5C11;&#xFF0C;&#x6216;&#x8005;&#x589E;&#x52A0;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x5957;&#x4EF6;</h3><h3 id="Elasticsearch&#xFF1A;Elasticsearch-&#x662F;&#x4E00;&#x500B;&#x5BE6;&#x6642;&#x7684;&#x5206;&#x4F48;&#x5F0F;&#x641C;&#x7D22;&#x5206;&#x6790;&#x5F15;&#x64CE;&#xFF0C;&#x5B83;&#x80FD;&#x8B93;&#x4F60;&#x4EE5;&#x4E00;&#x500B;&#x4E4B;&#x524D;&#x5F9E;&#x672A;&#x6709;&#x904E;&#x7684;&#x901F;&#x5EA6;&#x548C;&#x898F;&#x6A21;&#xFF0C;&#x53BB;&#x63A2;&#x7D22;&#x4F60;&#x7684;&#x6578;&#x64DA;&#x3002;&#x5B83;&#x88AB;&#x7528;&#x4F5C;&#x5168;&#x6587;&#x6AA2;&#x7D22;&#x3001;&#x7D50;&#x69CB;&#x5316;&#x641C;&#x7D22;&#x3001;&#x5206;&#x6790;&#x4EE5;&#x53CA;&#x9019;&#x4E09;&#x500B;&#x529F;&#x80FD;&#x7684;&#x7D44;&#x5408;&#xFF0C;Elasticsearch-&#x4E2D;&#x6C92;&#x6709;&#x4E00;&#x500B;&#x55AE;&#x7368;&#x7684;&#x7D44;&#x4EF6;&#x662F;&#x5168;&#x65B0;&#x7684;&#x6216;&#x8005;&#x662F;&#x9769;&#x547D;&#x6027;&#x7684;&#x3002;&#x5168;&#x6587;&#x641C;&#x7D22;&#x5F88;&#x4E45;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7D93;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x4E86;&#xFF0C;&#x5C31;&#x50CF;&#x65E9;&#x5C31;&#x51FA;&#x73FE;&#x4E86;&#x7684;&#x5206;&#x6790;&#x7CFB;&#x7D71;&#x548C;&#x5206;&#x4F48;&#x5F0F;&#x6578;&#x64DA;&#x5EAB;&#x3002;&#x9769;&#x547D;&#x6027;&#x7684;&#x6210;&#x679C;&#x5728;&#x65BC;&#x5C07;&#x9019;&#x4E9B;&#x55AE;&#x7368;&#x7684;&#xFF0C;&#x6709;&#x7528;&#x7684;&#x7D44;&#x4EF6;&#x878D;&#x5408;&#x5230;&#x4E00;&#x500B;&#x55AE;&#x4E00;&#x7684;&#x3001;&#x4E00;&#x81F4;&#x7684;&#x3001;&#x5BE6;&#x6642;&#x7684;&#x61C9;&#x7528;&#x4E2D;&#x3002;&#x5B83;&#x5C0D;&#x65BC;&#x521D;&#x5B78;&#x8005;&#x800C;&#x8A00;&#x6709;&#x4E00;&#x500B;&#x8F03;&#x4F4E;&#x7684;&#x9580;&#x6ABB;&#xFF0C;&#x800C;&#x7576;&#x4F60;&#x7684;&#x6280;&#x80FD;&#x63D0;&#x5347;&#x6216;&#x9700;&#x6C42;&#x589E;&#x52A0;&#x6642;&#xFF0C;&#x5B83;&#x4E5F;&#x59CB;&#x7D42;&#x80FD;&#x6EFF;&#x8DB3;&#x4F60;&#x7684;&#x9700;&#x6C42;&#x3002;"><a href="#Elasticsearch&#xFF1A;Elasticsearch-&#x662F;&#x4E00;&#x500B;&#x5BE6;&#x6642;&#x7684;&#x5206;&#x4F48;&#x5F0F;&#x641C;&#x7D22;&#x5206;&#x6790;&#x5F15;&#x64CE;&#xFF0C;&#x5B83;&#x80FD;&#x8B93;&#x4F60;&#x4EE5;&#x4E00;&#x500B;&#x4E4B;&#x524D;&#x5F9E;&#x672A;&#x6709;&#x904E;&#x7684;&#x901F;&#x5EA6;&#x548C;&#x898F;&#x6A21;&#xFF0C;&#x53BB;&#x63A2;&#x7D22;&#x4F60;&#x7684;&#x6578;&#x64DA;&#x3002;&#x5B83;&#x88AB;&#x7528;&#x4F5C;&#x5168;&#x6587;&#x6AA2;&#x7D22;&#x3001;&#x7D50;&#x69CB;&#x5316;&#x641C;&#x7D22;&#x3001;&#x5206;&#x6790;&#x4EE5;&#x53CA;&#x9019;&#x4E09;&#x500B;&#x529F;&#x80FD;&#x7684;&#x7D44;&#x5408;&#xFF0C;Elasticsearch-&#x4E2D;&#x6C92;&#x6709;&#x4E00;&#x500B;&#x55AE;&#x7368;&#x7684;&#x7D44;&#x4EF6;&#x662F;&#x5168;&#x65B0;&#x7684;&#x6216;&#x8005;&#x662F;&#x9769;&#x547D;&#x6027;&#x7684;&#x3002;&#x5168;&#x6587;&#x641C;&#x7D22;&#x5F88;&#x4E45;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7D93;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x4E86;&#xFF0C;&#x5C31;&#x50CF;&#x65E9;&#x5C31;&#x51FA;&#x73FE;&#x4E86;&#x7684;&#x5206;&#x6790;&#x7CFB;&#x7D71;&#x548C;&#x5206;&#x4F48;&#x5F0F;&#x6578;&#x64DA;&#x5EAB;&#x3002;&#x9769;&#x547D;&#x6027;&#x7684;&#x6210;&#x679C;&#x5728;&#x65BC;&#x5C07;&#x9019;&#x4E9B;&#x55AE;&#x7368;&#x7684;&#xFF0C;&#x6709;&#x7528;&#x7684;&#x7D44;&#x4EF6;&#x878D;&#x5408;&#x5230;&#x4E00;&#x500B;&#x55AE;&#x4E00;&#x7684;&#x3001;&#x4E00;&#x81F4;&#x7684;&#x3001;&#x5BE6;&#x6642;&#x7684;&#x61C9;&#x7528;&#x4E2D;&#x3002;&#x5B83;&#x5C0D;&#x65BC;&#x521D;&#x5B78;&#x8005;&#x800C;&#x8A00;&#x6709;&#x4E00;&#x500B;&#x8F03;&#x4F4E;&#x7684;&#x9580;&#x6ABB;&#xFF0C;&#x800C;&#x7576;&#x4F60;&#x7684;&#x6280;&#x80FD;&#x63D0;&#x5347;&#x6216;&#x9700;&#x6C42;&#x589E;&#x52A0;&#x6642;&#xFF0C;&#x5B83;&#x4E5F;&#x59CB;&#x7D42;&#x80FD;&#x6EFF;&#x8DB3;&#x4F60;&#x7684;&#x9700;&#x6C42;&#x3002;" class="headerlink" title="Elasticsearch&#xFF1A;Elasticsearch &#x662F;&#x4E00;&#x500B;&#x5BE6;&#x6642;&#x7684;&#x5206;&#x4F48;&#x5F0F;&#x641C;&#x7D22;&#x5206;&#x6790;&#x5F15;&#x64CE;&#xFF0C;&#x5B83;&#x80FD;&#x8B93;&#x4F60;&#x4EE5;&#x4E00;&#x500B;&#x4E4B;&#x524D;&#x5F9E;&#x672A;&#x6709;&#x904E;&#x7684;&#x901F;&#x5EA6;&#x548C;&#x898F;&#x6A21;&#xFF0C;&#x53BB;&#x63A2;&#x7D22;&#x4F60;&#x7684;&#x6578;&#x64DA;&#x3002;&#x5B83;&#x88AB;&#x7528;&#x4F5C;&#x5168;&#x6587;&#x6AA2;&#x7D22;&#x3001;&#x7D50;&#x69CB;&#x5316;&#x641C;&#x7D22;&#x3001;&#x5206;&#x6790;&#x4EE5;&#x53CA;&#x9019;&#x4E09;&#x500B;&#x529F;&#x80FD;&#x7684;&#x7D44;&#x5408;&#xFF0C;Elasticsearch &#x4E2D;&#x6C92;&#x6709;&#x4E00;&#x500B;&#x55AE;&#x7368;&#x7684;&#x7D44;&#x4EF6;&#x662F;&#x5168;&#x65B0;&#x7684;&#x6216;&#x8005;&#x662F;&#x9769;&#x547D;&#x6027;&#x7684;&#x3002;&#x5168;&#x6587;&#x641C;&#x7D22;&#x5F88;&#x4E45;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7D93;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x4E86;&#xFF0C;&#x5C31;&#x50CF;&#x65E9;&#x5C31;&#x51FA;&#x73FE;&#x4E86;&#x7684;&#x5206;&#x6790;&#x7CFB;&#x7D71;&#x548C;&#x5206;&#x4F48;&#x5F0F;&#x6578;&#x64DA;&#x5EAB;&#x3002;&#x9769;&#x547D;&#x6027;&#x7684;&#x6210;&#x679C;&#x5728;&#x65BC;&#x5C07;&#x9019;&#x4E9B;&#x55AE;&#x7368;&#x7684;&#xFF0C;&#x6709;&#x7528;&#x7684;&#x7D44;&#x4EF6;&#x878D;&#x5408;&#x5230;&#x4E00;&#x500B;&#x55AE;&#x4E00;&#x7684;&#x3001;&#x4E00;&#x81F4;&#x7684;&#x3001;&#x5BE6;&#x6642;&#x7684;&#x61C9;&#x7528;&#x4E2D;&#x3002;&#x5B83;&#x5C0D;&#x65BC;&#x521D;&#x5B78;&#x8005;&#x800C;&#x8A00;&#x6709;&#x4E00;&#x500B;&#x8F03;&#x4F4E;&#x7684;&#x9580;&#x6ABB;&#xFF0C;&#x800C;&#x7576;&#x4F60;&#x7684;&#x6280;&#x80FD;&#x63D0;&#x5347;&#x6216;&#x9700;&#x6C42;&#x589E;&#x52A0;&#x6642;&#xFF0C;&#x5B83;&#x4E5F;&#x59CB;&#x7D42;&#x80FD;&#x6EFF;&#x8DB3;&#x4F60;&#x7684;&#x9700;&#x6C42;&#x3002;"></a>Elasticsearch&#xFF1A;Elasticsearch &#x662F;&#x4E00;&#x500B;&#x5BE6;&#x6642;&#x7684;&#x5206;&#x4F48;&#x5F0F;&#x641C;&#x7D22;&#x5206;&#x6790;&#x5F15;&#x64CE;&#xFF0C;&#x5B83;&#x80FD;&#x8B93;&#x4F60;&#x4EE5;&#x4E00;&#x500B;&#x4E4B;&#x524D;&#x5F9E;&#x672A;&#x6709;&#x904E;&#x7684;&#x901F;&#x5EA6;&#x548C;&#x898F;&#x6A21;&#xFF0C;&#x53BB;&#x63A2;&#x7D22;&#x4F60;&#x7684;&#x6578;&#x64DA;&#x3002;&#x5B83;&#x88AB;&#x7528;&#x4F5C;&#x5168;&#x6587;&#x6AA2;&#x7D22;&#x3001;&#x7D50;&#x69CB;&#x5316;&#x641C;&#x7D22;&#x3001;&#x5206;&#x6790;&#x4EE5;&#x53CA;&#x9019;&#x4E09;&#x500B;&#x529F;&#x80FD;&#x7684;&#x7D44;&#x5408;&#xFF0C;Elasticsearch &#x4E2D;&#x6C92;&#x6709;&#x4E00;&#x500B;&#x55AE;&#x7368;&#x7684;&#x7D44;&#x4EF6;&#x662F;&#x5168;&#x65B0;&#x7684;&#x6216;&#x8005;&#x662F;&#x9769;&#x547D;&#x6027;&#x7684;&#x3002;&#x5168;&#x6587;&#x641C;&#x7D22;&#x5F88;&#x4E45;&#x4E4B;&#x524D;&#x5C31;&#x5DF2;&#x7D93;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x4E86;&#xFF0C;&#x5C31;&#x50CF;&#x65E9;&#x5C31;&#x51FA;&#x73FE;&#x4E86;&#x7684;&#x5206;&#x6790;&#x7CFB;&#x7D71;&#x548C;&#x5206;&#x4F48;&#x5F0F;&#x6578;&#x64DA;&#x5EAB;&#x3002;&#x9769;&#x547D;&#x6027;&#x7684;&#x6210;&#x679C;&#x5728;&#x65BC;&#x5C07;&#x9019;&#x4E9B;&#x55AE;&#x7368;&#x7684;&#xFF0C;&#x6709;&#x7528;&#x7684;&#x7D44;&#x4EF6;&#x878D;&#x5408;&#x5230;&#x4E00;&#x500B;&#x55AE;&#x4E00;&#x7684;&#x3001;&#x4E00;&#x81F4;&#x7684;&#x3001;&#x5BE6;&#x6642;&#x7684;&#x61C9;&#x7528;&#x4E2D;&#x3002;&#x5B83;&#x5C0D;&#x65BC;&#x521D;&#x5B78;&#x8005;&#x800C;&#x8A00;&#x6709;&#x4E00;&#x500B;&#x8F03;&#x4F4E;&#x7684;&#x9580;&#x6ABB;&#xFF0C;&#x800C;&#x7576;&#x4F60;&#x7684;&#x6280;&#x80FD;&#x63D0;&#x5347;&#x6216;&#x9700;&#x6C42;&#x589E;&#x52A0;&#x6642;&#xFF0C;&#x5B83;&#x4E5F;&#x59CB;&#x7D42;&#x80FD;&#x6EFF;&#x8DB3;&#x4F60;&#x7684;&#x9700;&#x6C42;&#x3002;</h3><h3 id="logstash&#xFF1A;&#x662F;&#x4E00;&#x6B3E;&#x8F15;&#x91CF;&#x7D1A;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8655;&#x7406;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x628A;&#x5206;&#x6563;&#x7684;&#x3001;&#x591A;&#x6A23;&#x5316;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8D77;&#x4F86;&#xFF0C;&#x4E26;&#x9032;&#x884C;&#x81EA;&#x5B9A;&#x7FA9;&#x7684;&#x8655;&#x7406;&#xFF0C;&#x7136;&#x5F8C;&#x50B3;&#x8F38;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6BD4;&#x5982;&#x67D0;&#x500B;&#x4F3A;&#x670D;&#x5668;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x3002;"><a href="#logstash&#xFF1A;&#x662F;&#x4E00;&#x6B3E;&#x8F15;&#x91CF;&#x7D1A;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8655;&#x7406;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x628A;&#x5206;&#x6563;&#x7684;&#x3001;&#x591A;&#x6A23;&#x5316;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8D77;&#x4F86;&#xFF0C;&#x4E26;&#x9032;&#x884C;&#x81EA;&#x5B9A;&#x7FA9;&#x7684;&#x8655;&#x7406;&#xFF0C;&#x7136;&#x5F8C;&#x50B3;&#x8F38;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6BD4;&#x5982;&#x67D0;&#x500B;&#x4F3A;&#x670D;&#x5668;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x3002;" class="headerlink" title="logstash&#xFF1A;&#x662F;&#x4E00;&#x6B3E;&#x8F15;&#x91CF;&#x7D1A;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8655;&#x7406;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x628A;&#x5206;&#x6563;&#x7684;&#x3001;&#x591A;&#x6A23;&#x5316;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8D77;&#x4F86;&#xFF0C;&#x4E26;&#x9032;&#x884C;&#x81EA;&#x5B9A;&#x7FA9;&#x7684;&#x8655;&#x7406;&#xFF0C;&#x7136;&#x5F8C;&#x50B3;&#x8F38;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6BD4;&#x5982;&#x67D0;&#x500B;&#x4F3A;&#x670D;&#x5668;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x3002;"></a>logstash&#xFF1A;&#x662F;&#x4E00;&#x6B3E;&#x8F15;&#x91CF;&#x7D1A;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8655;&#x7406;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x628A;&#x5206;&#x6563;&#x7684;&#x3001;&#x591A;&#x6A23;&#x5316;&#x7684;&#x65E5;&#x8A8C;&#x641C;&#x96C6;&#x8D77;&#x4F86;&#xFF0C;&#x4E26;&#x9032;&#x884C;&#x81EA;&#x5B9A;&#x7FA9;&#x7684;&#x8655;&#x7406;&#xFF0C;&#x7136;&#x5F8C;&#x50B3;&#x8F38;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6BD4;&#x5982;&#x67D0;&#x500B;&#x4F3A;&#x670D;&#x5668;&#x6216;&#x8005;&#x6587;&#x4EF6;&#x3002;</h3><h3 id="Kibana&#xFF1A;Kibana-&#x662F;&#x4E00;&#x6B3E;&#x958B;&#x6E90;&#x7684;&#x6578;&#x64DA;&#x5206;&#x6790;&#x548C;&#x53EF;&#x8996;&#x5316;&#x5E73;&#x53F0;&#xFF0C;&#x5B83;&#x662F;-Elastic-Stack-&#x6210;&#x54E1;&#x4E4B;&#x4E00;&#xFF0C;&#x8A2D;&#x8A08;&#x7528;&#x65BC;&#x548C;-Elasticsearch-&#x5354;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-Kibana-&#x5C0D;-Elasticsearch-&#x7D22;&#x5F15;&#x4E2D;&#x7684;&#x6578;&#x64DA;&#x9032;&#x884C;&#x641C;&#x7D22;&#xFF0C;&#x67E5;&#x770B;&#xFF0C;&#x4EA4;&#x4E92;&#x64CD;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5229;&#x7528;&#x5716;&#x8868;&#xFF0C;&#x8868;&#x683C;&#x53CA;&#x5730;&#x5716;&#x5C0D;&#x6578;&#x64DA;&#x9032;&#x884C;&#x591A;&#x5143;&#x5316;&#x7684;&#x5206;&#x6790;&#x548C;&#x5448;&#x73FE;&#x3002;Kibana-&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5927;&#x6578;&#x64DA;&#x901A;&#x4FD7;&#x6613;&#x61C2;&#x3002;&#x5B83;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x57FA;&#x65BC;&#x700F;&#x89BD;&#x5668;&#x7684;&#x754C;&#x9762;&#x4FBF;&#x65BC;&#x60A8;&#x5FEB;&#x901F;&#x5275;&#x5EFA;&#x548C;&#x5206;&#x4EAB;&#x52D5;&#x614B;&#x6578;&#x64DA;&#x5100;&#x8868;&#x677F;&#x4F86;&#x8FFD;&#x8E2A;-Elasticsearch-&#x7684;&#x5BE6;&#x6642;&#x6578;&#x64DA;&#x8B8A;&#x5316;&#x3002;&#x642D;&#x5EFA;-Kibana-&#x975E;&#x5E38;&#x7C21;&#x55AE;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5206;&#x5206;&#x9418;&#x5B8C;&#x6210;-Kibana-&#x7684;&#x5B89;&#x88DD;&#x4E26;&#x958B;&#x59CB;&#x63A2;&#x7D22;-Elasticsearch-&#x7684;&#x7D22;&#x5F15;&#x6578;&#x64DA;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x984D;&#x5916;&#x7684;&#x57FA;&#x790E;&#x8A2D;&#x65BD;&#x3002;"><a href="#Kibana&#xFF1A;Kibana-&#x662F;&#x4E00;&#x6B3E;&#x958B;&#x6E90;&#x7684;&#x6578;&#x64DA;&#x5206;&#x6790;&#x548C;&#x53EF;&#x8996;&#x5316;&#x5E73;&#x53F0;&#xFF0C;&#x5B83;&#x662F;-Elastic-Stack-&#x6210;&#x54E1;&#x4E4B;&#x4E00;&#xFF0C;&#x8A2D;&#x8A08;&#x7528;&#x65BC;&#x548C;-Elasticsearch-&#x5354;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-Kibana-&#x5C0D;-Elasticsearch-&#x7D22;&#x5F15;&#x4E2D;&#x7684;&#x6578;&#x64DA;&#x9032;&#x884C;&#x641C;&#x7D22;&#xFF0C;&#x67E5;&#x770B;&#xFF0C;&#x4EA4;&#x4E92;&#x64CD;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5229;&#x7528;&#x5716;&#x8868;&#xFF0C;&#x8868;&#x683C;&#x53CA;&#x5730;&#x5716;&#x5C0D;&#x6578;&#x64DA;&#x9032;&#x884C;&#x591A;&#x5143;&#x5316;&#x7684;&#x5206;&#x6790;&#x548C;&#x5448;&#x73FE;&#x3002;Kibana-&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5927;&#x6578;&#x64DA;&#x901A;&#x4FD7;&#x6613;&#x61C2;&#x3002;&#x5B83;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x57FA;&#x65BC;&#x700F;&#x89BD;&#x5668;&#x7684;&#x754C;&#x9762;&#x4FBF;&#x65BC;&#x60A8;&#x5FEB;&#x901F;&#x5275;&#x5EFA;&#x548C;&#x5206;&#x4EAB;&#x52D5;&#x614B;&#x6578;&#x64DA;&#x5100;&#x8868;&#x677F;&#x4F86;&#x8FFD;&#x8E2A;-Elasticsearch-&#x7684;&#x5BE6;&#x6642;&#x6578;&#x64DA;&#x8B8A;&#x5316;&#x3002;&#x642D;&#x5EFA;-Kibana-&#x975E;&#x5E38;&#x7C21;&#x55AE;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5206;&#x5206;&#x9418;&#x5B8C;&#x6210;-Kibana-&#x7684;&#x5B89;&#x88DD;&#x4E26;&#x958B;&#x59CB;&#x63A2;&#x7D22;-Elasticsearch-&#x7684;&#x7D22;&#x5F15;&#x6578;&#x64DA;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x984D;&#x5916;&#x7684;&#x57FA;&#x790E;&#x8A2D;&#x65BD;&#x3002;" class="headerlink" title="Kibana&#xFF1A;Kibana &#x662F;&#x4E00;&#x6B3E;&#x958B;&#x6E90;&#x7684;&#x6578;&#x64DA;&#x5206;&#x6790;&#x548C;&#x53EF;&#x8996;&#x5316;&#x5E73;&#x53F0;&#xFF0C;&#x5B83;&#x662F; Elastic Stack &#x6210;&#x54E1;&#x4E4B;&#x4E00;&#xFF0C;&#x8A2D;&#x8A08;&#x7528;&#x65BC;&#x548C; Elasticsearch &#x5354;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Kibana &#x5C0D; Elasticsearch &#x7D22;&#x5F15;&#x4E2D;&#x7684;&#x6578;&#x64DA;&#x9032;&#x884C;&#x641C;&#x7D22;&#xFF0C;&#x67E5;&#x770B;&#xFF0C;&#x4EA4;&#x4E92;&#x64CD;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5229;&#x7528;&#x5716;&#x8868;&#xFF0C;&#x8868;&#x683C;&#x53CA;&#x5730;&#x5716;&#x5C0D;&#x6578;&#x64DA;&#x9032;&#x884C;&#x591A;&#x5143;&#x5316;&#x7684;&#x5206;&#x6790;&#x548C;&#x5448;&#x73FE;&#x3002;Kibana &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5927;&#x6578;&#x64DA;&#x901A;&#x4FD7;&#x6613;&#x61C2;&#x3002;&#x5B83;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x57FA;&#x65BC;&#x700F;&#x89BD;&#x5668;&#x7684;&#x754C;&#x9762;&#x4FBF;&#x65BC;&#x60A8;&#x5FEB;&#x901F;&#x5275;&#x5EFA;&#x548C;&#x5206;&#x4EAB;&#x52D5;&#x614B;&#x6578;&#x64DA;&#x5100;&#x8868;&#x677F;&#x4F86;&#x8FFD;&#x8E2A; Elasticsearch &#x7684;&#x5BE6;&#x6642;&#x6578;&#x64DA;&#x8B8A;&#x5316;&#x3002;&#x642D;&#x5EFA; Kibana &#x975E;&#x5E38;&#x7C21;&#x55AE;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5206;&#x5206;&#x9418;&#x5B8C;&#x6210; Kibana &#x7684;&#x5B89;&#x88DD;&#x4E26;&#x958B;&#x59CB;&#x63A2;&#x7D22; Elasticsearch &#x7684;&#x7D22;&#x5F15;&#x6578;&#x64DA;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x984D;&#x5916;&#x7684;&#x57FA;&#x790E;&#x8A2D;&#x65BD;&#x3002;"></a>Kibana&#xFF1A;Kibana &#x662F;&#x4E00;&#x6B3E;&#x958B;&#x6E90;&#x7684;&#x6578;&#x64DA;&#x5206;&#x6790;&#x548C;&#x53EF;&#x8996;&#x5316;&#x5E73;&#x53F0;&#xFF0C;&#x5B83;&#x662F; Elastic Stack &#x6210;&#x54E1;&#x4E4B;&#x4E00;&#xFF0C;&#x8A2D;&#x8A08;&#x7528;&#x65BC;&#x548C; Elasticsearch &#x5354;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Kibana &#x5C0D; Elasticsearch &#x7D22;&#x5F15;&#x4E2D;&#x7684;&#x6578;&#x64DA;&#x9032;&#x884C;&#x641C;&#x7D22;&#xFF0C;&#x67E5;&#x770B;&#xFF0C;&#x4EA4;&#x4E92;&#x64CD;&#x4F5C;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5229;&#x7528;&#x5716;&#x8868;&#xFF0C;&#x8868;&#x683C;&#x53CA;&#x5730;&#x5716;&#x5C0D;&#x6578;&#x64DA;&#x9032;&#x884C;&#x591A;&#x5143;&#x5316;&#x7684;&#x5206;&#x6790;&#x548C;&#x5448;&#x73FE;&#x3002;Kibana &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5927;&#x6578;&#x64DA;&#x901A;&#x4FD7;&#x6613;&#x61C2;&#x3002;&#x5B83;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x57FA;&#x65BC;&#x700F;&#x89BD;&#x5668;&#x7684;&#x754C;&#x9762;&#x4FBF;&#x65BC;&#x60A8;&#x5FEB;&#x901F;&#x5275;&#x5EFA;&#x548C;&#x5206;&#x4EAB;&#x52D5;&#x614B;&#x6578;&#x64DA;&#x5100;&#x8868;&#x677F;&#x4F86;&#x8FFD;&#x8E2A; Elasticsearch &#x7684;&#x5BE6;&#x6642;&#x6578;&#x64DA;&#x8B8A;&#x5316;&#x3002;&#x642D;&#x5EFA; Kibana &#x975E;&#x5E38;&#x7C21;&#x55AE;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5206;&#x5206;&#x9418;&#x5B8C;&#x6210; Kibana &#x7684;&#x5B89;&#x88DD;&#x4E26;&#x958B;&#x59CB;&#x63A2;&#x7D22; Elasticsearch &#x7684;&#x7D22;&#x5F15;&#x6578;&#x64DA;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x984D;&#x5916;&#x7684;&#x57FA;&#x790E;&#x8A2D;&#x65BD;&#x3002;</h3><h3 id="Redis&#xFF1A;&#x662F;-REmote-DIctionary-Server&#xFF08;-&#x9060;&#x7A0B;&#x5B57;&#x5178;&#x670D;&#x52D9;&#x5668;-&#xFF09;&#x7684;&#x7E2E;&#x5BEB;&#xFF0C;&#x5B83;&#x4EE5;&#x5B57;&#x5178;&#x7D50;&#x69CB;&#xFF08;-key-value-&#x9375;&#x503C;&#x5C0D;&#x7D50;&#x69CB;-&#xFF09;&#x5B58;&#x5132;&#x6578;&#x64DA;&#xFF0C;&#x4E26;&#x5141;&#x8A31;&#x5176;&#x4ED6;&#x61C9;&#x7528;&#x901A;&#x904E;-TCP-&#x5354;&#x8B70;&#x8B80;&#x5BEB;&#x5B57;&#x5178;&#x4E2D;&#x7684;&#x5167;&#x5BB9;&#x3002;&#x6240;&#x4EE5;&#xFF0C;redis-&#x662F;&#x4E00;&#x500B;-key-value-&#x5B58;&#x5132;&#x7CFB;&#x7D71;&#xFF0C;&#x6216;&#x8005;&#x8AAA;&#x662F;&#x4E00;&#x500B;-key-value-&#x6578;&#x64DA;&#x5EAB;&#xFF0C;&#x56E0;&#x6B64;&#x5E38;&#x5E38;&#x88AB;&#x7528;&#x5728;&#x9700;&#x8981;&#x5FEB;&#x53D6;&#x4E00;&#x4E9B;&#x8CC7;&#x6599;&#x7684;&#x5834;&#x5408;&#xFF0C;&#x53EF;&#x4EE5;&#x6E1B;&#x8F15;&#x8A31;&#x591A;&#x5F8C;&#x7AEF;&#x8CC7;&#x6599;&#x5EAB;&#x7684;&#x58D3;&#x529B;"><a href="#Redis&#xFF1A;&#x662F;-REmote-DIctionary-Server&#xFF08;-&#x9060;&#x7A0B;&#x5B57;&#x5178;&#x670D;&#x52D9;&#x5668;-&#xFF09;&#x7684;&#x7E2E;&#x5BEB;&#xFF0C;&#x5B83;&#x4EE5;&#x5B57;&#x5178;&#x7D50;&#x69CB;&#xFF08;-key-value-&#x9375;&#x503C;&#x5C0D;&#x7D50;&#x69CB;-&#xFF09;&#x5B58;&#x5132;&#x6578;&#x64DA;&#xFF0C;&#x4E26;&#x5141;&#x8A31;&#x5176;&#x4ED6;&#x61C9;&#x7528;&#x901A;&#x904E;-TCP-&#x5354;&#x8B70;&#x8B80;&#x5BEB;&#x5B57;&#x5178;&#x4E2D;&#x7684;&#x5167;&#x5BB9;&#x3002;&#x6240;&#x4EE5;&#xFF0C;redis-&#x662F;&#x4E00;&#x500B;-key-value-&#x5B58;&#x5132;&#x7CFB;&#x7D71;&#xFF0C;&#x6216;&#x8005;&#x8AAA;&#x662F;&#x4E00;&#x500B;-key-value-&#x6578;&#x64DA;&#x5EAB;&#xFF0C;&#x56E0;&#x6B64;&#x5E38;&#x5E38;&#x88AB;&#x7528;&#x5728;&#x9700;&#x8981;&#x5FEB;&#x53D6;&#x4E00;&#x4E9B;&#x8CC7;&#x6599;&#x7684;&#x5834;&#x5408;&#xFF0C;&#x53EF;&#x4EE5;&#x6E1B;&#x8F15;&#x8A31;&#x591A;&#x5F8C;&#x7AEF;&#x8CC7;&#x6599;&#x5EAB;&#x7684;&#x58D3;&#x529B;" class="headerlink" title="Redis&#xFF1A;&#x662F; REmote DIctionary Server&#xFF08; &#x9060;&#x7A0B;&#x5B57;&#x5178;&#x670D;&#x52D9;&#x5668; &#xFF09;&#x7684;&#x7E2E;&#x5BEB;&#xFF0C;&#x5B83;&#x4EE5;&#x5B57;&#x5178;&#x7D50;&#x69CB;&#xFF08; key-value &#x9375;&#x503C;&#x5C0D;&#x7D50;&#x69CB; &#xFF09;&#x5B58;&#x5132;&#x6578;&#x64DA;&#xFF0C;&#x4E26;&#x5141;&#x8A31;&#x5176;&#x4ED6;&#x61C9;&#x7528;&#x901A;&#x904E; TCP &#x5354;&#x8B70;&#x8B80;&#x5BEB;&#x5B57;&#x5178;&#x4E2D;&#x7684;&#x5167;&#x5BB9;&#x3002;&#x6240;&#x4EE5;&#xFF0C;redis &#x662F;&#x4E00;&#x500B; key-value &#x5B58;&#x5132;&#x7CFB;&#x7D71;&#xFF0C;&#x6216;&#x8005;&#x8AAA;&#x662F;&#x4E00;&#x500B; key-value &#x6578;&#x64DA;&#x5EAB;&#xFF0C;&#x56E0;&#x6B64;&#x5E38;&#x5E38;&#x88AB;&#x7528;&#x5728;&#x9700;&#x8981;&#x5FEB;&#x53D6;&#x4E00;&#x4E9B;&#x8CC7;&#x6599;&#x7684;&#x5834;&#x5408;&#xFF0C;&#x53EF;&#x4EE5;&#x6E1B;&#x8F15;&#x8A31;&#x591A;&#x5F8C;&#x7AEF;&#x8CC7;&#x6599;&#x5EAB;&#x7684;&#x58D3;&#x529B;"></a>Redis&#xFF1A;&#x662F; REmote DIctionary Server&#xFF08; &#x9060;&#x7A0B;&#x5B57;&#x5178;&#x670D;&#x52D9;&#x5668; &#xFF09;&#x7684;&#x7E2E;&#x5BEB;&#xFF0C;&#x5B83;&#x4EE5;&#x5B57;&#x5178;&#x7D50;&#x69CB;&#xFF08; key-value &#x9375;&#x503C;&#x5C0D;&#x7D50;&#x69CB; &#xFF09;&#x5B58;&#x5132;&#x6578;&#x64DA;&#xFF0C;&#x4E26;&#x5141;&#x8A31;&#x5176;&#x4ED6;&#x61C9;&#x7528;&#x901A;&#x904E; TCP &#x5354;&#x8B70;&#x8B80;&#x5BEB;&#x5B57;&#x5178;&#x4E2D;&#x7684;&#x5167;&#x5BB9;&#x3002;&#x6240;&#x4EE5;&#xFF0C;redis &#x662F;&#x4E00;&#x500B; key-value &#x5B58;&#x5132;&#x7CFB;&#x7D71;&#xFF0C;&#x6216;&#x8005;&#x8AAA;&#x662F;&#x4E00;&#x500B; key-value &#x6578;&#x64DA;&#x5EAB;&#xFF0C;&#x56E0;&#x6B64;&#x5E38;&#x5E38;&#x88AB;&#x7528;&#x5728;&#x9700;&#x8981;&#x5FEB;&#x53D6;&#x4E00;&#x4E9B;&#x8CC7;&#x6599;&#x7684;&#x5834;&#x5408;&#xFF0C;&#x53EF;&#x4EE5;&#x6E1B;&#x8F15;&#x8A31;&#x591A;&#x5F8C;&#x7AEF;&#x8CC7;&#x6599;&#x5EAB;&#x7684;&#x58D3;&#x529B;</h3><h3 id="&#x67B6;&#x69CB;&#x5716;"><a href="#&#x67B6;&#x69CB;&#x5716;" class="headerlink" title="&#x67B6;&#x69CB;&#x5716;"></a>&#x67B6;&#x69CB;&#x5716;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-07-26T08:13:05.000Z" itemprop="datePublished">2018-07-26</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ELK介紹
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-07-26 16:13:05" itemprop="dateCreated datePublished" datetime="2018-07-26T16:13:05+08:00">2018-07-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="何謂-ELK？"><a href="#何謂-ELK？" class="headerlink" title="何謂 ELK？"></a>何謂 ELK？</h3><h3 id="ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"><a href="#ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件" class="headerlink" title="ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"></a>ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件</h3><h3 id="Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"><a href="#Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。" class="headerlink" title="Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"></a>Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。</h3><h3 id="logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"><a href="#logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。" class="headerlink" title="logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"></a>logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。</h3><h3 id="Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。"><a href="#Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。" class="headerlink" title="Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。"></a>Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。</h3><h3 id="Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"><a href="#Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力" class="headerlink" title="Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"></a>Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力</h3><h3 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h3><p><img src="images/1.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/07/26/ELK建立/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    ELK建立
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/07/02/docker基礎指令/" class="ui tiny button">
-                    
-                    docker基礎指令
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/07/02/docker基礎指令/" rel="prev" title="docker基礎指令">
+      <i class="fa fa-chevron-left"></i> docker基礎指令
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/07/26/ELK建立/" rel="next" title="ELK建立">
+      ELK建立 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#何謂-ELK？"><span>何謂 ELK？</span></a></li><li><a href="#ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"><span>ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件</span></a></li><li><a href="#Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"><span>Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。</span></a></li><li><a href="#logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"><span>logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。</span></a></li><li><a href="#Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。"><span>Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。</span></a></li><li><a href="#Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"><span>Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力</span></a></li><li><a href="#架構圖"><span>架構圖</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#何謂-ELK？"><span class="nav-number">1.</span> <span class="nav-text">何謂 ELK？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"><span class="nav-number">2.</span> <span class="nav-text">ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"><span class="nav-number">3.</span> <span class="nav-text">Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"><span class="nav-number">4.</span> <span class="nav-text">logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。"><span class="nav-number">5.</span> <span class="nav-text">Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"><span class="nav-number">6.</span> <span class="nav-text">Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架構圖"><span class="nav-number">7.</span> <span class="nav-text">架構圖</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

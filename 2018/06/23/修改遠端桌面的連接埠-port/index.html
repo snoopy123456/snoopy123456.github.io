@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>修改遠端桌面的連接埠-port | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x5728; Windows &amp;#x7CFB;&amp;#x7D71;&amp;#x4E2D;&amp;#x6709;&amp;#x500B;&amp;#x300C;&amp;#x9060;&amp;#x7AEF;&amp;#x684C;&amp;#x9762;&amp;#x9023;&amp;#x7DDA;&amp;#x300D;&amp;#x7684;&amp;#x529F;&amp;#x80FD;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x8B93;&amp;#x6211;&amp;#x5011;&amp;#x4EE5">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠一、在被控端電腦的開始選單中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="修改遠端桌面的連接埠-port">
 <meta property="og:url" content="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x5728; Windows &amp;#x7CFB;&amp;#x7D71;&amp;#x4E2D;&amp;#x6709;&amp;#x500B;&amp;#x300C;&amp;#x9060;&amp;#x7AEF;&amp;#x684C;&amp;#x9762;&amp;#x9023;&amp;#x7DDA;&amp;#x300D;&amp;#x7684;&amp;#x529F;&amp;#x80FD;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x8B93;&amp;#x6211;&amp;#x5011;&amp;#x4EE5">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠一、在被控端電腦的開始選單中">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/images/3.png">
@@ -32,247 +43,358 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改遠端桌面的連接埠-port">
-<meta name="twitter:description" content="&amp;#x5728; Windows &amp;#x7CFB;&amp;#x7D71;&amp;#x4E2D;&amp;#x6709;&amp;#x500B;&amp;#x300C;&amp;#x9060;&amp;#x7AEF;&amp;#x684C;&amp;#x9762;&amp;#x9023;&amp;#x7DDA;&amp;#x300D;&amp;#x7684;&amp;#x529F;&amp;#x80FD;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x8B93;&amp;#x6211;&amp;#x5011;&amp;#x4EE5">
+<meta name="twitter:description" content="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠一、在被控端電腦的開始選單中">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>修改遠端桌面的連接埠-port | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-修改遠端桌面的連接埠-port" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    修改遠端桌面的連接埠-port
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/修改遠端桌面的連接埠-port/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x5728;-Windows-&#x7CFB;&#x7D71;&#x4E2D;&#x6709;&#x500B;&#x300C;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x300D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8B93;&#x6211;&#x5011;&#x4EE5;&#x9060;&#x7AEF;&#x63A7;&#x7684;&#x65B9;&#x5F0F;&#x767B;&#x5165;&#x3001;&#x64CD;&#x4F5C;&#x5176;&#x4ED6;-Windows-&#x96FB;&#x8166;&#x3002;Windows-&#x7CFB;&#x7D71;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x9810;&#x8A2D;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x9023;&#x63A5;&#x57E0;&#xFF08;PORT&#xFF09;&#x70BA;&#x300C;3389&#x300D;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x5E0C;&#x671B;&#x8001;&#x662F;&#x6709;&#x4EBA;&#x900F;&#x904E;&#x9019;&#x500B;PORT&#x4F86;&#x300C;&#x8E39;&#x300D;&#x4F60;&#x7684;&#x5BC6;&#x78BC;&#xFF0C;&#x6216;&#x662F;&#x5BB6;&#x88E1;&#x6216;&#x516C;&#x53F8;&#x6709;&#x5176;&#x4ED6;&#x96FB;&#x8166;&#x5DF2;&#x4F54;&#x7528;&#x9810;&#x8A2D;&#x7684;-3389-&#x9023;&#x63A5;&#x57E0;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x5C07;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;-PORT-&#x6539;&#x6210;&#x5176;&#x4ED6;&#x9023;&#x63A5;&#x57E0;"><a href="#&#x5728;-Windows-&#x7CFB;&#x7D71;&#x4E2D;&#x6709;&#x500B;&#x300C;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x300D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8B93;&#x6211;&#x5011;&#x4EE5;&#x9060;&#x7AEF;&#x63A7;&#x7684;&#x65B9;&#x5F0F;&#x767B;&#x5165;&#x3001;&#x64CD;&#x4F5C;&#x5176;&#x4ED6;-Windows-&#x96FB;&#x8166;&#x3002;Windows-&#x7CFB;&#x7D71;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x9810;&#x8A2D;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x9023;&#x63A5;&#x57E0;&#xFF08;PORT&#xFF09;&#x70BA;&#x300C;3389&#x300D;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x5E0C;&#x671B;&#x8001;&#x662F;&#x6709;&#x4EBA;&#x900F;&#x904E;&#x9019;&#x500B;PORT&#x4F86;&#x300C;&#x8E39;&#x300D;&#x4F60;&#x7684;&#x5BC6;&#x78BC;&#xFF0C;&#x6216;&#x662F;&#x5BB6;&#x88E1;&#x6216;&#x516C;&#x53F8;&#x6709;&#x5176;&#x4ED6;&#x96FB;&#x8166;&#x5DF2;&#x4F54;&#x7528;&#x9810;&#x8A2D;&#x7684;-3389-&#x9023;&#x63A5;&#x57E0;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x5C07;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;-PORT-&#x6539;&#x6210;&#x5176;&#x4ED6;&#x9023;&#x63A5;&#x57E0;" class="headerlink" title="&#x5728; Windows &#x7CFB;&#x7D71;&#x4E2D;&#x6709;&#x500B;&#x300C;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x300D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8B93;&#x6211;&#x5011;&#x4EE5;&#x9060;&#x7AEF;&#x63A7;&#x7684;&#x65B9;&#x5F0F;&#x767B;&#x5165;&#x3001;&#x64CD;&#x4F5C;&#x5176;&#x4ED6; Windows &#x96FB;&#x8166;&#x3002;Windows &#x7CFB;&#x7D71;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x9810;&#x8A2D;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x9023;&#x63A5;&#x57E0;&#xFF08;PORT&#xFF09;&#x70BA;&#x300C;3389&#x300D;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x5E0C;&#x671B;&#x8001;&#x662F;&#x6709;&#x4EBA;&#x900F;&#x904E;&#x9019;&#x500B;PORT&#x4F86;&#x300C;&#x8E39;&#x300D;&#x4F60;&#x7684;&#x5BC6;&#x78BC;&#xFF0C;&#x6216;&#x662F;&#x5BB6;&#x88E1;&#x6216;&#x516C;&#x53F8;&#x6709;&#x5176;&#x4ED6;&#x96FB;&#x8166;&#x5DF2;&#x4F54;&#x7528;&#x9810;&#x8A2D;&#x7684; 3389 &#x9023;&#x63A5;&#x57E0;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x5C07;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA; PORT &#x6539;&#x6210;&#x5176;&#x4ED6;&#x9023;&#x63A5;&#x57E0;"></a>&#x5728; Windows &#x7CFB;&#x7D71;&#x4E2D;&#x6709;&#x500B;&#x300C;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x300D;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8B93;&#x6211;&#x5011;&#x4EE5;&#x9060;&#x7AEF;&#x63A7;&#x7684;&#x65B9;&#x5F0F;&#x767B;&#x5165;&#x3001;&#x64CD;&#x4F5C;&#x5176;&#x4ED6; Windows &#x96FB;&#x8166;&#x3002;Windows &#x7CFB;&#x7D71;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA;&#x9810;&#x8A2D;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x9023;&#x63A5;&#x57E0;&#xFF08;PORT&#xFF09;&#x70BA;&#x300C;3389&#x300D;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x5E0C;&#x671B;&#x8001;&#x662F;&#x6709;&#x4EBA;&#x900F;&#x904E;&#x9019;&#x500B;PORT&#x4F86;&#x300C;&#x8E39;&#x300D;&#x4F60;&#x7684;&#x5BC6;&#x78BC;&#xFF0C;&#x6216;&#x662F;&#x5BB6;&#x88E1;&#x6216;&#x516C;&#x53F8;&#x6709;&#x5176;&#x4ED6;&#x96FB;&#x8166;&#x5DF2;&#x4F54;&#x7528;&#x9810;&#x8A2D;&#x7684; 3389 &#x9023;&#x63A5;&#x57E0;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x5C07;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x9060;&#x7AEF;&#x684C;&#x9762;&#x9023;&#x7DDA; PORT &#x6539;&#x6210;&#x5176;&#x4ED6;&#x9023;&#x63A5;&#x57E0;</h3><h4 id="&#x4E00;&#x3001;&#x5728;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x958B;&#x59CB;&#x9078;&#x55AE;&#x4E2D;&#x9EDE;&#x9078;-&#x57F7;&#x884C;-&#xFF08;-&#x6216;&#x6309;-&#x8996;&#x7A97;-R-&#x5FEB;&#x901F;&#x9375;-&#xFF09;-&#x958B;&#x555F;&#x57F7;&#x884C;&#x8996;&#x7A97;&#xFF0C;&#x8F38;&#x5165;-regedit-&#x5F8C;&#x6309;&#x78BA;&#x5B9A;&#x6309;&#x9215;"><a href="#&#x4E00;&#x3001;&#x5728;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x958B;&#x59CB;&#x9078;&#x55AE;&#x4E2D;&#x9EDE;&#x9078;-&#x57F7;&#x884C;-&#xFF08;-&#x6216;&#x6309;-&#x8996;&#x7A97;-R-&#x5FEB;&#x901F;&#x9375;-&#xFF09;-&#x958B;&#x555F;&#x57F7;&#x884C;&#x8996;&#x7A97;&#xFF0C;&#x8F38;&#x5165;-regedit-&#x5F8C;&#x6309;&#x78BA;&#x5B9A;&#x6309;&#x9215;" class="headerlink" title="&#x4E00;&#x3001;&#x5728;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x958B;&#x59CB;&#x9078;&#x55AE;&#x4E2D;&#x9EDE;&#x9078; &#x57F7;&#x884C; &#xFF08; &#x6216;&#x6309; &#x8996;&#x7A97;+ R &#x5FEB;&#x901F;&#x9375; &#xFF09; &#x958B;&#x555F;&#x57F7;&#x884C;&#x8996;&#x7A97;&#xFF0C;&#x8F38;&#x5165; regedit &#x5F8C;&#x6309;&#x78BA;&#x5B9A;&#x6309;&#x9215;"></a>&#x4E00;&#x3001;&#x5728;&#x88AB;&#x63A7;&#x7AEF;&#x96FB;&#x8166;&#x7684;&#x958B;&#x59CB;&#x9078;&#x55AE;&#x4E2D;&#x9EDE;&#x9078; &#x57F7;&#x884C; &#xFF08; &#x6216;&#x6309; &#x8996;&#x7A97;+ R &#x5FEB;&#x901F;&#x9375; &#xFF09; &#x958B;&#x555F;&#x57F7;&#x884C;&#x8996;&#x7A97;&#xFF0C;&#x8F38;&#x5165; regedit &#x5F8C;&#x6309;&#x78BA;&#x5B9A;&#x6309;&#x9215;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E8C;&#x3001;&#x958B;&#x555F;&#x767B;&#x9304;&#x6A94;&#x7DE8;&#x8F2F;&#x5668;&#x5F8C;&#xFF0C;&#x8ACB;&#x627E;&#x5230;&#x4E0B;&#x9762;&#x9019;&#x500B;&#x767B;&#x9304;&#x6A94;&#x7684;&#x6A5F;&#x78BC;"><a href="#&#x4E8C;&#x3001;&#x958B;&#x555F;&#x767B;&#x9304;&#x6A94;&#x7DE8;&#x8F2F;&#x5668;&#x5F8C;&#xFF0C;&#x8ACB;&#x627E;&#x5230;&#x4E0B;&#x9762;&#x9019;&#x500B;&#x767B;&#x9304;&#x6A94;&#x7684;&#x6A5F;&#x78BC;" class="headerlink" title="&#x4E8C;&#x3001;&#x958B;&#x555F;&#x767B;&#x9304;&#x6A94;&#x7DE8;&#x8F2F;&#x5668;&#x5F8C;&#xFF0C;&#x8ACB;&#x627E;&#x5230;&#x4E0B;&#x9762;&#x9019;&#x500B;&#x767B;&#x9304;&#x6A94;&#x7684;&#x6A5F;&#x78BC;"></a>&#x4E8C;&#x3001;&#x958B;&#x555F;&#x767B;&#x9304;&#x6A94;&#x7DE8;&#x8F2F;&#x5668;&#x5F8C;&#xFF0C;&#x8ACB;&#x627E;&#x5230;&#x4E0B;&#x9762;&#x9019;&#x500B;&#x767B;&#x9304;&#x6A94;&#x7684;&#x6A5F;&#x78BC;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TerminalServer\WinStations\RDP&#x2013;Tcp\PortNumber</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E09;&#x3001;&#x958B;&#x555F;&#x4FEE;&#x6539;&#x8996;&#x7A97;&#x5F8C;&#xFF0C;&#x8ACB;&#x5148;&#x9EDE;&#x9078;-Decimal-&#x5341;&#x9032;&#x4F4D;-&#xFF0C;&#x7136;&#x5F8C;&#x5728;-Value-data-&#x6578;&#x503C;&#x8CC7;&#x6599;-&#x8655;&#x8F38;&#x5165;&#x65B0;&#x7684;&#x9023;&#x63A5;&#x57E0;&#x7DE8;&#x865F;&#xFF0C;&#x5982;-5566&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x6309;&#x4E0B;&#x78BA;&#x5B9A;&#x4FEE;&#x6539;"><a href="#&#x4E09;&#x3001;&#x958B;&#x555F;&#x4FEE;&#x6539;&#x8996;&#x7A97;&#x5F8C;&#xFF0C;&#x8ACB;&#x5148;&#x9EDE;&#x9078;-Decimal-&#x5341;&#x9032;&#x4F4D;-&#xFF0C;&#x7136;&#x5F8C;&#x5728;-Value-data-&#x6578;&#x503C;&#x8CC7;&#x6599;-&#x8655;&#x8F38;&#x5165;&#x65B0;&#x7684;&#x9023;&#x63A5;&#x57E0;&#x7DE8;&#x865F;&#xFF0C;&#x5982;-5566&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x6309;&#x4E0B;&#x78BA;&#x5B9A;&#x4FEE;&#x6539;" class="headerlink" title="&#x4E09;&#x3001;&#x958B;&#x555F;&#x4FEE;&#x6539;&#x8996;&#x7A97;&#x5F8C;&#xFF0C;&#x8ACB;&#x5148;&#x9EDE;&#x9078; Decimal ( &#x5341;&#x9032;&#x4F4D; )&#xFF0C;&#x7136;&#x5F8C;&#x5728; Value data ( &#x6578;&#x503C;&#x8CC7;&#x6599; ) &#x8655;&#x8F38;&#x5165;&#x65B0;&#x7684;&#x9023;&#x63A5;&#x57E0;&#x7DE8;&#x865F;&#xFF0C;&#x5982; 5566&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x6309;&#x4E0B;&#x78BA;&#x5B9A;&#x4FEE;&#x6539;"></a>&#x4E09;&#x3001;&#x958B;&#x555F;&#x4FEE;&#x6539;&#x8996;&#x7A97;&#x5F8C;&#xFF0C;&#x8ACB;&#x5148;&#x9EDE;&#x9078; Decimal ( &#x5341;&#x9032;&#x4F4D; )&#xFF0C;&#x7136;&#x5F8C;&#x5728; Value data ( &#x6578;&#x503C;&#x8CC7;&#x6599; ) &#x8655;&#x8F38;&#x5165;&#x65B0;&#x7684;&#x9023;&#x63A5;&#x57E0;&#x7DE8;&#x865F;&#xFF0C;&#x5982; 5566&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x6309;&#x4E0B;&#x78BA;&#x5B9A;&#x4FEE;&#x6539;</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x56DB;&#x3001;&#x9032;&#x5165;&#x9632;&#x706B;&#x7246;-Advanced-settings-&#x9032;&#x968E;&#x8A2D;&#x5B9A;-&#x8A2D;&#x7F6E;&#x65B0;&#x7684;&#x9060;&#x7AEF;-port-&#x9032;&#x5165;"><a href="#&#x56DB;&#x3001;&#x9032;&#x5165;&#x9632;&#x706B;&#x7246;-Advanced-settings-&#x9032;&#x968E;&#x8A2D;&#x5B9A;-&#x8A2D;&#x7F6E;&#x65B0;&#x7684;&#x9060;&#x7AEF;-port-&#x9032;&#x5165;" class="headerlink" title="&#x56DB;&#x3001;&#x9032;&#x5165;&#x9632;&#x706B;&#x7246; Advanced settings ( &#x9032;&#x968E;&#x8A2D;&#x5B9A; ) &#x8A2D;&#x7F6E;&#x65B0;&#x7684;&#x9060;&#x7AEF; port &#x9032;&#x5165;"></a>&#x56DB;&#x3001;&#x9032;&#x5165;&#x9632;&#x706B;&#x7246; Advanced settings ( &#x9032;&#x968E;&#x8A2D;&#x5B9A; ) &#x8A2D;&#x7F6E;&#x65B0;&#x7684;&#x9060;&#x7AEF; port &#x9032;&#x5165;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;-Inbound-Rules-&#x8F38;&#x5165;&#x898F;&#x5247;-&#x8A2D;&#x7F6E;"><a href="#&#x9EDE;&#x9078;-Inbound-Rules-&#x8F38;&#x5165;&#x898F;&#x5247;-&#x8A2D;&#x7F6E;" class="headerlink" title="&#x9EDE;&#x9078; Inbound Rules ( &#x8F38;&#x5165;&#x898F;&#x5247; ) &#x8A2D;&#x7F6E;"></a>&#x9EDE;&#x9078; Inbound Rules ( &#x8F38;&#x5165;&#x898F;&#x5247; ) &#x8A2D;&#x7F6E;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;-Nwe-Inbound-Rule-Wizard-&#x65B0;&#x589E;&#x8F38;&#x5165;&#x898F;&#x5247;"><a href="#&#x9EDE;&#x9078;-Nwe-Inbound-Rule-Wizard-&#x65B0;&#x589E;&#x8F38;&#x5165;&#x898F;&#x5247;" class="headerlink" title="&#x9EDE;&#x9078; Nwe Inbound Rule Wizard ( &#x65B0;&#x589E;&#x8F38;&#x5165;&#x898F;&#x5247; )"></a>&#x9EDE;&#x9078; Nwe Inbound Rule Wizard ( &#x65B0;&#x589E;&#x8F38;&#x5165;&#x898F;&#x5247; )</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;-port"><a href="#&#x9EDE;&#x9078;-port" class="headerlink" title="&#x9EDE;&#x9078; port"></a>&#x9EDE;&#x9078; port</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;-Specific-local-ports-&#x7279;&#x5B9A;&#x672C;&#x6A5F;&#x9023;&#x63A5;&#x57E0;-&#x8F38;&#x5165;&#x4F60;&#x8981;&#x7684;&#x57E0;&#x865F;"><a href="#&#x9EDE;&#x9078;-Specific-local-ports-&#x7279;&#x5B9A;&#x672C;&#x6A5F;&#x9023;&#x63A5;&#x57E0;-&#x8F38;&#x5165;&#x4F60;&#x8981;&#x7684;&#x57E0;&#x865F;" class="headerlink" title="&#x9EDE;&#x9078; Specific local ports ( &#x7279;&#x5B9A;&#x672C;&#x6A5F;&#x9023;&#x63A5;&#x57E0; ) &#x8F38;&#x5165;&#x4F60;&#x8981;&#x7684;&#x57E0;&#x865F;"></a>&#x9EDE;&#x9078; Specific local ports ( &#x7279;&#x5B9A;&#x672C;&#x6A5F;&#x9023;&#x63A5;&#x57E0; ) &#x8F38;&#x5165;&#x4F60;&#x8981;&#x7684;&#x57E0;&#x865F;</h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9EDE;&#x9078;-Allow-the-connection-&#x5141;&#x8A31;&#x9023;&#x7DDA;"><a href="#&#x9EDE;&#x9078;-Allow-the-connection-&#x5141;&#x8A31;&#x9023;&#x7DDA;" class="headerlink" title="&#x9EDE;&#x9078; Allow the connection ( &#x5141;&#x8A31;&#x9023;&#x7DDA; )"></a>&#x9EDE;&#x9078; Allow the connection ( &#x5141;&#x8A31;&#x9023;&#x7DDA; )</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9810;&#x8A2D;&#x4E0B;&#x4E00;&#x9801;"><a href="#&#x9810;&#x8A2D;&#x4E0B;&#x4E00;&#x9801;" class="headerlink" title="&#x9810;&#x8A2D;&#x4E0B;&#x4E00;&#x9801;"></a>&#x9810;&#x8A2D;&#x4E0B;&#x4E00;&#x9801;</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x547D;&#x540D;"><a href="#&#x547D;&#x540D;" class="headerlink" title="&#x547D;&#x540D;"></a>&#x547D;&#x540D;</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x6700;&#x5F8C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x4F60;&#x52A0;&#x5165;&#x7684;-port-&#x540D;&#x7A31;&#x4E86;"><a href="#&#x6700;&#x5F8C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x4F60;&#x52A0;&#x5165;&#x7684;-port-&#x540D;&#x7A31;&#x4E86;" class="headerlink" title="&#x6700;&#x5F8C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x4F60;&#x52A0;&#x5165;&#x7684; port &#x540D;&#x7A31;&#x4E86;"></a>&#x6700;&#x5F8C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x4F60;&#x52A0;&#x5165;&#x7684; port &#x540D;&#x7A31;&#x4E86;</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x6700;&#x5F8C;&#x8B93;&#x96FB;&#x8166;&#x91CD;&#x958B;&#x6A5F;&#x5373;&#x53EF;&#x751F;&#x6548;"><a href="#&#x6700;&#x5F8C;&#x8B93;&#x96FB;&#x8166;&#x91CD;&#x958B;&#x6A5F;&#x5373;&#x53EF;&#x751F;&#x6548;" class="headerlink" title="&#x6700;&#x5F8C;&#x8B93;&#x96FB;&#x8166;&#x91CD;&#x958B;&#x6A5F;&#x5373;&#x53EF;&#x751F;&#x6548;"></a>&#x6700;&#x5F8C;&#x8B93;&#x96FB;&#x8166;&#x91CD;&#x958B;&#x6A5F;&#x5373;&#x53EF;&#x751F;&#x6548;</h4><h4 id="&#x63A5;&#x4E0B;&#x4F86;&#x6E2C;&#x8A66;&#x8F38;&#x5165;-IP&#xFF1A;&#x65B0;&#x57E0;&#x865F;"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x6E2C;&#x8A66;&#x8F38;&#x5165;-IP&#xFF1A;&#x65B0;&#x57E0;&#x865F;" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x6E2C;&#x8A66;&#x8F38;&#x5165; IP&#xFF1A;&#x65B0;&#x57E0;&#x865F;"></a>&#x63A5;&#x4E0B;&#x4F86;&#x6E2C;&#x8A66;&#x8F38;&#x5165; IP&#xFF1A;&#x65B0;&#x57E0;&#x865F;</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9019;&#x6A23;&#x5C31;&#x5B8C;&#x6210;&#x56C9;&#xFF01;"><a href="#&#x9019;&#x6A23;&#x5C31;&#x5B8C;&#x6210;&#x56C9;&#xFF01;" class="headerlink" title="&#x9019;&#x6A23;&#x5C31;&#x5B8C;&#x6210;&#x56C9;&#xFF01;"></a>&#x9019;&#x6A23;&#x5C31;&#x5B8C;&#x6210;&#x56C9;&#xFF01;</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-23T04:52:36.000Z" itemprop="datePublished">2018-06-23</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          修改遠端桌面的連接埠-port
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-23 12:52:36" itemprop="dateCreated datePublished" datetime="2018-06-23T12:52:36+08:00">2018-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠"><a href="#在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠" class="headerlink" title="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠"></a>在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠</h3><h4 id="一、在被控端電腦的開始選單中點選-執行-（-或按-視窗-R-快速鍵-）-開啟執行視窗，輸入-regedit-後按確定按鈕"><a href="#一、在被控端電腦的開始選單中點選-執行-（-或按-視窗-R-快速鍵-）-開啟執行視窗，輸入-regedit-後按確定按鈕" class="headerlink" title="一、在被控端電腦的開始選單中點選 執行 （ 或按 視窗+ R 快速鍵 ） 開啟執行視窗，輸入 regedit 後按確定按鈕"></a>一、在被控端電腦的開始選單中點選 執行 （ 或按 視窗+ R 快速鍵 ） 開啟執行視窗，輸入 regedit 後按確定按鈕</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼"><a href="#二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼" class="headerlink" title="二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼"></a>二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TerminalServer\WinStations\RDP–Tcp\PortNumber</span><br></pre></td></tr></table></figure>
+<p><img src="images/2.png" alt=" "></p>
+<h4 id="三、開啟修改視窗後，請先點選-Decimal-十進位-，然後在-Value-data-數值資料-處輸入新的連接埠編號，如-5566，最後再按下確定修改"><a href="#三、開啟修改視窗後，請先點選-Decimal-十進位-，然後在-Value-data-數值資料-處輸入新的連接埠編號，如-5566，最後再按下確定修改" class="headerlink" title="三、開啟修改視窗後，請先點選 Decimal ( 十進位 )，然後在 Value data ( 數值資料 ) 處輸入新的連接埠編號，如 5566，最後再按下確定修改"></a>三、開啟修改視窗後，請先點選 Decimal ( 十進位 )，然後在 Value data ( 數值資料 ) 處輸入新的連接埠編號，如 5566，最後再按下確定修改</h4><p><img src="images/3.png" alt=" "></p>
+<h4 id="四、進入防火牆-Advanced-settings-進階設定-設置新的遠端-port-進入"><a href="#四、進入防火牆-Advanced-settings-進階設定-設置新的遠端-port-進入" class="headerlink" title="四、進入防火牆 Advanced settings ( 進階設定 ) 設置新的遠端 port 進入"></a>四、進入防火牆 Advanced settings ( 進階設定 ) 設置新的遠端 port 進入</h4><p><img src="images/4.png" alt=" "></p>
+<h4 id="點選-Inbound-Rules-輸入規則-設置"><a href="#點選-Inbound-Rules-輸入規則-設置" class="headerlink" title="點選 Inbound Rules ( 輸入規則 ) 設置"></a>點選 Inbound Rules ( 輸入規則 ) 設置</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="點選-Nwe-Inbound-Rule-Wizard-新增輸入規則"><a href="#點選-Nwe-Inbound-Rule-Wizard-新增輸入規則" class="headerlink" title="點選 Nwe Inbound Rule Wizard ( 新增輸入規則 )"></a>點選 Nwe Inbound Rule Wizard ( 新增輸入規則 )</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="點選-port"><a href="#點選-port" class="headerlink" title="點選 port"></a>點選 port</h4><p><img src="images/7.png" alt=" "></p>
+<h4 id="點選-Specific-local-ports-特定本機連接埠-輸入你要的埠號"><a href="#點選-Specific-local-ports-特定本機連接埠-輸入你要的埠號" class="headerlink" title="點選 Specific local ports ( 特定本機連接埠 ) 輸入你要的埠號"></a>點選 Specific local ports ( 特定本機連接埠 ) 輸入你要的埠號</h4><p><img src="images/8.png" alt=" "></p>
+<h4 id="點選-Allow-the-connection-允許連線"><a href="#點選-Allow-the-connection-允許連線" class="headerlink" title="點選 Allow the connection ( 允許連線 )"></a>點選 Allow the connection ( 允許連線 )</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="預設下一頁"><a href="#預設下一頁" class="headerlink" title="預設下一頁"></a>預設下一頁</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p><img src="images/11.png" alt=" "></p>
+<h4 id="最後就會看到你加入的-port-名稱了"><a href="#最後就會看到你加入的-port-名稱了" class="headerlink" title="最後就會看到你加入的 port 名稱了"></a>最後就會看到你加入的 port 名稱了</h4><p><img src="images/12.png" alt=" "></p>
+<h4 id="最後讓電腦重開機即可生效"><a href="#最後讓電腦重開機即可生效" class="headerlink" title="最後讓電腦重開機即可生效"></a>最後讓電腦重開機即可生效</h4><h4 id="接下來測試輸入-IP：新埠號"><a href="#接下來測試輸入-IP：新埠號" class="headerlink" title="接下來測試輸入 IP：新埠號"></a>接下來測試輸入 IP：新埠號</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="這樣就完成囉！"><a href="#這樣就完成囉！" class="headerlink" title="這樣就完成囉！"></a>這樣就完成囉！</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    設定遠端帳號權限為Remote-Desktop-Users
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/22/windows更改遠端密碼/" class="ui tiny button">
-                    
-                    windows更改遠端密碼
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/22/windows更改遠端密碼/" rel="prev" title="windows更改遠端密碼">
+      <i class="fa fa-chevron-left"></i> windows更改遠端密碼
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/23/windows常用指令/" rel="next" title="windows常用指令">
+      windows常用指令 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠"><span>在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠</span></a><ol><li><a href="#一、在被控端電腦的開始選單中點選-執行-（-或按-視窗-R-快速鍵-）-開啟執行視窗，輸入-regedit-後按確定按鈕"><span>一、在被控端電腦的開始選單中點選 執行 （ 或按 視窗+ R 快速鍵 ） 開啟執行視窗，輸入 regedit 後按確定按鈕</span></a></li><li><a href="#二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼"><span>二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼</span></a></li><li><a href="#三、開啟修改視窗後，請先點選-Decimal-十進位-，然後在-Value-data-數值資料-處輸入新的連接埠編號，如-5566，最後再按下確定修改"><span>三、開啟修改視窗後，請先點選 Decimal ( 十進位 )，然後在 Value data ( 數值資料 ) 處輸入新的連接埠編號，如 5566，最後再按下確定修改</span></a></li><li><a href="#四、進入防火牆-Advanced-settings-進階設定-設置新的遠端-port-進入"><span>四、進入防火牆 Advanced settings ( 進階設定 ) 設置新的遠端 port 進入</span></a></li><li><a href="#點選-Inbound-Rules-輸入規則-設置"><span>點選 Inbound Rules ( 輸入規則 ) 設置</span></a></li><li><a href="#點選-Nwe-Inbound-Rule-Wizard-新增輸入規則"><span>點選 Nwe Inbound Rule Wizard ( 新增輸入規則 )</span></a></li><li><a href="#點選-port"><span>點選 port</span></a></li><li><a href="#點選-Specific-local-ports-特定本機連接埠-輸入你要的埠號"><span>點選 Specific local ports ( 特定本機連接埠 ) 輸入你要的埠號</span></a></li><li><a href="#點選-Allow-the-connection-允許連線"><span>點選 Allow the connection ( 允許連線 )</span></a></li><li><a href="#預設下一頁"><span>預設下一頁</span></a></li><li><a href="#命名"><span>命名</span></a></li><li><a href="#最後就會看到你加入的-port-名稱了"><span>最後就會看到你加入的 port 名稱了</span></a></li><li><a href="#最後讓電腦重開機即可生效"><span>最後讓電腦重開機即可生效</span></a></li><li><a href="#接下來測試輸入-IP：新埠號"><span>接下來測試輸入 IP：新埠號</span></a></li><li><a href="#這樣就完成囉！"><span>這樣就完成囉！</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠"><span class="nav-number">1.</span> <span class="nav-text">在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、在被控端電腦的開始選單中點選-執行-（-或按-視窗-R-快速鍵-）-開啟執行視窗，輸入-regedit-後按確定按鈕"><span class="nav-number">1.1.</span> <span class="nav-text">一、在被控端電腦的開始選單中點選 執行 （ 或按 視窗+ R 快速鍵 ） 開啟執行視窗，輸入 regedit 後按確定按鈕</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼"><span class="nav-number">1.2.</span> <span class="nav-text">二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、開啟修改視窗後，請先點選-Decimal-十進位-，然後在-Value-data-數值資料-處輸入新的連接埠編號，如-5566，最後再按下確定修改"><span class="nav-number">1.3.</span> <span class="nav-text">三、開啟修改視窗後，請先點選 Decimal ( 十進位 )，然後在 Value data ( 數值資料 ) 處輸入新的連接埠編號，如 5566，最後再按下確定修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、進入防火牆-Advanced-settings-進階設定-設置新的遠端-port-進入"><span class="nav-number">1.4.</span> <span class="nav-text">四、進入防火牆 Advanced settings ( 進階設定 ) 設置新的遠端 port 進入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選-Inbound-Rules-輸入規則-設置"><span class="nav-number">1.5.</span> <span class="nav-text">點選 Inbound Rules ( 輸入規則 ) 設置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選-Nwe-Inbound-Rule-Wizard-新增輸入規則"><span class="nav-number">1.6.</span> <span class="nav-text">點選 Nwe Inbound Rule Wizard ( 新增輸入規則 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選-port"><span class="nav-number">1.7.</span> <span class="nav-text">點選 port</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選-Specific-local-ports-特定本機連接埠-輸入你要的埠號"><span class="nav-number">1.8.</span> <span class="nav-text">點選 Specific local ports ( 特定本機連接埠 ) 輸入你要的埠號</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#點選-Allow-the-connection-允許連線"><span class="nav-number">1.9.</span> <span class="nav-text">點選 Allow the connection ( 允許連線 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#預設下一頁"><span class="nav-number">1.10.</span> <span class="nav-text">預設下一頁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名"><span class="nav-number">1.11.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最後就會看到你加入的-port-名稱了"><span class="nav-number">1.12.</span> <span class="nav-text">最後就會看到你加入的 port 名稱了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最後讓電腦重開機即可生效"><span class="nav-number">1.13.</span> <span class="nav-text">最後讓電腦重開機即可生效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接下來測試輸入-IP：新埠號"><span class="nav-number">1.14.</span> <span class="nav-text">接下來測試輸入 IP：新埠號</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#這樣就完成囉！"><span class="nav-number">1.15.</span> <span class="nav-text">這樣就完成囉！</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

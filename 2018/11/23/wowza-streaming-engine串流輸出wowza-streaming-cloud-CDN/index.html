@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528; wowza engine &amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; wowza cloud CDN1. &amp;#x9996;&amp;#x5148;&amp;#x767B;&amp;#x5165; wowza cloud &amp;#">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN1. 首先登入 wowza cloud 來到 Advanced 頁面 2. 再次點擊 Advanced 選擇 Stream Targets 3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN 4. 設定名稱其他選項預設，點選 Add 加入 5. 下圖是設定好畫面紅框為連接代碼">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN">
 <meta property="og:url" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528; wowza engine &amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; wowza cloud CDN1. &amp;#x9996;&amp;#x5148;&amp;#x767B;&amp;#x5165; wowza cloud &amp;#">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN1. 首先登入 wowza cloud 來到 Advanced 頁面 2. 再次點擊 Advanced 選擇 Stream Targets 3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN 4. 設定名稱其他選項預設，點選 Add 加入 5. 下圖是設定好畫面紅框為連接代碼">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/3.png">
@@ -36,250 +47,361 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528; wowza engine &amp;#x4E32;&amp;#x6D41;&amp;#x8F38;&amp;#x51FA;&amp;#x5230; wowza cloud CDN1. &amp;#x9996;&amp;#x5148;&amp;#x767B;&amp;#x5165; wowza cloud &amp;#">
+<meta name="twitter:description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN1. 首先登入 wowza cloud 來到 Advanced 頁面 2. 再次點擊 Advanced 選擇 Stream Targets 3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN 4. 設定名稱其他選項預設，點選 Add 加入 5. 下圖是設定好畫面紅框為連接代碼">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;-wowza-engine-&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;-wowza-cloud-CDN"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;-wowza-engine-&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;-wowza-cloud-CDN" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528; wowza engine &#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230; wowza cloud CDN"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528; wowza engine &#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230; wowza cloud CDN</h3><h4 id="1-&#x9996;&#x5148;&#x767B;&#x5165;-wowza-cloud-&#x4F86;&#x5230;-Advanced-&#x9801;&#x9762;"><a href="#1-&#x9996;&#x5148;&#x767B;&#x5165;-wowza-cloud-&#x4F86;&#x5230;-Advanced-&#x9801;&#x9762;" class="headerlink" title="1. &#x9996;&#x5148;&#x767B;&#x5165; wowza cloud &#x4F86;&#x5230; Advanced &#x9801;&#x9762;"></a>1. &#x9996;&#x5148;&#x767B;&#x5165; wowza cloud &#x4F86;&#x5230; Advanced &#x9801;&#x9762;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="2-&#x518D;&#x6B21;&#x9EDE;&#x64CA;-Advanced-&#x9078;&#x64C7;-Stream-Targets"><a href="#2-&#x518D;&#x6B21;&#x9EDE;&#x64CA;-Advanced-&#x9078;&#x64C7;-Stream-Targets" class="headerlink" title="2. &#x518D;&#x6B21;&#x9EDE;&#x64CA; Advanced &#x9078;&#x64C7; Stream Targets"></a>2. &#x518D;&#x6B21;&#x9EDE;&#x64CA; Advanced &#x9078;&#x64C7; Stream Targets</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h4 id="3-&#x9EDE;&#x64CA;-Add-Target-&#x9078;&#x64C7;-Wowza-CDN-HLS-&#x65B0;&#x589E;-CDN"><a href="#3-&#x9EDE;&#x64CA;-Add-Target-&#x9078;&#x64C7;-Wowza-CDN-HLS-&#x65B0;&#x589E;-CDN" class="headerlink" title="3. &#x9EDE;&#x64CA; Add Target &#x9078;&#x64C7; Wowza CDN - HLS &#x65B0;&#x589E; CDN"></a>3. &#x9EDE;&#x64CA; Add Target &#x9078;&#x64C7; Wowza CDN - HLS &#x65B0;&#x589E; CDN</h4><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="4-&#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x9810;&#x8A2D;&#xFF0C;&#x9EDE;&#x9078;-Add-&#x52A0;&#x5165;"><a href="#4-&#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x9810;&#x8A2D;&#xFF0C;&#x9EDE;&#x9078;-Add-&#x52A0;&#x5165;" class="headerlink" title="4. &#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x9810;&#x8A2D;&#xFF0C;&#x9EDE;&#x9078; Add &#x52A0;&#x5165;"></a>4. &#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#x5176;&#x4ED6;&#x9078;&#x9805;&#x9810;&#x8A2D;&#xFF0C;&#x9EDE;&#x9078; Add &#x52A0;&#x5165;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h4 id="5-&#x4E0B;&#x5716;&#x662F;&#x8A2D;&#x5B9A;&#x597D;&#x756B;&#x9762;&#x7D05;&#x6846;&#x70BA;&#x9023;&#x63A5;&#x4EE3;&#x78BC;&#xFF0C;&#x5E36;&#x6709;1&#x7684;&#x4EE3;&#x78BC;&#x7528;&#x65BC;&#x5C07;&#x76EE;&#x6A19;&#x9023;&#x63A5;&#x5230;-Wowza-Streaming-Engine"><a href="#5-&#x4E0B;&#x5716;&#x662F;&#x8A2D;&#x5B9A;&#x597D;&#x756B;&#x9762;&#x7D05;&#x6846;&#x70BA;&#x9023;&#x63A5;&#x4EE3;&#x78BC;&#xFF0C;&#x5E36;&#x6709;1&#x7684;&#x4EE3;&#x78BC;&#x7528;&#x65BC;&#x5C07;&#x76EE;&#x6A19;&#x9023;&#x63A5;&#x5230;-Wowza-Streaming-Engine" class="headerlink" title="5. &#x4E0B;&#x5716;&#x662F;&#x8A2D;&#x5B9A;&#x597D;&#x756B;&#x9762;&#x7D05;&#x6846;&#x70BA;&#x9023;&#x63A5;&#x4EE3;&#x78BC;&#xFF0C;&#x5E36;&#x6709;1&#x7684;&#x4EE3;&#x78BC;&#x7528;&#x65BC;&#x5C07;&#x76EE;&#x6A19;&#x9023;&#x63A5;&#x5230; Wowza Streaming Engine"></a>5. &#x4E0B;&#x5716;&#x662F;&#x8A2D;&#x5B9A;&#x597D;&#x756B;&#x9762;&#x7D05;&#x6846;&#x70BA;&#x9023;&#x63A5;&#x4EE3;&#x78BC;&#xFF0C;&#x5E36;&#x6709;1&#x7684;&#x4EE3;&#x78BC;&#x7528;&#x65BC;&#x5C07;&#x76EE;&#x6A19;&#x9023;&#x63A5;&#x5230; Wowza Streaming Engine</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="6-&#x63A5;&#x4E0B;&#x4F86;&#x5230;-wowza-streaming-engine-&#x2192;-Transcoder-&#x2192;-&#x9EDE;&#x64CA;-Enable-Transcoder-&#x958B;&#x555F;&#x8F49;&#x78BC;"><a href="#6-&#x63A5;&#x4E0B;&#x4F86;&#x5230;-wowza-streaming-engine-&#x2192;-Transcoder-&#x2192;-&#x9EDE;&#x64CA;-Enable-Transcoder-&#x958B;&#x555F;&#x8F49;&#x78BC;" class="headerlink" title="6. &#x63A5;&#x4E0B;&#x4F86;&#x5230; wowza streaming engine &#x2192; Transcoder &#x2192; &#x9EDE;&#x64CA; Enable Transcoder &#x958B;&#x555F;&#x8F49;&#x78BC;"></a>6. &#x63A5;&#x4E0B;&#x4F86;&#x5230; wowza streaming engine &#x2192; Transcoder &#x2192; &#x9EDE;&#x64CA; Enable Transcoder &#x958B;&#x555F;&#x8F49;&#x78BC;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="7-&#x958B;&#x555F;&#x5F8C;&#x9EDE;&#x9078;-Restart-Now-&#x91CD;&#x65B0;&#x6574;&#x7406;"><a href="#7-&#x958B;&#x555F;&#x5F8C;&#x9EDE;&#x9078;-Restart-Now-&#x91CD;&#x65B0;&#x6574;&#x7406;" class="headerlink" title="7. &#x958B;&#x555F;&#x5F8C;&#x9EDE;&#x9078; Restart Now &#x91CD;&#x65B0;&#x6574;&#x7406;"></a>7. &#x958B;&#x555F;&#x5F8C;&#x9EDE;&#x9078; Restart Now &#x91CD;&#x65B0;&#x6574;&#x7406;</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h4 id="8-&#x91CD;&#x65B0;&#x6574;&#x7406;&#x5B8C;&#x5F8C;&#xFF0C;&#x8A18;&#x5F97;&#x8981;&#x56DE;&#x5230;-Stream-Files-&#x91CD;&#x65B0;&#x4E32;&#x6D41;"><a href="#8-&#x91CD;&#x65B0;&#x6574;&#x7406;&#x5B8C;&#x5F8C;&#xFF0C;&#x8A18;&#x5F97;&#x8981;&#x56DE;&#x5230;-Stream-Files-&#x91CD;&#x65B0;&#x4E32;&#x6D41;" class="headerlink" title="8. &#x91CD;&#x65B0;&#x6574;&#x7406;&#x5B8C;&#x5F8C;&#xFF0C;&#x8A18;&#x5F97;&#x8981;&#x56DE;&#x5230; Stream Files &#x91CD;&#x65B0;&#x4E32;&#x6D41;"></a>8. &#x91CD;&#x65B0;&#x6574;&#x7406;&#x5B8C;&#x5F8C;&#xFF0C;&#x8A18;&#x5F97;&#x8981;&#x56DE;&#x5230; Stream Files &#x91CD;&#x65B0;&#x4E32;&#x6D41;</h4><h4 id="wowza-&#x4E32;&#x6D41;&#x6587;&#x7AE0;&#x50B3;&#x9001;&#x5011;"><a href="#wowza-&#x4E32;&#x6D41;&#x6587;&#x7AE0;&#x50B3;&#x9001;&#x5011;" class="headerlink" title="wowza &#x4E32;&#x6D41;&#x6587;&#x7AE0;&#x50B3;&#x9001;&#x5011;"></a>wowza &#x4E32;&#x6D41;&#x6587;&#x7AE0;<a href="https://snoopy30485.github.io/2018/11/02/wowza%E4%BD%BF%E7%94%A8ip-camera%E4%B8%B2%E6%B5%81/" target="_blank" rel="noopener">&#x50B3;&#x9001;&#x5011;</a></h4><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="9-&#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x8A2D;&#x5B9A;&#x6210;&#x529F;&#x4E86;-&#x76EE;&#x524D;&#x662F;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF0C;&#x8F49;&#x78BC;&#x8A2D;&#x5B9A;&#x6703;&#x518D;&#x505A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;"><a href="#9-&#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x8A2D;&#x5B9A;&#x6210;&#x529F;&#x4E86;-&#x76EE;&#x524D;&#x662F;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF0C;&#x8F49;&#x78BC;&#x8A2D;&#x5B9A;&#x6703;&#x518D;&#x505A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;" class="headerlink" title="9. &#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x8A2D;&#x5B9A;&#x6210;&#x529F;&#x4E86; ( &#x76EE;&#x524D;&#x662F;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF0C;&#x8F49;&#x78BC;&#x8A2D;&#x5B9A;&#x6703;&#x518D;&#x505A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0; )"></a>9. &#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x8A2D;&#x5B9A;&#x6210;&#x529F;&#x4E86; ( &#x76EE;&#x524D;&#x662F;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF0C;&#x8F49;&#x78BC;&#x8A2D;&#x5B9A;&#x6703;&#x518D;&#x505A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0; )</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="10-&#x518D;&#x4F86;&#x5230;-wowza-streaming-engine-&#x2192;-Stream-Targets-&#x2192;-Add-Stream-Targers-&#x65B0;&#x589E;&#x8F38;&#x51FA;"><a href="#10-&#x518D;&#x4F86;&#x5230;-wowza-streaming-engine-&#x2192;-Stream-Targets-&#x2192;-Add-Stream-Targers-&#x65B0;&#x589E;&#x8F38;&#x51FA;" class="headerlink" title="10. &#x518D;&#x4F86;&#x5230; wowza streaming engine &#x2192; Stream Targets &#x2192; Add Stream Targers &#x65B0;&#x589E;&#x8F38;&#x51FA;"></a>10. &#x518D;&#x4F86;&#x5230; wowza streaming engine &#x2192; Stream Targets &#x2192; Add Stream Targers &#x65B0;&#x589E;&#x8F38;&#x51FA;</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h4 id="11-&#x9078;&#x64C7;-wowza-streaming-cloud-&#x628A;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;&#x525B;&#x525B;-wowza-&#x96F2;&#x7AEF;&#x5EFA;&#x597D;&#x7684;-cdn"><a href="#11-&#x9078;&#x64C7;-wowza-streaming-cloud-&#x628A;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;&#x525B;&#x525B;-wowza-&#x96F2;&#x7AEF;&#x5EFA;&#x597D;&#x7684;-cdn" class="headerlink" title="11. &#x9078;&#x64C7; wowza streaming cloud &#x628A;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;&#x525B;&#x525B; wowza &#x96F2;&#x7AEF;&#x5EFA;&#x597D;&#x7684; cdn"></a>11. &#x9078;&#x64C7; wowza streaming cloud &#x628A;&#x4E32;&#x6D41;&#x8F38;&#x51FA;&#x5230;&#x525B;&#x525B; wowza &#x96F2;&#x7AEF;&#x5EFA;&#x597D;&#x7684; cdn</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h4 id="12-&#x8F38;&#x5165;&#x540D;&#x7A31;-Stream-Target-Name&#xFF0C;&#x8F38;&#x5165;&#x9023;&#x7DDA;&#x4EE3;&#x78BC;-Connection-Code-&#x9023;&#x7DDA;&#x4EE3;&#x78BC;&#x70BA;&#x5728;-wowza-cloud-&#x5EFA;&#x7ACB;&#x597D;-cdn-&#x7D66;&#x7684;&#x4EE3;&#x78BC;"><a href="#12-&#x8F38;&#x5165;&#x540D;&#x7A31;-Stream-Target-Name&#xFF0C;&#x8F38;&#x5165;&#x9023;&#x7DDA;&#x4EE3;&#x78BC;-Connection-Code-&#x9023;&#x7DDA;&#x4EE3;&#x78BC;&#x70BA;&#x5728;-wowza-cloud-&#x5EFA;&#x7ACB;&#x597D;-cdn-&#x7D66;&#x7684;&#x4EE3;&#x78BC;" class="headerlink" title="12. &#x8F38;&#x5165;&#x540D;&#x7A31; Stream Target Name&#xFF0C;&#x8F38;&#x5165;&#x9023;&#x7DDA;&#x4EE3;&#x78BC; Connection Code ( &#x9023;&#x7DDA;&#x4EE3;&#x78BC;&#x70BA;&#x5728; wowza cloud &#x5EFA;&#x7ACB;&#x597D; cdn &#x7D66;&#x7684;&#x4EE3;&#x78BC; )"></a>12. &#x8F38;&#x5165;&#x540D;&#x7A31; Stream Target Name&#xFF0C;&#x8F38;&#x5165;&#x9023;&#x7DDA;&#x4EE3;&#x78BC; Connection Code ( &#x9023;&#x7DDA;&#x4EE3;&#x78BC;&#x70BA;&#x5728; wowza cloud &#x5EFA;&#x7ACB;&#x597D; cdn &#x7D66;&#x7684;&#x4EE3;&#x78BC; )</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h4 id="12-&#x8F38;&#x5165;&#x597D;&#x4EE3;&#x78BC;&#x5F8C;&#x9EDE;&#x64CA;-Check-Code-&#x8F38;&#x5165;&#x5EFA;&#x597D;&#x7684;&#x4E32;&#x6D41;&#x540D;&#x7A31;&#xFF0C;&#x9EDE;&#x9078;-Add-this-target"><a href="#12-&#x8F38;&#x5165;&#x597D;&#x4EE3;&#x78BC;&#x5F8C;&#x9EDE;&#x64CA;-Check-Code-&#x8F38;&#x5165;&#x5EFA;&#x597D;&#x7684;&#x4E32;&#x6D41;&#x540D;&#x7A31;&#xFF0C;&#x9EDE;&#x9078;-Add-this-target" class="headerlink" title="12. &#x8F38;&#x5165;&#x597D;&#x4EE3;&#x78BC;&#x5F8C;&#x9EDE;&#x64CA; Check Code &#x8F38;&#x5165;&#x5EFA;&#x597D;&#x7684;&#x4E32;&#x6D41;&#x540D;&#x7A31;&#xFF0C;&#x9EDE;&#x9078; Add this target"></a>12. &#x8F38;&#x5165;&#x597D;&#x4EE3;&#x78BC;&#x5F8C;&#x9EDE;&#x64CA; Check Code &#x8F38;&#x5165;&#x5EFA;&#x597D;&#x7684;&#x4E32;&#x6D41;&#x540D;&#x7A31;&#xFF0C;&#x9EDE;&#x9078; Add this target</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h4 id="13-&#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x8F49;&#x78BC;&#x4E26;&#x8F38;&#x51FA;&#x5230;-wowza-cloud-cdn-&#x4E86;"><a href="#13-&#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x8F49;&#x78BC;&#x4E26;&#x8F38;&#x51FA;&#x5230;-wowza-cloud-cdn-&#x4E86;" class="headerlink" title="13. &#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x8F49;&#x78BC;&#x4E26;&#x8F38;&#x51FA;&#x5230; wowza cloud cdn &#x4E86;"></a>13. &#x770B;&#x5230;&#x4E0B;&#x5716;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x8F49;&#x78BC;&#x4E26;&#x8F38;&#x51FA;&#x5230; wowza cloud cdn &#x4E86;</h4><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h4 id="14-&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230;-wowza-cloud-&#x8907;&#x88FD;-Apple-HLS-Playback-URL"><a href="#14-&#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230;-wowza-cloud-&#x8907;&#x88FD;-Apple-HLS-Playback-URL" class="headerlink" title="14. &#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230; wowza cloud &#x8907;&#x88FD; Apple HLS Playback URL"></a>14. &#x63A5;&#x4E0B;&#x4F86;&#x56DE;&#x5230; wowza cloud &#x8907;&#x88FD; Apple HLS Playback URL</h4><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h4 id="15-&#x958B;&#x555F;&#x64A5;&#x653E;&#x5668;&#x7DB2;&#x8DEF;&#x4E32;&#x6D41;&#xFF0C;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684;-Apple-HLS-Playback-URL-&#x8CBC;&#x4E0A;&#xFF0C;&#x7136;&#x5F8C;&#x64A5;&#x653E;"><a href="#15-&#x958B;&#x555F;&#x64A5;&#x653E;&#x5668;&#x7DB2;&#x8DEF;&#x4E32;&#x6D41;&#xFF0C;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684;-Apple-HLS-Playback-URL-&#x8CBC;&#x4E0A;&#xFF0C;&#x7136;&#x5F8C;&#x64A5;&#x653E;" class="headerlink" title="15. &#x958B;&#x555F;&#x64A5;&#x653E;&#x5668;&#x7DB2;&#x8DEF;&#x4E32;&#x6D41;&#xFF0C;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684; Apple HLS Playback URL &#x8CBC;&#x4E0A;&#xFF0C;&#x7136;&#x5F8C;&#x64A5;&#x653E;"></a>15. &#x958B;&#x555F;&#x64A5;&#x653E;&#x5668;&#x7DB2;&#x8DEF;&#x4E32;&#x6D41;&#xFF0C;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684; Apple HLS Playback URL &#x8CBC;&#x4E0A;&#xFF0C;&#x7136;&#x5F8C;&#x64A5;&#x653E;</h4><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h4 id="16-&#x5982;&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;"><a href="#16-&#x5982;&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;" class="headerlink" title="16. &#x5982;&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;"></a>16. &#x5982;&#x4E0B;&#x5716;&#x51FA;&#x73FE;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;</h4><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-11-23T03:36:20.000Z" itemprop="datePublished">2018-11-23</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-11-23 11:36:20" itemprop="dateCreated datePublished" datetime="2018-11-23T11:36:20+08:00">2018-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN"><a href="#本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN" class="headerlink" title="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN"></a>本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN</h3><h4 id="1-首先登入-wowza-cloud-來到-Advanced-頁面"><a href="#1-首先登入-wowza-cloud-來到-Advanced-頁面" class="headerlink" title="1. 首先登入 wowza cloud 來到 Advanced 頁面"></a>1. 首先登入 wowza cloud 來到 Advanced 頁面</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="2-再次點擊-Advanced-選擇-Stream-Targets"><a href="#2-再次點擊-Advanced-選擇-Stream-Targets" class="headerlink" title="2. 再次點擊 Advanced 選擇 Stream Targets"></a>2. 再次點擊 Advanced 選擇 Stream Targets</h4><p><img src="images/2.png" alt=" "></p>
+<h4 id="3-點擊-Add-Target-選擇-Wowza-CDN-HLS-新增-CDN"><a href="#3-點擊-Add-Target-選擇-Wowza-CDN-HLS-新增-CDN" class="headerlink" title="3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN"></a>3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN</h4><p><img src="images/3.png" alt=" "></p>
+<h4 id="4-設定名稱其他選項預設，點選-Add-加入"><a href="#4-設定名稱其他選項預設，點選-Add-加入" class="headerlink" title="4. 設定名稱其他選項預設，點選 Add 加入"></a>4. 設定名稱其他選項預設，點選 Add 加入</h4><p><img src="images/4.png" alt=" "></p>
+<h4 id="5-下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到-Wowza-Streaming-Engine"><a href="#5-下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到-Wowza-Streaming-Engine" class="headerlink" title="5. 下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到 Wowza Streaming Engine"></a>5. 下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到 Wowza Streaming Engine</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="6-接下來到-wowza-streaming-engine-→-Transcoder-→-點擊-Enable-Transcoder-開啟轉碼"><a href="#6-接下來到-wowza-streaming-engine-→-Transcoder-→-點擊-Enable-Transcoder-開啟轉碼" class="headerlink" title="6. 接下來到 wowza streaming engine → Transcoder → 點擊 Enable Transcoder 開啟轉碼"></a>6. 接下來到 wowza streaming engine → Transcoder → 點擊 Enable Transcoder 開啟轉碼</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="7-開啟後點選-Restart-Now-重新整理"><a href="#7-開啟後點選-Restart-Now-重新整理" class="headerlink" title="7. 開啟後點選 Restart Now 重新整理"></a>7. 開啟後點選 Restart Now 重新整理</h4><p><img src="images/7.png" alt=" "></p>
+<h4 id="8-重新整理完後，記得要回到-Stream-Files-重新串流"><a href="#8-重新整理完後，記得要回到-Stream-Files-重新串流" class="headerlink" title="8. 重新整理完後，記得要回到 Stream Files 重新串流"></a>8. 重新整理完後，記得要回到 Stream Files 重新串流</h4><h4 id="wowza-串流文章傳送們"><a href="#wowza-串流文章傳送們" class="headerlink" title="wowza 串流文章傳送們"></a>wowza 串流文章<a href="https://snoopy30485.github.io/2018/11/02/wowza%E4%BD%BF%E7%94%A8ip-camera%E4%B8%B2%E6%B5%81/" target="_blank" rel="noopener">傳送們</a></h4><p><img src="images/8.png" alt=" "></p>
+<h4 id="9-看到下圖畫面就是設定成功了-目前是使用預設值，轉碼設定會再做一篇文章"><a href="#9-看到下圖畫面就是設定成功了-目前是使用預設值，轉碼設定會再做一篇文章" class="headerlink" title="9. 看到下圖畫面就是設定成功了 ( 目前是使用預設值，轉碼設定會再做一篇文章 )"></a>9. 看到下圖畫面就是設定成功了 ( 目前是使用預設值，轉碼設定會再做一篇文章 )</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="10-再來到-wowza-streaming-engine-→-Stream-Targets-→-Add-Stream-Targers-新增輸出"><a href="#10-再來到-wowza-streaming-engine-→-Stream-Targets-→-Add-Stream-Targers-新增輸出" class="headerlink" title="10. 再來到 wowza streaming engine → Stream Targets → Add Stream Targers 新增輸出"></a>10. 再來到 wowza streaming engine → Stream Targets → Add Stream Targers 新增輸出</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="11-選擇-wowza-streaming-cloud-把串流輸出到剛剛-wowza-雲端建好的-cdn"><a href="#11-選擇-wowza-streaming-cloud-把串流輸出到剛剛-wowza-雲端建好的-cdn" class="headerlink" title="11. 選擇 wowza streaming cloud 把串流輸出到剛剛 wowza 雲端建好的 cdn"></a>11. 選擇 wowza streaming cloud 把串流輸出到剛剛 wowza 雲端建好的 cdn</h4><p><img src="images/11.png" alt=" "></p>
+<h4 id="12-輸入名稱-Stream-Target-Name，輸入連線代碼-Connection-Code-連線代碼為在-wowza-cloud-建立好-cdn-給的代碼"><a href="#12-輸入名稱-Stream-Target-Name，輸入連線代碼-Connection-Code-連線代碼為在-wowza-cloud-建立好-cdn-給的代碼" class="headerlink" title="12. 輸入名稱 Stream Target Name，輸入連線代碼 Connection Code ( 連線代碼為在 wowza cloud 建立好 cdn 給的代碼 )"></a>12. 輸入名稱 Stream Target Name，輸入連線代碼 Connection Code ( 連線代碼為在 wowza cloud 建立好 cdn 給的代碼 )</h4><p><img src="images/12.png" alt=" "></p>
+<h4 id="12-輸入好代碼後點擊-Check-Code-輸入建好的串流名稱，點選-Add-this-target"><a href="#12-輸入好代碼後點擊-Check-Code-輸入建好的串流名稱，點選-Add-this-target" class="headerlink" title="12. 輸入好代碼後點擊 Check Code 輸入建好的串流名稱，點選 Add this target"></a>12. 輸入好代碼後點擊 Check Code 輸入建好的串流名稱，點選 Add this target</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="13-看到下圖畫面就是成功轉碼並輸出到-wowza-cloud-cdn-了"><a href="#13-看到下圖畫面就是成功轉碼並輸出到-wowza-cloud-cdn-了" class="headerlink" title="13. 看到下圖畫面就是成功轉碼並輸出到 wowza cloud cdn 了"></a>13. 看到下圖畫面就是成功轉碼並輸出到 wowza cloud cdn 了</h4><p><img src="images/14.png" alt=" "></p>
+<h4 id="14-接下來回到-wowza-cloud-複製-Apple-HLS-Playback-URL"><a href="#14-接下來回到-wowza-cloud-複製-Apple-HLS-Playback-URL" class="headerlink" title="14. 接下來回到 wowza cloud 複製 Apple HLS Playback URL"></a>14. 接下來回到 wowza cloud 複製 Apple HLS Playback URL</h4><p><img src="images/15.png" alt=" "></p>
+<h4 id="15-開啟撥放器網路串流，把剛剛複製的-Apple-HLS-Playback-URL-貼上，然後撥放"><a href="#15-開啟撥放器網路串流，把剛剛複製的-Apple-HLS-Playback-URL-貼上，然後撥放" class="headerlink" title="15. 開啟撥放器網路串流，把剛剛複製的 Apple HLS Playback URL 貼上，然後撥放"></a>15. 開啟撥放器網路串流，把剛剛複製的 Apple HLS Playback URL 貼上，然後撥放</h4><p><img src="images/16.png" alt=" "></p>
+<h4 id="16-如下圖出現畫面就是成功了"><a href="#16-如下圖出現畫面就是成功了" class="headerlink" title="16. 如下圖出現畫面就是成功了"></a>16. 如下圖出現畫面就是成功了</h4><p><img src="images/17.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/11/23/設定wowza-HLS低延遲/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    設定wowza-HLS低延遲
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/" class="ui tiny button">
-                    
-                    wowza-stream-engine串流輸出到wowza-streaming-cloud
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/" rel="prev" title="wowza-stream-engine串流輸出到wowza-streaming-cloud">
+      <i class="fa fa-chevron-left"></i> wowza-stream-engine串流輸出到wowza-streaming-cloud
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/23/設定wowza-HLS低延遲/" rel="next" title="設定wowza-HLS低延遲">
+      設定wowza-HLS低延遲 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN"><span>本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN</span></a><ol><li><a href="#1-首先登入-wowza-cloud-來到-Advanced-頁面"><span>1. 首先登入 wowza cloud 來到 Advanced 頁面</span></a></li><li><a href="#2-再次點擊-Advanced-選擇-Stream-Targets"><span>2. 再次點擊 Advanced 選擇 Stream Targets</span></a></li><li><a href="#3-點擊-Add-Target-選擇-Wowza-CDN-HLS-新增-CDN"><span>3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN</span></a></li><li><a href="#4-設定名稱其他選項預設，點選-Add-加入"><span>4. 設定名稱其他選項預設，點選 Add 加入</span></a></li><li><a href="#5-下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到-Wowza-Streaming-Engine"><span>5. 下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到 Wowza Streaming Engine</span></a></li><li><a href="#6-接下來到-wowza-streaming-engine-→-Transcoder-→-點擊-Enable-Transcoder-開啟轉碼"><span>6. 接下來到 wowza streaming engine → Transcoder → 點擊 Enable Transcoder 開啟轉碼</span></a></li><li><a href="#7-開啟後點選-Restart-Now-重新整理"><span>7. 開啟後點選 Restart Now 重新整理</span></a></li><li><a href="#8-重新整理完後，記得要回到-Stream-Files-重新串流"><span>8. 重新整理完後，記得要回到 Stream Files 重新串流</span></a></li><li><a href="#wowza-串流文章傳送們"><span>wowza 串流文章傳送們</span></a></li><li><a href="#9-看到下圖畫面就是設定成功了-目前是使用預設值，轉碼設定會再做一篇文章"><span>9. 看到下圖畫面就是設定成功了 ( 目前是使用預設值，轉碼設定會再做一篇文章 )</span></a></li><li><a href="#10-再來到-wowza-streaming-engine-→-Stream-Targets-→-Add-Stream-Targers-新增輸出"><span>10. 再來到 wowza streaming engine → Stream Targets → Add Stream Targers 新增輸出</span></a></li><li><a href="#11-選擇-wowza-streaming-cloud-把串流輸出到剛剛-wowza-雲端建好的-cdn"><span>11. 選擇 wowza streaming cloud 把串流輸出到剛剛 wowza 雲端建好的 cdn</span></a></li><li><a href="#12-輸入名稱-Stream-Target-Name，輸入連線代碼-Connection-Code-連線代碼為在-wowza-cloud-建立好-cdn-給的代碼"><span>12. 輸入名稱 Stream Target Name，輸入連線代碼 Connection Code ( 連線代碼為在 wowza cloud 建立好 cdn 給的代碼 )</span></a></li><li><a href="#12-輸入好代碼後點擊-Check-Code-輸入建好的串流名稱，點選-Add-this-target"><span>12. 輸入好代碼後點擊 Check Code 輸入建好的串流名稱，點選 Add this target</span></a></li><li><a href="#13-看到下圖畫面就是成功轉碼並輸出到-wowza-cloud-cdn-了"><span>13. 看到下圖畫面就是成功轉碼並輸出到 wowza cloud cdn 了</span></a></li><li><a href="#14-接下來回到-wowza-cloud-複製-Apple-HLS-Playback-URL"><span>14. 接下來回到 wowza cloud 複製 Apple HLS Playback URL</span></a></li><li><a href="#15-開啟撥放器網路串流，把剛剛複製的-Apple-HLS-Playback-URL-貼上，然後撥放"><span>15. 開啟撥放器網路串流，把剛剛複製的 Apple HLS Playback URL 貼上，然後撥放</span></a></li><li><a href="#16-如下圖出現畫面就是成功了"><span>16. 如下圖出現畫面就是成功了</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首先登入-wowza-cloud-來到-Advanced-頁面"><span class="nav-number">1.1.</span> <span class="nav-text">1. 首先登入 wowza cloud 來到 Advanced 頁面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-再次點擊-Advanced-選擇-Stream-Targets"><span class="nav-number">1.2.</span> <span class="nav-text">2. 再次點擊 Advanced 選擇 Stream Targets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-點擊-Add-Target-選擇-Wowza-CDN-HLS-新增-CDN"><span class="nav-number">1.3.</span> <span class="nav-text">3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-設定名稱其他選項預設，點選-Add-加入"><span class="nav-number">1.4.</span> <span class="nav-text">4. 設定名稱其他選項預設，點選 Add 加入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到-Wowza-Streaming-Engine"><span class="nav-number">1.5.</span> <span class="nav-text">5. 下圖是設定好畫面紅框為連接代碼，帶有1的代碼用於將目標連接到 Wowza Streaming Engine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-接下來到-wowza-streaming-engine-→-Transcoder-→-點擊-Enable-Transcoder-開啟轉碼"><span class="nav-number">1.6.</span> <span class="nav-text">6. 接下來到 wowza streaming engine → Transcoder → 點擊 Enable Transcoder 開啟轉碼</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-開啟後點選-Restart-Now-重新整理"><span class="nav-number">1.7.</span> <span class="nav-text">7. 開啟後點選 Restart Now 重新整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-重新整理完後，記得要回到-Stream-Files-重新串流"><span class="nav-number">1.8.</span> <span class="nav-text">8. 重新整理完後，記得要回到 Stream Files 重新串流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wowza-串流文章傳送們"><span class="nav-number">1.9.</span> <span class="nav-text">wowza 串流文章傳送們</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-看到下圖畫面就是設定成功了-目前是使用預設值，轉碼設定會再做一篇文章"><span class="nav-number">1.10.</span> <span class="nav-text">9. 看到下圖畫面就是設定成功了 ( 目前是使用預設值，轉碼設定會再做一篇文章 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-再來到-wowza-streaming-engine-→-Stream-Targets-→-Add-Stream-Targers-新增輸出"><span class="nav-number">1.11.</span> <span class="nav-text">10. 再來到 wowza streaming engine → Stream Targets → Add Stream Targers 新增輸出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-選擇-wowza-streaming-cloud-把串流輸出到剛剛-wowza-雲端建好的-cdn"><span class="nav-number">1.12.</span> <span class="nav-text">11. 選擇 wowza streaming cloud 把串流輸出到剛剛 wowza 雲端建好的 cdn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-輸入名稱-Stream-Target-Name，輸入連線代碼-Connection-Code-連線代碼為在-wowza-cloud-建立好-cdn-給的代碼"><span class="nav-number">1.13.</span> <span class="nav-text">12. 輸入名稱 Stream Target Name，輸入連線代碼 Connection Code ( 連線代碼為在 wowza cloud 建立好 cdn 給的代碼 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-輸入好代碼後點擊-Check-Code-輸入建好的串流名稱，點選-Add-this-target"><span class="nav-number">1.14.</span> <span class="nav-text">12. 輸入好代碼後點擊 Check Code 輸入建好的串流名稱，點選 Add this target</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-看到下圖畫面就是成功轉碼並輸出到-wowza-cloud-cdn-了"><span class="nav-number">1.15.</span> <span class="nav-text">13. 看到下圖畫面就是成功轉碼並輸出到 wowza cloud cdn 了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-接下來回到-wowza-cloud-複製-Apple-HLS-Playback-URL"><span class="nav-number">1.16.</span> <span class="nav-text">14. 接下來回到 wowza cloud 複製 Apple HLS Playback URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-開啟撥放器網路串流，把剛剛複製的-Apple-HLS-Playback-URL-貼上，然後撥放"><span class="nav-number">1.17.</span> <span class="nav-text">15. 開啟撥放器網路串流，把剛剛複製的 Apple HLS Playback URL 貼上，然後撥放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-如下圖出現畫面就是成功了"><span class="nav-number">1.18.</span> <span class="nav-text">16. 如下圖出現畫面就是成功了</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

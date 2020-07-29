@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>disk-掛載 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x639B;&amp;#x8F09;&amp;#x786C;&amp;#x789F;&amp;#x662F;&amp;#x901A;&amp;#x7528;&amp;#xFF0C;&amp;#x56E0;&amp;#x70BA;&amp;#x4F5C;&amp;#x8005;&amp;#x662F;&amp;#x5728; GCP &amp;#x64CD;&amp;#x4F5C;&amp;#x6240;&amp;#x4EE5;&amp;#x6703;&amp;#x591A;&amp;#x4E00;&amp;#x">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟一、創建硬碟到 Compute Engine → 磁碟 創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣 也可以用指令創建注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣1gcloud compute disks create (名稱) --size=(容量) --zone (區域) 輸出畫面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="disk-掛載">
 <meta property="og:url" content="http://yoursite.com/2018/06/27/disk-掛載/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x639B;&amp;#x8F09;&amp;#x786C;&amp;#x789F;&amp;#x662F;&amp;#x901A;&amp;#x7528;&amp;#xFF0C;&amp;#x56E0;&amp;#x70BA;&amp;#x4F5C;&amp;#x8005;&amp;#x662F;&amp;#x5728; GCP &amp;#x64CD;&amp;#x4F5C;&amp;#x6240;&amp;#x4EE5;&amp;#x6703;&amp;#x591A;&amp;#x4E00;&amp;#x">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟一、創建硬碟到 Compute Engine → 磁碟 創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣 也可以用指令創建注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣1gcloud compute disks create (名稱) --size=(容量) --zone (區域) 輸出畫面">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/disk-掛載/images/1.1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/disk-掛載/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/disk-掛載/images/3.png">
@@ -51,270 +62,381 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="disk-掛載">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x639B;&amp;#x8F09;&amp;#x786C;&amp;#x789F;&amp;#x662F;&amp;#x901A;&amp;#x7528;&amp;#xFF0C;&amp;#x56E0;&amp;#x70BA;&amp;#x4F5C;&amp;#x8005;&amp;#x662F;&amp;#x5728; GCP &amp;#x64CD;&amp;#x4F5C;&amp;#x6240;&amp;#x4EE5;&amp;#x6703;&amp;#x591A;&amp;#x4E00;&amp;#x">
+<meta name="twitter:description" content="本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟一、創建硬碟到 Compute Engine → 磁碟 創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣 也可以用指令創建注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣1gcloud compute disks create (名稱) --size=(容量) --zone (區域) 輸出畫面">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/27/disk-掛載/images/1.1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/27/disk-掛載/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>disk-掛載 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-disk-掛載" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    disk-掛載
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/disk-掛載/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x639B;&#x8F09;&#x786C;&#x789F;&#x662F;&#x901A;&#x7528;&#xFF0C;&#x56E0;&#x70BA;&#x4F5C;&#x8005;&#x662F;&#x5728;-GCP-&#x64CD;&#x4F5C;&#x6240;&#x4EE5;&#x6703;&#x591A;&#x4E00;&#x500B;&#x65B0;&#x589E;&#x786C;&#x789F;&#x6B65;&#x9A5F;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x639B;&#x8F09;&#x786C;&#x789F;&#x662F;&#x901A;&#x7528;&#xFF0C;&#x56E0;&#x70BA;&#x4F5C;&#x8005;&#x662F;&#x5728;-GCP-&#x64CD;&#x4F5C;&#x6240;&#x4EE5;&#x6703;&#x591A;&#x4E00;&#x500B;&#x65B0;&#x589E;&#x786C;&#x789F;&#x6B65;&#x9A5F;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x639B;&#x8F09;&#x786C;&#x789F;&#x662F;&#x901A;&#x7528;&#xFF0C;&#x56E0;&#x70BA;&#x4F5C;&#x8005;&#x662F;&#x5728; GCP &#x64CD;&#x4F5C;&#x6240;&#x4EE5;&#x6703;&#x591A;&#x4E00;&#x500B;&#x65B0;&#x589E;&#x786C;&#x789F;&#x6B65;&#x9A5F;"></a>&#x672C;&#x6587;&#x7AE0;&#x639B;&#x8F09;&#x786C;&#x789F;&#x662F;&#x901A;&#x7528;&#xFF0C;&#x56E0;&#x70BA;&#x4F5C;&#x8005;&#x662F;&#x5728; GCP &#x64CD;&#x4F5C;&#x6240;&#x4EE5;&#x6703;&#x591A;&#x4E00;&#x500B;&#x65B0;&#x589E;&#x786C;&#x789F;&#x6B65;&#x9A5F;</h3><h3 id="&#x4E00;&#x3001;&#x5275;&#x5EFA;&#x786C;&#x789F;"><a href="#&#x4E00;&#x3001;&#x5275;&#x5EFA;&#x786C;&#x789F;" class="headerlink" title="&#x4E00;&#x3001;&#x5275;&#x5EFA;&#x786C;&#x789F;"></a>&#x4E00;&#x3001;&#x5275;&#x5EFA;&#x786C;&#x789F;</h3><h4 id="&#x5230;-Compute-Engine-&#x2192;-&#x78C1;&#x789F;"><a href="#&#x5230;-Compute-Engine-&#x2192;-&#x78C1;&#x789F;" class="headerlink" title="&#x5230; Compute Engine &#x2192; &#x78C1;&#x789F;"></a>&#x5230; Compute Engine &#x2192; &#x78C1;&#x789F;</h4><p><a class="magnific-img" href="images/1.1.png"><img src="images/1.1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5275;&#x5EFA;&#x4E00;&#x500B;&#x78C1;&#x789F;&#xFF0C;&#x6CE8;&#x610F;&#xFF1A;&#x5340;&#x57DF;&#x8981;&#x8A2D;&#x5B9A;&#x8DDF;-VM-&#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;-VM-&#x4E00;&#x6A23;"><a href="#&#x5275;&#x5EFA;&#x4E00;&#x500B;&#x78C1;&#x789F;&#xFF0C;&#x6CE8;&#x610F;&#xFF1A;&#x5340;&#x57DF;&#x8981;&#x8A2D;&#x5B9A;&#x8DDF;-VM-&#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;-VM-&#x4E00;&#x6A23;" class="headerlink" title="&#x5275;&#x5EFA;&#x4E00;&#x500B;&#x78C1;&#x789F;&#xFF0C;&#x6CE8;&#x610F;&#xFF1A;&#x5340;&#x57DF;&#x8981;&#x8A2D;&#x5B9A;&#x8DDF; VM &#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF; VM &#x4E00;&#x6A23;"></a>&#x5275;&#x5EFA;&#x4E00;&#x500B;&#x78C1;&#x789F;&#xFF0C;&#x6CE8;&#x610F;&#xFF1A;&#x5340;&#x57DF;&#x8981;&#x8A2D;&#x5B9A;&#x8DDF; VM &#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF; VM &#x4E00;&#x6A23;</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6307;&#x4EE4;&#x5275;&#x5EFA;"><a href="#&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6307;&#x4EE4;&#x5275;&#x5EFA;" class="headerlink" title="&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6307;&#x4EE4;&#x5275;&#x5EFA;"></a>&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6307;&#x4EE4;&#x5275;&#x5EFA;</h4><h4 id="&#x6CE8;&#x610F;&#xFF1A;zone-&#x8981;&#x8A2D;&#x5B9A;&#x8DDF;-VM-&#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;-VM-&#x4E00;&#x6A23;"><a href="#&#x6CE8;&#x610F;&#xFF1A;zone-&#x8981;&#x8A2D;&#x5B9A;&#x8DDF;-VM-&#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;-VM-&#x4E00;&#x6A23;" class="headerlink" title="&#x6CE8;&#x610F;&#xFF1A;zone &#x8981;&#x8A2D;&#x5B9A;&#x8DDF; VM &#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF; VM &#x4E00;&#x6A23;"></a>&#x6CE8;&#x610F;&#xFF1A;zone &#x8981;&#x8A2D;&#x5B9A;&#x8DDF; VM &#x540C;&#x5340;&#xFF0C;&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF; VM &#x4E00;&#x6A23;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute disks create (&#x540D;&#x7A31;) --size=(&#x5BB9;&#x91CF;) --zone (&#x5340;&#x57DF;)</span><br></pre></td></tr></table></figure>
-<h4 id="&#x8F38;&#x51FA;&#x756B;&#x9762;"><a href="#&#x8F38;&#x51FA;&#x756B;&#x9762;" class="headerlink" title="&#x8F38;&#x51FA;&#x756B;&#x9762;"></a>&#x8F38;&#x51FA;&#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x4E8C;&#x3001;&#x65B0;&#x589E;&#x78C1;&#x789F;&#x9032;&#x4F7F;&#x7528;&#x4E2D;-VM"><a href="#&#x4E8C;&#x3001;&#x65B0;&#x589E;&#x78C1;&#x789F;&#x9032;&#x4F7F;&#x7528;&#x4E2D;-VM" class="headerlink" title="&#x4E8C;&#x3001;&#x65B0;&#x589E;&#x78C1;&#x789F;&#x9032;&#x4F7F;&#x7528;&#x4E2D; VM"></a>&#x4E8C;&#x3001;&#x65B0;&#x589E;&#x78C1;&#x789F;&#x9032;&#x4F7F;&#x7528;&#x4E2D; VM</h3><h4 id="&#x65B0;&#x589E;&#x78C1;&#x789F;-GUI"><a href="#&#x65B0;&#x589E;&#x78C1;&#x789F;-GUI" class="headerlink" title="&#x65B0;&#x589E;&#x78C1;&#x789F; GUI"></a>&#x65B0;&#x589E;&#x78C1;&#x789F; GUI</h4><h4 id="&#x9032;&#x5165;-Compute-Engine-&#x2192;-VM-&#x57F7;&#x884C;&#x500B;&#x9AD4;&#x9EDE;&#x9078;-VM-&#x540D;&#x7A31;-&#x2192;-VM-&#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599;-&#x2192;-&#x7DE8;&#x8F2F;"><a href="#&#x9032;&#x5165;-Compute-Engine-&#x2192;-VM-&#x57F7;&#x884C;&#x500B;&#x9AD4;&#x9EDE;&#x9078;-VM-&#x540D;&#x7A31;-&#x2192;-VM-&#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599;-&#x2192;-&#x7DE8;&#x8F2F;" class="headerlink" title="&#x9032;&#x5165; Compute Engine &#x2192; VM &#x57F7;&#x884C;&#x500B;&#x9AD4;&#x9EDE;&#x9078; VM &#x540D;&#x7A31; &#x2192; VM &#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599; &#x2192; &#x7DE8;&#x8F2F;"></a>&#x9032;&#x5165; Compute Engine &#x2192; VM &#x57F7;&#x884C;&#x500B;&#x9AD4;&#x9EDE;&#x9078; VM &#x540D;&#x7A31; &#x2192; VM &#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599; &#x2192; &#x7DE8;&#x8F2F;</h4><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5F80;&#x4E0B;&#x62C9;&#x5728;&#x5176;&#x4ED6;&#x78C1;&#x789F;&#x65B0;&#x589E;&#x786C;&#x789F;"><a href="#&#x5F80;&#x4E0B;&#x62C9;&#x5728;&#x5176;&#x4ED6;&#x78C1;&#x789F;&#x65B0;&#x589E;&#x786C;&#x789F;" class="headerlink" title="&#x5F80;&#x4E0B;&#x62C9;&#x5728;&#x5176;&#x4ED6;&#x78C1;&#x789F;&#x65B0;&#x589E;&#x786C;&#x789F;"></a>&#x5F80;&#x4E0B;&#x62C9;&#x5728;&#x5176;&#x4ED6;&#x78C1;&#x789F;&#x65B0;&#x589E;&#x786C;&#x789F;</h4><p><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x65B0;&#x589E;&#x5F8C;&#x5982;&#x679C;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#x5230;-Compute-Engine-&#x2192;-&#x786C;&#x789F;&#xFF0C;&#x8981;&#x522A;&#x9664;&#x6703;&#x986F;&#x793A;-&#x201C;&#x7121;&#x6CD5;&#x522A;&#x9664;&#x4EE5;&#x9023;&#x7D50;&#x7684;&#x78C1;&#x789F;&#x201D;"><a href="#&#x65B0;&#x589E;&#x5F8C;&#x5982;&#x679C;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#x5230;-Compute-Engine-&#x2192;-&#x786C;&#x789F;&#xFF0C;&#x8981;&#x522A;&#x9664;&#x6703;&#x986F;&#x793A;-&#x201C;&#x7121;&#x6CD5;&#x522A;&#x9664;&#x4EE5;&#x9023;&#x7D50;&#x7684;&#x78C1;&#x789F;&#x201D;" class="headerlink" title="&#x65B0;&#x589E;&#x5F8C;&#x5982;&#x679C;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#x5230; Compute Engine &#x2192; &#x786C;&#x789F;&#xFF0C;&#x8981;&#x522A;&#x9664;&#x6703;&#x986F;&#x793A; &#x201C;&#x7121;&#x6CD5;&#x522A;&#x9664;&#x4EE5;&#x9023;&#x7D50;&#x7684;&#x78C1;&#x789F;&#x201D;"></a>&#x65B0;&#x589E;&#x5F8C;&#x5982;&#x679C;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#x5230; Compute Engine &#x2192; &#x786C;&#x789F;&#xFF0C;&#x8981;&#x522A;&#x9664;&#x6703;&#x986F;&#x793A; &#x201C;&#x7121;&#x6CD5;&#x522A;&#x9664;&#x4EE5;&#x9023;&#x7D50;&#x7684;&#x78C1;&#x789F;&#x201D;</h4><p><a class="magnific-img" href="images/31.png"><img src="images/31.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8981;&#x5230;-VM-&#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599;-&#x2192;-&#x7DE8;&#x8F2F;&#xFF0C;&#x6848;-X-&#x628A;&#x786C;&#x789F;&#x79FB;&#x9664;&#x624D;&#x80FD;&#x522A;&#x9664;"><a href="#&#x8981;&#x5230;-VM-&#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599;-&#x2192;-&#x7DE8;&#x8F2F;&#xFF0C;&#x6848;-X-&#x628A;&#x786C;&#x789F;&#x79FB;&#x9664;&#x624D;&#x80FD;&#x522A;&#x9664;" class="headerlink" title="&#x8981;&#x5230; VM &#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599; &#x2192; &#x7DE8;&#x8F2F;&#xFF0C;&#x6848; X &#x628A;&#x786C;&#x789F;&#x79FB;&#x9664;&#x624D;&#x80FD;&#x522A;&#x9664;"></a>&#x8981;&#x5230; VM &#x57F7;&#x884C;&#x500B;&#x9AD4;&#x8A73;&#x7D30;&#x8CC7;&#x6599; &#x2192; &#x7DE8;&#x8F2F;&#xFF0C;&#x6848; X &#x628A;&#x786C;&#x789F;&#x79FB;&#x9664;&#x624D;&#x80FD;&#x522A;&#x9664;</h4><p><a class="magnific-img" href="images/32.png"><img src="images/32.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x65B0;&#x589E;&#x78C1;&#x789F;&#x6307;&#x4EE4;-&#x5340;&#x57DF;&#x8981;&#x8DDF;-VM-&#x76F8;&#x540C;&#x4E0D;&#x7136;&#x6703;&#x986F;&#x793A;&#x932F;&#x8AA4;"><a href="#&#x65B0;&#x589E;&#x78C1;&#x789F;&#x6307;&#x4EE4;-&#x5340;&#x57DF;&#x8981;&#x8DDF;-VM-&#x76F8;&#x540C;&#x4E0D;&#x7136;&#x6703;&#x986F;&#x793A;&#x932F;&#x8AA4;" class="headerlink" title="&#x65B0;&#x589E;&#x78C1;&#x789F;&#x6307;&#x4EE4; ( &#x5340;&#x57DF;&#x8981;&#x8DDF; VM &#x76F8;&#x540C;&#x4E0D;&#x7136;&#x6703;&#x986F;&#x793A;&#x932F;&#x8AA4; )"></a>&#x65B0;&#x589E;&#x78C1;&#x789F;&#x6307;&#x4EE4; ( &#x5340;&#x57DF;&#x8981;&#x8DDF; VM &#x76F8;&#x540C;&#x4E0D;&#x7136;&#x6703;&#x986F;&#x793A;&#x932F;&#x8AA4; )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances attach-disk ( VM &#x540D;&#x7A31; ) --disk (&#x5275;&#x5EFA;&#x78C1;&#x789F;&#x7684;&#x540D;&#x7A31;) --zone (&#x5340;&#x57DF;)</span><br></pre></td></tr></table></figure>
-<h4 id="&#x8F38;&#x51FA;&#x756B;&#x9762;-1"><a href="#&#x8F38;&#x51FA;&#x756B;&#x9762;-1" class="headerlink" title="&#x8F38;&#x51FA;&#x756B;&#x9762;"></a>&#x8F38;&#x51FA;&#x756B;&#x9762;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="PS&#xFF1A;&#x53EF;&#x4EE5;&#x5230;-Compute-Engine-&#x2192;-&#x78C1;&#x789F;&#xFF0C;&#x67E5;&#x770B;&#x65B0;&#x589E;&#x597D;&#x7684;&#x786C;&#x789F;&#x4F7F;&#x7528;&#x8005;&#x6703;&#x51FA;&#x73FE;-VM-&#x540D;&#x7A31;"><a href="#PS&#xFF1A;&#x53EF;&#x4EE5;&#x5230;-Compute-Engine-&#x2192;-&#x78C1;&#x789F;&#xFF0C;&#x67E5;&#x770B;&#x65B0;&#x589E;&#x597D;&#x7684;&#x786C;&#x789F;&#x4F7F;&#x7528;&#x8005;&#x6703;&#x51FA;&#x73FE;-VM-&#x540D;&#x7A31;" class="headerlink" title="PS&#xFF1A;&#x53EF;&#x4EE5;&#x5230; Compute Engine &#x2192; &#x78C1;&#x789F;&#xFF0C;&#x67E5;&#x770B;&#x65B0;&#x589E;&#x597D;&#x7684;&#x786C;&#x789F;&#x4F7F;&#x7528;&#x8005;&#x6703;&#x51FA;&#x73FE; VM &#x540D;&#x7A31;"></a>PS&#xFF1A;&#x53EF;&#x4EE5;&#x5230; Compute Engine &#x2192; &#x78C1;&#x789F;&#xFF0C;&#x67E5;&#x770B;&#x65B0;&#x589E;&#x597D;&#x7684;&#x786C;&#x789F;&#x4F7F;&#x7528;&#x8005;&#x6703;&#x51FA;&#x73FE; VM &#x540D;&#x7A31;</h4><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E09;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165;-VM-&#x639B;&#x8F09;-linux"><a href="#&#x4E09;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165;-VM-&#x639B;&#x8F09;-linux" class="headerlink" title="&#x4E09;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165; VM &#x639B;&#x8F09; ( linux )"></a>&#x4E09;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165; VM &#x639B;&#x8F09; ( linux )</h4><h4 id="&#x6700;&#x9AD8;&#x6B0A;&#x9650;"><a href="#&#x6700;&#x9AD8;&#x6B0A;&#x9650;" class="headerlink" title="&#x6700;&#x9AD8;&#x6B0A;&#x9650;"></a>&#x6700;&#x9AD8;&#x6B0A;&#x9650;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x986F;&#x793A;&#x4E3B;&#x6A5F;&#x4E0A;&#x7684;&#x786C;&#x789F;"><a href="#&#x986F;&#x793A;&#x4E3B;&#x6A5F;&#x4E0A;&#x7684;&#x786C;&#x789F;" class="headerlink" title="&#x986F;&#x793A;&#x4E3B;&#x6A5F;&#x4E0A;&#x7684;&#x786C;&#x789F;"></a>&#x986F;&#x793A;&#x4E3B;&#x6A5F;&#x4E0A;&#x7684;&#x786C;&#x789F;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev/[sh]d*</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x986F;&#x793A;&#x65B0;&#x589E;&#x786C;&#x789F;&#x8CC7;&#x8A0A;"><a href="#&#x986F;&#x793A;&#x65B0;&#x589E;&#x786C;&#x789F;&#x8CC7;&#x8A0A;" class="headerlink" title="&#x986F;&#x793A;&#x65B0;&#x589E;&#x786C;&#x789F;&#x8CC7;&#x8A0A;"></a>&#x986F;&#x793A;&#x65B0;&#x589E;&#x786C;&#x789F;&#x8CC7;&#x8A0A;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l /dev/sdb</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5C0D;-sdb-&#x78C1;&#x789F;&#x9032;&#x884C;&#x5206;&#x5272;&#xFF0C;&#x8F38;&#x5165;-m-&#x986F;&#x793A;&#x8AAA;&#x660E;"><a href="#&#x5C0D;-sdb-&#x78C1;&#x789F;&#x9032;&#x884C;&#x5206;&#x5272;&#xFF0C;&#x8F38;&#x5165;-m-&#x986F;&#x793A;&#x8AAA;&#x660E;" class="headerlink" title="&#x5C0D; sdb &#x78C1;&#x789F;&#x9032;&#x884C;&#x5206;&#x5272;&#xFF0C;&#x8F38;&#x5165; m &#x986F;&#x793A;&#x8AAA;&#x660E;"></a>&#x5C0D; sdb &#x78C1;&#x789F;&#x9032;&#x884C;&#x5206;&#x5272;&#xFF0C;&#x8F38;&#x5165; m &#x986F;&#x793A;&#x8AAA;&#x660E;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8F38;&#x5165;-n-&#x65B0;&#x589E;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x5728;&#x8F38;&#x5165;-p-&#x786C;&#x789F;&#x5168;&#x90E8;&#x53EA;&#x8981;&#x4E00;&#x500B;&#x5206;&#x5272;&#x5340;"><a href="#&#x8F38;&#x5165;-n-&#x65B0;&#x589E;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x5728;&#x8F38;&#x5165;-p-&#x786C;&#x789F;&#x5168;&#x90E8;&#x53EA;&#x8981;&#x4E00;&#x500B;&#x5206;&#x5272;&#x5340;" class="headerlink" title="&#x8F38;&#x5165; n &#x65B0;&#x589E;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x5728;&#x8F38;&#x5165; p ( &#x786C;&#x789F;&#x5168;&#x90E8;&#x53EA;&#x8981;&#x4E00;&#x500B;&#x5206;&#x5272;&#x5340; )"></a>&#x8F38;&#x5165; n &#x65B0;&#x589E;&#x5206;&#x5272;&#x5340;&#xFF0C;&#x5728;&#x8F38;&#x5165; p ( &#x786C;&#x789F;&#x5168;&#x90E8;&#x53EA;&#x8981;&#x4E00;&#x500B;&#x5206;&#x5272;&#x5340; )</h4><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8F38;&#x5165;-1-&#x78C1;&#x789F;&#x4EE3;&#x865F;-&#x6309;-Enter&#xFF0C;&#x6309;-Enter-&#x8D77;&#x59CB;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;-&#xFF0C;&#x5728;&#x6309;-Enter-&#x6700;&#x5F8C;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;"><a href="#&#x8F38;&#x5165;-1-&#x78C1;&#x789F;&#x4EE3;&#x865F;-&#x6309;-Enter&#xFF0C;&#x6309;-Enter-&#x8D77;&#x59CB;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;-&#xFF0C;&#x5728;&#x6309;-Enter-&#x6700;&#x5F8C;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;" class="headerlink" title="&#x8F38;&#x5165; 1 ( &#x78C1;&#x789F;&#x4EE3;&#x865F; ) &#x6309; Enter&#xFF0C;&#x6309; Enter ( &#x8D77;&#x59CB;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C; )&#xFF0C;&#x5728;&#x6309; Enter ( &#x6700;&#x5F8C;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C; )"></a>&#x8F38;&#x5165; 1 ( &#x78C1;&#x789F;&#x4EE3;&#x865F; ) &#x6309; Enter&#xFF0C;&#x6309; Enter ( &#x8D77;&#x59CB;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C; )&#xFF0C;&#x5728;&#x6309; Enter ( &#x6700;&#x5F8C;&#x78C1;&#x5340;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C; )</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x8F38;&#x5165;-w-&#x5C07;&#x5206;&#x5272;&#x8868;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x5F8C;&#x96E2;&#x958B;"><a href="#&#x8F38;&#x5165;-w-&#x5C07;&#x5206;&#x5272;&#x8868;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x5F8C;&#x96E2;&#x958B;" class="headerlink" title="&#x8F38;&#x5165; w ( &#x5C07;&#x5206;&#x5272;&#x8868;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x5F8C;&#x96E2;&#x958B; )"></a>&#x8F38;&#x5165; w ( &#x5C07;&#x5206;&#x5272;&#x8868;&#x5BEB;&#x5165;&#x78C1;&#x789F;&#x5F8C;&#x96E2;&#x958B; )</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5C0D;-sdb1-&#x78C1;&#x789F;&#x505A;-ext4-&#x683C;&#x5F0F;&#x5316;"><a href="#&#x5C0D;-sdb1-&#x78C1;&#x789F;&#x505A;-ext4-&#x683C;&#x5F0F;&#x5316;" class="headerlink" title="&#x5C0D; sdb1 &#x78C1;&#x789F;&#x505A; ext4 &#x683C;&#x5F0F;&#x5316;"></a>&#x5C0D; sdb1 &#x78C1;&#x789F;&#x505A; ext4 &#x683C;&#x5F0F;&#x5316;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t ext4 /dev/sdb1</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4F7F;&#x7528;-UUID-&#x639B;&#x8F09;&#x78C1;&#x789F;"><a href="#&#x4F7F;&#x7528;-UUID-&#x639B;&#x8F09;&#x78C1;&#x789F;" class="headerlink" title="&#x4F7F;&#x7528; UUID &#x639B;&#x8F09;&#x78C1;&#x789F;"></a>&#x4F7F;&#x7528; UUID &#x639B;&#x8F09;&#x78C1;&#x789F;</h4><h4 id="&#x5217;&#x51FA;&#x6240;&#x6709;&#x78C1;&#x789F;&#x7684;-UUID"><a href="#&#x5217;&#x51FA;&#x6240;&#x6709;&#x78C1;&#x789F;&#x7684;-UUID" class="headerlink" title="&#x5217;&#x51FA;&#x6240;&#x6709;&#x78C1;&#x789F;&#x7684; UUID"></a>&#x5217;&#x51FA;&#x6240;&#x6709;&#x78C1;&#x789F;&#x7684; UUID</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x7DE8;&#x8F2F;-fstab-&#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x8981;&#x639B;&#x8F09;&#x786C;&#x789F;&#x7684;-UDID-&#x586B;&#x5165;&#xFF0C;&#x7DE8;&#x8F2F;&#x5F8C;&#x5B58;&#x6A94;&#x91CD;&#x555F;&#x7CFB;&#x7D71;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x639B;&#x8F09;"><a href="#&#x7DE8;&#x8F2F;-fstab-&#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x8981;&#x639B;&#x8F09;&#x786C;&#x789F;&#x7684;-UDID-&#x586B;&#x5165;&#xFF0C;&#x7DE8;&#x8F2F;&#x5F8C;&#x5B58;&#x6A94;&#x91CD;&#x555F;&#x7CFB;&#x7D71;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x639B;&#x8F09;" class="headerlink" title="&#x7DE8;&#x8F2F; fstab &#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x8981;&#x639B;&#x8F09;&#x786C;&#x789F;&#x7684; UDID &#x586B;&#x5165;&#xFF0C;&#x7DE8;&#x8F2F;&#x5F8C;&#x5B58;&#x6A94;&#x91CD;&#x555F;&#x7CFB;&#x7D71;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x639B;&#x8F09;"></a>&#x7DE8;&#x8F2F; fstab &#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x8981;&#x639B;&#x8F09;&#x786C;&#x789F;&#x7684; UDID &#x586B;&#x5165;&#xFF0C;&#x7DE8;&#x8F2F;&#x5F8C;&#x5B58;&#x6A94;&#x91CD;&#x555F;&#x7CFB;&#x7D71;&#x5F8C;&#x5C31;&#x6703;&#x81EA;&#x52D5;&#x639B;&#x8F09;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br></pre></td></tr></table></figure>
-<h4 id="UUID&#xFF1A;&#x586B;&#x5165;&#x9700;&#x639B;&#x8F09;&#x78C1;&#x789F;&#x7684;-UUID"><a href="#UUID&#xFF1A;&#x586B;&#x5165;&#x9700;&#x639B;&#x8F09;&#x78C1;&#x789F;&#x7684;-UUID" class="headerlink" title="UUID&#xFF1A;&#x586B;&#x5165;&#x9700;&#x639B;&#x8F09;&#x78C1;&#x789F;&#x7684; UUID"></a>UUID&#xFF1A;&#x586B;&#x5165;&#x9700;&#x639B;&#x8F09;&#x78C1;&#x789F;&#x7684; UUID</h4><h4 id="data&#xFF1A;&#x5C07;&#x6B64;&#x78C1;&#x789F;&#x639B;&#x8F09;&#x5230;-data-&#x7684;&#x8DEF;&#x5F91;-&#x639B;&#x8F09;&#x524D;&#x4E0D;&#x6703;&#x6709;-data-&#x639B;&#x8F09;&#x5F8C;&#x6703;&#x5E6B;&#x4F60;&#x5EFA;&#x597D;"><a href="#data&#xFF1A;&#x5C07;&#x6B64;&#x78C1;&#x789F;&#x639B;&#x8F09;&#x5230;-data-&#x7684;&#x8DEF;&#x5F91;-&#x639B;&#x8F09;&#x524D;&#x4E0D;&#x6703;&#x6709;-data-&#x639B;&#x8F09;&#x5F8C;&#x6703;&#x5E6B;&#x4F60;&#x5EFA;&#x597D;" class="headerlink" title="/data&#xFF1A;&#x5C07;&#x6B64;&#x78C1;&#x789F;&#x639B;&#x8F09;&#x5230; /data &#x7684;&#x8DEF;&#x5F91; ( &#x639B;&#x8F09;&#x524D;&#x4E0D;&#x6703;&#x6709; /data &#x639B;&#x8F09;&#x5F8C;&#x6703;&#x5E6B;&#x4F60;&#x5EFA;&#x597D; )"></a>/data&#xFF1A;&#x5C07;&#x6B64;&#x78C1;&#x789F;&#x639B;&#x8F09;&#x5230; /data &#x7684;&#x8DEF;&#x5F91; ( &#x639B;&#x8F09;&#x524D;&#x4E0D;&#x6703;&#x6709; /data &#x639B;&#x8F09;&#x5F8C;&#x6703;&#x5E6B;&#x4F60;&#x5EFA;&#x597D; )</h4><h4 id="ext4&#xFF1A;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x985E;&#x578B;"><a href="#ext4&#xFF1A;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x985E;&#x578B;" class="headerlink" title="ext4&#xFF1A;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x985E;&#x578B;"></a>ext4&#xFF1A;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x985E;&#x578B;</h4><h4 id="defaults&#xFF1A;&#x639B;&#x8F09;&#x6642;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x639B;&#x8F09;&#x53C3;&#x6578;"><a href="#defaults&#xFF1A;&#x639B;&#x8F09;&#x6642;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x639B;&#x8F09;&#x53C3;&#x6578;" class="headerlink" title="defaults&#xFF1A;&#x639B;&#x8F09;&#x6642;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x639B;&#x8F09;&#x53C3;&#x6578;"></a>defaults&#xFF1A;&#x639B;&#x8F09;&#x6642;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x639B;&#x8F09;&#x53C3;&#x6578;</h4><h4 id="&#x7B2C;&#x4E00;&#x500B;-0&#xFF1A;dump-&#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#x6C7A;&#x5B9A;&#x662F;&#x5426;&#x9700;&#x8981;&#x5099;&#x4EFD;&#xFF0C;&#x4E00;&#x822C;&#x8A2D;&#x5B9A;&#x70BA;-0-&#x5373;&#x4E0D;&#x5099;&#x4EFD;&#xFF1B;1-&#x70BA;&#x6BCF;&#x65E5;&#x5099;&#x4EFD;&#xFF1B;2-&#x70BA;&#x9694;&#x65E5;&#x5099;&#x4EFD;"><a href="#&#x7B2C;&#x4E00;&#x500B;-0&#xFF1A;dump-&#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#x6C7A;&#x5B9A;&#x662F;&#x5426;&#x9700;&#x8981;&#x5099;&#x4EFD;&#xFF0C;&#x4E00;&#x822C;&#x8A2D;&#x5B9A;&#x70BA;-0-&#x5373;&#x4E0D;&#x5099;&#x4EFD;&#xFF1B;1-&#x70BA;&#x6BCF;&#x65E5;&#x5099;&#x4EFD;&#xFF1B;2-&#x70BA;&#x9694;&#x65E5;&#x5099;&#x4EFD;" class="headerlink" title="&#x7B2C;&#x4E00;&#x500B; 0&#xFF1A;dump &#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#x6C7A;&#x5B9A;&#x662F;&#x5426;&#x9700;&#x8981;&#x5099;&#x4EFD;&#xFF0C;&#x4E00;&#x822C;&#x8A2D;&#x5B9A;&#x70BA; 0 &#x5373;&#x4E0D;&#x5099;&#x4EFD;&#xFF1B;1 &#x70BA;&#x6BCF;&#x65E5;&#x5099;&#x4EFD;&#xFF1B;2 &#x70BA;&#x9694;&#x65E5;&#x5099;&#x4EFD;"></a>&#x7B2C;&#x4E00;&#x500B; 0&#xFF1A;dump &#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#x6C7A;&#x5B9A;&#x662F;&#x5426;&#x9700;&#x8981;&#x5099;&#x4EFD;&#xFF0C;&#x4E00;&#x822C;&#x8A2D;&#x5B9A;&#x70BA; 0 &#x5373;&#x4E0D;&#x5099;&#x4EFD;&#xFF1B;1 &#x70BA;&#x6BCF;&#x65E5;&#x5099;&#x4EFD;&#xFF1B;2 &#x70BA;&#x9694;&#x65E5;&#x5099;&#x4EFD;</h4><h4 id="&#x7B2C;&#x4E8C;&#x500B;-0&#xFF1A;fsck-&#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#xFF0C;&#x6C7A;&#x5B9A;&#x5728;&#x4E0D;&#x6B63;&#x5E38;&#x95DC;&#x6A5F;&#x5F8C;&#xFF0C;&#x6AA2;&#x67E5;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x7684;&#x9806;&#x5E8F;&#x3002;&#x6839;&#x76EE;&#x9304;&#x8981;&#x8A2D;&#x5B9A;&#x6210;-1-&#x5176;&#x4ED6;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x6210;-2-&#x5982;&#x679C;&#x8A2D;&#x5B9A;&#x6210;-0-&#x5247;&#x4E0D;&#x6703;&#x4F5C;-fsck-&#x6AA2;&#x67E5;"><a href="#&#x7B2C;&#x4E8C;&#x500B;-0&#xFF1A;fsck-&#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#xFF0C;&#x6C7A;&#x5B9A;&#x5728;&#x4E0D;&#x6B63;&#x5E38;&#x95DC;&#x6A5F;&#x5F8C;&#xFF0C;&#x6AA2;&#x67E5;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x7684;&#x9806;&#x5E8F;&#x3002;&#x6839;&#x76EE;&#x9304;&#x8981;&#x8A2D;&#x5B9A;&#x6210;-1-&#x5176;&#x4ED6;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x6210;-2-&#x5982;&#x679C;&#x8A2D;&#x5B9A;&#x6210;-0-&#x5247;&#x4E0D;&#x6703;&#x4F5C;-fsck-&#x6AA2;&#x67E5;" class="headerlink" title="&#x7B2C;&#x4E8C;&#x500B; 0&#xFF1A;fsck &#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#xFF0C;&#x6C7A;&#x5B9A;&#x5728;&#x4E0D;&#x6B63;&#x5E38;&#x95DC;&#x6A5F;&#x5F8C;&#xFF0C;&#x6AA2;&#x67E5;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x7684;&#x9806;&#x5E8F;&#x3002;&#x6839;&#x76EE;&#x9304;&#x8981;&#x8A2D;&#x5B9A;&#x6210; 1 &#x5176;&#x4ED6;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x6210; 2 &#x5982;&#x679C;&#x8A2D;&#x5B9A;&#x6210; 0 &#x5247;&#x4E0D;&#x6703;&#x4F5C; fsck &#x6AA2;&#x67E5;"></a>&#x7B2C;&#x4E8C;&#x500B; 0&#xFF1A;fsck &#x6703;&#x6839;&#x64DA;&#x9019;&#x500B;&#x8A2D;&#x5B9A;&#xFF0C;&#x6C7A;&#x5B9A;&#x5728;&#x4E0D;&#x6B63;&#x5E38;&#x95DC;&#x6A5F;&#x5F8C;&#xFF0C;&#x6AA2;&#x67E5;&#x6A94;&#x6848;&#x7CFB;&#x7D71;&#x7684;&#x9806;&#x5E8F;&#x3002;&#x6839;&#x76EE;&#x9304;&#x8981;&#x8A2D;&#x5B9A;&#x6210; 1 &#x5176;&#x4ED6;&#x5206;&#x5272;&#x5340;&#x8A2D;&#x5B9A;&#x6210; 2 &#x5982;&#x679C;&#x8A2D;&#x5B9A;&#x6210; 0 &#x5247;&#x4E0D;&#x6703;&#x4F5C; fsck &#x6AA2;&#x67E5;</h4><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x4E0B;&#x500B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x6210;&#x529F;&#x4E86;"><a href="#&#x4E0B;&#x500B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x6210;&#x529F;&#x4E86;" class="headerlink" title="&#x4E0B;&#x500B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x6210;&#x529F;&#x4E86;"></a>&#x4E0B;&#x500B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x6210;&#x529F;&#x4E86;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/19.png"><img src="images/19.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h4 id="&#x56DB;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165;-VM-&#x639B;&#x8F09;-windows"><a href="#&#x56DB;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165;-VM-&#x639B;&#x8F09;-windows" class="headerlink" title="&#x56DB;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165; VM &#x639B;&#x8F09; ( windows )"></a>&#x56DB;&#x3001;&#x9023;&#x7DDA;&#x9032;&#x5165; VM &#x639B;&#x8F09; ( windows )</h4><h4 id="&#x958B;&#x59CB;&#x53F3;&#x9375;-&#x2192;-Disk-Managment"><a href="#&#x958B;&#x59CB;&#x53F3;&#x9375;-&#x2192;-Disk-Managment" class="headerlink" title="&#x958B;&#x59CB;&#x53F3;&#x9375; &#x2192; Disk Managment"></a>&#x958B;&#x59CB;&#x53F3;&#x9375; &#x2192; Disk Managment</h4><p><a class="magnific-img" href="images/22.png"><img src="images/22.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x9078;&#x64C7;-GPT-&#x6309;-OK-&#x5F8C;&#x786C;&#x789F;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x4E86;"><a href="#&#x9078;&#x64C7;-GPT-&#x6309;-OK-&#x5F8C;&#x786C;&#x789F;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x4E86;" class="headerlink" title="&#x9078;&#x64C7; GPT &#x6309; OK &#x5F8C;&#x786C;&#x789F;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x4E86;"></a>&#x9078;&#x64C7; GPT &#x6309; OK &#x5F8C;&#x786C;&#x789F;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x4E86;</h4><h4 id="&#x786C;&#x789F;&#x6A21;&#x5F0F;&#x4ECB;&#x7D39;&#xFF1A;1-&#x50B3;&#x7D71;-BIOS-MBR-2-&#x65B0;&#x578B;-UEFI-GPT"><a href="#&#x786C;&#x789F;&#x6A21;&#x5F0F;&#x4ECB;&#x7D39;&#xFF1A;1-&#x50B3;&#x7D71;-BIOS-MBR-2-&#x65B0;&#x578B;-UEFI-GPT" class="headerlink" title="&#x786C;&#x789F;&#x6A21;&#x5F0F;&#x4ECB;&#x7D39;&#xFF1A;1. &#x50B3;&#x7D71; BIOS/MBR 2. &#x65B0;&#x578B; UEFI/GPT"></a>&#x786C;&#x789F;&#x6A21;&#x5F0F;&#x4ECB;&#x7D39;&#xFF1A;1. &#x50B3;&#x7D71; BIOS/MBR 2. &#x65B0;&#x578B; UEFI/GPT</h4><h4 id="&#x50B3;&#x7D71;&#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x90FD;&#x662F;&#x7528;-MBR-&#x5206;&#x5272;&#xFF0C;&#x4F46;-MBR-&#x5206;&#x5272;&#x53EA;&#x652F;&#x63F4;-2TB-&#x4EE5;&#x4E0B;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#xFF0C;&#x6240;&#x4EE5;-2TB-&#x4EE5;&#x4E0A;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#x4E00;&#x5B9A;&#x8981;-GPT-&#x5206;&#x5272;"><a href="#&#x50B3;&#x7D71;&#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x90FD;&#x662F;&#x7528;-MBR-&#x5206;&#x5272;&#xFF0C;&#x4F46;-MBR-&#x5206;&#x5272;&#x53EA;&#x652F;&#x63F4;-2TB-&#x4EE5;&#x4E0B;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#xFF0C;&#x6240;&#x4EE5;-2TB-&#x4EE5;&#x4E0A;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#x4E00;&#x5B9A;&#x8981;-GPT-&#x5206;&#x5272;" class="headerlink" title="&#x50B3;&#x7D71;&#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x90FD;&#x662F;&#x7528; MBR &#x5206;&#x5272;&#xFF0C;&#x4F46; MBR &#x5206;&#x5272;&#x53EA;&#x652F;&#x63F4; 2TB &#x4EE5;&#x4E0B;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#xFF0C;&#x6240;&#x4EE5; 2TB &#x4EE5;&#x4E0A;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#x4E00;&#x5B9A;&#x8981; GPT &#x5206;&#x5272;"></a>&#x50B3;&#x7D71;&#x7684;&#x786C;&#x789F;&#x5206;&#x5272;&#x90FD;&#x662F;&#x7528; MBR &#x5206;&#x5272;&#xFF0C;&#x4F46; MBR &#x5206;&#x5272;&#x53EA;&#x652F;&#x63F4; 2TB &#x4EE5;&#x4E0B;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#xFF0C;&#x6240;&#x4EE5; 2TB &#x4EE5;&#x4E0A;&#x5BB9;&#x91CF;&#x786C;&#x789F;&#x4E00;&#x5B9A;&#x8981; GPT &#x5206;&#x5272;</h4><p><a class="magnific-img" href="images/23.1.png"><img src="images/23.1.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/24.1.png"><img src="images/24.1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x5C0D;&#x65B0;&#x786C;&#x789F;&#x53F3;&#x9375;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;"><a href="#&#x5C0D;&#x65B0;&#x786C;&#x789F;&#x53F3;&#x9375;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;" class="headerlink" title="&#x5C0D;&#x65B0;&#x786C;&#x789F;&#x53F3;&#x9375;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;"></a>&#x5C0D;&#x65B0;&#x786C;&#x789F;&#x53F3;&#x9375;&#x7B2C;&#x4E00;&#x500B;&#x9078;&#x9805;</h4><p><a class="magnific-img" href="images/25.1.png"><img src="images/25.1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="next-&#x5230;&#x5E95;-&#x5982;&#x679C;&#x6C92;&#x7279;&#x5225;&#x9700;&#x6C42;"><a href="#next-&#x5230;&#x5E95;-&#x5982;&#x679C;&#x6C92;&#x7279;&#x5225;&#x9700;&#x6C42;" class="headerlink" title="next &#x5230;&#x5E95; ( &#x5982;&#x679C;&#x6C92;&#x7279;&#x5225;&#x9700;&#x6C42; )"></a>next &#x5230;&#x5E95; ( &#x5982;&#x679C;&#x6C92;&#x7279;&#x5225;&#x9700;&#x6C42; )</h4><p><a class="magnific-img" href="images/26.png"><img src="images/26.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/27.png"><img src="images/27.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/28.png"><img src="images/28.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/29.png"><img src="images/29.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/30.png"><img src="images/30.png" alt=" " class="ui centered image"></a></p>
-<h4 id="&#x606D;&#x559C;&#x786C;&#x789F;&#x639B;&#x8F09;&#x5B8C;&#x6210;&#xFF01;"><a href="#&#x606D;&#x559C;&#x786C;&#x789F;&#x639B;&#x8F09;&#x5B8C;&#x6210;&#xFF01;" class="headerlink" title="&#x606D;&#x559C;&#x786C;&#x789F;&#x639B;&#x8F09;&#x5B8C;&#x6210;&#xFF01;"></a>&#x606D;&#x559C;&#x786C;&#x789F;&#x639B;&#x8F09;&#x5B8C;&#x6210;&#xFF01;</h4><p><a class="magnific-img" href="images/33.png"><img src="images/33.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-27T01:45:14.000Z" itemprop="datePublished">2018-06-27</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          disk-掛載
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-27 09:45:14" itemprop="dateCreated datePublished" datetime="2018-06-27T09:45:14+08:00">2018-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本文章掛載硬碟是通用，因為作者是在-GCP-操作所以會多一個新增硬碟步驟"><a href="#本文章掛載硬碟是通用，因為作者是在-GCP-操作所以會多一個新增硬碟步驟" class="headerlink" title="本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟"></a>本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟</h3><h3 id="一、創建硬碟"><a href="#一、創建硬碟" class="headerlink" title="一、創建硬碟"></a>一、創建硬碟</h3><h4 id="到-Compute-Engine-→-磁碟"><a href="#到-Compute-Engine-→-磁碟" class="headerlink" title="到 Compute Engine → 磁碟"></a>到 Compute Engine → 磁碟</h4><p><img src="images/1.1.png" alt=" "></p>
+<h4 id="創建一個磁碟，注意：區域要設定跟-VM-同區，名稱不能跟-VM-一樣"><a href="#創建一個磁碟，注意：區域要設定跟-VM-同區，名稱不能跟-VM-一樣" class="headerlink" title="創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣"></a>創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣</h4><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "></p>
+<h4 id="也可以用指令創建"><a href="#也可以用指令創建" class="headerlink" title="也可以用指令創建"></a>也可以用指令創建</h4><h4 id="注意：zone-要設定跟-VM-同區，名稱不能跟-VM-一樣"><a href="#注意：zone-要設定跟-VM-同區，名稱不能跟-VM-一樣" class="headerlink" title="注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣"></a>注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute disks create (名稱) --size=(容量) --zone (區域)</span><br></pre></td></tr></table></figure>
+<h4 id="輸出畫面"><a href="#輸出畫面" class="headerlink" title="輸出畫面"></a>輸出畫面</h4><p><img src="images/4.png" alt=" "></p>
+<hr>
+<h3 id="二、新增磁碟進使用中-VM"><a href="#二、新增磁碟進使用中-VM" class="headerlink" title="二、新增磁碟進使用中 VM"></a>二、新增磁碟進使用中 VM</h3><h4 id="新增磁碟-GUI"><a href="#新增磁碟-GUI" class="headerlink" title="新增磁碟 GUI"></a>新增磁碟 GUI</h4><h4 id="進入-Compute-Engine-→-VM-執行個體點選-VM-名稱-→-VM-執行個體詳細資料-→-編輯"><a href="#進入-Compute-Engine-→-VM-執行個體點選-VM-名稱-→-VM-執行個體詳細資料-→-編輯" class="headerlink" title="進入 Compute Engine → VM 執行個體點選 VM 名稱 → VM 執行個體詳細資料 → 編輯"></a>進入 Compute Engine → VM 執行個體點選 VM 名稱 → VM 執行個體詳細資料 → 編輯</h4><p><img src="images/20.png" alt=" "></p>
+<h4 id="往下拉在其他磁碟新增硬碟"><a href="#往下拉在其他磁碟新增硬碟" class="headerlink" title="往下拉在其他磁碟新增硬碟"></a>往下拉在其他磁碟新增硬碟</h4><p><img src="images/21.png" alt=" "></p>
+<h4 id="新增後如果要刪除硬碟到-Compute-Engine-→-硬碟，要刪除會顯示-“無法刪除以連結的磁碟”"><a href="#新增後如果要刪除硬碟到-Compute-Engine-→-硬碟，要刪除會顯示-“無法刪除以連結的磁碟”" class="headerlink" title="新增後如果要刪除硬碟到 Compute Engine → 硬碟，要刪除會顯示 “無法刪除以連結的磁碟”"></a>新增後如果要刪除硬碟到 Compute Engine → 硬碟，要刪除會顯示 “無法刪除以連結的磁碟”</h4><p><img src="images/31.png" alt=" "></p>
+<h4 id="要到-VM-執行個體詳細資料-→-編輯，案-X-把硬碟移除才能刪除"><a href="#要到-VM-執行個體詳細資料-→-編輯，案-X-把硬碟移除才能刪除" class="headerlink" title="要到 VM 執行個體詳細資料 → 編輯，案 X 把硬碟移除才能刪除"></a>要到 VM 執行個體詳細資料 → 編輯，案 X 把硬碟移除才能刪除</h4><p><img src="images/32.png" alt=" "></p>
+<h4 id="新增磁碟指令-區域要跟-VM-相同不然會顯示錯誤"><a href="#新增磁碟指令-區域要跟-VM-相同不然會顯示錯誤" class="headerlink" title="新增磁碟指令 ( 區域要跟 VM 相同不然會顯示錯誤 )"></a>新增磁碟指令 ( 區域要跟 VM 相同不然會顯示錯誤 )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances attach-disk ( VM 名稱 ) --disk (創建磁碟的名稱) --zone (區域)</span><br></pre></td></tr></table></figure>
+<h4 id="輸出畫面-1"><a href="#輸出畫面-1" class="headerlink" title="輸出畫面"></a>輸出畫面</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="PS：可以到-Compute-Engine-→-磁碟，查看新增好的硬碟使用者會出現-VM-名稱"><a href="#PS：可以到-Compute-Engine-→-磁碟，查看新增好的硬碟使用者會出現-VM-名稱" class="headerlink" title="PS：可以到 Compute Engine → 磁碟，查看新增好的硬碟使用者會出現 VM 名稱"></a>PS：可以到 Compute Engine → 磁碟，查看新增好的硬碟使用者會出現 VM 名稱</h4><p><img src="images/18.png" alt=" "></p>
+<h4 id="三、連線進入-VM-掛載-linux"><a href="#三、連線進入-VM-掛載-linux" class="headerlink" title="三、連線進入 VM 掛載 ( linux )"></a>三、連線進入 VM 掛載 ( linux )</h4><h4 id="最高權限"><a href="#最高權限" class="headerlink" title="最高權限"></a>最高權限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+<p><img src="images/6.png" alt=" "></p>
+<h4 id="顯示主機上的硬碟"><a href="#顯示主機上的硬碟" class="headerlink" title="顯示主機上的硬碟"></a>顯示主機上的硬碟</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev/[sh]d*</span><br></pre></td></tr></table></figure>
+<p><img src="images/7.png" alt=" "></p>
+<h4 id="顯示新增硬碟資訊"><a href="#顯示新增硬碟資訊" class="headerlink" title="顯示新增硬碟資訊"></a>顯示新增硬碟資訊</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l /dev/sdb</span><br></pre></td></tr></table></figure>
+<p><img src="images/8.png" alt=" "></p>
+<h4 id="對-sdb-磁碟進行分割，輸入-m-顯示說明"><a href="#對-sdb-磁碟進行分割，輸入-m-顯示說明" class="headerlink" title="對 sdb 磁碟進行分割，輸入 m 顯示說明"></a>對 sdb 磁碟進行分割，輸入 m 顯示說明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
+<p><img src="images/9.png" alt=" "><br><img src="images/10.png" alt=" "></p>
+<h4 id="輸入-n-新增分割區，在輸入-p-硬碟全部只要一個分割區"><a href="#輸入-n-新增分割區，在輸入-p-硬碟全部只要一個分割區" class="headerlink" title="輸入 n 新增分割區，在輸入 p ( 硬碟全部只要一個分割區 )"></a>輸入 n 新增分割區，在輸入 p ( 硬碟全部只要一個分割區 )</h4><p><img src="images/11.png" alt=" "></p>
+<h4 id="輸入-1-磁碟代號-按-Enter，按-Enter-起始磁區使用預設值-，在按-Enter-最後磁區使用預設值"><a href="#輸入-1-磁碟代號-按-Enter，按-Enter-起始磁區使用預設值-，在按-Enter-最後磁區使用預設值" class="headerlink" title="輸入 1 ( 磁碟代號 ) 按 Enter，按 Enter ( 起始磁區使用預設值 )，在按 Enter ( 最後磁區使用預設值 )"></a>輸入 1 ( 磁碟代號 ) 按 Enter，按 Enter ( 起始磁區使用預設值 )，在按 Enter ( 最後磁區使用預設值 )</h4><p><img src="images/12.png" alt=" "></p>
+<h4 id="輸入-w-將分割表寫入磁碟後離開"><a href="#輸入-w-將分割表寫入磁碟後離開" class="headerlink" title="輸入 w ( 將分割表寫入磁碟後離開 )"></a>輸入 w ( 將分割表寫入磁碟後離開 )</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="對-sdb1-磁碟做-ext4-格式化"><a href="#對-sdb1-磁碟做-ext4-格式化" class="headerlink" title="對 sdb1 磁碟做 ext4 格式化"></a>對 sdb1 磁碟做 ext4 格式化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t ext4 /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p><img src="images/15.png" alt=" "></p>
+<h4 id="使用-UUID-掛載磁碟"><a href="#使用-UUID-掛載磁碟" class="headerlink" title="使用 UUID 掛載磁碟"></a>使用 UUID 掛載磁碟</h4><h4 id="列出所有磁碟的-UUID"><a href="#列出所有磁碟的-UUID" class="headerlink" title="列出所有磁碟的 UUID"></a>列出所有磁碟的 UUID</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid</span><br></pre></td></tr></table></figure>
+<p><img src="images/16.png" alt=" "></p>
+<h4 id="編輯-fstab-檔案，將要掛載硬碟的-UDID-填入，編輯後存檔重啟系統後就會自動掛載"><a href="#編輯-fstab-檔案，將要掛載硬碟的-UDID-填入，編輯後存檔重啟系統後就會自動掛載" class="headerlink" title="編輯 fstab 檔案，將要掛載硬碟的 UDID 填入，編輯後存檔重啟系統後就會自動掛載"></a>編輯 fstab 檔案，將要掛載硬碟的 UDID 填入，編輯後存檔重啟系統後就會自動掛載</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br></pre></td></tr></table></figure>
+<h4 id="UUID：填入需掛載磁碟的-UUID"><a href="#UUID：填入需掛載磁碟的-UUID" class="headerlink" title="UUID：填入需掛載磁碟的 UUID"></a>UUID：填入需掛載磁碟的 UUID</h4><h4 id="data：將此磁碟掛載到-data-的路徑-掛載前不會有-data-掛載後會幫你建好"><a href="#data：將此磁碟掛載到-data-的路徑-掛載前不會有-data-掛載後會幫你建好" class="headerlink" title="/data：將此磁碟掛載到 /data 的路徑 ( 掛載前不會有 /data 掛載後會幫你建好 )"></a>/data：將此磁碟掛載到 /data 的路徑 ( 掛載前不會有 /data 掛載後會幫你建好 )</h4><h4 id="ext4：檔案系統類型"><a href="#ext4：檔案系統類型" class="headerlink" title="ext4：檔案系統類型"></a>ext4：檔案系統類型</h4><h4 id="defaults：掛載時要使用的掛載參數"><a href="#defaults：掛載時要使用的掛載參數" class="headerlink" title="defaults：掛載時要使用的掛載參數"></a>defaults：掛載時要使用的掛載參數</h4><h4 id="第一個-0：dump-會根據這個設定決定是否需要備份，一般設定為-0-即不備份；1-為每日備份；2-為隔日備份"><a href="#第一個-0：dump-會根據這個設定決定是否需要備份，一般設定為-0-即不備份；1-為每日備份；2-為隔日備份" class="headerlink" title="第一個 0：dump 會根據這個設定決定是否需要備份，一般設定為 0 即不備份；1 為每日備份；2 為隔日備份"></a>第一個 0：dump 會根據這個設定決定是否需要備份，一般設定為 0 即不備份；1 為每日備份；2 為隔日備份</h4><h4 id="第二個-0：fsck-會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成-1-其他分割區設定成-2-如果設定成-0-則不會作-fsck-檢查"><a href="#第二個-0：fsck-會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成-1-其他分割區設定成-2-如果設定成-0-則不會作-fsck-檢查" class="headerlink" title="第二個 0：fsck 會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成 1 其他分割區設定成 2 如果設定成 0 則不會作 fsck 檢查"></a>第二個 0：fsck 會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成 1 其他分割區設定成 2 如果設定成 0 則不會作 fsck 檢查</h4><p><img src="images/17.png" alt=" "></p>
+<h4 id="下個指令檢查一下，成功了"><a href="#下個指令檢查一下，成功了" class="headerlink" title="下個指令檢查一下，成功了"></a>下個指令檢查一下，成功了</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<p><img src="images/19.png" alt=" "></p>
+<hr>
+<h4 id="四、連線進入-VM-掛載-windows"><a href="#四、連線進入-VM-掛載-windows" class="headerlink" title="四、連線進入 VM 掛載 ( windows )"></a>四、連線進入 VM 掛載 ( windows )</h4><h4 id="開始右鍵-→-Disk-Managment"><a href="#開始右鍵-→-Disk-Managment" class="headerlink" title="開始右鍵 → Disk Managment"></a>開始右鍵 → Disk Managment</h4><p><img src="images/22.png" alt=" "></p>
+<h4 id="選擇-GPT-按-OK-後硬碟就會出現了"><a href="#選擇-GPT-按-OK-後硬碟就會出現了" class="headerlink" title="選擇 GPT 按 OK 後硬碟就會出現了"></a>選擇 GPT 按 OK 後硬碟就會出現了</h4><h4 id="硬碟模式介紹：1-傳統-BIOS-MBR-2-新型-UEFI-GPT"><a href="#硬碟模式介紹：1-傳統-BIOS-MBR-2-新型-UEFI-GPT" class="headerlink" title="硬碟模式介紹：1. 傳統 BIOS/MBR 2. 新型 UEFI/GPT"></a>硬碟模式介紹：1. 傳統 BIOS/MBR 2. 新型 UEFI/GPT</h4><h4 id="傳統的硬碟分割都是用-MBR-分割，但-MBR-分割只支援-2TB-以下容量硬碟，所以-2TB-以上容量硬碟一定要-GPT-分割"><a href="#傳統的硬碟分割都是用-MBR-分割，但-MBR-分割只支援-2TB-以下容量硬碟，所以-2TB-以上容量硬碟一定要-GPT-分割" class="headerlink" title="傳統的硬碟分割都是用 MBR 分割，但 MBR 分割只支援 2TB 以下容量硬碟，所以 2TB 以上容量硬碟一定要 GPT 分割"></a>傳統的硬碟分割都是用 MBR 分割，但 MBR 分割只支援 2TB 以下容量硬碟，所以 2TB 以上容量硬碟一定要 GPT 分割</h4><p><img src="images/23.1.png" alt=" "><br><img src="images/24.1.png" alt=" "></p>
+<h4 id="對新硬碟右鍵第一個選項"><a href="#對新硬碟右鍵第一個選項" class="headerlink" title="對新硬碟右鍵第一個選項"></a>對新硬碟右鍵第一個選項</h4><p><img src="images/25.1.png" alt=" "></p>
+<h4 id="next-到底-如果沒特別需求"><a href="#next-到底-如果沒特別需求" class="headerlink" title="next 到底 ( 如果沒特別需求 )"></a>next 到底 ( 如果沒特別需求 )</h4><p><img src="images/26.png" alt=" "><br><img src="images/27.png" alt=" "><br><img src="images/28.png" alt=" "><br><img src="images/29.png" alt=" "><br><img src="images/30.png" alt=" "></p>
+<h4 id="恭喜硬碟掛載完成！"><a href="#恭喜硬碟掛載完成！" class="headerlink" title="恭喜硬碟掛載完成！"></a>恭喜硬碟掛載完成！</h4><p><img src="images/33.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/27/GCP-Cloud-Launcher/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    GCP-Cloud-Launcher
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/26/disk-介紹/" class="ui tiny button">
-                    
-                    disk-介紹
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/26/disk-介紹/" rel="prev" title="disk-介紹">
+      <i class="fa fa-chevron-left"></i> disk-介紹
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/27/GCP-Cloud-Launcher/" rel="next" title="GCP-Cloud-Launcher">
+      GCP-Cloud-Launcher <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章掛載硬碟是通用，因為作者是在-GCP-操作所以會多一個新增硬碟步驟"><span>本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟</span></a></li><li><a href="#一、創建硬碟"><span>一、創建硬碟</span></a><ol><li><a href="#到-Compute-Engine-→-磁碟"><span>到 Compute Engine → 磁碟</span></a></li><li><a href="#創建一個磁碟，注意：區域要設定跟-VM-同區，名稱不能跟-VM-一樣"><span>創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣</span></a></li><li><a href="#也可以用指令創建"><span>也可以用指令創建</span></a></li><li><a href="#注意：zone-要設定跟-VM-同區，名稱不能跟-VM-一樣"><span>注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣</span></a></li><li><a href="#輸出畫面"><span>輸出畫面</span></a></li></ol></li><li><a href="#二、新增磁碟進使用中-VM"><span>二、新增磁碟進使用中 VM</span></a><ol><li><a href="#新增磁碟-GUI"><span>新增磁碟 GUI</span></a></li><li><a href="#進入-Compute-Engine-→-VM-執行個體點選-VM-名稱-→-VM-執行個體詳細資料-→-編輯"><span>進入 Compute Engine → VM 執行個體點選 VM 名稱 → VM 執行個體詳細資料 → 編輯</span></a></li><li><a href="#往下拉在其他磁碟新增硬碟"><span>往下拉在其他磁碟新增硬碟</span></a></li><li><a href="#新增後如果要刪除硬碟到-Compute-Engine-→-硬碟，要刪除會顯示-“無法刪除以連結的磁碟”"><span>新增後如果要刪除硬碟到 Compute Engine → 硬碟，要刪除會顯示 “無法刪除以連結的磁碟”</span></a></li><li><a href="#要到-VM-執行個體詳細資料-→-編輯，案-X-把硬碟移除才能刪除"><span>要到 VM 執行個體詳細資料 → 編輯，案 X 把硬碟移除才能刪除</span></a></li><li><a href="#新增磁碟指令-區域要跟-VM-相同不然會顯示錯誤"><span>新增磁碟指令 ( 區域要跟 VM 相同不然會顯示錯誤 )</span></a></li><li><a href="#輸出畫面-1"><span>輸出畫面</span></a></li><li><a href="#PS：可以到-Compute-Engine-→-磁碟，查看新增好的硬碟使用者會出現-VM-名稱"><span>PS：可以到 Compute Engine → 磁碟，查看新增好的硬碟使用者會出現 VM 名稱</span></a></li><li><a href="#三、連線進入-VM-掛載-linux"><span>三、連線進入 VM 掛載 ( linux )</span></a></li><li><a href="#最高權限"><span>最高權限</span></a></li><li><a href="#顯示主機上的硬碟"><span>顯示主機上的硬碟</span></a></li><li><a href="#顯示新增硬碟資訊"><span>顯示新增硬碟資訊</span></a></li><li><a href="#對-sdb-磁碟進行分割，輸入-m-顯示說明"><span>對 sdb 磁碟進行分割，輸入 m 顯示說明</span></a></li><li><a href="#輸入-n-新增分割區，在輸入-p-硬碟全部只要一個分割區"><span>輸入 n 新增分割區，在輸入 p ( 硬碟全部只要一個分割區 )</span></a></li><li><a href="#輸入-1-磁碟代號-按-Enter，按-Enter-起始磁區使用預設值-，在按-Enter-最後磁區使用預設值"><span>輸入 1 ( 磁碟代號 ) 按 Enter，按 Enter ( 起始磁區使用預設值 )，在按 Enter ( 最後磁區使用預設值 )</span></a></li><li><a href="#輸入-w-將分割表寫入磁碟後離開"><span>輸入 w ( 將分割表寫入磁碟後離開 )</span></a></li><li><a href="#對-sdb1-磁碟做-ext4-格式化"><span>對 sdb1 磁碟做 ext4 格式化</span></a></li><li><a href="#使用-UUID-掛載磁碟"><span>使用 UUID 掛載磁碟</span></a></li><li><a href="#列出所有磁碟的-UUID"><span>列出所有磁碟的 UUID</span></a></li><li><a href="#編輯-fstab-檔案，將要掛載硬碟的-UDID-填入，編輯後存檔重啟系統後就會自動掛載"><span>編輯 fstab 檔案，將要掛載硬碟的 UDID 填入，編輯後存檔重啟系統後就會自動掛載</span></a></li><li><a href="#UUID：填入需掛載磁碟的-UUID"><span>UUID：填入需掛載磁碟的 UUID</span></a></li><li><a href="#data：將此磁碟掛載到-data-的路徑-掛載前不會有-data-掛載後會幫你建好"><span>/data：將此磁碟掛載到 /data 的路徑 ( 掛載前不會有 /data 掛載後會幫你建好 )</span></a></li><li><a href="#ext4：檔案系統類型"><span>ext4：檔案系統類型</span></a></li><li><a href="#defaults：掛載時要使用的掛載參數"><span>defaults：掛載時要使用的掛載參數</span></a></li><li><a href="#第一個-0：dump-會根據這個設定決定是否需要備份，一般設定為-0-即不備份；1-為每日備份；2-為隔日備份"><span>第一個 0：dump 會根據這個設定決定是否需要備份，一般設定為 0 即不備份；1 為每日備份；2 為隔日備份</span></a></li><li><a href="#第二個-0：fsck-會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成-1-其他分割區設定成-2-如果設定成-0-則不會作-fsck-檢查"><span>第二個 0：fsck 會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成 1 其他分割區設定成 2 如果設定成 0 則不會作 fsck 檢查</span></a></li><li><a href="#下個指令檢查一下，成功了"><span>下個指令檢查一下，成功了</span></a></li><li><a href="#四、連線進入-VM-掛載-windows"><span>四、連線進入 VM 掛載 ( windows )</span></a></li><li><a href="#開始右鍵-→-Disk-Managment"><span>開始右鍵 → Disk Managment</span></a></li><li><a href="#選擇-GPT-按-OK-後硬碟就會出現了"><span>選擇 GPT 按 OK 後硬碟就會出現了</span></a></li><li><a href="#硬碟模式介紹：1-傳統-BIOS-MBR-2-新型-UEFI-GPT"><span>硬碟模式介紹：1. 傳統 BIOS/MBR 2. 新型 UEFI/GPT</span></a></li><li><a href="#傳統的硬碟分割都是用-MBR-分割，但-MBR-分割只支援-2TB-以下容量硬碟，所以-2TB-以上容量硬碟一定要-GPT-分割"><span>傳統的硬碟分割都是用 MBR 分割，但 MBR 分割只支援 2TB 以下容量硬碟，所以 2TB 以上容量硬碟一定要 GPT 分割</span></a></li><li><a href="#對新硬碟右鍵第一個選項"><span>對新硬碟右鍵第一個選項</span></a></li><li><a href="#next-到底-如果沒特別需求"><span>next 到底 ( 如果沒特別需求 )</span></a></li><li><a href="#恭喜硬碟掛載完成！"><span>恭喜硬碟掛載完成！</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文章掛載硬碟是通用，因為作者是在-GCP-操作所以會多一個新增硬碟步驟"><span class="nav-number">1.</span> <span class="nav-text">本文章掛載硬碟是通用，因為作者是在 GCP 操作所以會多一個新增硬碟步驟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、創建硬碟"><span class="nav-number">2.</span> <span class="nav-text">一、創建硬碟</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#到-Compute-Engine-→-磁碟"><span class="nav-number">2.1.</span> <span class="nav-text">到 Compute Engine → 磁碟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#創建一個磁碟，注意：區域要設定跟-VM-同區，名稱不能跟-VM-一樣"><span class="nav-number">2.2.</span> <span class="nav-text">創建一個磁碟，注意：區域要設定跟 VM 同區，名稱不能跟 VM 一樣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#也可以用指令創建"><span class="nav-number">2.3.</span> <span class="nav-text">也可以用指令創建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意：zone-要設定跟-VM-同區，名稱不能跟-VM-一樣"><span class="nav-number">2.4.</span> <span class="nav-text">注意：zone 要設定跟 VM 同區，名稱不能跟 VM 一樣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#輸出畫面"><span class="nav-number">2.5.</span> <span class="nav-text">輸出畫面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、新增磁碟進使用中-VM"><span class="nav-number">3.</span> <span class="nav-text">二、新增磁碟進使用中 VM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新增磁碟-GUI"><span class="nav-number">3.1.</span> <span class="nav-text">新增磁碟 GUI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#進入-Compute-Engine-→-VM-執行個體點選-VM-名稱-→-VM-執行個體詳細資料-→-編輯"><span class="nav-number">3.2.</span> <span class="nav-text">進入 Compute Engine → VM 執行個體點選 VM 名稱 → VM 執行個體詳細資料 → 編輯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#往下拉在其他磁碟新增硬碟"><span class="nav-number">3.3.</span> <span class="nav-text">往下拉在其他磁碟新增硬碟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增後如果要刪除硬碟到-Compute-Engine-→-硬碟，要刪除會顯示-“無法刪除以連結的磁碟”"><span class="nav-number">3.4.</span> <span class="nav-text">新增後如果要刪除硬碟到 Compute Engine → 硬碟，要刪除會顯示 “無法刪除以連結的磁碟”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#要到-VM-執行個體詳細資料-→-編輯，案-X-把硬碟移除才能刪除"><span class="nav-number">3.5.</span> <span class="nav-text">要到 VM 執行個體詳細資料 → 編輯，案 X 把硬碟移除才能刪除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增磁碟指令-區域要跟-VM-相同不然會顯示錯誤"><span class="nav-number">3.6.</span> <span class="nav-text">新增磁碟指令 ( 區域要跟 VM 相同不然會顯示錯誤 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#輸出畫面-1"><span class="nav-number">3.7.</span> <span class="nav-text">輸出畫面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PS：可以到-Compute-Engine-→-磁碟，查看新增好的硬碟使用者會出現-VM-名稱"><span class="nav-number">3.8.</span> <span class="nav-text">PS：可以到 Compute Engine → 磁碟，查看新增好的硬碟使用者會出現 VM 名稱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、連線進入-VM-掛載-linux"><span class="nav-number">3.9.</span> <span class="nav-text">三、連線進入 VM 掛載 ( linux )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最高權限"><span class="nav-number">3.10.</span> <span class="nav-text">最高權限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顯示主機上的硬碟"><span class="nav-number">3.11.</span> <span class="nav-text">顯示主機上的硬碟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顯示新增硬碟資訊"><span class="nav-number">3.12.</span> <span class="nav-text">顯示新增硬碟資訊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#對-sdb-磁碟進行分割，輸入-m-顯示說明"><span class="nav-number">3.13.</span> <span class="nav-text">對 sdb 磁碟進行分割，輸入 m 顯示說明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#輸入-n-新增分割區，在輸入-p-硬碟全部只要一個分割區"><span class="nav-number">3.14.</span> <span class="nav-text">輸入 n 新增分割區，在輸入 p ( 硬碟全部只要一個分割區 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#輸入-1-磁碟代號-按-Enter，按-Enter-起始磁區使用預設值-，在按-Enter-最後磁區使用預設值"><span class="nav-number">3.15.</span> <span class="nav-text">輸入 1 ( 磁碟代號 ) 按 Enter，按 Enter ( 起始磁區使用預設值 )，在按 Enter ( 最後磁區使用預設值 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#輸入-w-將分割表寫入磁碟後離開"><span class="nav-number">3.16.</span> <span class="nav-text">輸入 w ( 將分割表寫入磁碟後離開 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#對-sdb1-磁碟做-ext4-格式化"><span class="nav-number">3.17.</span> <span class="nav-text">對 sdb1 磁碟做 ext4 格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-UUID-掛載磁碟"><span class="nav-number">3.18.</span> <span class="nav-text">使用 UUID 掛載磁碟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出所有磁碟的-UUID"><span class="nav-number">3.19.</span> <span class="nav-text">列出所有磁碟的 UUID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#編輯-fstab-檔案，將要掛載硬碟的-UDID-填入，編輯後存檔重啟系統後就會自動掛載"><span class="nav-number">3.20.</span> <span class="nav-text">編輯 fstab 檔案，將要掛載硬碟的 UDID 填入，編輯後存檔重啟系統後就會自動掛載</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UUID：填入需掛載磁碟的-UUID"><span class="nav-number">3.21.</span> <span class="nav-text">UUID：填入需掛載磁碟的 UUID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data：將此磁碟掛載到-data-的路徑-掛載前不會有-data-掛載後會幫你建好"><span class="nav-number">3.22.</span> <span class="nav-text">/data：將此磁碟掛載到 /data 的路徑 ( 掛載前不會有 /data 掛載後會幫你建好 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ext4：檔案系統類型"><span class="nav-number">3.23.</span> <span class="nav-text">ext4：檔案系統類型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#defaults：掛載時要使用的掛載參數"><span class="nav-number">3.24.</span> <span class="nav-text">defaults：掛載時要使用的掛載參數</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一個-0：dump-會根據這個設定決定是否需要備份，一般設定為-0-即不備份；1-為每日備份；2-為隔日備份"><span class="nav-number">3.25.</span> <span class="nav-text">第一個 0：dump 會根據這個設定決定是否需要備份，一般設定為 0 即不備份；1 為每日備份；2 為隔日備份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二個-0：fsck-會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成-1-其他分割區設定成-2-如果設定成-0-則不會作-fsck-檢查"><span class="nav-number">3.26.</span> <span class="nav-text">第二個 0：fsck 會根據這個設定，決定在不正常關機後，檢查檔案系統的順序。根目錄要設定成 1 其他分割區設定成 2 如果設定成 0 則不會作 fsck 檢查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下個指令檢查一下，成功了"><span class="nav-number">3.27.</span> <span class="nav-text">下個指令檢查一下，成功了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、連線進入-VM-掛載-windows"><span class="nav-number">3.28.</span> <span class="nav-text">四、連線進入 VM 掛載 ( windows )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#開始右鍵-→-Disk-Managment"><span class="nav-number">3.29.</span> <span class="nav-text">開始右鍵 → Disk Managment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#選擇-GPT-按-OK-後硬碟就會出現了"><span class="nav-number">3.30.</span> <span class="nav-text">選擇 GPT 按 OK 後硬碟就會出現了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬碟模式介紹：1-傳統-BIOS-MBR-2-新型-UEFI-GPT"><span class="nav-number">3.31.</span> <span class="nav-text">硬碟模式介紹：1. 傳統 BIOS/MBR 2. 新型 UEFI/GPT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#傳統的硬碟分割都是用-MBR-分割，但-MBR-分割只支援-2TB-以下容量硬碟，所以-2TB-以上容量硬碟一定要-GPT-分割"><span class="nav-number">3.32.</span> <span class="nav-text">傳統的硬碟分割都是用 MBR 分割，但 MBR 分割只支援 2TB 以下容量硬碟，所以 2TB 以上容量硬碟一定要 GPT 分割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#對新硬碟右鍵第一個選項"><span class="nav-number">3.33.</span> <span class="nav-text">對新硬碟右鍵第一個選項</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-到底-如果沒特別需求"><span class="nav-number">3.34.</span> <span class="nav-text">next 到底 ( 如果沒特別需求 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#恭喜硬碟掛載完成！"><span class="nav-number">3.35.</span> <span class="nav-text">恭喜硬碟掛載完成！</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

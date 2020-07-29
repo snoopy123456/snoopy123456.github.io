@@ -1,250 +1,372 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>telegraf-windows | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="windows-telegraf config&amp;#x7B2C; 52 &amp;#x884C;&amp;#x52A0;&amp;#x5165;Log&amp;#x6A94;&amp;#x6848;&amp;#x653E;&amp;#x7F6E;&amp;#x7684;&amp;#x8DEF;&amp;#x5F91;&amp;#x8207;&amp;#x6A94;&amp;#x6848;&amp;#x540D;&amp;#x7A31;&amp;#x3001;&amp;#x7B2C; 69 &amp;#x884C;&amp;#x8F38;&amp;#x516">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="windows-telegraf config第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364">
 <meta property="og:type" content="article">
 <meta property="og:title" content="telegraf-windows">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/telegraf-windows/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="windows-telegraf config&amp;#x7B2C; 52 &amp;#x884C;&amp;#x52A0;&amp;#x5165;Log&amp;#x6A94;&amp;#x6848;&amp;#x653E;&amp;#x7F6E;&amp;#x7684;&amp;#x8DEF;&amp;#x5F91;&amp;#x8207;&amp;#x6A94;&amp;#x6848;&amp;#x540D;&amp;#x7A31;&amp;#x3001;&amp;#x7B2C; 69 &amp;#x884C;&amp;#x8F38;&amp;#x516">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="windows-telegraf config第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2020-04-01T03:30:25.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="telegraf-windows">
-<meta name="twitter:description" content="windows-telegraf config&amp;#x7B2C; 52 &amp;#x884C;&amp;#x52A0;&amp;#x5165;Log&amp;#x6A94;&amp;#x6848;&amp;#x653E;&amp;#x7F6E;&amp;#x7684;&amp;#x8DEF;&amp;#x5F91;&amp;#x8207;&amp;#x6A94;&amp;#x6848;&amp;#x540D;&amp;#x7A31;&amp;#x3001;&amp;#x7B2C; 69 &amp;#x884C;&amp;#x8F38;&amp;#x516">
+<meta name="twitter:description" content="windows-telegraf config第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/08/03/telegraf-windows/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>telegraf-windows | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-telegraf-windows" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    telegraf-windows
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/telegraf-windows/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="windows-telegraf-config"><a href="#windows-telegraf-config" class="headerlink" title="windows-telegraf config"></a>windows-telegraf config</h3><h3 id="&#x7B2C;-52-&#x884C;&#x52A0;&#x5165;Log&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x7684;&#x8DEF;&#x5F91;&#x8207;&#x6A94;&#x6848;&#x540D;&#x7A31;&#x3001;&#x7B2C;-69-&#x884C;&#x8F38;&#x5165;&#x6A5F;&#x5668;-IP&#x3001;&#x7B2C;-72-&#x884C;&#x8F38;&#x5165;-datebase-&#x540D;&#x7A31;"><a href="#&#x7B2C;-52-&#x884C;&#x52A0;&#x5165;Log&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x7684;&#x8DEF;&#x5F91;&#x8207;&#x6A94;&#x6848;&#x540D;&#x7A31;&#x3001;&#x7B2C;-69-&#x884C;&#x8F38;&#x5165;&#x6A5F;&#x5668;-IP&#x3001;&#x7B2C;-72-&#x884C;&#x8F38;&#x5165;-datebase-&#x540D;&#x7A31;" class="headerlink" title="&#x7B2C; 52 &#x884C;&#x52A0;&#x5165;Log&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x7684;&#x8DEF;&#x5F91;&#x8207;&#x6A94;&#x6848;&#x540D;&#x7A31;&#x3001;&#x7B2C; 69 &#x884C;&#x8F38;&#x5165;&#x6A5F;&#x5668; IP&#x3001;&#x7B2C; 72 &#x884C;&#x8F38;&#x5165; datebase &#x540D;&#x7A31;"></a>&#x7B2C; 52 &#x884C;&#x52A0;&#x5165;Log&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x7684;&#x8DEF;&#x5F91;&#x8207;&#x6A94;&#x6848;&#x540D;&#x7A31;&#x3001;&#x7B2C; 69 &#x884C;&#x8F38;&#x5165;&#x6A5F;&#x5668; IP&#x3001;&#x7B2C; 72 &#x884C;&#x8F38;&#x5165; datebase &#x540D;&#x7A31;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br></pre></td><td class="code"><pre><span class="line"># Telegraf configuration</span><br><span class="line"></span><br><span class="line"># Telegraf is entirely plugin driven. All metrics are gathered from the</span><br><span class="line"># declared inputs, and sent to the declared outputs.</span><br><span class="line"></span><br><span class="line"># Plugins must be declared in here to be active.</span><br><span class="line"># To deactivate a plugin, comment out the name and any variables.</span><br><span class="line"></span><br><span class="line"># Use &apos;telegraf -config telegraf.conf -test&apos; to see what metrics a config</span><br><span class="line"># file would generate.</span><br><span class="line"></span><br><span class="line"># Global tags can be specified here in key=&quot;value&quot; format.</span><br><span class="line">[global_tags]</span><br><span class="line">  # dc = &quot;us-east-1&quot; # will tag all metrics with dc=us-east-1</span><br><span class="line">  # rack = &quot;1a&quot;</span><br><span class="line"></span><br><span class="line"># Configuration for telegraf agent</span><br><span class="line">[agent]</span><br><span class="line">  ## Default data collection interval for all inputs</span><br><span class="line">  interval = &quot;10s&quot;</span><br><span class="line">  ## Rounds collection interval to &apos;interval&apos;</span><br><span class="line">  ## ie, if interval=&quot;10s&quot; then always collect on :00, :10, :20, etc.</span><br><span class="line">  round_interval = true</span><br><span class="line"></span><br><span class="line">  ## Telegraf will cache metric_buffer_limit metrics for each output, and will</span><br><span class="line">  ## flush this buffer on a successful write.</span><br><span class="line">  metric_buffer_limit = 1000</span><br><span class="line">  ## Flush the buffer whenever full, regardless of flush_interval.</span><br><span class="line">  flush_buffer_when_full = true</span><br><span class="line"></span><br><span class="line">  ## Collection jitter is used to jitter the collection by a random amount.</span><br><span class="line">  ## Each plugin will sleep for a random time within jitter before collecting.</span><br><span class="line">  ## This can be used to avoid many plugins querying things like sysfs at the</span><br><span class="line">  ## same time, which can have a measurable effect on the system.</span><br><span class="line">  collection_jitter = &quot;0s&quot;</span><br><span class="line"></span><br><span class="line">  ## Default flushing interval for all outputs. You shouldn&apos;t set this below</span><br><span class="line">  ## interval. Maximum flush_interval will be flush_interval + flush_jitter</span><br><span class="line">  flush_interval = &quot;10s&quot;</span><br><span class="line">  ## Jitter the flush interval by a random amount. This is primarily to avoid</span><br><span class="line">  ## large write spikes for users running a large number of telegraf instances.</span><br><span class="line">  ## ie, a jitter of 5s and interval 10s means flushes will happen every 10-15s</span><br><span class="line">  flush_jitter = &quot;0s&quot;</span><br><span class="line"></span><br><span class="line">  ## Logging configuration:</span><br><span class="line">  ## Run telegraf in debug mode</span><br><span class="line">  debug = false</span><br><span class="line">  ## Run telegraf in quiet mode</span><br><span class="line">  quiet = false</span><br><span class="line">  ## Specify the log file name. The empty string means to log to stdout.</span><br><span class="line">  # &#x52A0;&#x5165;Log&#x6A94;&#x6848;&#x653E;&#x7F6E;&#x7684;&#x8DEF;&#x5F91;&#x8207;&#x6A94;&#x6848;&#x540D;&#x7A31;</span><br><span class="line">  logfile = &quot;D:\\Service\\telegraf\\telegraf.log&quot;</span><br><span class="line"></span><br><span class="line">  ## Override default hostname, if empty use os.Hostname()</span><br><span class="line">  hostname = &quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###############################################################################</span><br><span class="line">#                                  OUTPUTS                                    #</span><br><span class="line">###############################################################################</span><br><span class="line"></span><br><span class="line"># Configuration for influxdb server to send metrics to</span><br><span class="line">[[outputs.influxdb]]</span><br><span class="line">  # The full HTTP or UDP endpoint URL for your InfluxDB instance.</span><br><span class="line">  # Multiple urls can be specified but it is assumed that they are part of the same</span><br><span class="line">  # cluster, this means that only ONE of the urls will be written to each interval.</span><br><span class="line">  # urls = [&quot;udp://127.0.0.1:8089&quot;] # UDP endpoint example</span><br><span class="line">  # &#x8F38;&#x5165;&#x6A5F;&#x5668; IP</span><br><span class="line">  urls = [&quot;http://10.148.0.30:8086&quot;] # required</span><br><span class="line">  # The target database for metrics (telegraf will create it if not exists)</span><br><span class="line">  # &#x8F38;&#x5165; datebase &#x540D;&#x7A31;</span><br><span class="line">  database = &quot;telegraf&quot; # required</span><br><span class="line">  # Precision of writes, valid values are &quot;ns&quot;, &quot;us&quot; (or &quot;&#xB5;s&quot;), &quot;ms&quot;, &quot;s&quot;, &quot;m&quot;, &quot;h&quot;.</span><br><span class="line">  # note: using second precision greatly helps InfluxDB compression</span><br><span class="line">  precision = &quot;s&quot;</span><br><span class="line"></span><br><span class="line">  ## Write timeout (for the InfluxDB client), formatted as a string.</span><br><span class="line">  ## If not provided, will default to 5s. 0s means no timeout (not recommended).</span><br><span class="line">  timeout = &quot;5s&quot;</span><br><span class="line">  # username = &quot;telegraf&quot;</span><br><span class="line">  # password = &quot;metricsmetricsmetricsmetrics&quot;</span><br><span class="line">  # Set the user agent for HTTP POSTs (can be useful for log differentiation)</span><br><span class="line">  # user_agent = &quot;telegraf&quot;</span><br><span class="line">  # Set UDP payload size, defaults to InfluxDB UDP Client default (512 bytes)</span><br><span class="line">  # udp_payload = 512</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###############################################################################</span><br><span class="line">#                                  INPUTS                                     #</span><br><span class="line">###############################################################################</span><br><span class="line"></span><br><span class="line"># Windows Performance Counters plugin.</span><br><span class="line"># These are the recommended method of monitoring system metrics on windows,</span><br><span class="line"># as the regular system plugins (inputs.cpu, inputs.mem, etc.) rely on WMI,</span><br><span class="line"># which utilize more system resources.</span><br><span class="line">#</span><br><span class="line"># See more configuration examples at:</span><br><span class="line">#   https://github.com/influxdata/telegraf/tree/master/plugins/inputs/win_perf_counters</span><br><span class="line"></span><br><span class="line">[[inputs.win_perf_counters]]</span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Processor usage, alternative to native, reports on a per core.</span><br><span class="line">    ObjectName = &quot;Processor&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Idle Time&quot;,</span><br><span class="line">      &quot;% Interrupt Time&quot;,</span><br><span class="line">      &quot;% Privileged Time&quot;,</span><br><span class="line">      &quot;% User Time&quot;,</span><br><span class="line">      &quot;% Processor Time&quot;,</span><br><span class="line">      &quot;% DPC Time&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_cpu&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    IncludeTotal=true</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Disk times and queues</span><br><span class="line">    ObjectName = &quot;LogicalDisk&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Idle Time&quot;,</span><br><span class="line">      &quot;% Disk Time&quot;,</span><br><span class="line">      &quot;% Disk Read Time&quot;,</span><br><span class="line">      &quot;% Disk Write Time&quot;,</span><br><span class="line">      &quot;Current Disk Queue Length&quot;,</span><br><span class="line">      &quot;% Free Space&quot;,</span><br><span class="line">      &quot;Free Megabytes&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_disk&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    #IncludeTotal=false</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    ObjectName = &quot;PhysicalDisk&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Disk Read Bytes/sec&quot;,</span><br><span class="line">      &quot;Disk Write Bytes/sec&quot;,</span><br><span class="line">      &quot;Current Disk Queue Length&quot;,</span><br><span class="line">      &quot;Disk Reads/sec&quot;,</span><br><span class="line">      &quot;Disk Writes/sec&quot;,</span><br><span class="line">      &quot;% Disk Time&quot;,</span><br><span class="line">      &quot;% Disk Read Time&quot;,</span><br><span class="line">      &quot;% Disk Write Time&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_diskio&quot;</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    ObjectName = &quot;Network Interface&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Bytes Received/sec&quot;,</span><br><span class="line">      &quot;Bytes Sent/sec&quot;,</span><br><span class="line">      &quot;Packets Received/sec&quot;,</span><br><span class="line">      &quot;Packets Sent/sec&quot;,</span><br><span class="line">      &quot;Packets Received Discarded&quot;,</span><br><span class="line">      &quot;Packets Outbound Discarded&quot;,</span><br><span class="line">      &quot;Packets Received Errors&quot;,</span><br><span class="line">      &quot;Packets Outbound Errors&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_net&quot;</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    ObjectName = &quot;System&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Context Switches/sec&quot;,</span><br><span class="line">      &quot;System Calls/sec&quot;,</span><br><span class="line">      &quot;Processor Queue Length&quot;,</span><br><span class="line">      &quot;System Up Time&quot;,</span><br><span class="line">	  &quot;Processes&quot;,</span><br><span class="line">	  &quot;Threads&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Instances = [&quot;------&quot;]</span><br><span class="line">    Measurement = &quot;win_system&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    #IncludeTotal=false</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Example query where the Instance portion must be removed to get data back,</span><br><span class="line">    # such as from the Memory object.</span><br><span class="line">    ObjectName = &quot;Memory&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Available Bytes&quot;,</span><br><span class="line">      &quot;Cache Faults/sec&quot;,</span><br><span class="line">      &quot;Demand Zero Faults/sec&quot;,</span><br><span class="line">      &quot;Page Faults/sec&quot;,</span><br><span class="line">      &quot;Pages/sec&quot;,</span><br><span class="line">      &quot;Transition Faults/sec&quot;,</span><br><span class="line">      &quot;Pool Nonpaged Bytes&quot;,</span><br><span class="line">      &quot;Pool Paged Bytes&quot;,</span><br><span class="line">      &quot;Standby Cache Reserve Bytes&quot;,</span><br><span class="line">      &quot;Standby Cache Normal Priority Bytes&quot;,</span><br><span class="line">      &quot;Standby Cache Core Bytes&quot;,</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line">    # Use 6 x - to remove the Instance bit from the query.</span><br><span class="line">    Instances = [&quot;------&quot;]</span><br><span class="line">    Measurement = &quot;win_mem&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    #IncludeTotal=false</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Example query where the Instance portion must be removed to get data back,</span><br><span class="line">    # such as from the Paging File object.</span><br><span class="line">    ObjectName = &quot;Paging File&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Usage&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Instances = [&quot;_Total&quot;]</span><br><span class="line">    Measurement = &quot;win_swap&quot;</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Process metrics</span><br><span class="line">    ObjectName = &quot;Process&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Processor Time&quot;,</span><br><span class="line">      &quot;Handle Count&quot;,</span><br><span class="line">      &quot;Private Bytes&quot;,</span><br><span class="line">      &quot;Thread Count&quot;,</span><br><span class="line">      &quot;Virtual Bytes&quot;,</span><br><span class="line">      &quot;Working Set&quot;</span><br><span class="line">      ]</span><br><span class="line">    Instances = [&quot;sqlservr&quot;]</span><br><span class="line">    Measurement = &quot;win_proc&quot;</span><br><span class="line">    #IncludeTotal=false #Set to true to include _Total instance when querying for all (*).</span><br><span class="line">	</span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Process metrics</span><br><span class="line">    ObjectName = &quot;Process&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Processor Time&quot;,</span><br><span class="line">      &quot;Handle Count&quot;,</span><br><span class="line">      &quot;Private Bytes&quot;,</span><br><span class="line">      &quot;Thread Count&quot;,</span><br><span class="line">      &quot;Virtual Bytes&quot;,</span><br><span class="line">      &quot;Working Set&quot;</span><br><span class="line">      ]</span><br><span class="line">    Instances = [&quot;LogServer&quot;]</span><br><span class="line">    Measurement = &quot;win_proc&quot;</span><br><span class="line">    #IncludeTotal=false #Set to true to include _Total instance when querying for all (*).</span><br><span class="line">	</span><br><span class="line">  [[inputs.ping]]</span><br><span class="line">	##  List of urls to ping</span><br><span class="line">	urls = [&quot;10.148.0.13&quot;,&quot;35.186.145.86&quot;] # required</span><br><span class="line">	##  number of pings to send per collection (ping -c &lt;COUNT&gt;)</span><br><span class="line">		count = 1</span><br><span class="line">	##  interval, in s, at which to ping. 0 == default (ping -i &lt;PING_INTERVAL&gt;)</span><br><span class="line">	# 	ping_interval = 1.0</span><br><span class="line">	##  per-ping timeout, in s. 0 == no timeout (ping -W &lt;TIMEOUT&gt;)</span><br><span class="line">		timeout = 1.0</span><br><span class="line">	##  interface to send ping from (ping -I &lt;INTERFACE&gt;)</span><br><span class="line">	# 	interface = &quot;&quot;</span><br></pre></td></tr></table></figure>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-08-03T06:12:07.000Z" itemprop="datePublished">2018-08-03</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          telegraf-windows
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-08-03 14:12:07" itemprop="dateCreated datePublished" datetime="2018-08-03T14:12:07+08:00">2018-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="windows-telegraf-config"><a href="#windows-telegraf-config" class="headerlink" title="windows-telegraf config"></a>windows-telegraf config</h3><h3 id="第-52-行加入Log檔案放置的路徑與檔案名稱、第-69-行輸入機器-IP、第-72-行輸入-datebase-名稱"><a href="#第-52-行加入Log檔案放置的路徑與檔案名稱、第-69-行輸入機器-IP、第-72-行輸入-datebase-名稱" class="headerlink" title="第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱"></a>第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br></pre></td><td class="code"><pre><span class="line"># Telegraf configuration</span><br><span class="line"></span><br><span class="line"># Telegraf is entirely plugin driven. All metrics are gathered from the</span><br><span class="line"># declared inputs, and sent to the declared outputs.</span><br><span class="line"></span><br><span class="line"># Plugins must be declared in here to be active.</span><br><span class="line"># To deactivate a plugin, comment out the name and any variables.</span><br><span class="line"></span><br><span class="line"># Use &apos;telegraf -config telegraf.conf -test&apos; to see what metrics a config</span><br><span class="line"># file would generate.</span><br><span class="line"></span><br><span class="line"># Global tags can be specified here in key=&quot;value&quot; format.</span><br><span class="line">[global_tags]</span><br><span class="line">  # dc = &quot;us-east-1&quot; # will tag all metrics with dc=us-east-1</span><br><span class="line">  # rack = &quot;1a&quot;</span><br><span class="line"></span><br><span class="line"># Configuration for telegraf agent</span><br><span class="line">[agent]</span><br><span class="line">  ## Default data collection interval for all inputs</span><br><span class="line">  interval = &quot;10s&quot;</span><br><span class="line">  ## Rounds collection interval to &apos;interval&apos;</span><br><span class="line">  ## ie, if interval=&quot;10s&quot; then always collect on :00, :10, :20, etc.</span><br><span class="line">  round_interval = true</span><br><span class="line"></span><br><span class="line">  ## Telegraf will cache metric_buffer_limit metrics for each output, and will</span><br><span class="line">  ## flush this buffer on a successful write.</span><br><span class="line">  metric_buffer_limit = 1000</span><br><span class="line">  ## Flush the buffer whenever full, regardless of flush_interval.</span><br><span class="line">  flush_buffer_when_full = true</span><br><span class="line"></span><br><span class="line">  ## Collection jitter is used to jitter the collection by a random amount.</span><br><span class="line">  ## Each plugin will sleep for a random time within jitter before collecting.</span><br><span class="line">  ## This can be used to avoid many plugins querying things like sysfs at the</span><br><span class="line">  ## same time, which can have a measurable effect on the system.</span><br><span class="line">  collection_jitter = &quot;0s&quot;</span><br><span class="line"></span><br><span class="line">  ## Default flushing interval for all outputs. You shouldn&apos;t set this below</span><br><span class="line">  ## interval. Maximum flush_interval will be flush_interval + flush_jitter</span><br><span class="line">  flush_interval = &quot;10s&quot;</span><br><span class="line">  ## Jitter the flush interval by a random amount. This is primarily to avoid</span><br><span class="line">  ## large write spikes for users running a large number of telegraf instances.</span><br><span class="line">  ## ie, a jitter of 5s and interval 10s means flushes will happen every 10-15s</span><br><span class="line">  flush_jitter = &quot;0s&quot;</span><br><span class="line"></span><br><span class="line">  ## Logging configuration:</span><br><span class="line">  ## Run telegraf in debug mode</span><br><span class="line">  debug = false</span><br><span class="line">  ## Run telegraf in quiet mode</span><br><span class="line">  quiet = false</span><br><span class="line">  ## Specify the log file name. The empty string means to log to stdout.</span><br><span class="line">  # 加入Log檔案放置的路徑與檔案名稱</span><br><span class="line">  logfile = &quot;D:\\Service\\telegraf\\telegraf.log&quot;</span><br><span class="line"></span><br><span class="line">  ## Override default hostname, if empty use os.Hostname()</span><br><span class="line">  hostname = &quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###############################################################################</span><br><span class="line">#                                  OUTPUTS                                    #</span><br><span class="line">###############################################################################</span><br><span class="line"></span><br><span class="line"># Configuration for influxdb server to send metrics to</span><br><span class="line">[[outputs.influxdb]]</span><br><span class="line">  # The full HTTP or UDP endpoint URL for your InfluxDB instance.</span><br><span class="line">  # Multiple urls can be specified but it is assumed that they are part of the same</span><br><span class="line">  # cluster, this means that only ONE of the urls will be written to each interval.</span><br><span class="line">  # urls = [&quot;udp://127.0.0.1:8089&quot;] # UDP endpoint example</span><br><span class="line">  # 輸入機器 IP</span><br><span class="line">  urls = [&quot;http://10.148.0.30:8086&quot;] # required</span><br><span class="line">  # The target database for metrics (telegraf will create it if not exists)</span><br><span class="line">  # 輸入 datebase 名稱</span><br><span class="line">  database = &quot;telegraf&quot; # required</span><br><span class="line">  # Precision of writes, valid values are &quot;ns&quot;, &quot;us&quot; (or &quot;µs&quot;), &quot;ms&quot;, &quot;s&quot;, &quot;m&quot;, &quot;h&quot;.</span><br><span class="line">  # note: using second precision greatly helps InfluxDB compression</span><br><span class="line">  precision = &quot;s&quot;</span><br><span class="line"></span><br><span class="line">  ## Write timeout (for the InfluxDB client), formatted as a string.</span><br><span class="line">  ## If not provided, will default to 5s. 0s means no timeout (not recommended).</span><br><span class="line">  timeout = &quot;5s&quot;</span><br><span class="line">  # username = &quot;telegraf&quot;</span><br><span class="line">  # password = &quot;metricsmetricsmetricsmetrics&quot;</span><br><span class="line">  # Set the user agent for HTTP POSTs (can be useful for log differentiation)</span><br><span class="line">  # user_agent = &quot;telegraf&quot;</span><br><span class="line">  # Set UDP payload size, defaults to InfluxDB UDP Client default (512 bytes)</span><br><span class="line">  # udp_payload = 512</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###############################################################################</span><br><span class="line">#                                  INPUTS                                     #</span><br><span class="line">###############################################################################</span><br><span class="line"></span><br><span class="line"># Windows Performance Counters plugin.</span><br><span class="line"># These are the recommended method of monitoring system metrics on windows,</span><br><span class="line"># as the regular system plugins (inputs.cpu, inputs.mem, etc.) rely on WMI,</span><br><span class="line"># which utilize more system resources.</span><br><span class="line">#</span><br><span class="line"># See more configuration examples at:</span><br><span class="line">#   https://github.com/influxdata/telegraf/tree/master/plugins/inputs/win_perf_counters</span><br><span class="line"></span><br><span class="line">[[inputs.win_perf_counters]]</span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Processor usage, alternative to native, reports on a per core.</span><br><span class="line">    ObjectName = &quot;Processor&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Idle Time&quot;,</span><br><span class="line">      &quot;% Interrupt Time&quot;,</span><br><span class="line">      &quot;% Privileged Time&quot;,</span><br><span class="line">      &quot;% User Time&quot;,</span><br><span class="line">      &quot;% Processor Time&quot;,</span><br><span class="line">      &quot;% DPC Time&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_cpu&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    IncludeTotal=true</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Disk times and queues</span><br><span class="line">    ObjectName = &quot;LogicalDisk&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Idle Time&quot;,</span><br><span class="line">      &quot;% Disk Time&quot;,</span><br><span class="line">      &quot;% Disk Read Time&quot;,</span><br><span class="line">      &quot;% Disk Write Time&quot;,</span><br><span class="line">      &quot;Current Disk Queue Length&quot;,</span><br><span class="line">      &quot;% Free Space&quot;,</span><br><span class="line">      &quot;Free Megabytes&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_disk&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    #IncludeTotal=false</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    ObjectName = &quot;PhysicalDisk&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Disk Read Bytes/sec&quot;,</span><br><span class="line">      &quot;Disk Write Bytes/sec&quot;,</span><br><span class="line">      &quot;Current Disk Queue Length&quot;,</span><br><span class="line">      &quot;Disk Reads/sec&quot;,</span><br><span class="line">      &quot;Disk Writes/sec&quot;,</span><br><span class="line">      &quot;% Disk Time&quot;,</span><br><span class="line">      &quot;% Disk Read Time&quot;,</span><br><span class="line">      &quot;% Disk Write Time&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_diskio&quot;</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    ObjectName = &quot;Network Interface&quot;</span><br><span class="line">    Instances = [&quot;*&quot;]</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Bytes Received/sec&quot;,</span><br><span class="line">      &quot;Bytes Sent/sec&quot;,</span><br><span class="line">      &quot;Packets Received/sec&quot;,</span><br><span class="line">      &quot;Packets Sent/sec&quot;,</span><br><span class="line">      &quot;Packets Received Discarded&quot;,</span><br><span class="line">      &quot;Packets Outbound Discarded&quot;,</span><br><span class="line">      &quot;Packets Received Errors&quot;,</span><br><span class="line">      &quot;Packets Outbound Errors&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Measurement = &quot;win_net&quot;</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    ObjectName = &quot;System&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Context Switches/sec&quot;,</span><br><span class="line">      &quot;System Calls/sec&quot;,</span><br><span class="line">      &quot;Processor Queue Length&quot;,</span><br><span class="line">      &quot;System Up Time&quot;,</span><br><span class="line">	  &quot;Processes&quot;,</span><br><span class="line">	  &quot;Threads&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Instances = [&quot;------&quot;]</span><br><span class="line">    Measurement = &quot;win_system&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    #IncludeTotal=false</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Example query where the Instance portion must be removed to get data back,</span><br><span class="line">    # such as from the Memory object.</span><br><span class="line">    ObjectName = &quot;Memory&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;Available Bytes&quot;,</span><br><span class="line">      &quot;Cache Faults/sec&quot;,</span><br><span class="line">      &quot;Demand Zero Faults/sec&quot;,</span><br><span class="line">      &quot;Page Faults/sec&quot;,</span><br><span class="line">      &quot;Pages/sec&quot;,</span><br><span class="line">      &quot;Transition Faults/sec&quot;,</span><br><span class="line">      &quot;Pool Nonpaged Bytes&quot;,</span><br><span class="line">      &quot;Pool Paged Bytes&quot;,</span><br><span class="line">      &quot;Standby Cache Reserve Bytes&quot;,</span><br><span class="line">      &quot;Standby Cache Normal Priority Bytes&quot;,</span><br><span class="line">      &quot;Standby Cache Core Bytes&quot;,</span><br><span class="line"></span><br><span class="line">    ]</span><br><span class="line">    # Use 6 x - to remove the Instance bit from the query.</span><br><span class="line">    Instances = [&quot;------&quot;]</span><br><span class="line">    Measurement = &quot;win_mem&quot;</span><br><span class="line">    # Set to true to include _Total instance when querying for all (*).</span><br><span class="line">    #IncludeTotal=false</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Example query where the Instance portion must be removed to get data back,</span><br><span class="line">    # such as from the Paging File object.</span><br><span class="line">    ObjectName = &quot;Paging File&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Usage&quot;,</span><br><span class="line">    ]</span><br><span class="line">    Instances = [&quot;_Total&quot;]</span><br><span class="line">    Measurement = &quot;win_swap&quot;</span><br><span class="line"></span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Process metrics</span><br><span class="line">    ObjectName = &quot;Process&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Processor Time&quot;,</span><br><span class="line">      &quot;Handle Count&quot;,</span><br><span class="line">      &quot;Private Bytes&quot;,</span><br><span class="line">      &quot;Thread Count&quot;,</span><br><span class="line">      &quot;Virtual Bytes&quot;,</span><br><span class="line">      &quot;Working Set&quot;</span><br><span class="line">      ]</span><br><span class="line">    Instances = [&quot;sqlservr&quot;]</span><br><span class="line">    Measurement = &quot;win_proc&quot;</span><br><span class="line">    #IncludeTotal=false #Set to true to include _Total instance when querying for all (*).</span><br><span class="line">	</span><br><span class="line">  [[inputs.win_perf_counters.object]]</span><br><span class="line">    # Process metrics</span><br><span class="line">    ObjectName = &quot;Process&quot;</span><br><span class="line">    Counters = [</span><br><span class="line">      &quot;% Processor Time&quot;,</span><br><span class="line">      &quot;Handle Count&quot;,</span><br><span class="line">      &quot;Private Bytes&quot;,</span><br><span class="line">      &quot;Thread Count&quot;,</span><br><span class="line">      &quot;Virtual Bytes&quot;,</span><br><span class="line">      &quot;Working Set&quot;</span><br><span class="line">      ]</span><br><span class="line">    Instances = [&quot;LogServer&quot;]</span><br><span class="line">    Measurement = &quot;win_proc&quot;</span><br><span class="line">    #IncludeTotal=false #Set to true to include _Total instance when querying for all (*).</span><br><span class="line">	</span><br><span class="line">  [[inputs.ping]]</span><br><span class="line">	##  List of urls to ping</span><br><span class="line">	urls = [&quot;10.148.0.13&quot;,&quot;35.186.145.86&quot;] # required</span><br><span class="line">	##  number of pings to send per collection (ping -c &lt;COUNT&gt;)</span><br><span class="line">		count = 1</span><br><span class="line">	##  interval, in s, at which to ping. 0 == default (ping -i &lt;PING_INTERVAL&gt;)</span><br><span class="line">	# 	ping_interval = 1.0</span><br><span class="line">	##  per-ping timeout, in s. 0 == no timeout (ping -W &lt;TIMEOUT&gt;)</span><br><span class="line">		timeout = 1.0</span><br><span class="line">	##  interface to send ping from (ping -I &lt;INTERFACE&gt;)</span><br><span class="line">	# 	interface = &quot;&quot;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/08/03/telegraf建立-ubuntu/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    telegraf建立-ubuntu
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/08/03/telegraf建立-windows/" class="ui tiny button">
-                    
-                    telegraf建立-windows
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/03/telegraf建立-windows/" rel="prev" title="telegraf建立-windows">
+      <i class="fa fa-chevron-left"></i> telegraf建立-windows
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/03/telegraf建立-ubuntu/" rel="next" title="telegraf建立-ubuntu">
+      telegraf建立-ubuntu <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#windows-telegraf-config"><span>windows-telegraf config</span></a></li><li><a href="#第-52-行加入Log檔案放置的路徑與檔案名稱、第-69-行輸入機器-IP、第-72-行輸入-datebase-名稱"><span>第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows-telegraf-config"><span class="nav-number">1.</span> <span class="nav-text">windows-telegraf config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第-52-行加入Log檔案放置的路徑與檔案名稱、第-69-行輸入機器-IP、第-72-行輸入-datebase-名稱"><span class="nav-number">2.</span> <span class="nav-text">第 52 行加入Log檔案放置的路徑與檔案名稱、第 69 行輸入機器 IP、第 72 行輸入 datebase 名稱</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

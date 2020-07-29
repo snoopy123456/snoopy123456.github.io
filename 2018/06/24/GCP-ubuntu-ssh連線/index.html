@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>GCP-ubuntu-ssh連線 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; SSH &amp;#x516C;&amp;#x958B;&amp;#x91D1;&amp;#x9470;&amp;#x8A8D;&amp;#x8B49;&amp;#xFF08;Public Key Authentication&amp;#xFF09;&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x8B93;&amp;#">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入使用版本 ubuntu 16.041. 指令產金鑰1ssh-keygen 產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵12Generating publi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-ubuntu-ssh連線">
 <meta property="og:url" content="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; SSH &amp;#x516C;&amp;#x958B;&amp;#x91D1;&amp;#x9470;&amp;#x8A8D;&amp;#x8B49;&amp;#xFF08;Public Key Authentication&amp;#xFF09;&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x8B93;&amp;#">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入使用版本 ubuntu 16.041. 指令產金鑰1ssh-keygen 產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵12Generating publi">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/images/3.png">
@@ -26,243 +37,354 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-ubuntu-ssh連線">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; SSH &amp;#x516C;&amp;#x958B;&amp;#x91D1;&amp;#x9470;&amp;#x8A8D;&amp;#x8B49;&amp;#xFF08;Public Key Authentication&amp;#xFF09;&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x8B93;&amp;#">
+<meta name="twitter:description" content="本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入使用版本 ubuntu 16.041. 指令產金鑰1ssh-keygen 產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵12Generating publi">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>GCP-ubuntu-ssh連線 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-GCP-ubuntu-ssh連線" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    GCP-ubuntu-ssh連線
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/GCP-ubuntu-ssh連線/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-SSH-&#x516C;&#x958B;&#x91D1;&#x9470;&#x8A8D;&#x8B49;&#xFF08;Public-Key-Authentication&#xFF09;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF0C;&#x8B93;&#x4F60;&#x4E0D;&#x7528;&#x6253;&#x5BC6;&#x78BC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x767B;&#x5165;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-SSH-&#x516C;&#x958B;&#x91D1;&#x9470;&#x8A8D;&#x8B49;&#xFF08;Public-Key-Authentication&#xFF09;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF0C;&#x8B93;&#x4F60;&#x4E0D;&#x7528;&#x6253;&#x5BC6;&#x78BC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x767B;&#x5165;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; SSH &#x516C;&#x958B;&#x91D1;&#x9470;&#x8A8D;&#x8B49;&#xFF08;Public Key Authentication&#xFF09;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF0C;&#x8B93;&#x4F60;&#x4E0D;&#x7528;&#x6253;&#x5BC6;&#x78BC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x767B;&#x5165;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; SSH &#x516C;&#x958B;&#x91D1;&#x9470;&#x8A8D;&#x8B49;&#xFF08;Public Key Authentication&#xFF09;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF0C;&#x8B93;&#x4F60;&#x4E0D;&#x7528;&#x6253;&#x5BC6;&#x78BC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x767B;&#x5165;</h3><h3 id="&#x4F7F;&#x7528;&#x7248;&#x672C;-ubuntu-16-04"><a href="#&#x4F7F;&#x7528;&#x7248;&#x672C;-ubuntu-16-04" class="headerlink" title="&#x4F7F;&#x7528;&#x7248;&#x672C; ubuntu 16.04"></a>&#x4F7F;&#x7528;&#x7248;&#x672C; ubuntu 16.04</h3><h4 id="1-&#x6307;&#x4EE4;&#x7522;&#x91D1;&#x9470;"><a href="#1-&#x6307;&#x4EE4;&#x7522;&#x91D1;&#x9470;" class="headerlink" title="1. &#x6307;&#x4EE4;&#x7522;&#x91D1;&#x9470;"></a>1. &#x6307;&#x4EE4;&#x7522;&#x91D1;&#x9470;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
-<h4 id="&#x7522;&#x751F;&#x91D1;&#x9470;&#x904E;&#x7A0B;&#x4E2D;&#xFF0C;&#x6703;&#x8A62;&#x554F;&#x4E00;&#x4E9B;&#x554F;&#x984C;&#x5C0D;&#x65BC;&#x4E00;&#x822C;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x800C;&#x8A00;&#xFF0C;&#x5168;&#x90E8;&#x90FD;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF08;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;&#xFF09;&#x5373;&#x53EF;"><a href="#&#x7522;&#x751F;&#x91D1;&#x9470;&#x904E;&#x7A0B;&#x4E2D;&#xFF0C;&#x6703;&#x8A62;&#x554F;&#x4E00;&#x4E9B;&#x554F;&#x984C;&#x5C0D;&#x65BC;&#x4E00;&#x822C;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x800C;&#x8A00;&#xFF0C;&#x5168;&#x90E8;&#x90FD;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF08;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;&#xFF09;&#x5373;&#x53EF;" class="headerlink" title="&#x7522;&#x751F;&#x91D1;&#x9470;&#x904E;&#x7A0B;&#x4E2D;&#xFF0C;&#x6703;&#x8A62;&#x554F;&#x4E00;&#x4E9B;&#x554F;&#x984C;&#x5C0D;&#x65BC;&#x4E00;&#x822C;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x800C;&#x8A00;&#xFF0C;&#x5168;&#x90E8;&#x90FD;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF08;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;&#xFF09;&#x5373;&#x53EF;"></a>&#x7522;&#x751F;&#x91D1;&#x9470;&#x904E;&#x7A0B;&#x4E2D;&#xFF0C;&#x6703;&#x8A62;&#x554F;&#x4E00;&#x4E9B;&#x554F;&#x984C;&#x5C0D;&#x65BC;&#x4E00;&#x822C;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x800C;&#x8A00;&#xFF0C;&#x5168;&#x90E8;&#x90FD;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#xFF08;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;&#xFF09;&#x5373;&#x53EF;</h4><h4 id="&#x9996;&#x5148;&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x5132;&#x5B58;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#x5373;&#x53EF;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;"><a href="#&#x9996;&#x5148;&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x5132;&#x5B58;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#x5373;&#x53EF;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;" class="headerlink" title="&#x9996;&#x5148;&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x5132;&#x5B58;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#x5373;&#x53EF;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;"></a>&#x9996;&#x5148;&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x5132;&#x5B58;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;&#x9810;&#x8A2D;&#x503C;&#x5373;&#x53EF;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/test/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
-<h4 id="&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x4FDD;&#x8B77;&#x5BC6;&#x78BC;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x7684;&#x8A71;&#xFF0C;&#x4EE5;&#x5F8C;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x90FD;&#x8981;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x4E0D;&#x8A2D;&#x5B9A;&#x5C31;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;&#x5373;&#x53EF;"><a href="#&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x4FDD;&#x8B77;&#x5BC6;&#x78BC;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x7684;&#x8A71;&#xFF0C;&#x4EE5;&#x5F8C;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x90FD;&#x8981;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x4E0D;&#x8A2D;&#x5B9A;&#x5C31;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;&#x5373;&#x53EF;" class="headerlink" title="&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x4FDD;&#x8B77;&#x5BC6;&#x78BC;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x7684;&#x8A71;&#xFF0C;&#x4EE5;&#x5F8C;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x90FD;&#x8981;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x4E0D;&#x8A2D;&#x5B9A;&#x5C31;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;&#x5373;&#x53EF;"></a>&#x6307;&#x5B9A;&#x91D1;&#x9470;&#x4FDD;&#x8B77;&#x5BC6;&#x78BC;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x7684;&#x8A71;&#xFF0C;&#x4EE5;&#x5F8C;&#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x90FD;&#x8981;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x4E0D;&#x8A2D;&#x5B9A;&#x5C31;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;&#x5373;&#x53EF;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase):</span><br></pre></td></tr></table></figure>
-<h4 id="&#x518D;&#x6B21;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;&#x63A5;&#x8457;&#x5C31;&#x6703;&#x7522;&#x751F;&#x91D1;&#x9470;&#x4E86;"><a href="#&#x518D;&#x6B21;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x76F4;&#x63A5;&#x6309;&#x4E0B;-Enter-&#x9375;&#x63A5;&#x8457;&#x5C31;&#x6703;&#x7522;&#x751F;&#x91D1;&#x9470;&#x4E86;" class="headerlink" title="&#x518D;&#x6B21;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;&#x63A5;&#x8457;&#x5C31;&#x6703;&#x7522;&#x751F;&#x91D1;&#x9470;&#x4E86;"></a>&#x518D;&#x6B21;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x76F4;&#x63A5;&#x6309;&#x4E0B; Enter &#x9375;&#x63A5;&#x8457;&#x5C31;&#x6703;&#x7522;&#x751F;&#x91D1;&#x9470;&#x4E86;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
-<h4 id="&#x7522;&#x751F;&#x7684;&#x91D1;&#x9470;&#x6703;&#x6709;&#x5169;&#x500B;&#x6A94;&#x6848;&#xFF0C;&#x4F4D;&#x7F6E;&#x5728;-home-&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;-ssh"><a href="#&#x7522;&#x751F;&#x7684;&#x91D1;&#x9470;&#x6703;&#x6709;&#x5169;&#x500B;&#x6A94;&#x6848;&#xFF0C;&#x4F4D;&#x7F6E;&#x5728;-home-&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;-ssh" class="headerlink" title="&#x7522;&#x751F;&#x7684;&#x91D1;&#x9470;&#x6703;&#x6709;&#x5169;&#x500B;&#x6A94;&#x6848;&#xFF0C;&#x4F4D;&#x7F6E;&#x5728; /home/&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;/.ssh"></a>&#x7522;&#x751F;&#x7684;&#x91D1;&#x9470;&#x6703;&#x6709;&#x5169;&#x500B;&#x6A94;&#x6848;&#xFF0C;&#x4F4D;&#x7F6E;&#x5728; /home/&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;/.ssh</h4><h4 id="id-rsa-pub&#xFF1A;&#x516C;&#x958B;&#x91D1;&#x9470;&#xFF08;public-key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x53EF;&#x4EE5;&#x5C0D;&#x5916;&#x516C;&#x958B;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x4E4B;&#x5F8C;&#x8981;&#x5C07;&#x5B83;&#x653E;&#x5728;-GCP-&#x4E0A;&#x4F5C;&#x8A8D;&#x8B49;&#x4F7F;&#x7528;"><a href="#id-rsa-pub&#xFF1A;&#x516C;&#x958B;&#x91D1;&#x9470;&#xFF08;public-key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x53EF;&#x4EE5;&#x5C0D;&#x5916;&#x516C;&#x958B;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x4E4B;&#x5F8C;&#x8981;&#x5C07;&#x5B83;&#x653E;&#x5728;-GCP-&#x4E0A;&#x4F5C;&#x8A8D;&#x8B49;&#x4F7F;&#x7528;" class="headerlink" title="id_rsa.pub&#xFF1A;&#x516C;&#x958B;&#x91D1;&#x9470;&#xFF08;public key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x53EF;&#x4EE5;&#x5C0D;&#x5916;&#x516C;&#x958B;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x4E4B;&#x5F8C;&#x8981;&#x5C07;&#x5B83;&#x653E;&#x5728; GCP &#x4E0A;&#x4F5C;&#x8A8D;&#x8B49;&#x4F7F;&#x7528;"></a>id_rsa.pub&#xFF1A;&#x516C;&#x958B;&#x91D1;&#x9470;&#xFF08;public key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x53EF;&#x4EE5;&#x5C0D;&#x5916;&#x516C;&#x958B;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x4E4B;&#x5F8C;&#x8981;&#x5C07;&#x5B83;&#x653E;&#x5728; GCP &#x4E0A;&#x4F5C;&#x8A8D;&#x8B49;&#x4F7F;&#x7528;</h4><h4 id="id-rsa&#xFF1A;&#x79C1;&#x5BC6;&#x91D1;&#x9470;&#xFF08;private-key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x8981;&#x4FDD;&#x8B77;&#x597D;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x5B83;&#x7B49;&#x540C;&#x65BC;&#x4F60;&#x7684;-Linux-&#x5BC6;&#x78BC;&#xFF0C;&#x653E;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x96FB;&#x8166;&#x4E2D;"><a href="#id-rsa&#xFF1A;&#x79C1;&#x5BC6;&#x91D1;&#x9470;&#xFF08;private-key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x8981;&#x4FDD;&#x8B77;&#x597D;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x5B83;&#x7B49;&#x540C;&#x65BC;&#x4F60;&#x7684;-Linux-&#x5BC6;&#x78BC;&#xFF0C;&#x653E;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x96FB;&#x8166;&#x4E2D;" class="headerlink" title="id_rsa&#xFF1A;&#x79C1;&#x5BC6;&#x91D1;&#x9470;&#xFF08;private key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x8981;&#x4FDD;&#x8B77;&#x597D;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x5B83;&#x7B49;&#x540C;&#x65BC;&#x4F60;&#x7684; Linux &#x5BC6;&#x78BC;&#xFF0C;&#x653E;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x96FB;&#x8166;&#x4E2D;"></a>id_rsa&#xFF1A;&#x79C1;&#x5BC6;&#x91D1;&#x9470;&#xFF08;private key&#xFF09;&#xFF0C;&#x9019;&#x662F;&#x8981;&#x4FDD;&#x8B77;&#x597D;&#x7684;&#x91D1;&#x9470;&#xFF0C;&#x5B83;&#x7B49;&#x540C;&#x65BC;&#x4F60;&#x7684; Linux &#x5BC6;&#x78BC;&#xFF0C;&#x653E;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x96FB;&#x8166;&#x4E2D;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h4 id="2-&#x5230;-home-test-ssh-&#x8DEF;&#x5F91;&#x4E0B;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x6307;&#x4EE4;&#x8907;&#x88FD;&#x516C;&#x9470;"><a href="#2-&#x5230;-home-test-ssh-&#x8DEF;&#x5F91;&#x4E0B;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x6307;&#x4EE4;&#x8907;&#x88FD;&#x516C;&#x9470;" class="headerlink" title="2. &#x5230; /home/test/.ssh/ &#x8DEF;&#x5F91;&#x4E0B;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x6307;&#x4EE4;&#x8907;&#x88FD;&#x516C;&#x9470;"></a>2. &#x5230; /home/test/.ssh/ &#x8DEF;&#x5F91;&#x4E0B;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x6307;&#x4EE4;&#x8907;&#x88FD;&#x516C;&#x9470;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /home/test/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">vi /home/test/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="3-&#x5230;-GCP-&#x2192;-Computer-Engine-&#x2192;-&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#xFF0C;&#x9EDE;&#x64CA;&#x5206;&#x9801;-SSH-&#x91D1;&#x9470;-&#x2192;-&#x7DE8;&#x8F2F;&#xFF0C;&#x628A;&#x8907;&#x88FD;&#x7684;&#x516C;&#x9470;&#x65B0;&#x589E;&#x4E0A;&#x53BB;"><a href="#3-&#x5230;-GCP-&#x2192;-Computer-Engine-&#x2192;-&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#xFF0C;&#x9EDE;&#x64CA;&#x5206;&#x9801;-SSH-&#x91D1;&#x9470;-&#x2192;-&#x7DE8;&#x8F2F;&#xFF0C;&#x628A;&#x8907;&#x88FD;&#x7684;&#x516C;&#x9470;&#x65B0;&#x589E;&#x4E0A;&#x53BB;" class="headerlink" title="3. &#x5230; GCP &#x2192; Computer Engine &#x2192; &#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#xFF0C;&#x9EDE;&#x64CA;&#x5206;&#x9801; SSH &#x91D1;&#x9470; &#x2192; &#x7DE8;&#x8F2F;&#xFF0C;&#x628A;&#x8907;&#x88FD;&#x7684;&#x516C;&#x9470;&#x65B0;&#x589E;&#x4E0A;&#x53BB;"></a>3. &#x5230; GCP &#x2192; Computer Engine &#x2192; &#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#xFF0C;&#x9EDE;&#x64CA;&#x5206;&#x9801; SSH &#x91D1;&#x9470; &#x2192; &#x7DE8;&#x8F2F;&#xFF0C;&#x628A;&#x8907;&#x88FD;&#x7684;&#x516C;&#x9470;&#x65B0;&#x589E;&#x4E0A;&#x53BB;</h4><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="4-&#x4E0B;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x8981;&#x9023;&#x7DDA;&#x8F38;&#x5165;-yes&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x662F;&#x6210;&#x529F;&#x756B;&#x9762;"><a href="#4-&#x4E0B;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x8981;&#x9023;&#x7DDA;&#x8F38;&#x5165;-yes&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x662F;&#x6210;&#x529F;&#x756B;&#x9762;" class="headerlink" title="4. &#x4E0B;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x8981;&#x9023;&#x7DDA;&#x8F38;&#x5165; yes&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x662F;&#x6210;&#x529F;&#x756B;&#x9762;"></a>4. &#x4E0B;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x8981;&#x9023;&#x7DDA;&#x8F38;&#x5165; yes&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x662F;&#x6210;&#x529F;&#x756B;&#x9762;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &#x8981;&#x9023;&#x7DDA; ip</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-24T03:35:55.000Z" itemprop="datePublished">2018-06-24</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GCP-ubuntu-ssh連線
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-24 11:35:55" itemprop="dateCreated datePublished" datetime="2018-06-24T11:35:55+08:00">2018-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本文章將介紹-SSH-公開金鑰認證（Public-Key-Authentication）的使用方式，讓你不用打密碼就可以直接登入"><a href="#本文章將介紹-SSH-公開金鑰認證（Public-Key-Authentication）的使用方式，讓你不用打密碼就可以直接登入" class="headerlink" title="本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入"></a>本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入</h3><h3 id="使用版本-ubuntu-16-04"><a href="#使用版本-ubuntu-16-04" class="headerlink" title="使用版本 ubuntu 16.04"></a>使用版本 ubuntu 16.04</h3><h4 id="1-指令產金鑰"><a href="#1-指令產金鑰" class="headerlink" title="1. 指令產金鑰"></a>1. 指令產金鑰</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+<h4 id="產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下-Enter-鍵）即可"><a href="#產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下-Enter-鍵）即可" class="headerlink" title="產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可"></a>產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可</h4><h4 id="首先指定金鑰儲存的位置，使用預設值即可直接按下-Enter-鍵"><a href="#首先指定金鑰儲存的位置，使用預設值即可直接按下-Enter-鍵" class="headerlink" title="首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵"></a>首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/test/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+<h4 id="指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下-Enter-鍵即可"><a href="#指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下-Enter-鍵即可" class="headerlink" title="指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下 Enter 鍵即可"></a>指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下 Enter 鍵即可</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase):</span><br></pre></td></tr></table></figure>
+<h4 id="再次輸入密碼，直接按下-Enter-鍵接著就會產生金鑰了"><a href="#再次輸入密碼，直接按下-Enter-鍵接著就會產生金鑰了" class="headerlink" title="再次輸入密碼，直接按下 Enter 鍵接著就會產生金鑰了"></a>再次輸入密碼，直接按下 Enter 鍵接著就會產生金鑰了</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
+<h4 id="產生的金鑰會有兩個檔案，位置在-home-使用者名稱-ssh"><a href="#產生的金鑰會有兩個檔案，位置在-home-使用者名稱-ssh" class="headerlink" title="產生的金鑰會有兩個檔案，位置在 /home/使用者名稱/.ssh"></a>產生的金鑰會有兩個檔案，位置在 /home/使用者名稱/.ssh</h4><h4 id="id-rsa-pub：公開金鑰（public-key），這是可以對外公開的金鑰，之後要將它放在-GCP-上作認證使用"><a href="#id-rsa-pub：公開金鑰（public-key），這是可以對外公開的金鑰，之後要將它放在-GCP-上作認證使用" class="headerlink" title="id_rsa.pub：公開金鑰（public key），這是可以對外公開的金鑰，之後要將它放在 GCP 上作認證使用"></a>id_rsa.pub：公開金鑰（public key），這是可以對外公開的金鑰，之後要將它放在 GCP 上作認證使用</h4><h4 id="id-rsa：私密金鑰（private-key），這是要保護好的金鑰，它等同於你的-Linux-密碼，放在自己的電腦中"><a href="#id-rsa：私密金鑰（private-key），這是要保護好的金鑰，它等同於你的-Linux-密碼，放在自己的電腦中" class="headerlink" title="id_rsa：私密金鑰（private key），這是要保護好的金鑰，它等同於你的 Linux 密碼，放在自己的電腦中"></a>id_rsa：私密金鑰（private key），這是要保護好的金鑰，它等同於你的 Linux 密碼，放在自己的電腦中</h4><p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
+<h4 id="2-到-home-test-ssh-路徑下其中一個指令複製公鑰"><a href="#2-到-home-test-ssh-路徑下其中一個指令複製公鑰" class="headerlink" title="2. 到 /home/test/.ssh/ 路徑下其中一個指令複製公鑰"></a>2. 到 /home/test/.ssh/ 路徑下其中一個指令複製公鑰</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /home/test/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">vi /home/test/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p><img src="images/3.png" alt=" "></p>
+<h4 id="3-到-GCP-→-Computer-Engine-→-中繼資料，點擊分頁-SSH-金鑰-→-編輯，把複製的公鑰新增上去"><a href="#3-到-GCP-→-Computer-Engine-→-中繼資料，點擊分頁-SSH-金鑰-→-編輯，把複製的公鑰新增上去" class="headerlink" title="3. 到 GCP → Computer Engine → 中繼資料，點擊分頁 SSH 金鑰 → 編輯，把複製的公鑰新增上去"></a>3. 到 GCP → Computer Engine → 中繼資料，點擊分頁 SSH 金鑰 → 編輯，把複製的公鑰新增上去</h4><p><img src="images/4.png" alt=" "><br><img src="images/5.png" alt=" "><br><img src="images/6.png" alt=" "></p>
+<h4 id="4-下指令連線會詢問是否要連線輸入-yes，如下圖就是成功畫面"><a href="#4-下指令連線會詢問是否要連線輸入-yes，如下圖就是成功畫面" class="headerlink" title="4. 下指令連線會詢問是否要連線輸入 yes，如下圖就是成功畫面"></a>4. 下指令連線會詢問是否要連線輸入 yes，如下圖就是成功畫面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 要連線 ip</span><br></pre></td></tr></table></figure>
+<p><img src="images/7.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/26/disk-介紹/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    disk-介紹
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/23/linux更改時區/" class="ui tiny button">
-                    
-                    linux更改時區
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/23/linux更改時區/" rel="prev" title="linux更改時區">
+      <i class="fa fa-chevron-left"></i> linux更改時區
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/26/disk-介紹/" rel="next" title="disk-介紹">
+      disk-介紹 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹-SSH-公開金鑰認證（Public-Key-Authentication）的使用方式，讓你不用打密碼就可以直接登入"><span>本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入</span></a></li><li><a href="#使用版本-ubuntu-16-04"><span>使用版本 ubuntu 16.04</span></a><ol><li><a href="#1-指令產金鑰"><span>1. 指令產金鑰</span></a></li><li><a href="#產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下-Enter-鍵）即可"><span>產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可</span></a></li><li><a href="#首先指定金鑰儲存的位置，使用預設值即可直接按下-Enter-鍵"><span>首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵</span></a></li><li><a href="#指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下-Enter-鍵即可"><span>指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下 Enter 鍵即可</span></a></li><li><a href="#再次輸入密碼，直接按下-Enter-鍵接著就會產生金鑰了"><span>再次輸入密碼，直接按下 Enter 鍵接著就會產生金鑰了</span></a></li><li><a href="#產生的金鑰會有兩個檔案，位置在-home-使用者名稱-ssh"><span>產生的金鑰會有兩個檔案，位置在 /home/使用者名稱/.ssh</span></a></li><li><a href="#id-rsa-pub：公開金鑰（public-key），這是可以對外公開的金鑰，之後要將它放在-GCP-上作認證使用"><span>id_rsa.pub：公開金鑰（public key），這是可以對外公開的金鑰，之後要將它放在 GCP 上作認證使用</span></a></li><li><a href="#id-rsa：私密金鑰（private-key），這是要保護好的金鑰，它等同於你的-Linux-密碼，放在自己的電腦中"><span>id_rsa：私密金鑰（private key），這是要保護好的金鑰，它等同於你的 Linux 密碼，放在自己的電腦中</span></a></li><li><a href="#2-到-home-test-ssh-路徑下其中一個指令複製公鑰"><span>2. 到 /home/test/.ssh/ 路徑下其中一個指令複製公鑰</span></a></li><li><a href="#3-到-GCP-→-Computer-Engine-→-中繼資料，點擊分頁-SSH-金鑰-→-編輯，把複製的公鑰新增上去"><span>3. 到 GCP → Computer Engine → 中繼資料，點擊分頁 SSH 金鑰 → 編輯，把複製的公鑰新增上去</span></a></li><li><a href="#4-下指令連線會詢問是否要連線輸入-yes，如下圖就是成功畫面"><span>4. 下指令連線會詢問是否要連線輸入 yes，如下圖就是成功畫面</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文章將介紹-SSH-公開金鑰認證（Public-Key-Authentication）的使用方式，讓你不用打密碼就可以直接登入"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹 SSH 公開金鑰認證（Public Key Authentication）的使用方式，讓你不用打密碼就可以直接登入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用版本-ubuntu-16-04"><span class="nav-number">2.</span> <span class="nav-text">使用版本 ubuntu 16.04</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-指令產金鑰"><span class="nav-number">2.1.</span> <span class="nav-text">1. 指令產金鑰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下-Enter-鍵）即可"><span class="nav-number">2.2.</span> <span class="nav-text">產生金鑰過程中，會詢問一些問題對於一般的使用者而言，全部都使用預設值（直接按下 Enter 鍵）即可</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首先指定金鑰儲存的位置，使用預設值即可直接按下-Enter-鍵"><span class="nav-number">2.3.</span> <span class="nav-text">首先指定金鑰儲存的位置，使用預設值即可直接按下 Enter 鍵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下-Enter-鍵即可"><span class="nav-number">2.4.</span> <span class="nav-text">指定金鑰保護密碼，如果有設定密碼的話，以後每次使用都要輸入密碼，不設定就直接按下 Enter 鍵即可</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次輸入密碼，直接按下-Enter-鍵接著就會產生金鑰了"><span class="nav-number">2.5.</span> <span class="nav-text">再次輸入密碼，直接按下 Enter 鍵接著就會產生金鑰了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#產生的金鑰會有兩個檔案，位置在-home-使用者名稱-ssh"><span class="nav-number">2.6.</span> <span class="nav-text">產生的金鑰會有兩個檔案，位置在 /home/使用者名稱/.ssh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-rsa-pub：公開金鑰（public-key），這是可以對外公開的金鑰，之後要將它放在-GCP-上作認證使用"><span class="nav-number">2.7.</span> <span class="nav-text">id_rsa.pub：公開金鑰（public key），這是可以對外公開的金鑰，之後要將它放在 GCP 上作認證使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-rsa：私密金鑰（private-key），這是要保護好的金鑰，它等同於你的-Linux-密碼，放在自己的電腦中"><span class="nav-number">2.8.</span> <span class="nav-text">id_rsa：私密金鑰（private key），這是要保護好的金鑰，它等同於你的 Linux 密碼，放在自己的電腦中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-到-home-test-ssh-路徑下其中一個指令複製公鑰"><span class="nav-number">2.9.</span> <span class="nav-text">2. 到 /home/test/.ssh/ 路徑下其中一個指令複製公鑰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-到-GCP-→-Computer-Engine-→-中繼資料，點擊分頁-SSH-金鑰-→-編輯，把複製的公鑰新增上去"><span class="nav-number">2.10.</span> <span class="nav-text">3. 到 GCP → Computer Engine → 中繼資料，點擊分頁 SSH 金鑰 → 編輯，把複製的公鑰新增上去</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-下指令連線會詢問是否要連線輸入-yes，如下圖就是成功畫面"><span class="nav-number">2.11.</span> <span class="nav-text">4. 下指令連線會詢問是否要連線輸入 yes，如下圖就是成功畫面</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

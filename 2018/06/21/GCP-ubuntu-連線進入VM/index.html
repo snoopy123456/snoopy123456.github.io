@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>GCP-ubuntu-連線進入VM | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x9023;&amp;#x7DDA;&amp;#x9032;&amp;#x5165; VM ( linux )&amp;#x7E3D;&amp;#x5171;&amp;#x6709; 4 &amp;#x7A2E;&amp;#x65B9;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x9032;&amp;#x5165; VM &amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4F9D;&amp;#x5E8F;&amp;#x4F5C;&amp;#x4">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="連線進入 VM ( linux )總共有 4 種方法可以進入 VM 本篇文章將依序作介紹SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門一、 使用 GCP 開啟新視窗連線創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟 點擊完後會另">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-ubuntu-連線進入VM">
 <meta property="og:url" content="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x9023;&amp;#x7DDA;&amp;#x9032;&amp;#x5165; VM ( linux )&amp;#x7E3D;&amp;#x5171;&amp;#x6709; 4 &amp;#x7A2E;&amp;#x65B9;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x9032;&amp;#x5165; VM &amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4F9D;&amp;#x5E8F;&amp;#x4F5C;&amp;#x4">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="連線進入 VM ( linux )總共有 4 種方法可以進入 VM 本篇文章將依序作介紹SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門一、 使用 GCP 開啟新視窗連線創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟 點擊完後會另">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/images/3.png">
@@ -55,268 +66,379 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-ubuntu-連線進入VM">
-<meta name="twitter:description" content="&amp;#x9023;&amp;#x7DDA;&amp;#x9032;&amp;#x5165; VM ( linux )&amp;#x7E3D;&amp;#x5171;&amp;#x6709; 4 &amp;#x7A2E;&amp;#x65B9;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x9032;&amp;#x5165; VM &amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4F9D;&amp;#x5E8F;&amp;#x4F5C;&amp;#x4">
+<meta name="twitter:description" content="連線進入 VM ( linux )總共有 4 種方法可以進入 VM 本篇文章將依序作介紹SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門一、 使用 GCP 開啟新視窗連線創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟 點擊完後會另">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>GCP-ubuntu-連線進入VM | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-GCP-ubuntu-連線進入VM" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    GCP-ubuntu-連線進入VM
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/GCP-ubuntu-連線進入VM/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x9023;&#x7DDA;&#x9032;&#x5165;-VM-linux"><a href="#&#x9023;&#x7DDA;&#x9032;&#x5165;-VM-linux" class="headerlink" title="&#x9023;&#x7DDA;&#x9032;&#x5165; VM ( linux )"></a>&#x9023;&#x7DDA;&#x9032;&#x5165; VM ( linux )</h3><h3 id="&#x7E3D;&#x5171;&#x6709;-4-&#x7A2E;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x9032;&#x5165;-VM-&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4F9D;&#x5E8F;&#x4F5C;&#x4ECB;&#x7D39;"><a href="#&#x7E3D;&#x5171;&#x6709;-4-&#x7A2E;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x9032;&#x5165;-VM-&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4F9D;&#x5E8F;&#x4F5C;&#x4ECB;&#x7D39;" class="headerlink" title="&#x7E3D;&#x5171;&#x6709; 4 &#x7A2E;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x9032;&#x5165; VM &#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4F9D;&#x5E8F;&#x4F5C;&#x4ECB;&#x7D39;"></a>&#x7E3D;&#x5171;&#x6709; 4 &#x7A2E;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x9032;&#x5165; VM &#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4F9D;&#x5E8F;&#x4F5C;&#x4ECB;&#x7D39;</h3><h3 id="SSH-&#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230;-tcp-22&#xFF0C;&#x4E00;&#x822C;&#x5C08;&#x6848;&#x958B;&#x597D;&#x6703;&#x6709;&#x9810;&#x8A2D;&#x9632;&#x706B;&#x7246;-tcp-22-&#x4F46;&#x662F;-VM-&#x8DDF;-IP-&#x5168;&#x958B;-&#x5EFA;&#x597D;-VM-&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x9023;&#x5C31;&#x662F;&#x56E0;&#x70BA;&#x9019;&#x6A23;-&#xFF0C;&#x9700;&#x8981;&#x518D;&#x505A;&#x8A2D;&#x5B9A;&#x9632;&#x706B;&#x7246;&#x6587;&#x7AE0;&#x53EF;&#x4EE5;&#x5230;&#x9019;&#x88E1;&#x770B;-&#x6587;&#x7AE0;&#x50B3;&#x9001;&#x9580;"><a href="#SSH-&#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230;-tcp-22&#xFF0C;&#x4E00;&#x822C;&#x5C08;&#x6848;&#x958B;&#x597D;&#x6703;&#x6709;&#x9810;&#x8A2D;&#x9632;&#x706B;&#x7246;-tcp-22-&#x4F46;&#x662F;-VM-&#x8DDF;-IP-&#x5168;&#x958B;-&#x5EFA;&#x597D;-VM-&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x9023;&#x5C31;&#x662F;&#x56E0;&#x70BA;&#x9019;&#x6A23;-&#xFF0C;&#x9700;&#x8981;&#x518D;&#x505A;&#x8A2D;&#x5B9A;&#x9632;&#x706B;&#x7246;&#x6587;&#x7AE0;&#x53EF;&#x4EE5;&#x5230;&#x9019;&#x88E1;&#x770B;-&#x6587;&#x7AE0;&#x50B3;&#x9001;&#x9580;" class="headerlink" title="SSH &#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230; tcp:22&#xFF0C;&#x4E00;&#x822C;&#x5C08;&#x6848;&#x958B;&#x597D;&#x6703;&#x6709;&#x9810;&#x8A2D;&#x9632;&#x706B;&#x7246; tcp:22 &#x4F46;&#x662F; VM &#x8DDF; IP &#x5168;&#x958B; ( &#x5EFA;&#x597D; VM &#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x9023;&#x5C31;&#x662F;&#x56E0;&#x70BA;&#x9019;&#x6A23; )&#xFF0C;&#x9700;&#x8981;&#x518D;&#x505A;&#x8A2D;&#x5B9A;&#x9632;&#x706B;&#x7246;&#x6587;&#x7AE0;&#x53EF;&#x4EE5;&#x5230;&#x9019;&#x88E1;&#x770B; &#x6587;&#x7AE0;&#x50B3;&#x9001;&#x9580;"></a>SSH &#x9023;&#x7DDA;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230; tcp:22&#xFF0C;&#x4E00;&#x822C;&#x5C08;&#x6848;&#x958B;&#x597D;&#x6703;&#x6709;&#x9810;&#x8A2D;&#x9632;&#x706B;&#x7246; tcp:22 &#x4F46;&#x662F; VM &#x8DDF; IP &#x5168;&#x958B; ( &#x5EFA;&#x597D; VM &#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x9023;&#x5C31;&#x662F;&#x56E0;&#x70BA;&#x9019;&#x6A23; )&#xFF0C;&#x9700;&#x8981;&#x518D;&#x505A;&#x8A2D;&#x5B9A;&#x9632;&#x706B;&#x7246;&#x6587;&#x7AE0;&#x53EF;&#x4EE5;&#x5230;&#x9019;&#x88E1;&#x770B; <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E9%98%B2%E7%81%AB%E7%89%86/" target="_blank" rel="noopener">&#x6587;&#x7AE0;&#x50B3;&#x9001;&#x9580;</a></h3><h3 id="&#x4E00;&#x3001;-&#x4F7F;&#x7528;-GCP-&#x958B;&#x555F;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x7DDA;"><a href="#&#x4E00;&#x3001;-&#x4F7F;&#x7528;-GCP-&#x958B;&#x555F;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x7DDA;" class="headerlink" title="&#x4E00;&#x3001; &#x4F7F;&#x7528; GCP &#x958B;&#x555F;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x7DDA;"></a>&#x4E00;&#x3001; &#x4F7F;&#x7528; GCP &#x958B;&#x555F;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x7DDA;</h3><h3 id="&#x5275;&#x5EFA;&#x597D;-VM-&#x5F8C;&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x53F3;&#x908A;-SSH-&#x6216;&#x662F;-&#x25BC;-&#x5728;&#x700F;&#x89BD;&#x5668;&#x8996;&#x7A97;&#x4E2D;&#x958B;&#x555F;"><a href="#&#x5275;&#x5EFA;&#x597D;-VM-&#x5F8C;&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x53F3;&#x908A;-SSH-&#x6216;&#x662F;-&#x25BC;-&#x5728;&#x700F;&#x89BD;&#x5668;&#x8996;&#x7A97;&#x4E2D;&#x958B;&#x555F;" class="headerlink" title="&#x5275;&#x5EFA;&#x597D; VM &#x5F8C;&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x53F3;&#x908A; SSH &#x6216;&#x662F; &#x25BC; &#x5728;&#x700F;&#x89BD;&#x5668;&#x8996;&#x7A97;&#x4E2D;&#x958B;&#x555F;"></a>&#x5275;&#x5EFA;&#x597D; VM &#x5F8C;&#x76F4;&#x63A5;&#x9EDE;&#x64CA;&#x53F3;&#x908A; SSH &#x6216;&#x662F; &#x25BC; &#x5728;&#x700F;&#x89BD;&#x5668;&#x8996;&#x7A97;&#x4E2D;&#x958B;&#x555F;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x64CA;&#x5B8C;&#x5F8C;&#x6703;&#x53E6;&#x5916;&#x518D;&#x958B;&#x4E00;&#x500B;&#x8996;&#x7A97;&#xFF0C;&#x9019;&#x6642;&#x5019;-VM-&#x9023;&#x9032;&#x53BB;&#x6703;&#x5E6B;&#x4F60;&#x52A0;&#x91D1;&#x9470;"><a href="#&#x9EDE;&#x64CA;&#x5B8C;&#x5F8C;&#x6703;&#x53E6;&#x5916;&#x518D;&#x958B;&#x4E00;&#x500B;&#x8996;&#x7A97;&#xFF0C;&#x9019;&#x6642;&#x5019;-VM-&#x9023;&#x9032;&#x53BB;&#x6703;&#x5E6B;&#x4F60;&#x52A0;&#x91D1;&#x9470;" class="headerlink" title="&#x9EDE;&#x64CA;&#x5B8C;&#x5F8C;&#x6703;&#x53E6;&#x5916;&#x518D;&#x958B;&#x4E00;&#x500B;&#x8996;&#x7A97;&#xFF0C;&#x9019;&#x6642;&#x5019; VM &#x9023;&#x9032;&#x53BB;&#x6703;&#x5E6B;&#x4F60;&#x52A0;&#x91D1;&#x9470;"></a>&#x9EDE;&#x64CA;&#x5B8C;&#x5F8C;&#x6703;&#x53E6;&#x5916;&#x518D;&#x958B;&#x4E00;&#x500B;&#x8996;&#x7A97;&#xFF0C;&#x9019;&#x6642;&#x5019; VM &#x9023;&#x9032;&#x53BB;&#x6703;&#x5E6B;&#x4F60;&#x52A0;&#x91D1;&#x9470;</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x53EF;&#x4EE5;&#x5728;-Compute-Engine-&#x2192;-&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;-&#x2192;-SSH-&#x91D1;&#x9470;&#xFF0C;&#x67E5;&#x770B;&#x91D1;&#x9470;"><a href="#&#x53EF;&#x4EE5;&#x5728;-Compute-Engine-&#x2192;-&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;-&#x2192;-SSH-&#x91D1;&#x9470;&#xFF0C;&#x67E5;&#x770B;&#x91D1;&#x9470;" class="headerlink" title="&#x53EF;&#x4EE5;&#x5728; Compute Engine &#x2192; &#x4E2D;&#x7E7C;&#x8CC7;&#x6599; &#x2192; SSH &#x91D1;&#x9470;&#xFF0C;&#x67E5;&#x770B;&#x91D1;&#x9470;"></a>&#x53EF;&#x4EE5;&#x5728; Compute Engine &#x2192; &#x4E2D;&#x7E7C;&#x8CC7;&#x6599; &#x2192; SSH &#x91D1;&#x9470;&#xFF0C;&#x67E5;&#x770B;&#x91D1;&#x9470;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x4E8C;&#x3001;-&#x4F7F;&#x7528;-Cloud-Shell-&#x9023;&#x7DDA;"><a href="#&#x4E8C;&#x3001;-&#x4F7F;&#x7528;-Cloud-Shell-&#x9023;&#x7DDA;" class="headerlink" title="&#x4E8C;&#x3001; &#x4F7F;&#x7528; Cloud Shell &#x9023;&#x7DDA;"></a>&#x4E8C;&#x3001; &#x4F7F;&#x7528; Cloud Shell &#x9023;&#x7DDA;</h3><h3 id="&#x6253;&#x958B;-Cloud-Shell"><a href="#&#x6253;&#x958B;-Cloud-Shell" class="headerlink" title="&#x6253;&#x958B; Cloud Shell"></a>&#x6253;&#x958B; Cloud Shell</h3><p><a class="magnific-img" href="images/6.2.png"><img src="images/6.2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x9032;&#x5165;"><a href="#&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x9032;&#x5165;" class="headerlink" title="&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x9032;&#x5165;"></a>&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x9023;&#x7DDA;&#x9032;&#x5165;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute ssh (VM&#x540D;&#x7A31;) --zone (&#x5340;&#x57DF;)</span><br></pre></td></tr></table></figure>
-<h3 id="ex&#xFF1A;gcloud-compute-ssh-test-zone-asia-east1-b"><a href="#ex&#xFF1A;gcloud-compute-ssh-test-zone-asia-east1-b" class="headerlink" title="ex&#xFF1A;gcloud compute ssh test --zone asia-east1-b"></a>ex&#xFF1A;gcloud compute ssh test --zone asia-east1-b</h3><h3 id="&#x8F38;&#x5165;-y-&#x7E7C;&#x7E8C;"><a href="#&#x8F38;&#x5165;-y-&#x7E7C;&#x7E8C;" class="headerlink" title="&#x8F38;&#x5165; y &#x7E7C;&#x7E8C;"></a>&#x8F38;&#x5165; y &#x7E7C;&#x7E8C;</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x751F;&#x6210;&#x516C;&#x9470;-&#x79C1;&#x9470;&#xFF0C;&#x6703;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#x9EDE;-2&#x4E0B;-Enter-&#x4F7F;&#x7528;&#x7A7A;&#x5BC6;&#x78BC;-&#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x6709;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#xFF0C;&#x4E0B;&#x6B21;&#x5728;&#x4E0B;&#x6307;&#x4EE4;&#x5C31;&#x4E0D;&#x6703;&#x6709;&#x4E86;"><a href="#&#x751F;&#x6210;&#x516C;&#x9470;-&#x79C1;&#x9470;&#xFF0C;&#x6703;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#x9EDE;-2&#x4E0B;-Enter-&#x4F7F;&#x7528;&#x7A7A;&#x5BC6;&#x78BC;-&#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x6709;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#xFF0C;&#x4E0B;&#x6B21;&#x5728;&#x4E0B;&#x6307;&#x4EE4;&#x5C31;&#x4E0D;&#x6703;&#x6709;&#x4E86;" class="headerlink" title="&#x751F;&#x6210;&#x516C;&#x9470;/&#x79C1;&#x9470;&#xFF0C;&#x6703;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#x9EDE; 2&#x4E0B; Enter &#x4F7F;&#x7528;&#x7A7A;&#x5BC6;&#x78BC; ( &#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x6709;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#xFF0C;&#x4E0B;&#x6B21;&#x5728;&#x4E0B;&#x6307;&#x4EE4;&#x5C31;&#x4E0D;&#x6703;&#x6709;&#x4E86; )"></a>&#x751F;&#x6210;&#x516C;&#x9470;/&#x79C1;&#x9470;&#xFF0C;&#x6703;&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#x9EDE; 2&#x4E0B; Enter &#x4F7F;&#x7528;&#x7A7A;&#x5BC6;&#x78BC; ( &#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x6709;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#xFF0C;&#x4E0B;&#x6B21;&#x5728;&#x4E0B;&#x6307;&#x4EE4;&#x5C31;&#x4E0D;&#x6703;&#x6709;&#x4E86; )</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x539F;&#x672C;&#x662F;&#x5E33;&#x865F;&#x52A0;&#x5C08;&#x6848;-ID"><a href="#&#x539F;&#x672C;&#x662F;&#x5E33;&#x865F;&#x52A0;&#x5C08;&#x6848;-ID" class="headerlink" title="&#x539F;&#x672C;&#x662F;&#x5E33;&#x865F;&#x52A0;&#x5C08;&#x6848; ID"></a>&#x539F;&#x672C;&#x662F;&#x5E33;&#x865F;&#x52A0;&#x5C08;&#x6848; ID</h3><p><a class="magnific-img" href="images/9.1.png"><img src="images/9.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x770B;&#x5230;&#x8B8A;&#x6210;&#x5E33;&#x865F;&#x52A0;-VM-&#x540D;&#x7A31;&#x5C31;&#x662F;&#x9032;&#x53BB;&#x4E86;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x4E86;"><a href="#&#x770B;&#x5230;&#x8B8A;&#x6210;&#x5E33;&#x865F;&#x52A0;-VM-&#x540D;&#x7A31;&#x5C31;&#x662F;&#x9032;&#x53BB;&#x4E86;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x4E86;" class="headerlink" title="&#x770B;&#x5230;&#x8B8A;&#x6210;&#x5E33;&#x865F;&#x52A0; VM &#x540D;&#x7A31;&#x5C31;&#x662F;&#x9032;&#x53BB;&#x4E86;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x4E86;"></a>&#x770B;&#x5230;&#x8B8A;&#x6210;&#x5E33;&#x865F;&#x52A0; VM &#x540D;&#x7A31;&#x5C31;&#x662F;&#x9032;&#x53BB;&#x4E86;&#xFF0C;&#x63A5;&#x4E0B;&#x4F86;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x4E86;</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x4E09;&#x3001;-&#x4F7F;&#x7528;-Cloud-SDK-&#x9023;&#x7DDA;"><a href="#&#x4E09;&#x3001;-&#x4F7F;&#x7528;-Cloud-SDK-&#x9023;&#x7DDA;" class="headerlink" title="&#x4E09;&#x3001; &#x4F7F;&#x7528; Cloud SDK &#x9023;&#x7DDA;"></a>&#x4E09;&#x3001; &#x4F7F;&#x7528; Cloud SDK &#x9023;&#x7DDA;</h3><h3 id="Cloud-SDK&#xFF1A;Cloud-SDK-&#x662F;&#x4E00;&#x5957;-Cloud-Platform-&#x5DE5;&#x5177;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;-gcloud&#x3001;gsutil-&#x548C;-bq&#xFF0C;&#x53EF;&#x8B93;&#x60A8;&#x900F;&#x904E;&#x6307;&#x4EE4;&#x5217;&#x5B58;&#x53D6;-Google-Compute-Engine&#x3001;Google-Cloud-Storage&#x3001;Google-BigQuery&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x7522;&#x54C1;&#x548C;&#x670D;&#x52D9;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x9019;&#x4E9B;&#x5DE5;&#x5177;&#x9032;&#x884C;&#x4E92;&#x52D5;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x904B;&#x7528;&#x5728;&#x60A8;&#x7684;&#x81EA;&#x52D5;&#x5316;&#x6307;&#x4EE4;&#x78BC;&#x4E2D;&#x3002;-Cloud-Shell-&#x4F7F;&#x7528;&#x7684;&#x6307;&#x4EE4;&#x5C31;&#x662F;-SDK-&#x7684;&#x6307;&#x4EE4;"><a href="#Cloud-SDK&#xFF1A;Cloud-SDK-&#x662F;&#x4E00;&#x5957;-Cloud-Platform-&#x5DE5;&#x5177;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;-gcloud&#x3001;gsutil-&#x548C;-bq&#xFF0C;&#x53EF;&#x8B93;&#x60A8;&#x900F;&#x904E;&#x6307;&#x4EE4;&#x5217;&#x5B58;&#x53D6;-Google-Compute-Engine&#x3001;Google-Cloud-Storage&#x3001;Google-BigQuery&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x7522;&#x54C1;&#x548C;&#x670D;&#x52D9;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x9019;&#x4E9B;&#x5DE5;&#x5177;&#x9032;&#x884C;&#x4E92;&#x52D5;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x904B;&#x7528;&#x5728;&#x60A8;&#x7684;&#x81EA;&#x52D5;&#x5316;&#x6307;&#x4EE4;&#x78BC;&#x4E2D;&#x3002;-Cloud-Shell-&#x4F7F;&#x7528;&#x7684;&#x6307;&#x4EE4;&#x5C31;&#x662F;-SDK-&#x7684;&#x6307;&#x4EE4;" class="headerlink" title="Cloud SDK&#xFF1A;Cloud SDK &#x662F;&#x4E00;&#x5957; Cloud Platform &#x5DE5;&#x5177;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B; gcloud&#x3001;gsutil &#x548C; bq&#xFF0C;&#x53EF;&#x8B93;&#x60A8;&#x900F;&#x904E;&#x6307;&#x4EE4;&#x5217;&#x5B58;&#x53D6; Google Compute Engine&#x3001;Google Cloud Storage&#x3001;Google BigQuery&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x7522;&#x54C1;&#x548C;&#x670D;&#x52D9;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x9019;&#x4E9B;&#x5DE5;&#x5177;&#x9032;&#x884C;&#x4E92;&#x52D5;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x904B;&#x7528;&#x5728;&#x60A8;&#x7684;&#x81EA;&#x52D5;&#x5316;&#x6307;&#x4EE4;&#x78BC;&#x4E2D;&#x3002; ( Cloud Shell &#x4F7F;&#x7528;&#x7684;&#x6307;&#x4EE4;&#x5C31;&#x662F; SDK &#x7684;&#x6307;&#x4EE4; )"></a>Cloud SDK&#xFF1A;Cloud SDK &#x662F;&#x4E00;&#x5957; Cloud Platform &#x5DE5;&#x5177;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B; gcloud&#x3001;gsutil &#x548C; bq&#xFF0C;&#x53EF;&#x8B93;&#x60A8;&#x900F;&#x904E;&#x6307;&#x4EE4;&#x5217;&#x5B58;&#x53D6; Google Compute Engine&#x3001;Google Cloud Storage&#x3001;Google BigQuery&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x7522;&#x54C1;&#x548C;&#x670D;&#x52D9;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x9019;&#x4E9B;&#x5DE5;&#x5177;&#x9032;&#x884C;&#x4E92;&#x52D5;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x904B;&#x7528;&#x5728;&#x60A8;&#x7684;&#x81EA;&#x52D5;&#x5316;&#x6307;&#x4EE4;&#x78BC;&#x4E2D;&#x3002; ( Cloud Shell &#x4F7F;&#x7528;&#x7684;&#x6307;&#x4EE4;&#x5C31;&#x662F; SDK &#x7684;&#x6307;&#x4EE4; )</h3><h3 id="&#x5B89;&#x88DD;-SDK&#xFF0C;&#x4E0B;&#x8F09;&#xFF1A;https-cloud-google-com-sdk"><a href="#&#x5B89;&#x88DD;-SDK&#xFF0C;&#x4E0B;&#x8F09;&#xFF1A;https-cloud-google-com-sdk" class="headerlink" title="&#x5B89;&#x88DD; SDK&#xFF0C;&#x4E0B;&#x8F09;&#xFF1A;https://cloud.google.com/sdk/"></a>&#x5B89;&#x88DD; SDK&#xFF0C;&#x4E0B;&#x8F09;&#xFF1A;<a href="https://cloud.google.com/sdk/" target="_blank" rel="noopener">https://cloud.google.com/sdk/</a></h3><h3 id="&#x555F;&#x52D5;-SDK"><a href="#&#x555F;&#x52D5;-SDK" class="headerlink" title="&#x555F;&#x52D5; SDK"></a>&#x555F;&#x52D5; SDK</h3><p><a class="magnific-img" href="images/11.1.png"><img src="images/11.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5982;&#x679C;&#x5E33;&#x865F;&#x4E0D;&#x5C0D;&#x8981;&#x8A18;&#x5F97;&#x5207;&#x63DB;&#x5E33;&#x865F;"><a href="#&#x5982;&#x679C;&#x5E33;&#x865F;&#x4E0D;&#x5C0D;&#x8981;&#x8A18;&#x5F97;&#x5207;&#x63DB;&#x5E33;&#x865F;" class="headerlink" title="&#x5982;&#x679C;&#x5E33;&#x865F;&#x4E0D;&#x5C0D;&#x8981;&#x8A18;&#x5F97;&#x5207;&#x63DB;&#x5E33;&#x865F;"></a>&#x5982;&#x679C;&#x5E33;&#x865F;&#x4E0D;&#x5C0D;&#x8981;&#x8A18;&#x5F97;&#x5207;&#x63DB;&#x5E33;&#x865F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth login &#x5E33;&#x865F;</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5207;&#x63DB;&#x5E33;&#x865F;&#x5B83;&#x6703;&#x958B;&#x500B;&#x7DB2;&#x9801;&#x8B93;&#x4F60;&#x9078;&#x76EE;&#x524D;&#x60F3;&#x7528;&#x7684;&#x5E33;&#x865F;"><a href="#&#x5207;&#x63DB;&#x5E33;&#x865F;&#x5B83;&#x6703;&#x958B;&#x500B;&#x7DB2;&#x9801;&#x8B93;&#x4F60;&#x9078;&#x76EE;&#x524D;&#x60F3;&#x7528;&#x7684;&#x5E33;&#x865F;" class="headerlink" title="&#x5207;&#x63DB;&#x5E33;&#x865F;&#x5B83;&#x6703;&#x958B;&#x500B;&#x7DB2;&#x9801;&#x8B93;&#x4F60;&#x9078;&#x76EE;&#x524D;&#x60F3;&#x7528;&#x7684;&#x5E33;&#x865F;"></a>&#x5207;&#x63DB;&#x5E33;&#x865F;&#x5B83;&#x6703;&#x958B;&#x500B;&#x7DB2;&#x9801;&#x8B93;&#x4F60;&#x9078;&#x76EE;&#x524D;&#x60F3;&#x7528;&#x7684;&#x5E33;&#x865F;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x51FA;&#x73FE;&#x6B64;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x9700;&#x8981;&#x7DB2;&#x9801;&#x9EDE;&#x5E33;&#x865F;&#x518D;&#x4F86;&#x5C31;&#x4E0D;&#x7528;&#x4E86;"><a href="#&#x51FA;&#x73FE;&#x6B64;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x9700;&#x8981;&#x7DB2;&#x9801;&#x9EDE;&#x5E33;&#x865F;&#x518D;&#x4F86;&#x5C31;&#x4E0D;&#x7528;&#x4E86;" class="headerlink" title="&#x51FA;&#x73FE;&#x6B64;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x9700;&#x8981;&#x7DB2;&#x9801;&#x9EDE;&#x5E33;&#x865F;&#x518D;&#x4F86;&#x5C31;&#x4E0D;&#x7528;&#x4E86;"></a>&#x51FA;&#x73FE;&#x6B64;&#x756B;&#x9762;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x6703;&#x9700;&#x8981;&#x7DB2;&#x9801;&#x9EDE;&#x5E33;&#x865F;&#x518D;&#x4F86;&#x5C31;&#x4E0D;&#x7528;&#x4E86;</h3><p><a class="magnific-img" href="images/32.png"><img src="images/32.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x53EF;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5E33;&#x865F;&#x524D;&#x9762;&#x6703;&#x6709;"><a href="#&#x53EF;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5E33;&#x865F;&#x524D;&#x9762;&#x6703;&#x6709;" class="headerlink" title="&#x53EF;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5E33;&#x865F;&#x524D;&#x9762;&#x6703;&#x6709; *"></a>&#x53EF;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x6AA2;&#x67E5;&#x4E00;&#x4E0B;&#xFF0C;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5E33;&#x865F;&#x524D;&#x9762;&#x6703;&#x6709; *</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth list</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x63A5;&#x4E0B;&#x4F86;&#x548C;-Cloud-Shell-&#x4E00;&#x6A23;&#x6B65;&#x9A5F;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x6307;&#x4EE4;&#x6703;&#x518D;&#x958B;&#x4E00;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;-y-n-&#x4E0D;&#x7528;&#x8F38;&#x5165;&#x5230;&#x9019;&#x908A;&#x5F8C;&#x5C31;&#x6703;&#x8DF3;&#x51FA;&#x4E00;&#x500B;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x9032;-VM"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x548C;-Cloud-Shell-&#x4E00;&#x6A23;&#x6B65;&#x9A5F;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x6307;&#x4EE4;&#x6703;&#x518D;&#x958B;&#x4E00;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86;-y-n-&#x4E0D;&#x7528;&#x8F38;&#x5165;&#x5230;&#x9019;&#x908A;&#x5F8C;&#x5C31;&#x6703;&#x8DF3;&#x51FA;&#x4E00;&#x500B;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x9032;-VM" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x548C; Cloud Shell &#x4E00;&#x6A23;&#x6B65;&#x9A5F;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x6307;&#x4EE4;&#x6703;&#x518D;&#x958B;&#x4E00;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86; ( y/n &#x4E0D;&#x7528;&#x8F38;&#x5165;&#x5230;&#x9019;&#x908A;&#x5F8C;&#x5C31;&#x6703;&#x8DF3;&#x51FA;&#x4E00;&#x500B;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x9032; VM )"></a>&#x63A5;&#x4E0B;&#x4F86;&#x548C; Cloud Shell &#x4E00;&#x6A23;&#x6B65;&#x9A5F;&#xFF0C;&#x8F38;&#x5165;&#x5B8C;&#x6307;&#x4EE4;&#x6703;&#x518D;&#x958B;&#x4E00;&#x500B;&#x7D42;&#x7AEF;&#x6A5F;&#x5C31;&#x662F;&#x6210;&#x529F;&#x4E86; ( y/n &#x4E0D;&#x7528;&#x8F38;&#x5165;&#x5230;&#x9019;&#x908A;&#x5F8C;&#x5C31;&#x6703;&#x8DF3;&#x51FA;&#x4E00;&#x500B;&#x65B0;&#x8996;&#x7A97;&#x9023;&#x9032; VM )</h3><p><a class="magnific-img" href="images/17.1.png"><img src="images/17.1.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x56DB;&#x3001;-&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x7A0B;&#x5F0F;&#x9023;&#x7DDA;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-Xshell-5-&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x719F;&#x6089;&#x7A0B;&#x5F0F;"><a href="#&#x56DB;&#x3001;-&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x7A0B;&#x5F0F;&#x9023;&#x7DDA;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-Xshell-5-&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x719F;&#x6089;&#x7A0B;&#x5F0F;" class="headerlink" title="&#x56DB;&#x3001; &#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x7A0B;&#x5F0F;&#x9023;&#x7DDA;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; Xshell 5 &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x719F;&#x6089;&#x7A0B;&#x5F0F;"></a>&#x56DB;&#x3001; &#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x7A0B;&#x5F0F;&#x9023;&#x7DDA;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; Xshell 5 &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x719F;&#x6089;&#x7A0B;&#x5F0F;</h3><h3 id="&#x9996;&#x5148;&#x5275;&#x5EFA;&#x91D1;&#x9470;"><a href="#&#x9996;&#x5148;&#x5275;&#x5EFA;&#x91D1;&#x9470;" class="headerlink" title="&#x9996;&#x5148;&#x5275;&#x5EFA;&#x91D1;&#x9470;"></a>&#x9996;&#x5148;&#x5275;&#x5EFA;&#x91D1;&#x9470;</h3><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/19.1.png"><img src="images/19.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9078;&#x64C7;-RSA-&#x9577;&#x5EA6;&#x9078;-2048-&#x76EE;&#x524D;-1024-&#x5DF2;&#x7D93;&#x4E0D;&#x592A;&#x5B89;&#x5168;"><a href="#&#x9078;&#x64C7;-RSA-&#x9577;&#x5EA6;&#x9078;-2048-&#x76EE;&#x524D;-1024-&#x5DF2;&#x7D93;&#x4E0D;&#x592A;&#x5B89;&#x5168;" class="headerlink" title="&#x9078;&#x64C7; RSA &#x9577;&#x5EA6;&#x9078; 2048 &#x76EE;&#x524D; 1024 &#x5DF2;&#x7D93;&#x4E0D;&#x592A;&#x5B89;&#x5168;"></a>&#x9078;&#x64C7; RSA &#x9577;&#x5EA6;&#x9078; 2048 &#x76EE;&#x524D; 1024 &#x5DF2;&#x7D93;&#x4E0D;&#x592A;&#x5B89;&#x5168;</h3><p><a class="magnific-img" href="images/20.png"><img src="images/20.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/21.png"><img src="images/21.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x548C;&#x540D;&#x7A31;"><a href="#&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x548C;&#x540D;&#x7A31;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x548C;&#x540D;&#x7A31;"></a>&#x8A2D;&#x5B9A;&#x5BC6;&#x78BC;&#x548C;&#x540D;&#x7A31;</h3><p><a class="magnific-img" href="images/22.1.png"><img src="images/22.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x8907;&#x88FD;&#x91D1;&#x9470;&#x6216;&#x5132;&#x5B58;"><a href="#&#x8907;&#x88FD;&#x91D1;&#x9470;&#x6216;&#x5132;&#x5B58;" class="headerlink" title="&#x8907;&#x88FD;&#x91D1;&#x9470;&#x6216;&#x5132;&#x5B58;"></a>&#x8907;&#x88FD;&#x91D1;&#x9470;&#x6216;&#x5132;&#x5B58;</h3><p><a class="magnific-img" href="images/23.1.png"><img src="images/23.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5230;-GCP-Compute-Engine-&#x2192;-&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;-&#x2192;-SSH-&#x91D1;&#x9470;&#xFF0C;&#x6DFB;&#x52A0;&#x91D1;&#x9470;"><a href="#&#x5230;-GCP-Compute-Engine-&#x2192;-&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;-&#x2192;-SSH-&#x91D1;&#x9470;&#xFF0C;&#x6DFB;&#x52A0;&#x91D1;&#x9470;" class="headerlink" title="&#x5230; GCP Compute Engine &#x2192; &#x4E2D;&#x7E7C;&#x8CC7;&#x6599; &#x2192; SSH &#x91D1;&#x9470;&#xFF0C;&#x6DFB;&#x52A0;&#x91D1;&#x9470;"></a>&#x5230; GCP Compute Engine &#x2192; &#x4E2D;&#x7E7C;&#x8CC7;&#x6599; &#x2192; SSH &#x91D1;&#x9470;&#xFF0C;&#x6DFB;&#x52A0;&#x91D1;&#x9470;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x7DE8;&#x8F2F;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684;&#x91D1;&#x9470;&#x8CBC;&#x4E0A;-&#x8981;&#x6309;&#x7167;&#x683C;&#x5F0F;&#x4E0D;&#x7136;&#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#xFF0C;&#x7A7A;&#x683C;&#x8F38;&#x5165;&#x8981;&#x547D;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x540D;&#x7A31;&#x5C07;&#x6703;&#x5728;&#x4F7F;&#x7528;-Xshell-5-&#x9023;&#x7DDA;&#x6642;&#x7528;&#x5230;"><a href="#&#x9EDE;&#x7DE8;&#x8F2F;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684;&#x91D1;&#x9470;&#x8CBC;&#x4E0A;-&#x8981;&#x6309;&#x7167;&#x683C;&#x5F0F;&#x4E0D;&#x7136;&#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#xFF0C;&#x7A7A;&#x683C;&#x8F38;&#x5165;&#x8981;&#x547D;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x540D;&#x7A31;&#x5C07;&#x6703;&#x5728;&#x4F7F;&#x7528;-Xshell-5-&#x9023;&#x7DDA;&#x6642;&#x7528;&#x5230;" class="headerlink" title="&#x9EDE;&#x7DE8;&#x8F2F;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684;&#x91D1;&#x9470;&#x8CBC;&#x4E0A; ( &#x8981;&#x6309;&#x7167;&#x683C;&#x5F0F;&#x4E0D;&#x7136;&#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#xFF0C;&#x7A7A;&#x683C;&#x8F38;&#x5165;&#x8981;&#x547D;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x540D;&#x7A31;&#x5C07;&#x6703;&#x5728;&#x4F7F;&#x7528; Xshell 5 &#x9023;&#x7DDA;&#x6642;&#x7528;&#x5230; )"></a>&#x9EDE;&#x7DE8;&#x8F2F;&#x628A;&#x525B;&#x525B;&#x8907;&#x88FD;&#x7684;&#x91D1;&#x9470;&#x8CBC;&#x4E0A; ( &#x8981;&#x6309;&#x7167;&#x683C;&#x5F0F;&#x4E0D;&#x7136;&#x6703;&#x51FA;&#x73FE;&#x932F;&#x8AA4;&#xFF0C;&#x7A7A;&#x683C;&#x8F38;&#x5165;&#x8981;&#x547D;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x8F38;&#x5165;&#x540D;&#x7A31;&#x5C07;&#x6703;&#x5728;&#x4F7F;&#x7528; Xshell 5 &#x9023;&#x7DDA;&#x6642;&#x7528;&#x5230; )</h3><p><a class="magnific-img" href="images/24.1.png"><img src="images/24.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x63A5;&#x4E0B;&#x4F86;&#x5230;-VPC-&#x7DB2;&#x8DEF;-&#x2192;-&#x9632;&#x706B;&#x7246;&#x898F;&#x5247;"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x5230;-VPC-&#x7DB2;&#x8DEF;-&#x2192;-&#x9632;&#x706B;&#x7246;&#x898F;&#x5247;" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x5230; VPC &#x7DB2;&#x8DEF; &#x2192; &#x9632;&#x706B;&#x7246;&#x898F;&#x5247;"></a>&#x63A5;&#x4E0B;&#x4F86;&#x5230; VPC &#x7DB2;&#x8DEF; &#x2192; &#x9632;&#x706B;&#x7246;&#x898F;&#x5247;</h3><p><a class="magnific-img" href="images/25.png"><img src="images/25.png" alt=" " class="ui centered image"></a></p>
-<h3 id="SSH-&#x662F;&#x4F7F;&#x7528;-22-port&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;"><a href="#SSH-&#x662F;&#x4F7F;&#x7528;-22-port&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;" class="headerlink" title="SSH &#x662F;&#x4F7F;&#x7528; 22 port&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;"></a>SSH &#x662F;&#x4F7F;&#x7528; 22 port&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x9810;&#x8A2D;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;</h3><p><a class="magnific-img" href="images/26.png"><img src="images/26.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x9078;&#x9632;&#x706B;&#x7246;&#x540D;&#x7A31;&#x9032;&#x5165;&#x5F8C;&#x9EDE;&#x7DE8;&#x8F2F;&#xFF0C;&#x52A0;&#x5165;&#x81EA;&#x5DF1;&#x7684;-ip-&#x5916;&#x7DB2;-&#xFF0C;&#x5132;&#x5B58;"><a href="#&#x9EDE;&#x9078;&#x9632;&#x706B;&#x7246;&#x540D;&#x7A31;&#x9032;&#x5165;&#x5F8C;&#x9EDE;&#x7DE8;&#x8F2F;&#xFF0C;&#x52A0;&#x5165;&#x81EA;&#x5DF1;&#x7684;-ip-&#x5916;&#x7DB2;-&#xFF0C;&#x5132;&#x5B58;" class="headerlink" title="&#x9EDE;&#x9078;&#x9632;&#x706B;&#x7246;&#x540D;&#x7A31;&#x9032;&#x5165;&#x5F8C;&#x9EDE;&#x7DE8;&#x8F2F;&#xFF0C;&#x52A0;&#x5165;&#x81EA;&#x5DF1;&#x7684; ip ( &#x5916;&#x7DB2; )&#xFF0C;&#x5132;&#x5B58;"></a>&#x9EDE;&#x9078;&#x9632;&#x706B;&#x7246;&#x540D;&#x7A31;&#x9032;&#x5165;&#x5F8C;&#x9EDE;&#x7DE8;&#x8F2F;&#xFF0C;&#x52A0;&#x5165;&#x81EA;&#x5DF1;&#x7684; ip ( &#x5916;&#x7DB2; )&#xFF0C;&#x5132;&#x5B58;</h3><p><a class="magnific-img" href="images/28.png"><img src="images/28.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DE;&#x5230;-Xshell-5-&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x5DE5;&#x4F5C;"><a href="#&#x56DE;&#x5230;-Xshell-5-&#x9EDE;&#x9078;&#x65B0;&#x589E;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x56DE;&#x5230; Xshell 5 &#x9EDE;&#x9078;&#x65B0;&#x589E;&#x5DE5;&#x4F5C;"></a>&#x56DE;&#x5230; Xshell 5 &#x9EDE;&#x9078;&#x65B0;&#x589E;&#x5DE5;&#x4F5C;</h3><p><a class="magnific-img" href="images/29.png"><img src="images/29.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9023;&#x7DDA;&#xFF1A;&#x8F38;&#x5165;&#x540D;&#x7A31;-&#x96A8;&#x610F;-&#x548C;-ip"><a href="#&#x9023;&#x7DDA;&#xFF1A;&#x8F38;&#x5165;&#x540D;&#x7A31;-&#x96A8;&#x610F;-&#x548C;-ip" class="headerlink" title="&#x9023;&#x7DDA;&#xFF1A;&#x8F38;&#x5165;&#x540D;&#x7A31; ( &#x96A8;&#x610F; ) &#x548C; ip"></a>&#x9023;&#x7DDA;&#xFF1A;&#x8F38;&#x5165;&#x540D;&#x7A31; ( &#x96A8;&#x610F; ) &#x548C; ip</h3><p><a class="magnific-img" href="images/30.png"><img src="images/30.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#xFF1A;&#x65B9;&#x6CD5;&#x9078;-Public-Key-&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x8F38;&#x5165;&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#x8F38;&#x5165;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x9078;&#x64C7;&#x525B;&#x525B;&#x5EFA;&#x7ACB;&#x7684;&#x91D1;&#x9470;&#x4F7F;&#x7528;&#x8005;&#x548C;&#x8F38;&#x5165;&#x5BC6;&#x78BC;"><a href="#&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#xFF1A;&#x65B9;&#x6CD5;&#x9078;-Public-Key-&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x8F38;&#x5165;&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#x8F38;&#x5165;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x9078;&#x64C7;&#x525B;&#x525B;&#x5EFA;&#x7ACB;&#x7684;&#x91D1;&#x9470;&#x4F7F;&#x7528;&#x8005;&#x548C;&#x8F38;&#x5165;&#x5BC6;&#x78BC;" class="headerlink" title="&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#xFF1A;&#x65B9;&#x6CD5;&#x9078; Public Key &#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x8F38;&#x5165;&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#x8F38;&#x5165;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x9078;&#x64C7;&#x525B;&#x525B;&#x5EFA;&#x7ACB;&#x7684;&#x91D1;&#x9470;&#x4F7F;&#x7528;&#x8005;&#x548C;&#x8F38;&#x5165;&#x5BC6;&#x78BC;"></a>&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#xFF1A;&#x65B9;&#x6CD5;&#x9078; Public Key &#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x8F38;&#x5165;&#x4E2D;&#x7E7C;&#x8CC7;&#x6599;&#x8F38;&#x5165;&#x7684;&#x540D;&#x7A31;&#xFF0C;&#x9078;&#x64C7;&#x525B;&#x525B;&#x5EFA;&#x7ACB;&#x7684;&#x91D1;&#x9470;&#x4F7F;&#x7528;&#x8005;&#x548C;&#x8F38;&#x5165;&#x5BC6;&#x78BC;</h3><p><a class="magnific-img" href="images/31.2.png"><img src="images/31.2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x7B2C;&#x4E00;&#x6B21;&#x767B;&#x5165;&#x6703;&#x51FA;&#x73FE;-SSH-&#x5B89;&#x5168;&#x6027;&#x8B66;&#x544A;&#xFF0C;&#x9EDE;&#x9078;&#x63A5;&#x53D7;&#x53CA;&#x5B58;&#x6A94;"><a href="#&#x7B2C;&#x4E00;&#x6B21;&#x767B;&#x5165;&#x6703;&#x51FA;&#x73FE;-SSH-&#x5B89;&#x5168;&#x6027;&#x8B66;&#x544A;&#xFF0C;&#x9EDE;&#x9078;&#x63A5;&#x53D7;&#x53CA;&#x5B58;&#x6A94;" class="headerlink" title="&#x7B2C;&#x4E00;&#x6B21;&#x767B;&#x5165;&#x6703;&#x51FA;&#x73FE; SSH &#x5B89;&#x5168;&#x6027;&#x8B66;&#x544A;&#xFF0C;&#x9EDE;&#x9078;&#x63A5;&#x53D7;&#x53CA;&#x5B58;&#x6A94;"></a>&#x7B2C;&#x4E00;&#x6B21;&#x767B;&#x5165;&#x6703;&#x51FA;&#x73FE; SSH &#x5B89;&#x5168;&#x6027;&#x8B66;&#x544A;&#xFF0C;&#x9EDE;&#x9078;&#x63A5;&#x53D7;&#x53CA;&#x5B58;&#x6A94;</h3><p><a class="magnific-img" href="images/33.png"><img src="images/33.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5982;&#x679C;&#x4E0A;&#x9762;&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#x6C92;&#x8F38;&#x5165;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x7684;&#x8A71;&#x6703;&#x554F;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;"><a href="#&#x5982;&#x679C;&#x4E0A;&#x9762;&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#x6C92;&#x8F38;&#x5165;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x7684;&#x8A71;&#x6703;&#x554F;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;" class="headerlink" title="&#x5982;&#x679C;&#x4E0A;&#x9762;&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#x6C92;&#x8F38;&#x5165;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x7684;&#x8A71;&#x6703;&#x554F;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;"></a>&#x5982;&#x679C;&#x4E0A;&#x9762;&#x4F7F;&#x7528;&#x8005;&#x9A57;&#x8B49;&#x6C92;&#x8F38;&#x5165;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;&#x7684;&#x8A71;&#x6703;&#x554F;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;</h3><p><a class="magnific-img" href="images/34.1.png"><img src="images/34.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x606D;&#x559C;&#x5B8C;&#x6210;&#x9023;&#x7DDA;&#xFF01;"><a href="#&#x606D;&#x559C;&#x5B8C;&#x6210;&#x9023;&#x7DDA;&#xFF01;" class="headerlink" title="&#x606D;&#x559C;&#x5B8C;&#x6210;&#x9023;&#x7DDA;&#xFF01;"></a>&#x606D;&#x559C;&#x5B8C;&#x6210;&#x9023;&#x7DDA;&#xFF01;</h3><p><a class="magnific-img" href="images/35.png"><img src="images/35.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-21T06:47:21.000Z" itemprop="datePublished">2018-06-21</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GCP-ubuntu-連線進入VM
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-21 14:47:21" itemprop="dateCreated datePublished" datetime="2018-06-21T14:47:21+08:00">2018-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="連線進入-VM-linux"><a href="#連線進入-VM-linux" class="headerlink" title="連線進入 VM ( linux )"></a>連線進入 VM ( linux )</h3><h3 id="總共有-4-種方法可以進入-VM-本篇文章將依序作介紹"><a href="#總共有-4-種方法可以進入-VM-本篇文章將依序作介紹" class="headerlink" title="總共有 4 種方法可以進入 VM 本篇文章將依序作介紹"></a>總共有 4 種方法可以進入 VM 本篇文章將依序作介紹</h3><h3 id="SSH-連線會需要用到-tcp-22，一般專案開好會有預設防火牆-tcp-22-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門"><a href="#SSH-連線會需要用到-tcp-22，一般專案開好會有預設防火牆-tcp-22-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門" class="headerlink" title="SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門"></a>SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E9%98%B2%E7%81%AB%E7%89%86/" target="_blank" rel="noopener">文章傳送門</a></h3><h3 id="一、-使用-GCP-開啟新視窗連線"><a href="#一、-使用-GCP-開啟新視窗連線" class="headerlink" title="一、 使用 GCP 開啟新視窗連線"></a>一、 使用 GCP 開啟新視窗連線</h3><h3 id="創建好-VM-後直接點擊右邊-SSH-或是-▼-在瀏覽器視窗中開啟"><a href="#創建好-VM-後直接點擊右邊-SSH-或是-▼-在瀏覽器視窗中開啟" class="headerlink" title="創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟"></a>創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟</h3><p><img src="images/1.png" alt=" "></p>
+<h3 id="點擊完後會另外再開一個視窗，這時候-VM-連進去會幫你加金鑰"><a href="#點擊完後會另外再開一個視窗，這時候-VM-連進去會幫你加金鑰" class="headerlink" title="點擊完後會另外再開一個視窗，這時候 VM 連進去會幫你加金鑰"></a>點擊完後會另外再開一個視窗，這時候 VM 連進去會幫你加金鑰</h3><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "></p>
+<h3 id="可以在-Compute-Engine-→-中繼資料-→-SSH-金鑰，查看金鑰"><a href="#可以在-Compute-Engine-→-中繼資料-→-SSH-金鑰，查看金鑰" class="headerlink" title="可以在 Compute Engine → 中繼資料 → SSH 金鑰，查看金鑰"></a>可以在 Compute Engine → 中繼資料 → SSH 金鑰，查看金鑰</h3><p><img src="images/4.png" alt=" "><br><img src="images/5.png" alt=" "></p>
+<hr>
+<h3 id="二、-使用-Cloud-Shell-連線"><a href="#二、-使用-Cloud-Shell-連線" class="headerlink" title="二、 使用 Cloud Shell 連線"></a>二、 使用 Cloud Shell 連線</h3><h3 id="打開-Cloud-Shell"><a href="#打開-Cloud-Shell" class="headerlink" title="打開 Cloud Shell"></a>打開 Cloud Shell</h3><p><img src="images/6.2.png" alt=" "></p>
+<h3 id="使用指令連線進入"><a href="#使用指令連線進入" class="headerlink" title="使用指令連線進入"></a>使用指令連線進入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute ssh (VM名稱) --zone (區域)</span><br></pre></td></tr></table></figure>
+<h3 id="ex：gcloud-compute-ssh-test-zone-asia-east1-b"><a href="#ex：gcloud-compute-ssh-test-zone-asia-east1-b" class="headerlink" title="ex：gcloud compute ssh test --zone asia-east1-b"></a>ex：gcloud compute ssh test --zone asia-east1-b</h3><h3 id="輸入-y-繼續"><a href="#輸入-y-繼續" class="headerlink" title="輸入 y 繼續"></a>輸入 y 繼續</h3><p><img src="images/7.png" alt=" "></p>
+<h3 id="生成公鑰-私鑰，會輸入密碼點-2下-Enter-使用空密碼-第一次會有這些步驟，下次在下指令就不會有了"><a href="#生成公鑰-私鑰，會輸入密碼點-2下-Enter-使用空密碼-第一次會有這些步驟，下次在下指令就不會有了" class="headerlink" title="生成公鑰/私鑰，會輸入密碼點 2下 Enter 使用空密碼 ( 第一次會有這些步驟，下次在下指令就不會有了 )"></a>生成公鑰/私鑰，會輸入密碼點 2下 Enter 使用空密碼 ( 第一次會有這些步驟，下次在下指令就不會有了 )</h3><p><img src="images/8.png" alt=" "></p>
+<h3 id="原本是帳號加專案-ID"><a href="#原本是帳號加專案-ID" class="headerlink" title="原本是帳號加專案 ID"></a>原本是帳號加專案 ID</h3><p><img src="images/9.1.png" alt=" "></p>
+<h3 id="看到變成帳號加-VM-名稱就是進去了，接下來就可以直接操作了"><a href="#看到變成帳號加-VM-名稱就是進去了，接下來就可以直接操作了" class="headerlink" title="看到變成帳號加 VM 名稱就是進去了，接下來就可以直接操作了"></a>看到變成帳號加 VM 名稱就是進去了，接下來就可以直接操作了</h3><p><img src="images/10.png" alt=" "></p>
+<hr>
+<h3 id="三、-使用-Cloud-SDK-連線"><a href="#三、-使用-Cloud-SDK-連線" class="headerlink" title="三、 使用 Cloud SDK 連線"></a>三、 使用 Cloud SDK 連線</h3><h3 id="Cloud-SDK：Cloud-SDK-是一套-Cloud-Platform-工具，其中包含-gcloud、gsutil-和-bq，可讓您透過指令列存取-Google-Compute-Engine、Google-Cloud-Storage、Google-BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。-Cloud-Shell-使用的指令就是-SDK-的指令"><a href="#Cloud-SDK：Cloud-SDK-是一套-Cloud-Platform-工具，其中包含-gcloud、gsutil-和-bq，可讓您透過指令列存取-Google-Compute-Engine、Google-Cloud-Storage、Google-BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。-Cloud-Shell-使用的指令就是-SDK-的指令" class="headerlink" title="Cloud SDK：Cloud SDK 是一套 Cloud Platform 工具，其中包含 gcloud、gsutil 和 bq，可讓您透過指令列存取 Google Compute Engine、Google Cloud Storage、Google BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。 ( Cloud Shell 使用的指令就是 SDK 的指令 )"></a>Cloud SDK：Cloud SDK 是一套 Cloud Platform 工具，其中包含 gcloud、gsutil 和 bq，可讓您透過指令列存取 Google Compute Engine、Google Cloud Storage、Google BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。 ( Cloud Shell 使用的指令就是 SDK 的指令 )</h3><h3 id="安裝-SDK，下載：https-cloud-google-com-sdk"><a href="#安裝-SDK，下載：https-cloud-google-com-sdk" class="headerlink" title="安裝 SDK，下載：https://cloud.google.com/sdk/"></a>安裝 SDK，下載：<a href="https://cloud.google.com/sdk/" target="_blank" rel="noopener">https://cloud.google.com/sdk/</a></h3><h3 id="啟動-SDK"><a href="#啟動-SDK" class="headerlink" title="啟動 SDK"></a>啟動 SDK</h3><p><img src="images/11.1.png" alt=" "></p>
+<h3 id="如果帳號不對要記得切換帳號"><a href="#如果帳號不對要記得切換帳號" class="headerlink" title="如果帳號不對要記得切換帳號"></a>如果帳號不對要記得切換帳號</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth login 帳號</span><br></pre></td></tr></table></figure>
+<p><img src="images/12.png" alt=" "></p>
+<h3 id="切換帳號它會開個網頁讓你選目前想用的帳號"><a href="#切換帳號它會開個網頁讓你選目前想用的帳號" class="headerlink" title="切換帳號它會開個網頁讓你選目前想用的帳號"></a>切換帳號它會開個網頁讓你選目前想用的帳號</h3><p><img src="images/14.png" alt=" "><br><img src="images/15.png" alt=" "></p>
+<h3 id="出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了"><a href="#出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了" class="headerlink" title="出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了"></a>出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了</h3><p><img src="images/32.png" alt=" "></p>
+<h3 id="可以下指令檢查一下，目前使用的帳號前面會有"><a href="#可以下指令檢查一下，目前使用的帳號前面會有" class="headerlink" title="可以下指令檢查一下，目前使用的帳號前面會有 *"></a>可以下指令檢查一下，目前使用的帳號前面會有 *</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth list</span><br></pre></td></tr></table></figure>
+<p><img src="images/13.png" alt=" "></p>
+<h3 id="接下來和-Cloud-Shell-一樣步驟，輸入完指令會再開一個終端機就是成功了-y-n-不用輸入到這邊後就會跳出一個新視窗連進-VM"><a href="#接下來和-Cloud-Shell-一樣步驟，輸入完指令會再開一個終端機就是成功了-y-n-不用輸入到這邊後就會跳出一個新視窗連進-VM" class="headerlink" title="接下來和 Cloud Shell 一樣步驟，輸入完指令會再開一個終端機就是成功了 ( y/n 不用輸入到這邊後就會跳出一個新視窗連進 VM )"></a>接下來和 Cloud Shell 一樣步驟，輸入完指令會再開一個終端機就是成功了 ( y/n 不用輸入到這邊後就會跳出一個新視窗連進 VM )</h3><p><img src="images/17.1.png" alt=" "><br><img src="images/16.png" alt=" "></p>
+<hr>
+<h3 id="四、-使用其他程式連線，本文章使用-Xshell-5-可以使用自己熟悉程式"><a href="#四、-使用其他程式連線，本文章使用-Xshell-5-可以使用自己熟悉程式" class="headerlink" title="四、 使用其他程式連線，本文章使用 Xshell 5 可以使用自己熟悉程式"></a>四、 使用其他程式連線，本文章使用 Xshell 5 可以使用自己熟悉程式</h3><h3 id="首先創建金鑰"><a href="#首先創建金鑰" class="headerlink" title="首先創建金鑰"></a>首先創建金鑰</h3><p><img src="images/18.png" alt=" "><br><img src="images/19.1.png" alt=" "></p>
+<h3 id="選擇-RSA-長度選-2048-目前-1024-已經不太安全"><a href="#選擇-RSA-長度選-2048-目前-1024-已經不太安全" class="headerlink" title="選擇 RSA 長度選 2048 目前 1024 已經不太安全"></a>選擇 RSA 長度選 2048 目前 1024 已經不太安全</h3><p><img src="images/20.png" alt=" "><br><img src="images/21.png" alt=" "></p>
+<h3 id="設定密碼和名稱"><a href="#設定密碼和名稱" class="headerlink" title="設定密碼和名稱"></a>設定密碼和名稱</h3><p><img src="images/22.1.png" alt=" "></p>
+<h3 id="複製金鑰或儲存"><a href="#複製金鑰或儲存" class="headerlink" title="複製金鑰或儲存"></a>複製金鑰或儲存</h3><p><img src="images/23.1.png" alt=" "></p>
+<h3 id="到-GCP-Compute-Engine-→-中繼資料-→-SSH-金鑰，添加金鑰"><a href="#到-GCP-Compute-Engine-→-中繼資料-→-SSH-金鑰，添加金鑰" class="headerlink" title="到 GCP Compute Engine → 中繼資料 → SSH 金鑰，添加金鑰"></a>到 GCP Compute Engine → 中繼資料 → SSH 金鑰，添加金鑰</h3><p><img src="images/4.png" alt=" "><br><img src="images/5.png" alt=" "></p>
+<h3 id="點編輯把剛剛複製的金鑰貼上-要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用-Xshell-5-連線時用到"><a href="#點編輯把剛剛複製的金鑰貼上-要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用-Xshell-5-連線時用到" class="headerlink" title="點編輯把剛剛複製的金鑰貼上 ( 要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用 Xshell 5 連線時用到 )"></a>點編輯把剛剛複製的金鑰貼上 ( 要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用 Xshell 5 連線時用到 )</h3><p><img src="images/24.1.png" alt=" "></p>
+<h3 id="接下來到-VPC-網路-→-防火牆規則"><a href="#接下來到-VPC-網路-→-防火牆規則" class="headerlink" title="接下來到 VPC 網路 → 防火牆規則"></a>接下來到 VPC 網路 → 防火牆規則</h3><p><img src="images/25.png" alt=" "></p>
+<h3 id="SSH-是使用-22-port，可以更改預設也可以自己建立一個"><a href="#SSH-是使用-22-port，可以更改預設也可以自己建立一個" class="headerlink" title="SSH 是使用 22 port，可以更改預設也可以自己建立一個"></a>SSH 是使用 22 port，可以更改預設也可以自己建立一個</h3><p><img src="images/26.png" alt=" "></p>
+<h3 id="點選防火牆名稱進入後點編輯，加入自己的-ip-外網-，儲存"><a href="#點選防火牆名稱進入後點編輯，加入自己的-ip-外網-，儲存" class="headerlink" title="點選防火牆名稱進入後點編輯，加入自己的 ip ( 外網 )，儲存"></a>點選防火牆名稱進入後點編輯，加入自己的 ip ( 外網 )，儲存</h3><p><img src="images/28.png" alt=" "></p>
+<h3 id="回到-Xshell-5-點選新增工作"><a href="#回到-Xshell-5-點選新增工作" class="headerlink" title="回到 Xshell 5 點選新增工作"></a>回到 Xshell 5 點選新增工作</h3><p><img src="images/29.png" alt=" "></p>
+<h3 id="連線：輸入名稱-隨意-和-ip"><a href="#連線：輸入名稱-隨意-和-ip" class="headerlink" title="連線：輸入名稱 ( 隨意 ) 和 ip"></a>連線：輸入名稱 ( 隨意 ) 和 ip</h3><p><img src="images/30.png" alt=" "></p>
+<h3 id="使用者驗證：方法選-Public-Key-使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼"><a href="#使用者驗證：方法選-Public-Key-使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼" class="headerlink" title="使用者驗證：方法選 Public Key 使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼"></a>使用者驗證：方法選 Public Key 使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼</h3><p><img src="images/31.2.png" alt=" "></p>
+<h3 id="第一次登入會出現-SSH-安全性警告，點選接受及存檔"><a href="#第一次登入會出現-SSH-安全性警告，點選接受及存檔" class="headerlink" title="第一次登入會出現 SSH 安全性警告，點選接受及存檔"></a>第一次登入會出現 SSH 安全性警告，點選接受及存檔</h3><p><img src="images/33.png" alt=" "></p>
+<h3 id="如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱"><a href="#如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱" class="headerlink" title="如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱"></a>如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱</h3><p><img src="images/34.1.png" alt=" "></p>
+<h3 id="恭喜完成連線！"><a href="#恭喜完成連線！" class="headerlink" title="恭喜完成連線！"></a>恭喜完成連線！</h3><p><img src="images/35.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/22/GCP-windows-連線進入VM/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    GCP-windows-連線進入VM
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/20/GCP-設定DNS網域/" class="ui tiny button">
-                    
-                    GCP-設定DNS網域
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/20/GCP-設定DNS網域/" rel="prev" title="GCP-設定DNS網域">
+      <i class="fa fa-chevron-left"></i> GCP-設定DNS網域
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/22/GCP-windows-連線進入VM/" rel="next" title="GCP-windows-連線進入VM">
+      GCP-windows-連線進入VM <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#連線進入-VM-linux"><span>連線進入 VM ( linux )</span></a></li><li><a href="#總共有-4-種方法可以進入-VM-本篇文章將依序作介紹"><span>總共有 4 種方法可以進入 VM 本篇文章將依序作介紹</span></a></li><li><a href="#SSH-連線會需要用到-tcp-22，一般專案開好會有預設防火牆-tcp-22-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門"><span>SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門</span></a></li><li><a href="#一、-使用-GCP-開啟新視窗連線"><span>一、 使用 GCP 開啟新視窗連線</span></a></li><li><a href="#創建好-VM-後直接點擊右邊-SSH-或是-▼-在瀏覽器視窗中開啟"><span>創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟</span></a></li><li><a href="#點擊完後會另外再開一個視窗，這時候-VM-連進去會幫你加金鑰"><span>點擊完後會另外再開一個視窗，這時候 VM 連進去會幫你加金鑰</span></a></li><li><a href="#可以在-Compute-Engine-→-中繼資料-→-SSH-金鑰，查看金鑰"><span>可以在 Compute Engine → 中繼資料 → SSH 金鑰，查看金鑰</span></a></li><li><a href="#二、-使用-Cloud-Shell-連線"><span>二、 使用 Cloud Shell 連線</span></a></li><li><a href="#打開-Cloud-Shell"><span>打開 Cloud Shell</span></a></li><li><a href="#使用指令連線進入"><span>使用指令連線進入</span></a></li><li><a href="#ex：gcloud-compute-ssh-test-zone-asia-east1-b"><span>ex：gcloud compute ssh test --zone asia-east1-b</span></a></li><li><a href="#輸入-y-繼續"><span>輸入 y 繼續</span></a></li><li><a href="#生成公鑰-私鑰，會輸入密碼點-2下-Enter-使用空密碼-第一次會有這些步驟，下次在下指令就不會有了"><span>生成公鑰/私鑰，會輸入密碼點 2下 Enter 使用空密碼 ( 第一次會有這些步驟，下次在下指令就不會有了 )</span></a></li><li><a href="#原本是帳號加專案-ID"><span>原本是帳號加專案 ID</span></a></li><li><a href="#看到變成帳號加-VM-名稱就是進去了，接下來就可以直接操作了"><span>看到變成帳號加 VM 名稱就是進去了，接下來就可以直接操作了</span></a></li><li><a href="#三、-使用-Cloud-SDK-連線"><span>三、 使用 Cloud SDK 連線</span></a></li><li><a href="#Cloud-SDK：Cloud-SDK-是一套-Cloud-Platform-工具，其中包含-gcloud、gsutil-和-bq，可讓您透過指令列存取-Google-Compute-Engine、Google-Cloud-Storage、Google-BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。-Cloud-Shell-使用的指令就是-SDK-的指令"><span>Cloud SDK：Cloud SDK 是一套 Cloud Platform 工具，其中包含 gcloud、gsutil 和 bq，可讓您透過指令列存取 Google Compute Engine、Google Cloud Storage、Google BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。 ( Cloud Shell 使用的指令就是 SDK 的指令 )</span></a></li><li><a href="#安裝-SDK，下載：https-cloud-google-com-sdk"><span>安裝 SDK，下載：https://cloud.google.com/sdk/</span></a></li><li><a href="#啟動-SDK"><span>啟動 SDK</span></a></li><li><a href="#如果帳號不對要記得切換帳號"><span>如果帳號不對要記得切換帳號</span></a></li><li><a href="#切換帳號它會開個網頁讓你選目前想用的帳號"><span>切換帳號它會開個網頁讓你選目前想用的帳號</span></a></li><li><a href="#出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了"><span>出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了</span></a></li><li><a href="#可以下指令檢查一下，目前使用的帳號前面會有"><span>可以下指令檢查一下，目前使用的帳號前面會有 *</span></a></li><li><a href="#接下來和-Cloud-Shell-一樣步驟，輸入完指令會再開一個終端機就是成功了-y-n-不用輸入到這邊後就會跳出一個新視窗連進-VM"><span>接下來和 Cloud Shell 一樣步驟，輸入完指令會再開一個終端機就是成功了 ( y/n 不用輸入到這邊後就會跳出一個新視窗連進 VM )</span></a></li><li><a href="#四、-使用其他程式連線，本文章使用-Xshell-5-可以使用自己熟悉程式"><span>四、 使用其他程式連線，本文章使用 Xshell 5 可以使用自己熟悉程式</span></a></li><li><a href="#首先創建金鑰"><span>首先創建金鑰</span></a></li><li><a href="#選擇-RSA-長度選-2048-目前-1024-已經不太安全"><span>選擇 RSA 長度選 2048 目前 1024 已經不太安全</span></a></li><li><a href="#設定密碼和名稱"><span>設定密碼和名稱</span></a></li><li><a href="#複製金鑰或儲存"><span>複製金鑰或儲存</span></a></li><li><a href="#到-GCP-Compute-Engine-→-中繼資料-→-SSH-金鑰，添加金鑰"><span>到 GCP Compute Engine → 中繼資料 → SSH 金鑰，添加金鑰</span></a></li><li><a href="#點編輯把剛剛複製的金鑰貼上-要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用-Xshell-5-連線時用到"><span>點編輯把剛剛複製的金鑰貼上 ( 要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用 Xshell 5 連線時用到 )</span></a></li><li><a href="#接下來到-VPC-網路-→-防火牆規則"><span>接下來到 VPC 網路 → 防火牆規則</span></a></li><li><a href="#SSH-是使用-22-port，可以更改預設也可以自己建立一個"><span>SSH 是使用 22 port，可以更改預設也可以自己建立一個</span></a></li><li><a href="#點選防火牆名稱進入後點編輯，加入自己的-ip-外網-，儲存"><span>點選防火牆名稱進入後點編輯，加入自己的 ip ( 外網 )，儲存</span></a></li><li><a href="#回到-Xshell-5-點選新增工作"><span>回到 Xshell 5 點選新增工作</span></a></li><li><a href="#連線：輸入名稱-隨意-和-ip"><span>連線：輸入名稱 ( 隨意 ) 和 ip</span></a></li><li><a href="#使用者驗證：方法選-Public-Key-使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼"><span>使用者驗證：方法選 Public Key 使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼</span></a></li><li><a href="#第一次登入會出現-SSH-安全性警告，點選接受及存檔"><span>第一次登入會出現 SSH 安全性警告，點選接受及存檔</span></a></li><li><a href="#如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱"><span>如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱</span></a></li><li><a href="#恭喜完成連線！"><span>恭喜完成連線！</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#連線進入-VM-linux"><span class="nav-number">1.</span> <span class="nav-text">連線進入 VM ( linux )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#總共有-4-種方法可以進入-VM-本篇文章將依序作介紹"><span class="nav-number">2.</span> <span class="nav-text">總共有 4 種方法可以進入 VM 本篇文章將依序作介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-連線會需要用到-tcp-22，一般專案開好會有預設防火牆-tcp-22-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門"><span class="nav-number">3.</span> <span class="nav-text">SSH 連線會需要用到 tcp:22，一般專案開好會有預設防火牆 tcp:22 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-使用-GCP-開啟新視窗連線"><span class="nav-number">4.</span> <span class="nav-text">一、 使用 GCP 開啟新視窗連線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#創建好-VM-後直接點擊右邊-SSH-或是-▼-在瀏覽器視窗中開啟"><span class="nav-number">5.</span> <span class="nav-text">創建好 VM 後直接點擊右邊 SSH 或是 ▼ 在瀏覽器視窗中開啟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點擊完後會另外再開一個視窗，這時候-VM-連進去會幫你加金鑰"><span class="nav-number">6.</span> <span class="nav-text">點擊完後會另外再開一個視窗，這時候 VM 連進去會幫你加金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以在-Compute-Engine-→-中繼資料-→-SSH-金鑰，查看金鑰"><span class="nav-number">7.</span> <span class="nav-text">可以在 Compute Engine → 中繼資料 → SSH 金鑰，查看金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-使用-Cloud-Shell-連線"><span class="nav-number">8.</span> <span class="nav-text">二、 使用 Cloud Shell 連線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打開-Cloud-Shell"><span class="nav-number">9.</span> <span class="nav-text">打開 Cloud Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用指令連線進入"><span class="nav-number">10.</span> <span class="nav-text">使用指令連線進入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ex：gcloud-compute-ssh-test-zone-asia-east1-b"><span class="nav-number">11.</span> <span class="nav-text">ex：gcloud compute ssh test --zone asia-east1-b</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#輸入-y-繼續"><span class="nav-number">12.</span> <span class="nav-text">輸入 y 繼續</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成公鑰-私鑰，會輸入密碼點-2下-Enter-使用空密碼-第一次會有這些步驟，下次在下指令就不會有了"><span class="nav-number">13.</span> <span class="nav-text">生成公鑰/私鑰，會輸入密碼點 2下 Enter 使用空密碼 ( 第一次會有這些步驟，下次在下指令就不會有了 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原本是帳號加專案-ID"><span class="nav-number">14.</span> <span class="nav-text">原本是帳號加專案 ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看到變成帳號加-VM-名稱就是進去了，接下來就可以直接操作了"><span class="nav-number">15.</span> <span class="nav-text">看到變成帳號加 VM 名稱就是進去了，接下來就可以直接操作了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-使用-Cloud-SDK-連線"><span class="nav-number">16.</span> <span class="nav-text">三、 使用 Cloud SDK 連線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-SDK：Cloud-SDK-是一套-Cloud-Platform-工具，其中包含-gcloud、gsutil-和-bq，可讓您透過指令列存取-Google-Compute-Engine、Google-Cloud-Storage、Google-BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。-Cloud-Shell-使用的指令就是-SDK-的指令"><span class="nav-number">17.</span> <span class="nav-text">Cloud SDK：Cloud SDK 是一套 Cloud Platform 工具，其中包含 gcloud、gsutil 和 bq，可讓您透過指令列存取 Google Compute Engine、Google Cloud Storage、Google BigQuery，以及其他產品和服務。您可以利用這些工具進行互動操作，也可以運用在您的自動化指令碼中。 ( Cloud Shell 使用的指令就是 SDK 的指令 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-SDK，下載：https-cloud-google-com-sdk"><span class="nav-number">18.</span> <span class="nav-text">安裝 SDK，下載：https://cloud.google.com/sdk/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#啟動-SDK"><span class="nav-number">19.</span> <span class="nav-text">啟動 SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果帳號不對要記得切換帳號"><span class="nav-number">20.</span> <span class="nav-text">如果帳號不對要記得切換帳號</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切換帳號它會開個網頁讓你選目前想用的帳號"><span class="nav-number">21.</span> <span class="nav-text">切換帳號它會開個網頁讓你選目前想用的帳號</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了"><span class="nav-number">22.</span> <span class="nav-text">出現此畫面就是成功了，第一次會需要網頁點帳號再來就不用了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以下指令檢查一下，目前使用的帳號前面會有"><span class="nav-number">23.</span> <span class="nav-text">可以下指令檢查一下，目前使用的帳號前面會有 *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接下來和-Cloud-Shell-一樣步驟，輸入完指令會再開一個終端機就是成功了-y-n-不用輸入到這邊後就會跳出一個新視窗連進-VM"><span class="nav-number">24.</span> <span class="nav-text">接下來和 Cloud Shell 一樣步驟，輸入完指令會再開一個終端機就是成功了 ( y/n 不用輸入到這邊後就會跳出一個新視窗連進 VM )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、-使用其他程式連線，本文章使用-Xshell-5-可以使用自己熟悉程式"><span class="nav-number">25.</span> <span class="nav-text">四、 使用其他程式連線，本文章使用 Xshell 5 可以使用自己熟悉程式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首先創建金鑰"><span class="nav-number">26.</span> <span class="nav-text">首先創建金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇-RSA-長度選-2048-目前-1024-已經不太安全"><span class="nav-number">27.</span> <span class="nav-text">選擇 RSA 長度選 2048 目前 1024 已經不太安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定密碼和名稱"><span class="nav-number">28.</span> <span class="nav-text">設定密碼和名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#複製金鑰或儲存"><span class="nav-number">29.</span> <span class="nav-text">複製金鑰或儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#到-GCP-Compute-Engine-→-中繼資料-→-SSH-金鑰，添加金鑰"><span class="nav-number">30.</span> <span class="nav-text">到 GCP Compute Engine → 中繼資料 → SSH 金鑰，添加金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點編輯把剛剛複製的金鑰貼上-要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用-Xshell-5-連線時用到"><span class="nav-number">31.</span> <span class="nav-text">點編輯把剛剛複製的金鑰貼上 ( 要按照格式不然會出現錯誤，空格輸入要命的名稱，輸入名稱將會在使用 Xshell 5 連線時用到 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接下來到-VPC-網路-→-防火牆規則"><span class="nav-number">32.</span> <span class="nav-text">接下來到 VPC 網路 → 防火牆規則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-是使用-22-port，可以更改預設也可以自己建立一個"><span class="nav-number">33.</span> <span class="nav-text">SSH 是使用 22 port，可以更改預設也可以自己建立一個</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點選防火牆名稱進入後點編輯，加入自己的-ip-外網-，儲存"><span class="nav-number">34.</span> <span class="nav-text">點選防火牆名稱進入後點編輯，加入自己的 ip ( 外網 )，儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到-Xshell-5-點選新增工作"><span class="nav-number">35.</span> <span class="nav-text">回到 Xshell 5 點選新增工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#連線：輸入名稱-隨意-和-ip"><span class="nav-number">36.</span> <span class="nav-text">連線：輸入名稱 ( 隨意 ) 和 ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用者驗證：方法選-Public-Key-使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼"><span class="nav-number">37.</span> <span class="nav-text">使用者驗證：方法選 Public Key 使用者名稱輸入中繼資料輸入的名稱，選擇剛剛建立的金鑰使用者和輸入密碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次登入會出現-SSH-安全性警告，點選接受及存檔"><span class="nav-number">38.</span> <span class="nav-text">第一次登入會出現 SSH 安全性警告，點選接受及存檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱"><span class="nav-number">39.</span> <span class="nav-text">如果上面使用者驗證沒輸入到使用者名稱的話會問使用者名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恭喜完成連線！"><span class="nav-number">40.</span> <span class="nav-text">恭喜完成連線！</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

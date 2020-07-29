@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>telegraf建立好後設定grafana抓取資料建立圖表 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; telegraf &amp;#x6536;&amp;#x96C6;&amp;#x5B8C;&amp;#x8CC7;&amp;#x6599;&amp;#x50B3;&amp;#x5230; influxdb &amp;#x5F8C; grafana &amp;#x6293;&amp;#x53D6;&amp;#x8CC7;&amp;#x6599;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5716;&amp;#x">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch… 也可以到左邊列表點擊齒輪，選擇 data sourc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="telegraf建立好後設定grafana抓取資料建立圖表">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; telegraf &amp;#x6536;&amp;#x96C6;&amp;#x5B8C;&amp;#x8CC7;&amp;#x6599;&amp;#x50B3;&amp;#x5230; influxdb &amp;#x5F8C; grafana &amp;#x6293;&amp;#x53D6;&amp;#x8CC7;&amp;#x6599;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5716;&amp;#x">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch… 也可以到左邊列表點擊齒輪，選擇 data sourc">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/3.png">
@@ -37,250 +48,361 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="telegraf建立好後設定grafana抓取資料建立圖表">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39; telegraf &amp;#x6536;&amp;#x96C6;&amp;#x5B8C;&amp;#x8CC7;&amp;#x6599;&amp;#x50B3;&amp;#x5230; influxdb &amp;#x5F8C; grafana &amp;#x6293;&amp;#x53D6;&amp;#x8CC7;&amp;#x6599;&amp;#x5EFA;&amp;#x7ACB;&amp;#x5716;&amp;#x">
+<meta name="twitter:description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch… 也可以到左邊列表點擊齒輪，選擇 data sourc">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>telegraf建立好後設定grafana抓取資料建立圖表 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-telegraf建立好後設定grafana抓取資料建立圖表" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    telegraf建立好後設定grafana抓取資料建立圖表
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-telegraf-&#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230;-influxdb-&#x5F8C;-grafana-&#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;-telegraf-&#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230;-influxdb-&#x5F8C;-grafana-&#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; telegraf &#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230; influxdb &#x5F8C; grafana &#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39; telegraf &#x6536;&#x96C6;&#x5B8C;&#x8CC7;&#x6599;&#x50B3;&#x5230; influxdb &#x5F8C; grafana &#x6293;&#x53D6;&#x8CC7;&#x6599;&#x5EFA;&#x7ACB;&#x5716;&#x8868;</h2><h3 id="&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801;-install-grafana-&#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA;-add-data-source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90;-ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;"><a href="#&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801;-install-grafana-&#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA;-add-data-source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90;-ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;" class="headerlink" title="&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801; install grafana &#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA; add data source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90; ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;"></a>&#x4E00;&#x3001;&#x7B2C;&#x4E00;&#x6B21;&#x5EFA;&#x597D;&#x767B;&#x5165;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x9801; install grafana &#x986F;&#x793A;&#x6253;&#x52FE;&#x5716;&#x6848;&#xFF0C;&#x4EE3;&#x8868;&#x90A3;&#x500B;&#x6B65;&#x9A5F;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x4F86;&#x6211;&#x5011;&#x8981;&#x505A;&#x4E0B;&#x500B;&#x6B65;&#x9A5F;&#x9EDE;&#x64CA; add data source&#xFF0C;&#x9019;&#x500B;&#x6B65;&#x9A5F;&#x662F;&#x5728;&#x914D;&#x7F6E;&#x6211;&#x7684;&#x6578;&#x64DA;&#x4F86;&#x6E90; ex&#xFF1A;influxdb&#x3001;elasticsearch&#x2026;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7;-data-sources"><a href="#&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7;-data-sources" class="headerlink" title="&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7; data sources"></a>&#x4E5F;&#x53EF;&#x4EE5;&#x5230;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;&#x9F52;&#x8F2A;&#xFF0C;&#x9078;&#x64C7; data sources</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E;-data-sources"><a href="#&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E;-data-sources" class="headerlink" title="&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E; data sources"></a>&#x4E8C;&#x3001;&#x958B;&#x59CB;&#x914D;&#x7F6E; data sources</h3><h3 id="&#x9032;&#x5165;&#x756B;&#x9762;"><a href="#&#x9032;&#x5165;&#x756B;&#x9762;" class="headerlink" title="&#x9032;&#x5165;&#x756B;&#x9762;"></a>&#x9032;&#x5165;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h3 id="type-&#x9078;&#x64C7;-influxdb"><a href="#type-&#x9078;&#x64C7;-influxdb" class="headerlink" title="type &#x9078;&#x64C7; influxdb"></a>type &#x9078;&#x64C7; influxdb</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h3 id="http-&#x8F38;&#x5165;-http-influxdb-8086&#xFF0C;database-&#x8F38;&#x5165;&#x4F60;&#x5728;-telegraf-&#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;"><a href="#http-&#x8F38;&#x5165;-http-influxdb-8086&#xFF0C;database-&#x8F38;&#x5165;&#x4F60;&#x5728;-telegraf-&#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;" class="headerlink" title="http &#x8F38;&#x5165; http://influxdb:8086&#xFF0C;database &#x8F38;&#x5165;&#x4F60;&#x5728; telegraf &#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;"></a>http &#x8F38;&#x5165; <a href="http://influxdb:8086&#xFF0C;database" target="_blank" rel="noopener">http://influxdb:8086&#xFF0C;database</a> &#x8F38;&#x5165;&#x4F60;&#x5728; telegraf &#x8A2D;&#x5B9A;&#x7684;&#x540D;&#x7A31;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA;-save-amp-test-&#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A;-datasource-added"><a href="#&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA;-save-amp-test-&#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A;-datasource-added" class="headerlink" title="&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA; save &amp; test &#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A; datasource added"></a>&#x63A5;&#x4E0B;&#x4F86;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x9EDE;&#x64CA; save &amp; test &#x8CC7;&#x6599;&#x90FD;&#x6B63;&#x78BA;&#x4E14;&#x6709;&#x6293;&#x5230;&#x53F3;&#x4E0A;&#x89D2;&#x5C31;&#x6703;&#x986F;&#x793A; datasource added</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DE;&#x5230;-data-sources-&#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684;-data-sources"><a href="#&#x56DE;&#x5230;-data-sources-&#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684;-data-sources" class="headerlink" title="&#x56DE;&#x5230; data sources &#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684; data sources"></a>&#x56DE;&#x5230; data sources &#x756B;&#x9762;&#xFF0C;&#x5C31;&#x6703;&#x770B;&#x5230;&#x5DF2;&#x7D93;&#x65B0;&#x589E;&#x7684; data sources</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;"><a href="#&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;" class="headerlink" title="&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;"></a>&#x4E09;&#x3001;&#x62C9;&#x5716;&#x8868;&#x6E2C;&#x8A66;</h3><h3 id="&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7;-home-&#x56DE;&#x5230;&#x9996;&#x9801;"><a href="#&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7;-home-&#x56DE;&#x5230;&#x9996;&#x9801;" class="headerlink" title="&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7; home &#x56DE;&#x5230;&#x9996;&#x9801;"></a>&#x9EDE;&#x64CA;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x56DB;&#x500B;&#x65B9;&#x584A;&#xFF0C;&#x9078;&#x64C7; home &#x56DE;&#x5230;&#x9996;&#x9801;</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9078;&#x64C7;-new-dashboard"><a href="#&#x9078;&#x64C7;-new-dashboard" class="headerlink" title="&#x9078;&#x64C7; new dashboard"></a>&#x9078;&#x64C7; new dashboard</h3><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;-&#x9078;&#x64C7;-dashboard"><a href="#&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA;-&#x9078;&#x64C7;-dashboard" class="headerlink" title="&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA; + &#x9078;&#x64C7; dashboard"></a>&#x6216;&#x662F;&#x5DE6;&#x908A;&#x5217;&#x8868;&#x9EDE;&#x64CA; + &#x9078;&#x64C7; dashboard</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;"><a href="#&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;" class="headerlink" title="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;"></a>&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x5716;&#x8868;&#x985E;&#x578B;</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x64CA;-panel-title-&#x9078;&#x64C7;-edit-&#x7DE8;&#x8F2F;&#x5716;&#x8868;"><a href="#&#x9EDE;&#x64CA;-panel-title-&#x9078;&#x64C7;-edit-&#x7DE8;&#x8F2F;&#x5716;&#x8868;" class="headerlink" title="&#x9EDE;&#x64CA; panel title &#x9078;&#x64C7; edit &#x7DE8;&#x8F2F;&#x5716;&#x8868;"></a>&#x9EDE;&#x64CA; panel title &#x9078;&#x64C7; edit &#x7DE8;&#x8F2F;&#x5716;&#x8868;</h3><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9032;&#x5165;&#x756B;&#x9762;-1"><a href="#&#x9032;&#x5165;&#x756B;&#x9762;-1" class="headerlink" title="&#x9032;&#x5165;&#x756B;&#x9762;"></a>&#x9032;&#x5165;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5728;-data-source-&#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684;-data-source"><a href="#&#x5728;-data-source-&#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684;-data-source" class="headerlink" title="&#x5728; data source &#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684; data source"></a>&#x5728; data source &#x9078;&#x64C7;&#x4F60;&#x5EFA;&#x7ACB;&#x597D;&#x7684; data source</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;"><a href="#&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;" class="headerlink" title="&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;"></a>&#x5982;&#x5716;&#x4E0B;&#x65B9;&#x8ABF;&#x6574;&#x4F60;&#x60F3;&#x770B;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x8A2D;&#x5B9A;&#x6709;&#x6B63;&#x78BA;&#x4E0A;&#x65B9;&#x5C31;&#x6703;&#x986F;&#x793A;&#x6578;&#x64DA;</h3><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x8A18;&#x5F97;&#x5132;&#x5B58;"><a href="#&#x8A18;&#x5F97;&#x5132;&#x5B58;" class="headerlink" title="&#x8A18;&#x5F97;&#x5132;&#x5B58;"></a>&#x8A18;&#x5F97;&#x5132;&#x5B58;</h3><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DE;&#x5230;-dashborad-&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;"><a href="#&#x56DE;&#x5230;-dashborad-&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;" class="headerlink" title="&#x56DE;&#x5230; dashborad &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;"></a>&#x56DE;&#x5230; dashborad &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F60;&#x62C9;&#x597D;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x62C9;&#x597D;&#x5E7E;&#x500B;&#x4E0D;&#x540C;&#x7A2E;&#x985E;&#x7684;&#x5716;&#x8868;&#xFF0C;&#x4F9D;&#x500B;&#x4EBA;&#x559C;&#x597D;&#x88FD;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x76E3;&#x63A7;&#x5716;&#x5427;</h3><p><a class="magnific-img" href="images/18.png"><img src="images/18.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-08-03T06:12:10.000Z" itemprop="datePublished">2018-08-03</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          telegraf建立好後設定grafana抓取資料建立圖表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-08-03 14:12:10" itemprop="dateCreated datePublished" datetime="2018-08-03T14:12:10+08:00">2018-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表"><a href="#本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表" class="headerlink" title="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表"></a>本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表</h2><h3 id="一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…"><a href="#一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…" class="headerlink" title="一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…"></a>一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…</h3><p><img src="images/1.png" alt=" "></p>
+<h3 id="也可以到左邊列表點擊齒輪，選擇-data-sources"><a href="#也可以到左邊列表點擊齒輪，選擇-data-sources" class="headerlink" title="也可以到左邊列表點擊齒輪，選擇 data sources"></a>也可以到左邊列表點擊齒輪，選擇 data sources</h3><p><img src="images/2.png" alt=" "></p>
+<h3 id="二、開始配置-data-sources"><a href="#二、開始配置-data-sources" class="headerlink" title="二、開始配置 data sources"></a>二、開始配置 data sources</h3><h3 id="進入畫面"><a href="#進入畫面" class="headerlink" title="進入畫面"></a>進入畫面</h3><p><img src="images/3.png" alt=" "></p>
+<h3 id="type-選擇-influxdb"><a href="#type-選擇-influxdb" class="headerlink" title="type 選擇 influxdb"></a>type 選擇 influxdb</h3><p><img src="images/4.png" alt=" "></p>
+<h3 id="http-輸入-http-influxdb-8086，database-輸入你在-telegraf-設定的名稱"><a href="#http-輸入-http-influxdb-8086，database-輸入你在-telegraf-設定的名稱" class="headerlink" title="http 輸入 http://influxdb:8086，database 輸入你在 telegraf 設定的名稱"></a>http 輸入 <a href="http://influxdb:8086，database" target="_blank" rel="noopener">http://influxdb:8086，database</a> 輸入你在 telegraf 設定的名稱</h3><p><img src="images/5.png" alt=" "></p>
+<h3 id="接下來到最下面，點擊-save-amp-test-資料都正確且有抓到右上角就會顯示-datasource-added"><a href="#接下來到最下面，點擊-save-amp-test-資料都正確且有抓到右上角就會顯示-datasource-added" class="headerlink" title="接下來到最下面，點擊 save &amp; test 資料都正確且有抓到右上角就會顯示 datasource added"></a>接下來到最下面，點擊 save &amp; test 資料都正確且有抓到右上角就會顯示 datasource added</h3><p><img src="images/6.png" alt=" "></p>
+<h3 id="回到-data-sources-畫面，就會看到已經新增的-data-sources"><a href="#回到-data-sources-畫面，就會看到已經新增的-data-sources" class="headerlink" title="回到 data sources 畫面，就會看到已經新增的 data sources"></a>回到 data sources 畫面，就會看到已經新增的 data sources</h3><p><img src="images/7.png" alt=" "></p>
+<h3 id="三、拉圖表測試"><a href="#三、拉圖表測試" class="headerlink" title="三、拉圖表測試"></a>三、拉圖表測試</h3><h3 id="點擊左邊列表四個方塊，選擇-home-回到首頁"><a href="#點擊左邊列表四個方塊，選擇-home-回到首頁" class="headerlink" title="點擊左邊列表四個方塊，選擇 home 回到首頁"></a>點擊左邊列表四個方塊，選擇 home 回到首頁</h3><p><img src="images/8.png" alt=" "></p>
+<h3 id="選擇-new-dashboard"><a href="#選擇-new-dashboard" class="headerlink" title="選擇 new dashboard"></a>選擇 new dashboard</h3><p><img src="images/9.png" alt=" "></p>
+<h3 id="或是左邊列表點擊-選擇-dashboard"><a href="#或是左邊列表點擊-選擇-dashboard" class="headerlink" title="或是左邊列表點擊 + 選擇 dashboard"></a>或是左邊列表點擊 + 選擇 dashboard</h3><p><img src="images/10.png" alt=" "></p>
+<h3 id="選擇想要的圖表類型"><a href="#選擇想要的圖表類型" class="headerlink" title="選擇想要的圖表類型"></a>選擇想要的圖表類型</h3><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h3 id="點擊-panel-title-選擇-edit-編輯圖表"><a href="#點擊-panel-title-選擇-edit-編輯圖表" class="headerlink" title="點擊 panel title 選擇 edit 編輯圖表"></a>點擊 panel title 選擇 edit 編輯圖表</h3><p><img src="images/13.png" alt=" "></p>
+<h3 id="進入畫面-1"><a href="#進入畫面-1" class="headerlink" title="進入畫面"></a>進入畫面</h3><p><img src="images/14.png" alt=" "></p>
+<h3 id="在-data-source-選擇你建立好的-data-source"><a href="#在-data-source-選擇你建立好的-data-source" class="headerlink" title="在 data source 選擇你建立好的 data source"></a>在 data source 選擇你建立好的 data source</h3><p><img src="images/15.png" alt=" "></p>
+<h3 id="如圖下方調整你想看的參數，設定有正確上方就會顯示數據"><a href="#如圖下方調整你想看的參數，設定有正確上方就會顯示數據" class="headerlink" title="如圖下方調整你想看的參數，設定有正確上方就會顯示數據"></a>如圖下方調整你想看的參數，設定有正確上方就會顯示數據</h3><p><img src="images/16.png" alt=" "></p>
+<h3 id="記得儲存"><a href="#記得儲存" class="headerlink" title="記得儲存"></a>記得儲存</h3><p><img src="images/17.png" alt=" "></p>
+<h3 id="回到-dashborad-就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧"><a href="#回到-dashborad-就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧" class="headerlink" title="回到 dashborad 就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧"></a>回到 dashborad 就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧</h3><p><img src="images/18.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/08/03/grafana搭配slack告警/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    grafana搭配slack告警
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/08/03/telegraf-ubuntu/" class="ui tiny button">
-                    
-                    telegraf-ubuntu
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/03/telegraf-ubuntu/" rel="prev" title="telegraf-ubuntu">
+      <i class="fa fa-chevron-left"></i> telegraf-ubuntu
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/03/grafana搭配slack告警/" rel="next" title="grafana搭配slack告警">
+      grafana搭配slack告警 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表"><span>本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表</span></a><ol><li><a href="#一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…"><span>一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…</span></a></li><li><a href="#也可以到左邊列表點擊齒輪，選擇-data-sources"><span>也可以到左邊列表點擊齒輪，選擇 data sources</span></a></li><li><a href="#二、開始配置-data-sources"><span>二、開始配置 data sources</span></a></li><li><a href="#進入畫面"><span>進入畫面</span></a></li><li><a href="#type-選擇-influxdb"><span>type 選擇 influxdb</span></a></li><li><a href="#http-輸入-http-influxdb-8086，database-輸入你在-telegraf-設定的名稱"><span>http 輸入 http://influxdb:8086，database 輸入你在 telegraf 設定的名稱</span></a></li><li><a href="#接下來到最下面，點擊-save-amp-test-資料都正確且有抓到右上角就會顯示-datasource-added"><span>接下來到最下面，點擊 save & test 資料都正確且有抓到右上角就會顯示 datasource added</span></a></li><li><a href="#回到-data-sources-畫面，就會看到已經新增的-data-sources"><span>回到 data sources 畫面，就會看到已經新增的 data sources</span></a></li><li><a href="#三、拉圖表測試"><span>三、拉圖表測試</span></a></li><li><a href="#點擊左邊列表四個方塊，選擇-home-回到首頁"><span>點擊左邊列表四個方塊，選擇 home 回到首頁</span></a></li><li><a href="#選擇-new-dashboard"><span>選擇 new dashboard</span></a></li><li><a href="#或是左邊列表點擊-選擇-dashboard"><span>或是左邊列表點擊 + 選擇 dashboard</span></a></li><li><a href="#選擇想要的圖表類型"><span>選擇想要的圖表類型</span></a></li><li><a href="#點擊-panel-title-選擇-edit-編輯圖表"><span>點擊 panel title 選擇 edit 編輯圖表</span></a></li><li><a href="#進入畫面-1"><span>進入畫面</span></a></li><li><a href="#在-data-source-選擇你建立好的-data-source"><span>在 data source 選擇你建立好的 data source</span></a></li><li><a href="#如圖下方調整你想看的參數，設定有正確上方就會顯示數據"><span>如圖下方調整你想看的參數，設定有正確上方就會顯示數據</span></a></li><li><a href="#記得儲存"><span>記得儲存</span></a></li><li><a href="#回到-dashborad-就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧"><span>回到 dashborad 就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…"><span class="nav-number">1.1.</span> <span class="nav-text">一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#也可以到左邊列表點擊齒輪，選擇-data-sources"><span class="nav-number">1.2.</span> <span class="nav-text">也可以到左邊列表點擊齒輪，選擇 data sources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、開始配置-data-sources"><span class="nav-number">1.3.</span> <span class="nav-text">二、開始配置 data sources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進入畫面"><span class="nav-number">1.4.</span> <span class="nav-text">進入畫面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type-選擇-influxdb"><span class="nav-number">1.5.</span> <span class="nav-text">type 選擇 influxdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-輸入-http-influxdb-8086，database-輸入你在-telegraf-設定的名稱"><span class="nav-number">1.6.</span> <span class="nav-text">http 輸入 http://influxdb:8086，database 輸入你在 telegraf 設定的名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接下來到最下面，點擊-save-amp-test-資料都正確且有抓到右上角就會顯示-datasource-added"><span class="nav-number">1.7.</span> <span class="nav-text">接下來到最下面，點擊 save &amp; test 資料都正確且有抓到右上角就會顯示 datasource added</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到-data-sources-畫面，就會看到已經新增的-data-sources"><span class="nav-number">1.8.</span> <span class="nav-text">回到 data sources 畫面，就會看到已經新增的 data sources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、拉圖表測試"><span class="nav-number">1.9.</span> <span class="nav-text">三、拉圖表測試</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點擊左邊列表四個方塊，選擇-home-回到首頁"><span class="nav-number">1.10.</span> <span class="nav-text">點擊左邊列表四個方塊，選擇 home 回到首頁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇-new-dashboard"><span class="nav-number">1.11.</span> <span class="nav-text">選擇 new dashboard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#或是左邊列表點擊-選擇-dashboard"><span class="nav-number">1.12.</span> <span class="nav-text">或是左邊列表點擊 + 選擇 dashboard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇想要的圖表類型"><span class="nav-number">1.13.</span> <span class="nav-text">選擇想要的圖表類型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點擊-panel-title-選擇-edit-編輯圖表"><span class="nav-number">1.14.</span> <span class="nav-text">點擊 panel title 選擇 edit 編輯圖表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進入畫面-1"><span class="nav-number">1.15.</span> <span class="nav-text">進入畫面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-data-source-選擇你建立好的-data-source"><span class="nav-number">1.16.</span> <span class="nav-text">在 data source 選擇你建立好的 data source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如圖下方調整你想看的參數，設定有正確上方就會顯示數據"><span class="nav-number">1.17.</span> <span class="nav-text">如圖下方調整你想看的參數，設定有正確上方就會顯示數據</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#記得儲存"><span class="nav-number">1.18.</span> <span class="nav-text">記得儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到-dashborad-就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧"><span class="nav-number">1.19.</span> <span class="nav-text">回到 dashborad 就可以看到你拉好的圖表，可以拉好幾個不同種類的圖表，依個人喜好製作自己的監控圖吧</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

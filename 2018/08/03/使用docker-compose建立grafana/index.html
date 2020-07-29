@@ -1,255 +1,377 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>使用docker-compose建立grafana | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; docker-compose &amp;#x5EFA;&amp;#x7ACB; grafana&amp;#x6307;&amp;#x4EE4;&amp;#x5B89;&amp;#x88DD; docker-compose1apt-get install -y docker-compose &amp;#x5EFA;&amp;#x7AC">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹使用 docker-compose 建立 grafana指令安裝 docker-compose1apt-get install -y docker-compose 建立 docker-compose.yml1touch docker-compose.yml 寫入 docker-compose 內容1vi docker-compose.yml 寫入內容123456789101112131">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用docker-compose建立grafana">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/使用docker-compose建立grafana/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; docker-compose &amp;#x5EFA;&amp;#x7ACB; grafana&amp;#x6307;&amp;#x4EE4;&amp;#x5B89;&amp;#x88DD; docker-compose1apt-get install -y docker-compose &amp;#x5EFA;&amp;#x7AC">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹使用 docker-compose 建立 grafana指令安裝 docker-compose1apt-get install -y docker-compose 建立 docker-compose.yml1touch docker-compose.yml 寫入 docker-compose 內容1vi docker-compose.yml 寫入內容123456789101112131">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2020-06-18T08:20:21.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用docker-compose建立grafana">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x4F7F;&amp;#x7528; docker-compose &amp;#x5EFA;&amp;#x7ACB; grafana&amp;#x6307;&amp;#x4EE4;&amp;#x5B89;&amp;#x88DD; docker-compose1apt-get install -y docker-compose &amp;#x5EFA;&amp;#x7AC">
+<meta name="twitter:description" content="本文章將介紹使用 docker-compose 建立 grafana指令安裝 docker-compose1apt-get install -y docker-compose 建立 docker-compose.yml1touch docker-compose.yml 寫入 docker-compose 內容1vi docker-compose.yml 寫入內容123456789101112131">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/08/03/使用docker-compose建立grafana/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>使用docker-compose建立grafana | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-使用docker-compose建立grafana" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    使用docker-compose建立grafana
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/使用docker-compose建立grafana/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-docker-compose-&#x5EFA;&#x7ACB;-grafana"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528;-docker-compose-&#x5EFA;&#x7ACB;-grafana" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; docker-compose &#x5EFA;&#x7ACB; grafana"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x4F7F;&#x7528; docker-compose &#x5EFA;&#x7ACB; grafana</h3><h4 id="&#x6307;&#x4EE4;&#x5B89;&#x88DD;-docker-compose"><a href="#&#x6307;&#x4EE4;&#x5B89;&#x88DD;-docker-compose" class="headerlink" title="&#x6307;&#x4EE4;&#x5B89;&#x88DD; docker-compose"></a>&#x6307;&#x4EE4;&#x5B89;&#x88DD; docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y docker-compose</span><br></pre></td></tr></table></figure>
-<h4 id="&#x5EFA;&#x7ACB;-docker-compose-yml"><a href="#&#x5EFA;&#x7ACB;-docker-compose-yml" class="headerlink" title="&#x5EFA;&#x7ACB; docker-compose.yml"></a>&#x5EFA;&#x7ACB; docker-compose.yml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch docker-compose.yml</span><br></pre></td></tr></table></figure>
-<h4 id="&#x5BEB;&#x5165;-docker-compose-&#x5167;&#x5BB9;"><a href="#&#x5BEB;&#x5165;-docker-compose-&#x5167;&#x5BB9;" class="headerlink" title="&#x5BEB;&#x5165; docker-compose &#x5167;&#x5BB9;"></a>&#x5BEB;&#x5165; docker-compose &#x5167;&#x5BB9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
-<h4 id="&#x5BEB;&#x5165;&#x5167;&#x5BB9;"><a href="#&#x5BEB;&#x5165;&#x5167;&#x5BB9;" class="headerlink" title="&#x5BEB;&#x5165;&#x5167;&#x5BB9;"></a>&#x5BEB;&#x5165;&#x5167;&#x5BB9;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  influxdb:</span><br><span class="line">    container_name: influxdb</span><br><span class="line">    image: influxdb:1.7.2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8086:8086&quot;</span><br><span class="line">      - &quot;8083:8083&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/influxdb:/var/lib/influxdb</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line"></span><br><span class="line">  grafana:</span><br><span class="line">    container_name: grafana</span><br><span class="line">    image: grafana/grafana:5.2.4</span><br><span class="line">    user: root</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:3000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/grafana:/var/lib/grafana</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com</span><br><span class="line">      -e GF_AUTH_DISABLE_LOGIN_FORM=false -e GF_AUTH_GOOGLE_ENABLED=true </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_ID=33574658051-0f9glecg4ujag71t3r2r6i96lc1bdgqe.apps.googleusercontent.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_SECRET=NNDaKWcBni51U7Ya4uYL6-Ay </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=gmail.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOW_SIGN_UP=true</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/proven-cosine-207802-ec7a854d7ba9.json</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=test-grafana</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line">    depends_on:</span><br><span class="line">      - influxdb</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  grafana:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
-<h4 id="&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4;-run-docker-compose"><a href="#&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4;-run-docker-compose" class="headerlink" title="&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4; run docker-compose"></a>&#x5132;&#x5B58;&#x5F8C;&#x4E0B;&#x6307;&#x4EE4; run docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-<h4 id="&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"><a href="#&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"></a>&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-08-03T06:12:13.000Z" itemprop="datePublished">2018-08-03</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用docker-compose建立grafana
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-08-03 14:12:13" itemprop="dateCreated datePublished" datetime="2018-08-03T14:12:13+08:00">2018-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-06-18 16:20:21" itemprop="dateModified" datetime="2020-06-18T16:20:21+08:00">2020-06-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本文章將介紹使用-docker-compose-建立-grafana"><a href="#本文章將介紹使用-docker-compose-建立-grafana" class="headerlink" title="本文章將介紹使用 docker-compose 建立 grafana"></a>本文章將介紹使用 docker-compose 建立 grafana</h3><h4 id="指令安裝-docker-compose"><a href="#指令安裝-docker-compose" class="headerlink" title="指令安裝 docker-compose"></a>指令安裝 docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y docker-compose</span><br></pre></td></tr></table></figure>
+<h4 id="建立-docker-compose-yml"><a href="#建立-docker-compose-yml" class="headerlink" title="建立 docker-compose.yml"></a>建立 docker-compose.yml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch docker-compose.yml</span><br></pre></td></tr></table></figure>
+<h4 id="寫入-docker-compose-內容"><a href="#寫入-docker-compose-內容" class="headerlink" title="寫入 docker-compose 內容"></a>寫入 docker-compose 內容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
+<h4 id="寫入內容"><a href="#寫入內容" class="headerlink" title="寫入內容"></a>寫入內容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  influxdb:</span><br><span class="line">    container_name: influxdb</span><br><span class="line">    image: influxdb:1.7.2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8086:8086&quot;</span><br><span class="line">      - &quot;8083:8083&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/influxdb:/var/lib/influxdb</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line"></span><br><span class="line">  grafana:</span><br><span class="line">    container_name: grafana</span><br><span class="line">    image: grafana/grafana:5.2.4</span><br><span class="line">    user: root</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:3000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/grafana:/var/lib/grafana</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com</span><br><span class="line">      -e GF_AUTH_DISABLE_LOGIN_FORM=false -e GF_AUTH_GOOGLE_ENABLED=true </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_ID=33574658051-0f9glecg4ujag71t3r2r6i96lc1bdgqe.apps.googleusercontent.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_SECRET=NNDaKWcBni51U7Ya4uYL6-Ay </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=gmail.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOW_SIGN_UP=true</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/proven-cosine-207802-ec7a854d7ba9.json</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=test-grafana</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line">    depends_on:</span><br><span class="line">      - influxdb</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  grafana:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
+<h4 id="儲存後下指令-run-docker-compose"><a href="#儲存後下指令-run-docker-compose" class="headerlink" title="儲存後下指令 run docker-compose"></a>儲存後下指令 run docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<h4 id="到這邊就完成了"><a href="#到這邊就完成了" class="headerlink" title="到這邊就完成了"></a>到這邊就完成了</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/09/10/Cisco-Switch指令-持續更新/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    Cisco-Switch指令-持續更新
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/08/03/grafana告警圖保存至GCS/" class="ui tiny button">
-                    
-                    grafana告警圖保存至GCS
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/03/grafana告警圖保存至GCS/" rel="prev" title="grafana告警圖保存至GCS">
+      <i class="fa fa-chevron-left"></i> grafana告警圖保存至GCS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/10/Cisco-Switch指令-持續更新/" rel="next" title="Cisco-Switch指令-持續更新">
+      Cisco-Switch指令-持續更新 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹使用-docker-compose-建立-grafana"><span>本文章將介紹使用 docker-compose 建立 grafana</span></a><ol><li><a href="#指令安裝-docker-compose"><span>指令安裝 docker-compose</span></a></li><li><a href="#建立-docker-compose-yml"><span>建立 docker-compose.yml</span></a></li><li><a href="#寫入-docker-compose-內容"><span>寫入 docker-compose 內容</span></a></li><li><a href="#寫入內容"><span>寫入內容</span></a></li><li><a href="#儲存後下指令-run-docker-compose"><span>儲存後下指令 run docker-compose</span></a></li><li><a href="#到這邊就完成了"><span>到這邊就完成了</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文章將介紹使用-docker-compose-建立-grafana"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹使用 docker-compose 建立 grafana</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指令安裝-docker-compose"><span class="nav-number">1.1.</span> <span class="nav-text">指令安裝 docker-compose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立-docker-compose-yml"><span class="nav-number">1.2.</span> <span class="nav-text">建立 docker-compose.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寫入-docker-compose-內容"><span class="nav-number">1.3.</span> <span class="nav-text">寫入 docker-compose 內容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寫入內容"><span class="nav-number">1.4.</span> <span class="nav-text">寫入內容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#儲存後下指令-run-docker-compose"><span class="nav-number">1.5.</span> <span class="nav-text">儲存後下指令 run docker-compose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#到這邊就完成了"><span class="nav-number">1.6.</span> <span class="nav-text">到這邊就完成了</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

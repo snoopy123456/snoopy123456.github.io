@@ -1,428 +1,1081 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="website">
 <meta property="og:title" content="佛系筆記">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-tw">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="佛系筆記">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/我的網路筆記外傳-子網路切割快速計算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/10/我的網路筆記外傳-子網路切割快速計算法/" class="post-title-link" itemprop="url">我的網路筆記外傳-子網路切割快速計算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2020-04-10 13:48:55" itemprop="dateCreated datePublished" datetime="2020-04-10T13:48:55+08:00">2020-04-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-05-05 13:37:06" itemprop="dateModified" datetime="2020-05-05T13:37:06+08:00">2020-05-05</time>
+              </span>
+
+          
+
         </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
+      </header>
 
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址"><a href="#在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址" class="headerlink" title="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址"></a>在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址</h4><h4 id="某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢"><a href="#某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢" class="headerlink" title="某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢"></a>某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢</h4><h4 id="1-子網路的遮罩位址為何"><a href="#1-子網路的遮罩位址為何" class="headerlink" title="1.子網路的遮罩位址為何"></a>1.子網路的遮罩位址為何</h4><h4 id="該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240"><a href="#該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240" class="headerlink" title="該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240"></a>該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240</h4><h4 id="2-可切成幾個子網路"><a href="#2-可切成幾個子網路" class="headerlink" title="2.可切成幾個子網路"></a>2.可切成幾個子網路</h4><h4 id="數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。"><a href="#數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。" class="headerlink" title="數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。"></a>數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。</h4><h4 id="3-每個子網段有幾個-IP-值"><a href="#3-每個子網段有幾個-IP-值" class="headerlink" title="3.每個子網段有幾個 IP 值"></a>3.每個子網段有幾個 IP 值</h4><h4 id="子網路-ip-數為-256-16-2-14-頭尾-IP-要去除"><a href="#子網路-ip-數為-256-16-2-14-頭尾-IP-要去除" class="headerlink" title="子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )"></a>子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )</h4><h4 id="4-每個子網路的-IP-起迄位址"><a href="#4-每個子網路的-IP-起迄位址" class="headerlink" title="4.每個子網路的 IP 起迄位址"></a>4.每個子網路的 IP 起迄位址</h4><h4 id="200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255"><a href="#200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255" class="headerlink" title="200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255"></a>200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255</h4><h4 id="例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。"><a href="#例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。" class="headerlink" title="例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。"></a>例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/我的網路筆記第一集IP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/10/我的網路筆記第一集IP/" class="post-title-link" itemprop="url">我的網路筆記第一集IP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2020-04-10 13:48:54" itemprop="dateCreated datePublished" datetime="2020-04-10T13:48:54+08:00">2020-04-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-05-11 15:22:34" itemprop="dateModified" datetime="2020-05-11T15:22:34+08:00">2020-05-11</time>
+              </span>
+
+          
+
         </div>
-    </div>
-
-
-</div>
-
-    
-    
+      </header>
 
     
     
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <a href="/index.html" class="active item" >
-        <i class="home icon"></i>
-        首页
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        
-
-<div class="ui relaxed list">
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2020/04/10/我的網路筆記外傳-子網路切割快速計算法/">
-        
-        
-        我的網路筆記外傳-子網路切割快速計算法
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-04-10T05:48:55.000Z" itemprop="datePublished">2020-04-10</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
+      
+          <h3 id="一、IP-位址的組成與分級"><a href="#一、IP-位址的組成與分級" class="headerlink" title="一、IP 位址的組成與分級"></a>一、IP 位址的組成與分級</h3><h4 id="IP-的組成是-32-bits-的數值，也就是由-32-個-0-與-1-組成的一連串數字，不過因為人類對於二進位實在是不怎麼熟悉，所以為了順應人們對於十進位的依賴性，因此就將-32-bits-的-IP-分成四小段，每段含有-8-個-bits-，將-8-個-bits-計算成為十進位，並且每一段中間以小數點隔開，那就成了目前大家所熟悉的-IP-的書寫模樣了。如下所示："><a href="#IP-的組成是-32-bits-的數值，也就是由-32-個-0-與-1-組成的一連串數字，不過因為人類對於二進位實在是不怎麼熟悉，所以為了順應人們對於十進位的依賴性，因此就將-32-bits-的-IP-分成四小段，每段含有-8-個-bits-，將-8-個-bits-計算成為十進位，並且每一段中間以小數點隔開，那就成了目前大家所熟悉的-IP-的書寫模樣了。如下所示：" class="headerlink" title="IP 的組成是 32 bits 的數值，也就是由 32 個 0 與 1 組成的一連串數字，不過因為人類對於二進位實在是不怎麼熟悉，所以為了順應人們對於十進位的依賴性，因此就將 32 bits 的 IP 分成四小段，每段含有 8 個 bits ，將 8 個 bits 計算成為十進位，並且每一段中間以小數點隔開，那就成了目前大家所熟悉的 IP 的書寫模樣了。如下所示："></a>IP 的組成是 32 bits 的數值，也就是由 32 個 0 與 1 組成的一連串數字，不過因為人類對於二進位實在是不怎麼熟悉，所以為了順應人們對於十進位的依賴性，因此就將 32 bits 的 IP 分成四小段，每段含有 8 個 bits ，將 8 個 bits 計算成為十進位，並且每一段中間以小數點隔開，那就成了目前大家所熟悉的 IP 的書寫模樣了。如下所示：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP 的表示式：</span><br><span class="line">00000000.00000000.00000000.00000000   =&gt; 0.0.0.0</span><br><span class="line">11111111.11111111.11111111.11111111   =&gt; 255.255.255.255</span><br></pre></td></tr></table></figure>
+<h4 id="所以-IP-最小可以由-0-0-0-0-一直到-255-255-255-255，但在這一串數字中，其實還可以分為兩個部分，主要分為-Net-ID-網域號碼-與-Host-ID-主機號碼-兩部份，我們先以-192-168-0-0-192-168-0-255-這個-Class-C-的網域當作例子來說明好了"><a href="#所以-IP-最小可以由-0-0-0-0-一直到-255-255-255-255，但在這一串數字中，其實還可以分為兩個部分，主要分為-Net-ID-網域號碼-與-Host-ID-主機號碼-兩部份，我們先以-192-168-0-0-192-168-0-255-這個-Class-C-的網域當作例子來說明好了" class="headerlink" title="所以 IP 最小可以由 0.0.0.0 一直到 255.255.255.255，但在這一串數字中，其實還可以分為兩個部分，主要分為 Net_ID ( 網域號碼 )與 Host_ID ( 主機號碼 ) 兩部份，我們先以 192.168.0.0 ~ 192.168.0.255 這個 Class C 的網域當作例子來說明好了"></a>所以 IP 最小可以由 0.0.0.0 一直到 255.255.255.255，但在這一串數字中，其實還可以分為兩個部分，主要分為 Net_ID ( 網域號碼 )與 Host_ID ( 主機號碼 ) 兩部份，我們先以 192.168.0.0 ~ 192.168.0.255 這個 Class C 的網域當作例子來說明好了</h4><h4 id="在下面的範例當中，前面三組數字-192-168-0-就是網域號碼，最後面一組數字則稱為主機號碼"><a href="#在下面的範例當中，前面三組數字-192-168-0-就是網域號碼，最後面一組數字則稱為主機號碼" class="headerlink" title="在下面的範例當中，前面三組數字 ( 192.168.0 ) 就是網域號碼，最後面一組數字則稱為主機號碼"></a>在下面的範例當中，前面三組數字 ( 192.168.0 ) 就是網域號碼，最後面一組數字則稱為主機號碼</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.0.0~192.168.0.255 這個 Class C 的說明：</span><br><span class="line">11000000.10101000.00000000.00000000</span><br><span class="line">11000000.10101000.00000000.11111111</span><br><span class="line">|----------Net_ID---------|--host--|</span><br></pre></td></tr></table></figure>
+<h4 id="PS：上面例子當中的-192-168-0-0-192-168-0-1-192-168-0-2-…-192-168-0-255-共-256-個-這些-IP-就是同一個網域內的-IP-群-同一個網域也稱為同一個網段-，請注意，同一個-Net-ID-內，不能具有相同的-Host-ID-，否則就會發生-IP-衝突，可能會造成兩部主機都沒有辦法使用網路的問題"><a href="#PS：上面例子當中的-192-168-0-0-192-168-0-1-192-168-0-2-…-192-168-0-255-共-256-個-這些-IP-就是同一個網域內的-IP-群-同一個網域也稱為同一個網段-，請注意，同一個-Net-ID-內，不能具有相同的-Host-ID-，否則就會發生-IP-衝突，可能會造成兩部主機都沒有辦法使用網路的問題" class="headerlink" title="PS：上面例子當中的 192.168.0.0, 192.168.0.1, 192.168.0.2, …., 192.168.0.255 (共 256 個) 這些 IP 就是同一個網域內的 IP 群( 同一個網域也稱為同一個網段 )，請注意，同一個 Net_ID 內，不能具有相同的 Host_ID ，否則就會發生 IP 衝突，可能會造成兩部主機都沒有辦法使用網路的問題"></a>PS：上面例子當中的 192.168.0.0, 192.168.0.1, 192.168.0.2, …., 192.168.0.255 (共 256 個) 這些 IP 就是同一個網域內的 IP 群( 同一個網域也稱為同一個網段 )，請注意，同一個 Net_ID 內，不能具有相同的 Host_ID ，否則就會發生 IP 衝突，可能會造成兩部主機都沒有辦法使用網路的問題</h4><h4 id="舉例：電話號碼台中區-04-、台北-02-代表網路邊號，家裡電話號碼123456代表主機邊號台中電話-04-123456-你不能保證在其它區號比如台北-02-裡面沒有-1234567-這個號碼而若台中使用了區號-04-的話，台北就不能使用04而必須改用其它-02-所以整個區號加電話號碼必須是唯一的"><a href="#舉例：電話號碼台中區-04-、台北-02-代表網路邊號，家裡電話號碼123456代表主機邊號台中電話-04-123456-你不能保證在其它區號比如台北-02-裡面沒有-1234567-這個號碼而若台中使用了區號-04-的話，台北就不能使用04而必須改用其它-02-所以整個區號加電話號碼必須是唯一的" class="headerlink" title="舉例：電話號碼台中區 ( 04 )、台北 ( 02 ) 代表網路邊號，家裡電話號碼123456代表主機邊號台中電話 04-123456 你不能保證在其它區號比如台北 02 裡面沒有 1234567 這個號碼而若台中使用了區號 04 的話，台北就不能使用04而必須改用其它 ( 02 ) 所以整個區號加電話號碼必須是唯一的"></a>舉例：電話號碼台中區 ( 04 )、台北 ( 02 ) 代表網路邊號，家裡電話號碼123456代表主機邊號台中電話 04-123456 你不能保證在其它區號比如台北 02 裡面沒有 1234567 這個號碼而若台中使用了區號 04 的話，台北就不能使用04而必須改用其它 ( 02 ) 所以整個區號加電話號碼必須是唯一的</h4><h4 id="Net-ID-與-Host-ID-的限制："><a href="#Net-ID-與-Host-ID-的限制：" class="headerlink" title="Net_ID 與 Host_ID 的限制："></a>Net_ID 與 Host_ID 的限制：</h4><h4 id="在同一個網段內，Net-ID-是不變的，而-Host-ID-則是不可重複，此外，Host-ID-在二進位的表示法當中，不可同時為-0-也不可同時為-1，因為全為-0-表示整個網段的位址-Network-IP-，而全為-1-則表示為廣播的位址-Broadcast-IP-，例如上面的例子當中，192-168-0-0-Host-ID-全部為-0-以及-192-168-0-255-Host-ID-全部為-1-不可用來作為網段內主機的-IP-設定，也就是說，這個網段內可用來設定主機的-IP-是由-192-168-0-1-到-192-168-0-254，所以在算主機編號時，要扣掉-2-網路本身識別碼和廣播位址"><a href="#在同一個網段內，Net-ID-是不變的，而-Host-ID-則是不可重複，此外，Host-ID-在二進位的表示法當中，不可同時為-0-也不可同時為-1，因為全為-0-表示整個網段的位址-Network-IP-，而全為-1-則表示為廣播的位址-Broadcast-IP-，例如上面的例子當中，192-168-0-0-Host-ID-全部為-0-以及-192-168-0-255-Host-ID-全部為-1-不可用來作為網段內主機的-IP-設定，也就是說，這個網段內可用來設定主機的-IP-是由-192-168-0-1-到-192-168-0-254，所以在算主機編號時，要扣掉-2-網路本身識別碼和廣播位址" class="headerlink" title="在同一個網段內，Net_ID 是不變的，而 Host_ID 則是不可重複，此外，Host_ID 在二進位的表示法當中，不可同時為 0 也不可同時為 1，因為全為 0 表示整個網段的位址 ( Network IP )，而全為 1 則表示為廣播的位址 ( Broadcast IP )，例如上面的例子當中，192.168.0.0 ( Host_ID 全部為 0 ) 以及 192.168.0.255 ( Host_ID 全部為 1 ) 不可用來作為網段內主機的 IP 設定，也就是說，這個網段內可用來設定主機的 IP 是由 192.168.0.1 到 192.168.0.254，所以在算主機編號時，要扣掉 2 ( 網路本身識別碼和廣播位址 )"></a>在同一個網段內，Net_ID 是不變的，而 Host_ID 則是不可重複，此外，Host_ID 在二進位的表示法當中，不可同時為 0 也不可同時為 1，因為全為 0 表示整個網段的位址 ( Network IP )，而全為 1 則表示為廣播的位址 ( Broadcast IP )，例如上面的例子當中，192.168.0.0 ( Host_ID 全部為 0 ) 以及 192.168.0.255 ( Host_ID 全部為 1 ) 不可用來作為網段內主機的 IP 設定，也就是說，這個網段內可用來設定主機的 IP 是由 192.168.0.1 到 192.168.0.254，所以在算主機編號時，要扣掉 2 ( 網路本身識別碼和廣播位址 )</h4><h4 id="IP-的分級："><a href="#IP-的分級：" class="headerlink" title="IP 的分級："></a>IP 的分級：</h4><h4 id="為了-IP-管理與發放註冊的方便性，InterNIC-將整個-IP-網段分為五種等級，-每種等級的範圍主要與-IP-那-32-bits-數值的前面幾個位元有關，基本定義如下："><a href="#為了-IP-管理與發放註冊的方便性，InterNIC-將整個-IP-網段分為五種等級，-每種等級的範圍主要與-IP-那-32-bits-數值的前面幾個位元有關，基本定義如下：" class="headerlink" title="為了 IP 管理與發放註冊的方便性，InterNIC 將整個 IP 網段分為五種等級， 每種等級的範圍主要與 IP 那 32 bits 數值的前面幾個位元有關，基本定義如下："></a>為了 IP 管理與發放註冊的方便性，InterNIC 將整個 IP 網段分為五種等級， 每種等級的範圍主要與 IP 那 32 bits 數值的前面幾個位元有關，基本定義如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">以二進位說明 Network 第一個數字的定義：</span><br><span class="line">Class A : 0xxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx  =&gt; NetI_D 的開頭是 0</span><br><span class="line">          |--net--|---------host------------|</span><br><span class="line">Class B : 10xxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx  =&gt; NetI_D 的開頭是 10</span><br><span class="line">          |------net-------|------host------|</span><br><span class="line">Class C : 110xxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx  =&gt; NetI_D 的開頭是 110</span><br><span class="line">          |-----------net-----------|-host--|</span><br><span class="line">Class D : 1110xxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx  =&gt; NetI_D 的開頭是 1110</span><br><span class="line">Class E : 1111xxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx  =&gt; NetI_D 的開頭是 1111</span><br><span class="line"></span><br><span class="line">五種分級在十進位的表示：</span><br><span class="line">Class A :   0.xx.xx.xx ~ 127.xx.xx.xx</span><br><span class="line">Class B : 128.xx.xx.xx ~ 191.xx.xx.xx</span><br><span class="line">Class C : 192.xx.xx.xx ~ 223.xx.xx.xx</span><br><span class="line">Class D : 224.xx.xx.xx ~ 239.xx.xx.xx</span><br><span class="line">Class E : 240.xx.xx.xx ~ 255.xx.xx.xx</span><br></pre></td></tr></table></figure>
+<h3 id="二、IP-的種類"><a href="#二、IP-的種類" class="headerlink" title="二、IP 的種類"></a>二、IP 的種類</h3><h4 id="Public-IP-公共-IP-外網-，經由-INTERNIC-所統一規劃的-IP，有這種-IP-才可以連上-Internet"><a href="#Public-IP-公共-IP-外網-，經由-INTERNIC-所統一規劃的-IP，有這種-IP-才可以連上-Internet" class="headerlink" title="Public IP : 公共 IP ( 外網 )，經由 INTERNIC 所統一規劃的 IP，有這種 IP 才可以連上 Internet"></a>Public IP : 公共 IP ( 外網 )，經由 INTERNIC 所統一規劃的 IP，有這種 IP 才可以連上 Internet</h4><h4 id="組建一個企業級網路，需要去向電信運營商-ISP-申請一個接入-Internet-的寬頻，同時-ISP-還會給我們分配一個或多個-IP-地址，這些-IP-地址可以供我們企業內部上網，這些-ISP-分配給我們的-IP，就是公共-IP"><a href="#組建一個企業級網路，需要去向電信運營商-ISP-申請一個接入-Internet-的寬頻，同時-ISP-還會給我們分配一個或多個-IP-地址，這些-IP-地址可以供我們企業內部上網，這些-ISP-分配給我們的-IP，就是公共-IP" class="headerlink" title="組建一個企業級網路，需要去向電信運營商 ISP 申請一個接入 Internet 的寬頻，同時 ISP 還會給我們分配一個或多個 IP 地址，這些 IP 地址可以供我們企業內部上網，這些 ISP 分配給我們的 IP，就是公共 IP"></a>組建一個企業級網路，需要去向電信運營商 ISP 申請一個接入 Internet 的寬頻，同時 ISP 還會給我們分配一個或多個 IP 地址，這些 IP 地址可以供我們企業內部上網，這些 ISP 分配給我們的 IP，就是公共 IP</h4><h4 id="要將網路連上-Intetnet-的時候，必須先註冊好網路編號-Net-ID-，如果該-ID-已經被使用了，就必須選用另外的-ID-了，負責-Internet-IP-註冊的機構叫做-InterNIC-Network-Information-Center-，他們的網路位址是-http-www-internic-net-，他們將-IP-地址分配給註冊並向Internet-NIC-提出申請的組織機構，通過它直接訪問網際網路，不過實際上的運作，一般機構或個人是不太可能直接從-InterNIC-上註冊-IP-的，而是經-ISP-分配下來，這些經過合法授權使用的-IP，稱之為公共-IP-Public-IP"><a href="#要將網路連上-Intetnet-的時候，必須先註冊好網路編號-Net-ID-，如果該-ID-已經被使用了，就必須選用另外的-ID-了，負責-Internet-IP-註冊的機構叫做-InterNIC-Network-Information-Center-，他們的網路位址是-http-www-internic-net-，他們將-IP-地址分配給註冊並向Internet-NIC-提出申請的組織機構，通過它直接訪問網際網路，不過實際上的運作，一般機構或個人是不太可能直接從-InterNIC-上註冊-IP-的，而是經-ISP-分配下來，這些經過合法授權使用的-IP，稱之為公共-IP-Public-IP" class="headerlink" title="要將網路連上 Intetnet 的時候，必須先註冊好網路編號 ( Net ID )，如果該 ID 已經被使用了，就必須選用另外的 ID 了，負責 Internet IP 註冊的機構叫做 InterNIC ( Network Information Center )，他們的網路位址是 http://www.internic.net ，他們將 IP 地址分配給註冊並向Internet NIC 提出申請的組織機構，通過它直接訪問網際網路，不過實際上的運作，一般機構或個人是不太可能直接從 InterNIC 上註冊 IP 的，而是經 ISP 分配下來，這些經過合法授權使用的 IP，稱之為公共 IP ( Public IP )"></a>要將網路連上 Intetnet 的時候，必須先註冊好網路編號 ( Net ID )，如果該 ID 已經被使用了，就必須選用另外的 ID 了，負責 Internet IP 註冊的機構叫做 InterNIC ( Network Information Center )，他們的網路位址是 <a href="http://www.internic.net" target="_blank" rel="noopener">http://www.internic.net</a> ，他們將 IP 地址分配給註冊並向Internet NIC 提出申請的組織機構，通過它直接訪問網際網路，不過實際上的運作，一般機構或個人是不太可能直接從 InterNIC 上註冊 IP 的，而是經 ISP 分配下來，這些經過合法授權使用的 IP，稱之為公共 IP ( Public IP )</h4><h4 id="Private-IP-私有-IP-或保留-IP-內網-，不能直接連上-Internet-的-IP，主要用於區域網路內的主機連線規劃"><a href="#Private-IP-私有-IP-或保留-IP-內網-，不能直接連上-Internet-的-IP，主要用於區域網路內的主機連線規劃" class="headerlink" title="Private IP : 私有 IP 或保留 IP ( 內網 )，不能直接連上 Internet 的 IP，主要用於區域網路內的主機連線規劃"></a>Private IP : 私有 IP 或保留 IP ( 內網 )，不能直接連上 Internet 的 IP，主要用於區域網路內的主機連線規劃</h4><h4 id="早在-IPv4-規劃的時候就擔心-IP-會有不足的情況，而且為了應付某些企業內部的網路設定，於是就有了私有-IP-Private-IP-的產生了。私有-IP-也分別在-A-B-C-三個-Class-當中各保留一段作為私有-IP-網段，那就是："><a href="#早在-IPv4-規劃的時候就擔心-IP-會有不足的情況，而且為了應付某些企業內部的網路設定，於是就有了私有-IP-Private-IP-的產生了。私有-IP-也分別在-A-B-C-三個-Class-當中各保留一段作為私有-IP-網段，那就是：" class="headerlink" title="早在 IPv4 規劃的時候就擔心 IP 會有不足的情況，而且為了應付某些企業內部的網路設定，於是就有了私有 IP (Private IP) 的產生了。私有 IP 也分別在 A, B, C 三個 Class 當中各保留一段作為私有 IP 網段，那就是："></a>早在 IPv4 規劃的時候就擔心 IP 會有不足的情況，而且為了應付某些企業內部的網路設定，於是就有了私有 IP (Private IP) 的產生了。私有 IP 也分別在 A, B, C 三個 Class 當中各保留一段作為私有 IP 網段，那就是：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class A：10.0.0.0    - 10.255.255.255</span><br><span class="line">Class B：172.16.0.0  - 172.31.255.255</span><br><span class="line">Class C：192.168.0.0 - 192.168.255.255</span><br></pre></td></tr></table></figure>
+<h4 id="特殊的-loopback-IP-網段："><a href="#特殊的-loopback-IP-網段：" class="headerlink" title="特殊的 loopback IP 網段："></a>特殊的 loopback IP 網段：</h4><h4 id="Class-A-的網域-lo，-lo-的網路是當初被用來作為測試作業系統內部迴圈所用的一個網域，同時也能夠提供給系統內部原本就需要使用網路介面的服務-daemon-所使用"><a href="#Class-A-的網域-lo，-lo-的網路是當初被用來作為測試作業系統內部迴圈所用的一個網域，同時也能夠提供給系統內部原本就需要使用網路介面的服務-daemon-所使用" class="headerlink" title="Class A 的網域 lo，  lo 的網路是當初被用來作為測試作業系統內部迴圈所用的一個網域，同時也能夠提供給系統內部原本就需要使用網路介面的服務 ( daemon ) 所使用"></a>Class A 的網域 lo，  lo 的網路是當初被用來作為測試作業系統內部迴圈所用的一個網域，同時也能夠提供給系統內部原本就需要使用網路介面的服務 ( daemon ) 所使用</h4><h4 id="如果你沒有安裝網路卡在的機器上面，但是你又希望可以測試一下在你的機器上面設定的伺服器環境到底可不可以順利運作，這個時候就是利用這個所謂的內部迴圈網路，這個網段在-127-0-0-0-8-這個-Class-A，而且預設的主機-localhost-的-IP-是-127-0-0-1-所以當你啟動了你的-WWW-伺服器，然後在你的主機的-X-Window-上面執行-http-localhost-就可以直接看到你的主頁，所以在算網路編號時，要扣掉-127"><a href="#如果你沒有安裝網路卡在的機器上面，但是你又希望可以測試一下在你的機器上面設定的伺服器環境到底可不可以順利運作，這個時候就是利用這個所謂的內部迴圈網路，這個網段在-127-0-0-0-8-這個-Class-A，而且預設的主機-localhost-的-IP-是-127-0-0-1-所以當你啟動了你的-WWW-伺服器，然後在你的主機的-X-Window-上面執行-http-localhost-就可以直接看到你的主頁，所以在算網路編號時，要扣掉-127" class="headerlink" title="如果你沒有安裝網路卡在的機器上面，但是你又希望可以測試一下在你的機器上面設定的伺服器環境到底可不可以順利運作，這個時候就是利用這個所謂的內部迴圈網路，這個網段在 127.0.0.0/8 這個 Class A，而且預設的主機 ( localhost ) 的 IP 是 127.0.0.1 所以當你啟動了你的 WWW 伺服器，然後在你的主機的 X-Window 上面執行 http://localhost 就可以直接看到你的主頁，所以在算網路編號時，要扣掉 127"></a>如果你沒有安裝網路卡在的機器上面，但是你又希望可以測試一下在你的機器上面設定的伺服器環境到底可不可以順利運作，這個時候就是利用這個所謂的內部迴圈網路，這個網段在 127.0.0.0/8 這個 Class A，而且預設的主機 ( localhost ) 的 IP 是 127.0.0.1 所以當你啟動了你的 WWW 伺服器，然後在你的主機的 X-Window 上面執行 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> 就可以直接看到你的主頁，所以在算網路編號時，要扣掉 127</h4><h3 id="三、Netmask、Subnet-mask-子網路遮罩"><a href="#三、Netmask、Subnet-mask-子網路遮罩" class="headerlink" title="三、Netmask、Subnet mask ( 子網路遮罩 )"></a>三、Netmask、Subnet mask ( 子網路遮罩 )</h3><h3 id="Netmask："><a href="#Netmask：" class="headerlink" title="Netmask："></a>Netmask：</h3><h4 id="假設我們設定一個區網，使用的是-Class-A-，那麼我們很容易就會想到，有這麼多電腦設定在同一個-Class-A-的區段內-256x256x256-2-16777214-，一千多萬台的廣播，你的網路還能使用嗎，所以我們必須切網段，而切完的網段我們就稱為子網路-Netmask-，那如何切網段，就是讓第一個-Host-ID-被拿來作為-Net-ID-，以-Class-C-為例網域號碼佔了-24-位元，要將這樣的網域切的更細，所以-Net-ID-就有-25-bits，至於-Host-ID-則減少為-7-bits，在這樣的情況下，原來的一個-Class-C-的網域就可以被切分為兩個子網域，而每個子網域就有『-256-2-2-126-』個可用的-IP-了"><a href="#假設我們設定一個區網，使用的是-Class-A-，那麼我們很容易就會想到，有這麼多電腦設定在同一個-Class-A-的區段內-256x256x256-2-16777214-，一千多萬台的廣播，你的網路還能使用嗎，所以我們必須切網段，而切完的網段我們就稱為子網路-Netmask-，那如何切網段，就是讓第一個-Host-ID-被拿來作為-Net-ID-，以-Class-C-為例網域號碼佔了-24-位元，要將這樣的網域切的更細，所以-Net-ID-就有-25-bits，至於-Host-ID-則減少為-7-bits，在這樣的情況下，原來的一個-Class-C-的網域就可以被切分為兩個子網域，而每個子網域就有『-256-2-2-126-』個可用的-IP-了" class="headerlink" title="假設我們設定一個區網，使用的是 Class A ，那麼我們很容易就會想到，有這麼多電腦設定在同一個 Class A 的區段內 ( 256x256x256-2=16777214 )，一千多萬台的廣播，你的網路還能使用嗎，所以我們必須切網段，而切完的網段我們就稱為子網路 ( Netmask )，那如何切網段，就是讓第一個 Host_ID 被拿來作為 Net_ID ，以 Class C 為例網域號碼佔了 24 位元，要將這樣的網域切的更細，所以 Net_ID 就有 25 bits，至於 Host_ID 則減少為 7 bits，在這樣的情況下，原來的一個 Class C 的網域就可以被切分為兩個子網域，而每個子網域就有『 256/2 - 2 = 126 』個可用的 IP 了"></a>假設我們設定一個區網，使用的是 Class A ，那麼我們很容易就會想到，有這麼多電腦設定在同一個 Class A 的區段內 ( 256x256x256-2=16777214 )，一千多萬台的廣播，你的網路還能使用嗎，所以我們必須切網段，而切完的網段我們就稱為子網路 ( Netmask )，那如何切網段，就是讓第一個 Host_ID 被拿來作為 Net_ID ，以 Class C 為例網域號碼佔了 24 位元，要將這樣的網域切的更細，所以 Net_ID 就有 25 bits，至於 Host_ID 則減少為 7 bits，在這樣的情況下，原來的一個 Class C 的網域就可以被切分為兩個子網域，而每個子網域就有『 256/2 - 2 = 126 』個可用的 IP 了</h4><h3 id="Subnet-mask-子網路遮罩-："><a href="#Subnet-mask-子網路遮罩-：" class="headerlink" title="Subnet mask ( 子網路遮罩 )："></a>Subnet mask ( 子網路遮罩 )：</h3><h4 id="那到底是什麼參數來達成子網路的切分呢？那就是-Netmask-子網路遮罩-，以-192-168-0-0-192-168-0-255-這個網域為範例好了，如下所示，這個-IP-網段可以分為-Net-ID-與-Host-ID，既然-Net-ID-是不可變的，那就假設他所佔據的-bits-已經被用光了-全部為-1-，而-Host-ID-是可變的，就將他想成是保留著-全部為-0-，所以，-Netmask-的表示就成為："><a href="#那到底是什麼參數來達成子網路的切分呢？那就是-Netmask-子網路遮罩-，以-192-168-0-0-192-168-0-255-這個網域為範例好了，如下所示，這個-IP-網段可以分為-Net-ID-與-Host-ID，既然-Net-ID-是不可變的，那就假設他所佔據的-bits-已經被用光了-全部為-1-，而-Host-ID-是可變的，就將他想成是保留著-全部為-0-，所以，-Netmask-的表示就成為：" class="headerlink" title="那到底是什麼參數來達成子網路的切分呢？那就是 Netmask ( 子網路遮罩 )，以 192.168.0.0 ~ 192.168.0.255 這個網域為範例好了，如下所示，這個 IP 網段可以分為 Net_ID 與 Host_ID，既然 Net_ID 是不可變的，那就假設他所佔據的 bits 已經被用光了 (全部為 1)，而 Host_ID 是可變的，就將他想成是保留著 (全部為 0)，所以， Netmask 的表示就成為："></a>那到底是什麼參數來達成子網路的切分呢？那就是 Netmask ( 子網路遮罩 )，以 192.168.0.0 ~ 192.168.0.255 這個網域為範例好了，如下所示，這個 IP 網段可以分為 Net_ID 與 Host_ID，既然 Net_ID 是不可變的，那就假設他所佔據的 bits 已經被用光了 (全部為 1)，而 Host_ID 是可變的，就將他想成是保留著 (全部為 0)，所以， Netmask 的表示就成為：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">192.168.0.0~192.168.0.255 這個 C Class 的 Netmask 說明</span><br><span class="line">第一個 IP： 11000000.10101000.00000000.00000000</span><br><span class="line">最後一個 ： 11000000.10101000.00000000.11111111</span><br><span class="line">            |----------Net_ID---------|-host--|</span><br><span class="line">Netmask  ： 11111111.11111111.11111111.00000000  &lt;= Netmask 二進位</span><br><span class="line">         ：   255   .  255   .  255   .   0      &lt;= Netmask 十進位</span><br><span class="line">特別注意喔，netmask 也是 32 位元，在數值上，位於 Net_ID 的為 1 而 Host_ID 為 0</span><br></pre></td></tr></table></figure>
+<h4 id="轉成十進位的話，A-B-C-Class-的-Netmask-表示就成為這樣："><a href="#轉成十進位的話，A-B-C-Class-的-Netmask-表示就成為這樣：" class="headerlink" title="轉成十進位的話，A, B, C Class 的 Netmask 表示就成為這樣："></a>轉成十進位的話，A, B, C Class 的 Netmask 表示就成為這樣：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class A, B, C 三個等級的 Netmask 表示方式：</span><br><span class="line">Class A : 11111111.00000000.00000000.00000000 ==&gt; 255.  0.  0.  0</span><br><span class="line">Class B : 11111111.11111111.00000000.00000000 ==&gt; 255.255.  0.  0</span><br><span class="line">Class C : 11111111.11111111.11111111.00000000 ==&gt; 255.255.255.  0</span><br></pre></td></tr></table></figure>
+<h4 id="所以說，-192-168-0-0-192-168-0-255-這個-Class-C-的網域中，他的-Netmask-就是-255-255-255-0-再來剛剛提到了當-Host-ID-全部為-0-以及全部為-1-的時後該-IP-是不可以使用的，因為-Host-ID-全部為-0-的時後，表示-IP-是該網段的-Network-，至於全部為-1-的時後就表示該網段最後一個-IP，也稱為-Broadcast-廣播位址-，所以說，在-192-168-0-0-192-168-0-255-這個-IP-網段裡面的相關網路參數就有："><a href="#所以說，-192-168-0-0-192-168-0-255-這個-Class-C-的網域中，他的-Netmask-就是-255-255-255-0-再來剛剛提到了當-Host-ID-全部為-0-以及全部為-1-的時後該-IP-是不可以使用的，因為-Host-ID-全部為-0-的時後，表示-IP-是該網段的-Network-，至於全部為-1-的時後就表示該網段最後一個-IP，也稱為-Broadcast-廣播位址-，所以說，在-192-168-0-0-192-168-0-255-這個-IP-網段裡面的相關網路參數就有：" class="headerlink" title="所以說， 192.168.0.0 ~ 192.168.0.255 這個 Class C 的網域中，他的 Netmask 就是 255.255.255.0 再來剛剛提到了當 Host_ID 全部為 0 以及全部為 1 的時後該 IP 是不可以使用的，因為 Host_ID 全部為 0 的時後，表示 IP 是該網段的 Network ，至於全部為 1 的時後就表示該網段最後一個 IP，也稱為 Broadcast ( 廣播位址 )，所以說，在 192.168.0.0 ~ 192.168.0.255 這個 IP 網段裡面的相關網路參數就有："></a>所以說， 192.168.0.0 ~ 192.168.0.255 這個 Class C 的網域中，他的 Netmask 就是 255.255.255.0 再來剛剛提到了當 Host_ID 全部為 0 以及全部為 1 的時後該 IP 是不可以使用的，因為 Host_ID 全部為 0 的時後，表示 IP 是該網段的 Network ，至於全部為 1 的時後就表示該網段最後一個 IP，也稱為 Broadcast ( 廣播位址 )，所以說，在 192.168.0.0 ~ 192.168.0.255 這個 IP 網段裡面的相關網路參數就有：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Netmask:   255.255.255.0   &lt;==網域定義中，最重要的參數</span><br><span class="line">Network:   192.168.0.0     &lt;==第一個 IP</span><br><span class="line">Broadcast: 192.168.0.255   &lt;==最後一個 IP</span><br><span class="line">可用以設定成為主機的 IP 數：</span><br><span class="line">192.168.0.1 ~ 192.168.0.254</span><br></pre></td></tr></table></figure>
+<h4 id="子網路切分："><a href="#子網路切分：" class="headerlink" title="子網路切分："></a>子網路切分：</h4><h4 id="以-192-168-0-0-192-168-0-255-這個情況為例，要分為兩個子網域以-Host-ID-拿來當作-Net-ID，那麼-Net-ID-使用了-25-bits-時，就會如下所示："><a href="#以-192-168-0-0-192-168-0-255-這個情況為例，要分為兩個子網域以-Host-ID-拿來當作-Net-ID，那麼-Net-ID-使用了-25-bits-時，就會如下所示：" class="headerlink" title="以 192.168.0.0 ~192.168.0.255 這個情況為例，要分為兩個子網域以 Host_ID 拿來當作 Net_ID，那麼 Net_ID 使用了 25 bits 時，就會如下所示："></a>以 192.168.0.0 ~192.168.0.255 這個情況為例，要分為兩個子網域以 Host_ID 拿來當作 Net_ID，那麼 Net_ID 使用了 25 bits 時，就會如下所示：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">原本的 C Class 的 Net_ID 與 Host_ID 的分別</span><br><span class="line">11000000.10101000.00000000.00000000      Network:   192.168.0.0</span><br><span class="line">11000000.10101000.00000000.11111111      Broadcast: 192.168.0.255</span><br><span class="line">|----------Net_ID---------|-host--|</span><br><span class="line"></span><br><span class="line">切成兩個子網路之後的 Net_ID 與 Host_ID 為何？</span><br><span class="line">11000000.10101000.00000000.0 0000000  多了一個 Net_ID 了, 為 0 (第一個子網)</span><br><span class="line">11000000.10101000.00000000.1 0000000  多了一個 Net_ID 了, 為 1 (第二個子網)</span><br><span class="line">|----------Net_ID-----------|-host--|</span><br><span class="line"></span><br><span class="line">第一個子網路</span><br><span class="line">Network:   11000000.10101000.00000000.0 0000000   192.168.0.0</span><br><span class="line">Broadcast: 11000000.10101000.00000000.0 1111111   192.168.0.127</span><br><span class="line">           |----------Net_ID-----------|-host-|</span><br><span class="line">Netmask:   11111111.11111111.11111111.1 0000000   255.255.255.128</span><br><span class="line"></span><br><span class="line">第二個子網路</span><br><span class="line">Network:   11000000.10101000.00000000.1 0000000   192.168.0.128</span><br><span class="line">Broadcast: 11000000.10101000.00000000.1 1111111   192.168.0.255</span><br><span class="line">           |----------Net_ID-----------|-host-|</span><br><span class="line">Netmask:   11111111.11111111.11111111.1 0000000   255.255.255.128</span><br></pre></td></tr></table></figure>
+<h4 id="簡易算法："><a href="#簡易算法：" class="headerlink" title="簡易算法："></a>簡易算法：</h4><h4 id="24，24個-1＝-11111111-11111111-11111111-00000000-所以是-255-255-252-0"><a href="#24，24個-1＝-11111111-11111111-11111111-00000000-所以是-255-255-252-0" class="headerlink" title="/24，24個 1＝ 11111111.11111111.11111111.00000000 所以是 255.255.252.0"></a>/24，24個 1＝ 11111111.11111111.11111111.00000000 所以是 255.255.252.0</h4><h4 id="22，25個-1＝-11111111-11111111-11111111-10000000-所以是-255-255-252-128"><a href="#22，25個-1＝-11111111-11111111-11111111-10000000-所以是-255-255-252-128" class="headerlink" title="/22，25個 1＝ 11111111.11111111.11111111.10000000 所以是 255.255.252.128"></a>/22，25個 1＝ 11111111.11111111.11111111.10000000 所以是 255.255.252.128</h4><h4 id="24-11111111-11111111-11111111-00000000-所以是-0-255"><a href="#24-11111111-11111111-11111111-00000000-所以是-0-255" class="headerlink" title="/24 11111111.11111111.11111111.00000000 所以是 0~255"></a>/24 11111111.11111111.11111111.00000000 所以是 0~255</h4><h4 id="25-11111111-11111111-11111111-10000000-25-個-1，切法是-11111111-從第一個-1-二進位開始算所以是-2段-4段-8段-16段-32段-64段-128段，所以-25-就是-2-段子網路-第一段：255-255-255-0-255-255-255-127、第二段：255-255-255-128-255-255-255-255，已-class-c-來看就是-第一段-192-168-1-0-192-168-1-127、第二段-192-168-1-128-192-168-1-255、-26-0-63、64-127、128-191、192-255-依此類推"><a href="#25-11111111-11111111-11111111-10000000-25-個-1，切法是-11111111-從第一個-1-二進位開始算所以是-2段-4段-8段-16段-32段-64段-128段，所以-25-就是-2-段子網路-第一段：255-255-255-0-255-255-255-127、第二段：255-255-255-128-255-255-255-255，已-class-c-來看就是-第一段-192-168-1-0-192-168-1-127、第二段-192-168-1-128-192-168-1-255、-26-0-63、64-127、128-191、192-255-依此類推" class="headerlink" title="/25 11111111.11111111.11111111.10000000 25 個 1，切法是 11111111 從第一個 1 二進位開始算所以是 2段.4段.8段.16段.32段.64段.128段，所以 /25 就是 2 段子網路 第一段：255.255.255.0~255.255.255.127、第二段：255.255.255.128~255.255.255.255，已 class c 來看就是 第一段 192.168.1.0~192.168.1.127、第二段 192.168.1.128~192.168.1.255、/26 0~63、64~127、128~191、192~255 依此類推"></a>/25 11111111.11111111.11111111.10000000 25 個 1，切法是 11111111 從第一個 1 二進位開始算所以是 2段.4段.8段.16段.32段.64段.128段，所以 /25 就是 2 段子網路 第一段：255.255.255.0~255.255.255.127、第二段：255.255.255.128~255.255.255.255，已 class c 來看就是 第一段 192.168.1.0~192.168.1.127、第二段 192.168.1.128~192.168.1.255、/26 0~63、64~127、128~191、192~255 依此類推</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">對IP劃分子網後的子網路遮罩</span><br><span class="line">8位的子網路遮罩（/8）子網路遮罩255.0.0.0</span><br><span class="line">9位的子網路遮罩（/9）子網路遮罩255.128.0.0</span><br><span class="line">10位的子網路遮罩（/10）子網路遮罩255.192.0.0</span><br><span class="line">11位的子網路遮罩（/11）子網路遮罩255.224.0.0</span><br><span class="line">12位的子網路遮罩（/12）子網路遮罩255.240.0.0</span><br><span class="line">13位的子網路遮罩（/13）子網路遮罩255.248.0.0</span><br><span class="line">14位的子網路遮罩（/14）子網路遮罩255.252.0.0</span><br><span class="line">15位的子網路遮罩（/15）子網路遮罩255.254.0.0</span><br><span class="line">16位的子網路遮罩（/16）子網路遮罩255.255.0.0</span><br><span class="line">17位的子網路遮罩（/17）子網路遮罩255.255.128.0</span><br><span class="line">18位的子網路遮罩（/18）子網路遮罩255.255.192.0</span><br><span class="line">19位的子網路遮罩（/19）子網路遮罩255.255.224.0</span><br><span class="line">20位的子網路遮罩（/20）子網路遮罩255.255.240.0</span><br><span class="line">21位的子網路遮罩（/21）子網路遮罩255.255.248.0</span><br><span class="line">22位的子網路遮罩（/22）子網路遮罩255.255.252.0</span><br><span class="line">23位的子網路遮罩（/23）子網路遮罩255.255.254.0</span><br><span class="line">24位的子網路遮罩（/24）子網路遮罩255.255.255.0</span><br><span class="line">25位的子網路遮罩（/25）子網路遮罩255.255.255.128</span><br><span class="line">26位的子網路遮罩（/26）子網路遮罩255.255.255.192</span><br><span class="line">27位的子網路遮罩（/27）子網路遮罩255.255.255.224</span><br><span class="line">28位的子網路遮罩（/28）子網路遮罩255.255.255.240</span><br><span class="line">29位的子網路遮罩（/29）子網路遮罩255.255.255.248</span><br><span class="line">30位的子網路遮罩（/30）子網路遮罩255.255.255.252</span><br></pre></td></tr></table></figure>
+<h4 id="ex：在一個-Lan-的環境下有兩台server，A-Server-IP-為-192-168-1-92-B-Server-IP-為-192-168-1-122-現在進行網段-Vlan-切割試問-submask-“最小”-需為多少-兩台-server-會在同一個網段內"><a href="#ex：在一個-Lan-的環境下有兩台server，A-Server-IP-為-192-168-1-92-B-Server-IP-為-192-168-1-122-現在進行網段-Vlan-切割試問-submask-“最小”-需為多少-兩台-server-會在同一個網段內" class="headerlink" title="ex：在一個 Lan 的環境下有兩台server，A Server IP 為 192.168.1.92 B Server IP 為 192.168.1.122 現在進行網段 Vlan 切割試問 submask  “最小” 需為多少, 兩台 server 會在同一個網段內?"></a>ex：在一個 Lan 的環境下有兩台server，A Server IP 為 192.168.1.92 B Server IP 為 192.168.1.122 現在進行網段 Vlan 切割試問 submask  “最小” 需為多少, 兩台 server 會在同一個網段內?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">看2組IP可以確定是 class c</span><br><span class="line">(192.168.0.0.0-192.168.255.255是calss c)</span><br><span class="line"></span><br><span class="line">/24  0~254</span><br><span class="line">/25 0~127、128~254</span><br><span class="line">/26 0~63、64~127、128~191、192~255</span><br><span class="line"></span><br><span class="line">92~122 在 64~127 這段裡面，所以最小4段</span><br></pre></td></tr></table></figure>
+      
     </div>
 
     
-
     
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-    <div class="item">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/git指令/">
 
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2020/04/10/我的網路筆記第一集IP/">
-        
-        
-        我的網路筆記第一集IP
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-04-10T05:48:54.000Z" itemprop="datePublished">2020-04-10</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
-        
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
     </span>
-</div>
-</div>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/26/git指令/" class="post-title-link" itemprop="url">git指令</a>
+        </h2>
 
-    </div>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
 
-    
+              <time title="Erstellt: 2019-02-26 15:22:06" itemprop="dateCreated datePublished" datetime="2019-02-26T15:22:06+08:00">2019-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
 
-    
+          
 
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2019/02/26/git指令/">
-        
-        
-        git指令
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-02-26T07:22:06.000Z" itemprop="datePublished">2019-02-26</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2019/01/23/使用工作排程器執行批次檔/">
-        
-        
-        使用工作排程器執行批次檔
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-01-23T06:25:44.000Z" itemprop="datePublished">2019-01-23</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2019/01/03/配置winrm與https證書訊息/">
-        
-        
-        配置winrm與https證書訊息
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-01-03T08:00:24.000Z" itemprop="datePublished">2019-01-03</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2019/01/03/安裝ansible-windows/">
-        
-        
-        安裝ansible-windows
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-01-03T06:29:23.000Z" itemprop="datePublished">2019-01-03</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2019/01/03/安裝ansible-ubuntu/">
-        
-        
-        安裝ansible-ubuntu
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-01-03T06:29:15.000Z" itemprop="datePublished">2019-01-03</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2018/11/30/安裝slatstack-第一種架構/">
-        
-        
-        安裝slatstack-第一種架構
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-11-30T05:43:24.000Z" itemprop="datePublished">2018-11-30</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2018/11/24/VXG建立/">
-        
-        
-        VXG建立
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-11-24T07:59:00.000Z" itemprop="datePublished">2018-11-24</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/2018/11/23/設定wowza-HLS低延遲/">
-        
-        
-        設定wowza-HLS低延遲
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-11-23T03:36:21.000Z" itemprop="datePublished">2018-11-23</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-</div>
-
-
-
-    
-        
-        <div class="ui pagination menu"><span class="item active">1</span><a class="item" href="/page/2/">2</a><a class="item" href="/page/3/">3</a><span class="item">&hellip;</span><a class="item" href="/page/8/">8</a></div>
-    
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="本文章作筆記用，會持續更新-git-指令"><a href="#本文章作筆記用，會持續更新-git-指令" class="headerlink" title="本文章作筆記用，會持續更新 git 指令"></a>本文章作筆記用，會持續更新 git 指令</h4><h4 id="git-指令查看-變更帳號信箱"><a href="#git-指令查看-變更帳號信箱" class="headerlink" title="git 指令查看+變更帳號信箱"></a>git 指令查看+變更帳號信箱</h4><h4 id="git-config-user-name"><a href="#git-config-user-name" class="headerlink" title="git config user.name"></a>git config user.name</h4><h4 id="git-config-user-email"><a href="#git-config-user-email" class="headerlink" title="git config user.email"></a>git config user.email</h4><h4 id="git-config-–global-user-name-“Your-username”"><a href="#git-config-–global-user-name-“Your-username”" class="headerlink" title="git config –global user.name “Your_username”"></a>git config –global user.name “Your_username”</h4><h4 id="git-config-–global-user-email-“Your-email”"><a href="#git-config-–global-user-email-“Your-email”" class="headerlink" title="git config –global user.email “Your_email”"></a>git config –global user.email “Your_email”</h4>
+      
     </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/使用工作排程器執行批次檔/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/23/使用工作排程器執行批次檔/" class="post-title-link" itemprop="url">使用工作排程器執行批次檔</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2019-01-23 14:25:44" itemprop="dateCreated datePublished" datetime="2019-01-23T14:25:44+08:00">2019-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="隨著管理機器越來越多，自動化維運勢在必行也開始導入-ansible、slatstack-等自動化工具，為了配合自動化一些批次檔高手也會寫些批次檔輔助，本文章將介紹如何使用工作排程器執行批次檔"><a href="#隨著管理機器越來越多，自動化維運勢在必行也開始導入-ansible、slatstack-等自動化工具，為了配合自動化一些批次檔高手也會寫些批次檔輔助，本文章將介紹如何使用工作排程器執行批次檔" class="headerlink" title="隨著管理機器越來越多，自動化維運勢在必行也開始導入 ansible、slatstack 等自動化工具，為了配合自動化一些批次檔高手也會寫些批次檔輔助，本文章將介紹如何使用工作排程器執行批次檔"></a>隨著管理機器越來越多，自動化維運勢在必行也開始導入 ansible、slatstack 等自動化工具，為了配合自動化一些批次檔高手也會寫些批次檔輔助，本文章將介紹如何使用工作排程器執行批次檔</h3><h4 id="本文章使用-windows-10"><a href="#本文章使用-windows-10" class="headerlink" title="本文章使用 windows 10"></a>本文章使用 windows 10</h4><h4 id="1-開始-→-windows-系統管理工具-→-工作排程器"><a href="#1-開始-→-windows-系統管理工具-→-工作排程器" class="headerlink" title="1. 開始 → windows 系統管理工具 → 工作排程器"></a>1. 開始 → windows 系統管理工具 → 工作排程器</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="第二種方法：控制台-→-系統管理工具-→-工作排程器"><a href="#第二種方法：控制台-→-系統管理工具-→-工作排程器" class="headerlink" title="第二種方法：控制台 → 系統管理工具 → 工作排程器"></a>第二種方法：控制台 → 系統管理工具 → 工作排程器</h4><p><img src="images/2.png" alt=" "></p>
+<h4 id="2-左邊列表點選工作排程器程式庫，再點選右邊的建立基本工作"><a href="#2-左邊列表點選工作排程器程式庫，再點選右邊的建立基本工作" class="headerlink" title="2. 左邊列表點選工作排程器程式庫，再點選右邊的建立基本工作"></a>2. 左邊列表點選工作排程器程式庫，再點選右邊的建立基本工作</h4><p><img src="images/3.png" alt=" "></p>
+<h4 id="3-輸入這個排程的名稱跟描述"><a href="#3-輸入這個排程的名稱跟描述" class="headerlink" title="3. 輸入這個排程的名稱跟描述"></a>3. 輸入這個排程的名稱跟描述</h4><p><img src="images/4.png" alt=" "></p>
+<h4 id="4-觸發程序，選取執行時間本文章使要在呼叫時才使用，所以選擇僅一次"><a href="#4-觸發程序，選取執行時間本文章使要在呼叫時才使用，所以選擇僅一次" class="headerlink" title="4. 觸發程序，選取執行時間本文章使要在呼叫時才使用，所以選擇僅一次"></a>4. 觸發程序，選取執行時間本文章使要在呼叫時才使用，所以選擇僅一次</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="5-選擇僅一次後會有開始時間，因為要在呼叫時開啟所以直接下一步"><a href="#5-選擇僅一次後會有開始時間，因為要在呼叫時開啟所以直接下一步" class="headerlink" title="5. 選擇僅一次後會有開始時間，因為要在呼叫時開啟所以直接下一步"></a>5. 選擇僅一次後會有開始時間，因為要在呼叫時開啟所以直接下一步</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="如果是有選擇有時間規律觸發，會有時間讓你選擇多久執行一次"><a href="#如果是有選擇有時間規律觸發，會有時間讓你選擇多久執行一次" class="headerlink" title="如果是有選擇有時間規律觸發，會有時間讓你選擇多久執行一次"></a>如果是有選擇有時間規律觸發，會有時間讓你選擇多久執行一次</h4><p><img src="images/7.png" alt=" "></p>
+<h4 id="6-動作，選擇程序要執行的動作，本文章選擇啟動程式"><a href="#6-動作，選擇程序要執行的動作，本文章選擇啟動程式" class="headerlink" title="6. 動作，選擇程序要執行的動作，本文章選擇啟動程式"></a>6. 動作，選擇程序要執行的動作，本文章選擇啟動程式</h4><p><img src="images/8.png" alt=" "></p>
+<h4 id="7-啟動程式，可以直接輸入指令如圖-shutdown-指-shutdown-exe-程式-，並輸入引數「-s-t-10」，表示要自動關機並停等10秒"><a href="#7-啟動程式，可以直接輸入指令如圖-shutdown-指-shutdown-exe-程式-，並輸入引數「-s-t-10」，表示要自動關機並停等10秒" class="headerlink" title="7. 啟動程式，可以直接輸入指令如圖 shutdown ( 指 shutdown.exe 程式 )，並輸入引數「/s /t 10」，表示要自動關機並停等10秒"></a>7. 啟動程式，可以直接輸入指令如圖 shutdown ( 指 shutdown.exe 程式 )，並輸入引數「/s /t 10」，表示要自動關機並停等10秒</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="本文章已經做好批次檔，所以選擇瀏覽使用做好的批次檔"><a href="#本文章已經做好批次檔，所以選擇瀏覽使用做好的批次檔" class="headerlink" title="本文章已經做好批次檔，所以選擇瀏覽使用做好的批次檔"></a>本文章已經做好批次檔，所以選擇瀏覽使用做好的批次檔</h4><p><img src="images/10.png" alt=" "><br><img src="images/11.png" alt=" "></p>
+<h4 id="8-最後查看有沒有設定錯誤，沒有點選完成"><a href="#8-最後查看有沒有設定錯誤，沒有點選完成" class="headerlink" title="8. 最後查看有沒有設定錯誤，沒有點選完成"></a>8. 最後查看有沒有設定錯誤，沒有點選完成</h4><p><img src="images/12.png" alt=" "></p>
+<h4 id="9-回到排程畫面，會看到排程已列入點擊2下可以再做設定，本文章把此排程設定最高權限執行"><a href="#9-回到排程畫面，會看到排程已列入點擊2下可以再做設定，本文章把此排程設定最高權限執行" class="headerlink" title="9. 回到排程畫面，會看到排程已列入點擊2下可以再做設定，本文章把此排程設定最高權限執行"></a>9. 回到排程畫面，會看到排程已列入點擊2下可以再做設定，本文章把此排程設定最高權限執行</h4><p><img src="images/13.png" alt=" "><br><img src="images/14.png" alt=" "></p>
+<h4 id="10-使用-cmd-啟動排程，看到成功就是-ok-了"><a href="#10-使用-cmd-啟動排程，看到成功就是-ok-了" class="headerlink" title="10. 使用 cmd 啟動排程，看到成功就是 ok 了"></a>10. 使用 cmd 啟動排程，看到成功就是 ok 了</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">schtasks /Run /TN &quot;排程名稱&quot;</span><br><span class="line"></span><br><span class="line">ex：schtasks /Run /TN &quot;test&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="images/15.png" alt=" "></p>
+<h4 id="如果不知道指令如圖-schtasks-可以查詢"><a href="#如果不知道指令如圖-schtasks-可以查詢" class="headerlink" title="如果不知道指令如圖 schtasks /? 可以查詢"></a>如果不知道指令如圖 schtasks /? 可以查詢</h4><p><img src="images/16.png" alt=" "><br><img src="images/17.png" alt=" "></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/配置winrm與https證書訊息/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/03/配置winrm與https證書訊息/" class="post-title-link" itemprop="url">配置winrm與https證書訊息</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2019-01-03 16:00:24" itemprop="dateCreated datePublished" datetime="2019-01-03T16:00:24+08:00">2019-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br></pre></td><td class="code"><pre><span class="line">#Requires -Version 3.0</span><br><span class="line"></span><br><span class="line"># Configure a Windows host for remote management with Ansible</span><br><span class="line"># -----------------------------------------------------------</span><br><span class="line">#</span><br><span class="line"># This script checks the current WinRM (PS Remoting) configuration and makes</span><br><span class="line"># the necessary changes to allow Ansible to connect, authenticate and</span><br><span class="line"># execute PowerShell commands.</span><br><span class="line">#</span><br><span class="line"># All events are logged to the Windows EventLog, useful for unattended runs.</span><br><span class="line">#</span><br><span class="line"># Use option -Verbose in order to see the verbose output messages.</span><br><span class="line">#</span><br><span class="line"># Use option -CertValidityDays to specify how long this certificate is valid</span><br><span class="line"># starting from today. So you would specify -CertValidityDays 3650 to get</span><br><span class="line"># a 10-year valid certificate.</span><br><span class="line">#</span><br><span class="line"># Use option -ForceNewSSLCert if the system has been SysPreped and a new</span><br><span class="line"># SSL Certificate must be forced on the WinRM Listener when re-running this</span><br><span class="line"># script. This is necessary when a new SID and CN name is created.</span><br><span class="line">#</span><br><span class="line"># Use option -EnableCredSSP to enable CredSSP as an authentication option.</span><br><span class="line">#</span><br><span class="line"># Use option -DisableBasicAuth to disable basic authentication.</span><br><span class="line">#</span><br><span class="line"># Use option -SkipNetworkProfileCheck to skip the network profile check.</span><br><span class="line"># Without specifying this the script will only run if the device&apos;s interfaces</span><br><span class="line"># are in DOMAIN or PRIVATE zones.  Provide this switch if you want to enable</span><br><span class="line"># WinRM on a device with an interface in PUBLIC zone.</span><br><span class="line">#</span><br><span class="line"># Use option -SubjectName to specify the CN name of the certificate. This</span><br><span class="line"># defaults to the system&apos;s hostname and generally should not be specified.</span><br><span class="line"></span><br><span class="line"># Written by Trond Hindenes &lt;trond@hindenes.com&gt;</span><br><span class="line"># Updated by Chris Church &lt;cchurch@ansible.com&gt;</span><br><span class="line"># Updated by Michael Crilly &lt;mike@autologic.cm&gt;</span><br><span class="line"># Updated by Anton Ouzounov &lt;Anton.Ouzounov@careerbuilder.com&gt;</span><br><span class="line"># Updated by Nicolas Simond &lt;contact@nicolas-simond.com&gt;</span><br><span class="line"># Updated by Dag Wieërs &lt;dag@wieers.com&gt;</span><br><span class="line"># Updated by Jordan Borean &lt;jborean93@gmail.com&gt;</span><br><span class="line"># Updated by Erwan Quélin &lt;erwan.quelin@gmail.com&gt;</span><br><span class="line"># Updated by David Norman &lt;david@dkn.email&gt;</span><br><span class="line">#</span><br><span class="line"># Version 1.0 - 2014-07-06</span><br><span class="line"># Version 1.1 - 2014-11-11</span><br><span class="line"># Version 1.2 - 2015-05-15</span><br><span class="line"># Version 1.3 - 2016-04-04</span><br><span class="line"># Version 1.4 - 2017-01-05</span><br><span class="line"># Version 1.5 - 2017-02-09</span><br><span class="line"># Version 1.6 - 2017-04-18</span><br><span class="line"># Version 1.7 - 2017-11-23</span><br><span class="line"># Version 1.8 - 2018-02-23</span><br><span class="line"># Version 1.9 - 2018-09-21</span><br><span class="line"></span><br><span class="line"># Support -Verbose option</span><br><span class="line">[CmdletBinding()]</span><br><span class="line"></span><br><span class="line">Param (</span><br><span class="line">    [string]$SubjectName = $env:COMPUTERNAME,</span><br><span class="line">    [int]$CertValidityDays = 1095,</span><br><span class="line">    [switch]$SkipNetworkProfileCheck,</span><br><span class="line">    $CreateSelfSignedCert = $true,</span><br><span class="line">    [switch]$ForceNewSSLCert,</span><br><span class="line">    [switch]$GlobalHttpFirewallAccess,</span><br><span class="line">    [switch]$DisableBasicAuth = $false,</span><br><span class="line">    [switch]$EnableCredSSP</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">Function Write-Log</span><br><span class="line">&#123;</span><br><span class="line">    $Message = $args[0]</span><br><span class="line">    Write-EventLog -LogName Application -Source $EventSource -EntryType Information -EventId 1 -Message $Message</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Function Write-VerboseLog</span><br><span class="line">&#123;</span><br><span class="line">    $Message = $args[0]</span><br><span class="line">    Write-Verbose $Message</span><br><span class="line">    Write-Log $Message</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Function Write-HostLog</span><br><span class="line">&#123;</span><br><span class="line">    $Message = $args[0]</span><br><span class="line">    Write-Output $Message</span><br><span class="line">    Write-Log $Message</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Function New-LegacySelfSignedCert</span><br><span class="line">&#123;</span><br><span class="line">    Param (</span><br><span class="line">        [string]$SubjectName,</span><br><span class="line">        [int]$ValidDays = 1095</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    $hostnonFQDN = $env:computerName </span><br><span class="line">    $hostFQDN = [System.Net.Dns]::GetHostByName(($env:computerName)).Hostname</span><br><span class="line">    $SignatureAlgorithm = &quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">    $name = New-Object -COM &quot;X509Enrollment.CX500DistinguishedName.1&quot;</span><br><span class="line">    $name.Encode(&quot;CN=$SubjectName&quot;, 0)</span><br><span class="line"></span><br><span class="line">    $key = New-Object -COM &quot;X509Enrollment.CX509PrivateKey.1&quot;</span><br><span class="line">    $key.ProviderName = &quot;Microsoft Enhanced RSA and AES Cryptographic Provider&quot;</span><br><span class="line">    $key.KeySpec = 1</span><br><span class="line">    $key.Length = 4096</span><br><span class="line">    $key.SecurityDescriptor = &quot;D:PAI(A;;0xd01f01ff;;;SY)(A;;0xd01f01ff;;;BA)(A;;0x80120089;;;NS)&quot;</span><br><span class="line">    $key.MachineContext = 1</span><br><span class="line">    $key.Create()</span><br><span class="line"></span><br><span class="line">    $serverauthoid = New-Object -COM &quot;X509Enrollment.CObjectId.1&quot;</span><br><span class="line">    $serverauthoid.InitializeFromValue(&quot;1.3.6.1.5.5.7.3.1&quot;)</span><br><span class="line">    $ekuoids = New-Object -COM &quot;X509Enrollment.CObjectIds.1&quot;</span><br><span class="line">    $ekuoids.Add($serverauthoid)</span><br><span class="line">    $ekuext = New-Object -COM &quot;X509Enrollment.CX509ExtensionEnhancedKeyUsage.1&quot;</span><br><span class="line">    $ekuext.InitializeEncode($ekuoids)</span><br><span class="line"></span><br><span class="line">    $cert = New-Object -COM &quot;X509Enrollment.CX509CertificateRequestCertificate.1&quot;</span><br><span class="line">    $cert.InitializeFromPrivateKey(2, $key, &quot;&quot;)</span><br><span class="line">    $cert.Subject = $name</span><br><span class="line">    $cert.Issuer = $cert.Subject</span><br><span class="line">    $cert.NotBefore = (Get-Date).AddDays(-1)</span><br><span class="line">    $cert.NotAfter = $cert.NotBefore.AddDays($ValidDays)</span><br><span class="line"></span><br><span class="line">    $SigOID = New-Object -ComObject X509Enrollment.CObjectId</span><br><span class="line">    $SigOID.InitializeFromValue(([Security.Cryptography.Oid]$SignatureAlgorithm).Value)</span><br><span class="line"></span><br><span class="line">    [string[]] $AlternativeName  += $hostnonFQDN</span><br><span class="line">    $AlternativeName += $hostFQDN</span><br><span class="line">    $IAlternativeNames = New-Object -ComObject X509Enrollment.CAlternativeNames</span><br><span class="line"></span><br><span class="line">    foreach ($AN in $AlternativeName)</span><br><span class="line">    &#123;</span><br><span class="line">        $AltName = New-Object -ComObject X509Enrollment.CAlternativeName</span><br><span class="line">        $AltName.InitializeFromString(0x3,$AN)</span><br><span class="line">        $IAlternativeNames.Add($AltName)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $SubjectAlternativeName = New-Object -ComObject X509Enrollment.CX509ExtensionAlternativeNames</span><br><span class="line">    $SubjectAlternativeName.InitializeEncode($IAlternativeNames)</span><br><span class="line"></span><br><span class="line">    [String[]]$KeyUsage = (&quot;DigitalSignature&quot;, &quot;KeyEncipherment&quot;)</span><br><span class="line">    $KeyUsageObj = New-Object -ComObject X509Enrollment.CX509ExtensionKeyUsage</span><br><span class="line">    $KeyUsageObj.InitializeEncode([int][Security.Cryptography.X509Certificates.X509KeyUsageFlags]($KeyUsage))</span><br><span class="line">    $KeyUsageObj.Critical = $true</span><br><span class="line"></span><br><span class="line">    $cert.X509Extensions.Add($KeyUsageObj)</span><br><span class="line">    $cert.X509Extensions.Add($ekuext)</span><br><span class="line">    $cert.SignatureInformation.HashAlgorithm = $SigOID</span><br><span class="line">    $CERT.X509Extensions.Add($SubjectAlternativeName)</span><br><span class="line">    $cert.Encode()</span><br><span class="line"></span><br><span class="line">    $enrollment = New-Object -COM &quot;X509Enrollment.CX509Enrollment.1&quot;</span><br><span class="line">    $enrollment.InitializeFromRequest($cert)</span><br><span class="line">    $certdata = $enrollment.CreateRequest(0)</span><br><span class="line">    $enrollment.InstallResponse(2, $certdata, 0, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">    # extract/return the thumbprint from the generated cert</span><br><span class="line">    $parsed_cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2</span><br><span class="line">    $parsed_cert.Import([System.Text.Encoding]::UTF8.GetBytes($certdata))</span><br><span class="line"></span><br><span class="line">    return $parsed_cert.Thumbprint</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Function Enable-GlobalHttpFirewallAccess</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;Forcing global HTTP firewall access&quot;</span><br><span class="line">    # this is a fairly naive implementation; could be more sophisticated about rule matching/collapsing</span><br><span class="line">    $fw = New-Object -ComObject HNetCfg.FWPolicy2</span><br><span class="line"></span><br><span class="line">    # try to find/enable the default rule first</span><br><span class="line">    $add_rule = $false</span><br><span class="line">    $matching_rules = $fw.Rules | ? &#123; $_.Name -eq &quot;Windows Remote Management (HTTP-In)&quot; &#125;</span><br><span class="line">    $rule = $null</span><br><span class="line">    If ($matching_rules) &#123;</span><br><span class="line">        If ($matching_rules -isnot [Array]) &#123;</span><br><span class="line">            Write-Verbose &quot;Editing existing single HTTP firewall rule&quot;</span><br><span class="line">            $rule = $matching_rules</span><br><span class="line">        &#125;</span><br><span class="line">        Else &#123;</span><br><span class="line">            # try to find one with the All or Public profile first</span><br><span class="line">            Write-Verbose &quot;Found multiple existing HTTP firewall rules...&quot;</span><br><span class="line">            $rule = $matching_rules | % &#123; $_.Profiles -band 4 &#125;[0]</span><br><span class="line"></span><br><span class="line">            If (-not $rule -or $rule -is [Array]) &#123;</span><br><span class="line">                Write-Verbose &quot;Editing an arbitrary single HTTP firewall rule (multiple existed)&quot;</span><br><span class="line">                # oh well, just pick the first one</span><br><span class="line">                $rule = $matching_rules[0]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    If (-not $rule) &#123;</span><br><span class="line">        Write-Verbose &quot;Creating a new HTTP firewall rule&quot;</span><br><span class="line">        $rule = New-Object -ComObject HNetCfg.FWRule</span><br><span class="line">        $rule.Name = &quot;Windows Remote Management (HTTP-In)&quot;</span><br><span class="line">        $rule.Description = &quot;Inbound rule for Windows Remote Management via WS-Management. [TCP 5985]&quot;</span><br><span class="line">        $add_rule = $true</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $rule.Profiles = 0x7FFFFFFF</span><br><span class="line">    $rule.Protocol = 6</span><br><span class="line">    $rule.LocalPorts = 5985</span><br><span class="line">    $rule.RemotePorts = &quot;*&quot;</span><br><span class="line">    $rule.LocalAddresses = &quot;*&quot;</span><br><span class="line">    $rule.RemoteAddresses = &quot;*&quot;</span><br><span class="line">    $rule.Enabled = $true</span><br><span class="line">    $rule.Direction = 1</span><br><span class="line">    $rule.Action = 1</span><br><span class="line">    $rule.Grouping = &quot;Windows Remote Management&quot;</span><br><span class="line"></span><br><span class="line">    If ($add_rule) &#123;</span><br><span class="line">        $fw.Rules.Add($rule)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Write-Verbose &quot;HTTP firewall rule $($rule.Name) updated&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Setup error handling.</span><br><span class="line">Trap</span><br><span class="line">&#123;</span><br><span class="line">    $_</span><br><span class="line">    Exit 1</span><br><span class="line">&#125;</span><br><span class="line">$ErrorActionPreference = &quot;Stop&quot;</span><br><span class="line"></span><br><span class="line"># Get the ID and security principal of the current user account</span><br><span class="line">$myWindowsID=[System.Security.Principal.WindowsIdentity]::GetCurrent()</span><br><span class="line">$myWindowsPrincipal=new-object System.Security.Principal.WindowsPrincipal($myWindowsID)</span><br><span class="line"></span><br><span class="line"># Get the security principal for the Administrator role</span><br><span class="line">$adminRole=[System.Security.Principal.WindowsBuiltInRole]::Administrator</span><br><span class="line"></span><br><span class="line"># Check to see if we are currently running &quot;as Administrator&quot;</span><br><span class="line">if (-Not $myWindowsPrincipal.IsInRole($adminRole))</span><br><span class="line">&#123;</span><br><span class="line">    Write-Output &quot;ERROR: You need elevated Administrator privileges in order to run this script.&quot;</span><br><span class="line">    Write-Output &quot;       Start Windows PowerShell by using the Run as Administrator option.&quot;</span><br><span class="line">    Exit 2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$EventSource = $MyInvocation.MyCommand.Name</span><br><span class="line">If (-Not $EventSource)</span><br><span class="line">&#123;</span><br><span class="line">    $EventSource = &quot;Powershell CLI&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">If ([System.Diagnostics.EventLog]::Exists(&apos;Application&apos;) -eq $False -or [System.Diagnostics.EventLog]::SourceExists($EventSource) -eq $False)</span><br><span class="line">&#123;</span><br><span class="line">    New-EventLog -LogName Application -Source $EventSource</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Detect PowerShell version.</span><br><span class="line">If ($PSVersionTable.PSVersion.Major -lt 3)</span><br><span class="line">&#123;</span><br><span class="line">    Write-Log &quot;PowerShell version 3 or higher is required.&quot;</span><br><span class="line">    Throw &quot;PowerShell version 3 or higher is required.&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Find and start the WinRM service.</span><br><span class="line">Write-Verbose &quot;Verifying WinRM service.&quot;</span><br><span class="line">If (!(Get-Service &quot;WinRM&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    Write-Log &quot;Unable to find the WinRM service.&quot;</span><br><span class="line">    Throw &quot;Unable to find the WinRM service.&quot;</span><br><span class="line">&#125;</span><br><span class="line">ElseIf ((Get-Service &quot;WinRM&quot;).Status -ne &quot;Running&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;Setting WinRM service to start automatically on boot.&quot;</span><br><span class="line">    Set-Service -Name &quot;WinRM&quot; -StartupType Automatic</span><br><span class="line">    Write-Log &quot;Set WinRM service to start automatically on boot.&quot;</span><br><span class="line">    Write-Verbose &quot;Starting WinRM service.&quot;</span><br><span class="line">    Start-Service -Name &quot;WinRM&quot; -ErrorAction Stop</span><br><span class="line">    Write-Log &quot;Started WinRM service.&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># WinRM should be running; check that we have a PS session config.</span><br><span class="line">If (!(Get-PSSessionConfiguration -Verbose:$false) -or (!(Get-ChildItem WSMan:\localhost\Listener)))</span><br><span class="line">&#123;</span><br><span class="line">  If ($SkipNetworkProfileCheck) &#123;</span><br><span class="line">    Write-Verbose &quot;Enabling PS Remoting without checking Network profile.&quot;</span><br><span class="line">    Enable-PSRemoting -SkipNetworkProfileCheck -Force -ErrorAction Stop</span><br><span class="line">    Write-Log &quot;Enabled PS Remoting without checking Network profile.&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  Else &#123;</span><br><span class="line">    Write-Verbose &quot;Enabling PS Remoting.&quot;</span><br><span class="line">    Enable-PSRemoting -Force -ErrorAction Stop</span><br><span class="line">    Write-Log &quot;Enabled PS Remoting.&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">Else</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;PS Remoting is already enabled.&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Ensure LocalAccountTokenFilterPolicy is set to 1</span><br><span class="line"># https://github.com/ansible/ansible/issues/42978</span><br><span class="line">$token_path = &quot;HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System&quot;</span><br><span class="line">$token_prop_name = &quot;LocalAccountTokenFilterPolicy&quot;</span><br><span class="line">$token_key = Get-Item -Path $token_path</span><br><span class="line">$token_value = $token_key.GetValue($token_prop_name, $null)</span><br><span class="line">if ($token_value -ne 1) &#123;</span><br><span class="line">    Write-Verbose &quot;Setting LocalAccountTOkenFilterPolicy to 1&quot;</span><br><span class="line">    if ($null -ne $token_value) &#123;</span><br><span class="line">        Remove-ItemProperty -Path $token_path -Name $token_prop_name</span><br><span class="line">    &#125;</span><br><span class="line">    New-ItemProperty -Path $token_path -Name $token_prop_name -Value 1 -PropertyType DWORD &gt; $null</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Make sure there is a SSL listener.</span><br><span class="line">$listeners = Get-ChildItem WSMan:\localhost\Listener</span><br><span class="line">If (!($listeners | Where &#123;$_.Keys -like &quot;TRANSPORT=HTTPS&quot;&#125;))</span><br><span class="line">&#123;</span><br><span class="line">    # We cannot use New-SelfSignedCertificate on 2012R2 and earlier</span><br><span class="line">    $thumbprint = New-LegacySelfSignedCert -SubjectName $SubjectName -ValidDays $CertValidityDays</span><br><span class="line">    Write-HostLog &quot;Self-signed SSL certificate generated; thumbprint: $thumbprint&quot;</span><br><span class="line"></span><br><span class="line">    # Create the hashtables of settings to be used.</span><br><span class="line">    $valueset = @&#123;</span><br><span class="line">        Hostname = $SubjectName</span><br><span class="line">        CertificateThumbprint = $thumbprint</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $selectorset = @&#123;</span><br><span class="line">        Transport = &quot;HTTPS&quot;</span><br><span class="line">        Address = &quot;*&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Write-Verbose &quot;Enabling SSL listener.&quot;</span><br><span class="line">    New-WSManInstance -ResourceURI &apos;winrm/config/Listener&apos; -SelectorSet $selectorset -ValueSet $valueset</span><br><span class="line">    Write-Log &quot;Enabled SSL listener.&quot;</span><br><span class="line">&#125;</span><br><span class="line">Else</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;SSL listener is already active.&quot;</span><br><span class="line"></span><br><span class="line">    # Force a new SSL cert on Listener if the $ForceNewSSLCert</span><br><span class="line">    If ($ForceNewSSLCert)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        # We cannot use New-SelfSignedCertificate on 2012R2 and earlier</span><br><span class="line">        $thumbprint = New-LegacySelfSignedCert -SubjectName $SubjectName -ValidDays $CertValidityDays</span><br><span class="line">        Write-HostLog &quot;Self-signed SSL certificate generated; thumbprint: $thumbprint&quot;</span><br><span class="line"></span><br><span class="line">        $valueset = @&#123;</span><br><span class="line">            CertificateThumbprint = $thumbprint</span><br><span class="line">            Hostname = $SubjectName</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # Delete the listener for SSL</span><br><span class="line">        $selectorset = @&#123;</span><br><span class="line">            Address = &quot;*&quot;</span><br><span class="line">            Transport = &quot;HTTPS&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Remove-WSManInstance -ResourceURI &apos;winrm/config/Listener&apos; -SelectorSet $selectorset</span><br><span class="line"></span><br><span class="line">        # Add new Listener with new SSL cert</span><br><span class="line">        New-WSManInstance -ResourceURI &apos;winrm/config/Listener&apos; -SelectorSet $selectorset -ValueSet $valueset</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Check for basic authentication.</span><br><span class="line">$basicAuthSetting = Get-ChildItem WSMan:\localhost\Service\Auth | Where-Object &#123;$_.Name -eq &quot;Basic&quot;&#125;</span><br><span class="line"></span><br><span class="line">If ($DisableBasicAuth) </span><br><span class="line">&#123;</span><br><span class="line">    If (($basicAuthSetting.Value) -eq $true) </span><br><span class="line">    &#123;</span><br><span class="line">        Write-Verbose &quot;Disabling basic auth support.&quot;</span><br><span class="line">        Set-Item -Path &quot;WSMan:\localhost\Service\Auth\Basic&quot; -Value $false</span><br><span class="line">        Write-Log &quot;Disabled basic auth support.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    Else</span><br><span class="line">    &#123;</span><br><span class="line">        Write-Verbose &quot;Basic auth is already disabled.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">Else </span><br><span class="line">&#123;</span><br><span class="line">    If (($basicAuthSetting.Value) -eq $false)</span><br><span class="line">    &#123;</span><br><span class="line">        Write-Verbose &quot;Enabling basic auth support.&quot;</span><br><span class="line">        Set-Item -Path &quot;WSMan:\localhost\Service\Auth\Basic&quot; -Value $true</span><br><span class="line">        Write-Log &quot;Enabled basic auth support.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    Else</span><br><span class="line">    &#123;</span><br><span class="line">        Write-Verbose &quot;Basic auth is already enabled.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># If EnableCredSSP if set to true</span><br><span class="line">If ($EnableCredSSP)</span><br><span class="line">&#123;</span><br><span class="line">    # Check for CredSSP authentication</span><br><span class="line">    $credsspAuthSetting = Get-ChildItem WSMan:\localhost\Service\Auth | Where &#123;$_.Name -eq &quot;CredSSP&quot;&#125;</span><br><span class="line">    If (($credsspAuthSetting.Value) -eq $false)</span><br><span class="line">    &#123;</span><br><span class="line">        Write-Verbose &quot;Enabling CredSSP auth support.&quot;</span><br><span class="line">        Enable-WSManCredSSP -role server -Force</span><br><span class="line">        Write-Log &quot;Enabled CredSSP auth support.&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">If ($GlobalHttpFirewallAccess) &#123;</span><br><span class="line">    Enable-GlobalHttpFirewallAccess</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Configure firewall to allow WinRM HTTPS connections.</span><br><span class="line">$fwtest1 = netsh advfirewall firewall show rule name=&quot;Allow WinRM HTTPS&quot;</span><br><span class="line">$fwtest2 = netsh advfirewall firewall show rule name=&quot;Allow WinRM HTTPS&quot; profile=any</span><br><span class="line">If ($fwtest1.count -lt 5)</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;Adding firewall rule to allow WinRM HTTPS.&quot;</span><br><span class="line">    netsh advfirewall firewall add rule profile=any name=&quot;Allow WinRM HTTPS&quot; dir=in localport=5986 protocol=TCP action=allow</span><br><span class="line">    Write-Log &quot;Added firewall rule to allow WinRM HTTPS.&quot;</span><br><span class="line">&#125;</span><br><span class="line">ElseIf (($fwtest1.count -ge 5) -and ($fwtest2.count -lt 5))</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;Updating firewall rule to allow WinRM HTTPS for any profile.&quot;</span><br><span class="line">    netsh advfirewall firewall set rule name=&quot;Allow WinRM HTTPS&quot; new profile=any</span><br><span class="line">    Write-Log &quot;Updated firewall rule to allow WinRM HTTPS for any profile.&quot;</span><br><span class="line">&#125;</span><br><span class="line">Else</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;Firewall rule already exists to allow WinRM HTTPS.&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Test a remoting connection to localhost, which should work.</span><br><span class="line">$httpResult = Invoke-Command -ComputerName &quot;localhost&quot; -ScriptBlock &#123;$env:COMPUTERNAME&#125; -ErrorVariable httpError -ErrorAction SilentlyContinue</span><br><span class="line">$httpsOptions = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck</span><br><span class="line"></span><br><span class="line">$httpsResult = New-PSSession -UseSSL -ComputerName &quot;localhost&quot; -SessionOption $httpsOptions -ErrorVariable httpsError -ErrorAction SilentlyContinue</span><br><span class="line"></span><br><span class="line">If ($httpResult -and $httpsResult)</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;HTTP: Enabled | HTTPS: Enabled&quot;</span><br><span class="line">&#125;</span><br><span class="line">ElseIf ($httpsResult -and !$httpResult)</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;HTTP: Disabled | HTTPS: Enabled&quot;</span><br><span class="line">&#125;</span><br><span class="line">ElseIf ($httpResult -and !$httpsResult)</span><br><span class="line">&#123;</span><br><span class="line">    Write-Verbose &quot;HTTP: Enabled | HTTPS: Disabled&quot;</span><br><span class="line">&#125;</span><br><span class="line">Else</span><br><span class="line">&#123;</span><br><span class="line">    Write-Log &quot;Unable to establish an HTTP or HTTPS remoting session.&quot;</span><br><span class="line">    Throw &quot;Unable to establish an HTTP or HTTPS remoting session.&quot;</span><br><span class="line">&#125;</span><br><span class="line">Write-VerboseLog &quot;PS Remoting has been successfully configured for Ansible.&quot;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/安裝ansible-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/03/安裝ansible-windows/" class="post-title-link" itemprop="url">安裝ansible-windows</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2019-01-03 14:29:23" itemprop="dateCreated datePublished" datetime="2019-01-03T14:29:23+08:00">2019-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="本章將介紹使用-ubuntu-ansible-連線控制-windows，但是-windows-是沒有-ssh-連線的，所以會需要用到-pywinrm"><a href="#本章將介紹使用-ubuntu-ansible-連線控制-windows，但是-windows-是沒有-ssh-連線的，所以會需要用到-pywinrm" class="headerlink" title="本章將介紹使用 ubuntu-ansible 連線控制 windows，但是 windows 是沒有 ssh 連線的，所以會需要用到 pywinrm"></a>本章將介紹使用 ubuntu-ansible 連線控制 windows，但是 windows 是沒有 ssh 連線的，所以會需要用到 pywinrm</h3><h4 id="1-安裝-ansible"><a href="#1-安裝-ansible" class="headerlink" title="1. 安裝 ansible"></a>1. 安裝 ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
+<p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">更新並安裝</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y ansible</span><br></pre></td></tr></table></figure>
+<p><img src="images/3.png" alt=" "></p>
+<h4 id="2-安裝-pywinrm"><a href="#2-安裝-pywinrm" class="headerlink" title="2. 安裝 pywinrm"></a>2. 安裝 pywinrm</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">安裝 pywinrm 模組</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y python-pip</span><br><span class="line"></span><br><span class="line">pip install pywinrm</span><br></pre></td></tr></table></figure>
+<p><img src="images/4.png" alt=" "></p>
+<h4 id="3-配置-ansible"><a href="#3-配置-ansible" class="headerlink" title="3. 配置 ansible"></a>3. 配置 ansible</h4><h4 id="Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"><a href="#Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線" class="headerlink" title="Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"></a>Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">host 文件路徑</span><br><span class="line">/etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">更改指令</span><br><span class="line">sudo vi /etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">更改內容</span><br><span class="line">[隨意群組名稱]</span><br><span class="line">隨意名稱 ansible_ssh_host=要連線機器 ip</span><br><span class="line"></span><br><span class="line">ex：</span><br><span class="line">[windows]</span><br><span class="line">test ansible_ssh_host=127.0.0.1</span><br><span class="line"></span><br><span class="line">或是 ( 這樣要單獨操控指令就要使用 IP )</span><br><span class="line">[windows]</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure>
+<p><img src="images/6.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h4 id="4-新增群組資料夾，windows-連線會需要輸入遠端帳密，因此我們在-ansible-下建立-group-vars-輸入遠端需要設定"><a href="#4-新增群組資料夾，windows-連線會需要輸入遠端帳密，因此我們在-ansible-下建立-group-vars-輸入遠端需要設定" class="headerlink" title="4. 新增群組資料夾，windows 連線會需要輸入遠端帳密，因此我們在 ansible 下建立 group_vars 輸入遠端需要設定"></a>4. 新增群組資料夾，windows 連線會需要輸入遠端帳密，因此我們在 ansible 下建立 group_vars 輸入遠端需要設定</h4><h4 id="PS-檔案名稱要跟群組一樣，才會讀取到-YMAL-檔的內容"><a href="#PS-檔案名稱要跟群組一樣，才會讀取到-YMAL-檔的內容" class="headerlink" title="PS.檔案名稱要跟群組一樣，才會讀取到 YMAL 檔的內容"></a>PS.檔案名稱要跟群組一樣，才會讀取到 YMAL 檔的內容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/ansible/group_vars</span><br><span class="line"></span><br><span class="line">sudo vi /etc/ansible/group_vars/windows.yml</span><br><span class="line"></span><br><span class="line">ansible_user: 遠端帳號</span><br><span class="line">ansible_password: 遠端密碼</span><br><span class="line">ansible_port: 5986</span><br><span class="line">ansible_connection: winrm</span><br><span class="line">ansible_winrm_server_cert_validation: ignore</span><br></pre></td></tr></table></figure>
+<p><img src="images/5.png" alt=" "><br><img src="images/7.png" alt=" "></p>
+<h4 id="5-製作-powershell-腳本，本文章是使用-windows-server-2016-Datacenter"><a href="#5-製作-powershell-腳本，本文章是使用-windows-server-2016-Datacenter" class="headerlink" title="5. 製作 powershell 腳本，本文章是使用 windows server 2016 Datacenter"></a>5. 製作 powershell 腳本，本文章是使用 windows server 2016 Datacenter</h4><h4 id="桌面右鍵-→-新增-→-文件資料夾"><a href="#桌面右鍵-→-新增-→-文件資料夾" class="headerlink" title="桌面右鍵 → 新增 → 文件資料夾"></a>桌面右鍵 → 新增 → 文件資料夾</h4><p><img src="images/19.png" alt=" "></p>
+<h4 id="隨意資料夾右上箭頭-→-點選分頁檢視-→-副檔名打勾，這樣就看的到檔案副檔名"><a href="#隨意資料夾右上箭頭-→-點選分頁檢視-→-副檔名打勾，這樣就看的到檔案副檔名" class="headerlink" title="隨意資料夾右上箭頭 → 點選分頁檢視 → 副檔名打勾，這樣就看的到檔案副檔名"></a>隨意資料夾右上箭頭 → 點選分頁檢視 → 副檔名打勾，這樣就看的到檔案副檔名</h4><p><img src="images/20.png" alt=" "><br><img src="images/21.png" alt=" "><br><img src="images/22.png" alt=" "></p>
+<h4 id="命名-ConfigureRemotingForAnsible-ps1-貼上網址內容，檔案內容：https-goo-gl-t5BWTN"><a href="#命名-ConfigureRemotingForAnsible-ps1-貼上網址內容，檔案內容：https-goo-gl-t5BWTN" class="headerlink" title="命名 ConfigureRemotingForAnsible.ps1 貼上網址內容，檔案內容：https://goo.gl/t5BWTN"></a>命名 ConfigureRemotingForAnsible.ps1 貼上網址內容，檔案內容：<a href="https://goo.gl/t5BWTN" target="_blank" rel="noopener">https://goo.gl/t5BWTN</a></h4><h4 id="貼上內容後更改檔名-ps1"><a href="#貼上內容後更改檔名-ps1" class="headerlink" title="貼上內容後更改檔名 .ps1"></a>貼上內容後更改檔名 .ps1</h4><p><img src="images/23.png" alt=" "></p>
+<h4 id="6-windows-開啟-powershell-設定，本文章是使用-windows-server-2016-Datacenter-不用下列步驟可以跳第-7-步驟"><a href="#6-windows-開啟-powershell-設定，本文章是使用-windows-server-2016-Datacenter-不用下列步驟可以跳第-7-步驟" class="headerlink" title="6. windows 開啟 powershell 設定，本文章是使用 windows server 2016 Datacenter 不用下列步驟可以跳第 7 步驟"></a>6. windows 開啟 powershell 設定，本文章是使用 windows server 2016 Datacenter 不用下列步驟可以跳第 7 步驟</h4><h4 id="開啟-powershell，左下搜尋-→-輸入-powershell-→-右鍵以系統管理員身分執行"><a href="#開啟-powershell，左下搜尋-→-輸入-powershell-→-右鍵以系統管理員身分執行" class="headerlink" title="開啟 powershell，左下搜尋 → 輸入 powershell → 右鍵以系統管理員身分執行"></a>開啟 powershell，左下搜尋 → 輸入 powershell → 右鍵以系統管理員身分執行</h4><p><img src="images/24.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安裝 .NET Framework 4.5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">更改 powershell 策略為 remotesigned 輸入 y 確認</span><br><span class="line"></span><br><span class="line">Set-ExecutionPolicy remotesigned</span><br><span class="line"></span><br><span class="line">檢查策略</span><br><span class="line"></span><br><span class="line">Get-ExecutionPolicy</span><br></pre></td></tr></table></figure>
+<p><img src="images/15.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查看版本（ 須為3.0以上 ）</span><br><span class="line"></span><br><span class="line">$PSVersionTable.PSVersion</span><br></pre></td></tr></table></figure>
+<p><img src="images/16.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">開啟 Winrm service</span><br><span class="line"></span><br><span class="line">winrm enumerate winrm/config/listener</span><br><span class="line"></span><br><span class="line">如果沒有回應，表示該服務沒有啟動，預設是不啟動的</span><br></pre></td></tr></table></figure>
+<p><img src="images/17.png" alt=" "></p>
+<h4 id="7-對-winrm-service-進行基礎配置"><a href="#7-對-winrm-service-進行基礎配置" class="headerlink" title="7. 對 winrm service 進行基礎配置"></a>7. 對 winrm service 進行基礎配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">winrm quickconfig</span><br><span class="line"></span><br><span class="line">如果已經啟動設定會需要用指令修改</span><br></pre></td></tr></table></figure>
+<p><img src="images/18.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">winrm service 配置 auth</span><br><span class="line"></span><br><span class="line">winrm set winrm/config/service/auth ‘@&#123;Basic=&quot;true&quot;&#125;‘</span><br></pre></td></tr></table></figure>
+<p><img src="images/8.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">winrm service 配置加密方式為允許非加密</span><br><span class="line"></span><br><span class="line">winrm set winrm/config/service ‘@&#123;AllowUnencrypted=&quot;true&quot;&#125;‘</span><br></pre></td></tr></table></figure>
+<p><img src="images/9.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在放置 ConfigureRemotingForAnsible.ps1 路徑下執行配置 winrm 與 https 證書訊息</span><br><span class="line"></span><br><span class="line">powershell.exe -File ConfigureRemotingForAnsible.ps1</span><br></pre></td></tr></table></figure>
+<p><img src="images/10.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">檢查 config 內容</span><br><span class="line"></span><br><span class="line">winrm get winrm/config</span><br></pre></td></tr></table></figure>
+<p><img src="images/14.png" alt=" "></p>
+<h4 id="8-測試，如下圖就成功了接下來可以下其他指令對機器做控制"><a href="#8-測試，如下圖就成功了接下來可以下其他指令對機器做控制" class="headerlink" title="8. 測試，如下圖就成功了接下來可以下其他指令對機器做控制"></a>8. 測試，如下圖就成功了接下來可以下其他指令對機器做控制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m win_ping</span><br><span class="line"></span><br><span class="line">ansible test -m win_ping ( 指定單個主機 )</span><br><span class="line"></span><br><span class="line">ansible 127.0.0.1 -m win_ping ( 指定單個主機 )</span><br><span class="line"></span><br><span class="line">ansible windows -m win_ping ( 指定群組 )</span><br></pre></td></tr></table></figure>
+<p><img src="images/11.png" alt=" "><br><img src="images/13.png" alt=" "></p>
+<h4 id="9-下指令方式操作機器"><a href="#9-下指令方式操作機器" class="headerlink" title="9. 下指令方式操作機器"></a>9. 下指令方式操作機器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ansible name -m win_command -a &quot;command&quot;</span><br><span class="line"></span><br><span class="line">ex：ansible windows -m win_command -a &quot;shutdown -r -t 10&quot; ( 遠端操作重啟指令 )</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/03/安裝ansible-ubuntu/" class="post-title-link" itemprop="url">安裝ansible-ubuntu</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2019-01-03 14:29:15" itemprop="dateCreated datePublished" datetime="2019-01-03T14:29:15+08:00">2019-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了"><a href="#想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了" class="headerlink" title="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了"></a>想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了</h3><h4 id="1-安裝-ansible"><a href="#1-安裝-ansible" class="headerlink" title="1. 安裝 ansible"></a>1. 安裝 ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
+<p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">更新並安裝</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y ansible</span><br></pre></td></tr></table></figure>
+<p><img src="images/3.png" alt=" "></p>
+<h4 id="2-配置-ansible"><a href="#2-配置-ansible" class="headerlink" title="2. 配置 ansible"></a>2. 配置 ansible</h4><h4 id="Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"><a href="#Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線" class="headerlink" title="Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"></a>Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">host 文件路徑</span><br><span class="line">/etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">更改指令</span><br><span class="line">sudo vi /etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">更改內容</span><br><span class="line">[隨意群組名稱]</span><br><span class="line">隨意名稱 ansible_ssh_host=要連線機器 ip</span><br><span class="line"></span><br><span class="line">ex：</span><br><span class="line">[unubtu]</span><br><span class="line">test ansible_ssh_host=127.0.0.1</span><br><span class="line"></span><br><span class="line">或是 ( 這樣要單獨操控指令就要使用 IP )</span><br><span class="line">[windows]</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure>
+<p><img src="images/4.png" alt=" "><br><img src="images/8.png" alt=" "></p>
+<h4 id="3-測試，如下圖就成功了接下來可以下其他指令對機器做控制"><a href="#3-測試，如下圖就成功了接下來可以下其他指令對機器做控制" class="headerlink" title="3. 測試，如下圖就成功了接下來可以下其他指令對機器做控制"></a>3. 測試，如下圖就成功了接下來可以下其他指令對機器做控制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ansible -m ping all</span><br><span class="line"></span><br><span class="line">ansible -m ping test ( 指定單個主機 )</span><br><span class="line"></span><br><span class="line">ansible -m ping 127.0.0.1 ( 指定單個主機 )</span><br><span class="line"></span><br><span class="line">ansible -m ping ubuntu ( 指定群組 )</span><br></pre></td></tr></table></figure>
+<p><img src="images/5.png" alt=" "><br><img src="images/7.png" alt=" "></p>
+<h4 id="4-下指令方式操作機器"><a href="#4-下指令方式操作機器" class="headerlink" title="4. 下指令方式操作機器"></a>4. 下指令方式操作機器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ansible name -m command -a &quot;command&quot;</span><br><span class="line"></span><br><span class="line">ex：ansible test -m command -a &quot;sudo reboot&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功"><a href="#如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功" class="headerlink" title="如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功"></a>如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功</h4><p><img src="images/6.png" alt=" "></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/30/安裝slatstack-第一種架構/" class="post-title-link" itemprop="url">安裝slatstack-第一種架構</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-11-30 13:43:24" itemprop="dateCreated datePublished" datetime="2018-11-30T13:43:24+08:00">2018-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什麼是-saltstack？"><a href="#什麼是-saltstack？" class="headerlink" title="什麼是 saltstack？"></a>什麼是 saltstack？</h3><h4 id="SaltStack-是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack-提供了一個動態基礎設施通信總線用於編排-遠程執行、配置管理等等。"><a href="#SaltStack-是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack-提供了一個動態基礎設施通信總線用於編排-遠程執行、配置管理等等。" class="headerlink" title="SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。"></a>SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。</h4><h4 id="saltstack-有三種架構，本文章先介紹第一種架構-master-→-minion-這種架構中-master-和所有-minion-都直接連接，minion-接收來自-master-的指令，完成命令執行或配置管理，如下圖所示"><a href="#saltstack-有三種架構，本文章先介紹第一種架構-master-→-minion-這種架構中-master-和所有-minion-都直接連接，minion-接收來自-master-的指令，完成命令執行或配置管理，如下圖所示" class="headerlink" title="saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收來自 master 的指令，完成命令執行或配置管理，如下圖所示"></a>saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收來自 master 的指令，完成命令執行或配置管理，如下圖所示</h4><p><img src="images/1.png" alt=" "></p>
+<h3 id="一、安裝-saltstack-master-ubuntu-16-04"><a href="#一、安裝-saltstack-master-ubuntu-16-04" class="headerlink" title="一、安裝 saltstack master ubuntu 16.04"></a>一、安裝 saltstack master ubuntu 16.04</h3><h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<p><img src="images/2.png" alt=" "></p>
+<h4 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install salt-master</span><br></pre></td></tr></table></figure>
+<p><img src="images/3.png" alt=" "></p>
+<h3 id="二、安裝-saltstack-minion-ubuntu-16-04"><a href="#二、安裝-saltstack-minion-ubuntu-16-04" class="headerlink" title="二、安裝 saltstack minion ubuntu 16.04"></a>二、安裝 saltstack minion ubuntu 16.04</h3><h4 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install salt-minion</span><br></pre></td></tr></table></figure>
+<p><img src="images/4.png" alt=" "></p>
+<h4 id="配置-config"><a href="#配置-config" class="headerlink" title="配置 config"></a>配置 config</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/salt ( 進入 config 位置 )</span><br><span class="line"></span><br><span class="line">vim minion ( 編輯 config )</span><br></pre></td></tr></table></figure>
+<p><img src="images/5.png" alt=" "></p>
+<h4 id="設定：輸入-master-IP-讓-master-找的到-minion"><a href="#設定：輸入-master-IP-讓-master-找的到-minion" class="headerlink" title="設定：輸入 master IP 讓 master 找的到 minion"></a>設定：輸入 master IP 讓 master 找的到 minion</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="設定：minion-ID"><a href="#設定：minion-ID" class="headerlink" title="設定：minion ID"></a>設定：minion ID</h4><p><img src="images/7.png" alt=" "></p>
+<h4 id="重啟服務"><a href="#重啟服務" class="headerlink" title="重啟服務"></a>重啟服務</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service salt-minion restart</span><br></pre></td></tr></table></figure>
+<h4 id="查看服務是否重啟成功"><a href="#查看服務是否重啟成功" class="headerlink" title="查看服務是否重啟成功"></a>查看服務是否重啟成功</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service salt-minion status</span><br></pre></td></tr></table></figure>
+<p><img src="images/8.png" alt=" "></p>
+<h3 id="三、saltstack-master-接受-saltstack-minion-金鑰"><a href="#三、saltstack-master-接受-saltstack-minion-金鑰" class="headerlink" title="三、saltstack master 接受 saltstack minion 金鑰"></a>三、saltstack master 接受 saltstack minion 金鑰</h3><h4 id="輸入指令檢查-minion-金鑰，還未加入金鑰會顯示紅色，名稱為-config-設定的-ID"><a href="#輸入指令檢查-minion-金鑰，還未加入金鑰會顯示紅色，名稱為-config-設定的-ID" class="headerlink" title="輸入指令檢查 minion 金鑰，還未加入金鑰會顯示紅色，名稱為 config 設定的 ID"></a>輸入指令檢查 minion 金鑰，還未加入金鑰會顯示紅色，名稱為 config 設定的 ID</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-key -L ( L 一定要大寫 )</span><br></pre></td></tr></table></figure>
+<p><img src="images/9.png" alt=" "></p>
+<h4 id="PS-下圖是沒有接收到任何金鑰畫面"><a href="#PS-下圖是沒有接收到任何金鑰畫面" class="headerlink" title="PS.下圖是沒有接收到任何金鑰畫面"></a>PS.下圖是沒有接收到任何金鑰畫面</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="加入-minion-金鑰-二種加入指令"><a href="#加入-minion-金鑰-二種加入指令" class="headerlink" title="加入 minion 金鑰 ( 二種加入指令 )"></a>加入 minion 金鑰 ( 二種加入指令 )</h4><h4 id="1-全部加入：只要在列表內都會加入金鑰"><a href="#1-全部加入：只要在列表內都會加入金鑰" class="headerlink" title="1.全部加入：只要在列表內都會加入金鑰"></a>1.全部加入：只要在列表內都會加入金鑰</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-key -A ( A 一定要大寫 )</span><br></pre></td></tr></table></figure>
+<p><img src="images/11.png" alt=" "></p>
+<h4 id="檢查加入成功金鑰會顯示綠色"><a href="#檢查加入成功金鑰會顯示綠色" class="headerlink" title="檢查加入成功金鑰會顯示綠色"></a>檢查加入成功金鑰會顯示綠色</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-key -L</span><br></pre></td></tr></table></figure>
+<p><img src="images/12.png" alt=" "></p>
+<h4 id="2-單個加入：指定特定機器-name-單獨加入金鑰"><a href="#2-單個加入：指定特定機器-name-單獨加入金鑰" class="headerlink" title="2.單個加入：指定特定機器 name 單獨加入金鑰"></a>2.單個加入：指定特定機器 name 單獨加入金鑰</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt-key -a name ( a 一定要小寫 )</span><br><span class="line"></span><br><span class="line">ex：salt-key -a test</span><br></pre></td></tr></table></figure>
+<p><img src="images/13.png" alt=" "></p>
+<h4 id="檢查加入成功金鑰會顯示綠色-1"><a href="#檢查加入成功金鑰會顯示綠色-1" class="headerlink" title="檢查加入成功金鑰會顯示綠色"></a>檢查加入成功金鑰會顯示綠色</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">salt-key -L</span><br></pre></td></tr></table></figure>
+<p><img src="images/27.png" alt=" "></p>
+<h4 id="3-刪除金鑰"><a href="#3-刪除金鑰" class="headerlink" title="3.刪除金鑰"></a>3.刪除金鑰</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt-key -d name ( d 一定要小寫 )</span><br><span class="line"></span><br><span class="line">ex：salt-key -d test</span><br></pre></td></tr></table></figure>
+<h4 id="ps-刪除後列表金鑰就會不見，需要到-minion-重啟服務才能再重新加入，更改-ID-也需要重啟服務名稱才會改變"><a href="#ps-刪除後列表金鑰就會不見，需要到-minion-重啟服務才能再重新加入，更改-ID-也需要重啟服務名稱才會改變" class="headerlink" title="ps.刪除後列表金鑰就會不見，需要到 minion 重啟服務才能再重新加入，更改 ID 也需要重啟服務名稱才會改變"></a>ps.刪除後列表金鑰就會不見，需要到 minion 重啟服務才能再重新加入，更改 ID 也需要重啟服務名稱才會改變</h4><p><img src="images/10.png" alt=" "></p>
+<h3 id="四、安裝-saltstack-minion-windows"><a href="#四、安裝-saltstack-minion-windows" class="headerlink" title="四、安裝 saltstack minion windows"></a>四、安裝 saltstack minion windows</h3><h4 id="下載安裝包：https-docs-saltstack-com-en-latest-topics-installation-windows-html"><a href="#下載安裝包：https-docs-saltstack-com-en-latest-topics-installation-windows-html" class="headerlink" title="下載安裝包：https://docs.saltstack.com/en/latest/topics/installation/windows.html"></a>下載安裝包：<a href="https://docs.saltstack.com/en/latest/topics/installation/windows.html" target="_blank" rel="noopener">https://docs.saltstack.com/en/latest/topics/installation/windows.html</a></h4><h4 id="開始安裝"><a href="#開始安裝" class="headerlink" title="開始安裝"></a>開始安裝</h4><p><img src="images/14.png" alt=" "><br><img src="images/15.png" alt=" "></p>
+<h4 id="設定-IP-和-ID"><a href="#設定-IP-和-ID" class="headerlink" title="設定 IP 和 ID"></a>設定 IP 和 ID</h4><p><img src="images/16.png" alt=" "><br><img src="images/17.png" alt=" "><br><img src="images/18.png" alt=" "></p>
+<h4 id="安裝好後如果想更改-IP-或是-ID-可已到路徑-C-salt-conf-的-minion-更改"><a href="#安裝好後如果想更改-IP-或是-ID-可已到路徑-C-salt-conf-的-minion-更改" class="headerlink" title="安裝好後如果想更改 IP 或是 ID 可已到路徑 C:/salt/conf 的 minion 更改"></a>安裝好後如果想更改 IP 或是 ID 可已到路徑 C:/salt/conf 的 minion 更改</h4><p><img src="images/19.png" alt=" "><br><img src="images/20.png" alt=" "></p>
+<h4 id="做更改一樣要重啟服務，搜尋-→-services-msc"><a href="#做更改一樣要重啟服務，搜尋-→-services-msc" class="headerlink" title="做更改一樣要重啟服務，搜尋 → services.msc"></a>做更改一樣要重啟服務，搜尋 → services.msc</h4><p><img src="images/21.png" alt=" "></p>
+<h3 id="五、測試"><a href="#五、測試" class="headerlink" title="五、測試"></a>五、測試</h3><h4 id="輸入指令測試-ping-minion"><a href="#輸入指令測試-ping-minion" class="headerlink" title="輸入指令測試 ping minion"></a>輸入指令測試 ping minion</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; test.ping ( * 是全部 )</span><br><span class="line"></span><br><span class="line">salt &apos;name&apos; test.ping ( 指定名稱 )</span><br><span class="line"></span><br><span class="line">ex：salt &apos;test&apos; test.ping</span><br></pre></td></tr></table></figure>
+<h4 id="ping-全部"><a href="#ping-全部" class="headerlink" title="ping 全部"></a>ping 全部</h4><p><img src="images/22.png" alt=" "></p>
+<h4 id="ping-單獨"><a href="#ping-單獨" class="headerlink" title="ping 單獨"></a>ping 單獨</h4><p><img src="images/23.png" alt=" "></p>
+<h4 id="也可以做成腳本"><a href="#也可以做成腳本" class="headerlink" title="也可以做成腳本"></a>也可以做成腳本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim test ( 創一個隨意文件 )</span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">salt &apos;test&apos; test.ping  ( 腳本內容 )</span><br><span class="line"></span><br><span class="line">chmod +x test ( 加權限 )</span><br><span class="line"></span><br><span class="line">./test ( 執行指令 )</span><br></pre></td></tr></table></figure>
+<h4 id="腳本內容第一行-bin-bash-必要，接下來為操控指令可以隨意更換，ex：salt-‘test’-cmd-run-‘shutdown-r-t-0’-此為-windows-重啟指令，可直接下或做成腳本"><a href="#腳本內容第一行-bin-bash-必要，接下來為操控指令可以隨意更換，ex：salt-‘test’-cmd-run-‘shutdown-r-t-0’-此為-windows-重啟指令，可直接下或做成腳本" class="headerlink" title="腳本內容第一行 #!/bin/bash 必要，接下來為操控指令可以隨意更換，ex：salt ‘test’ cmd.run ‘shutdown -r -t 0’ 此為 windows 重啟指令，可直接下或做成腳本"></a>腳本內容第一行 #!/bin/bash 必要，接下來為操控指令可以隨意更換，ex：salt ‘test’ cmd.run ‘shutdown -r -t 0’ 此為 windows 重啟指令，可直接下或做成腳本</h4><p><img src="images/24.png" alt=" "></p>
+<h4 id="加權限"><a href="#加權限" class="headerlink" title="加權限"></a>加權限</h4><p><img src="images/25.png" alt=" "></p>
+<h4 id="執行測試"><a href="#執行測試" class="headerlink" title="執行測試"></a>執行測試</h4><p><img src="images/26.png" alt=" "></p>
+<h4 id="到這邊就完成了"><a href="#到這邊就完成了" class="headerlink" title="到這邊就完成了"></a>到這邊就完成了</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/24/VXG建立/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/24/VXG建立/" class="post-title-link" itemprop="url">VXG建立</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-11-24 15:59:00" itemprop="dateCreated datePublished" datetime="2018-11-24T15:59:00+08:00">2018-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="VXG-是跟-wowza-一樣的流媒體服務器，本文章將介紹如何建立起來"><a href="#VXG-是跟-wowza-一樣的流媒體服務器，本文章將介紹如何建立起來" class="headerlink" title="VXG 是跟 wowza 一樣的流媒體服務器，本文章將介紹如何建立起來"></a>VXG 是跟 wowza 一樣的流媒體服務器，本文章將介紹如何建立起來</h2><h3 id="VXG-streaming-server-下載方式"><a href="#VXG-streaming-server-下載方式" class="headerlink" title="VXG streaming server 下載方式"></a>VXG streaming server 下載方式</h3><h3 id="進入官網：https-www-videoexpertsgroup-com"><a href="#進入官網：https-www-videoexpertsgroup-com" class="headerlink" title="進入官網：https://www.videoexpertsgroup.com/"></a>進入官網：<a href="https://www.videoexpertsgroup.com/" target="_blank" rel="noopener">https://www.videoexpertsgroup.com/</a></h3><h3 id="點擊右上角-FREE-TRIAL-輸入-email-申請免費30天帳號"><a href="#點擊右上角-FREE-TRIAL-輸入-email-申請免費30天帳號" class="headerlink" title="點擊右上角 FREE TRIAL 輸入 email 申請免費30天帳號"></a>點擊右上角 FREE TRIAL 輸入 email 申請免費30天帳號</h3><p><img src="images/21.png" alt=" "><br><img src="images/22.png" alt=" "></p>
+<h3 id="輸入完-email-後會收到信件，進入-email-點擊-Confirm-Email-Address-會開啟分頁設定自己的密碼"><a href="#輸入完-email-後會收到信件，進入-email-點擊-Confirm-Email-Address-會開啟分頁設定自己的密碼" class="headerlink" title="輸入完 email 後會收到信件，進入 email 點擊 Confirm Email Address 會開啟分頁設定自己的密碼"></a>輸入完 email 後會收到信件，進入 email 點擊 Confirm Email Address 會開啟分頁設定自己的密碼</h3><p><img src="images/23.png" alt=" "><br><img src="images/24.png" alt=" "></p>
+<h3 id="輸入完密碼會回到登入頁面也，輸入信箱跟剛剛設定的密碼登入"><a href="#輸入完密碼會回到登入頁面也，輸入信箱跟剛剛設定的密碼登入" class="headerlink" title="輸入完密碼會回到登入頁面也，輸入信箱跟剛剛設定的密碼登入"></a>輸入完密碼會回到登入頁面也，輸入信箱跟剛剛設定的密碼登入</h3><p><img src="images/25.png" alt=" "></p>
+<h3 id="到了登入頁面點擊左邊列表-Downloads，選擇-VXG-Streaming-Server-下載"><a href="#到了登入頁面點擊左邊列表-Downloads，選擇-VXG-Streaming-Server-下載" class="headerlink" title="到了登入頁面點擊左邊列表 Downloads，選擇 VXG Streaming Server 下載"></a>到了登入頁面點擊左邊列表 Downloads，選擇 VXG Streaming Server 下載</h3><p><img src="images/26.png" alt=" "><br><img src="images/27.png" alt=" "></p>
+<h3 id="接下來把下載檔放到機器解壓縮，本文章使用的是-ubuntu-16-04"><a href="#接下來把下載檔放到機器解壓縮，本文章使用的是-ubuntu-16-04" class="headerlink" title="接下來把下載檔放到機器解壓縮，本文章使用的是 ubuntu 16.04"></a>接下來把下載檔放到機器解壓縮，本文章使用的是 ubuntu 16.04</h3><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h3 id="容器安裝"><a href="#容器安裝" class="headerlink" title="容器安裝"></a>容器安裝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install docker.io</span><br></pre></td></tr></table></figure>
+<h3 id="zip-解壓縮安裝"><a href="#zip-解壓縮安裝" class="headerlink" title="zip 解壓縮安裝"></a>zip 解壓縮安裝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install unzip</span><br></pre></td></tr></table></figure>
+<h3 id="將下載檔案解壓縮"><a href="#將下載檔案解壓縮" class="headerlink" title="將下載檔案解壓縮"></a>將下載檔案解壓縮</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo unzip VXG.Server-1.3.161_181218.zip</span><br></pre></td></tr></table></figure>
+<p><img src="images/1.png" alt=" "></p>
+<h3 id="進入解壓縮資料夾"><a href="#進入解壓縮資料夾" class="headerlink" title="進入解壓縮資料夾"></a>進入解壓縮資料夾</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd 20181218</span><br></pre></td></tr></table></figure>
+<p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "></p>
+<h3 id="設置-docker-images"><a href="#設置-docker-images" class="headerlink" title="設置 docker images"></a>設置 docker images</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./setup.sh</span><br></pre></td></tr></table></figure>
+<p><img src="images/4.png" alt=" "></p>
+<h3 id="啟動服務"><a href="#啟動服務" class="headerlink" title="啟動服務"></a>啟動服務</h3><h3 id="參數介紹："><a href="#參數介紹：" class="headerlink" title="參數介紹："></a>參數介紹：</h3><h4 id="r：使用本地存儲運行-VXG-Server-以獲取記錄。"><a href="#r：使用本地存儲運行-VXG-Server-以獲取記錄。" class="headerlink" title="-r：使用本地存儲運行 VXG Server 以獲取記錄。"></a>-r：使用本地存儲運行 VXG Server 以獲取記錄。</h4><h4 id="h：SERVER-HOST：在早期版本的-VXG-Server上運行兼容模式。"><a href="#h：SERVER-HOST：在早期版本的-VXG-Server上運行兼容模式。" class="headerlink" title="-h：SERVER_HOST：在早期版本的 VXG Server上運行兼容模式。"></a>-h：SERVER_HOST：在早期版本的 VXG Server上運行兼容模式。</h4><h4 id="c：CERTIFICATE-PATH：繼續使用-HTTPS-證書。"><a href="#c：CERTIFICATE-PATH：繼續使用-HTTPS-證書。" class="headerlink" title="-c：CERTIFICATE_PATH：繼續使用 HTTPS 證書。"></a>-c：CERTIFICATE_PATH：繼續使用 HTTPS 證書。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./start.sh -r -h SERVER_HOST -c CERTIFICATE_PATH</span><br></pre></td></tr></table></figure>
+<h3 id="下圖是成功畫面"><a href="#下圖是成功畫面" class="headerlink" title="下圖是成功畫面"></a>下圖是成功畫面</h3><p><img src="images/5.png" alt=" "></p>
+<h3 id="PS：停止-VXG-服務器指令"><a href="#PS：停止-VXG-服務器指令" class="headerlink" title="PS：停止 VXG 服務器指令"></a>PS：停止 VXG 服務器指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./stop.sh</span><br></pre></td></tr></table></figure>
+<p><img src="images/6.png" alt=" "></p>
+<h3 id="開啟瀏覽器直接輸入安裝-VXG-機器外網-IP-登入，默認登錄帳號密碼：admin-admin"><a href="#開啟瀏覽器直接輸入安裝-VXG-機器外網-IP-登入，默認登錄帳號密碼：admin-admin" class="headerlink" title="開啟瀏覽器直接輸入安裝 VXG 機器外網 IP 登入，默認登錄帳號密碼：admin / admin"></a>開啟瀏覽器直接輸入安裝 VXG 機器外網 IP 登入，默認登錄帳號密碼：admin / admin</h3><h3 id="首次啟動需要許可證密要，會需要再度登入官網"><a href="#首次啟動需要許可證密要，會需要再度登入官網" class="headerlink" title="首次啟動需要許可證密要，會需要再度登入官網"></a>首次啟動需要許可證密要，會需要再度登入官網</h3><p><img src="images/7.png" alt=" "></p>
+<h3 id="點擊左列-License-複製-UUID"><a href="#點擊左列-License-複製-UUID" class="headerlink" title="點擊左列 License 複製 UUID"></a>點擊左列 License 複製 UUID</h3><p><img src="images/8.png" alt=" "></p>
+<h3 id="接下來來到-VXG-官網登入"><a href="#接下來來到-VXG-官網登入" class="headerlink" title="接下來來到 VXG 官網登入"></a>接下來來到 VXG 官網登入</h3><p><img src="images/9.png" alt=" "></p>
+<h3 id="點擊左列-License-amp-Plans，如下圖點擊-SET-把剛剛複製的-UUID-貼上去"><a href="#點擊左列-License-amp-Plans，如下圖點擊-SET-把剛剛複製的-UUID-貼上去" class="headerlink" title="點擊左列 License &amp; Plans，如下圖點擊 SET 把剛剛複製的 UUID 貼上去"></a>點擊左列 License &amp; Plans，如下圖點擊 SET 把剛剛複製的 UUID 貼上去</h3><p><img src="images/10.png" alt=" "></p>
+<h3 id="貼上去後會給你一組-Key-複製下來"><a href="#貼上去後會給你一組-Key-複製下來" class="headerlink" title="貼上去後會給你一組 Key 複製下來"></a>貼上去後會給你一組 Key 複製下來</h3><p><img src="images/11.png" alt=" "></p>
+<h3 id="再回到-VXG-網頁，把複製的-Key-貼上，接下來就可以正常操作了"><a href="#再回到-VXG-網頁，把複製的-Key-貼上，接下來就可以正常操作了" class="headerlink" title="再回到 VXG 網頁，把複製的 Key 貼上，接下來就可以正常操作了"></a>再回到 VXG 網頁，把複製的 Key 貼上，接下來就可以正常操作了</h3><p><img src="images/12.png" alt=" "></p>
+<h2 id="基本操作："><a href="#基本操作：" class="headerlink" title="基本操作："></a>基本操作：</h2><h3 id="點擊左列-Server-Admin-→-點擊-ADD-NEW-CHANNEL"><a href="#點擊左列-Server-Admin-→-點擊-ADD-NEW-CHANNEL" class="headerlink" title="點擊左列 Server Admin → 點擊 ADD NEW CHANNEL"></a>點擊左列 Server Admin → 點擊 ADD NEW CHANNEL</h3><p><img src="images/13.png" alt=" "></p>
+<h3 id="選擇想要的流方式，本文章是使用-ip-camer"><a href="#選擇想要的流方式，本文章是使用-ip-camer" class="headerlink" title="選擇想要的流方式，本文章是使用 ip camer"></a>選擇想要的流方式，本文章是使用 ip camer</h3><p><img src="images/14.png" alt=" "></p>
+<h3 id="輸入參數"><a href="#輸入參數" class="headerlink" title="輸入參數"></a>輸入參數</h3><p><img src="images/15.png" alt=" "></p>
+<h3 id="輸完參數會有測試網頁讓你測試，點擊網址開啟分頁觀看"><a href="#輸完參數會有測試網頁讓你測試，點擊網址開啟分頁觀看" class="headerlink" title="輸完參數會有測試網頁讓你測試，點擊網址開啟分頁觀看"></a>輸完參數會有測試網頁讓你測試，點擊網址開啟分頁觀看</h3><p><img src="images/16.png" alt=" "><br><img src="images/17.png" alt=" "></p>
+<h3 id="點擊齒輪圖案可以設定想要觀看格式"><a href="#點擊齒輪圖案可以設定想要觀看格式" class="headerlink" title="點擊齒輪圖案可以設定想要觀看格式"></a>點擊齒輪圖案可以設定想要觀看格式</h3><p><img src="images/18.png" alt=" "></p>
+<h3 id="往下拉會出現-QR-code-給手機使用的，手機必須下載-VXG-StreamLand-才能用"><a href="#往下拉會出現-QR-code-給手機使用的，手機必須下載-VXG-StreamLand-才能用" class="headerlink" title="往下拉會出現 QR code 給手機使用的，手機必須下載 VXG StreamLand 才能用"></a>往下拉會出現 QR code 給手機使用的，手機必須下載 VXG StreamLand 才能用</h3><p><img src="images/19.png" alt=" "></p>
+<h3 id="點擊完成後會出現下圖畫面，紅框地方編輯跟刪除"><a href="#點擊完成後會出現下圖畫面，紅框地方編輯跟刪除" class="headerlink" title="點擊完成後會出現下圖畫面，紅框地方編輯跟刪除"></a>點擊完成後會出現下圖畫面，紅框地方編輯跟刪除</h3><p><img src="images/20.png" alt=" "></p>
+<h3 id="到這邊安裝介紹跟基本操作就結束了！"><a href="#到這邊安裝介紹跟基本操作就結束了！" class="headerlink" title="到這邊安裝介紹跟基本操作就結束了！"></a>到這邊安裝介紹跟基本操作就結束了！</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/設定wowza-HLS低延遲/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/23/設定wowza-HLS低延遲/" class="post-title-link" itemprop="url">設定wowza-HLS低延遲</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-11-23 11:36:21" itemprop="dateCreated datePublished" datetime="2018-11-23T11:36:21+08:00">2018-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="本文章將介紹如何調整-HLS-低延遲"><a href="#本文章將介紹如何調整-HLS-低延遲" class="headerlink" title="本文章將介紹如何調整 HLS 低延遲"></a>本文章將介紹如何調整 HLS 低延遲</h3><h4 id="1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit"><a href="#1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit" class="headerlink" title="1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit"></a>1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="2-選擇-Low-latency-stream-ideal-for-chat-applications"><a href="#2-選擇-Low-latency-stream-ideal-for-chat-applications" class="headerlink" title="2. 選擇 Low-latency stream ( ideal for chat applications )"></a>2. 選擇 Low-latency stream ( ideal for chat applications )</h4><p><img src="images/2.png" alt=" "></p>
+<h4 id="3-設定好後點選-Save-需要重新整理"><a href="#3-設定好後點選-Save-需要重新整理" class="headerlink" title="3. 設定好後點選 Save 需要重新整理"></a>3. 設定好後點選 Save 需要重新整理</h4><p><img src="images/3.png" alt=" "></p>
+<h4 id="4-也可以再建立-Live-Applications-的時候先設定好"><a href="#4-也可以再建立-Live-Applications-的時候先設定好" class="headerlink" title="4. 也可以再建立 Live Applications 的時候先設定好"></a>4. 也可以再建立 Live Applications 的時候先設定好</h4><p><img src="images/4.png" alt=" "></p>
+<h4 id="5-設定好-Low-latency-stream-點選上面分頁-Properties"><a href="#5-設定好-Low-latency-stream-點選上面分頁-Properties" class="headerlink" title="5. 設定好 Low-latency stream 點選上面分頁 Properties"></a>5. 設定好 Low-latency stream 點選上面分頁 Properties</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="6-Quick-Links-選擇-Cupertino-Streaming-Packetizer"><a href="#6-Quick-Links-選擇-Cupertino-Streaming-Packetizer" class="headerlink" title="6. Quick Links 選擇 Cupertino Streaming Packetizer"></a>6. Quick Links 選擇 Cupertino Streaming Packetizer</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12"><a href="#7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12" class="headerlink" title="7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12"></a>7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12</h4><p><img src="images/7.png" alt=" "><br><img src="images/8.png" alt=" "></p>
+<h4 id="8-設定好後一樣要重新整理"><a href="#8-設定好後一樣要重新整理" class="headerlink" title="8. 設定好後一樣要重新整理"></a>8. 設定好後一樣要重新整理</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="9-設定好後回到-Quick-Links-選擇-Custom"><a href="#9-設定好後回到-Quick-Links-選擇-Custom" class="headerlink" title="9. 設定好後回到 Quick Links 選擇 Custom"></a>9. 設定好後回到 Quick Links 選擇 Custom</h4><p><img src="images/10.png" alt=" "></p>
+<h4 id="10-點選-Edit-點選-Add-Custom-Property-後開始設定參數"><a href="#10-點選-Edit-點選-Add-Custom-Property-後開始設定參數" class="headerlink" title="10. 點選 Edit 點選 Add Custom Property 後開始設定參數"></a>10. 點選 Edit 點選 Add Custom Property 後開始設定參數</h4><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h4 id="11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"><a href="#11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6" class="headerlink" title="11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"></a>11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="12-設定好後一樣要重新整理"><a href="#12-設定好後一樣要重新整理" class="headerlink" title="12. 設定好後一樣要重新整理"></a>12. 設定好後一樣要重新整理</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="到這邊就設定完成了"><a href="#到這邊就設定完成了" class="headerlink" title="到這邊就設定完成了"></a>到這邊就設定完成了</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
+
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
 
 
 
 
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
 
 
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

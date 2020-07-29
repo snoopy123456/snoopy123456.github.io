@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>GCP-GoogleCloudPlatform-creat-vm-指令 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4;&amp;#x5EFA;&amp;#x7ACB; GCP VMGCP &amp;#x66F4;&amp;#x591A;&amp;#x6307;&amp;#x4EE4;&amp;#x7528;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x5230;&amp;#x90">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章將介紹如何使用指令建立 GCP VMGCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/本篇開始：1. 進入 GCP，網址：https://cloud.google.com/2. 登入 Google 帳號3. 點擊畫面右上角控制台進入  4. 開啟 Cloud ShellCloud Shell：虛擬機裝載了所有您需要的開發工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-GoogleCloudPlatform-creat-vm-指令">
 <meta property="og:url" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4;&amp;#x5EFA;&amp;#x7ACB; GCP VMGCP &amp;#x66F4;&amp;#x591A;&amp;#x6307;&amp;#x4EE4;&amp;#x7528;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x5230;&amp;#x90">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本文章將介紹如何使用指令建立 GCP VMGCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/本篇開始：1. 進入 GCP，網址：https://cloud.google.com/2. 登入 Google 帳號3. 點擊畫面右上角控制台進入  4. 開啟 Cloud ShellCloud Shell：虛擬機裝載了所有您需要的開發工具">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/2.2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/3.1.png">
@@ -32,267 +43,378 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-GoogleCloudPlatform-creat-vm-指令">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528;&amp;#x6307;&amp;#x4EE4;&amp;#x5EFA;&amp;#x7ACB; GCP VMGCP &amp;#x66F4;&amp;#x591A;&amp;#x6307;&amp;#x4EE4;&amp;#x7528;&amp;#x6CD5;&amp;#x53EF;&amp;#x4EE5;&amp;#x5230;&amp;#x90">
+<meta name="twitter:description" content="本文章將介紹如何使用指令建立 GCP VMGCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/本篇開始：1. 進入 GCP，網址：https://cloud.google.com/2. 登入 Google 帳號3. 點擊畫面右上角控制台進入  4. 開啟 Cloud ShellCloud Shell：虛擬機裝載了所有您需要的開發工具">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>GCP-GoogleCloudPlatform-creat-vm-指令 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-GCP-GoogleCloudPlatform-creat-vm-指令" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    GCP-GoogleCloudPlatform-creat-vm-指令
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
+    </span>
 
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GCP-GoogleCloudPlatform-creat-vm-指令
+        </h1>
 
-                <div class="article-inner">
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h2 id="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB;-GCP-VM"><a href="#&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB;-GCP-VM" class="headerlink" title="&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB; GCP VM"></a>&#x672C;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x6307;&#x4EE4;&#x5EFA;&#x7ACB; GCP VM</h2><h3 id="GCP-&#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;https-cloud-google-com-sdk-docs"><a href="#GCP-&#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;https-cloud-google-com-sdk-docs" class="headerlink" title="GCP &#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;https://cloud.google.com/sdk/docs/"></a>GCP &#x66F4;&#x591A;&#x6307;&#x4EE4;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x5230;&#x9023;&#x7D50;&#x67E5;&#x770B;&#xFF0C;&#x6307;&#x4EE4;&#x7DB2;&#x7AD9;&#x9023;&#x7D50;&#xFF1A;<a href="https://cloud.google.com/sdk/docs/" target="_blank" rel="noopener">https://cloud.google.com/sdk/docs/</a></h3><h3 id="&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;"><a href="#&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;" class="headerlink" title="&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;"></a>&#x672C;&#x7BC7;&#x958B;&#x59CB;&#xFF1A;</h3><h3 id="1-&#x9032;&#x5165;-GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https-cloud-google-com"><a href="#1-&#x9032;&#x5165;-GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https-cloud-google-com" class="headerlink" title="1. &#x9032;&#x5165; GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;https://cloud.google.com/"></a>1. &#x9032;&#x5165; GCP&#xFF0C;&#x7DB2;&#x5740;&#xFF1A;<a href="https://cloud.google.com/" target="_blank" rel="noopener">https://cloud.google.com/</a></h3><h3 id="2-&#x767B;&#x5165;-Google-&#x5E33;&#x865F;"><a href="#2-&#x767B;&#x5165;-Google-&#x5E33;&#x865F;" class="headerlink" title="2. &#x767B;&#x5165; Google &#x5E33;&#x865F;"></a>2. &#x767B;&#x5165; Google &#x5E33;&#x865F;</h3><h3 id="3-&#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;"><a href="#3-&#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;" class="headerlink" title="3. &#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;"></a>3. &#x9EDE;&#x64CA;&#x756B;&#x9762;&#x53F3;&#x4E0A;&#x89D2;&#x63A7;&#x5236;&#x53F0;&#x9032;&#x5165;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
+              <time title="Erstellt: 2018-06-19 15:42:47" itemprop="dateCreated datePublished" datetime="2018-06-19T15:42:47+08:00">2018-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="本文章將介紹如何使用指令建立-GCP-VM"><a href="#本文章將介紹如何使用指令建立-GCP-VM" class="headerlink" title="本文章將介紹如何使用指令建立 GCP VM"></a>本文章將介紹如何使用指令建立 GCP VM</h2><h3 id="GCP-更多指令用法可以到連結查看，指令網站連結：https-cloud-google-com-sdk-docs"><a href="#GCP-更多指令用法可以到連結查看，指令網站連結：https-cloud-google-com-sdk-docs" class="headerlink" title="GCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/"></a>GCP 更多指令用法可以到連結查看，指令網站連結：<a href="https://cloud.google.com/sdk/docs/" target="_blank" rel="noopener">https://cloud.google.com/sdk/docs/</a></h3><h3 id="本篇開始："><a href="#本篇開始：" class="headerlink" title="本篇開始："></a>本篇開始：</h3><h3 id="1-進入-GCP，網址：https-cloud-google-com"><a href="#1-進入-GCP，網址：https-cloud-google-com" class="headerlink" title="1. 進入 GCP，網址：https://cloud.google.com/"></a>1. 進入 GCP，網址：<a href="https://cloud.google.com/" target="_blank" rel="noopener">https://cloud.google.com/</a></h3><h3 id="2-登入-Google-帳號"><a href="#2-登入-Google-帳號" class="headerlink" title="2. 登入 Google 帳號"></a>2. 登入 Google 帳號</h3><h3 id="3-點擊畫面右上角控制台進入"><a href="#3-點擊畫面右上角控制台進入" class="headerlink" title="3. 點擊畫面右上角控制台進入"></a>3. 點擊畫面右上角控制台進入</h3><p><img src="images/1.png" alt=" "></p>
 <hr>
-<h3 id="4-&#x958B;&#x555F;-Cloud-Shell"><a href="#4-&#x958B;&#x555F;-Cloud-Shell" class="headerlink" title="4. &#x958B;&#x555F; Cloud Shell"></a>4. &#x958B;&#x555F; Cloud Shell</h3><h3 id="Cloud-Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;-5GB-&#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728;-Google-Cloud-&#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216;-Google-Chromebook-&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;"><a href="#Cloud-Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684;-5GB-&#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728;-Google-Cloud-&#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216;-Google-Chromebook-&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;" class="headerlink" title="Cloud Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684; 5GB &#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728; Google Cloud &#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216; Google Chromebook &#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;"></a>Cloud Shell&#xFF1A;&#x865B;&#x64EC;&#x6A5F;&#x88DD;&#x8F09;&#x4E86;&#x6240;&#x6709;&#x60A8;&#x9700;&#x8981;&#x7684;&#x958B;&#x767C;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x500B;&#x6301;&#x4E45;&#x7684; 5GB &#x4E3B;&#x76EE;&#x9304;&#x4E26;&#x5728; Google Cloud &#x4E0A;&#x904B;&#x884C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x700F;&#x89BD;&#x5668;&#x6216; Google Chromebook &#x5373;&#x53EF;&#x5B8C;&#x6210;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;</h3><h3 id="&#x5728;-GCP-&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684;-Cloud-Shell-&#x5716;&#x6A19;"><a href="#&#x5728;-GCP-&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684;-Cloud-Shell-&#x5716;&#x6A19;" class="headerlink" title="&#x5728; GCP &#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684; Cloud Shell &#x5716;&#x6A19;"></a>&#x5728; GCP &#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x5DE5;&#x5177;&#x6B04;&#x4E0A;&#x7684; Cloud Shell &#x5716;&#x6A19;</h3><p><a class="magnific-img" href="images/2.2.png"><img src="images/2.2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x555F;&#x52D5;-Cloud-Shell"><a href="#&#x555F;&#x52D5;-Cloud-Shell" class="headerlink" title="&#x555F;&#x52D5; Cloud Shell"></a>&#x555F;&#x52D5; Cloud Shell</h3><p><a class="magnific-img" href="images/3.1.png"><img src="images/3.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x555F;&#x52D5;&#x756B;&#x9762;"><a href="#&#x555F;&#x52D5;&#x756B;&#x9762;" class="headerlink" title="&#x555F;&#x52D5;&#x756B;&#x9762;"></a>&#x555F;&#x52D5;&#x756B;&#x9762;</h3><p><a class="magnific-img" href="images/4.1.png"><img src="images/4.1.png" alt=" " class="ui centered image"></a></p>
+<h3 id="4-開啟-Cloud-Shell"><a href="#4-開啟-Cloud-Shell" class="headerlink" title="4. 開啟 Cloud Shell"></a>4. 開啟 Cloud Shell</h3><h3 id="Cloud-Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的-5GB-主目錄並在-Google-Cloud-上運行，只需使用瀏覽器或-Google-Chromebook-即可完成中大部分工作"><a href="#Cloud-Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的-5GB-主目錄並在-Google-Cloud-上運行，只需使用瀏覽器或-Google-Chromebook-即可完成中大部分工作" class="headerlink" title="Cloud Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的 5GB 主目錄並在 Google Cloud 上運行，只需使用瀏覽器或 Google Chromebook 即可完成中大部分工作"></a>Cloud Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的 5GB 主目錄並在 Google Cloud 上運行，只需使用瀏覽器或 Google Chromebook 即可完成中大部分工作</h3><h3 id="在-GCP-控制台中，點擊右上角工具欄上的-Cloud-Shell-圖標"><a href="#在-GCP-控制台中，點擊右上角工具欄上的-Cloud-Shell-圖標" class="headerlink" title="在 GCP 控制台中，點擊右上角工具欄上的 Cloud Shell 圖標"></a>在 GCP 控制台中，點擊右上角工具欄上的 Cloud Shell 圖標</h3><p><img src="images/2.2.png" alt=" "></p>
+<h3 id="啟動-Cloud-Shell"><a href="#啟動-Cloud-Shell" class="headerlink" title="啟動 Cloud Shell"></a>啟動 Cloud Shell</h3><p><img src="images/3.1.png" alt=" "></p>
+<h3 id="啟動畫面"><a href="#啟動畫面" class="headerlink" title="啟動畫面"></a>啟動畫面</h3><p><img src="images/4.1.png" alt=" "></p>
 <hr>
-<h3 id="5-&#x5EFA;&#x7ACB;-VM"><a href="#5-&#x5EFA;&#x7ACB;-VM" class="headerlink" title="5. &#x5EFA;&#x7ACB; VM"></a>5. &#x5EFA;&#x7ACB; VM</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances create (VM&#x540D;&#x7A31;) --zone (&#x5340;&#x57DF;) --image-project (project) --image (name) --tags (&#x540D;&#x7A31;) --custom-cpu (&#x6578;&#x5B57;) --custom-memory (&#x6578;&#x5B57;) --boot-disk-size (&#x6578;&#x5B57;) --create-disk size=(&#x6578;&#x5B57;&#x55AE;&#x4F4D;),type=(&#x786C;&#x789F;&#x985E;&#x578B;),name=(&#x540D;&#x7A31;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create test --zone asia-east1-c --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20180522 --tags test --custom-cpu 4 --custom-memory 8 --boot-disk-size 30 --create-disk size=10GB,type=pd-ssd,name=test-disk</span><br></pre></td></tr></table></figure>
-<h3 id="&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;"><a href="#&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;"></a>&#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x5F8C;&#x8A0A;&#x606F;</h3><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5EFA;&#x7ACB;-VM-&#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;"><a href="#&#x5EFA;&#x7ACB;-VM-&#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;" class="headerlink" title="&#x5EFA;&#x7ACB; VM &#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;"></a>&#x5EFA;&#x7ACB; VM &#x6307;&#x4EE4;&#x5206;&#x89E3;&#x4ECB;&#x7D39;</h3><h3 id="&#x5275;&#x5EFA;-VM&#xFF1A;-&#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C;-&#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;"><a href="#&#x5275;&#x5EFA;-VM&#xFF1A;-&#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C;-&#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;" class="headerlink" title="&#x5275;&#x5EFA; VM&#xFF1A;( &#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C; ) &#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? &#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;"></a>&#x5275;&#x5EFA; VM&#xFF1A;( &#x9664;&#x4E86;&#x540D;&#x7A31;&#x8DDF;&#x5340;&#x57DF;&#x4E0D;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x6703;&#x7D66;&#x9810;&#x8A2D;&#x503C; ) &#x6C92;&#x6709;&#x4E0B;&#x5340;&#x57DF;&#x6307;&#x4EE4;&#x6703;&#x8A62;&#x554F;&#x662F;&#x5426;&#x5728;&#x6B64;&#x5340;&#x57DF;&#xFF0C;Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? &#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9019;&#x500B;&#x9810;&#x8A2D;&#x5340;&#x57DF;&#xFF0C;n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances create (name) --zone (&#x5340;&#x57DF;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create test --zone asia-east1-a</span><br></pre></td></tr></table></figure>
-<h3 id="&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;"><a href="#&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;" class="headerlink" title="&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;"></a>&#x6709;&#x7D66;&#x5340;&#x57DF;&#x6703;&#x76F4;&#x63A5;&#x5EFA;&#x597D;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;"><a href="#&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;" class="headerlink" title="&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;"></a>&#x6C92;&#x7D66;&#x5340;&#x57DF;&#x6307;&#x4EE4;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create test</span><br></pre></td></tr></table></figure>
-<h3 id="&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;"><a href="#&#x56DE;&#x7B54;-y-&#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;" class="headerlink" title="&#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;"></a>&#x56DE;&#x7B54; y &#x6703;&#x76F4;&#x63A5;&#x5728;&#x9810;&#x8A2D;&#x5340;&#x57DF;</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DE;&#x7B54;-n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;"><a href="#&#x56DE;&#x7B54;-n-&#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;" class="headerlink" title="&#x56DE;&#x7B54; n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;"></a>&#x56DE;&#x7B54; n &#x6703;&#x8B93;&#x4F60;&#x9078;&#x5340;&#x57DF;&#xFF0C;&#x8F38;&#x5165;&#x60F3;&#x8981;&#x7684;&#x5340;&#x57DF;&#x7684;&#x6578;&#x5B57;&#x5C31;&#x6703;&#x8B8A;&#x6210;&#x8A72;&#x5340;&#x57DF;&#x4E86;</h3><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/13.1.png"><img src="images/13.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x8A2D;&#x5B9A;-image&#xFF1A;&#x4F7F;&#x7528;-gcloud-compute-images-list-&#x67E5;&#x8A62;-project-&#x548C;-image"><a href="#&#x8A2D;&#x5B9A;-image&#xFF1A;&#x4F7F;&#x7528;-gcloud-compute-images-list-&#x67E5;&#x8A62;-project-&#x548C;-image" class="headerlink" title="&#x8A2D;&#x5B9A; image&#xFF1A;&#x4F7F;&#x7528; gcloud compute images list &#x67E5;&#x8A62; project &#x548C; image"></a>&#x8A2D;&#x5B9A; image&#xFF1A;&#x4F7F;&#x7528; gcloud compute images list &#x67E5;&#x8A62; project &#x548C; image</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute images list</span><br></pre></td></tr></table></figure>
-<h3 id="&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684;-project-&#x548C;-name"><a href="#&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684;-project-&#x548C;-name" class="headerlink" title="&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684; project &#x548C; name"></a>&#x9078;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x7684; project &#x548C; name</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
+<h3 id="5-建立-VM"><a href="#5-建立-VM" class="headerlink" title="5. 建立 VM"></a>5. 建立 VM</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances create (VM名稱) --zone (區域) --image-project (project) --image (name) --tags (名稱) --custom-cpu (數字) --custom-memory (數字) --boot-disk-size (數字) --create-disk size=(數字單位),type=(硬碟類型),name=(名稱)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create test --zone asia-east1-c --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20180522 --tags test --custom-cpu 4 --custom-memory 8 --boot-disk-size 30 --create-disk size=10GB,type=pd-ssd,name=test-disk</span><br></pre></td></tr></table></figure>
+<h3 id="建立成功後訊息"><a href="#建立成功後訊息" class="headerlink" title="建立成功後訊息"></a>建立成功後訊息</h3><p><img src="images/16.png" alt=" "></p>
+<h3 id="建立-VM-指令分解介紹"><a href="#建立-VM-指令分解介紹" class="headerlink" title="建立 VM 指令分解介紹"></a>建立 VM 指令分解介紹</h3><h3 id="創建-VM：-除了名稱跟區域不設定的值會給預設值-沒有下區域指令會詢問是否在此區域，Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-回答-y-會直接在這個預設區域，n-會讓你選區域"><a href="#創建-VM：-除了名稱跟區域不設定的值會給預設值-沒有下區域指令會詢問是否在此區域，Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-回答-y-會直接在這個預設區域，n-會讓你選區域" class="headerlink" title="創建 VM：( 除了名稱跟區域不設定的值會給預設值 ) 沒有下區域指令會詢問是否在此區域，Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? 回答 y 會直接在這個預設區域，n 會讓你選區域"></a>創建 VM：( 除了名稱跟區域不設定的值會給預設值 ) 沒有下區域指令會詢問是否在此區域，Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? 回答 y 會直接在這個預設區域，n 會讓你選區域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances create (name) --zone (區域)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create test --zone asia-east1-a</span><br></pre></td></tr></table></figure>
+<h3 id="有給區域會直接建好"><a href="#有給區域會直接建好" class="headerlink" title="有給區域會直接建好"></a>有給區域會直接建好</h3><p><img src="images/14.png" alt=" "></p>
+<h3 id="沒給區域指令"><a href="#沒給區域指令" class="headerlink" title="沒給區域指令"></a>沒給區域指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create test</span><br></pre></td></tr></table></figure>
+<h3 id="回答-y-會直接在預設區域"><a href="#回答-y-會直接在預設區域" class="headerlink" title="回答 y 會直接在預設區域"></a>回答 y 會直接在預設區域</h3><p><img src="images/11.png" alt=" "></p>
+<h3 id="回答-n-會讓你選區域，輸入想要的區域的數字就會變成該區域了"><a href="#回答-n-會讓你選區域，輸入想要的區域的數字就會變成該區域了" class="headerlink" title="回答 n 會讓你選區域，輸入想要的區域的數字就會變成該區域了"></a>回答 n 會讓你選區域，輸入想要的區域的數字就會變成該區域了</h3><p><img src="images/12.png" alt=" "><br><img src="images/13.1.png" alt=" "></p>
+<h3 id="設定-image：使用-gcloud-compute-images-list-查詢-project-和-image"><a href="#設定-image：使用-gcloud-compute-images-list-查詢-project-和-image" class="headerlink" title="設定 image：使用 gcloud compute images list 查詢 project 和 image"></a>設定 image：使用 gcloud compute images list 查詢 project 和 image</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute images list</span><br></pre></td></tr></table></figure>
+<h3 id="選想要使用的-project-和-name"><a href="#選想要使用的-project-和-name" class="headerlink" title="選想要使用的 project 和 name"></a>選想要使用的 project 和 name</h3><p><img src="images/10.png" alt=" "></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--image-project (project) --image (name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create gcelab2 --zone us-central1-c --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20180522</span><br></pre></td></tr></table></figure>
-<h3 id="&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;"><a href="#&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;"></a>&#x8A2D;&#x5B9A;&#x7DB2;&#x8DEF;&#x6A19;&#x8A18;&#xFF1A;&#x76EE;&#x524D;&#x9632;&#x706B;&#x7246;&#x8981;&#x5148;&#x8A2D;&#x5B9A;&#x597D;&#x6A19;&#x8A18;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--tags (&#x4F60;&#x8A2D;&#x5B9A;&#x7684;&#x6A19;&#x8A18;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A; gcloud compute instances create --tags test</span><br></pre></td></tr></table></figure>
-<h3 id="&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF;-cpu"><a href="#&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF;-cpu" class="headerlink" title="&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF; cpu"></a>&#x8A2D;&#x5B9A;&#x8A18;&#x61B6;&#x9AD4;&#x8DDF; cpu</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--custom-cpu (&#x6578;&#x5B57;) --custom-memory (&#x6578;&#x5B57;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --custom-cpu 4 --custom-memory 8</span><br></pre></td></tr></table></figure>
-<h3 id="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB"><a href="#&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB" class="headerlink" title="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB"></a>&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x5BB9;&#x91CF;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--boot-disk-size (&#x6578;&#x5B57;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --boot-disk-size 30GB</span><br></pre></td></tr></table></figure>
-<h3 id="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;"><a href="#&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;"></a>&#x8A2D;&#x5B9A;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x985E;&#x578B;&#xFF1A;</h3><h3 id="&#x4F7F;&#x7528;-gcloud-compute-disk-types-list-&#x67E5;&#x8A62;"><a href="#&#x4F7F;&#x7528;-gcloud-compute-disk-types-list-&#x67E5;&#x8A62;" class="headerlink" title="&#x4F7F;&#x7528; gcloud compute disk-types list &#x67E5;&#x8A62;"></a>&#x4F7F;&#x7528; gcloud compute disk-types list &#x67E5;&#x8A62;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute disk-types list</span><br></pre></td></tr></table></figure>
-<h3 id="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;"><a href="#&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;" class="headerlink" title="&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;"></a>&#x9078;&#x64C7;&#x60F3;&#x8981;&#x7684;&#x786C;&#x789F;&#x985E;&#x578B;</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--boot-disk-type (&#x786C;&#x789F;&#x985E;&#x578B;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --boot-disk-type pd-ssd</span><br></pre></td></tr></table></figure>
-<h3 id="&#x8A2D;&#x5B9A;&#x522A;&#x9664;-VM-&#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;"><a href="#&#x8A2D;&#x5B9A;&#x522A;&#x9664;-VM-&#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x522A;&#x9664; VM &#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;"></a>&#x8A2D;&#x5B9A;&#x522A;&#x9664; VM &#x958B;&#x6A5F;&#x786C;&#x789F;&#x6703;&#x4FDD;&#x7559;&#xFF0C;&#x9810;&#x8A2D;&#x662F;&#x6703;&#x522A;&#x9664;&#x958B;&#x6A5F;&#x786C;&#x789F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-boot-disk-auto-delete</span><br></pre></td></tr></table></figure>
-<h3 id="&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB"><a href="#&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F;-GB" class="headerlink" title="&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB"></a>&#x8A2D;&#x5B9A;&#x639B;&#x8F09;&#x5176;&#x4ED6;&#x786C;&#x789F;&#xFF1A;&#x5BB9;&#x91CF;&#x6C92;&#x7D66;&#x55AE;&#x4F4D;&#x9810;&#x8A2D;&#x662F; GB</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--create-disk name=(name),type=(&#x786C;&#x789F;&#x985E;&#x578B;),size=(&#x5BB9;&#x91CF;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex&#xFF1A;gcloud compute instances create --create-disk name=test,type=pd-ssd,size=10GB</span><br></pre></td></tr></table></figure>
-<h3 id="PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;"><a href="#PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB;-VM-&#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;" class="headerlink" title="PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB; VM &#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB; VM &#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;"></a>PS&#xFF1A;&#x5728;&#x5EFA;&#x7ACB; VM &#x7684;&#x6700;&#x4E0B;&#x65B9;&#x6703;&#x6709;&#x6307;&#x4EE4;&#x5217;&#xFF0C;&#x9EDE;&#x958B;&#x6703;&#x6709;&#x5EFA;&#x7ACB; VM &#x7684;&#x6240;&#x6709;&#x6307;&#x4EE4;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9019;&#x500B;&#x53C3;&#x8003;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728;-CLOUD-SHELL-&#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;-Shell-&#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;"><a href="#&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728;-CLOUD-SHELL-&#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;-Shell-&#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;" class="headerlink" title="&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728; CLOUD SHELL &#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; Shell &#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;"></a>&#x9EDE;&#x64CA;&#x53F3;&#x4E0B;&#x5728; CLOUD SHELL &#x4E2D;&#x57F7;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; Shell &#x505A;&#x7DE8;&#x8F2F;&#x4FEE;&#x6539;</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h3 id="GCP-VM-&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"><a href="#GCP-VM-&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;" class="headerlink" title="GCP VM &#x5EFA;&#x7ACB;&#x5B8C;&#x6210;"></a>GCP VM &#x5EFA;&#x7ACB;&#x5B8C;&#x6210;</h3>
-                        
-                    </div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create gcelab2 --zone us-central1-c --image-project ubuntu-os-cloud --image ubuntu-1604-xenial-v20180522</span><br></pre></td></tr></table></figure>
+<h3 id="設定網路標記：目前防火牆要先設定好標記"><a href="#設定網路標記：目前防火牆要先設定好標記" class="headerlink" title="設定網路標記：目前防火牆要先設定好標記"></a>設定網路標記：目前防火牆要先設定好標記</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--tags (你設定的標記)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex： gcloud compute instances create --tags test</span><br></pre></td></tr></table></figure>
+<h3 id="設定記憶體跟-cpu"><a href="#設定記憶體跟-cpu" class="headerlink" title="設定記憶體跟 cpu"></a>設定記憶體跟 cpu</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--custom-cpu (數字) --custom-memory (數字)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create --custom-cpu 4 --custom-memory 8</span><br></pre></td></tr></table></figure>
+<h3 id="設定開機硬碟容量：容量沒給單位預設是-GB"><a href="#設定開機硬碟容量：容量沒給單位預設是-GB" class="headerlink" title="設定開機硬碟容量：容量沒給單位預設是 GB"></a>設定開機硬碟容量：容量沒給單位預設是 GB</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--boot-disk-size (數字)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create --boot-disk-size 30GB</span><br></pre></td></tr></table></figure>
+<h3 id="設定開機硬碟類型："><a href="#設定開機硬碟類型：" class="headerlink" title="設定開機硬碟類型："></a>設定開機硬碟類型：</h3><h3 id="使用-gcloud-compute-disk-types-list-查詢"><a href="#使用-gcloud-compute-disk-types-list-查詢" class="headerlink" title="使用 gcloud compute disk-types list 查詢"></a>使用 gcloud compute disk-types list 查詢</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute disk-types list</span><br></pre></td></tr></table></figure>
+<h3 id="選擇想要的硬碟類型"><a href="#選擇想要的硬碟類型" class="headerlink" title="選擇想要的硬碟類型"></a>選擇想要的硬碟類型</h3><p><img src="images/15.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--boot-disk-type (硬碟類型)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create --boot-disk-type pd-ssd</span><br></pre></td></tr></table></figure>
+<h3 id="設定刪除-VM-開機硬碟會保留，預設是會刪除開機硬碟"><a href="#設定刪除-VM-開機硬碟會保留，預設是會刪除開機硬碟" class="headerlink" title="設定刪除 VM 開機硬碟會保留，預設是會刪除開機硬碟"></a>設定刪除 VM 開機硬碟會保留，預設是會刪除開機硬碟</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-boot-disk-auto-delete</span><br></pre></td></tr></table></figure>
+<h3 id="設定掛載其他硬碟：容量沒給單位預設是-GB"><a href="#設定掛載其他硬碟：容量沒給單位預設是-GB" class="headerlink" title="設定掛載其他硬碟：容量沒給單位預設是 GB"></a>設定掛載其他硬碟：容量沒給單位預設是 GB</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--create-disk name=(name),type=(硬碟類型),size=(容量)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ex：gcloud compute instances create --create-disk name=test,type=pd-ssd,size=10GB</span><br></pre></td></tr></table></figure>
+<h3 id="PS：在建立-VM-的最下方會有指令列，點開會有建立-VM-的所有指令，也可以使用這個參考"><a href="#PS：在建立-VM-的最下方會有指令列，點開會有建立-VM-的所有指令，也可以使用這個參考" class="headerlink" title="PS：在建立 VM 的最下方會有指令列，點開會有建立 VM 的所有指令，也可以使用這個參考"></a>PS：在建立 VM 的最下方會有指令列，點開會有建立 VM 的所有指令，也可以使用這個參考</h3><p><img src="images/5.png" alt=" "></p>
+<h3 id="點擊右下在-CLOUD-SHELL-中執行，可以在-Shell-做編輯修改"><a href="#點擊右下在-CLOUD-SHELL-中執行，可以在-Shell-做編輯修改" class="headerlink" title="點擊右下在 CLOUD SHELL 中執行，可以在 Shell 做編輯修改"></a>點擊右下在 CLOUD SHELL 中執行，可以在 Shell 做編輯修改</h3><p><img src="images/6.png" alt=" "></p>
+<h3 id="GCP-VM-建立完成"><a href="#GCP-VM-建立完成" class="headerlink" title="GCP VM 建立完成"></a>GCP VM 建立完成</h3>
+    </div>
 
-                    
-                    
-                    
+    
+    
+    
 
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-19T07:42:47.000Z" itemprop="datePublished">2018-06-19</time>
+      <footer class="post-footer">
 
-    </span>
-    <span class="post-description-item">
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/19/GCP-VM建立其它功能介紹/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    GCP-VM建立其它功能介紹
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/" class="ui tiny button">
-                    
-                    GCP-GoogleCloudPlatform-creat-vm-gui
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/" rel="prev" title="GCP-GoogleCloudPlatform-creat-vm-gui">
+      <i class="fa fa-chevron-left"></i> GCP-GoogleCloudPlatform-creat-vm-gui
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/19/GCP-VM建立其它功能介紹/" rel="next" title="GCP-VM建立其它功能介紹">
+      GCP-VM建立其它功能介紹 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本文章將介紹如何使用指令建立-GCP-VM"><span>本文章將介紹如何使用指令建立 GCP VM</span></a><ol><li><a href="#GCP-更多指令用法可以到連結查看，指令網站連結：https-cloud-google-com-sdk-docs"><span>GCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/</span></a></li><li><a href="#本篇開始："><span>本篇開始：</span></a></li><li><a href="#1-進入-GCP，網址：https-cloud-google-com"><span>1. 進入 GCP，網址：https://cloud.google.com/</span></a></li><li><a href="#2-登入-Google-帳號"><span>2. 登入 Google 帳號</span></a></li><li><a href="#3-點擊畫面右上角控制台進入"><span>3. 點擊畫面右上角控制台進入</span></a></li><li><a href="#4-開啟-Cloud-Shell"><span>4. 開啟 Cloud Shell</span></a></li><li><a href="#Cloud-Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的-5GB-主目錄並在-Google-Cloud-上運行，只需使用瀏覽器或-Google-Chromebook-即可完成中大部分工作"><span>Cloud Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的 5GB 主目錄並在 Google Cloud 上運行，只需使用瀏覽器或 Google Chromebook 即可完成中大部分工作</span></a></li><li><a href="#在-GCP-控制台中，點擊右上角工具欄上的-Cloud-Shell-圖標"><span>在 GCP 控制台中，點擊右上角工具欄上的 Cloud Shell 圖標</span></a></li><li><a href="#啟動-Cloud-Shell"><span>啟動 Cloud Shell</span></a></li><li><a href="#啟動畫面"><span>啟動畫面</span></a></li><li><a href="#5-建立-VM"><span>5. 建立 VM</span></a></li><li><a href="#建立成功後訊息"><span>建立成功後訊息</span></a></li><li><a href="#建立-VM-指令分解介紹"><span>建立 VM 指令分解介紹</span></a></li><li><a href="#創建-VM：-除了名稱跟區域不設定的值會給預設值-沒有下區域指令會詢問是否在此區域，Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-回答-y-會直接在這個預設區域，n-會讓你選區域"><span>創建 VM：( 除了名稱跟區域不設定的值會給預設值 ) 沒有下區域指令會詢問是否在此區域，Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? 回答 y 會直接在這個預設區域，n 會讓你選區域</span></a></li><li><a href="#有給區域會直接建好"><span>有給區域會直接建好</span></a></li><li><a href="#沒給區域指令"><span>沒給區域指令</span></a></li><li><a href="#回答-y-會直接在預設區域"><span>回答 y 會直接在預設區域</span></a></li><li><a href="#回答-n-會讓你選區域，輸入想要的區域的數字就會變成該區域了"><span>回答 n 會讓你選區域，輸入想要的區域的數字就會變成該區域了</span></a></li><li><a href="#設定-image：使用-gcloud-compute-images-list-查詢-project-和-image"><span>設定 image：使用 gcloud compute images list 查詢 project 和 image</span></a></li><li><a href="#選想要使用的-project-和-name"><span>選想要使用的 project 和 name</span></a></li><li><a href="#設定網路標記：目前防火牆要先設定好標記"><span>設定網路標記：目前防火牆要先設定好標記</span></a></li><li><a href="#設定記憶體跟-cpu"><span>設定記憶體跟 cpu</span></a></li><li><a href="#設定開機硬碟容量：容量沒給單位預設是-GB"><span>設定開機硬碟容量：容量沒給單位預設是 GB</span></a></li><li><a href="#設定開機硬碟類型："><span>設定開機硬碟類型：</span></a></li><li><a href="#使用-gcloud-compute-disk-types-list-查詢"><span>使用 gcloud compute disk-types list 查詢</span></a></li><li><a href="#選擇想要的硬碟類型"><span>選擇想要的硬碟類型</span></a></li><li><a href="#設定刪除-VM-開機硬碟會保留，預設是會刪除開機硬碟"><span>設定刪除 VM 開機硬碟會保留，預設是會刪除開機硬碟</span></a></li><li><a href="#設定掛載其他硬碟：容量沒給單位預設是-GB"><span>設定掛載其他硬碟：容量沒給單位預設是 GB</span></a></li><li><a href="#PS：在建立-VM-的最下方會有指令列，點開會有建立-VM-的所有指令，也可以使用這個參考"><span>PS：在建立 VM 的最下方會有指令列，點開會有建立 VM 的所有指令，也可以使用這個參考</span></a></li><li><a href="#點擊右下在-CLOUD-SHELL-中執行，可以在-Shell-做編輯修改"><span>點擊右下在 CLOUD SHELL 中執行，可以在 Shell 做編輯修改</span></a></li><li><a href="#GCP-VM-建立完成"><span>GCP VM 建立完成</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本文章將介紹如何使用指令建立-GCP-VM"><span class="nav-number">1.</span> <span class="nav-text">本文章將介紹如何使用指令建立 GCP VM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCP-更多指令用法可以到連結查看，指令網站連結：https-cloud-google-com-sdk-docs"><span class="nav-number">1.1.</span> <span class="nav-text">GCP 更多指令用法可以到連結查看，指令網站連結：https://cloud.google.com/sdk/docs/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本篇開始："><span class="nav-number">1.2.</span> <span class="nav-text">本篇開始：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-進入-GCP，網址：https-cloud-google-com"><span class="nav-number">1.3.</span> <span class="nav-text">1. 進入 GCP，網址：https://cloud.google.com/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-登入-Google-帳號"><span class="nav-number">1.4.</span> <span class="nav-text">2. 登入 Google 帳號</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-點擊畫面右上角控制台進入"><span class="nav-number">1.5.</span> <span class="nav-text">3. 點擊畫面右上角控制台進入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-開啟-Cloud-Shell"><span class="nav-number">1.6.</span> <span class="nav-text">4. 開啟 Cloud Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的-5GB-主目錄並在-Google-Cloud-上運行，只需使用瀏覽器或-Google-Chromebook-即可完成中大部分工作"><span class="nav-number">1.7.</span> <span class="nav-text">Cloud Shell：虛擬機裝載了所有您需要的開發工具，它提供了一個持久的 5GB 主目錄並在 Google Cloud 上運行，只需使用瀏覽器或 Google Chromebook 即可完成中大部分工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-GCP-控制台中，點擊右上角工具欄上的-Cloud-Shell-圖標"><span class="nav-number">1.8.</span> <span class="nav-text">在 GCP 控制台中，點擊右上角工具欄上的 Cloud Shell 圖標</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#啟動-Cloud-Shell"><span class="nav-number">1.9.</span> <span class="nav-text">啟動 Cloud Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#啟動畫面"><span class="nav-number">1.10.</span> <span class="nav-text">啟動畫面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-建立-VM"><span class="nav-number">1.11.</span> <span class="nav-text">5. 建立 VM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立成功後訊息"><span class="nav-number">1.12.</span> <span class="nav-text">建立成功後訊息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立-VM-指令分解介紹"><span class="nav-number">1.13.</span> <span class="nav-text">建立 VM 指令分解介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#創建-VM：-除了名稱跟區域不設定的值會給預設值-沒有下區域指令會詢問是否在此區域，Did-you-mean-zone-asia-east1-b-for-instance-test-Y-n-回答-y-會直接在這個預設區域，n-會讓你選區域"><span class="nav-number">1.14.</span> <span class="nav-text">創建 VM：( 除了名稱跟區域不設定的值會給預設值 ) 沒有下區域指令會詢問是否在此區域，Did you mean zone [asia-east1-b] for instance: [test] (Y/n)? 回答 y 會直接在這個預設區域，n 會讓你選區域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有給區域會直接建好"><span class="nav-number">1.15.</span> <span class="nav-text">有給區域會直接建好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#沒給區域指令"><span class="nav-number">1.16.</span> <span class="nav-text">沒給區域指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回答-y-會直接在預設區域"><span class="nav-number">1.17.</span> <span class="nav-text">回答 y 會直接在預設區域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回答-n-會讓你選區域，輸入想要的區域的數字就會變成該區域了"><span class="nav-number">1.18.</span> <span class="nav-text">回答 n 會讓你選區域，輸入想要的區域的數字就會變成該區域了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定-image：使用-gcloud-compute-images-list-查詢-project-和-image"><span class="nav-number">1.19.</span> <span class="nav-text">設定 image：使用 gcloud compute images list 查詢 project 和 image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選想要使用的-project-和-name"><span class="nav-number">1.20.</span> <span class="nav-text">選想要使用的 project 和 name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定網路標記：目前防火牆要先設定好標記"><span class="nav-number">1.21.</span> <span class="nav-text">設定網路標記：目前防火牆要先設定好標記</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定記憶體跟-cpu"><span class="nav-number">1.22.</span> <span class="nav-text">設定記憶體跟 cpu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定開機硬碟容量：容量沒給單位預設是-GB"><span class="nav-number">1.23.</span> <span class="nav-text">設定開機硬碟容量：容量沒給單位預設是 GB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定開機硬碟類型："><span class="nav-number">1.24.</span> <span class="nav-text">設定開機硬碟類型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-gcloud-compute-disk-types-list-查詢"><span class="nav-number">1.25.</span> <span class="nav-text">使用 gcloud compute disk-types list 查詢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇想要的硬碟類型"><span class="nav-number">1.26.</span> <span class="nav-text">選擇想要的硬碟類型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定刪除-VM-開機硬碟會保留，預設是會刪除開機硬碟"><span class="nav-number">1.27.</span> <span class="nav-text">設定刪除 VM 開機硬碟會保留，預設是會刪除開機硬碟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定掛載其他硬碟：容量沒給單位預設是-GB"><span class="nav-number">1.28.</span> <span class="nav-text">設定掛載其他硬碟：容量沒給單位預設是 GB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS：在建立-VM-的最下方會有指令列，點開會有建立-VM-的所有指令，也可以使用這個參考"><span class="nav-number">1.29.</span> <span class="nav-text">PS：在建立 VM 的最下方會有指令列，點開會有建立 VM 的所有指令，也可以使用這個參考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點擊右下在-CLOUD-SHELL-中執行，可以在-Shell-做編輯修改"><span class="nav-number">1.30.</span> <span class="nav-text">點擊右下在 CLOUD SHELL 中執行，可以在 Shell 做編輯修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCP-VM-建立完成"><span class="nav-number">1.31.</span> <span class="nav-text">GCP VM 建立完成</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

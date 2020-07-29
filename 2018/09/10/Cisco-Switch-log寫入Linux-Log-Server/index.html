@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>Cisco-Switch-log寫入Linux-Log-Server | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x4E00;&amp;#x3001; &amp;#x9032;&amp;#x5165; Switch &amp;#x8A2D;&amp;#x5B9A;&amp;#x8F38;&amp;#x5165; log &amp;#x5230;&amp;#x6307;&amp;#x5B9A; ip &amp;#x6A5F;&amp;#x5668;1. en &amp;#x8F38;&amp;#x5165;&amp;#x5BC6;&amp;#x78BC;&amp;#xFF0C;&amp;#x9032;&amp;#x5165;&amp;#x7BA1;&amp;#x7406;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器1. en 輸入密碼，進入管理者模式 2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip 3. exit 回到上一層4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip ) 二、 設定 linux 接收 log1. 配置 config：(1)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cisco-Switch-log寫入Linux-Log-Server">
 <meta property="og:url" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x4E00;&amp;#x3001; &amp;#x9032;&amp;#x5165; Switch &amp;#x8A2D;&amp;#x5B9A;&amp;#x8F38;&amp;#x5165; log &amp;#x5230;&amp;#x6307;&amp;#x5B9A; ip &amp;#x6A5F;&amp;#x5668;1. en &amp;#x8F38;&amp;#x5165;&amp;#x5BC6;&amp;#x78BC;&amp;#xFF0C;&amp;#x9032;&amp;#x5165;&amp;#x7BA1;&amp;#x7406;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器1. en 輸入密碼，進入管理者模式 2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip 3. exit 回到上一層4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip ) 二、 設定 linux 接收 log1. 配置 config：(1)">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/3.png">
@@ -26,246 +37,357 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:24.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cisco-Switch-log寫入Linux-Log-Server">
-<meta name="twitter:description" content="&amp;#x4E00;&amp;#x3001; &amp;#x9032;&amp;#x5165; Switch &amp;#x8A2D;&amp;#x5B9A;&amp;#x8F38;&amp;#x5165; log &amp;#x5230;&amp;#x6307;&amp;#x5B9A; ip &amp;#x6A5F;&amp;#x5668;1. en &amp;#x8F38;&amp;#x5165;&amp;#x5BC6;&amp;#x78BC;&amp;#xFF0C;&amp;#x9032;&amp;#x5165;&amp;#x7BA1;&amp;#x7406;">
+<meta name="twitter:description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器1. en 輸入密碼，進入管理者模式 2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip 3. exit 回到上一層4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip ) 二、 設定 linux 接收 log1. 配置 config：(1)">
 <meta name="twitter:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>Cisco-Switch-log寫入Linux-Log-Server | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-Cisco-Switch-log寫入Linux-Log-Server" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    Cisco-Switch-log寫入Linux-Log-Server
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x4E00;&#x3001;-&#x9032;&#x5165;-Switch-&#x8A2D;&#x5B9A;&#x8F38;&#x5165;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x6A5F;&#x5668;"><a href="#&#x4E00;&#x3001;-&#x9032;&#x5165;-Switch-&#x8A2D;&#x5B9A;&#x8F38;&#x5165;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x6A5F;&#x5668;" class="headerlink" title="&#x4E00;&#x3001; &#x9032;&#x5165; Switch &#x8A2D;&#x5B9A;&#x8F38;&#x5165; log &#x5230;&#x6307;&#x5B9A; ip &#x6A5F;&#x5668;"></a>&#x4E00;&#x3001; &#x9032;&#x5165; Switch &#x8A2D;&#x5B9A;&#x8F38;&#x5165; log &#x5230;&#x6307;&#x5B9A; ip &#x6A5F;&#x5668;</h3><h3 id="1-en-&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;"><a href="#1-en-&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;" class="headerlink" title="1. en &#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;"></a>1. en &#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x9032;&#x5165;&#x7BA1;&#x7406;&#x8005;&#x6A21;&#x5F0F;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="2-conf-t-&#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x2192;-logging-host-ip"><a href="#2-conf-t-&#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A;-log-&#x5230;&#x6307;&#x5B9A;-ip-&#x2192;-logging-host-ip" class="headerlink" title="2. conf t &#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A; log &#x5230;&#x6307;&#x5B9A; ip &#x2192; logging host ip"></a>2. conf t &#x9032;&#x5165;&#x7D44;&#x614B;&#x6A21;&#x5F0F;&#xFF0C;&#x8A2D;&#x5B9A; log &#x5230;&#x6307;&#x5B9A; ip &#x2192; logging host ip</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="3-exit-&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;"><a href="#3-exit-&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;" class="headerlink" title="3. exit &#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;"></a>3. exit &#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;</h3><h3 id="4-sh-run-&#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A;-logging-ip-&#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA;-ip"><a href="#4-sh-run-&#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A;-logging-ip-&#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA;-ip" class="headerlink" title="4. sh run &#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A; logging ip ( &#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA; ip )"></a>4. sh run &#x67E5;&#x770B;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A; logging ip ( &#x70BA;&#x4E86;&#x5B89;&#x5168;&#x5716;&#x7247;&#x6A21;&#x7CCA; ip )</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x4E8C;&#x3001;-&#x8A2D;&#x5B9A;-linux-&#x63A5;&#x6536;-log"><a href="#&#x4E8C;&#x3001;-&#x8A2D;&#x5B9A;-linux-&#x63A5;&#x6536;-log" class="headerlink" title="&#x4E8C;&#x3001; &#x8A2D;&#x5B9A; linux &#x63A5;&#x6536; log"></a>&#x4E8C;&#x3001; &#x8A2D;&#x5B9A; linux &#x63A5;&#x6536; log</h3><h3 id="1-&#x914D;&#x7F6E;-config&#xFF1A;"><a href="#1-&#x914D;&#x7F6E;-config&#xFF1A;" class="headerlink" title="1. &#x914D;&#x7F6E; config&#xFF1A;"></a>1. &#x914D;&#x7F6E; config&#xFF1A;</h3><h3 id="1-vi-etc-syslog-conf-&#x9032;&#x5165;-config-&#x62FF;&#x6389;-TCP-&#x8207;-UDP-reception-&#x7684;&#x8A3B;&#x89E3;"><a href="#1-vi-etc-syslog-conf-&#x9032;&#x5165;-config-&#x62FF;&#x6389;-TCP-&#x8207;-UDP-reception-&#x7684;&#x8A3B;&#x89E3;" class="headerlink" title="(1) vi /etc/syslog.conf &#x9032;&#x5165; config &#x62FF;&#x6389; TCP &#x8207; UDP reception &#x7684;&#x8A3B;&#x89E3;"></a>(1) vi /etc/syslog.conf &#x9032;&#x5165; config &#x62FF;&#x6389; TCP &#x8207; UDP reception &#x7684;&#x8A3B;&#x89E3;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h3 id="2-Config-&#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536;-Log-&#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;"><a href="#2-Config-&#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536;-Log-&#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;" class="headerlink" title="(2) Config &#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536; Log &#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;"></a>(2) Config &#x6700;&#x5F8C;&#x52A0;&#x4E0A;&#x63A5;&#x6536; Log &#x985E;&#x578B;&#x8207;&#x5BEB;&#x5165;&#x4F4D;&#x7F6E;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x539F;&#x7248;-config"><a href="#&#x539F;&#x7248;-config" class="headerlink" title="&#x539F;&#x7248; config"></a>&#x539F;&#x7248; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">#  /etc/rsyslog.conf    Configuration file for rsyslog.</span><br><span class="line">#</span><br><span class="line">#                       For more information see</span><br><span class="line">#                       /usr/share/doc/rsyslog-doc/html/rsyslog_conf.html</span><br><span class="line">#</span><br><span class="line">#  Default logging rules can be found in /etc/rsyslog.d/50-default.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#################</span><br><span class="line">#### MODULES ####</span><br><span class="line">#################</span><br><span class="line"></span><br><span class="line">module(load=&quot;imuxsock&quot;) # provides support for local system logging</span><br><span class="line">module(load=&quot;imklog&quot;)   # provides kernel logging support</span><br><span class="line">#module(load=&quot;immark&quot;)  # provides --MARK-- message capability</span><br><span class="line"></span><br><span class="line"># provides UDP syslog reception</span><br><span class="line">#module(load=&quot;imudp&quot;)</span><br><span class="line">#input(type=&quot;imudp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># provides TCP syslog reception</span><br><span class="line">#module(load=&quot;imtcp&quot;)</span><br><span class="line">#input(type=&quot;imtcp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># Enable non-kernel facility klog messages</span><br><span class="line">$KLogPermitNonKernelFacility on</span><br><span class="line"></span><br><span class="line">###########################</span><br><span class="line">#### GLOBAL DIRECTIVES ####</span><br><span class="line">###########################</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Use traditional timestamp format.</span><br><span class="line"># To enable high precision timestamps, comment out the following line.</span><br><span class="line">#</span><br><span class="line">$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat</span><br><span class="line"></span><br><span class="line"># Filter duplicated messages</span><br><span class="line">$RepeatedMsgReduction on</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Set the default permissions for all log files.</span><br><span class="line">#</span><br><span class="line">$FileOwner syslog</span><br><span class="line">$FileGroup adm</span><br><span class="line">$FileCreateMode 0640</span><br><span class="line">$DirCreateMode 0755</span><br><span class="line">$Umask 0022</span><br><span class="line">$PrivDropToUser syslog</span><br><span class="line">$PrivDropToGroup syslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Where to place spool and state files</span><br><span class="line">#</span><br><span class="line">$WorkDirectory /var/spool/rsyslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Include all config files in /etc/rsyslog.d/</span><br><span class="line">#</span><br><span class="line">$IncludeConfig /etc/rsyslog.d/*.conf</span><br></pre></td></tr></table></figure>
-<h3 id="&#x66F4;&#x6539;&#x904E;&#x5F8C;-config"><a href="#&#x66F4;&#x6539;&#x904E;&#x5F8C;-config" class="headerlink" title="&#x66F4;&#x6539;&#x904E;&#x5F8C; config"></a>&#x66F4;&#x6539;&#x904E;&#x5F8C; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#  /etc/rsyslog.conf    Configuration file for rsyslog.</span><br><span class="line">#</span><br><span class="line">#                       For more information see</span><br><span class="line">#                       /usr/share/doc/rsyslog-doc/html/rsyslog_conf.html</span><br><span class="line">#</span><br><span class="line">#  Default logging rules can be found in /etc/rsyslog.d/50-default.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#################</span><br><span class="line">#### MODULES ####</span><br><span class="line">#################</span><br><span class="line"></span><br><span class="line">module(load=&quot;imuxsock&quot;) # provides support for local system logging</span><br><span class="line">module(load=&quot;imklog&quot;)   # provides kernel logging support</span><br><span class="line">#module(load=&quot;immark&quot;)  # provides --MARK-- message capability</span><br><span class="line"></span><br><span class="line"># provides UDP syslog reception</span><br><span class="line">module(load=&quot;imudp&quot;)</span><br><span class="line">input(type=&quot;imudp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># provides TCP syslog reception</span><br><span class="line">module(load=&quot;imtcp&quot;)</span><br><span class="line">input(type=&quot;imtcp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># Enable non-kernel facility klog messages</span><br><span class="line">$KLogPermitNonKernelFacility on</span><br><span class="line"></span><br><span class="line">###########################</span><br><span class="line">#### GLOBAL DIRECTIVES ####</span><br><span class="line">###########################</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Use traditional timestamp format.</span><br><span class="line"># To enable high precision timestamps, comment out the following line.</span><br><span class="line">#</span><br><span class="line">$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat</span><br><span class="line"></span><br><span class="line"># Filter duplicated messages</span><br><span class="line">$RepeatedMsgReduction on</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Set the default permissions for all log files.</span><br><span class="line">#</span><br><span class="line">$FileOwner syslog</span><br><span class="line">$FileGroup adm</span><br><span class="line">$FileCreateMode 0640</span><br><span class="line">$DirCreateMode 0755</span><br><span class="line">$Umask 0022</span><br><span class="line">$PrivDropToUser syslog</span><br><span class="line">$PrivDropToGroup syslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Where to place spool and state files</span><br><span class="line">#</span><br><span class="line">$WorkDirectory /var/spool/rsyslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Include all config files in /etc/rsyslog.d/</span><br><span class="line">#</span><br><span class="line">$IncludeConfig /etc/rsyslog.d/*.conf</span><br><span class="line">local7.*        /var/log/cisco.log</span><br></pre></td></tr></table></figure>
-<h3 id="2-&#x914D;&#x7F6E;-config&#xFF1A;"><a href="#2-&#x914D;&#x7F6E;-config&#xFF1A;" class="headerlink" title="2. &#x914D;&#x7F6E; config&#xFF1A;"></a>2. &#x914D;&#x7F6E; config&#xFF1A;</h3><h3 id="vi-etc-default-rsyslog-&#x9032;&#x5165;-config-&#x627E;&#x5230;-RSYSLOG-OPTIONS-&#x52A0;&#x5165;&#x53C3;&#x6578;-r"><a href="#vi-etc-default-rsyslog-&#x9032;&#x5165;-config-&#x627E;&#x5230;-RSYSLOG-OPTIONS-&#x52A0;&#x5165;&#x53C3;&#x6578;-r" class="headerlink" title="vi /etc/default/rsyslog &#x9032;&#x5165; config &#x627E;&#x5230; RSYSLOG_OPTIONS &#x52A0;&#x5165;&#x53C3;&#x6578; -r"></a>vi /etc/default/rsyslog &#x9032;&#x5165; config &#x627E;&#x5230; RSYSLOG_OPTIONS &#x52A0;&#x5165;&#x53C3;&#x6578; -r</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x539F;&#x7248;-config-1"><a href="#&#x539F;&#x7248;-config-1" class="headerlink" title="&#x539F;&#x7248; config"></a>&#x539F;&#x7248; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Options for rsyslogd</span><br><span class="line"># -x disables DNS lookups for remote messages</span><br><span class="line"># See rsyslogd(8) for more details</span><br><span class="line">RSYSLOGD_OPTIONS=&quot;&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x66F4;&#x6539;&#x904E;&#x5F8C;-config-1"><a href="#&#x66F4;&#x6539;&#x904E;&#x5F8C;-config-1" class="headerlink" title="&#x66F4;&#x6539;&#x904E;&#x5F8C; config"></a>&#x66F4;&#x6539;&#x904E;&#x5F8C; config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Options for rsyslogd</span><br><span class="line"># -x disables DNS lookups for remote messages</span><br><span class="line"># See rsyslogd(8) for more details</span><br><span class="line">RSYSLOGD_OPTIONS=&quot;-r&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="4-&#x91CD;&#x555F;-Rsyslog-Service"><a href="#4-&#x91CD;&#x555F;-Rsyslog-Service" class="headerlink" title="4. &#x91CD;&#x555F; Rsyslog Service"></a>4. &#x91CD;&#x555F; Rsyslog Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service rsyslog restart</span><br></pre></td></tr></table></figure>
-<h3 id="3-&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E;-log-&#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B;-log-&#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;"><a href="#3-&#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E;-log-&#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B;-log-&#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;" class="headerlink" title="3. &#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E; log &#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B; log &#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;"></a>3. &#x5230;&#x8A2D;&#x5B9A;&#x597D;&#x653E; log &#x7684;&#x5730;&#x65B9;&#x67E5;&#x770B; log &#x6709;&#x6C92;&#x6709;&#x9032;&#x5165;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /var/log/cisco.log</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-09-10T08:03:44.000Z" itemprop="datePublished">2018-09-10</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Cisco-Switch-log寫入Linux-Log-Server
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-09-10 16:03:44" itemprop="dateCreated datePublished" datetime="2018-09-10T16:03:44+08:00">2018-09-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、-進入-Switch-設定輸入-log-到指定-ip-機器"><a href="#一、-進入-Switch-設定輸入-log-到指定-ip-機器" class="headerlink" title="一、 進入 Switch 設定輸入 log 到指定 ip 機器"></a>一、 進入 Switch 設定輸入 log 到指定 ip 機器</h3><h3 id="1-en-輸入密碼，進入管理者模式"><a href="#1-en-輸入密碼，進入管理者模式" class="headerlink" title="1. en 輸入密碼，進入管理者模式"></a>1. en 輸入密碼，進入管理者模式</h3><p><img src="images/1.png" alt=" "></p>
+<h3 id="2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip"><a href="#2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip" class="headerlink" title="2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip"></a>2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip</h3><p><img src="images/2.png" alt=" "></p>
+<h3 id="3-exit-回到上一層"><a href="#3-exit-回到上一層" class="headerlink" title="3. exit 回到上一層"></a>3. exit 回到上一層</h3><h3 id="4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip"><a href="#4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip" class="headerlink" title="4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )"></a>4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )</h3><p><img src="images/3.png" alt=" "></p>
+<h3 id="二、-設定-linux-接收-log"><a href="#二、-設定-linux-接收-log" class="headerlink" title="二、 設定 linux 接收 log"></a>二、 設定 linux 接收 log</h3><h3 id="1-配置-config："><a href="#1-配置-config：" class="headerlink" title="1. 配置 config："></a>1. 配置 config：</h3><h3 id="1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解"><a href="#1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解" class="headerlink" title="(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解"></a>(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解</h3><p><img src="images/4.png" alt=" "></p>
+<h3 id="2-Config-最後加上接收-Log-類型與寫入位置"><a href="#2-Config-最後加上接收-Log-類型與寫入位置" class="headerlink" title="(2) Config 最後加上接收 Log 類型與寫入位置"></a>(2) Config 最後加上接收 Log 類型與寫入位置</h3><p><img src="images/5.png" alt=" "></p>
+<h3 id="原版-config"><a href="#原版-config" class="headerlink" title="原版 config"></a>原版 config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">#  /etc/rsyslog.conf    Configuration file for rsyslog.</span><br><span class="line">#</span><br><span class="line">#                       For more information see</span><br><span class="line">#                       /usr/share/doc/rsyslog-doc/html/rsyslog_conf.html</span><br><span class="line">#</span><br><span class="line">#  Default logging rules can be found in /etc/rsyslog.d/50-default.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#################</span><br><span class="line">#### MODULES ####</span><br><span class="line">#################</span><br><span class="line"></span><br><span class="line">module(load=&quot;imuxsock&quot;) # provides support for local system logging</span><br><span class="line">module(load=&quot;imklog&quot;)   # provides kernel logging support</span><br><span class="line">#module(load=&quot;immark&quot;)  # provides --MARK-- message capability</span><br><span class="line"></span><br><span class="line"># provides UDP syslog reception</span><br><span class="line">#module(load=&quot;imudp&quot;)</span><br><span class="line">#input(type=&quot;imudp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># provides TCP syslog reception</span><br><span class="line">#module(load=&quot;imtcp&quot;)</span><br><span class="line">#input(type=&quot;imtcp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># Enable non-kernel facility klog messages</span><br><span class="line">$KLogPermitNonKernelFacility on</span><br><span class="line"></span><br><span class="line">###########################</span><br><span class="line">#### GLOBAL DIRECTIVES ####</span><br><span class="line">###########################</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Use traditional timestamp format.</span><br><span class="line"># To enable high precision timestamps, comment out the following line.</span><br><span class="line">#</span><br><span class="line">$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat</span><br><span class="line"></span><br><span class="line"># Filter duplicated messages</span><br><span class="line">$RepeatedMsgReduction on</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Set the default permissions for all log files.</span><br><span class="line">#</span><br><span class="line">$FileOwner syslog</span><br><span class="line">$FileGroup adm</span><br><span class="line">$FileCreateMode 0640</span><br><span class="line">$DirCreateMode 0755</span><br><span class="line">$Umask 0022</span><br><span class="line">$PrivDropToUser syslog</span><br><span class="line">$PrivDropToGroup syslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Where to place spool and state files</span><br><span class="line">#</span><br><span class="line">$WorkDirectory /var/spool/rsyslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Include all config files in /etc/rsyslog.d/</span><br><span class="line">#</span><br><span class="line">$IncludeConfig /etc/rsyslog.d/*.conf</span><br></pre></td></tr></table></figure>
+<h3 id="更改過後-config"><a href="#更改過後-config" class="headerlink" title="更改過後 config"></a>更改過後 config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#  /etc/rsyslog.conf    Configuration file for rsyslog.</span><br><span class="line">#</span><br><span class="line">#                       For more information see</span><br><span class="line">#                       /usr/share/doc/rsyslog-doc/html/rsyslog_conf.html</span><br><span class="line">#</span><br><span class="line">#  Default logging rules can be found in /etc/rsyslog.d/50-default.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#################</span><br><span class="line">#### MODULES ####</span><br><span class="line">#################</span><br><span class="line"></span><br><span class="line">module(load=&quot;imuxsock&quot;) # provides support for local system logging</span><br><span class="line">module(load=&quot;imklog&quot;)   # provides kernel logging support</span><br><span class="line">#module(load=&quot;immark&quot;)  # provides --MARK-- message capability</span><br><span class="line"></span><br><span class="line"># provides UDP syslog reception</span><br><span class="line">module(load=&quot;imudp&quot;)</span><br><span class="line">input(type=&quot;imudp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># provides TCP syslog reception</span><br><span class="line">module(load=&quot;imtcp&quot;)</span><br><span class="line">input(type=&quot;imtcp&quot; port=&quot;514&quot;)</span><br><span class="line"></span><br><span class="line"># Enable non-kernel facility klog messages</span><br><span class="line">$KLogPermitNonKernelFacility on</span><br><span class="line"></span><br><span class="line">###########################</span><br><span class="line">#### GLOBAL DIRECTIVES ####</span><br><span class="line">###########################</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Use traditional timestamp format.</span><br><span class="line"># To enable high precision timestamps, comment out the following line.</span><br><span class="line">#</span><br><span class="line">$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat</span><br><span class="line"></span><br><span class="line"># Filter duplicated messages</span><br><span class="line">$RepeatedMsgReduction on</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Set the default permissions for all log files.</span><br><span class="line">#</span><br><span class="line">$FileOwner syslog</span><br><span class="line">$FileGroup adm</span><br><span class="line">$FileCreateMode 0640</span><br><span class="line">$DirCreateMode 0755</span><br><span class="line">$Umask 0022</span><br><span class="line">$PrivDropToUser syslog</span><br><span class="line">$PrivDropToGroup syslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Where to place spool and state files</span><br><span class="line">#</span><br><span class="line">$WorkDirectory /var/spool/rsyslog</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># Include all config files in /etc/rsyslog.d/</span><br><span class="line">#</span><br><span class="line">$IncludeConfig /etc/rsyslog.d/*.conf</span><br><span class="line">local7.*        /var/log/cisco.log</span><br></pre></td></tr></table></figure>
+<h3 id="2-配置-config："><a href="#2-配置-config：" class="headerlink" title="2. 配置 config："></a>2. 配置 config：</h3><h3 id="vi-etc-default-rsyslog-進入-config-找到-RSYSLOG-OPTIONS-加入參數-r"><a href="#vi-etc-default-rsyslog-進入-config-找到-RSYSLOG-OPTIONS-加入參數-r" class="headerlink" title="vi /etc/default/rsyslog 進入 config 找到 RSYSLOG_OPTIONS 加入參數 -r"></a>vi /etc/default/rsyslog 進入 config 找到 RSYSLOG_OPTIONS 加入參數 -r</h3><p><img src="images/6.png" alt=" "></p>
+<h3 id="原版-config-1"><a href="#原版-config-1" class="headerlink" title="原版 config"></a>原版 config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Options for rsyslogd</span><br><span class="line"># -x disables DNS lookups for remote messages</span><br><span class="line"># See rsyslogd(8) for more details</span><br><span class="line">RSYSLOGD_OPTIONS=&quot;&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="更改過後-config-1"><a href="#更改過後-config-1" class="headerlink" title="更改過後 config"></a>更改過後 config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Options for rsyslogd</span><br><span class="line"># -x disables DNS lookups for remote messages</span><br><span class="line"># See rsyslogd(8) for more details</span><br><span class="line">RSYSLOGD_OPTIONS=&quot;-r&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="4-重啟-Rsyslog-Service"><a href="#4-重啟-Rsyslog-Service" class="headerlink" title="4. 重啟 Rsyslog Service"></a>4. 重啟 Rsyslog Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service rsyslog restart</span><br></pre></td></tr></table></figure>
+<h3 id="3-到設定好放-log-的地方查看-log-有沒有進入"><a href="#3-到設定好放-log-的地方查看-log-有沒有進入" class="headerlink" title="3. 到設定好放 log 的地方查看 log 有沒有進入"></a>3. 到設定好放 log 的地方查看 log 有沒有進入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /var/log/cisco.log</span><br></pre></td></tr></table></figure>
+<p><img src="images/7.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/09/13/ELK抓取syslog/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    ELK抓取syslog
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/09/10/Cisco-Switch指令-持續更新/" class="ui tiny button">
-                    
-                    Cisco-Switch指令-持續更新
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/10/Cisco-Switch指令-持續更新/" rel="prev" title="Cisco-Switch指令-持續更新">
+      <i class="fa fa-chevron-left"></i> Cisco-Switch指令-持續更新
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/13/ELK抓取syslog/" rel="next" title="ELK抓取syslog">
+      ELK抓取syslog <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#一、-進入-Switch-設定輸入-log-到指定-ip-機器"><span>一、 進入 Switch 設定輸入 log 到指定 ip 機器</span></a></li><li><a href="#1-en-輸入密碼，進入管理者模式"><span>1. en 輸入密碼，進入管理者模式</span></a></li><li><a href="#2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip"><span>2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip</span></a></li><li><a href="#3-exit-回到上一層"><span>3. exit 回到上一層</span></a></li><li><a href="#4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip"><span>4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )</span></a></li><li><a href="#二、-設定-linux-接收-log"><span>二、 設定 linux 接收 log</span></a></li><li><a href="#1-配置-config："><span>1. 配置 config：</span></a></li><li><a href="#1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解"><span>(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解</span></a></li><li><a href="#2-Config-最後加上接收-Log-類型與寫入位置"><span>(2) Config 最後加上接收 Log 類型與寫入位置</span></a></li><li><a href="#原版-config"><span>原版 config</span></a></li><li><a href="#更改過後-config"><span>更改過後 config</span></a></li><li><a href="#2-配置-config："><span>2. 配置 config：</span></a></li><li><a href="#vi-etc-default-rsyslog-進入-config-找到-RSYSLOG-OPTIONS-加入參數-r"><span>vi /etc/default/rsyslog 進入 config 找到 RSYSLOG_OPTIONS 加入參數 -r</span></a></li><li><a href="#原版-config-1"><span>原版 config</span></a></li><li><a href="#更改過後-config-1"><span>更改過後 config</span></a></li><li><a href="#4-重啟-Rsyslog-Service"><span>4. 重啟 Rsyslog Service</span></a></li><li><a href="#3-到設定好放-log-的地方查看-log-有沒有進入"><span>3. 到設定好放 log 的地方查看 log 有沒有進入</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-進入-Switch-設定輸入-log-到指定-ip-機器"><span class="nav-number">1.</span> <span class="nav-text">一、 進入 Switch 設定輸入 log 到指定 ip 機器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-en-輸入密碼，進入管理者模式"><span class="nav-number">2.</span> <span class="nav-text">1. en 輸入密碼，進入管理者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip"><span class="nav-number">3.</span> <span class="nav-text">2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-exit-回到上一層"><span class="nav-number">4.</span> <span class="nav-text">3. exit 回到上一層</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip"><span class="nav-number">5.</span> <span class="nav-text">4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-設定-linux-接收-log"><span class="nav-number">6.</span> <span class="nav-text">二、 設定 linux 接收 log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-配置-config："><span class="nav-number">7.</span> <span class="nav-text">1. 配置 config：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解"><span class="nav-number">8.</span> <span class="nav-text">(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Config-最後加上接收-Log-類型與寫入位置"><span class="nav-number">9.</span> <span class="nav-text">(2) Config 最後加上接收 Log 類型與寫入位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原版-config"><span class="nav-number">10.</span> <span class="nav-text">原版 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改過後-config"><span class="nav-number">11.</span> <span class="nav-text">更改過後 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置-config："><span class="nav-number">12.</span> <span class="nav-text">2. 配置 config：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi-etc-default-rsyslog-進入-config-找到-RSYSLOG-OPTIONS-加入參數-r"><span class="nav-number">13.</span> <span class="nav-text">vi /etc/default/rsyslog 進入 config 找到 RSYSLOG_OPTIONS 加入參數 -r</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原版-config-1"><span class="nav-number">14.</span> <span class="nav-text">原版 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改過後-config-1"><span class="nav-number">15.</span> <span class="nav-text">更改過後 config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-重啟-Rsyslog-Service"><span class="nav-number">16.</span> <span class="nav-text">4. 重啟 Rsyslog Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-到設定好放-log-的地方查看-log-有沒有進入"><span class="nav-number">17.</span> <span class="nav-text">3. 到設定好放 log 的地方查看 log 有沒有進入</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

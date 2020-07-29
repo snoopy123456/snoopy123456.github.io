@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>GCP-Cloud-Launcher | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="Cloud Launcher&amp;#x5165;&amp;#x9580;&amp;#x53EA;&amp;#x9700;&amp;#x9EDE;&amp;#x64CA;&amp;#x5E7E;&amp;#x4E0B;&amp;#x9F20;&amp;#x6A19;&amp;#xFF0C;Cloud Launcher &amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x5728; Google Compute Engine &amp;#x4E0A;&amp;#x555F;&amp;#x52D5;&amp;#x5">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Cloud Launcher入門只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。在 Google 雲端控制台中，到 Cloud Launcher 並點擊它 Cloud Launcher 主頁，選擇一個想要的方案，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-Cloud-Launcher">
 <meta property="og:url" content="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="Cloud Launcher&amp;#x5165;&amp;#x9580;&amp;#x53EA;&amp;#x9700;&amp;#x9EDE;&amp;#x64CA;&amp;#x5E7E;&amp;#x4E0B;&amp;#x9F20;&amp;#x6A19;&amp;#xFF0C;Cloud Launcher &amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x5728; Google Compute Engine &amp;#x4E0A;&amp;#x555F;&amp;#x52D5;&amp;#x5">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="Cloud Launcher入門只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。在 Google 雲端控制台中，到 Cloud Launcher 並點擊它 Cloud Launcher 主頁，選擇一個想要的方案，">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/images/1.1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/images/3.png">
@@ -32,244 +43,355 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:24.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-Cloud-Launcher">
-<meta name="twitter:description" content="Cloud Launcher&amp;#x5165;&amp;#x9580;&amp;#x53EA;&amp;#x9700;&amp;#x9EDE;&amp;#x64CA;&amp;#x5E7E;&amp;#x4E0B;&amp;#x9F20;&amp;#x6A19;&amp;#xFF0C;Cloud Launcher &amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x5728; Google Compute Engine &amp;#x4E0A;&amp;#x555F;&amp;#x52D5;&amp;#x5">
+<meta name="twitter:description" content="Cloud Launcher入門只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。在 Google 雲端控制台中，到 Cloud Launcher 並點擊它 Cloud Launcher 主頁，選擇一個想要的方案，">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/images/1.1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>GCP-Cloud-Launcher | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-GCP-Cloud-Launcher" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    GCP-Cloud-Launcher
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/GCP-Cloud-Launcher/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="Cloud-Launcher&#x5165;&#x9580;"><a href="#Cloud-Launcher&#x5165;&#x9580;" class="headerlink" title="Cloud Launcher&#x5165;&#x9580;"></a>Cloud Launcher&#x5165;&#x9580;</h3><h3 id="&#x53EA;&#x9700;&#x9EDE;&#x64CA;&#x5E7E;&#x4E0B;&#x9F20;&#x6A19;&#xFF0C;Cloud-Launcher-&#x5C31;&#x53EF;&#x4EE5;&#x5728;-Google-Compute-Engine-&#x4E0A;&#x555F;&#x52D5;&#x5E38;&#x7528;&#x8EDF;&#x4EF6;&#x5305;&#x3002;&#x652F;&#x6301;&#x8A31;&#x591A;&#x5E38;&#x898B;&#x7684;-Web-&#x6846;&#x67B6;&#xFF0C;&#x6578;&#x64DA;&#x5EAB;&#xFF0C;CMS-&#x548C;-CRM&#x3002;&#x9019;&#x662F;&#x5728;-Google-&#x96F2;&#x7AEF;&#x5E73;&#x53F0;&#x4E0A;&#x555F;&#x52D5;&#x548C;&#x904B;&#x884C;&#x7684;&#x6700;&#x5FEB;&#x65B9;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;"><a href="#&#x53EA;&#x9700;&#x9EDE;&#x64CA;&#x5E7E;&#x4E0B;&#x9F20;&#x6A19;&#xFF0C;Cloud-Launcher-&#x5C31;&#x53EF;&#x4EE5;&#x5728;-Google-Compute-Engine-&#x4E0A;&#x555F;&#x52D5;&#x5E38;&#x7528;&#x8EDF;&#x4EF6;&#x5305;&#x3002;&#x652F;&#x6301;&#x8A31;&#x591A;&#x5E38;&#x898B;&#x7684;-Web-&#x6846;&#x67B6;&#xFF0C;&#x6578;&#x64DA;&#x5EAB;&#xFF0C;CMS-&#x548C;-CRM&#x3002;&#x9019;&#x662F;&#x5728;-Google-&#x96F2;&#x7AEF;&#x5E73;&#x53F0;&#x4E0A;&#x555F;&#x52D5;&#x548C;&#x904B;&#x884C;&#x7684;&#x6700;&#x5FEB;&#x65B9;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;" class="headerlink" title="&#x53EA;&#x9700;&#x9EDE;&#x64CA;&#x5E7E;&#x4E0B;&#x9F20;&#x6A19;&#xFF0C;Cloud Launcher &#x5C31;&#x53EF;&#x4EE5;&#x5728; Google Compute Engine &#x4E0A;&#x555F;&#x52D5;&#x5E38;&#x7528;&#x8EDF;&#x4EF6;&#x5305;&#x3002;&#x652F;&#x6301;&#x8A31;&#x591A;&#x5E38;&#x898B;&#x7684; Web &#x6846;&#x67B6;&#xFF0C;&#x6578;&#x64DA;&#x5EAB;&#xFF0C;CMS &#x548C; CRM&#x3002;&#x9019;&#x662F;&#x5728; Google &#x96F2;&#x7AEF;&#x5E73;&#x53F0;&#x4E0A;&#x555F;&#x52D5;&#x548C;&#x904B;&#x884C;&#x7684;&#x6700;&#x5FEB;&#x65B9;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;"></a>&#x53EA;&#x9700;&#x9EDE;&#x64CA;&#x5E7E;&#x4E0B;&#x9F20;&#x6A19;&#xFF0C;Cloud Launcher &#x5C31;&#x53EF;&#x4EE5;&#x5728; Google Compute Engine &#x4E0A;&#x555F;&#x52D5;&#x5E38;&#x7528;&#x8EDF;&#x4EF6;&#x5305;&#x3002;&#x652F;&#x6301;&#x8A31;&#x591A;&#x5E38;&#x898B;&#x7684; Web &#x6846;&#x67B6;&#xFF0C;&#x6578;&#x64DA;&#x5EAB;&#xFF0C;CMS &#x548C; CRM&#x3002;&#x9019;&#x662F;&#x5728; Google &#x96F2;&#x7AEF;&#x5E73;&#x53F0;&#x4E0A;&#x555F;&#x52D5;&#x548C;&#x904B;&#x884C;&#x7684;&#x6700;&#x5FEB;&#x65B9;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;</h3><h3 id="&#x5728;-Google-&#x96F2;&#x7AEF;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x5230;-Cloud-Launcher-&#x4E26;&#x9EDE;&#x64CA;&#x5B83;"><a href="#&#x5728;-Google-&#x96F2;&#x7AEF;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x5230;-Cloud-Launcher-&#x4E26;&#x9EDE;&#x64CA;&#x5B83;" class="headerlink" title="&#x5728; Google &#x96F2;&#x7AEF;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x5230; Cloud Launcher &#x4E26;&#x9EDE;&#x64CA;&#x5B83;"></a>&#x5728; Google &#x96F2;&#x7AEF;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#xFF0C;&#x5230; Cloud Launcher &#x4E26;&#x9EDE;&#x64CA;&#x5B83;</h3><p><a class="magnific-img" href="images/1.1.png"><img src="images/1.1.png" alt=" " class="ui centered image"></a></p>
-<h3 id="Cloud-Launcher-&#x4E3B;&#x9801;&#xFF0C;&#x9078;&#x64C7;&#x4E00;&#x500B;&#x60F3;&#x8981;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-Windows-Server-2012-R2-&#x8DDF;-Nginx-2-&#x500B;&#x4F8B;&#x5B50;"><a href="#Cloud-Launcher-&#x4E3B;&#x9801;&#xFF0C;&#x9078;&#x64C7;&#x4E00;&#x500B;&#x60F3;&#x8981;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;-Windows-Server-2012-R2-&#x8DDF;-Nginx-2-&#x500B;&#x4F8B;&#x5B50;" class="headerlink" title="Cloud Launcher &#x4E3B;&#x9801;&#xFF0C;&#x9078;&#x64C7;&#x4E00;&#x500B;&#x60F3;&#x8981;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; Windows Server 2012 R2 &#x8DDF; Nginx 2 &#x500B;&#x4F8B;&#x5B50;"></a>Cloud Launcher &#x4E3B;&#x9801;&#xFF0C;&#x9078;&#x64C7;&#x4E00;&#x500B;&#x60F3;&#x8981;&#x7684;&#x65B9;&#x6848;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528; Windows Server 2012 R2 &#x8DDF; Nginx 2 &#x500B;&#x4F8B;&#x5B50;</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9078;&#x64C7;&#x4E00;&#x500B;-Windows-Server-2012-R2-&#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;-COMPUTE-ENGINE-&#x555F;&#x52D5;"><a href="#&#x9078;&#x64C7;&#x4E00;&#x500B;-Windows-Server-2012-R2-&#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;-COMPUTE-ENGINE-&#x555F;&#x52D5;" class="headerlink" title="&#x9078;&#x64C7;&#x4E00;&#x500B; Windows Server 2012 R2 &#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA; COMPUTE ENGINE &#x555F;&#x52D5;"></a>&#x9078;&#x64C7;&#x4E00;&#x500B; Windows Server 2012 R2 &#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA; COMPUTE ENGINE &#x555F;&#x52D5;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x6703;&#x51FA;&#x73FE;&#x958B;-VM-&#x7684;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;"><a href="#&#x6703;&#x51FA;&#x73FE;&#x958B;-VM-&#x7684;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;" class="headerlink" title="&#x6703;&#x51FA;&#x73FE;&#x958B; VM &#x7684;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;"></a>&#x6703;&#x51FA;&#x73FE;&#x958B; VM &#x7684;&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5EFA;&#x7ACB;&#x5F8C;&#x5230;-VM-&#x500B;&#x9AD4;&#x770B;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x5275;&#x597D;&#x7684;-VM"><a href="#&#x5EFA;&#x7ACB;&#x5F8C;&#x5230;-VM-&#x500B;&#x9AD4;&#x770B;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x5275;&#x597D;&#x7684;-VM" class="headerlink" title="&#x5EFA;&#x7ACB;&#x5F8C;&#x5230; VM &#x500B;&#x9AD4;&#x770B;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x5275;&#x597D;&#x7684; VM"></a>&#x5EFA;&#x7ACB;&#x5F8C;&#x5230; VM &#x500B;&#x9AD4;&#x770B;&#x5C31;&#x6703;&#x51FA;&#x73FE;&#x5275;&#x597D;&#x7684; VM</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9023;&#x9032;&#x53BB;&#x770B;&#xFF0C;&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;"><a href="#&#x9023;&#x9032;&#x53BB;&#x770B;&#xFF0C;&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;" class="headerlink" title="&#x9023;&#x9032;&#x53BB;&#x770B;&#xFF0C;&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;"></a>&#x9023;&#x9032;&#x53BB;&#x770B;&#xFF0C;&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;</h3><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9078;&#x64C7;-Nginx-&#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;-COMPUTE-ENGINE-&#x555F;&#x52D5;"><a href="#&#x9078;&#x64C7;-Nginx-&#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;-COMPUTE-ENGINE-&#x555F;&#x52D5;" class="headerlink" title="&#x9078;&#x64C7; Nginx &#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA; COMPUTE ENGINE &#x555F;&#x52D5;"></a>&#x9078;&#x64C7; Nginx &#x65B9;&#x6848;&#xFF0C;&#x88E1;&#x9762;&#x6709;&#x5404;&#x7A2E;&#x4ECB;&#x7D39;&#x4E5F;&#x6709;&#x4F7F;&#x7528;&#x8CBB;&#x7528;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA; COMPUTE ENGINE &#x555F;&#x52D5;</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x6703;&#x51FA;&#x73FE;&#x985E;&#x4F3C;&#x958B;-VM-&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;&#xFF0C;&#x53F3;&#x908A;&#x6709;&#x5217;&#x51FA;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;&#x8EDF;&#x9AD4;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;&#x4E0B;&#x65B9;&#x90E8;&#x7F72;"><a href="#&#x6703;&#x51FA;&#x73FE;&#x985E;&#x4F3C;&#x958B;-VM-&#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;&#xFF0C;&#x53F3;&#x908A;&#x6709;&#x5217;&#x51FA;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;&#x8EDF;&#x9AD4;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;&#x4E0B;&#x65B9;&#x90E8;&#x7F72;" class="headerlink" title="&#x6703;&#x51FA;&#x73FE;&#x985E;&#x4F3C;&#x958B; VM &#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;&#xFF0C;&#x53F3;&#x908A;&#x6709;&#x5217;&#x51FA;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;&#x8EDF;&#x9AD4;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;&#x4E0B;&#x65B9;&#x90E8;&#x7F72;"></a>&#x6703;&#x51FA;&#x73FE;&#x985E;&#x4F3C;&#x958B; VM &#x756B;&#x9762;&#x53EF;&#x4EE5;&#x505A;&#x4FEE;&#x6539;&#xFF0C;&#x53F3;&#x908A;&#x6709;&#x5217;&#x51FA;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;&#x8EDF;&#x9AD4;&#xFF0C;&#x78BA;&#x5B9A;&#x597D;&#x5F8C;&#x9EDE;&#x64CA;&#x4E0B;&#x65B9;&#x90E8;&#x7F72;</h3><p><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x90E8;&#x7F72;&#x6703;&#x82B1;&#x5E7E;&#x5206;&#x9418;&#xFF0C;&#x597D;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x505A;&#x4E86;&#x4E9B;&#x751A;&#x9EBC;&#x90FD;&#x6703;&#x986F;&#x793A;&#x5728;&#x6B64;&#x756B;&#x9762;&#xFF0C;"><a href="#&#x90E8;&#x7F72;&#x6703;&#x82B1;&#x5E7E;&#x5206;&#x9418;&#xFF0C;&#x597D;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x505A;&#x4E86;&#x4E9B;&#x751A;&#x9EBC;&#x90FD;&#x6703;&#x986F;&#x793A;&#x5728;&#x6B64;&#x756B;&#x9762;&#xFF0C;" class="headerlink" title="&#x90E8;&#x7F72;&#x6703;&#x82B1;&#x5E7E;&#x5206;&#x9418;&#xFF0C;&#x597D;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x505A;&#x4E86;&#x4E9B;&#x751A;&#x9EBC;&#x90FD;&#x6703;&#x986F;&#x793A;&#x5728;&#x6B64;&#x756B;&#x9762;&#xFF0C;"></a>&#x90E8;&#x7F72;&#x6703;&#x82B1;&#x5E7E;&#x5206;&#x9418;&#xFF0C;&#x597D;&#x5F8C;&#x6703;&#x51FA;&#x73FE;&#x4E0B;&#x5716;&#x756B;&#x9762;&#xFF0C;&#x505A;&#x4E86;&#x4E9B;&#x751A;&#x9EBC;&#x90FD;&#x6703;&#x986F;&#x793A;&#x5728;&#x6B64;&#x756B;&#x9762;&#xFF0C;</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x64CA;-Visit-the-site-&#x7AD9;&#x9EDE;&#x6309;&#x9215;&#xFF0C;&#x5728;&#x65B0;&#x6A19;&#x7C64;&#x9801;&#x4E2D;&#x8A2A;&#x554F;&#x5DF2;&#x90E8;&#x7F72;&#x7684;-Nginx"><a href="#&#x9EDE;&#x64CA;-Visit-the-site-&#x7AD9;&#x9EDE;&#x6309;&#x9215;&#xFF0C;&#x5728;&#x65B0;&#x6A19;&#x7C64;&#x9801;&#x4E2D;&#x8A2A;&#x554F;&#x5DF2;&#x90E8;&#x7F72;&#x7684;-Nginx" class="headerlink" title="&#x9EDE;&#x64CA; Visit the site &#x7AD9;&#x9EDE;&#x6309;&#x9215;&#xFF0C;&#x5728;&#x65B0;&#x6A19;&#x7C64;&#x9801;&#x4E2D;&#x8A2A;&#x554F;&#x5DF2;&#x90E8;&#x7F72;&#x7684; Nginx"></a>&#x9EDE;&#x64CA; Visit the site &#x7AD9;&#x9EDE;&#x6309;&#x9215;&#xFF0C;&#x5728;&#x65B0;&#x6A19;&#x7C64;&#x9801;&#x4E2D;&#x8A2A;&#x554F;&#x5DF2;&#x90E8;&#x7F72;&#x7684; Nginx</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x53EF;&#x4EE5;&#x5230;-VM-&#x500B;&#x9AD4;&#x67E5;&#x770B;&#xFF0C;&#x6A5F;&#x5668;&#x5DF2;&#x7D93;&#x5EFA;&#x597D;&#x4E86;"><a href="#&#x53EF;&#x4EE5;&#x5230;-VM-&#x500B;&#x9AD4;&#x67E5;&#x770B;&#xFF0C;&#x6A5F;&#x5668;&#x5DF2;&#x7D93;&#x5EFA;&#x597D;&#x4E86;" class="headerlink" title="&#x53EF;&#x4EE5;&#x5230; VM &#x500B;&#x9AD4;&#x67E5;&#x770B;&#xFF0C;&#x6A5F;&#x5668;&#x5DF2;&#x7D93;&#x5EFA;&#x597D;&#x4E86;"></a>&#x53EF;&#x4EE5;&#x5230; VM &#x500B;&#x9AD4;&#x67E5;&#x770B;&#xFF0C;&#x6A5F;&#x5668;&#x5DF2;&#x7D93;&#x5EFA;&#x597D;&#x4E86;</h3><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;"><a href="#&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;" class="headerlink" title="&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;"></a>&#x606D;&#x559C;&#x5B8C;&#x6210;&#xFF01;</h3>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-27T08:41:21.000Z" itemprop="datePublished">2018-06-27</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GCP-Cloud-Launcher
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-27 16:41:21" itemprop="dateCreated datePublished" datetime="2018-06-27T16:41:21+08:00">2018-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="Cloud-Launcher入門"><a href="#Cloud-Launcher入門" class="headerlink" title="Cloud Launcher入門"></a>Cloud Launcher入門</h3><h3 id="只需點擊幾下鼠標，Cloud-Launcher-就可以在-Google-Compute-Engine-上啟動常用軟件包。支持許多常見的-Web-框架，數據庫，CMS-和-CRM。這是在-Google-雲端平台上啟動和運行的最快方式之一。"><a href="#只需點擊幾下鼠標，Cloud-Launcher-就可以在-Google-Compute-Engine-上啟動常用軟件包。支持許多常見的-Web-框架，數據庫，CMS-和-CRM。這是在-Google-雲端平台上啟動和運行的最快方式之一。" class="headerlink" title="只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。"></a>只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。</h3><h3 id="在-Google-雲端控制台中，到-Cloud-Launcher-並點擊它"><a href="#在-Google-雲端控制台中，到-Cloud-Launcher-並點擊它" class="headerlink" title="在 Google 雲端控制台中，到 Cloud Launcher 並點擊它"></a>在 Google 雲端控制台中，到 Cloud Launcher 並點擊它</h3><p><img src="images/1.1.png" alt=" "></p>
+<h3 id="Cloud-Launcher-主頁，選擇一個想要的方案，本文章使用-Windows-Server-2012-R2-跟-Nginx-2-個例子"><a href="#Cloud-Launcher-主頁，選擇一個想要的方案，本文章使用-Windows-Server-2012-R2-跟-Nginx-2-個例子" class="headerlink" title="Cloud Launcher 主頁，選擇一個想要的方案，本文章使用 Windows Server 2012 R2 跟 Nginx 2 個例子"></a>Cloud Launcher 主頁，選擇一個想要的方案，本文章使用 Windows Server 2012 R2 跟 Nginx 2 個例子</h3><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "></p>
+<h3 id="選擇一個-Windows-Server-2012-R2-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動"><a href="#選擇一個-Windows-Server-2012-R2-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動" class="headerlink" title="選擇一個 Windows Server 2012 R2 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動"></a>選擇一個 Windows Server 2012 R2 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動</h3><p><img src="images/4.png" alt=" "></p>
+<h3 id="會出現開-VM-的畫面可以做修改"><a href="#會出現開-VM-的畫面可以做修改" class="headerlink" title="會出現開 VM 的畫面可以做修改"></a>會出現開 VM 的畫面可以做修改</h3><p><img src="images/5.png" alt=" "></p>
+<h3 id="建立後到-VM-個體看就會出現創好的-VM"><a href="#建立後到-VM-個體看就會出現創好的-VM" class="headerlink" title="建立後到 VM 個體看就會出現創好的 VM"></a>建立後到 VM 個體看就會出現創好的 VM</h3><p><img src="images/6.png" alt=" "></p>
+<h3 id="連進去看，恭喜完成！"><a href="#連進去看，恭喜完成！" class="headerlink" title="連進去看，恭喜完成！"></a>連進去看，恭喜完成！</h3><p><img src="images/9.png" alt=" "></p>
+<h3 id="選擇-Nginx-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動"><a href="#選擇-Nginx-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動" class="headerlink" title="選擇 Nginx 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動"></a>選擇 Nginx 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動</h3><p><img src="images/7.png" alt=" "></p>
+<h3 id="會出現類似開-VM-畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署"><a href="#會出現類似開-VM-畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署" class="headerlink" title="會出現類似開 VM 畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署"></a>會出現類似開 VM 畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署</h3><p><img src="images/8.png" alt=" "></p>
+<h3 id="部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，"><a href="#部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，" class="headerlink" title="部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，"></a>部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，</h3><p><img src="images/10.png" alt=" "></p>
+<h3 id="點擊-Visit-the-site-站點按鈕，在新標籤頁中訪問已部署的-Nginx"><a href="#點擊-Visit-the-site-站點按鈕，在新標籤頁中訪問已部署的-Nginx" class="headerlink" title="點擊 Visit the site 站點按鈕，在新標籤頁中訪問已部署的 Nginx"></a>點擊 Visit the site 站點按鈕，在新標籤頁中訪問已部署的 Nginx</h3><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h3 id="可以到-VM-個體查看，機器已經建好了"><a href="#可以到-VM-個體查看，機器已經建好了" class="headerlink" title="可以到 VM 個體查看，機器已經建好了"></a>可以到 VM 個體查看，機器已經建好了</h3><p><img src="images/13.png" alt=" "></p>
+<h3 id="恭喜完成！"><a href="#恭喜完成！" class="headerlink" title="恭喜完成！"></a>恭喜完成！</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/27/google-command-SDK安裝/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    google-command-SDK安裝
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/27/disk-掛載/" class="ui tiny button">
-                    
-                    disk-掛載
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/27/disk-掛載/" rel="prev" title="disk-掛載">
+      <i class="fa fa-chevron-left"></i> disk-掛載
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/27/google-command-SDK安裝/" rel="next" title="google-command-SDK安裝">
+      google-command-SDK安裝 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#Cloud-Launcher入門"><span>Cloud Launcher入門</span></a></li><li><a href="#只需點擊幾下鼠標，Cloud-Launcher-就可以在-Google-Compute-Engine-上啟動常用軟件包。支持許多常見的-Web-框架，數據庫，CMS-和-CRM。這是在-Google-雲端平台上啟動和運行的最快方式之一。"><span>只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。</span></a></li><li><a href="#在-Google-雲端控制台中，到-Cloud-Launcher-並點擊它"><span>在 Google 雲端控制台中，到 Cloud Launcher 並點擊它</span></a></li><li><a href="#Cloud-Launcher-主頁，選擇一個想要的方案，本文章使用-Windows-Server-2012-R2-跟-Nginx-2-個例子"><span>Cloud Launcher 主頁，選擇一個想要的方案，本文章使用 Windows Server 2012 R2 跟 Nginx 2 個例子</span></a></li><li><a href="#選擇一個-Windows-Server-2012-R2-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動"><span>選擇一個 Windows Server 2012 R2 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動</span></a></li><li><a href="#會出現開-VM-的畫面可以做修改"><span>會出現開 VM 的畫面可以做修改</span></a></li><li><a href="#建立後到-VM-個體看就會出現創好的-VM"><span>建立後到 VM 個體看就會出現創好的 VM</span></a></li><li><a href="#連進去看，恭喜完成！"><span>連進去看，恭喜完成！</span></a></li><li><a href="#選擇-Nginx-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動"><span>選擇 Nginx 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動</span></a></li><li><a href="#會出現類似開-VM-畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署"><span>會出現類似開 VM 畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署</span></a></li><li><a href="#部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，"><span>部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，</span></a></li><li><a href="#點擊-Visit-the-site-站點按鈕，在新標籤頁中訪問已部署的-Nginx"><span>點擊 Visit the site 站點按鈕，在新標籤頁中訪問已部署的 Nginx</span></a></li><li><a href="#可以到-VM-個體查看，機器已經建好了"><span>可以到 VM 個體查看，機器已經建好了</span></a></li><li><a href="#恭喜完成！"><span>恭喜完成！</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Launcher入門"><span class="nav-number">1.</span> <span class="nav-text">Cloud Launcher入門</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只需點擊幾下鼠標，Cloud-Launcher-就可以在-Google-Compute-Engine-上啟動常用軟件包。支持許多常見的-Web-框架，數據庫，CMS-和-CRM。這是在-Google-雲端平台上啟動和運行的最快方式之一。"><span class="nav-number">2.</span> <span class="nav-text">只需點擊幾下鼠標，Cloud Launcher 就可以在 Google Compute Engine 上啟動常用軟件包。支持許多常見的 Web 框架，數據庫，CMS 和 CRM。這是在 Google 雲端平台上啟動和運行的最快方式之一。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Google-雲端控制台中，到-Cloud-Launcher-並點擊它"><span class="nav-number">3.</span> <span class="nav-text">在 Google 雲端控制台中，到 Cloud Launcher 並點擊它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Launcher-主頁，選擇一個想要的方案，本文章使用-Windows-Server-2012-R2-跟-Nginx-2-個例子"><span class="nav-number">4.</span> <span class="nav-text">Cloud Launcher 主頁，選擇一個想要的方案，本文章使用 Windows Server 2012 R2 跟 Nginx 2 個例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇一個-Windows-Server-2012-R2-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動"><span class="nav-number">5.</span> <span class="nav-text">選擇一個 Windows Server 2012 R2 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#會出現開-VM-的畫面可以做修改"><span class="nav-number">6.</span> <span class="nav-text">會出現開 VM 的畫面可以做修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立後到-VM-個體看就會出現創好的-VM"><span class="nav-number">7.</span> <span class="nav-text">建立後到 VM 個體看就會出現創好的 VM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#連進去看，恭喜完成！"><span class="nav-number">8.</span> <span class="nav-text">連進去看，恭喜完成！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#選擇-Nginx-方案，裡面有各種介紹也有使用費用，確定好後點擊-COMPUTE-ENGINE-啟動"><span class="nav-number">9.</span> <span class="nav-text">選擇 Nginx 方案，裡面有各種介紹也有使用費用，確定好後點擊 COMPUTE ENGINE 啟動</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#會出現類似開-VM-畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署"><span class="nav-number">10.</span> <span class="nav-text">會出現類似開 VM 畫面可以做修改，右邊有列出使用哪些軟體，確定好後點擊下方部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，"><span class="nav-number">11.</span> <span class="nav-text">部署會花幾分鐘，好後會出現下圖畫面，做了些甚麼都會顯示在此畫面，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點擊-Visit-the-site-站點按鈕，在新標籤頁中訪問已部署的-Nginx"><span class="nav-number">12.</span> <span class="nav-text">點擊 Visit the site 站點按鈕，在新標籤頁中訪問已部署的 Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以到-VM-個體查看，機器已經建好了"><span class="nav-number">13.</span> <span class="nav-text">可以到 VM 個體查看，機器已經建好了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恭喜完成！"><span class="nav-number">14.</span> <span class="nav-text">恭喜完成！</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

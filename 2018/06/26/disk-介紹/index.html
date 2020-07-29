@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>disk-介紹 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x4E00;&amp;#x3001;&amp;#x786C;&amp;#x789F;&amp;#x4ECB;&amp;#x7D39;GCE &amp;#x4E0A;&amp;#x786C;&amp;#x789F;&amp;#x7684;&amp;#x901F;&amp;#x5EA6;&amp;#x7121;&amp;#x9700;&amp;#x53E6;&amp;#x5916;&amp;#x4ED8;&amp;#x8CBB;&amp;#x8CFC;&amp;#x8CB7;&amp;#xFF0C;&amp;#x9810;&amp;#x8A2D;&amp;#x898F;&amp;#x5">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、硬碟介紹GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢  二、PD、SSD、Local SSD 的差異PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴Local SSD：本機 SSD 硬碟具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="disk-介紹">
 <meta property="og:url" content="http://yoursite.com/2018/06/26/disk-介紹/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x4E00;&amp;#x3001;&amp;#x786C;&amp;#x789F;&amp;#x4ECB;&amp;#x7D39;GCE &amp;#x4E0A;&amp;#x786C;&amp;#x789F;&amp;#x7684;&amp;#x901F;&amp;#x5EA6;&amp;#x7121;&amp;#x9700;&amp;#x53E6;&amp;#x5916;&amp;#x4ED8;&amp;#x8CBB;&amp;#x8CFC;&amp;#x8CB7;&amp;#xFF0C;&amp;#x9810;&amp;#x8A2D;&amp;#x898F;&amp;#x5">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="一、硬碟介紹GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢  二、PD、SSD、Local SSD 的差異PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴Local SSD：本機 SSD 硬碟具">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/17.png">
@@ -36,250 +47,361 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="disk-介紹">
-<meta name="twitter:description" content="&amp;#x4E00;&amp;#x3001;&amp;#x786C;&amp;#x789F;&amp;#x4ECB;&amp;#x7D39;GCE &amp;#x4E0A;&amp;#x786C;&amp;#x789F;&amp;#x7684;&amp;#x901F;&amp;#x5EA6;&amp;#x7121;&amp;#x9700;&amp;#x53E6;&amp;#x5916;&amp;#x4ED8;&amp;#x8CBB;&amp;#x8CFC;&amp;#x8CB7;&amp;#xFF0C;&amp;#x9810;&amp;#x8A2D;&amp;#x898F;&amp;#x5">
+<meta name="twitter:description" content="一、硬碟介紹GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢  二、PD、SSD、Local SSD 的差異PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴Local SSD：本機 SSD 硬碟具">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/26/disk-介紹/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>disk-介紹 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-disk-介紹" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    disk-介紹
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/disk-介紹/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x4E00;&#x3001;&#x786C;&#x789F;&#x4ECB;&#x7D39;"><a href="#&#x4E00;&#x3001;&#x786C;&#x789F;&#x4ECB;&#x7D39;" class="headerlink" title="&#x4E00;&#x3001;&#x786C;&#x789F;&#x4ECB;&#x7D39;"></a>&#x4E00;&#x3001;&#x786C;&#x789F;&#x4ECB;&#x7D39;</h3><h3 id="GCE-&#x4E0A;&#x786C;&#x789F;&#x7684;&#x901F;&#x5EA6;&#x7121;&#x9700;&#x53E6;&#x5916;&#x4ED8;&#x8CBB;&#x8CFC;&#x8CB7;&#xFF0C;&#x9810;&#x8A2D;&#x898F;&#x5247;&#x4E2D;&#x53EA;&#x8981;&#x7533;&#x8ACB;&#x8D8A;&#x5927;&#x7684;&#x786C;&#x789F;&#x7A7A;&#x9593;&#xFF0C;&#x5247;&#x6703;&#x5F97;&#x5230;&#x8D8A;&#x597D;&#x7684;-IOPS-&#x6548;&#x80FD;&#xFF0C;&#x8B93;&#x60A8;&#x7684;&#x670D;&#x52D9;&#x904B;&#x4F5C;&#x66F4;&#x52A0;&#x9806;&#x66A2;"><a href="#GCE-&#x4E0A;&#x786C;&#x789F;&#x7684;&#x901F;&#x5EA6;&#x7121;&#x9700;&#x53E6;&#x5916;&#x4ED8;&#x8CBB;&#x8CFC;&#x8CB7;&#xFF0C;&#x9810;&#x8A2D;&#x898F;&#x5247;&#x4E2D;&#x53EA;&#x8981;&#x7533;&#x8ACB;&#x8D8A;&#x5927;&#x7684;&#x786C;&#x789F;&#x7A7A;&#x9593;&#xFF0C;&#x5247;&#x6703;&#x5F97;&#x5230;&#x8D8A;&#x597D;&#x7684;-IOPS-&#x6548;&#x80FD;&#xFF0C;&#x8B93;&#x60A8;&#x7684;&#x670D;&#x52D9;&#x904B;&#x4F5C;&#x66F4;&#x52A0;&#x9806;&#x66A2;" class="headerlink" title="GCE &#x4E0A;&#x786C;&#x789F;&#x7684;&#x901F;&#x5EA6;&#x7121;&#x9700;&#x53E6;&#x5916;&#x4ED8;&#x8CBB;&#x8CFC;&#x8CB7;&#xFF0C;&#x9810;&#x8A2D;&#x898F;&#x5247;&#x4E2D;&#x53EA;&#x8981;&#x7533;&#x8ACB;&#x8D8A;&#x5927;&#x7684;&#x786C;&#x789F;&#x7A7A;&#x9593;&#xFF0C;&#x5247;&#x6703;&#x5F97;&#x5230;&#x8D8A;&#x597D;&#x7684; IOPS &#x6548;&#x80FD;&#xFF0C;&#x8B93;&#x60A8;&#x7684;&#x670D;&#x52D9;&#x904B;&#x4F5C;&#x66F4;&#x52A0;&#x9806;&#x66A2;"></a>GCE &#x4E0A;&#x786C;&#x789F;&#x7684;&#x901F;&#x5EA6;&#x7121;&#x9700;&#x53E6;&#x5916;&#x4ED8;&#x8CBB;&#x8CFC;&#x8CB7;&#xFF0C;&#x9810;&#x8A2D;&#x898F;&#x5247;&#x4E2D;&#x53EA;&#x8981;&#x7533;&#x8ACB;&#x8D8A;&#x5927;&#x7684;&#x786C;&#x789F;&#x7A7A;&#x9593;&#xFF0C;&#x5247;&#x6703;&#x5F97;&#x5230;&#x8D8A;&#x597D;&#x7684; IOPS &#x6548;&#x80FD;&#xFF0C;&#x8B93;&#x60A8;&#x7684;&#x670D;&#x52D9;&#x904B;&#x4F5C;&#x66F4;&#x52A0;&#x9806;&#x66A2;</h3><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x4E8C;&#x3001;PD&#x3001;SSD&#x3001;Local-SSD-&#x7684;&#x5DEE;&#x7570;"><a href="#&#x4E8C;&#x3001;PD&#x3001;SSD&#x3001;Local-SSD-&#x7684;&#x5DEE;&#x7570;" class="headerlink" title="&#x4E8C;&#x3001;PD&#x3001;SSD&#x3001;Local SSD &#x7684;&#x5DEE;&#x7570;"></a>&#x4E8C;&#x3001;PD&#x3001;SSD&#x3001;Local SSD &#x7684;&#x5DEE;&#x7570;</h3><h3 id="PD&#xFF1A;&#x53C8;&#x7A31;&#x70BA;&#x6A19;&#x6E96;&#x78C1;&#x789F;-Standard-Disk-&#xFF0C;&#x70BA;-SATA-&#x683C;&#x5F0F;&#x4E4B;&#x786C;&#x789F;&#xFF0C;&#x63D0;&#x4F9B;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x5883;&#x4E4B;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x6216;&#x5132;&#x5B58;&#x4F7F;&#x7528;"><a href="#PD&#xFF1A;&#x53C8;&#x7A31;&#x70BA;&#x6A19;&#x6E96;&#x78C1;&#x789F;-Standard-Disk-&#xFF0C;&#x70BA;-SATA-&#x683C;&#x5F0F;&#x4E4B;&#x786C;&#x789F;&#xFF0C;&#x63D0;&#x4F9B;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x5883;&#x4E4B;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x6216;&#x5132;&#x5B58;&#x4F7F;&#x7528;" class="headerlink" title="PD&#xFF1A;&#x53C8;&#x7A31;&#x70BA;&#x6A19;&#x6E96;&#x78C1;&#x789F; ( Standard Disk )&#xFF0C;&#x70BA; SATA &#x683C;&#x5F0F;&#x4E4B;&#x786C;&#x789F;&#xFF0C;&#x63D0;&#x4F9B;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x5883;&#x4E4B;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x6216;&#x5132;&#x5B58;&#x4F7F;&#x7528;"></a>PD&#xFF1A;&#x53C8;&#x7A31;&#x70BA;&#x6A19;&#x6E96;&#x78C1;&#x789F; ( Standard Disk )&#xFF0C;&#x70BA; SATA &#x683C;&#x5F0F;&#x4E4B;&#x786C;&#x789F;&#xFF0C;&#x63D0;&#x4F9B;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x5883;&#x4E4B;&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#x6216;&#x5132;&#x5B58;&#x4F7F;&#x7528;</h3><h3 id="SSD&#xFF1A;&#x56FA;&#x614B;&#x786C;&#x789F;&#xFF0C;&#x5177;&#x5099;&#x8F03;&#x9AD8;&#x7684;-IOPS&#xFF0C;&#x7576;&#x7136;&#x50F9;&#x683C;&#x4E5F;&#x8F03;&#x6602;&#x8CB4;"><a href="#SSD&#xFF1A;&#x56FA;&#x614B;&#x786C;&#x789F;&#xFF0C;&#x5177;&#x5099;&#x8F03;&#x9AD8;&#x7684;-IOPS&#xFF0C;&#x7576;&#x7136;&#x50F9;&#x683C;&#x4E5F;&#x8F03;&#x6602;&#x8CB4;" class="headerlink" title="SSD&#xFF1A;&#x56FA;&#x614B;&#x786C;&#x789F;&#xFF0C;&#x5177;&#x5099;&#x8F03;&#x9AD8;&#x7684; IOPS&#xFF0C;&#x7576;&#x7136;&#x50F9;&#x683C;&#x4E5F;&#x8F03;&#x6602;&#x8CB4;"></a>SSD&#xFF1A;&#x56FA;&#x614B;&#x786C;&#x789F;&#xFF0C;&#x5177;&#x5099;&#x8F03;&#x9AD8;&#x7684; IOPS&#xFF0C;&#x7576;&#x7136;&#x50F9;&#x683C;&#x4E5F;&#x8F03;&#x6602;&#x8CB4;</h3><h3 id="Local-SSD&#xFF1A;&#x672C;&#x6A5F;-SSD-&#x786C;&#x789F;&#x5177;&#x5099;-GCE-&#x4E0A;&#x6700;&#x5FEB;&#x7684;-IOPS-&#x9078;&#x64C7;&#xFF0C;&#x6BCF;&#x6B21;&#x9078;&#x8CFC;&#x5FC5;&#x9808;&#x5B8C;&#x6574;&#x79DF;&#x7528;&#x6574;&#x500B;-Local-SSD-375G-&#x7684;&#x5927;&#x5C0F;&#x7A7A;&#x9593;&#xFF0C;&#x4E00;&#x53F0;&#x65B0;&#x5275;-VM-&#x6A5F;&#x5668;&#x8DDF;&#x786C;&#x789F;&#x662F;&#x5206;&#x958B;&#x7528;&#x7DB2;&#x8DEF;&#x9023;&#x63A5;&#x4F46;&#x662F;-Local-SSD-&#x662F;&#x8DDF;&#x6A5F;&#x5668;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#x901F;&#x5EA6;&#x4E0A;&#x6703;&#x66F4;&#x5FEB;&#xFF0C;&#x4E5F;&#x56E0;&#x70BA;&#x9019;&#x5982;&#x679C;&#x6A23;&#x5BE6;&#x9AD4;&#x6A5F;&#x640D;&#x58DE;&#x6703;&#x9020;&#x6210;-SSD-&#x7684;&#x8CC7;&#x6599;&#x907A;&#x5931;"><a href="#Local-SSD&#xFF1A;&#x672C;&#x6A5F;-SSD-&#x786C;&#x789F;&#x5177;&#x5099;-GCE-&#x4E0A;&#x6700;&#x5FEB;&#x7684;-IOPS-&#x9078;&#x64C7;&#xFF0C;&#x6BCF;&#x6B21;&#x9078;&#x8CFC;&#x5FC5;&#x9808;&#x5B8C;&#x6574;&#x79DF;&#x7528;&#x6574;&#x500B;-Local-SSD-375G-&#x7684;&#x5927;&#x5C0F;&#x7A7A;&#x9593;&#xFF0C;&#x4E00;&#x53F0;&#x65B0;&#x5275;-VM-&#x6A5F;&#x5668;&#x8DDF;&#x786C;&#x789F;&#x662F;&#x5206;&#x958B;&#x7528;&#x7DB2;&#x8DEF;&#x9023;&#x63A5;&#x4F46;&#x662F;-Local-SSD-&#x662F;&#x8DDF;&#x6A5F;&#x5668;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#x901F;&#x5EA6;&#x4E0A;&#x6703;&#x66F4;&#x5FEB;&#xFF0C;&#x4E5F;&#x56E0;&#x70BA;&#x9019;&#x5982;&#x679C;&#x6A23;&#x5BE6;&#x9AD4;&#x6A5F;&#x640D;&#x58DE;&#x6703;&#x9020;&#x6210;-SSD-&#x7684;&#x8CC7;&#x6599;&#x907A;&#x5931;" class="headerlink" title="Local SSD&#xFF1A;&#x672C;&#x6A5F; SSD &#x786C;&#x789F;&#x5177;&#x5099; GCE &#x4E0A;&#x6700;&#x5FEB;&#x7684; IOPS &#x9078;&#x64C7;&#xFF0C;&#x6BCF;&#x6B21;&#x9078;&#x8CFC;&#x5FC5;&#x9808;&#x5B8C;&#x6574;&#x79DF;&#x7528;&#x6574;&#x500B; Local SSD 375G &#x7684;&#x5927;&#x5C0F;&#x7A7A;&#x9593;&#xFF0C;&#x4E00;&#x53F0;&#x65B0;&#x5275; VM &#x6A5F;&#x5668;&#x8DDF;&#x786C;&#x789F;&#x662F;&#x5206;&#x958B;&#x7528;&#x7DB2;&#x8DEF;&#x9023;&#x63A5;&#x4F46;&#x662F; Local SSD &#x662F;&#x8DDF;&#x6A5F;&#x5668;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#x901F;&#x5EA6;&#x4E0A;&#x6703;&#x66F4;&#x5FEB;&#xFF0C;&#x4E5F;&#x56E0;&#x70BA;&#x9019;&#x5982;&#x679C;&#x6A23;&#x5BE6;&#x9AD4;&#x6A5F;&#x640D;&#x58DE;&#x6703;&#x9020;&#x6210; SSD &#x7684;&#x8CC7;&#x6599;&#x907A;&#x5931;"></a>Local SSD&#xFF1A;&#x672C;&#x6A5F; SSD &#x786C;&#x789F;&#x5177;&#x5099; GCE &#x4E0A;&#x6700;&#x5FEB;&#x7684; IOPS &#x9078;&#x64C7;&#xFF0C;&#x6BCF;&#x6B21;&#x9078;&#x8CFC;&#x5FC5;&#x9808;&#x5B8C;&#x6574;&#x79DF;&#x7528;&#x6574;&#x500B; Local SSD 375G &#x7684;&#x5927;&#x5C0F;&#x7A7A;&#x9593;&#xFF0C;&#x4E00;&#x53F0;&#x65B0;&#x5275; VM &#x6A5F;&#x5668;&#x8DDF;&#x786C;&#x789F;&#x662F;&#x5206;&#x958B;&#x7528;&#x7DB2;&#x8DEF;&#x9023;&#x63A5;&#x4F46;&#x662F; Local SSD &#x662F;&#x8DDF;&#x6A5F;&#x5668;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#x901F;&#x5EA6;&#x4E0A;&#x6703;&#x66F4;&#x5FEB;&#xFF0C;&#x4E5F;&#x56E0;&#x70BA;&#x9019;&#x5982;&#x679C;&#x6A23;&#x5BE6;&#x9AD4;&#x6A5F;&#x640D;&#x58DE;&#x6703;&#x9020;&#x6210; SSD &#x7684;&#x8CC7;&#x6599;&#x907A;&#x5931;</h3><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x76EE;&#x524D;-Local-SSD-&#x53EA;&#x80FD;&#x5728;-VM-&#x5EFA;&#x7ACB;&#x4E0B;&#x65B9;&#x7684;&#x78C1;&#x789F;&#x5EFA;&#x7ACB;&#x624D;&#x6709;"><a href="#&#x76EE;&#x524D;-Local-SSD-&#x53EA;&#x80FD;&#x5728;-VM-&#x5EFA;&#x7ACB;&#x4E0B;&#x65B9;&#x7684;&#x78C1;&#x789F;&#x5EFA;&#x7ACB;&#x624D;&#x6709;" class="headerlink" title="&#x76EE;&#x524D; Local SSD &#x53EA;&#x80FD;&#x5728; VM &#x5EFA;&#x7ACB;&#x4E0B;&#x65B9;&#x7684;&#x78C1;&#x789F;&#x5EFA;&#x7ACB;&#x624D;&#x6709;"></a>&#x76EE;&#x524D; Local SSD &#x53EA;&#x80FD;&#x5728; VM &#x5EFA;&#x7ACB;&#x4E0B;&#x65B9;&#x7684;&#x78C1;&#x789F;&#x5EFA;&#x7ACB;&#x624D;&#x6709;</h3><p><a class="magnific-img" href="images/17.png"><img src="images/17.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x4E09;&#x3001;&#x522A;&#x9664;&#x4E3B;&#x6A5F;&#x3001;&#x4FDD;&#x7559;&#x786C;&#x789F;"><a href="#&#x4E09;&#x3001;&#x522A;&#x9664;&#x4E3B;&#x6A5F;&#x3001;&#x4FDD;&#x7559;&#x786C;&#x789F;" class="headerlink" title="&#x4E09;&#x3001;&#x522A;&#x9664;&#x4E3B;&#x6A5F;&#x3001;&#x4FDD;&#x7559;&#x786C;&#x789F;"></a>&#x4E09;&#x3001;&#x522A;&#x9664;&#x4E3B;&#x6A5F;&#x3001;&#x4FDD;&#x7559;&#x786C;&#x789F;</h3><h3 id="&#x9810;&#x8A2D;&#x786C;&#x789F;&#x522A;&#x9664;-VM-&#x540C;&#x6642;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x628A;&#x6253;&#x52FE;&#x53D6;&#x6D88;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;-VM-&#x786C;&#x789F;&#x540C;&#x6642;&#x522A;&#x9664;"><a href="#&#x9810;&#x8A2D;&#x786C;&#x789F;&#x522A;&#x9664;-VM-&#x540C;&#x6642;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x628A;&#x6253;&#x52FE;&#x53D6;&#x6D88;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;-VM-&#x786C;&#x789F;&#x540C;&#x6642;&#x522A;&#x9664;" class="headerlink" title="&#x9810;&#x8A2D;&#x786C;&#x789F;&#x522A;&#x9664; VM &#x540C;&#x6642;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x628A;&#x6253;&#x52FE;&#x53D6;&#x6D88;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D; VM &#x786C;&#x789F;&#x540C;&#x6642;&#x522A;&#x9664;"></a>&#x9810;&#x8A2D;&#x786C;&#x789F;&#x522A;&#x9664; VM &#x540C;&#x6642;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x628A;&#x6253;&#x52FE;&#x53D6;&#x6D88;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D; VM &#x786C;&#x789F;&#x540C;&#x6642;&#x522A;&#x9664;</h3><p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5176;&#x4ED6;&#x786C;&#x789F;&#x5EFA;&#x7ACB;&#x6642;&#x662F;&#x5426;&#x8DDF;-VM-&#x4E00;&#x8D77;&#x522A;&#x9664;&#x5982;&#x4E0B;&#x5716;&#x5730;&#x65B9;&#x505A;&#x8A2D;&#x7F6E;"><a href="#&#x5176;&#x4ED6;&#x786C;&#x789F;&#x5EFA;&#x7ACB;&#x6642;&#x662F;&#x5426;&#x8DDF;-VM-&#x4E00;&#x8D77;&#x522A;&#x9664;&#x5982;&#x4E0B;&#x5716;&#x5730;&#x65B9;&#x505A;&#x8A2D;&#x7F6E;" class="headerlink" title="&#x5176;&#x4ED6;&#x786C;&#x789F;&#x5EFA;&#x7ACB;&#x6642;&#x662F;&#x5426;&#x8DDF; VM &#x4E00;&#x8D77;&#x522A;&#x9664;&#x5982;&#x4E0B;&#x5716;&#x5730;&#x65B9;&#x505A;&#x8A2D;&#x7F6E;"></a>&#x5176;&#x4ED6;&#x786C;&#x789F;&#x5EFA;&#x7ACB;&#x6642;&#x662F;&#x5426;&#x8DDF; VM &#x4E00;&#x8D77;&#x522A;&#x9664;&#x5982;&#x4E0B;&#x5716;&#x5730;&#x65B9;&#x505A;&#x8A2D;&#x7F6E;</h3><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5230;-Compute-Engine-&#x2192;-&#x78C1;&#x789F;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5EFA;&#x7ACB;&#x4E86;&#x54EA;&#x4E9B;&#x786C;&#x789F;"><a href="#&#x5230;-Compute-Engine-&#x2192;-&#x78C1;&#x789F;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5EFA;&#x7ACB;&#x4E86;&#x54EA;&#x4E9B;&#x786C;&#x789F;" class="headerlink" title="&#x5230; Compute Engine &#x2192; &#x78C1;&#x789F;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5EFA;&#x7ACB;&#x4E86;&#x54EA;&#x4E9B;&#x786C;&#x789F;"></a>&#x5230; Compute Engine &#x2192; &#x78C1;&#x789F;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5EFA;&#x7ACB;&#x4E86;&#x54EA;&#x4E9B;&#x786C;&#x789F;</h3><p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x6253;&#x52FE;&#x9078;&#x64C7;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x522A;&#x9664;"><a href="#&#x6253;&#x52FE;&#x9078;&#x64C7;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x522A;&#x9664;" class="headerlink" title="&#x6253;&#x52FE;&#x9078;&#x64C7;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x522A;&#x9664;"></a>&#x6253;&#x52FE;&#x9078;&#x64C7;&#x8981;&#x522A;&#x9664;&#x786C;&#x789F;&#xFF0C;&#x9EDE;&#x64CA;&#x53F3;&#x4E0A;&#x89D2;&#x522A;&#x9664;</h3><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x64CA;&#x786C;&#x789F;&#x540D;&#x5B50;&#x53EF;&#x4EE5;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x66F4;&#x6539;&#x5BB9;&#x91CF;"><a href="#&#x9EDE;&#x64CA;&#x786C;&#x789F;&#x540D;&#x5B50;&#x53EF;&#x4EE5;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x66F4;&#x6539;&#x5BB9;&#x91CF;" class="headerlink" title="&#x9EDE;&#x64CA;&#x786C;&#x789F;&#x540D;&#x5B50;&#x53EF;&#x4EE5;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x66F4;&#x6539;&#x5BB9;&#x91CF;"></a>&#x9EDE;&#x64CA;&#x786C;&#x789F;&#x540D;&#x5B50;&#x53EF;&#x4EE5;&#x9032;&#x5165;&#x7DE8;&#x8F2F;&#x66F4;&#x6539;&#x5BB9;&#x91CF;</h3><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x56DB;&#x3001;&#x4F7F;&#x7528;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x786C;&#x789F;&#x958B;&#x65B0;-VM"><a href="#&#x56DB;&#x3001;&#x4F7F;&#x7528;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x786C;&#x789F;&#x958B;&#x65B0;-VM" class="headerlink" title="&#x56DB;&#x3001;&#x4F7F;&#x7528;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x786C;&#x789F;&#x958B;&#x65B0; VM"></a>&#x56DB;&#x3001;&#x4F7F;&#x7528;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x786C;&#x789F;&#x958B;&#x65B0; VM</h3><h3 id="&#x5EFA;&#x7ACB;&#x65B0;-VM-&#x8B8A;&#x66F4;-&#x2192;-&#x73FE;&#x6709;&#x78C1;&#x789F;-&#x2192;-&#x9078;&#x64C7;&#x4E4B;&#x524D;&#x4FDD;&#x7559;&#x7684;&#x786C;&#x789F;"><a href="#&#x5EFA;&#x7ACB;&#x65B0;-VM-&#x8B8A;&#x66F4;-&#x2192;-&#x73FE;&#x6709;&#x78C1;&#x789F;-&#x2192;-&#x9078;&#x64C7;&#x4E4B;&#x524D;&#x4FDD;&#x7559;&#x7684;&#x786C;&#x789F;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x65B0; VM &#x8B8A;&#x66F4; &#x2192; &#x73FE;&#x6709;&#x78C1;&#x789F; &#x2192; &#x9078;&#x64C7;&#x4E4B;&#x524D;&#x4FDD;&#x7559;&#x7684;&#x786C;&#x789F;"></a>&#x5EFA;&#x7ACB;&#x65B0; VM &#x8B8A;&#x66F4; &#x2192; &#x73FE;&#x6709;&#x78C1;&#x789F; &#x2192; &#x9078;&#x64C7;&#x4E4B;&#x524D;&#x4FDD;&#x7559;&#x7684;&#x786C;&#x789F;</h3><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5728;&#x65B0;&#x958B;&#x7684;-VM-&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;&#x786C;&#x789F;&#x91CD;&#x8907;-&#x786C;&#x789F;&#x7684;&#x6240;&#x5728;&#x7BC4;&#x570D;&#x4E0D;&#x80FD;&#x8D85;&#x51FA;&#x5EFA;&#x7ACB;&#x6642;&#x6240;&#x9078;&#x64C7;&#x7684;-Zone"><a href="#&#x5728;&#x65B0;&#x958B;&#x7684;-VM-&#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;&#x786C;&#x789F;&#x91CD;&#x8907;-&#x786C;&#x789F;&#x7684;&#x6240;&#x5728;&#x7BC4;&#x570D;&#x4E0D;&#x80FD;&#x8D85;&#x51FA;&#x5EFA;&#x7ACB;&#x6642;&#x6240;&#x9078;&#x64C7;&#x7684;-Zone" class="headerlink" title="&#x5728;&#x65B0;&#x958B;&#x7684; VM &#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;&#x786C;&#x789F;&#x91CD;&#x8907; ( &#x786C;&#x789F;&#x7684;&#x6240;&#x5728;&#x7BC4;&#x570D;&#x4E0D;&#x80FD;&#x8D85;&#x51FA;&#x5EFA;&#x7ACB;&#x6642;&#x6240;&#x9078;&#x64C7;&#x7684; Zone )"></a>&#x5728;&#x65B0;&#x958B;&#x7684; VM &#x540D;&#x7A31;&#x4E0D;&#x80FD;&#x8DDF;&#x786C;&#x789F;&#x91CD;&#x8907; ( &#x786C;&#x789F;&#x7684;&#x6240;&#x5728;&#x7BC4;&#x570D;&#x4E0D;&#x80FD;&#x8D85;&#x51FA;&#x5EFA;&#x7ACB;&#x6642;&#x6240;&#x9078;&#x64C7;&#x7684; Zone )</h3><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<hr>
-<h3 id="&#x4E94;&#x3001;&#x5FEB;&#x7167;-&#x5FEB;&#x7167;&#x662F;-snapshot-&#x7684;&#x76F4;&#x8B6F;-&#xFF1A;&#x7C21;&#x55AE;&#x7684;&#x8AAA;&#x5C31;&#x662F;&#x628A;&#x786C;&#x789F;&#x6574;&#x500B;&#x5099;&#x4EFD;&#x8D77;&#x4F86;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x8CC7;&#x6599;&#x6216;&#x662F;&#x72C0;&#x614B;&#x5C31;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x7F8E;&#x500B;&#x8907;&#x672C;&#xFF0C;&#x7D93;&#x5178;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5FEB;&#x901F;&#x5099;&#x4EFD;&#x52A0;&#x9084;&#x539F;"><a href="#&#x4E94;&#x3001;&#x5FEB;&#x7167;-&#x5FEB;&#x7167;&#x662F;-snapshot-&#x7684;&#x76F4;&#x8B6F;-&#xFF1A;&#x7C21;&#x55AE;&#x7684;&#x8AAA;&#x5C31;&#x662F;&#x628A;&#x786C;&#x789F;&#x6574;&#x500B;&#x5099;&#x4EFD;&#x8D77;&#x4F86;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x8CC7;&#x6599;&#x6216;&#x662F;&#x72C0;&#x614B;&#x5C31;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x7F8E;&#x500B;&#x8907;&#x672C;&#xFF0C;&#x7D93;&#x5178;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5FEB;&#x901F;&#x5099;&#x4EFD;&#x52A0;&#x9084;&#x539F;" class="headerlink" title="&#x4E94;&#x3001;&#x5FEB;&#x7167; ( &#x5FEB;&#x7167;&#x662F; snapshot &#x7684;&#x76F4;&#x8B6F; )&#xFF1A;&#x7C21;&#x55AE;&#x7684;&#x8AAA;&#x5C31;&#x662F;&#x628A;&#x786C;&#x789F;&#x6574;&#x500B;&#x5099;&#x4EFD;&#x8D77;&#x4F86;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x8CC7;&#x6599;&#x6216;&#x662F;&#x72C0;&#x614B;&#x5C31;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x7F8E;&#x500B;&#x8907;&#x672C;&#xFF0C;&#x7D93;&#x5178;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5FEB;&#x901F;&#x5099;&#x4EFD;&#x52A0;&#x9084;&#x539F;"></a>&#x4E94;&#x3001;&#x5FEB;&#x7167; ( &#x5FEB;&#x7167;&#x662F; snapshot &#x7684;&#x76F4;&#x8B6F; )&#xFF1A;&#x7C21;&#x55AE;&#x7684;&#x8AAA;&#x5C31;&#x662F;&#x628A;&#x786C;&#x789F;&#x6574;&#x500B;&#x5099;&#x4EFD;&#x8D77;&#x4F86;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x8CC7;&#x6599;&#x6216;&#x662F;&#x72C0;&#x614B;&#x5C31;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x7F8E;&#x500B;&#x8907;&#x672C;&#xFF0C;&#x7D93;&#x5178;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5FEB;&#x901F;&#x5099;&#x4EFD;&#x52A0;&#x9084;&#x539F;</h3><h3 id="&#x5FEB;&#x7167;&#x91CD;&#x65B0;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x7684;&#x597D;&#x8655;&#xFF1A;&#x9664;&#x4E86;&#x4F86;&#x6E90;&#x786C;&#x789F;&#x662F;&#x539F;&#x672C;&#x7684;&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x53C3;&#x6578;&#x90FD;&#x53EF;&#x4EE5;&#x6BEB;&#x4E0D;&#x76F8;&#x95DC;&#x5340;&#x57DF;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x4E3B;&#x6A5F;&#x898F;&#x683C;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x9023;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x985E;&#x578B;&#x90FD;&#x80FD;&#x4E0D;&#x4E00;&#x6A23;"><a href="#&#x5FEB;&#x7167;&#x91CD;&#x65B0;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x7684;&#x597D;&#x8655;&#xFF1A;&#x9664;&#x4E86;&#x4F86;&#x6E90;&#x786C;&#x789F;&#x662F;&#x539F;&#x672C;&#x7684;&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x53C3;&#x6578;&#x90FD;&#x53EF;&#x4EE5;&#x6BEB;&#x4E0D;&#x76F8;&#x95DC;&#x5340;&#x57DF;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x4E3B;&#x6A5F;&#x898F;&#x683C;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x9023;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x985E;&#x578B;&#x90FD;&#x80FD;&#x4E0D;&#x4E00;&#x6A23;" class="headerlink" title="&#x5FEB;&#x7167;&#x91CD;&#x65B0;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x7684;&#x597D;&#x8655;&#xFF1A;&#x9664;&#x4E86;&#x4F86;&#x6E90;&#x786C;&#x789F;&#x662F;&#x539F;&#x672C;&#x7684;&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x53C3;&#x6578;&#x90FD;&#x53EF;&#x4EE5;&#x6BEB;&#x4E0D;&#x76F8;&#x95DC;&#x5340;&#x57DF;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x4E3B;&#x6A5F;&#x898F;&#x683C;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x9023;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x985E;&#x578B;&#x90FD;&#x80FD;&#x4E0D;&#x4E00;&#x6A23;"></a>&#x5FEB;&#x7167;&#x91CD;&#x65B0;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x7684;&#x597D;&#x8655;&#xFF1A;&#x9664;&#x4E86;&#x4F86;&#x6E90;&#x786C;&#x789F;&#x662F;&#x539F;&#x672C;&#x7684;&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x53C3;&#x6578;&#x90FD;&#x53EF;&#x4EE5;&#x6BEB;&#x4E0D;&#x76F8;&#x95DC;&#x5340;&#x57DF;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x4E3B;&#x6A5F;&#x898F;&#x683C;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6A23;&#x3001;&#x9023;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x985E;&#x578B;&#x90FD;&#x80FD;&#x4E0D;&#x4E00;&#x6A23;</h3><h3 id="&#x5FEB;&#x7167;&#x53EF;&#x7528;&#x65BC;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x591A;&#x53F0;&#x76F8;&#x540C;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;&#x9019;&#x6B21;&#x8A2D;&#x5B9A;&#x5B8C;&#x7DB2;&#x8DEF;&#x74B0;&#x5883;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4EFD;&#x5FEB;&#x7167;&#xFF0C;&#x4E0B;&#x6B21;&#x8981;&#x5EFA;&#x7ACB;&#x53E6;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x6A5F;&#x4F86;&#x67B6;&#x8A2D;&#x7DB2;&#x7AD9;&#xFF0C;&#x6B64;&#x6642;&#x5C31;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5FEB;&#x7167;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x91CD;&#x982D;&#x4E00;&#x884C;&#x4E00;&#x884C;&#x6307;&#x4EE4;&#x5B89;&#x88DD;&#x74B0;&#x5883;&#x4E86;"><a href="#&#x5FEB;&#x7167;&#x53EF;&#x7528;&#x65BC;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x591A;&#x53F0;&#x76F8;&#x540C;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;&#x9019;&#x6B21;&#x8A2D;&#x5B9A;&#x5B8C;&#x7DB2;&#x8DEF;&#x74B0;&#x5883;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4EFD;&#x5FEB;&#x7167;&#xFF0C;&#x4E0B;&#x6B21;&#x8981;&#x5EFA;&#x7ACB;&#x53E6;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x6A5F;&#x4F86;&#x67B6;&#x8A2D;&#x7DB2;&#x7AD9;&#xFF0C;&#x6B64;&#x6642;&#x5C31;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5FEB;&#x7167;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x91CD;&#x982D;&#x4E00;&#x884C;&#x4E00;&#x884C;&#x6307;&#x4EE4;&#x5B89;&#x88DD;&#x74B0;&#x5883;&#x4E86;" class="headerlink" title="&#x5FEB;&#x7167;&#x53EF;&#x7528;&#x65BC;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x591A;&#x53F0;&#x76F8;&#x540C;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;&#x9019;&#x6B21;&#x8A2D;&#x5B9A;&#x5B8C;&#x7DB2;&#x8DEF;&#x74B0;&#x5883;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4EFD;&#x5FEB;&#x7167;&#xFF0C;&#x4E0B;&#x6B21;&#x8981;&#x5EFA;&#x7ACB;&#x53E6;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x6A5F;&#x4F86;&#x67B6;&#x8A2D;&#x7DB2;&#x7AD9;&#xFF0C;&#x6B64;&#x6642;&#x5C31;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5FEB;&#x7167;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x91CD;&#x982D;&#x4E00;&#x884C;&#x4E00;&#x884C;&#x6307;&#x4EE4;&#x5B89;&#x88DD;&#x74B0;&#x5883;&#x4E86;"></a>&#x5FEB;&#x7167;&#x53EF;&#x7528;&#x65BC;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#x591A;&#x53F0;&#x76F8;&#x540C;&#x7684;&#x865B;&#x64EC;&#x6A5F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;&#x9019;&#x6B21;&#x8A2D;&#x5B9A;&#x5B8C;&#x7DB2;&#x8DEF;&#x74B0;&#x5883;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x4EFD;&#x5FEB;&#x7167;&#xFF0C;&#x4E0B;&#x6B21;&#x8981;&#x5EFA;&#x7ACB;&#x53E6;&#x4E00;&#x500B;&#x865B;&#x64EC;&#x6A5F;&#x4F86;&#x67B6;&#x8A2D;&#x7DB2;&#x7AD9;&#xFF0C;&#x6B64;&#x6642;&#x5C31;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5FEB;&#x7167;&#x5FEB;&#x901F;&#x90E8;&#x5C6C;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x91CD;&#x982D;&#x4E00;&#x884C;&#x4E00;&#x884C;&#x6307;&#x4EE4;&#x5B89;&#x88DD;&#x74B0;&#x5883;&#x4E86;</h3><h3 id="&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;"><a href="#&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;"></a>&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;</h3><h3 id="&#x5F9E;&#x9078;&#x55AE;&#x9032;&#x5165;-Computer-Engine-&#x2192;-&#x5FEB;&#x7167;-&#x2192;-&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;"><a href="#&#x5F9E;&#x9078;&#x55AE;&#x9032;&#x5165;-Computer-Engine-&#x2192;-&#x5FEB;&#x7167;-&#x2192;-&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;" class="headerlink" title="&#x5F9E;&#x9078;&#x55AE;&#x9032;&#x5165; Computer Engine &#x2192; &#x5FEB;&#x7167; &#x2192; &#x5EFA;&#x7ACB;&#x5FEB;&#x7167;"></a>&#x5F9E;&#x9078;&#x55AE;&#x9032;&#x5165; Computer Engine &#x2192; &#x5FEB;&#x7167; &#x2192; &#x5EFA;&#x7ACB;&#x5FEB;&#x7167;</h3><p><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#xFF0C;&#x8207;VM&#x898F;&#x5247;&#x4E00;&#x6A23;&#xFF0C;&#x540D;&#x7A31;&#x958B;&#x982D;&#x5FC5;&#x9808;&#x70BA;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#xFF0C;&#x5F8C;&#x65B9;&#x6700;&#x591A;&#x53EF;&#x63A5;-63-&#x500B;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#x3001;&#x6578;&#x5B57;&#x6216;&#x9023;&#x5B57;&#x865F;&#xFF0C;&#x4F46;&#x7D50;&#x5C3E;&#x4E0D;&#x5F97;&#x70BA;&#x9023;&#x5B57;&#x865F;"><a href="#&#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#xFF0C;&#x8207;VM&#x898F;&#x5247;&#x4E00;&#x6A23;&#xFF0C;&#x540D;&#x7A31;&#x958B;&#x982D;&#x5FC5;&#x9808;&#x70BA;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#xFF0C;&#x5F8C;&#x65B9;&#x6700;&#x591A;&#x53EF;&#x63A5;-63-&#x500B;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#x3001;&#x6578;&#x5B57;&#x6216;&#x9023;&#x5B57;&#x865F;&#xFF0C;&#x4F46;&#x7D50;&#x5C3E;&#x4E0D;&#x5F97;&#x70BA;&#x9023;&#x5B57;&#x865F;" class="headerlink" title="&#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#xFF0C;&#x8207;VM&#x898F;&#x5247;&#x4E00;&#x6A23;&#xFF0C;&#x540D;&#x7A31;&#x958B;&#x982D;&#x5FC5;&#x9808;&#x70BA;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#xFF0C;&#x5F8C;&#x65B9;&#x6700;&#x591A;&#x53EF;&#x63A5; 63 &#x500B;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#x3001;&#x6578;&#x5B57;&#x6216;&#x9023;&#x5B57;&#x865F;&#xFF0C;&#x4F46;&#x7D50;&#x5C3E;&#x4E0D;&#x5F97;&#x70BA;&#x9023;&#x5B57;&#x865F;"></a>&#x8A2D;&#x5B9A;&#x540D;&#x7A31;&#xFF0C;&#x8207;VM&#x898F;&#x5247;&#x4E00;&#x6A23;&#xFF0C;&#x540D;&#x7A31;&#x958B;&#x982D;&#x5FC5;&#x9808;&#x70BA;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#xFF0C;&#x5F8C;&#x65B9;&#x6700;&#x591A;&#x53EF;&#x63A5; 63 &#x500B;&#x5C0F;&#x5BEB;&#x5B57;&#x6BCD;&#x3001;&#x6578;&#x5B57;&#x6216;&#x9023;&#x5B57;&#x865F;&#xFF0C;&#x4F46;&#x7D50;&#x5C3E;&#x4E0D;&#x5F97;&#x70BA;&#x9023;&#x5B57;&#x865F;</h3><h3 id="&#x8AAA;&#x660E;-&#x9078;&#x586B;-&#xFF0C;&#x4F46;&#x5EFA;&#x8B70;&#x586B;&#x5BEB;&#x9019;&#x4EFD;&#x5FEB;&#x7167;&#x7684;&#x72C0;&#x614B;&#x6216;&#x7528;&#x9014;&#xFF0C;&#x907F;&#x514D;&#x4E00;&#x5806;&#x5FEB;&#x7167;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x500B;&#x5728;&#x505A;&#x4EC0;&#x9EBC;&#x7684;"><a href="#&#x8AAA;&#x660E;-&#x9078;&#x586B;-&#xFF0C;&#x4F46;&#x5EFA;&#x8B70;&#x586B;&#x5BEB;&#x9019;&#x4EFD;&#x5FEB;&#x7167;&#x7684;&#x72C0;&#x614B;&#x6216;&#x7528;&#x9014;&#xFF0C;&#x907F;&#x514D;&#x4E00;&#x5806;&#x5FEB;&#x7167;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x500B;&#x5728;&#x505A;&#x4EC0;&#x9EBC;&#x7684;" class="headerlink" title="&#x8AAA;&#x660E; ( &#x9078;&#x586B; )&#xFF0C;&#x4F46;&#x5EFA;&#x8B70;&#x586B;&#x5BEB;&#x9019;&#x4EFD;&#x5FEB;&#x7167;&#x7684;&#x72C0;&#x614B;&#x6216;&#x7528;&#x9014;&#xFF0C;&#x907F;&#x514D;&#x4E00;&#x5806;&#x5FEB;&#x7167;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x500B;&#x5728;&#x505A;&#x4EC0;&#x9EBC;&#x7684;"></a>&#x8AAA;&#x660E; ( &#x9078;&#x586B; )&#xFF0C;&#x4F46;&#x5EFA;&#x8B70;&#x586B;&#x5BEB;&#x9019;&#x4EFD;&#x5FEB;&#x7167;&#x7684;&#x72C0;&#x614B;&#x6216;&#x7528;&#x9014;&#xFF0C;&#x907F;&#x514D;&#x4E00;&#x5806;&#x5FEB;&#x7167;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x500B;&#x5728;&#x505A;&#x4EC0;&#x9EBC;&#x7684;</h3><h3 id="&#x4F86;&#x6E90;&#x786C;&#x789F;&#xFF1A;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7684;&#x786C;&#x789F;-&#x9019;&#x908A;&#x53EF;&#x8996;&#x70BA;VM&#x5BE6;&#x9AD4;"><a href="#&#x4F86;&#x6E90;&#x786C;&#x789F;&#xFF1A;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7684;&#x786C;&#x789F;-&#x9019;&#x908A;&#x53EF;&#x8996;&#x70BA;VM&#x5BE6;&#x9AD4;" class="headerlink" title="&#x4F86;&#x6E90;&#x786C;&#x789F;&#xFF1A;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7684;&#x786C;&#x789F; ( &#x9019;&#x908A;&#x53EF;&#x8996;&#x70BA;VM&#x5BE6;&#x9AD4; )"></a>&#x4F86;&#x6E90;&#x786C;&#x789F;&#xFF1A;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7684;&#x786C;&#x789F; ( &#x9019;&#x908A;&#x53EF;&#x8996;&#x70BA;VM&#x5BE6;&#x9AD4; )</h3><h3 id="VSS&#xFF1A;Linux-&#x7CFB;&#x7D71;&#x4E0D;&#x9700;&#x8981;&#xFF0C;Windows-&#x53EF;&#x4EE5;&#x9078;-&#xFF1F;-&#x9EDE;&#x958B;&#x6703;&#x6709;&#x4ECB;&#x7D39;"><a href="#VSS&#xFF1A;Linux-&#x7CFB;&#x7D71;&#x4E0D;&#x9700;&#x8981;&#xFF0C;Windows-&#x53EF;&#x4EE5;&#x9078;-&#xFF1F;-&#x9EDE;&#x958B;&#x6703;&#x6709;&#x4ECB;&#x7D39;" class="headerlink" title="VSS&#xFF1A;Linux &#x7CFB;&#x7D71;&#x4E0D;&#x9700;&#x8981;&#xFF0C;Windows &#x53EF;&#x4EE5;&#x9078; &#xFF1F; &#x9EDE;&#x958B;&#x6703;&#x6709;&#x4ECB;&#x7D39;"></a>VSS&#xFF1A;Linux &#x7CFB;&#x7D71;&#x4E0D;&#x9700;&#x8981;&#xFF0C;Windows &#x53EF;&#x4EE5;&#x9078; &#xFF1F; &#x9EDE;&#x958B;&#x6703;&#x6709;&#x4ECB;&#x7D39;</h3><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#xFF0C;&#x4F9D;&#x7167;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x9700;&#x8981;&#x4E00;&#x9EDE;&#x6642;&#x9593;&#x4F86;&#x5EFA;&#x7ACB;&#xFF0C;&#x5B8C;&#x6210;&#x5F8C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x8207;&#x5FEB;&#x7167;&#x5927;&#x5C0F;"><a href="#&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#xFF0C;&#x4F9D;&#x7167;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x9700;&#x8981;&#x4E00;&#x9EDE;&#x6642;&#x9593;&#x4F86;&#x5EFA;&#x7ACB;&#xFF0C;&#x5B8C;&#x6210;&#x5F8C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x8207;&#x5FEB;&#x7167;&#x5927;&#x5C0F;" class="headerlink" title="&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#xFF0C;&#x4F9D;&#x7167;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x9700;&#x8981;&#x4E00;&#x9EDE;&#x6642;&#x9593;&#x4F86;&#x5EFA;&#x7ACB;&#xFF0C;&#x5B8C;&#x6210;&#x5F8C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x8207;&#x5FEB;&#x7167;&#x5927;&#x5C0F;"></a>&#x9EDE;&#x9078;&#x5EFA;&#x7ACB;&#x5F8C;&#xFF0C;&#x4F9D;&#x7167;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x9700;&#x8981;&#x4E00;&#x9EDE;&#x6642;&#x9593;&#x4F86;&#x5EFA;&#x7ACB;&#xFF0C;&#x5B8C;&#x6210;&#x5F8C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x786C;&#x789F;&#x5927;&#x5C0F;&#x8207;&#x5FEB;&#x7167;&#x5927;&#x5C0F;</h3><p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h3 id="&#x5FEB;&#x7167;&#x9084;&#x539F;"><a href="#&#x5FEB;&#x7167;&#x9084;&#x539F;" class="headerlink" title="&#x5FEB;&#x7167;&#x9084;&#x539F;"></a>&#x5FEB;&#x7167;&#x9084;&#x539F;</h3><h3 id="&#x96D6;&#x7136;&#x8AAA;&#x662F;&#x9084;&#x539F;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;&#x57F7;&#x884C;&#x500B;&#x9AD4;&#xFF0C;&#x53EA;&#x662F;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x7684;&#x5167;&#x5BB9;&#x4E0D;&#x662F;&#x539F;&#x5EE0;&#x7684;&#x5167;&#x5BB9;&#xFF0C;&#x800C;&#x662F;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7576;&#x4E0B;&#x7684;&#x5167;&#x5BB9;"><a href="#&#x96D6;&#x7136;&#x8AAA;&#x662F;&#x9084;&#x539F;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;&#x57F7;&#x884C;&#x500B;&#x9AD4;&#xFF0C;&#x53EA;&#x662F;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x7684;&#x5167;&#x5BB9;&#x4E0D;&#x662F;&#x539F;&#x5EE0;&#x7684;&#x5167;&#x5BB9;&#xFF0C;&#x800C;&#x662F;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7576;&#x4E0B;&#x7684;&#x5167;&#x5BB9;" class="headerlink" title="&#x96D6;&#x7136;&#x8AAA;&#x662F;&#x9084;&#x539F;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;&#x57F7;&#x884C;&#x500B;&#x9AD4;&#xFF0C;&#x53EA;&#x662F;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x7684;&#x5167;&#x5BB9;&#x4E0D;&#x662F;&#x539F;&#x5EE0;&#x7684;&#x5167;&#x5BB9;&#xFF0C;&#x800C;&#x662F;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7576;&#x4E0B;&#x7684;&#x5167;&#x5BB9;"></a>&#x96D6;&#x7136;&#x8AAA;&#x662F;&#x9084;&#x539F;&#xFF0C;&#x5176;&#x5BE6;&#x5C31;&#x662F;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;&#x57F7;&#x884C;&#x500B;&#x9AD4;&#xFF0C;&#x53EA;&#x662F;&#x958B;&#x6A5F;&#x786C;&#x789F;&#x7684;&#x5167;&#x5BB9;&#x4E0D;&#x662F;&#x539F;&#x5EE0;&#x7684;&#x5167;&#x5BB9;&#xFF0C;&#x800C;&#x662F;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x5FEB;&#x7167;&#x7576;&#x4E0B;&#x7684;&#x5167;&#x5BB9;</h3><h3 id="&#x5EFA;&#x7ACB;&#x65B0;-VM-&#x8B8A;&#x66F4;-&#x2192;-&#x5FEB;&#x7167;-&#x2192;-&#x9078;&#x64C7;&#x88FD;&#x4F5C;&#x597D;&#x7684;&#x5FEB;&#x7167;-&#x8DDF;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x78C1;&#x789F;&#x5F88;&#x50CF;&#xFF0C;&#x53EA;&#x662F;&#x5FEB;&#x7167;&#x53EF;&#x4EE5;&#x591A;&#x53F0;-VM-&#x4F7F;&#x7528;"><a href="#&#x5EFA;&#x7ACB;&#x65B0;-VM-&#x8B8A;&#x66F4;-&#x2192;-&#x5FEB;&#x7167;-&#x2192;-&#x9078;&#x64C7;&#x88FD;&#x4F5C;&#x597D;&#x7684;&#x5FEB;&#x7167;-&#x8DDF;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x78C1;&#x789F;&#x5F88;&#x50CF;&#xFF0C;&#x53EA;&#x662F;&#x5FEB;&#x7167;&#x53EF;&#x4EE5;&#x591A;&#x53F0;-VM-&#x4F7F;&#x7528;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x65B0; VM &#x8B8A;&#x66F4; &#x2192; &#x5FEB;&#x7167; &#x2192; &#x9078;&#x64C7;&#x88FD;&#x4F5C;&#x597D;&#x7684;&#x5FEB;&#x7167; (&#x8DDF;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x78C1;&#x789F;&#x5F88;&#x50CF;&#xFF0C;&#x53EA;&#x662F;&#x5FEB;&#x7167;&#x53EF;&#x4EE5;&#x591A;&#x53F0; VM &#x4F7F;&#x7528;)"></a>&#x5EFA;&#x7ACB;&#x65B0; VM &#x8B8A;&#x66F4; &#x2192; &#x5FEB;&#x7167; &#x2192; &#x9078;&#x64C7;&#x88FD;&#x4F5C;&#x597D;&#x7684;&#x5FEB;&#x7167; (&#x8DDF;&#x4F7F;&#x7528;&#x73FE;&#x6709;&#x78C1;&#x789F;&#x5F88;&#x50CF;&#xFF0C;&#x53EA;&#x662F;&#x5FEB;&#x7167;&#x53EF;&#x4EE5;&#x591A;&#x53F0; VM &#x4F7F;&#x7528;)</h3><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-26T09:18:21.000Z" itemprop="datePublished">2018-06-26</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          disk-介紹
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-26 17:18:21" itemprop="dateCreated datePublished" datetime="2018-06-26T17:18:21+08:00">2018-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、硬碟介紹"><a href="#一、硬碟介紹" class="headerlink" title="一、硬碟介紹"></a>一、硬碟介紹</h3><h3 id="GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢"><a href="#GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢" class="headerlink" title="GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢"></a>GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢</h3><p><img src="images/1.png" alt=" "></p>
+<hr>
+<h3 id="二、PD、SSD、Local-SSD-的差異"><a href="#二、PD、SSD、Local-SSD-的差異" class="headerlink" title="二、PD、SSD、Local SSD 的差異"></a>二、PD、SSD、Local SSD 的差異</h3><h3 id="PD：又稱為標準磁碟-Standard-Disk-，為-SATA-格式之硬碟，提供大部分情境之作業系統或儲存使用"><a href="#PD：又稱為標準磁碟-Standard-Disk-，為-SATA-格式之硬碟，提供大部分情境之作業系統或儲存使用" class="headerlink" title="PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用"></a>PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用</h3><h3 id="SSD：固態硬碟，具備較高的-IOPS，當然價格也較昂貴"><a href="#SSD：固態硬碟，具備較高的-IOPS，當然價格也較昂貴" class="headerlink" title="SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴"></a>SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴</h3><h3 id="Local-SSD：本機-SSD-硬碟具備-GCE-上最快的-IOPS-選擇，每次選購必須完整租用整個-Local-SSD-375G-的大小空間，一台新創-VM-機器跟硬碟是分開用網路連接但是-Local-SSD-是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成-SSD-的資料遺失"><a href="#Local-SSD：本機-SSD-硬碟具備-GCE-上最快的-IOPS-選擇，每次選購必須完整租用整個-Local-SSD-375G-的大小空間，一台新創-VM-機器跟硬碟是分開用網路連接但是-Local-SSD-是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成-SSD-的資料遺失" class="headerlink" title="Local SSD：本機 SSD 硬碟具備 GCE 上最快的 IOPS 選擇，每次選購必須完整租用整個 Local SSD 375G 的大小空間，一台新創 VM 機器跟硬碟是分開用網路連接但是 Local SSD 是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成 SSD 的資料遺失"></a>Local SSD：本機 SSD 硬碟具備 GCE 上最快的 IOPS 選擇，每次選購必須完整租用整個 Local SSD 375G 的大小空間，一台新創 VM 機器跟硬碟是分開用網路連接但是 Local SSD 是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成 SSD 的資料遺失</h3><p><img src="images/2.png" alt=" "></p>
+<h3 id="目前-Local-SSD-只能在-VM-建立下方的磁碟建立才有"><a href="#目前-Local-SSD-只能在-VM-建立下方的磁碟建立才有" class="headerlink" title="目前 Local SSD 只能在 VM 建立下方的磁碟建立才有"></a>目前 Local SSD 只能在 VM 建立下方的磁碟建立才有</h3><p><img src="images/17.png" alt=" "></p>
+<hr>
+<h3 id="三、刪除主機、保留硬碟"><a href="#三、刪除主機、保留硬碟" class="headerlink" title="三、刪除主機、保留硬碟"></a>三、刪除主機、保留硬碟</h3><h3 id="預設硬碟刪除-VM-同時刪除硬碟，把打勾取消就可以避免-VM-硬碟同時刪除"><a href="#預設硬碟刪除-VM-同時刪除硬碟，把打勾取消就可以避免-VM-硬碟同時刪除" class="headerlink" title="預設硬碟刪除 VM 同時刪除硬碟，把打勾取消就可以避免 VM 硬碟同時刪除"></a>預設硬碟刪除 VM 同時刪除硬碟，把打勾取消就可以避免 VM 硬碟同時刪除</h3><p><img src="images/3.png" alt=" "></p>
+<h3 id="其他硬碟建立時是否跟-VM-一起刪除如下圖地方做設置"><a href="#其他硬碟建立時是否跟-VM-一起刪除如下圖地方做設置" class="headerlink" title="其他硬碟建立時是否跟 VM 一起刪除如下圖地方做設置"></a>其他硬碟建立時是否跟 VM 一起刪除如下圖地方做設置</h3><p><img src="images/10.png" alt=" "></p>
+<h3 id="到-Compute-Engine-→-磁碟，可以看到建立了哪些硬碟"><a href="#到-Compute-Engine-→-磁碟，可以看到建立了哪些硬碟" class="headerlink" title="到 Compute Engine → 磁碟，可以看到建立了哪些硬碟"></a>到 Compute Engine → 磁碟，可以看到建立了哪些硬碟</h3><p><img src="images/4.png" alt=" "></p>
+<h3 id="打勾選擇要刪除硬碟，點擊右上角刪除"><a href="#打勾選擇要刪除硬碟，點擊右上角刪除" class="headerlink" title="打勾選擇要刪除硬碟，點擊右上角刪除"></a>打勾選擇要刪除硬碟，點擊右上角刪除</h3><p><img src="images/5.png" alt=" "></p>
+<h3 id="點擊硬碟名子可以進入編輯更改容量"><a href="#點擊硬碟名子可以進入編輯更改容量" class="headerlink" title="點擊硬碟名子可以進入編輯更改容量"></a>點擊硬碟名子可以進入編輯更改容量</h3><p><img src="images/6.png" alt=" "></p>
+<h3 id="四、使用已建立好硬碟開新-VM"><a href="#四、使用已建立好硬碟開新-VM" class="headerlink" title="四、使用已建立好硬碟開新 VM"></a>四、使用已建立好硬碟開新 VM</h3><h3 id="建立新-VM-變更-→-現有磁碟-→-選擇之前保留的硬碟"><a href="#建立新-VM-變更-→-現有磁碟-→-選擇之前保留的硬碟" class="headerlink" title="建立新 VM 變更 → 現有磁碟 → 選擇之前保留的硬碟"></a>建立新 VM 變更 → 現有磁碟 → 選擇之前保留的硬碟</h3><p><img src="images/7.png" alt=" "><br><img src="images/8.png" alt=" "></p>
+<h3 id="在新開的-VM-名稱不能跟硬碟重複-硬碟的所在範圍不能超出建立時所選擇的-Zone"><a href="#在新開的-VM-名稱不能跟硬碟重複-硬碟的所在範圍不能超出建立時所選擇的-Zone" class="headerlink" title="在新開的 VM 名稱不能跟硬碟重複 ( 硬碟的所在範圍不能超出建立時所選擇的 Zone )"></a>在新開的 VM 名稱不能跟硬碟重複 ( 硬碟的所在範圍不能超出建立時所選擇的 Zone )</h3><p><img src="images/9.png" alt=" "></p>
+<hr>
+<h3 id="五、快照-快照是-snapshot-的直譯-：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原"><a href="#五、快照-快照是-snapshot-的直譯-：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原" class="headerlink" title="五、快照 ( 快照是 snapshot 的直譯 )：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原"></a>五、快照 ( 快照是 snapshot 的直譯 )：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原</h3><h3 id="快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣"><a href="#快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣" class="headerlink" title="快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣"></a>快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣</h3><h3 id="快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了"><a href="#快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了" class="headerlink" title="快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了"></a>快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了</h3><h3 id="建立快照"><a href="#建立快照" class="headerlink" title="建立快照"></a>建立快照</h3><h3 id="從選單進入-Computer-Engine-→-快照-→-建立快照"><a href="#從選單進入-Computer-Engine-→-快照-→-建立快照" class="headerlink" title="從選單進入 Computer Engine → 快照 → 建立快照"></a>從選單進入 Computer Engine → 快照 → 建立快照</h3><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
+<h3 id="設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接-63-個小寫字母、數字或連字號，但結尾不得為連字號"><a href="#設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接-63-個小寫字母、數字或連字號，但結尾不得為連字號" class="headerlink" title="設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接 63 個小寫字母、數字或連字號，但結尾不得為連字號"></a>設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接 63 個小寫字母、數字或連字號，但結尾不得為連字號</h3><h3 id="說明-選填-，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的"><a href="#說明-選填-，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的" class="headerlink" title="說明 ( 選填 )，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的"></a>說明 ( 選填 )，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的</h3><h3 id="來源硬碟：建立快照的硬碟-這邊可視為VM實體"><a href="#來源硬碟：建立快照的硬碟-這邊可視為VM實體" class="headerlink" title="來源硬碟：建立快照的硬碟 ( 這邊可視為VM實體 )"></a>來源硬碟：建立快照的硬碟 ( 這邊可視為VM實體 )</h3><h3 id="VSS：Linux-系統不需要，Windows-可以選-？-點開會有介紹"><a href="#VSS：Linux-系統不需要，Windows-可以選-？-點開會有介紹" class="headerlink" title="VSS：Linux 系統不需要，Windows 可以選 ？ 點開會有介紹"></a>VSS：Linux 系統不需要，Windows 可以選 ？ 點開會有介紹</h3><p><img src="images/13.png" alt=" "><br><img src="images/16.png" alt=" "></p>
+<h3 id="點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小"><a href="#點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小" class="headerlink" title="點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小"></a>點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小</h3><p><img src="images/14.png" alt=" "></p>
+<h3 id="快照還原"><a href="#快照還原" class="headerlink" title="快照還原"></a>快照還原</h3><h3 id="雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容"><a href="#雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容" class="headerlink" title="雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容"></a>雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容</h3><h3 id="建立新-VM-變更-→-快照-→-選擇製作好的快照-跟使用現有磁碟很像，只是快照可以多台-VM-使用"><a href="#建立新-VM-變更-→-快照-→-選擇製作好的快照-跟使用現有磁碟很像，只是快照可以多台-VM-使用" class="headerlink" title="建立新 VM 變更 → 快照 → 選擇製作好的快照 (跟使用現有磁碟很像，只是快照可以多台 VM 使用)"></a>建立新 VM 變更 → 快照 → 選擇製作好的快照 (跟使用現有磁碟很像，只是快照可以多台 VM 使用)</h3><p><img src="images/15.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/27/disk-掛載/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    disk-掛載
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/24/GCP-ubuntu-ssh連線/" class="ui tiny button">
-                    
-                    GCP-ubuntu-ssh連線
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/24/GCP-ubuntu-ssh連線/" rel="prev" title="GCP-ubuntu-ssh連線">
+      <i class="fa fa-chevron-left"></i> GCP-ubuntu-ssh連線
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/27/disk-掛載/" rel="next" title="disk-掛載">
+      disk-掛載 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#一、硬碟介紹"><span>一、硬碟介紹</span></a></li><li><a href="#GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢"><span>GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢</span></a></li><li><a href="#二、PD、SSD、Local-SSD-的差異"><span>二、PD、SSD、Local SSD 的差異</span></a></li><li><a href="#PD：又稱為標準磁碟-Standard-Disk-，為-SATA-格式之硬碟，提供大部分情境之作業系統或儲存使用"><span>PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用</span></a></li><li><a href="#SSD：固態硬碟，具備較高的-IOPS，當然價格也較昂貴"><span>SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴</span></a></li><li><a href="#Local-SSD：本機-SSD-硬碟具備-GCE-上最快的-IOPS-選擇，每次選購必須完整租用整個-Local-SSD-375G-的大小空間，一台新創-VM-機器跟硬碟是分開用網路連接但是-Local-SSD-是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成-SSD-的資料遺失"><span>Local SSD：本機 SSD 硬碟具備 GCE 上最快的 IOPS 選擇，每次選購必須完整租用整個 Local SSD 375G 的大小空間，一台新創 VM 機器跟硬碟是分開用網路連接但是 Local SSD 是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成 SSD 的資料遺失</span></a></li><li><a href="#目前-Local-SSD-只能在-VM-建立下方的磁碟建立才有"><span>目前 Local SSD 只能在 VM 建立下方的磁碟建立才有</span></a></li><li><a href="#三、刪除主機、保留硬碟"><span>三、刪除主機、保留硬碟</span></a></li><li><a href="#預設硬碟刪除-VM-同時刪除硬碟，把打勾取消就可以避免-VM-硬碟同時刪除"><span>預設硬碟刪除 VM 同時刪除硬碟，把打勾取消就可以避免 VM 硬碟同時刪除</span></a></li><li><a href="#其他硬碟建立時是否跟-VM-一起刪除如下圖地方做設置"><span>其他硬碟建立時是否跟 VM 一起刪除如下圖地方做設置</span></a></li><li><a href="#到-Compute-Engine-→-磁碟，可以看到建立了哪些硬碟"><span>到 Compute Engine → 磁碟，可以看到建立了哪些硬碟</span></a></li><li><a href="#打勾選擇要刪除硬碟，點擊右上角刪除"><span>打勾選擇要刪除硬碟，點擊右上角刪除</span></a></li><li><a href="#點擊硬碟名子可以進入編輯更改容量"><span>點擊硬碟名子可以進入編輯更改容量</span></a></li><li><a href="#四、使用已建立好硬碟開新-VM"><span>四、使用已建立好硬碟開新 VM</span></a></li><li><a href="#建立新-VM-變更-→-現有磁碟-→-選擇之前保留的硬碟"><span>建立新 VM 變更 → 現有磁碟 → 選擇之前保留的硬碟</span></a></li><li><a href="#在新開的-VM-名稱不能跟硬碟重複-硬碟的所在範圍不能超出建立時所選擇的-Zone"><span>在新開的 VM 名稱不能跟硬碟重複 ( 硬碟的所在範圍不能超出建立時所選擇的 Zone )</span></a></li><li><a href="#五、快照-快照是-snapshot-的直譯-：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原"><span>五、快照 ( 快照是 snapshot 的直譯 )：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原</span></a></li><li><a href="#快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣"><span>快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣</span></a></li><li><a href="#快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了"><span>快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了</span></a></li><li><a href="#建立快照"><span>建立快照</span></a></li><li><a href="#從選單進入-Computer-Engine-→-快照-→-建立快照"><span>從選單進入 Computer Engine → 快照 → 建立快照</span></a></li><li><a href="#設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接-63-個小寫字母、數字或連字號，但結尾不得為連字號"><span>設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接 63 個小寫字母、數字或連字號，但結尾不得為連字號</span></a></li><li><a href="#說明-選填-，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的"><span>說明 ( 選填 )，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的</span></a></li><li><a href="#來源硬碟：建立快照的硬碟-這邊可視為VM實體"><span>來源硬碟：建立快照的硬碟 ( 這邊可視為VM實體 )</span></a></li><li><a href="#VSS：Linux-系統不需要，Windows-可以選-？-點開會有介紹"><span>VSS：Linux 系統不需要，Windows 可以選 ？ 點開會有介紹</span></a></li><li><a href="#點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小"><span>點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小</span></a></li><li><a href="#快照還原"><span>快照還原</span></a></li><li><a href="#雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容"><span>雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容</span></a></li><li><a href="#建立新-VM-變更-→-快照-→-選擇製作好的快照-跟使用現有磁碟很像，只是快照可以多台-VM-使用"><span>建立新 VM 變更 → 快照 → 選擇製作好的快照 (跟使用現有磁碟很像，只是快照可以多台 VM 使用)</span></a></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、硬碟介紹"><span class="nav-number">1.</span> <span class="nav-text">一、硬碟介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢"><span class="nav-number">2.</span> <span class="nav-text">GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、PD、SSD、Local-SSD-的差異"><span class="nav-number">3.</span> <span class="nav-text">二、PD、SSD、Local SSD 的差異</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PD：又稱為標準磁碟-Standard-Disk-，為-SATA-格式之硬碟，提供大部分情境之作業系統或儲存使用"><span class="nav-number">4.</span> <span class="nav-text">PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSD：固態硬碟，具備較高的-IOPS，當然價格也較昂貴"><span class="nav-number">5.</span> <span class="nav-text">SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-SSD：本機-SSD-硬碟具備-GCE-上最快的-IOPS-選擇，每次選購必須完整租用整個-Local-SSD-375G-的大小空間，一台新創-VM-機器跟硬碟是分開用網路連接但是-Local-SSD-是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成-SSD-的資料遺失"><span class="nav-number">6.</span> <span class="nav-text">Local SSD：本機 SSD 硬碟具備 GCE 上最快的 IOPS 選擇，每次選購必須完整租用整個 Local SSD 375G 的大小空間，一台新創 VM 機器跟硬碟是分開用網路連接但是 Local SSD 是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成 SSD 的資料遺失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目前-Local-SSD-只能在-VM-建立下方的磁碟建立才有"><span class="nav-number">7.</span> <span class="nav-text">目前 Local SSD 只能在 VM 建立下方的磁碟建立才有</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、刪除主機、保留硬碟"><span class="nav-number">8.</span> <span class="nav-text">三、刪除主機、保留硬碟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#預設硬碟刪除-VM-同時刪除硬碟，把打勾取消就可以避免-VM-硬碟同時刪除"><span class="nav-number">9.</span> <span class="nav-text">預設硬碟刪除 VM 同時刪除硬碟，把打勾取消就可以避免 VM 硬碟同時刪除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他硬碟建立時是否跟-VM-一起刪除如下圖地方做設置"><span class="nav-number">10.</span> <span class="nav-text">其他硬碟建立時是否跟 VM 一起刪除如下圖地方做設置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#到-Compute-Engine-→-磁碟，可以看到建立了哪些硬碟"><span class="nav-number">11.</span> <span class="nav-text">到 Compute Engine → 磁碟，可以看到建立了哪些硬碟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打勾選擇要刪除硬碟，點擊右上角刪除"><span class="nav-number">12.</span> <span class="nav-text">打勾選擇要刪除硬碟，點擊右上角刪除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點擊硬碟名子可以進入編輯更改容量"><span class="nav-number">13.</span> <span class="nav-text">點擊硬碟名子可以進入編輯更改容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、使用已建立好硬碟開新-VM"><span class="nav-number">14.</span> <span class="nav-text">四、使用已建立好硬碟開新 VM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立新-VM-變更-→-現有磁碟-→-選擇之前保留的硬碟"><span class="nav-number">15.</span> <span class="nav-text">建立新 VM 變更 → 現有磁碟 → 選擇之前保留的硬碟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在新開的-VM-名稱不能跟硬碟重複-硬碟的所在範圍不能超出建立時所選擇的-Zone"><span class="nav-number">16.</span> <span class="nav-text">在新開的 VM 名稱不能跟硬碟重複 ( 硬碟的所在範圍不能超出建立時所選擇的 Zone )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、快照-快照是-snapshot-的直譯-：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原"><span class="nav-number">17.</span> <span class="nav-text">五、快照 ( 快照是 snapshot 的直譯 )：簡單的說就是把硬碟整個備份起來，不管是資料或是狀態就是一份完美個複本，經典使用方式快速備份加還原</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣"><span class="nav-number">18.</span> <span class="nav-text">快照重新快速部屬的好處：除了來源硬碟是原本的以外，其他參數都可以毫不相關區域可以不一樣、主機規格可以不一樣、連硬碟大小類型都能不一樣</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了"><span class="nav-number">19.</span> <span class="nav-text">快照可用於快速部屬多台相同的虛擬機，例如：這次設定完網路環境可以建立一份快照，下次要建立另一個虛擬機來架設網站，此時就能直接使用快照快速部屬，就不需要再重頭一行一行指令安裝環境了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立快照"><span class="nav-number">20.</span> <span class="nav-text">建立快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#從選單進入-Computer-Engine-→-快照-→-建立快照"><span class="nav-number">21.</span> <span class="nav-text">從選單進入 Computer Engine → 快照 → 建立快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接-63-個小寫字母、數字或連字號，但結尾不得為連字號"><span class="nav-number">22.</span> <span class="nav-text">設定名稱，與VM規則一樣，名稱開頭必須為小寫字母，後方最多可接 63 個小寫字母、數字或連字號，但結尾不得為連字號</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#說明-選填-，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的"><span class="nav-number">23.</span> <span class="nav-text">說明 ( 選填 )，但建議填寫這份快照的狀態或用途，避免一堆快照不知道哪個在做什麼的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#來源硬碟：建立快照的硬碟-這邊可視為VM實體"><span class="nav-number">24.</span> <span class="nav-text">來源硬碟：建立快照的硬碟 ( 這邊可視為VM實體 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VSS：Linux-系統不需要，Windows-可以選-？-點開會有介紹"><span class="nav-number">25.</span> <span class="nav-text">VSS：Linux 系統不需要，Windows 可以選 ？ 點開會有介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小"><span class="nav-number">26.</span> <span class="nav-text">點選建立後，依照硬碟大小需要一點時間來建立，完成後可以看到硬碟大小與快照大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照還原"><span class="nav-number">27.</span> <span class="nav-text">快照還原</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容"><span class="nav-number">28.</span> <span class="nav-text">雖然說是還原，其實就是建立一個新的執行個體，只是開機硬碟的內容不是原廠的內容，而是自己建立快照當下的內容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立新-VM-變更-→-快照-→-選擇製作好的快照-跟使用現有磁碟很像，只是快照可以多台-VM-使用"><span class="nav-number">29.</span> <span class="nav-text">建立新 VM 變更 → 快照 → 選擇製作好的快照 (跟使用現有磁碟很像，只是快照可以多台 VM 使用)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

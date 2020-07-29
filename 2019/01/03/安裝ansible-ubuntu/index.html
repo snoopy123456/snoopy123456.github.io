@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>安裝ansible-ubuntu | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x60F3;&amp;#x8981;&amp;#x7528; ansible &amp;#x63A7;&amp;#x5236;&amp;#x53E6;&amp;#x5916;&amp;#x4E00;&amp;#x53F0; ubuntu &amp;#x6A5F;&amp;#x5668;&amp;#x5F88;&amp;#x7C21;&amp;#x55AE;&amp;#xFF0C;&amp;#x53EA;&amp;#x8981;&amp;#x5B89;&amp;#x88DD;&amp;#x597D; ansible &amp;#x8A2D;&amp;#x5B9">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了1. 安裝 ansible123將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加sudo apt-add-repository ppa:ansible/ansible  12345更新並安裝sudo apt-g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝ansible-ubuntu">
 <meta property="og:url" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x60F3;&amp;#x8981;&amp;#x7528; ansible &amp;#x63A7;&amp;#x5236;&amp;#x53E6;&amp;#x5916;&amp;#x4E00;&amp;#x53F0; ubuntu &amp;#x6A5F;&amp;#x5668;&amp;#x5F88;&amp;#x7C21;&amp;#x55AE;&amp;#xFF0C;&amp;#x53EA;&amp;#x8981;&amp;#x5B89;&amp;#x88DD;&amp;#x597D; ansible &amp;#x8A2D;&amp;#x5B9">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了1. 安裝 ansible123將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加sudo apt-add-repository ppa:ansible/ansible  12345更新並安裝sudo apt-g">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/3.png">
@@ -27,243 +38,354 @@
 <meta property="og:updated_time" content="2020-04-01T03:30:25.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝ansible-ubuntu">
-<meta name="twitter:description" content="&amp;#x60F3;&amp;#x8981;&amp;#x7528; ansible &amp;#x63A7;&amp;#x5236;&amp;#x53E6;&amp;#x5916;&amp;#x4E00;&amp;#x53F0; ubuntu &amp;#x6A5F;&amp;#x5668;&amp;#x5F88;&amp;#x7C21;&amp;#x55AE;&amp;#xFF0C;&amp;#x53EA;&amp;#x8981;&amp;#x5B89;&amp;#x88DD;&amp;#x597D; ansible &amp;#x8A2D;&amp;#x5B9">
+<meta name="twitter:description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了1. 安裝 ansible123將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加sudo apt-add-repository ppa:ansible/ansible  12345更新並安裝sudo apt-g">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>安裝ansible-ubuntu | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-安裝ansible-ubuntu" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    安裝ansible-ubuntu
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x60F3;&#x8981;&#x7528;-ansible-&#x63A7;&#x5236;&#x53E6;&#x5916;&#x4E00;&#x53F0;-ubuntu-&#x6A5F;&#x5668;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x53EA;&#x8981;&#x5B89;&#x88DD;&#x597D;-ansible-&#x8A2D;&#x5B9A;&#x597D;-host&#xFF0C;&#x4E26;&#x4E14;-SSH-&#x53EF;&#x4EE5;&#x9023;&#x7DDA;&#x8981;&#x88AB;&#x63A7;&#x5236;&#x7684;-ubuntu-&#x6A5F;&#x5668;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;"><a href="#&#x60F3;&#x8981;&#x7528;-ansible-&#x63A7;&#x5236;&#x53E6;&#x5916;&#x4E00;&#x53F0;-ubuntu-&#x6A5F;&#x5668;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x53EA;&#x8981;&#x5B89;&#x88DD;&#x597D;-ansible-&#x8A2D;&#x5B9A;&#x597D;-host&#xFF0C;&#x4E26;&#x4E14;-SSH-&#x53EF;&#x4EE5;&#x9023;&#x7DDA;&#x8981;&#x88AB;&#x63A7;&#x5236;&#x7684;-ubuntu-&#x6A5F;&#x5668;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;" class="headerlink" title="&#x60F3;&#x8981;&#x7528; ansible &#x63A7;&#x5236;&#x53E6;&#x5916;&#x4E00;&#x53F0; ubuntu &#x6A5F;&#x5668;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x53EA;&#x8981;&#x5B89;&#x88DD;&#x597D; ansible &#x8A2D;&#x5B9A;&#x597D; host&#xFF0C;&#x4E26;&#x4E14; SSH &#x53EF;&#x4EE5;&#x9023;&#x7DDA;&#x8981;&#x88AB;&#x63A7;&#x5236;&#x7684; ubuntu &#x6A5F;&#x5668;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;"></a>&#x60F3;&#x8981;&#x7528; ansible &#x63A7;&#x5236;&#x53E6;&#x5916;&#x4E00;&#x53F0; ubuntu &#x6A5F;&#x5668;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x53EA;&#x8981;&#x5B89;&#x88DD;&#x597D; ansible &#x8A2D;&#x5B9A;&#x597D; host&#xFF0C;&#x4E26;&#x4E14; SSH &#x53EF;&#x4EE5;&#x9023;&#x7DDA;&#x8981;&#x88AB;&#x63A7;&#x5236;&#x7684; ubuntu &#x6A5F;&#x5668;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</h3><h4 id="1-&#x5B89;&#x88DD;-ansible"><a href="#1-&#x5B89;&#x88DD;-ansible" class="headerlink" title="1. &#x5B89;&#x88DD; ansible"></a>1. &#x5B89;&#x88DD; ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x5C07; PPA &#x6DFB;&#x52A0;&#x5230;&#x7CFB;&#x7D71;&#x4E2D;&#xFF0C;&#x4E2D;&#x9593;&#x9700;&#x8981;&#x6848; Enter &#x63A5;&#x53D7; PPA &#x589E;&#x52A0;</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x66F4;&#x65B0;&#x4E26;&#x5B89;&#x88DD;</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y ansible</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a></p>
-<h4 id="2-&#x914D;&#x7F6E;-ansible"><a href="#2-&#x914D;&#x7F6E;-ansible" class="headerlink" title="2. &#x914D;&#x7F6E; ansible"></a>2. &#x914D;&#x7F6E; ansible</h4><h4 id="Ansible-&#x901A;&#x904E;-hosts-&#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;"><a href="#Ansible-&#x901A;&#x904E;-hosts-&#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;" class="headerlink" title="Ansible &#x901A;&#x904E; hosts &#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;"></a>Ansible &#x901A;&#x904E; hosts &#x6587;&#x4EF6;&#x77E5;&#x9053;&#x6240;&#x6709;&#x670D;&#x52D9;&#x5668;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5148;&#x8A2D;&#x7F6E;&#x6B64;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x5F8C;&#x624D;&#x80FD;&#x958B;&#x59CB;&#x8207;&#x6211;&#x5011;&#x7684;&#x5176;&#x4ED6;&#x6A5F;&#x5668;&#x9023;&#x7DDA;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">host &#x6587;&#x4EF6;&#x8DEF;&#x5F91;</span><br><span class="line">/etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">&#x66F4;&#x6539;&#x6307;&#x4EE4;</span><br><span class="line">sudo vi /etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">&#x66F4;&#x6539;&#x5167;&#x5BB9;</span><br><span class="line">[&#x96A8;&#x610F;&#x7FA4;&#x7D44;&#x540D;&#x7A31;]</span><br><span class="line">&#x96A8;&#x610F;&#x540D;&#x7A31; ansible_ssh_host=&#x8981;&#x9023;&#x7DDA;&#x6A5F;&#x5668; ip</span><br><span class="line"></span><br><span class="line">ex&#xFF1A;</span><br><span class="line">[unubtu]</span><br><span class="line">test ansible_ssh_host=127.0.0.1</span><br><span class="line"></span><br><span class="line">&#x6216;&#x662F; ( &#x9019;&#x6A23;&#x8981;&#x55AE;&#x7368;&#x64CD;&#x63A7;&#x6307;&#x4EE4;&#x5C31;&#x8981;&#x4F7F;&#x7528; IP )</span><br><span class="line">[windows]</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="3-&#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;"><a href="#3-&#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;" class="headerlink" title="3. &#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;"></a>3. &#x6E2C;&#x8A66;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x63A5;&#x4E0B;&#x4F86;&#x53EF;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x5C0D;&#x6A5F;&#x5668;&#x505A;&#x63A7;&#x5236;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ansible -m ping all</span><br><span class="line"></span><br><span class="line">ansible -m ping test ( &#x6307;&#x5B9A;&#x55AE;&#x500B;&#x4E3B;&#x6A5F; )</span><br><span class="line"></span><br><span class="line">ansible -m ping 127.0.0.1 ( &#x6307;&#x5B9A;&#x55AE;&#x500B;&#x4E3B;&#x6A5F; )</span><br><span class="line"></span><br><span class="line">ansible -m ping ubuntu ( &#x6307;&#x5B9A;&#x7FA4;&#x7D44; )</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a></p>
-<h4 id="4-&#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;"><a href="#4-&#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;" class="headerlink" title="4. &#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;"></a>4. &#x4E0B;&#x6307;&#x4EE4;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x6A5F;&#x5668;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ansible name -m command -a &quot;command&quot;</span><br><span class="line"></span><br><span class="line">ex&#xFF1A;ansible test -m command -a &quot;sudo reboot&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="&#x5982;&#x4E0B;&#x5716;&#x4E0B;&#x5B8C;&#x91CD;&#x555F;&#x6307;&#x4EE4;&#x5F8C;&#x6703;&#x767C;&#x73FE;&#x9023;&#x4E0D;&#x5230;&#xFF0C;&#x56E0;&#x70BA;&#x91CD;&#x65B0;&#x555F;&#x52D5;&#x6703;&#x66AB;&#x6642;&#x9023;&#x4E0D;&#x5230;&#x8868;&#x793A;&#x6307;&#x4EE4;&#x64CD;&#x4F5C;&#x6210;&#x529F;"><a href="#&#x5982;&#x4E0B;&#x5716;&#x4E0B;&#x5B8C;&#x91CD;&#x555F;&#x6307;&#x4EE4;&#x5F8C;&#x6703;&#x767C;&#x73FE;&#x9023;&#x4E0D;&#x5230;&#xFF0C;&#x56E0;&#x70BA;&#x91CD;&#x65B0;&#x555F;&#x52D5;&#x6703;&#x66AB;&#x6642;&#x9023;&#x4E0D;&#x5230;&#x8868;&#x793A;&#x6307;&#x4EE4;&#x64CD;&#x4F5C;&#x6210;&#x529F;" class="headerlink" title="&#x5982;&#x4E0B;&#x5716;&#x4E0B;&#x5B8C;&#x91CD;&#x555F;&#x6307;&#x4EE4;&#x5F8C;&#x6703;&#x767C;&#x73FE;&#x9023;&#x4E0D;&#x5230;&#xFF0C;&#x56E0;&#x70BA;&#x91CD;&#x65B0;&#x555F;&#x52D5;&#x6703;&#x66AB;&#x6642;&#x9023;&#x4E0D;&#x5230;&#x8868;&#x793A;&#x6307;&#x4EE4;&#x64CD;&#x4F5C;&#x6210;&#x529F;"></a>&#x5982;&#x4E0B;&#x5716;&#x4E0B;&#x5B8C;&#x91CD;&#x555F;&#x6307;&#x4EE4;&#x5F8C;&#x6703;&#x767C;&#x73FE;&#x9023;&#x4E0D;&#x5230;&#xFF0C;&#x56E0;&#x70BA;&#x91CD;&#x65B0;&#x555F;&#x52D5;&#x6703;&#x66AB;&#x6642;&#x9023;&#x4E0D;&#x5230;&#x8868;&#x793A;&#x6307;&#x4EE4;&#x64CD;&#x4F5C;&#x6210;&#x529F;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-01-03T06:29:15.000Z" itemprop="datePublished">2019-01-03</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安裝ansible-ubuntu
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2019-01-03 14:29:15" itemprop="dateCreated datePublished" datetime="2019-01-03T14:29:15+08:00">2019-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了"><a href="#想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了" class="headerlink" title="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了"></a>想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了</h3><h4 id="1-安裝-ansible"><a href="#1-安裝-ansible" class="headerlink" title="1. 安裝 ansible"></a>1. 安裝 ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
+<p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">更新並安裝</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y ansible</span><br></pre></td></tr></table></figure>
+<p><img src="images/3.png" alt=" "></p>
+<h4 id="2-配置-ansible"><a href="#2-配置-ansible" class="headerlink" title="2. 配置 ansible"></a>2. 配置 ansible</h4><h4 id="Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"><a href="#Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線" class="headerlink" title="Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"></a>Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">host 文件路徑</span><br><span class="line">/etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">更改指令</span><br><span class="line">sudo vi /etc/ansible/hosts</span><br><span class="line"></span><br><span class="line">更改內容</span><br><span class="line">[隨意群組名稱]</span><br><span class="line">隨意名稱 ansible_ssh_host=要連線機器 ip</span><br><span class="line"></span><br><span class="line">ex：</span><br><span class="line">[unubtu]</span><br><span class="line">test ansible_ssh_host=127.0.0.1</span><br><span class="line"></span><br><span class="line">或是 ( 這樣要單獨操控指令就要使用 IP )</span><br><span class="line">[windows]</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure>
+<p><img src="images/4.png" alt=" "><br><img src="images/8.png" alt=" "></p>
+<h4 id="3-測試，如下圖就成功了接下來可以下其他指令對機器做控制"><a href="#3-測試，如下圖就成功了接下來可以下其他指令對機器做控制" class="headerlink" title="3. 測試，如下圖就成功了接下來可以下其他指令對機器做控制"></a>3. 測試，如下圖就成功了接下來可以下其他指令對機器做控制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ansible -m ping all</span><br><span class="line"></span><br><span class="line">ansible -m ping test ( 指定單個主機 )</span><br><span class="line"></span><br><span class="line">ansible -m ping 127.0.0.1 ( 指定單個主機 )</span><br><span class="line"></span><br><span class="line">ansible -m ping ubuntu ( 指定群組 )</span><br></pre></td></tr></table></figure>
+<p><img src="images/5.png" alt=" "><br><img src="images/7.png" alt=" "></p>
+<h4 id="4-下指令方式操作機器"><a href="#4-下指令方式操作機器" class="headerlink" title="4. 下指令方式操作機器"></a>4. 下指令方式操作機器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ansible name -m command -a &quot;command&quot;</span><br><span class="line"></span><br><span class="line">ex：ansible test -m command -a &quot;sudo reboot&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功"><a href="#如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功" class="headerlink" title="如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功"></a>如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功</h4><p><img src="images/6.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2019/01/03/安裝ansible-windows/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    安裝ansible-windows
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/11/30/安裝slatstack-第一種架構/" class="ui tiny button">
-                    
-                    安裝slatstack-第一種架構
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/30/安裝slatstack-第一種架構/" rel="prev" title="安裝slatstack-第一種架構">
+      <i class="fa fa-chevron-left"></i> 安裝slatstack-第一種架構
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/03/安裝ansible-windows/" rel="next" title="安裝ansible-windows">
+      安裝ansible-windows <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了"><span>想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了</span></a><ol><li><a href="#1-安裝-ansible"><span>1. 安裝 ansible</span></a></li><li><a href="#2-配置-ansible"><span>2. 配置 ansible</span></a></li><li><a href="#Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"><span>Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線</span></a></li><li><a href="#3-測試，如下圖就成功了接下來可以下其他指令對機器做控制"><span>3. 測試，如下圖就成功了接下來可以下其他指令對機器做控制</span></a></li><li><a href="#4-下指令方式操作機器"><span>4. 下指令方式操作機器</span></a></li><li><a href="#如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功"><span>如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了"><span class="nav-number">1.</span> <span class="nav-text">想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安裝-ansible"><span class="nav-number">1.1.</span> <span class="nav-text">1. 安裝 ansible</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置-ansible"><span class="nav-number">1.2.</span> <span class="nav-text">2. 配置 ansible</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ansible-通過-hosts-文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線"><span class="nav-number">1.3.</span> <span class="nav-text">Ansible 通過 hosts 文件知道所有服務器，我們需要先設置此文件，然後才能開始與我們的其他機器連線</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-測試，如下圖就成功了接下來可以下其他指令對機器做控制"><span class="nav-number">1.4.</span> <span class="nav-text">3. 測試，如下圖就成功了接下來可以下其他指令對機器做控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-下指令方式操作機器"><span class="nav-number">1.5.</span> <span class="nav-text">4. 下指令方式操作機器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功"><span class="nav-number">1.6.</span> <span class="nav-text">如下圖下完重啟指令後會發現連不到，因為重新啟動會暫時連不到表示指令操作成功</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

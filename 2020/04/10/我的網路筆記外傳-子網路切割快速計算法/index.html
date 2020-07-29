@@ -1,243 +1,369 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>我的網路筆記外傳-子網路切割快速計算法 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x5728; IPv4 &amp;#x7684;&amp;#x5354;&amp;#x5B9A;&amp;#x4E0B;&amp;#xFF0C;IP &amp;#x4F4D;&amp;#x5740;&amp;#x662F;&amp;#x7531; 4 &amp;#x500B; 8 &amp;#x4F4D;&amp;#x5143;&amp;#x7D44;&amp;#x6210;&amp;#x7684;&amp;#x6578;&amp;#x5B57;&amp;#x4F86;&amp;#x8868;&amp;#x9054;&amp;#xFF0C;&amp;#x5982;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的網路筆記外傳-子網路切割快速計算法">
 <meta property="og:url" content="http://yoursite.com/2020/04/10/我的網路筆記外傳-子網路切割快速計算法/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x5728; IPv4 &amp;#x7684;&amp;#x5354;&amp;#x5B9A;&amp;#x4E0B;&amp;#xFF0C;IP &amp;#x4F4D;&amp;#x5740;&amp;#x662F;&amp;#x7531; 4 &amp;#x500B; 8 &amp;#x4F4D;&amp;#x5143;&amp;#x7D44;&amp;#x6210;&amp;#x7684;&amp;#x6578;&amp;#x5B57;&amp;#x4F86;&amp;#x8868;&amp;#x9054;&amp;#xFF0C;&amp;#x5982;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2020-05-05T05:37:06.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的網路筆記外傳-子網路切割快速計算法">
-<meta name="twitter:description" content="&amp;#x5728; IPv4 &amp;#x7684;&amp;#x5354;&amp;#x5B9A;&amp;#x4E0B;&amp;#xFF0C;IP &amp;#x4F4D;&amp;#x5740;&amp;#x662F;&amp;#x7531; 4 &amp;#x500B; 8 &amp;#x4F4D;&amp;#x5143;&amp;#x7D44;&amp;#x6210;&amp;#x7684;&amp;#x6578;&amp;#x5B57;&amp;#x4F86;&amp;#x8868;&amp;#x9054;&amp;#xFF0C;&amp;#x5982;">
+<meta name="twitter:description" content="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2020/04/10/我的網路筆記外傳-子網路切割快速計算法/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>我的網路筆記外傳-子網路切割快速計算法 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-我的網路筆記外傳-子網路切割快速計算法" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    我的網路筆記外傳-子網路切割快速計算法
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/我的網路筆記外傳-子網路切割快速計算法/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h4 id="&#x5728;-IPv4-&#x7684;&#x5354;&#x5B9A;&#x4E0B;&#xFF0C;IP-&#x4F4D;&#x5740;&#x662F;&#x7531;-4-&#x500B;-8-&#x4F4D;&#x5143;&#x7D44;&#x6210;&#x7684;&#x6578;&#x5B57;&#x4F86;&#x8868;&#x9054;&#xFF0C;&#x5982;-200-1-1-130&#xFF0C;&#x4E00;&#x500B;IP&#x4F4D;&#x5740;&#x5206;&#x70BA;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;-Network-Address-&#x4E3B;&#x6A5F;&#x4F4D;&#x5740;-Host-Address-&#xFF0C;&#x4F9D;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x7684;&#x4F4D;&#x5143;&#x6578;&#x4E0D;&#x540C;&#x800C;&#x5206;&#x70BA;A&#x3001;B&#x3001;C&#x3001;D-&#x7D1A;&#x7DB2;&#x8DEF;&#xFF0C;IP-&#x6578;&#x5B57;&#x7684;-0-&#x53CA;-255-&#x662F;&#x9810;&#x8A2D;&#x7684;&#x4E3B;&#x6A5F;&#x53CA;&#x5EE3;&#x64AD;&#x4F4D;&#x5740;&#x7121;&#x6CD5;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x500B;&#x6578;&#x5B57;&#x53EF;&#x7528;&#x7684;-IP-&#x4F4D;&#x5740;&#x8B8A;&#x5316;&#x53EA;&#x6709;-254-&#x500B;-256-2-&#xFF0C;&#x9019;&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x822C;-C-&#x7D1A;&#x7DB2;&#x6BB5;&#x7684;-Gateway-IP-&#x90FD;&#x9810;&#x8A2D;-x-x-x-254-&#x7684;&#x7DE3;&#x6545;&#xFF0C;IPv4-&#x7684;&#x4F4D;&#x5740;&#x56E0;&#x70BA;-ABCD-&#x578B;&#x7DB2;&#x6BB5;&#x7684;&#x914D;&#x6CD5;&#x800C;&#x7121;&#x6CD5;&#x5B8C;&#x5168;&#x61C9;&#x7528;&#x5230;-254-&#x56DB;&#x6B21;&#x65B9;&#x90A3;&#x6A23;&#x591A;&#x7684;&#x53EF;&#x7528;-IP-&#x503C;&#xFF0C;&#x96A8;&#x8457;&#x4E16;&#x754C;&#x4E0A;&#x4E3B;&#x6A5F;&#x6578;&#x905E;&#x589E;&#xFF0C;IP-&#x4F4D;&#x5740;&#x6F38;&#x6F38;&#x4E0D;&#x5920;&#x7528;&#x4E86;&#xFF0C;&#x5728;-IPv6-&#x7684;&#x61C9;&#x7528;&#x5C1A;&#x672A;&#x5B8C;&#x5168;&#x666E;&#x53CA;&#x4E4B;&#x6642;&#xFF0C;&#x5C31;&#x5F97;&#x5229;&#x7528;&#x5207;&#x5206;&#x5B50;&#x7DB2;&#x8DEF;-Subnet-&#x7684;&#x65B9;&#x5F0F;&#x4F86;&#x6709;&#x6548;&#x5206;&#x914D;IP&#x4F4D;&#x5740;"><a href="#&#x5728;-IPv4-&#x7684;&#x5354;&#x5B9A;&#x4E0B;&#xFF0C;IP-&#x4F4D;&#x5740;&#x662F;&#x7531;-4-&#x500B;-8-&#x4F4D;&#x5143;&#x7D44;&#x6210;&#x7684;&#x6578;&#x5B57;&#x4F86;&#x8868;&#x9054;&#xFF0C;&#x5982;-200-1-1-130&#xFF0C;&#x4E00;&#x500B;IP&#x4F4D;&#x5740;&#x5206;&#x70BA;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;-Network-Address-&#x4E3B;&#x6A5F;&#x4F4D;&#x5740;-Host-Address-&#xFF0C;&#x4F9D;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x7684;&#x4F4D;&#x5143;&#x6578;&#x4E0D;&#x540C;&#x800C;&#x5206;&#x70BA;A&#x3001;B&#x3001;C&#x3001;D-&#x7D1A;&#x7DB2;&#x8DEF;&#xFF0C;IP-&#x6578;&#x5B57;&#x7684;-0-&#x53CA;-255-&#x662F;&#x9810;&#x8A2D;&#x7684;&#x4E3B;&#x6A5F;&#x53CA;&#x5EE3;&#x64AD;&#x4F4D;&#x5740;&#x7121;&#x6CD5;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x500B;&#x6578;&#x5B57;&#x53EF;&#x7528;&#x7684;-IP-&#x4F4D;&#x5740;&#x8B8A;&#x5316;&#x53EA;&#x6709;-254-&#x500B;-256-2-&#xFF0C;&#x9019;&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x822C;-C-&#x7D1A;&#x7DB2;&#x6BB5;&#x7684;-Gateway-IP-&#x90FD;&#x9810;&#x8A2D;-x-x-x-254-&#x7684;&#x7DE3;&#x6545;&#xFF0C;IPv4-&#x7684;&#x4F4D;&#x5740;&#x56E0;&#x70BA;-ABCD-&#x578B;&#x7DB2;&#x6BB5;&#x7684;&#x914D;&#x6CD5;&#x800C;&#x7121;&#x6CD5;&#x5B8C;&#x5168;&#x61C9;&#x7528;&#x5230;-254-&#x56DB;&#x6B21;&#x65B9;&#x90A3;&#x6A23;&#x591A;&#x7684;&#x53EF;&#x7528;-IP-&#x503C;&#xFF0C;&#x96A8;&#x8457;&#x4E16;&#x754C;&#x4E0A;&#x4E3B;&#x6A5F;&#x6578;&#x905E;&#x589E;&#xFF0C;IP-&#x4F4D;&#x5740;&#x6F38;&#x6F38;&#x4E0D;&#x5920;&#x7528;&#x4E86;&#xFF0C;&#x5728;-IPv6-&#x7684;&#x61C9;&#x7528;&#x5C1A;&#x672A;&#x5B8C;&#x5168;&#x666E;&#x53CA;&#x4E4B;&#x6642;&#xFF0C;&#x5C31;&#x5F97;&#x5229;&#x7528;&#x5207;&#x5206;&#x5B50;&#x7DB2;&#x8DEF;-Subnet-&#x7684;&#x65B9;&#x5F0F;&#x4F86;&#x6709;&#x6548;&#x5206;&#x914D;IP&#x4F4D;&#x5740;" class="headerlink" title="&#x5728; IPv4 &#x7684;&#x5354;&#x5B9A;&#x4E0B;&#xFF0C;IP &#x4F4D;&#x5740;&#x662F;&#x7531; 4 &#x500B; 8 &#x4F4D;&#x5143;&#x7D44;&#x6210;&#x7684;&#x6578;&#x5B57;&#x4F86;&#x8868;&#x9054;&#xFF0C;&#x5982; 200.1.1.130&#xFF0C;&#x4E00;&#x500B;IP&#x4F4D;&#x5740;&#x5206;&#x70BA;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740; ( Network Address ) +&#x4E3B;&#x6A5F;&#x4F4D;&#x5740; ( Host Address )&#xFF0C;&#x4F9D;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x7684;&#x4F4D;&#x5143;&#x6578;&#x4E0D;&#x540C;&#x800C;&#x5206;&#x70BA;A&#x3001;B&#x3001;C&#x3001;D &#x7D1A;&#x7DB2;&#x8DEF;&#xFF0C;IP &#x6578;&#x5B57;&#x7684; 0 &#x53CA; 255 &#x662F;&#x9810;&#x8A2D;&#x7684;&#x4E3B;&#x6A5F;&#x53CA;&#x5EE3;&#x64AD;&#x4F4D;&#x5740;&#x7121;&#x6CD5;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x500B;&#x6578;&#x5B57;&#x53EF;&#x7528;&#x7684; IP &#x4F4D;&#x5740;&#x8B8A;&#x5316;&#x53EA;&#x6709; 254 &#x500B; ( 256-2 )&#xFF0C;&#x9019;&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x822C; C &#x7D1A;&#x7DB2;&#x6BB5;&#x7684; Gateway IP &#x90FD;&#x9810;&#x8A2D; x.x.x.254 &#x7684;&#x7DE3;&#x6545;&#xFF0C;IPv4 &#x7684;&#x4F4D;&#x5740;&#x56E0;&#x70BA; ABCD &#x578B;&#x7DB2;&#x6BB5;&#x7684;&#x914D;&#x6CD5;&#x800C;&#x7121;&#x6CD5;&#x5B8C;&#x5168;&#x61C9;&#x7528;&#x5230; 254 &#x56DB;&#x6B21;&#x65B9;&#x90A3;&#x6A23;&#x591A;&#x7684;&#x53EF;&#x7528; IP &#x503C;&#xFF0C;&#x96A8;&#x8457;&#x4E16;&#x754C;&#x4E0A;&#x4E3B;&#x6A5F;&#x6578;&#x905E;&#x589E;&#xFF0C;IP &#x4F4D;&#x5740;&#x6F38;&#x6F38;&#x4E0D;&#x5920;&#x7528;&#x4E86;&#xFF0C;&#x5728; IPv6 &#x7684;&#x61C9;&#x7528;&#x5C1A;&#x672A;&#x5B8C;&#x5168;&#x666E;&#x53CA;&#x4E4B;&#x6642;&#xFF0C;&#x5C31;&#x5F97;&#x5229;&#x7528;&#x5207;&#x5206;&#x5B50;&#x7DB2;&#x8DEF; ( Subnet ) &#x7684;&#x65B9;&#x5F0F;&#x4F86;&#x6709;&#x6548;&#x5206;&#x914D;IP&#x4F4D;&#x5740;"></a>&#x5728; IPv4 &#x7684;&#x5354;&#x5B9A;&#x4E0B;&#xFF0C;IP &#x4F4D;&#x5740;&#x662F;&#x7531; 4 &#x500B; 8 &#x4F4D;&#x5143;&#x7D44;&#x6210;&#x7684;&#x6578;&#x5B57;&#x4F86;&#x8868;&#x9054;&#xFF0C;&#x5982; 200.1.1.130&#xFF0C;&#x4E00;&#x500B;IP&#x4F4D;&#x5740;&#x5206;&#x70BA;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740; ( Network Address ) +&#x4E3B;&#x6A5F;&#x4F4D;&#x5740; ( Host Address )&#xFF0C;&#x4F9D;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x7684;&#x4F4D;&#x5143;&#x6578;&#x4E0D;&#x540C;&#x800C;&#x5206;&#x70BA;A&#x3001;B&#x3001;C&#x3001;D &#x7D1A;&#x7DB2;&#x8DEF;&#xFF0C;IP &#x6578;&#x5B57;&#x7684; 0 &#x53CA; 255 &#x662F;&#x9810;&#x8A2D;&#x7684;&#x4E3B;&#x6A5F;&#x53CA;&#x5EE3;&#x64AD;&#x4F4D;&#x5740;&#x7121;&#x6CD5;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x500B;&#x6578;&#x5B57;&#x53EF;&#x7528;&#x7684; IP &#x4F4D;&#x5740;&#x8B8A;&#x5316;&#x53EA;&#x6709; 254 &#x500B; ( 256-2 )&#xFF0C;&#x9019;&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x822C; C &#x7D1A;&#x7DB2;&#x6BB5;&#x7684; Gateway IP &#x90FD;&#x9810;&#x8A2D; x.x.x.254 &#x7684;&#x7DE3;&#x6545;&#xFF0C;IPv4 &#x7684;&#x4F4D;&#x5740;&#x56E0;&#x70BA; ABCD &#x578B;&#x7DB2;&#x6BB5;&#x7684;&#x914D;&#x6CD5;&#x800C;&#x7121;&#x6CD5;&#x5B8C;&#x5168;&#x61C9;&#x7528;&#x5230; 254 &#x56DB;&#x6B21;&#x65B9;&#x90A3;&#x6A23;&#x591A;&#x7684;&#x53EF;&#x7528; IP &#x503C;&#xFF0C;&#x96A8;&#x8457;&#x4E16;&#x754C;&#x4E0A;&#x4E3B;&#x6A5F;&#x6578;&#x905E;&#x589E;&#xFF0C;IP &#x4F4D;&#x5740;&#x6F38;&#x6F38;&#x4E0D;&#x5920;&#x7528;&#x4E86;&#xFF0C;&#x5728; IPv6 &#x7684;&#x61C9;&#x7528;&#x5C1A;&#x672A;&#x5B8C;&#x5168;&#x666E;&#x53CA;&#x4E4B;&#x6642;&#xFF0C;&#x5C31;&#x5F97;&#x5229;&#x7528;&#x5207;&#x5206;&#x5B50;&#x7DB2;&#x8DEF; ( Subnet ) &#x7684;&#x65B9;&#x5F0F;&#x4F86;&#x6709;&#x6548;&#x5206;&#x914D;IP&#x4F4D;&#x5740;</h4><h4 id="&#x67D0;&#x53F0;&#x7DB2;&#x8DEF;&#x4E3B;&#x6A5F;&#xFF0C;&#x5B83;&#x7684;-IP-&#x53CA;&#x5B50;&#x7DB2;&#x8DEF;&#x8868;&#x793A;&#x6CD5;&#x70BA;-200-1-1-130-28&#xFF0C;&#x5F9E;&#x9019;&#x6A23;&#x7C21;&#x77ED;&#x7684;&#x5B57;&#x53E5;&#xFF0C;&#x4F60;&#x8A72;&#x7ACB;&#x523B;&#x770B;&#x51FA;&#x4EC0;&#x9EBC;&#x5462;"><a href="#&#x67D0;&#x53F0;&#x7DB2;&#x8DEF;&#x4E3B;&#x6A5F;&#xFF0C;&#x5B83;&#x7684;-IP-&#x53CA;&#x5B50;&#x7DB2;&#x8DEF;&#x8868;&#x793A;&#x6CD5;&#x70BA;-200-1-1-130-28&#xFF0C;&#x5F9E;&#x9019;&#x6A23;&#x7C21;&#x77ED;&#x7684;&#x5B57;&#x53E5;&#xFF0C;&#x4F60;&#x8A72;&#x7ACB;&#x523B;&#x770B;&#x51FA;&#x4EC0;&#x9EBC;&#x5462;" class="headerlink" title="&#x67D0;&#x53F0;&#x7DB2;&#x8DEF;&#x4E3B;&#x6A5F;&#xFF0C;&#x5B83;&#x7684; IP &#x53CA;&#x5B50;&#x7DB2;&#x8DEF;&#x8868;&#x793A;&#x6CD5;&#x70BA; 200.1.1.130/28&#xFF0C;&#x5F9E;&#x9019;&#x6A23;&#x7C21;&#x77ED;&#x7684;&#x5B57;&#x53E5;&#xFF0C;&#x4F60;&#x8A72;&#x7ACB;&#x523B;&#x770B;&#x51FA;&#x4EC0;&#x9EBC;&#x5462;"></a>&#x67D0;&#x53F0;&#x7DB2;&#x8DEF;&#x4E3B;&#x6A5F;&#xFF0C;&#x5B83;&#x7684; IP &#x53CA;&#x5B50;&#x7DB2;&#x8DEF;&#x8868;&#x793A;&#x6CD5;&#x70BA; 200.1.1.130/28&#xFF0C;&#x5F9E;&#x9019;&#x6A23;&#x7C21;&#x77ED;&#x7684;&#x5B57;&#x53E5;&#xFF0C;&#x4F60;&#x8A72;&#x7ACB;&#x523B;&#x770B;&#x51FA;&#x4EC0;&#x9EBC;&#x5462;</h4><h4 id="1-&#x5B50;&#x7DB2;&#x8DEF;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x70BA;&#x4F55;"><a href="#1-&#x5B50;&#x7DB2;&#x8DEF;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x70BA;&#x4F55;" class="headerlink" title="1.&#x5B50;&#x7DB2;&#x8DEF;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x70BA;&#x4F55;"></a>1.&#x5B50;&#x7DB2;&#x8DEF;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x70BA;&#x4F55;</h4><h4 id="&#x8A72;&#x6578;&#x5B57;-28-&#x662F;&#x4EE3;&#x8868;&#x906E;&#x7F69;-IP-&#x4F4D;&#x5740;&#x7684;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x4F4D;&#x5143;&#x6578;&#xFF0C;&#x5373;&#xFF1A;11111111-11111111-11111111-11110000&#xFF0C;&#x906E;&#x7F69;&#x4F4D;&#x5143;&#x70BA;-1-&#x8005;&#x662F;&#x8B93;-IP-&#x901A;&#x904E;-&#x5408;&#x6CD5;-&#xFF0C;0-&#x8005;&#x70BA;&#x963B;&#x64CB;&#xFF0C;&#x6240;&#x4EE5;&#x5F9E;&#x4E0A;&#x8FF0;&#x7684;-32-&#x4F4D;&#x5143;&#x5206;&#x5E03;&#xFF0C;&#x6211;&#x5011;&#x5F97;&#x77E5;&#x5B83;&#x7684;&#x7DB2;&#x6BB5;&#x578B;&#x614B;&#x662F;&#x5C6C;&#x65BC;-C-&#x578B;&#x4F4D;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#x5341;&#x9032;&#x4F4D;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x5C31;&#x662F;-255-255-255-240-&#x53EA;&#x9700;&#x8981;&#x6C42;&#x7B97;&#x53F3;&#x908A;&#x90A3;&#x56DB;&#x500B;-1-&#xFF0C;&#x5373;-128-64-32-16-240"><a href="#&#x8A72;&#x6578;&#x5B57;-28-&#x662F;&#x4EE3;&#x8868;&#x906E;&#x7F69;-IP-&#x4F4D;&#x5740;&#x7684;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x4F4D;&#x5143;&#x6578;&#xFF0C;&#x5373;&#xFF1A;11111111-11111111-11111111-11110000&#xFF0C;&#x906E;&#x7F69;&#x4F4D;&#x5143;&#x70BA;-1-&#x8005;&#x662F;&#x8B93;-IP-&#x901A;&#x904E;-&#x5408;&#x6CD5;-&#xFF0C;0-&#x8005;&#x70BA;&#x963B;&#x64CB;&#xFF0C;&#x6240;&#x4EE5;&#x5F9E;&#x4E0A;&#x8FF0;&#x7684;-32-&#x4F4D;&#x5143;&#x5206;&#x5E03;&#xFF0C;&#x6211;&#x5011;&#x5F97;&#x77E5;&#x5B83;&#x7684;&#x7DB2;&#x6BB5;&#x578B;&#x614B;&#x662F;&#x5C6C;&#x65BC;-C-&#x578B;&#x4F4D;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#x5341;&#x9032;&#x4F4D;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x5C31;&#x662F;-255-255-255-240-&#x53EA;&#x9700;&#x8981;&#x6C42;&#x7B97;&#x53F3;&#x908A;&#x90A3;&#x56DB;&#x500B;-1-&#xFF0C;&#x5373;-128-64-32-16-240" class="headerlink" title="&#x8A72;&#x6578;&#x5B57; 28 &#x662F;&#x4EE3;&#x8868;&#x906E;&#x7F69; IP &#x4F4D;&#x5740;&#x7684;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x4F4D;&#x5143;&#x6578;&#xFF0C;&#x5373;&#xFF1A;11111111.11111111.11111111.11110000&#xFF0C;&#x906E;&#x7F69;&#x4F4D;&#x5143;&#x70BA; 1 &#x8005;&#x662F;&#x8B93; IP &#x901A;&#x904E; ( &#x5408;&#x6CD5; )&#xFF0C;0 &#x8005;&#x70BA;&#x963B;&#x64CB;&#xFF0C;&#x6240;&#x4EE5;&#x5F9E;&#x4E0A;&#x8FF0;&#x7684; 32 &#x4F4D;&#x5143;&#x5206;&#x5E03;&#xFF0C;&#x6211;&#x5011;&#x5F97;&#x77E5;&#x5B83;&#x7684;&#x7DB2;&#x6BB5;&#x578B;&#x614B;&#x662F;&#x5C6C;&#x65BC; C &#x578B;&#x4F4D;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#x5341;&#x9032;&#x4F4D;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x5C31;&#x662F; 255.255.255.240 ( &#x53EA;&#x9700;&#x8981;&#x6C42;&#x7B97;&#x53F3;&#x908A;&#x90A3;&#x56DB;&#x500B; 1 )&#xFF0C;&#x5373; 128 + 64 + 32 + 16 = 240"></a>&#x8A72;&#x6578;&#x5B57; 28 &#x662F;&#x4EE3;&#x8868;&#x906E;&#x7F69; IP &#x4F4D;&#x5740;&#x7684;&#x7DB2;&#x8DEF;&#x4F4D;&#x5740;&#x6240;&#x4F54;&#x4F4D;&#x5143;&#x6578;&#xFF0C;&#x5373;&#xFF1A;11111111.11111111.11111111.11110000&#xFF0C;&#x906E;&#x7F69;&#x4F4D;&#x5143;&#x70BA; 1 &#x8005;&#x662F;&#x8B93; IP &#x901A;&#x904E; ( &#x5408;&#x6CD5; )&#xFF0C;0 &#x8005;&#x70BA;&#x963B;&#x64CB;&#xFF0C;&#x6240;&#x4EE5;&#x5F9E;&#x4E0A;&#x8FF0;&#x7684; 32 &#x4F4D;&#x5143;&#x5206;&#x5E03;&#xFF0C;&#x6211;&#x5011;&#x5F97;&#x77E5;&#x5B83;&#x7684;&#x7DB2;&#x6BB5;&#x578B;&#x614B;&#x662F;&#x5C6C;&#x65BC; C &#x578B;&#x4F4D;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#x5341;&#x9032;&#x4F4D;&#x7684;&#x906E;&#x7F69;&#x4F4D;&#x5740;&#x5C31;&#x662F; 255.255.255.240 ( &#x53EA;&#x9700;&#x8981;&#x6C42;&#x7B97;&#x53F3;&#x908A;&#x90A3;&#x56DB;&#x500B; 1 )&#xFF0C;&#x5373; 128 + 64 + 32 + 16 = 240</h4><h4 id="2-&#x53EF;&#x5207;&#x6210;&#x5E7E;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;"><a href="#2-&#x53EF;&#x5207;&#x6210;&#x5E7E;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;" class="headerlink" title="2.&#x53EF;&#x5207;&#x6210;&#x5E7E;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;"></a>2.&#x53EF;&#x5207;&#x6210;&#x5E7E;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;</h4><h4 id="&#x6578;&#x5B57;-1-&#x662F;&#x8B93;-IP-&#x901A;&#x904E;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;&#x6CE8;&#x610F;-1-&#x7684;&#x4F4D;&#x5143;&#x8B8A;&#x5316;&#x7D44;&#x5408;-&#x56E0;&#x70BA;&#x5F8C;&#x9762;&#x7684;-0-&#x600E;&#x9EBC;&#x8B8A;&#x5316;&#x90FD;&#x6703;&#x88AB;&#x64CB;&#x4F4F;-&#xFF0C;-1111-2-4-16&#xFF0C;&#x5171;&#x6709;-16-&#x7A2E;&#x8B8A;&#x5316;&#x3002;"><a href="#&#x6578;&#x5B57;-1-&#x662F;&#x8B93;-IP-&#x901A;&#x904E;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;&#x6CE8;&#x610F;-1-&#x7684;&#x4F4D;&#x5143;&#x8B8A;&#x5316;&#x7D44;&#x5408;-&#x56E0;&#x70BA;&#x5F8C;&#x9762;&#x7684;-0-&#x600E;&#x9EBC;&#x8B8A;&#x5316;&#x90FD;&#x6703;&#x88AB;&#x64CB;&#x4F4F;-&#xFF0C;-1111-2-4-16&#xFF0C;&#x5171;&#x6709;-16-&#x7A2E;&#x8B8A;&#x5316;&#x3002;" class="headerlink" title="&#x6578;&#x5B57; 1 &#x662F;&#x8B93; IP &#x901A;&#x904E;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;&#x6CE8;&#x610F; 1 &#x7684;&#x4F4D;&#x5143;&#x8B8A;&#x5316;&#x7D44;&#x5408; ( &#x56E0;&#x70BA;&#x5F8C;&#x9762;&#x7684; 0 &#x600E;&#x9EBC;&#x8B8A;&#x5316;&#x90FD;&#x6703;&#x88AB;&#x64CB;&#x4F4F; )&#xFF0C;( 1111 ) = 2^4 = 16&#xFF0C;&#x5171;&#x6709; 16 &#x7A2E;&#x8B8A;&#x5316;&#x3002;"></a>&#x6578;&#x5B57; 1 &#x662F;&#x8B93; IP &#x901A;&#x904E;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;&#x6CE8;&#x610F; 1 &#x7684;&#x4F4D;&#x5143;&#x8B8A;&#x5316;&#x7D44;&#x5408; ( &#x56E0;&#x70BA;&#x5F8C;&#x9762;&#x7684; 0 &#x600E;&#x9EBC;&#x8B8A;&#x5316;&#x90FD;&#x6703;&#x88AB;&#x64CB;&#x4F4F; )&#xFF0C;( 1111 ) = 2^4 = 16&#xFF0C;&#x5171;&#x6709; 16 &#x7A2E;&#x8B8A;&#x5316;&#x3002;</h4><h4 id="3-&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x6BB5;&#x6709;&#x5E7E;&#x500B;-IP-&#x503C;"><a href="#3-&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x6BB5;&#x6709;&#x5E7E;&#x500B;-IP-&#x503C;" class="headerlink" title="3.&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x6BB5;&#x6709;&#x5E7E;&#x500B; IP &#x503C;"></a>3.&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x6BB5;&#x6709;&#x5E7E;&#x500B; IP &#x503C;</h4><h4 id="&#x5B50;&#x7DB2;&#x8DEF;-ip-&#x6578;&#x70BA;-256-16-2-14-&#x982D;&#x5C3E;-IP-&#x8981;&#x53BB;&#x9664;"><a href="#&#x5B50;&#x7DB2;&#x8DEF;-ip-&#x6578;&#x70BA;-256-16-2-14-&#x982D;&#x5C3E;-IP-&#x8981;&#x53BB;&#x9664;" class="headerlink" title="&#x5B50;&#x7DB2;&#x8DEF; ip &#x6578;&#x70BA; 256/16 - 2 = 14 ( &#x982D;&#x5C3E; IP &#x8981;&#x53BB;&#x9664; )"></a>&#x5B50;&#x7DB2;&#x8DEF; ip &#x6578;&#x70BA; 256/16 - 2 = 14 ( &#x982D;&#x5C3E; IP &#x8981;&#x53BB;&#x9664; )</h4><h4 id="4-&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;&#x7684;-IP-&#x8D77;&#x8FC4;&#x4F4D;&#x5740;"><a href="#4-&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;&#x7684;-IP-&#x8D77;&#x8FC4;&#x4F4D;&#x5740;" class="headerlink" title="4.&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;&#x7684; IP &#x8D77;&#x8FC4;&#x4F4D;&#x5740;"></a>4.&#x6BCF;&#x500B;&#x5B50;&#x7DB2;&#x8DEF;&#x7684; IP &#x8D77;&#x8FC4;&#x4F4D;&#x5740;</h4><h4 id="200-1-1-0-15&#xFF0C;200-1-1-16-31&#xFF0C;200-1-1-32-48&#xFF0C;&#x2026;&#xFF0C;200-1-1-240-255"><a href="#200-1-1-0-15&#xFF0C;200-1-1-16-31&#xFF0C;200-1-1-32-48&#xFF0C;&#x2026;&#xFF0C;200-1-1-240-255" class="headerlink" title="200.1.1.0-15&#xFF0C;200.1.1.16-31&#xFF0C;200.1.1.32-48&#xFF0C;&#x2026;&#xFF0C;200.1.1.240-255"></a>200.1.1.0-15&#xFF0C;200.1.1.16-31&#xFF0C;200.1.1.32-48&#xFF0C;&#x2026;&#xFF0C;200.1.1.240-255</h4><h4 id="&#x4F8B;&#x5982;&#xFF0C;&#x4E3B;&#x6A5F;-IP-&#x70BA;-200-1-1-130-28-&#x7684;&#x6240;&#x5728;&#x5B50;&#x7DB2;&#x8DEF;&#x8D77;&#x8FC4;IP&#x70BA;-130-16-8&#xFF0C;-16-8-128&#xFF0C;128-16-1-143-&#x6545;&#x5728;-200-1-1-128-143&#x3002;"><a href="#&#x4F8B;&#x5982;&#xFF0C;&#x4E3B;&#x6A5F;-IP-&#x70BA;-200-1-1-130-28-&#x7684;&#x6240;&#x5728;&#x5B50;&#x7DB2;&#x8DEF;&#x8D77;&#x8FC4;IP&#x70BA;-130-16-8&#xFF0C;-16-8-128&#xFF0C;128-16-1-143-&#x6545;&#x5728;-200-1-1-128-143&#x3002;" class="headerlink" title="&#x4F8B;&#x5982;&#xFF0C;&#x4E3B;&#x6A5F; IP &#x70BA; 200.1.1.130/28 &#x7684;&#x6240;&#x5728;&#x5B50;&#x7DB2;&#x8DEF;&#x8D77;&#x8FC4;IP&#x70BA;: 130/16 = 8&#xFF0C; 16 * 8 = 128&#xFF0C;128 + 16 - 1 = 143 &#x6545;&#x5728; 200.1.1.128-143&#x3002;"></a>&#x4F8B;&#x5982;&#xFF0C;&#x4E3B;&#x6A5F; IP &#x70BA; 200.1.1.130/28 &#x7684;&#x6240;&#x5728;&#x5B50;&#x7DB2;&#x8DEF;&#x8D77;&#x8FC4;IP&#x70BA;: 130/16 = 8&#xFF0C; 16 * 8 = 128&#xFF0C;128 + 16 - 1 = 143 &#x6545;&#x5728; 200.1.1.128-143&#x3002;</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-04-10T05:48:55.000Z" itemprop="datePublished">2020-04-10</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的網路筆記外傳-子網路切割快速計算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2020-04-10 13:48:55" itemprop="dateCreated datePublished" datetime="2020-04-10T13:48:55+08:00">2020-04-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-05-05 13:37:06" itemprop="dateModified" datetime="2020-05-05T13:37:06+08:00">2020-05-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址"><a href="#在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址" class="headerlink" title="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址"></a>在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址</h4><h4 id="某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢"><a href="#某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢" class="headerlink" title="某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢"></a>某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢</h4><h4 id="1-子網路的遮罩位址為何"><a href="#1-子網路的遮罩位址為何" class="headerlink" title="1.子網路的遮罩位址為何"></a>1.子網路的遮罩位址為何</h4><h4 id="該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240"><a href="#該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240" class="headerlink" title="該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240"></a>該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240</h4><h4 id="2-可切成幾個子網路"><a href="#2-可切成幾個子網路" class="headerlink" title="2.可切成幾個子網路"></a>2.可切成幾個子網路</h4><h4 id="數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。"><a href="#數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。" class="headerlink" title="數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。"></a>數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。</h4><h4 id="3-每個子網段有幾個-IP-值"><a href="#3-每個子網段有幾個-IP-值" class="headerlink" title="3.每個子網段有幾個 IP 值"></a>3.每個子網段有幾個 IP 值</h4><h4 id="子網路-ip-數為-256-16-2-14-頭尾-IP-要去除"><a href="#子網路-ip-數為-256-16-2-14-頭尾-IP-要去除" class="headerlink" title="子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )"></a>子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )</h4><h4 id="4-每個子網路的-IP-起迄位址"><a href="#4-每個子網路的-IP-起迄位址" class="headerlink" title="4.每個子網路的 IP 起迄位址"></a>4.每個子網路的 IP 起迄位址</h4><h4 id="200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255"><a href="#200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255" class="headerlink" title="200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255"></a>200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255</h4><h4 id="例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。"><a href="#例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。" class="headerlink" title="例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。"></a>例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/10/我的網路筆記第一集IP/" rel="prev" title="我的網路筆記第一集IP">
+      <i class="fa fa-chevron-left"></i> 我的網路筆記第一集IP
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-                <a class="ui tiny button disabled"><i class="angle left icon"></i>前一篇</a>
 
-                
-            </div>
-            <div class="column nav-right">
-                
 
-                <a href="/2020/04/10/我的網路筆記第一集IP/" class="ui tiny button">
-                    
-                    我的網路筆記第一集IP
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址"><span class="nav-number">1.</span> <span class="nav-text">在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢"><span class="nav-number">2.</span> <span class="nav-text">某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-子網路的遮罩位址為何"><span class="nav-number">3.</span> <span class="nav-text">1.子網路的遮罩位址為何</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240"><span class="nav-number">4.</span> <span class="nav-text">該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-可切成幾個子網路"><span class="nav-number">5.</span> <span class="nav-text">2.可切成幾個子網路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。"><span class="nav-number">6.</span> <span class="nav-text">數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-每個子網段有幾個-IP-值"><span class="nav-number">7.</span> <span class="nav-text">3.每個子網段有幾個 IP 值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子網路-ip-數為-256-16-2-14-頭尾-IP-要去除"><span class="nav-number">8.</span> <span class="nav-text">子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-每個子網路的-IP-起迄位址"><span class="nav-number">9.</span> <span class="nav-text">4.每個子網路的 IP 起迄位址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255"><span class="nav-number">10.</span> <span class="nav-text">200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。"><span class="nav-number">11.</span> <span class="nav-text">例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址"><span>在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址</span></a></li><li><a href="#某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢"><span>某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢</span></a></li><li><a href="#1-子網路的遮罩位址為何"><span>1.子網路的遮罩位址為何</span></a></li><li><a href="#該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240"><span>該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240</span></a></li><li><a href="#2-可切成幾個子網路"><span>2.可切成幾個子網路</span></a></li><li><a href="#數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。"><span>數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。</span></a></li><li><a href="#3-每個子網段有幾個-IP-值"><span>3.每個子網段有幾個 IP 值</span></a></li><li><a href="#子網路-ip-數為-256-16-2-14-頭尾-IP-要去除"><span>子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )</span></a></li><li><a href="#4-每個子網路的-IP-起迄位址"><span>4.每個子網路的 IP 起迄位址</span></a></li><li><a href="#200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255"><span>200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255</span></a></li><li><a href="#例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。"><span>例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。</span></a></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>

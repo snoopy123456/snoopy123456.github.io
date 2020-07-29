@@ -1,21 +1,32 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>VirtualBox使用SSH連線 | 佛系筆記</title>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528; SSH &amp;#x9023;&amp;#x7DDA;&amp;#x5DE5;&amp;#x5177;&amp;#x9023;&amp;#x5230;virtualbox linux1. &amp;#x9EDE;&amp;#x9078;&amp;#x5DE6;&amp;#x4E0A;&amp;#x65B9;">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux1. 點選左上方檔案，選擇主機網路管理員 2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡 3. 選擇機器點選設定 4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VirtualBox使用SSH連線">
 <meta property="og:url" content="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528; SSH &amp;#x9023;&amp;#x7DDA;&amp;#x5DE5;&amp;#x5177;&amp;#x9023;&amp;#x5230;virtualbox linux1. &amp;#x9EDE;&amp;#x9078;&amp;#x5DE6;&amp;#x4E0A;&amp;#x65B9;">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux1. 點選左上方檔案，選擇主機網路管理員 2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡 3. 選擇機器點選設定 4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/images/3.png">
@@ -35,246 +46,357 @@
 <meta property="og:updated_time" content="2020-04-10T09:26:13.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VirtualBox使用SSH連線">
-<meta name="twitter:description" content="&amp;#x672C;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x5C07;&amp;#x4ECB;&amp;#x7D39;&amp;#x5982;&amp;#x4F55;&amp;#x4F7F;&amp;#x7528; SSH &amp;#x9023;&amp;#x7DDA;&amp;#x5DE5;&amp;#x5177;&amp;#x9023;&amp;#x5230;virtualbox linux1. &amp;#x9EDE;&amp;#x9078;&amp;#x5DE6;&amp;#x4E0A;&amp;#x65B9;">
+<meta name="twitter:description" content="本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux1. 點選左上方檔案，選擇主機網路管理員 2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡 3. 選擇機器點選設定 4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/images/1.png">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "緣分到了，文件自然就做好了！",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
+<link rel="canonical" href="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
 </script>
 
-    
+  <title>VirtualBox使用SSH連線 | 佛系筆記</title>
+  
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
+  </div>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+  <div class="site-meta">
 
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>佛系筆記</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">緣分到了，文件自然就做好了！</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        首页
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">佛系筆記</h1>
+      <span class="logo-line-after"><i></i></span>
     </a>
+  </div>
 
-    
-
-    
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-VirtualBox使用SSH連線" class="ui main container article-type-post">
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-    <div class="ui divided grid">
 
-        <div class="two column row" id="article-content">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
+          <div class="content post posts-expand">
+            
 
-<h1 class="ui header">
     
-    VirtualBox使用SSH連線
-</h1>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/VirtualBox使用SSH連線/">
 
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h3 id="&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;-SSH-&#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x9023;&#x5230;virtualbox-linux"><a href="#&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528;-SSH-&#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x9023;&#x5230;virtualbox-linux" class="headerlink" title="&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528; SSH &#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x9023;&#x5230;virtualbox linux"></a>&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x5C07;&#x4ECB;&#x7D39;&#x5982;&#x4F55;&#x4F7F;&#x7528; SSH &#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x9023;&#x5230;virtualbox linux</h3><h4 id="1-&#x9EDE;&#x9078;&#x5DE6;&#x4E0A;&#x65B9;&#x6A94;&#x6848;&#xFF0C;&#x9078;&#x64C7;&#x4E3B;&#x6A5F;&#x7DB2;&#x8DEF;&#x7BA1;&#x7406;&#x54E1;"><a href="#1-&#x9EDE;&#x9078;&#x5DE6;&#x4E0A;&#x65B9;&#x6A94;&#x6848;&#xFF0C;&#x9078;&#x64C7;&#x4E3B;&#x6A5F;&#x7DB2;&#x8DEF;&#x7BA1;&#x7406;&#x54E1;" class="headerlink" title="1. &#x9EDE;&#x9078;&#x5DE6;&#x4E0A;&#x65B9;&#x6A94;&#x6848;&#xFF0C;&#x9078;&#x64C7;&#x4E3B;&#x6A5F;&#x7DB2;&#x8DEF;&#x7BA1;&#x7406;&#x54E1;"></a>1. &#x9EDE;&#x9078;&#x5DE6;&#x4E0A;&#x65B9;&#x6A94;&#x6848;&#xFF0C;&#x9078;&#x64C7;&#x4E3B;&#x6A5F;&#x7DB2;&#x8DEF;&#x7BA1;&#x7406;&#x54E1;</h4><p><a class="magnific-img" href="images/1.png"><img src="images/1.png" alt=" " class="ui centered image"></a></p>
-<h4 id="2-&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x88E1;&#x9762;&#x5DF2;&#x7D93;&#x6709;&#x4E00;&#x7D44;-IP&#xFF0C;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x89D2;&#x5EFA;&#x7ACB;&#x53EF;&#x4EE5;&#x65B0;&#x589E;-IP"><a href="#2-&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x88E1;&#x9762;&#x5DF2;&#x7D93;&#x6709;&#x4E00;&#x7D44;-IP&#xFF0C;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x89D2;&#x5EFA;&#x7ACB;&#x53EF;&#x4EE5;&#x65B0;&#x589E;-IP" class="headerlink" title="2. &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x88E1;&#x9762;&#x5DF2;&#x7D93;&#x6709;&#x4E00;&#x7D44; IP&#xFF0C;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x89D2;&#x5EFA;&#x7ACB;&#x53EF;&#x4EE5;&#x65B0;&#x589E; IP"></a>2. &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x88E1;&#x9762;&#x5DF2;&#x7D93;&#x6709;&#x4E00;&#x7D44; IP&#xFF0C;&#x9078;&#x64C7;&#x5DE6;&#x4E0A;&#x89D2;&#x5EFA;&#x7ACB;&#x53EF;&#x4EE5;&#x65B0;&#x589E; IP</h4><p><a class="magnific-img" href="images/2.png"><img src="images/2.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/3.png"><img src="images/3.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/4.png"><img src="images/4.png" alt=" " class="ui centered image"></a></p>
-<h4 id="PS-&#x5230;&#x672C;&#x6A5F;-cmd-&#x4E0B;&#x6307;&#x4EE4;-ipconfig-&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9810;&#x8A2D;&#x5C31;&#x6709;-virtualbox-&#x7684;&#x7DB2;&#x5361;"><a href="#PS-&#x5230;&#x672C;&#x6A5F;-cmd-&#x4E0B;&#x6307;&#x4EE4;-ipconfig-&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9810;&#x8A2D;&#x5C31;&#x6709;-virtualbox-&#x7684;&#x7DB2;&#x5361;" class="headerlink" title="PS. &#x5230;&#x672C;&#x6A5F; cmd &#x4E0B;&#x6307;&#x4EE4; ipconfig &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9810;&#x8A2D;&#x5C31;&#x6709; virtualbox &#x7684;&#x7DB2;&#x5361;"></a>PS. &#x5230;&#x672C;&#x6A5F; cmd &#x4E0B;&#x6307;&#x4EE4; ipconfig &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9810;&#x8A2D;&#x5C31;&#x6709; virtualbox &#x7684;&#x7DB2;&#x5361;</h4><p><a class="magnific-img" href="images/5.png"><img src="images/5.png" alt=" " class="ui centered image"></a></p>
-<h4 id="3-&#x9078;&#x64C7;&#x6A5F;&#x5668;&#x9EDE;&#x9078;&#x8A2D;&#x5B9A;"><a href="#3-&#x9078;&#x64C7;&#x6A5F;&#x5668;&#x9EDE;&#x9078;&#x8A2D;&#x5B9A;" class="headerlink" title="3. &#x9078;&#x64C7;&#x6A5F;&#x5668;&#x9EDE;&#x9078;&#x8A2D;&#x5B9A;"></a>3. &#x9078;&#x64C7;&#x6A5F;&#x5668;&#x9EDE;&#x9078;&#x8A2D;&#x5B9A;</h4><p><a class="magnific-img" href="images/6.png"><img src="images/6.png" alt=" " class="ui centered image"></a></p>
-<h4 id="4-&#x5148;&#x5728;&#x8981;-SSH-&#x9023;&#x7DDA;&#x7684;&#x6A5F;&#x5668;&#x4E0B;&#x6307;&#x4EE4;-ifconfig-&#x67E5;&#x770B;-IP&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;-ip-&#x662F;-10-0-2-15"><a href="#4-&#x5148;&#x5728;&#x8981;-SSH-&#x9023;&#x7DDA;&#x7684;&#x6A5F;&#x5668;&#x4E0B;&#x6307;&#x4EE4;-ifconfig-&#x67E5;&#x770B;-IP&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;-ip-&#x662F;-10-0-2-15" class="headerlink" title="4. &#x5148;&#x5728;&#x8981; SSH &#x9023;&#x7DDA;&#x7684;&#x6A5F;&#x5668;&#x4E0B;&#x6307;&#x4EE4; ifconfig &#x67E5;&#x770B; IP&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230; ip &#x662F; 10.0.2.15"></a>4. &#x5148;&#x5728;&#x8981; SSH &#x9023;&#x7DDA;&#x7684;&#x6A5F;&#x5668;&#x4E0B;&#x6307;&#x4EE4; ifconfig &#x67E5;&#x770B; IP&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230; ip &#x662F; 10.0.2.15</h4><p><a class="magnific-img" href="images/9.png"><img src="images/9.png" alt=" " class="ui centered image"></a></p>
-<h4 id="5-&#x9078;&#x64C7;&#x7DB2;&#x8DEF;&#x6253;&#x958B;&#x9032;&#x968E;&#x9078;&#x9805;&#xFF0C;&#x9EDE;&#x9078;&#x9023;&#x63A5;&#x57E0;&#x8F49;&#x9001;"><a href="#5-&#x9078;&#x64C7;&#x7DB2;&#x8DEF;&#x6253;&#x958B;&#x9032;&#x968E;&#x9078;&#x9805;&#xFF0C;&#x9EDE;&#x9078;&#x9023;&#x63A5;&#x57E0;&#x8F49;&#x9001;" class="headerlink" title="5. &#x9078;&#x64C7;&#x7DB2;&#x8DEF;&#x6253;&#x958B;&#x9032;&#x968E;&#x9078;&#x9805;&#xFF0C;&#x9EDE;&#x9078;&#x9023;&#x63A5;&#x57E0;&#x8F49;&#x9001;"></a>5. &#x9078;&#x64C7;&#x7DB2;&#x8DEF;&#x6253;&#x958B;&#x9032;&#x968E;&#x9078;&#x9805;&#xFF0C;&#x9EDE;&#x9078;&#x9023;&#x63A5;&#x57E0;&#x8F49;&#x9001;</h4><p><a class="magnific-img" href="images/7.png"><img src="images/7.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/8.png"><img src="images/8.png" alt=" " class="ui centered image"></a></p>
-<h4 id="6-&#x9EDE;&#x9078;&#x908A;&#x8B8A;-&#x65B0;&#x589E;"><a href="#6-&#x9EDE;&#x9078;&#x908A;&#x8B8A;-&#x65B0;&#x589E;" class="headerlink" title="6. &#x9EDE;&#x9078;&#x908A;&#x8B8A; + &#x65B0;&#x589E;"></a>6. &#x9EDE;&#x9078;&#x908A;&#x8B8A; + &#x65B0;&#x589E;</h4><p><a class="magnific-img" href="images/10.png"><img src="images/10.png" alt=" " class="ui centered image"></a><br><a class="magnific-img" href="images/11.png"><img src="images/11.png" alt=" " class="ui centered image"></a></p>
-<h4 id="7-&#x8F38;&#x5165;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x7684;&#x4E3B;&#x6A5F;-IP&#xFF0C;SSH-&#x9023;&#x7DDA;-port-&#x662F;-22&#xFF0C;&#x5BA2;&#x9AD4;-IP-&#x5C31;&#x662F;&#x525B;&#x525B;&#x6A5F;&#x5668;&#x7684;-IP"><a href="#7-&#x8F38;&#x5165;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x7684;&#x4E3B;&#x6A5F;-IP&#xFF0C;SSH-&#x9023;&#x7DDA;-port-&#x662F;-22&#xFF0C;&#x5BA2;&#x9AD4;-IP-&#x5C31;&#x662F;&#x525B;&#x525B;&#x6A5F;&#x5668;&#x7684;-IP" class="headerlink" title="7. &#x8F38;&#x5165;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x7684;&#x4E3B;&#x6A5F; IP&#xFF0C;SSH &#x9023;&#x7DDA; port &#x662F; 22&#xFF0C;&#x5BA2;&#x9AD4; IP &#x5C31;&#x662F;&#x525B;&#x525B;&#x6A5F;&#x5668;&#x7684; IP"></a>7. &#x8F38;&#x5165;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x7684;&#x4E3B;&#x6A5F; IP&#xFF0C;SSH &#x9023;&#x7DDA; port &#x662F; 22&#xFF0C;&#x5BA2;&#x9AD4; IP &#x5C31;&#x662F;&#x525B;&#x525B;&#x6A5F;&#x5668;&#x7684; IP</h4><p><a class="magnific-img" href="images/12.png"><img src="images/12.png" alt=" " class="ui centered image"></a></p>
-<h4 id="8-&#x5728;&#x4F86;&#x56DE;&#x5230;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;-SSH-&#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3;-VirtualBox-&#x4E2D;&#x7684;-Ubuntu-&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5728;&#x9019;&#x908A;&#x9084;&#x9700;&#x8981;&#x9032;&#x4E00;&#x6B65;&#x4F7F;&#x7528;&#x6307;&#x4EE4;-sudo-service-ssh-status-&#x4F86;&#x67E5;&#x8A62;-SSH-&#x670D;&#x52D9;&#x662F;&#x5426;&#x6709;&#x5728;&#x57F7;&#x884C;&#x7684;&#x72C0;&#x614B;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6240;&#x793A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56DE;&#x50B3;&#x70BA;&#x6A94;&#x6848;-not-found-&#x7684;&#x8A0A;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x8868;&#x793A;&#x8AAA;&#x6B64;&#x7CFB;&#x7D71;&#x9084;&#x672A;&#x5B89;&#x88DD;&#x597D;-OpenSSH-Server-&#x7684;&#x5957;&#x4EF6;&#xFF0C;&#x90A3;&#x63A5;&#x4E0B;&#x4F86;&#x9700;&#x8981;&#x5728;&#x7CFB;&#x7D71;&#x4E0A;&#x5B89;&#x88DD;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x5957;&#x4EF6;"><a href="#8-&#x5728;&#x4F86;&#x56DE;&#x5230;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;-SSH-&#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3;-VirtualBox-&#x4E2D;&#x7684;-Ubuntu-&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5728;&#x9019;&#x908A;&#x9084;&#x9700;&#x8981;&#x9032;&#x4E00;&#x6B65;&#x4F7F;&#x7528;&#x6307;&#x4EE4;-sudo-service-ssh-status-&#x4F86;&#x67E5;&#x8A62;-SSH-&#x670D;&#x52D9;&#x662F;&#x5426;&#x6709;&#x5728;&#x57F7;&#x884C;&#x7684;&#x72C0;&#x614B;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6240;&#x793A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56DE;&#x50B3;&#x70BA;&#x6A94;&#x6848;-not-found-&#x7684;&#x8A0A;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x8868;&#x793A;&#x8AAA;&#x6B64;&#x7CFB;&#x7D71;&#x9084;&#x672A;&#x5B89;&#x88DD;&#x597D;-OpenSSH-Server-&#x7684;&#x5957;&#x4EF6;&#xFF0C;&#x90A3;&#x63A5;&#x4E0B;&#x4F86;&#x9700;&#x8981;&#x5728;&#x7CFB;&#x7D71;&#x4E0A;&#x5B89;&#x88DD;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x5957;&#x4EF6;" class="headerlink" title="8. &#x5728;&#x4F86;&#x56DE;&#x5230;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528; SSH &#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3; VirtualBox &#x4E2D;&#x7684; Ubuntu &#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5728;&#x9019;&#x908A;&#x9084;&#x9700;&#x8981;&#x9032;&#x4E00;&#x6B65;&#x4F7F;&#x7528;&#x6307;&#x4EE4; sudo service ssh status &#x4F86;&#x67E5;&#x8A62; SSH &#x670D;&#x52D9;&#x662F;&#x5426;&#x6709;&#x5728;&#x57F7;&#x884C;&#x7684;&#x72C0;&#x614B;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6240;&#x793A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56DE;&#x50B3;&#x70BA;&#x6A94;&#x6848; not-found &#x7684;&#x8A0A;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x8868;&#x793A;&#x8AAA;&#x6B64;&#x7CFB;&#x7D71;&#x9084;&#x672A;&#x5B89;&#x88DD;&#x597D; OpenSSH Server &#x7684;&#x5957;&#x4EF6;&#xFF0C;&#x90A3;&#x63A5;&#x4E0B;&#x4F86;&#x9700;&#x8981;&#x5728;&#x7CFB;&#x7D71;&#x4E0A;&#x5B89;&#x88DD;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x5957;&#x4EF6;"></a>8. &#x5728;&#x4F86;&#x56DE;&#x5230;&#x865B;&#x64EC;&#x6A5F;&#x5668;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528; SSH &#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3; VirtualBox &#x4E2D;&#x7684; Ubuntu &#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5728;&#x9019;&#x908A;&#x9084;&#x9700;&#x8981;&#x9032;&#x4E00;&#x6B65;&#x4F7F;&#x7528;&#x6307;&#x4EE4; sudo service ssh status &#x4F86;&#x67E5;&#x8A62; SSH &#x670D;&#x52D9;&#x662F;&#x5426;&#x6709;&#x5728;&#x57F7;&#x884C;&#x7684;&#x72C0;&#x614B;&#xFF0C;&#x5982;&#x4E0B;&#x5716;&#x6240;&#x793A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56DE;&#x50B3;&#x70BA;&#x6A94;&#x6848; not-found &#x7684;&#x8A0A;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x8868;&#x793A;&#x8AAA;&#x6B64;&#x7CFB;&#x7D71;&#x9084;&#x672A;&#x5B89;&#x88DD;&#x597D; OpenSSH Server &#x7684;&#x5957;&#x4EF6;&#xFF0C;&#x90A3;&#x63A5;&#x4E0B;&#x4F86;&#x9700;&#x8981;&#x5728;&#x7CFB;&#x7D71;&#x4E0A;&#x5B89;&#x88DD;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x5957;&#x4EF6;</h4><p><a class="magnific-img" href="images/13.png"><img src="images/13.png" alt=" " class="ui centered image"></a></p>
-<h4 id="9-&#x8F38;&#x5165;&#x6307;&#x4EE4;&#x4F86;&#x5B89;&#x88DD;-OpenSSH-&#x5957;&#x4EF6;"><a href="#9-&#x8F38;&#x5165;&#x6307;&#x4EE4;&#x4F86;&#x5B89;&#x88DD;-OpenSSH-&#x5957;&#x4EF6;" class="headerlink" title="9. &#x8F38;&#x5165;&#x6307;&#x4EE4;&#x4F86;&#x5B89;&#x88DD; OpenSSH &#x5957;&#x4EF6;"></a>9. &#x8F38;&#x5165;&#x6307;&#x4EE4;&#x4F86;&#x5B89;&#x88DD; OpenSSH &#x5957;&#x4EF6;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install openssh-server -y</span><br></pre></td></tr></table></figure>
-<p><a class="magnific-img" href="images/14.png"><img src="images/14.png" alt=" " class="ui centered image"></a></p>
-<h4 id="10-&#x4E0B;&#x6307;&#x4EE4;-sudo-service-ssh-status-&#x5C31;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230;-SSH-&#x670D;&#x52D9;&#x555F;&#x52D5;&#x4E86;"><a href="#10-&#x4E0B;&#x6307;&#x4EE4;-sudo-service-ssh-status-&#x5C31;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230;-SSH-&#x670D;&#x52D9;&#x555F;&#x52D5;&#x4E86;" class="headerlink" title="10. &#x4E0B;&#x6307;&#x4EE4; sudo service ssh status &#x5C31;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230; SSH &#x670D;&#x52D9;&#x555F;&#x52D5;&#x4E86;"></a>10. &#x4E0B;&#x6307;&#x4EE4; sudo service ssh status &#x5C31;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230; SSH &#x670D;&#x52D9;&#x555F;&#x52D5;&#x4E86;</h4><p><a class="magnific-img" href="images/15.png"><img src="images/15.png" alt=" " class="ui centered image"></a></p>
-<h4 id="11-&#x6700;&#x5F8C;&#x7528;-SSH-&#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x6E2C;&#x8A66;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6210;&#x529F;&#x4E86;"><a href="#11-&#x6700;&#x5F8C;&#x7528;-SSH-&#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x6E2C;&#x8A66;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6210;&#x529F;&#x4E86;" class="headerlink" title="11. &#x6700;&#x5F8C;&#x7528; SSH &#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x6E2C;&#x8A66;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6210;&#x529F;&#x4E86;"></a>11. &#x6700;&#x5F8C;&#x7528; SSH &#x9023;&#x7DDA;&#x5DE5;&#x5177;&#x6E2C;&#x8A66;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6210;&#x529F;&#x4E86;</h4><p><a class="magnific-img" href="images/16.png"><img src="images/16.png" alt=" " class="ui centered image"></a></p>
-<h4 id="SSH-&#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3;-VirtualBox-&#x4E2D;&#x7684;-Ubuntu-&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"><a href="#SSH-&#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3;-VirtualBox-&#x4E2D;&#x7684;-Ubuntu-&#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;" class="headerlink" title="SSH &#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3; VirtualBox &#x4E2D;&#x7684; Ubuntu &#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;"></a>SSH &#x5354;&#x5B9A;&#x9023;&#x7DDA;&#x81F3; VirtualBox &#x4E2D;&#x7684; Ubuntu &#x4F5C;&#x696D;&#x7CFB;&#x7D71;&#xFF0C;&#x5230;&#x9019;&#x908A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;</h4>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-06-29T22:41:15.000Z" itemprop="datePublished">2018-06-30</time>
-
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="description" content="">
     </span>
-    <span class="post-description-item">
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VirtualBox使用SSH連線
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2018-06-30 06:41:15" itemprop="dateCreated datePublished" datetime="2018-06-30T06:41:15+08:00">2018-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-04-10 17:26:13" itemprop="dateModified" datetime="2020-04-10T17:26:13+08:00">2020-04-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="本篇文章將介紹如何使用-SSH-連線工具連到virtualbox-linux"><a href="#本篇文章將介紹如何使用-SSH-連線工具連到virtualbox-linux" class="headerlink" title="本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux"></a>本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux</h3><h4 id="1-點選左上方檔案，選擇主機網路管理員"><a href="#1-點選左上方檔案，選擇主機網路管理員" class="headerlink" title="1. 點選左上方檔案，選擇主機網路管理員"></a>1. 點選左上方檔案，選擇主機網路管理員</h4><p><img src="images/1.png" alt=" "></p>
+<h4 id="2-可以看到裡面已經有一組-IP，選擇左上角建立可以新增-IP"><a href="#2-可以看到裡面已經有一組-IP，選擇左上角建立可以新增-IP" class="headerlink" title="2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP"></a>2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP</h4><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "><br><img src="images/4.png" alt=" "></p>
+<h4 id="PS-到本機-cmd-下指令-ipconfig-可以看到預設就有-virtualbox-的網卡"><a href="#PS-到本機-cmd-下指令-ipconfig-可以看到預設就有-virtualbox-的網卡" class="headerlink" title="PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡"></a>PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡</h4><p><img src="images/5.png" alt=" "></p>
+<h4 id="3-選擇機器點選設定"><a href="#3-選擇機器點選設定" class="headerlink" title="3. 選擇機器點選設定"></a>3. 選擇機器點選設定</h4><p><img src="images/6.png" alt=" "></p>
+<h4 id="4-先在要-SSH-連線的機器下指令-ifconfig-查看-IP，可以看到-ip-是-10-0-2-15"><a href="#4-先在要-SSH-連線的機器下指令-ifconfig-查看-IP，可以看到-ip-是-10-0-2-15" class="headerlink" title="4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10.0.2.15"></a>4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10.0.2.15</h4><p><img src="images/9.png" alt=" "></p>
+<h4 id="5-選擇網路打開進階選項，點選連接埠轉送"><a href="#5-選擇網路打開進階選項，點選連接埠轉送" class="headerlink" title="5. 選擇網路打開進階選項，點選連接埠轉送"></a>5. 選擇網路打開進階選項，點選連接埠轉送</h4><p><img src="images/7.png" alt=" "><br><img src="images/8.png" alt=" "></p>
+<h4 id="6-點選邊變-新增"><a href="#6-點選邊變-新增" class="headerlink" title="6. 點選邊變 + 新增"></a>6. 點選邊變 + 新增</h4><p><img src="images/10.png" alt=" "><br><img src="images/11.png" alt=" "></p>
+<h4 id="7-輸入自己想要的主機-IP，SSH-連線-port-是-22，客體-IP-就是剛剛機器的-IP"><a href="#7-輸入自己想要的主機-IP，SSH-連線-port-是-22，客體-IP-就是剛剛機器的-IP" class="headerlink" title="7. 輸入自己想要的主機 IP，SSH 連線 port 是 22，客體 IP 就是剛剛機器的 IP"></a>7. 輸入自己想要的主機 IP，SSH 連線 port 是 22，客體 IP 就是剛剛機器的 IP</h4><p><img src="images/12.png" alt=" "></p>
+<h4 id="8-在來回到虛擬機器，想要使用-SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，在這邊還需要進一步使用指令-sudo-service-ssh-status-來查詢-SSH-服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案-not-found-的訊息，也就表示說此系統還未安裝好-OpenSSH-Server-的套件，那接下來需要在系統上安裝會使用到的套件"><a href="#8-在來回到虛擬機器，想要使用-SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，在這邊還需要進一步使用指令-sudo-service-ssh-status-來查詢-SSH-服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案-not-found-的訊息，也就表示說此系統還未安裝好-OpenSSH-Server-的套件，那接下來需要在系統上安裝會使用到的套件" class="headerlink" title="8. 在來回到虛擬機器，想要使用 SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，在這邊還需要進一步使用指令 sudo service ssh status 來查詢 SSH 服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案 not-found 的訊息，也就表示說此系統還未安裝好 OpenSSH Server 的套件，那接下來需要在系統上安裝會使用到的套件"></a>8. 在來回到虛擬機器，想要使用 SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，在這邊還需要進一步使用指令 sudo service ssh status 來查詢 SSH 服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案 not-found 的訊息，也就表示說此系統還未安裝好 OpenSSH Server 的套件，那接下來需要在系統上安裝會使用到的套件</h4><p><img src="images/13.png" alt=" "></p>
+<h4 id="9-輸入指令來安裝-OpenSSH-套件"><a href="#9-輸入指令來安裝-OpenSSH-套件" class="headerlink" title="9. 輸入指令來安裝 OpenSSH 套件"></a>9. 輸入指令來安裝 OpenSSH 套件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install openssh-server -y</span><br></pre></td></tr></table></figure>
+<p><img src="images/14.png" alt=" "></p>
+<h4 id="10-下指令-sudo-service-ssh-status-就可以查看到-SSH-服務啟動了"><a href="#10-下指令-sudo-service-ssh-status-就可以查看到-SSH-服務啟動了" class="headerlink" title="10. 下指令 sudo service ssh status 就可以查看到 SSH 服務啟動了"></a>10. 下指令 sudo service ssh status 就可以查看到 SSH 服務啟動了</h4><p><img src="images/15.png" alt=" "></p>
+<h4 id="11-最後用-SSH-連線工具測試，可以看到成功了"><a href="#11-最後用-SSH-連線工具測試，可以看到成功了" class="headerlink" title="11. 最後用 SSH 連線工具測試，可以看到成功了"></a>11. 最後用 SSH 連線工具測試，可以看到成功了</h4><p><img src="images/16.png" alt=" "></p>
+<h4 id="SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，到這邊就完成了"><a href="#SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，到這邊就完成了" class="headerlink" title="SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，到這邊就完成了"></a>SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，到這邊就完成了</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-    </span>
-</div>
 
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/06/30/Ubuntu修改IP以后，IP没有改變/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    Ubuntu修改IP以后，IP没有改變
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2018/06/30/VirtualBox複製已經建立好虛擬機/" class="ui tiny button">
-                    
-                    VirtualBox複製已經建立好虛擬機
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/06/30/VirtualBox複製已經建立好虛擬機/" rel="prev" title="VirtualBox複製已經建立好虛擬機">
+      <i class="fa fa-chevron-left"></i> VirtualBox複製已經建立好虛擬機
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/06/30/Ubuntu修改IP以后，IP没有改變/" rel="next" title="Ubuntu修改IP以后，IP没有改變">
+      Ubuntu修改IP以后，IP没有改變 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
-</div>
-                
-            </div>
 
-            
-            <div class="three wide computer three wide tablet column">
 
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#本篇文章將介紹如何使用-SSH-連線工具連到virtualbox-linux"><span>本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux</span></a><ol><li><a href="#1-點選左上方檔案，選擇主機網路管理員"><span>1. 點選左上方檔案，選擇主機網路管理員</span></a></li><li><a href="#2-可以看到裡面已經有一組-IP，選擇左上角建立可以新增-IP"><span>2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP</span></a></li><li><a href="#PS-到本機-cmd-下指令-ipconfig-可以看到預設就有-virtualbox-的網卡"><span>PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡</span></a></li><li><a href="#3-選擇機器點選設定"><span>3. 選擇機器點選設定</span></a></li><li><a href="#4-先在要-SSH-連線的機器下指令-ifconfig-查看-IP，可以看到-ip-是-10-0-2-15"><span>4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10.0.2.15</span></a></li><li><a href="#5-選擇網路打開進階選項，點選連接埠轉送"><span>5. 選擇網路打開進階選項，點選連接埠轉送</span></a></li><li><a href="#6-點選邊變-新增"><span>6. 點選邊變 + 新增</span></a></li><li><a href="#7-輸入自己想要的主機-IP，SSH-連線-port-是-22，客體-IP-就是剛剛機器的-IP"><span>7. 輸入自己想要的主機 IP，SSH 連線 port 是 22，客體 IP 就是剛剛機器的 IP</span></a></li><li><a href="#8-在來回到虛擬機器，想要使用-SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，在這邊還需要進一步使用指令-sudo-service-ssh-status-來查詢-SSH-服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案-not-found-的訊息，也就表示說此系統還未安裝好-OpenSSH-Server-的套件，那接下來需要在系統上安裝會使用到的套件"><span>8. 在來回到虛擬機器，想要使用 SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，在這邊還需要進一步使用指令 sudo service ssh status 來查詢 SSH 服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案 not-found 的訊息，也就表示說此系統還未安裝好 OpenSSH Server 的套件，那接下來需要在系統上安裝會使用到的套件</span></a></li><li><a href="#9-輸入指令來安裝-OpenSSH-套件"><span>9. 輸入指令來安裝 OpenSSH 套件</span></a></li><li><a href="#10-下指令-sudo-service-ssh-status-就可以查看到-SSH-服務啟動了"><span>10. 下指令 sudo service ssh status 就可以查看到 SSH 服務啟動了</span></a></li><li><a href="#11-最後用-SSH-連線工具測試，可以看到成功了"><span>11. 最後用 SSH 連線工具測試，可以看到成功了</span></a></li><li><a href="#SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，到這邊就完成了"><span>SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，到這邊就完成了</span></a></li></ol></li></ol>
-                </div>
+          </div>
+          
 
-            </div>
-            
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本篇文章將介紹如何使用-SSH-連線工具連到virtualbox-linux"><span class="nav-number">1.</span> <span class="nav-text">本篇文章將介紹如何使用 SSH 連線工具連到virtualbox linux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-點選左上方檔案，選擇主機網路管理員"><span class="nav-number">1.1.</span> <span class="nav-text">1. 點選左上方檔案，選擇主機網路管理員</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-可以看到裡面已經有一組-IP，選擇左上角建立可以新增-IP"><span class="nav-number">1.2.</span> <span class="nav-text">2. 可以看到裡面已經有一組 IP，選擇左上角建立可以新增 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PS-到本機-cmd-下指令-ipconfig-可以看到預設就有-virtualbox-的網卡"><span class="nav-number">1.3.</span> <span class="nav-text">PS. 到本機 cmd 下指令 ipconfig 可以看到預設就有 virtualbox 的網卡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-選擇機器點選設定"><span class="nav-number">1.4.</span> <span class="nav-text">3. 選擇機器點選設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-先在要-SSH-連線的機器下指令-ifconfig-查看-IP，可以看到-ip-是-10-0-2-15"><span class="nav-number">1.5.</span> <span class="nav-text">4. 先在要 SSH 連線的機器下指令 ifconfig 查看 IP，可以看到 ip 是 10.0.2.15</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-選擇網路打開進階選項，點選連接埠轉送"><span class="nav-number">1.6.</span> <span class="nav-text">5. 選擇網路打開進階選項，點選連接埠轉送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-點選邊變-新增"><span class="nav-number">1.7.</span> <span class="nav-text">6. 點選邊變 + 新增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-輸入自己想要的主機-IP，SSH-連線-port-是-22，客體-IP-就是剛剛機器的-IP"><span class="nav-number">1.8.</span> <span class="nav-text">7. 輸入自己想要的主機 IP，SSH 連線 port 是 22，客體 IP 就是剛剛機器的 IP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-在來回到虛擬機器，想要使用-SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，在這邊還需要進一步使用指令-sudo-service-ssh-status-來查詢-SSH-服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案-not-found-的訊息，也就表示說此系統還未安裝好-OpenSSH-Server-的套件，那接下來需要在系統上安裝會使用到的套件"><span class="nav-number">1.9.</span> <span class="nav-text">8. 在來回到虛擬機器，想要使用 SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，在這邊還需要進一步使用指令 sudo service ssh status 來查詢 SSH 服務是否有在執行的狀態，如下圖所示可以看到回傳為檔案 not-found 的訊息，也就表示說此系統還未安裝好 OpenSSH Server 的套件，那接下來需要在系統上安裝會使用到的套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-輸入指令來安裝-OpenSSH-套件"><span class="nav-number">1.10.</span> <span class="nav-text">9. 輸入指令來安裝 OpenSSH 套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-下指令-sudo-service-ssh-status-就可以查看到-SSH-服務啟動了"><span class="nav-number">1.11.</span> <span class="nav-text">10. 下指令 sudo service ssh status 就可以查看到 SSH 服務啟動了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-最後用-SSH-連線工具測試，可以看到成功了"><span class="nav-number">1.12.</span> <span class="nav-text">11. 最後用 SSH 連線工具測試，可以看到成功了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH-協定連線至-VirtualBox-中的-Ubuntu-作業系統，到這邊就完成了"><span class="nav-number">1.13.</span> <span class="nav-text">SSH 協定連線至 VirtualBox 中的 Ubuntu 作業系統，到這邊就完成了</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+  </nav>
 </div>
 
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2020 <a href="/">緣分到了，文件自然就做好了！</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+
+      </div>
+
     </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
 </div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
 
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
+        
 
 
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>
