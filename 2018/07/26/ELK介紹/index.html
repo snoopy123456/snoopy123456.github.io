@@ -20,18 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被">
+  <meta name="description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件">
+<meta name="keywords" content="ELK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK介紹">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/ELK介紹/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被">
+<meta property="og:description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/ELK介紹/images/1.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:24.973Z">
+<meta property="og:updated_time" content="2020-07-30T08:33:58.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK介紹">
-<meta name="twitter:description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被">
+<meta name="twitter:description" content="何謂 ELK？ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/26/ELK介紹/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/07/26/ELK介紹/">
@@ -193,8 +194,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:33:58" itemprop="dateModified" datetime="2020-07-30T16:33:58+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -207,7 +217,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="何謂-ELK？"><a href="#何謂-ELK？" class="headerlink" title="何謂 ELK？"></a>何謂 ELK？</h3><h3 id="ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"><a href="#ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件" class="headerlink" title="ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"></a>ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件</h3><h3 id="Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"><a href="#Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。" class="headerlink" title="Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"></a>Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。</h3><h3 id="logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"><a href="#logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。" class="headerlink" title="logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"></a>logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。</h3><h3 id="Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。"><a href="#Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。" class="headerlink" title="Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。"></a>Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。</h3><h3 id="Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"><a href="#Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力" class="headerlink" title="Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"></a>Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力</h3><h3 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h3><p><img src="images/1.png" alt=" "></p>
+        <h3 id="何謂-ELK？"><a href="#何謂-ELK？" class="headerlink" title="何謂 ELK？"></a>何謂 ELK？</h3><h3 id="ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"><a href="#ELK-是指-ElasticSearch、Logstash-和-Kibana-這三個開源軟體的集合套件，這三個軟體可以組成一套日誌-log-分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件" class="headerlink" title="ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件"></a>ELK 是指 ElasticSearch、Logstash 和 Kibana 這三個開源軟體的集合套件，這三個軟體可以組成一套日誌 ( log ) 分析和監控架構但這並非全部，架構會隨著使用者需求環境等因數增加或減少，或者增加一些其他套件</h3><a id="more"></a>
+<h3 id="Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"><a href="#Elasticsearch：Elasticsearch-是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch-中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。" class="headerlink" title="Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。"></a>Elasticsearch：Elasticsearch 是一個實時的分佈式搜索分析引擎，它能讓你以一個之前從未有過的速度和規模，去探索你的數據。它被用作全文檢索、結構化搜索、分析以及這三個功能的組合，Elasticsearch 中沒有一個單獨的組件是全新的或者是革命性的。全文搜索很久之前就已經可以做到了，就像早就出現了的分析系統和分佈式數據庫。革命性的成果在於將這些單獨的，有用的組件融合到一個單一的、一致的、實時的應用中。它對於初學者而言有一個較低的門檻，而當你的技能提升或需求增加時，它也始終能滿足你的需求。</h3><h3 id="logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"><a href="#logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。" class="headerlink" title="logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。"></a>logstash：是一款輕量級的日誌搜集處理框架，可以方便的把分散的、多樣化的日誌搜集起來，並進行自定義的處理，然後傳輸到指定的位置，比如某個伺服器或者文件。</h3><h3 id="Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。"><a href="#Kibana：Kibana-是一款開源的數據分析和可視化平台，它是-Elastic-Stack-成員之一，設計用於和-Elasticsearch-協作。您可以使用-Kibana-對-Elasticsearch-索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana-可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪-Elasticsearch-的實時數據變化。搭建-Kibana-非常簡單。您可以分分鐘完成-Kibana-的安裝並開始探索-Elasticsearch-的索引數據，不需要額外的基礎設施。" class="headerlink" title="Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。"></a>Kibana：Kibana 是一款開源的數據分析和可視化平台，它是 Elastic Stack 成員之一，設計用於和 Elasticsearch 協作。您可以使用 Kibana 對 Elasticsearch 索引中的數據進行搜索，查看，交互操作。您可以很方便的利用圖表，表格及地圖對數據進行多元化的分析和呈現。Kibana 可以使用大數據通俗易懂。它很簡單，基於瀏覽器的界面便於您快速創建和分享動態數據儀表板來追踪 Elasticsearch 的實時數據變化。搭建 Kibana 非常簡單。您可以分分鐘完成 Kibana 的安裝並開始探索 Elasticsearch 的索引數據，不需要額外的基礎設施。</h3><h3 id="Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"><a href="#Redis：是-REmote-DIctionary-Server（-遠程字典服務器-）的縮寫，它以字典結構（-key-value-鍵值對結構-）存儲數據，並允許其他應用通過-TCP-協議讀寫字典中的內容。所以，redis-是一個-key-value-存儲系統，或者說是一個-key-value-數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力" class="headerlink" title="Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力"></a>Redis：是 REmote DIctionary Server（ 遠程字典服務器 ）的縮寫，它以字典結構（ key-value 鍵值對結構 ）存儲數據，並允許其他應用通過 TCP 協議讀寫字典中的內容。所以，redis 是一個 key-value 存儲系統，或者說是一個 key-value 數據庫，因此常常被用在需要快取一些資料的場合，可以減輕許多後端資料庫的壓力</h3><h3 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h3><p><img src="images/1.png" alt=" "></p>
 
     </div>
 
@@ -216,6 +227,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ELK/" rel="tag"># ELK</a>
+          </div>
 
         
 
@@ -311,13 +325,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

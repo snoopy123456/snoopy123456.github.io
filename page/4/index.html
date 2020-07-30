@@ -642,8 +642,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:34:49" itemprop="dateModified" datetime="2020-07-30T16:34:49+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -656,17 +665,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="elasticsearch-log-刪除"><a href="#elasticsearch-log-刪除" class="headerlink" title="elasticsearch log 刪除"></a>elasticsearch log 刪除</h3><h3 id="手動刪除指令"><a href="#手動刪除指令" class="headerlink" title="手動刪除指令"></a>手動刪除指令</h3><h3 id="要按照你-logstash-conf-設定格式才能刪除，-是全部刪除如下例子-2018-就是-2018-的-log-全刪除"><a href="#要按照你-logstash-conf-設定格式才能刪除，-是全部刪除如下例子-2018-就是-2018-的-log-全刪除" class="headerlink" title="要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除"></a>要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -XDELETE &apos;http://127.0.0.1:9200/( log格式 )&apos;</span><br><span class="line"></span><br><span class="line">ex：curl -XDELETE &apos;http://127.0.0.1:9200/winlogbeat-6.2.2-2018.01.15&apos;</span><br><span class="line"></span><br><span class="line">ex：curl -XDELETE &apos;http://127.0.0.1:9200/winlogbeat-6.2.2-2018.*&apos;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="自動刪除"><a href="#自動刪除" class="headerlink" title="自動刪除"></a>自動刪除</h3><h3 id="我們將使用-linux-的-shell-script-製作腳本，並用排程來達到自動化刪除-log"><a href="#我們將使用-linux-的-shell-script-製作腳本，並用排程來達到自動化刪除-log" class="headerlink" title="我們將使用 linux 的 shell script 製作腳本，並用排程來達到自動化刪除 log"></a>我們將使用 linux 的 shell script 製作腳本，並用排程來達到自動化刪除 log</h3><h3 id="1-建立腳本"><a href="#1-建立腳本" class="headerlink" title="1. 建立腳本"></a>1. 建立腳本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi (名字隨意).sh</span><br><span class="line"></span><br><span class="line">ex：vi test.sh</span><br></pre></td></tr></table></figure>
-<h3 id="腳本內容"><a href="#腳本內容" class="headerlink" title="腳本內容"></a>腳本內容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function delete_indices() &#123;</span><br><span class="line">    comp_date=`date -d &quot;30 day ago&quot; +&quot;%Y-%m-%d&quot;`</span><br><span class="line">    date1=&quot;$1 00:00:00&quot;</span><br><span class="line">    date2=&quot;$comp_date 00:00:00&quot;</span><br><span class="line"></span><br><span class="line">    t1=`date -d &quot;$date1&quot; +%s`</span><br><span class="line">    t2=`date -d &quot;$date2&quot; +%s`</span><br><span class="line"></span><br><span class="line">    if [ $t1 -le $t2 ]; then</span><br><span class="line">        echo &quot;$1時間早於$comp_date，進行索引刪除&quot;</span><br><span class="line">        format_date=`echo $1| sed &apos;s/-/\./g&apos;`</span><br><span class="line">        curl -XDELETE http://localhost:9200/*$format_date</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">curl -XGET http://localhost:9200/_cat/indices | awk -F&quot; &quot; &apos;&#123;print $3&#125;&apos; | awk -F&quot;-&quot; &apos;&#123;print $NF&#125;&apos; | egrep &quot;[0-9]*\.[0-9]*\.[0-9]*&quot; | sort | uniq  | sed &apos;s/\./-/g&apos; | while read LINE</span><br><span class="line">do</span><br><span class="line">    delete_indices $LINE</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<h3 id="2-給腳本權限"><a href="#2-給腳本權限" class="headerlink" title="2. 給腳本權限"></a>2. 給腳本權限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x test.sh</span><br></pre></td></tr></table></figure>
-<h3 id="3-啟動測試"><a href="#3-啟動測試" class="headerlink" title="3. 啟動測試"></a>3. 啟動測試</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./test.sh</span><br></pre></td></tr></table></figure>
-<h3 id="輸出畫面"><a href="#輸出畫面" class="headerlink" title="輸出畫面"></a>輸出畫面</h3><p><img src="images/1.png" alt=" "></p>
-<h3 id="4-設定排程：排程設定好刪除-log-不會有測試的輸出畫面"><a href="#4-設定排程：排程設定好刪除-log-不會有測試的輸出畫面" class="headerlink" title="4. 設定排程：排程設定好刪除 log 不會有測試的輸出畫面"></a>4. 設定排程：排程設定好刪除 log 不會有測試的輸出畫面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/crontabe</span><br></pre></td></tr></table></figure>
-<h3 id="進入裡面設置排程"><a href="#進入裡面設置排程" class="headerlink" title="進入裡面設置排程"></a>進入裡面設置排程</h3><p><img src="images/2.png" alt=" "></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0  12  *  *  *  root   /home/h1025139/test.sh</span><br><span class="line"></span><br><span class="line">分  時  日  月  時  使用者  指令</span><br><span class="line"></span><br><span class="line">分鐘 0-59，小時 0-23，日期 1-31，月份 1-12，周 0-7</span><br><span class="line"></span><br><span class="line">* 代表任何時刻都接受的意思，*/1 是每分鐘一次</span><br></pre></td></tr></table></figure>
-<h3 id="恭喜完成刪除-log！"><a href="#恭喜完成刪除-log！" class="headerlink" title="恭喜完成刪除 log！"></a>恭喜完成刪除 log！</h3>
+          <h3 id="elasticsearch-log-刪除"><a href="#elasticsearch-log-刪除" class="headerlink" title="elasticsearch log 刪除"></a>elasticsearch log 刪除</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/01/elasticsearch-log刪除/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -866,8 +873,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-06-09 15:48:25" itemprop="dateModified" datetime="2020-06-09T15:48:25+08:00">2020-06-09</time>
+                <time title="修改時間：2020-07-30 16:34:12" itemprop="dateModified" datetime="2020-07-30T16:34:12+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -880,172 +896,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="本文章將介紹如何用-docker-建立-ELK"><a href="#本文章將介紹如何用-docker-建立-ELK" class="headerlink" title="本文章將介紹如何用 docker 建立 ELK"></a>本文章將介紹如何用 docker 建立 ELK</h3><h4 id="新環境更新"><a href="#新環境更新" class="headerlink" title="新環境更新"></a>新環境更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-<h4 id="下載-docker"><a href="#下載-docker" class="headerlink" title="下載 docker"></a>下載 docker</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker.io</span><br></pre></td></tr></table></figure>
-<h4 id="下載-redis-image-並且-docker-run-起來"><a href="#下載-redis-image-並且-docker-run-起來" class="headerlink" title="下載 redis image 並且 docker run 起來"></a>下載 redis image 並且 docker run 起來</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name redis -p 6379:6379 -v /data/redis:/data --restart=always redis:3.2.4 redis-server --appendonly yes --maxmemory 4gb --requirepass QFkXXBZkLD6MgcEL1y8l</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">指令</th>
-<th></th>
-<th style="text-align:left">意義</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-d</td>
-<td></td>
-<td style="text-align:left">在背景執行</td>
-</tr>
-<tr>
-<td style="text-align:left">–name</td>
-<td></td>
-<td style="text-align:left">Container的名稱</td>
-</tr>
-<tr>
-<td style="text-align:left">-p</td>
-<td></td>
-<td style="text-align:left">本機與Container對應的port</td>
-</tr>
-<tr>
-<td style="text-align:left">-v</td>
-<td></td>
-<td style="text-align:left">本機與Container對應的資料路徑</td>
-</tr>
-<tr>
-<td style="text-align:left">–restart=always</td>
-<td></td>
-<td style="text-align:left">機器重啟後Container自動重啟（預設是關閉）</td>
-</tr>
-<tr>
-<td style="text-align:left">redis:3.2.4</td>
-<td></td>
-<td style="text-align:left">Redis Container的映像檔名稱與版本</td>
-</tr>
-<tr>
-<td style="text-align:left">redis-server</td>
-<td></td>
-<td style="text-align:left">建立redis的server（另有redis-cli的客端版本）</td>
-</tr>
-<tr>
-<td style="text-align:left">–appendonly yes</td>
-<td></td>
-<td style="text-align:left">是否做資料持久化</td>
-</tr>
-<tr>
-<td style="text-align:left">–maxmemory 4gb</td>
-<td></td>
-<td style="text-align:left">設定Redis Container 占用記憶體的最大容量</td>
-</tr>
-<tr>
-<td style="text-align:left">–requirepass</td>
-<td></td>
-<td style="text-align:left">客端VM 將Log 資料傳送到Redis 時驗證用的key</td>
-</tr>
-</tbody>
-</table>
-<h4 id="輸入以下指令增加虛擬記憶體大小（至少要大於262144-KB，否則建立好的Elasticsearch執行會失敗）"><a href="#輸入以下指令增加虛擬記憶體大小（至少要大於262144-KB，否則建立好的Elasticsearch執行會失敗）" class="headerlink" title="輸入以下指令增加虛擬記憶體大小（至少要大於262144 KB，否則建立好的Elasticsearch執行會失敗）"></a>輸入以下指令增加虛擬記憶體大小（至少要大於262144 KB，否則建立好的Elasticsearch執行會失敗）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo vm.max_map_count=262144 &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
-<h4 id="下載-elasticsearch-image-並且-docker-run-起來"><a href="#下載-elasticsearch-image-並且-docker-run-起來" class="headerlink" title="下載 elasticsearch image 並且 docker run 起來"></a>下載 elasticsearch image 並且 docker run 起來</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name es -p 9200:9200 --restart=always -v /data/elasticsearch:/usr/share/elasticsearch/data -e ES_JAVA_OPTS:-Xmx6g -e ES_JAVA_OPTS:-Xms6g elasticsearch:5.6.7</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">指令</th>
-<th>意義</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-d</td>
-<td>在背景執行</td>
-</tr>
-<tr>
-<td style="text-align:left">–name</td>
-<td>Container 名稱</td>
-</tr>
-<tr>
-<td style="text-align:left">-p</td>
-<td>本機與 Container 對應的 port</td>
-</tr>
-<tr>
-<td style="text-align:left">-v</td>
-<td>本機與 Container 對應的資料路徑</td>
-</tr>
-<tr>
-<td style="text-align:left">–restart=always</td>
-<td>機器重啟後Container自動重啟（預設是關閉）</td>
-</tr>
-<tr>
-<td style="text-align:left">-e ES_JAVA_OPTS:-Xms</td>
-<td>指定Elasticsearch 占用記憶體的初始值</td>
-</tr>
-<tr>
-<td style="text-align:left">-e ES_JAVA_OPTS:-Xmx</td>
-<td>指定Elasticsearch 占用記憶體的最大值</td>
-</tr>
-<tr>
-<td style="text-align:left">elasticsearch:5.6.7</td>
-<td>Elasticsearch 的映像檔名稱與版本</td>
-</tr>
-</tbody>
-</table>
-<h4 id="建立資料夾-conf-d-裡面放入-logstash-config-跟-logstash-filter-config"><a href="#建立資料夾-conf-d-裡面放入-logstash-config-跟-logstash-filter-config" class="headerlink" title="建立資料夾 conf.d 裡面放入 logstash config 跟 logstash filter config"></a>建立資料夾 conf.d 裡面放入 logstash config 跟 logstash filter config</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir conf.d</span><br><span class="line"></span><br><span class="line">cd conf.d</span><br><span class="line"></span><br><span class="line">vi logstash.conf</span><br><span class="line"></span><br><span class="line">vi serverlog.conf</span><br></pre></td></tr></table></figure>
-<h4 id="logstash-conf"><a href="#logstash-conf" class="headerlink" title="logstash.conf"></a>logstash.conf</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    redis &#123;</span><br><span class="line">        host =&gt; &quot;redis&quot;</span><br><span class="line">        port =&gt; 6379</span><br><span class="line">        data_type =&gt; &quot;list&quot;</span><br><span class="line">        key =&gt; &quot;vplaylog&quot;</span><br><span class="line">        password =&gt; &quot;QFkXXBZkLD6MgcEL1y8l&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">    elasticsearch &#123;</span><br><span class="line">        hosts =&gt; [&quot;elasticsearch&quot;]</span><br><span class="line">        index =&gt; &quot;%&#123;[@metadata][env]&#125;_%&#123;[type]&#125;-%&#123;+YYYY.MM.dd&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="serverlog-conf"><a href="#serverlog-conf" class="headerlink" title="serverlog.conf"></a>serverlog.conf</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">filter &#123;</span><br><span class="line">    if [type] == &quot;serverlog&quot; &#123;</span><br><span class="line">        grok &#123;</span><br><span class="line">            match =&gt; [&quot;message&quot;, &quot;%&#123;TIMESTAMP_ISO8601:[@metadata][timestamp]&#125; %&#123;NUMBER:threadid&#125; %&#123;LOGLEVEL:loglevel&#125; %&#123;NOTSPACE:logger&#125; %&#123;GREEDYDATA:message&#125;&quot;]</span><br><span class="line">            overwrite =&gt; [ &quot;message&quot; ]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        date &#123;</span><br><span class="line">            match =&gt; [ &quot;[@metadata][timestamp]&quot;, &quot;YYYY-MM-dd HH:mm:ss.SSS&quot; ]</span><br><span class="line">            timezone =&gt; &quot;UTC&quot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mutate &#123;</span><br><span class="line">            convert =&gt; &#123;</span><br><span class="line">                &quot;threadid&quot; =&gt; &quot;integer&quot;</span><br><span class="line">            &#125;</span><br><span class="line">            add_field =&gt; &#123; </span><br><span class="line">                &quot;hostname&quot; =&gt; &quot;%&#123;[beat][hostname]&#125;&quot;</span><br><span class="line">                &quot;servertype&quot; =&gt; &quot;%&#123;[fields][servertype]]&#125;&quot;</span><br><span class="line">                &quot;[@metadata][env]&quot; =&gt; &quot;%&#123;[fields][env]]&#125;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">            remove_field =&gt; [&quot;beat&quot;, &quot;fields&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="回到上一層建立-Dockerfile"><a href="#回到上一層建立-Dockerfile" class="headerlink" title="回到上一層建立 Dockerfile"></a>回到上一層建立 Dockerfile</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">vi Dockerfile</span><br></pre></td></tr></table></figure>
-<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM  logstash:5.6.7</span><br><span class="line">COPY conf.d /etc/logstash/conf.d</span><br><span class="line">CMD [&quot;-f&quot;, &quot;/etc/logstash/conf.d&quot;]</span><br></pre></td></tr></table></figure>
-<p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
-<h4 id="buile-logstash-imsgea-t-test-是幫容器命名"><a href="#buile-logstash-imsgea-t-test-是幫容器命名" class="headerlink" title="buile logstash imsgea ( -t test 是幫容器命名 )"></a>buile logstash imsgea ( -t test 是幫容器命名 )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t test .</span><br></pre></td></tr></table></figure>
-<h4 id="把-logstash-docker-run-起來"><a href="#把-logstash-docker-run-起來" class="headerlink" title="把 logstash docker run 起來"></a>把 logstash docker run 起來</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name logstash -p 5044:5044 --link es:elasticsearch --link redis:redis --restart=always -e LS_JAVA_OPTS:-Xms6g -e LS_JAVA_OPTS:-Xmx6g test</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">指令</th>
-<th>意義</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-d</td>
-<td>在背景執行</td>
-</tr>
-<tr>
-<td style="text-align:left">–name</td>
-<td>Container 名稱</td>
-</tr>
-<tr>
-<td style="text-align:left">-p</td>
-<td>本機與 Container 對應的 port</td>
-</tr>
-<tr>
-<td style="text-align:left">-v</td>
-<td>本機與 Container 對應的資料路徑</td>
-</tr>
-<tr>
-<td style="text-align:left">–link</td>
-<td>與其它的 Container 做連結</td>
-</tr>
-<tr>
-<td style="text-align:left">–restart=always</td>
-<td>機器重啟後 Container自動重啟（預設是關閉）</td>
-</tr>
-<tr>
-<td style="text-align:left">-e ES_JAVA_OPTS:-Xms</td>
-<td>指定 logstash 占用記憶體的初始值</td>
-</tr>
-<tr>
-<td style="text-align:left">-e ES_JAVA_OPTS:-Xmx</td>
-<td>指定 logstash 占用記憶體的最大值</td>
-</tr>
-<tr>
-<td style="text-align:left">test</td>
-<td>logstash build 起來的映像檔名稱</td>
-</tr>
-</tbody>
-</table>
-<h4 id="下載-kibana-image-並且-docker-run-起來"><a href="#下載-kibana-image-並且-docker-run-起來" class="headerlink" title="下載 kibana image 並且 docker run 起來"></a>下載 kibana image 並且 docker run 起來</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name kibana --restart=always -p 80:5601 --link es:elasticsearch kibana:5.6.7</span><br></pre></td></tr></table></figure>
-<h4 id="查看容器是否建立成功"><a href="#查看容器是否建立成功" class="headerlink" title="查看容器是否建立成功"></a>查看容器是否建立成功</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<p><img src="images/3.png" alt=" "></p>
-<h4 id="道邊-ELK-設置就成功了，下一章將介紹把-LOG-丟進-ELK"><a href="#道邊-ELK-設置就成功了，下一章將介紹把-LOG-丟進-ELK" class="headerlink" title="道邊 ELK 設置就成功了，下一章將介紹把 LOG 丟進 ELK"></a>道邊 ELK 設置就成功了，下一章將介紹把 LOG 丟進 ELK</h4>
+          <h3 id="本文章將介紹如何用-docker-建立-ELK"><a href="#本文章將介紹如何用-docker-建立-ELK" class="headerlink" title="本文章將介紹如何用 docker 建立 ELK"></a>本文章將介紹如何用 docker 建立 ELK</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/07/26/ELK建立/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1138,13 +997,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

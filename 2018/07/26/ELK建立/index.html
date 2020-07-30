@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹如何用 docker 建立 ELK新環境更新1sudo apt-get update 下載 docker1sudo apt-get install -y docker.io 下載 redis image 並且 docker run 起來1docker run -d --name redis -p 6379:6379 -v /data/redis:/data --restart=alwa">
+  <meta name="description" content="本文章將介紹如何用 docker 建立 ELK">
+<meta name="keywords" content="ELK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK建立">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/ELK建立/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹如何用 docker 建立 ELK新環境更新1sudo apt-get update 下載 docker1sudo apt-get install -y docker.io 下載 redis image 並且 docker run 起來1docker run -d --name redis -p 6379:6379 -v /data/redis:/data --restart=alwa">
+<meta property="og:description" content="本文章將介紹如何用 docker 建立 ELK">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/ELK建立/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/ELK建立/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/ELK建立/images/3.png">
-<meta property="og:updated_time" content="2020-06-09T07:48:25.125Z">
+<meta property="og:updated_time" content="2020-07-30T08:34:12.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK建立">
-<meta name="twitter:description" content="本文章將介紹如何用 docker 建立 ELK新環境更新1sudo apt-get update 下載 docker1sudo apt-get install -y docker.io 下載 redis image 並且 docker run 起來1docker run -d --name redis -p 6379:6379 -v /data/redis:/data --restart=alwa">
+<meta name="twitter:description" content="本文章將介紹如何用 docker 建立 ELK">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/26/ELK建立/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/07/26/ELK建立/">
@@ -195,8 +196,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-06-09 15:48:25" itemprop="dateModified" datetime="2020-06-09T15:48:25+08:00">2020-06-09</time>
+                <time title="修改時間：2020-07-30 16:34:12" itemprop="dateModified" datetime="2020-07-30T16:34:12+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -209,7 +219,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹如何用-docker-建立-ELK"><a href="#本文章將介紹如何用-docker-建立-ELK" class="headerlink" title="本文章將介紹如何用 docker 建立 ELK"></a>本文章將介紹如何用 docker 建立 ELK</h3><h4 id="新環境更新"><a href="#新環境更新" class="headerlink" title="新環境更新"></a>新環境更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+        <h3 id="本文章將介紹如何用-docker-建立-ELK"><a href="#本文章將介紹如何用-docker-建立-ELK" class="headerlink" title="本文章將介紹如何用 docker 建立 ELK"></a>本文章將介紹如何用 docker 建立 ELK</h3><a id="more"></a>
+<h4 id="新環境更新"><a href="#新環境更新" class="headerlink" title="新環境更新"></a>新環境更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 <h4 id="下載-docker"><a href="#下載-docker" class="headerlink" title="下載 docker"></a>下載 docker</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y docker.io</span><br></pre></td></tr></table></figure>
 <h4 id="下載-redis-image-並且-docker-run-起來"><a href="#下載-redis-image-並且-docker-run-起來" class="headerlink" title="下載 redis image 並且 docker run 起來"></a>下載 redis image 並且 docker run 起來</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name redis -p 6379:6379 -v /data/redis:/data --restart=always redis:3.2.4 redis-server --appendonly yes --maxmemory 4gb --requirepass QFkXXBZkLD6MgcEL1y8l</span><br></pre></td></tr></table></figure>
 <table>
@@ -382,6 +393,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ELK/" rel="tag"># ELK</a>
+          </div>
 
         
 
@@ -477,13 +491,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

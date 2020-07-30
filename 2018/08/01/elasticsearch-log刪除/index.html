@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="elasticsearch log 刪除手動刪除指令要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除12345curl -XDELETE &amp;apos;http://127.0.0.1:9200/( log格式 )&amp;apos;ex：curl -XDELETE &amp;apos;http://127.0.0.1:9200/win">
+  <meta name="description" content="elasticsearch log 刪除">
+<meta name="keywords" content="ELK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-log刪除">
 <meta property="og:url" content="http://yoursite.com/2018/08/01/elasticsearch-log刪除/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="elasticsearch log 刪除手動刪除指令要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除12345curl -XDELETE &amp;apos;http://127.0.0.1:9200/( log格式 )&amp;apos;ex：curl -XDELETE &amp;apos;http://127.0.0.1:9200/win">
+<meta property="og:description" content="elasticsearch log 刪除">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/01/elasticsearch-log刪除/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/01/elasticsearch-log刪除/images/2.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.274Z">
+<meta property="og:updated_time" content="2020-07-30T08:34:49.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-log刪除">
-<meta name="twitter:description" content="elasticsearch log 刪除手動刪除指令要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除12345curl -XDELETE &amp;apos;http://127.0.0.1:9200/( log格式 )&amp;apos;ex：curl -XDELETE &amp;apos;http://127.0.0.1:9200/win">
+<meta name="twitter:description" content="elasticsearch log 刪除">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/01/elasticsearch-log刪除/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/01/elasticsearch-log刪除/">
@@ -194,8 +195,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:34:49" itemprop="dateModified" datetime="2020-07-30T16:34:49+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -208,7 +218,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="elasticsearch-log-刪除"><a href="#elasticsearch-log-刪除" class="headerlink" title="elasticsearch log 刪除"></a>elasticsearch log 刪除</h3><h3 id="手動刪除指令"><a href="#手動刪除指令" class="headerlink" title="手動刪除指令"></a>手動刪除指令</h3><h3 id="要按照你-logstash-conf-設定格式才能刪除，-是全部刪除如下例子-2018-就是-2018-的-log-全刪除"><a href="#要按照你-logstash-conf-設定格式才能刪除，-是全部刪除如下例子-2018-就是-2018-的-log-全刪除" class="headerlink" title="要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除"></a>要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -XDELETE &apos;http://127.0.0.1:9200/( log格式 )&apos;</span><br><span class="line"></span><br><span class="line">ex：curl -XDELETE &apos;http://127.0.0.1:9200/winlogbeat-6.2.2-2018.01.15&apos;</span><br><span class="line"></span><br><span class="line">ex：curl -XDELETE &apos;http://127.0.0.1:9200/winlogbeat-6.2.2-2018.*&apos;</span><br></pre></td></tr></table></figure>
+        <h3 id="elasticsearch-log-刪除"><a href="#elasticsearch-log-刪除" class="headerlink" title="elasticsearch log 刪除"></a>elasticsearch log 刪除</h3><a id="more"></a>
+<h3 id="手動刪除指令"><a href="#手動刪除指令" class="headerlink" title="手動刪除指令"></a>手動刪除指令</h3><h3 id="要按照你-logstash-conf-設定格式才能刪除，-是全部刪除如下例子-2018-就是-2018-的-log-全刪除"><a href="#要按照你-logstash-conf-設定格式才能刪除，-是全部刪除如下例子-2018-就是-2018-的-log-全刪除" class="headerlink" title="要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除"></a>要按照你 logstash.conf 設定格式才能刪除，* 是全部刪除如下例子 2018.* 就是 2018 的 log 全刪除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -XDELETE &apos;http://127.0.0.1:9200/( log格式 )&apos;</span><br><span class="line"></span><br><span class="line">ex：curl -XDELETE &apos;http://127.0.0.1:9200/winlogbeat-6.2.2-2018.01.15&apos;</span><br><span class="line"></span><br><span class="line">ex：curl -XDELETE &apos;http://127.0.0.1:9200/winlogbeat-6.2.2-2018.*&apos;</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="自動刪除"><a href="#自動刪除" class="headerlink" title="自動刪除"></a>自動刪除</h3><h3 id="我們將使用-linux-的-shell-script-製作腳本，並用排程來達到自動化刪除-log"><a href="#我們將使用-linux-的-shell-script-製作腳本，並用排程來達到自動化刪除-log" class="headerlink" title="我們將使用 linux 的 shell script 製作腳本，並用排程來達到自動化刪除 log"></a>我們將使用 linux 的 shell script 製作腳本，並用排程來達到自動化刪除 log</h3><h3 id="1-建立腳本"><a href="#1-建立腳本" class="headerlink" title="1. 建立腳本"></a>1. 建立腳本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi (名字隨意).sh</span><br><span class="line"></span><br><span class="line">ex：vi test.sh</span><br></pre></td></tr></table></figure>
 <h3 id="腳本內容"><a href="#腳本內容" class="headerlink" title="腳本內容"></a>腳本內容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function delete_indices() &#123;</span><br><span class="line">    comp_date=`date -d &quot;30 day ago&quot; +&quot;%Y-%m-%d&quot;`</span><br><span class="line">    date1=&quot;$1 00:00:00&quot;</span><br><span class="line">    date2=&quot;$comp_date 00:00:00&quot;</span><br><span class="line"></span><br><span class="line">    t1=`date -d &quot;$date1&quot; +%s`</span><br><span class="line">    t2=`date -d &quot;$date2&quot; +%s`</span><br><span class="line"></span><br><span class="line">    if [ $t1 -le $t2 ]; then</span><br><span class="line">        echo &quot;$1時間早於$comp_date，進行索引刪除&quot;</span><br><span class="line">        format_date=`echo $1| sed &apos;s/-/\./g&apos;`</span><br><span class="line">        curl -XDELETE http://localhost:9200/*$format_date</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">curl -XGET http://localhost:9200/_cat/indices | awk -F&quot; &quot; &apos;&#123;print $3&#125;&apos; | awk -F&quot;-&quot; &apos;&#123;print $NF&#125;&apos; | egrep &quot;[0-9]*\.[0-9]*\.[0-9]*&quot; | sort | uniq  | sed &apos;s/\./-/g&apos; | while read LINE</span><br><span class="line">do</span><br><span class="line">    delete_indices $LINE</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
@@ -226,6 +237,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ELK/" rel="tag"># ELK</a>
+          </div>
 
         
 
@@ -321,13 +335,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
