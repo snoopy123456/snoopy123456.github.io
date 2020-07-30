@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、硬碟介紹GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢  二、PD、SSD、Local SSD 的差異PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴Local SSD：本機 SSD 硬碟具">
+  <meta name="description" content="一、硬碟介紹">
+<meta name="keywords" content="GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="disk-介紹">
 <meta property="og:url" content="http://yoursite.com/2018/06/26/disk-介紹/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="一、硬碟介紹GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢  二、PD、SSD、Local SSD 的差異PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴Local SSD：本機 SSD 硬碟具">
+<meta property="og:description" content="一、硬碟介紹">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/2.png">
@@ -44,10 +45,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/16.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/14.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/15.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.242Z">
+<meta property="og:updated_time" content="2020-07-30T09:11:44.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="disk-介紹">
-<meta name="twitter:description" content="一、硬碟介紹GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢  二、PD、SSD、Local SSD 的差異PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴Local SSD：本機 SSD 硬碟具">
+<meta name="twitter:description" content="一、硬碟介紹">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/26/disk-介紹/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/26/disk-介紹/">
@@ -209,8 +210,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 17:11:44" itemprop="dateModified" datetime="2020-07-30T17:11:44+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GCP/" itemprop="url" rel="index"><span itemprop="name">GCP</span></a>
+                </span>
+            </span>
 
           
 
@@ -223,7 +233,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、硬碟介紹"><a href="#一、硬碟介紹" class="headerlink" title="一、硬碟介紹"></a>一、硬碟介紹</h3><h3 id="GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢"><a href="#GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢" class="headerlink" title="GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢"></a>GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢</h3><p><img src="images/1.png" alt=" "></p>
+        <h3 id="一、硬碟介紹"><a href="#一、硬碟介紹" class="headerlink" title="一、硬碟介紹"></a>一、硬碟介紹</h3><a id="more"></a>
+<h3 id="GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢"><a href="#GCE-上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的-IOPS-效能，讓您的服務運作更加順暢" class="headerlink" title="GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢"></a>GCE 上硬碟的速度無需另外付費購買，預設規則中只要申請越大的硬碟空間，則會得到越好的 IOPS 效能，讓您的服務運作更加順暢</h3><p><img src="images/1.png" alt=" "></p>
 <hr>
 <h3 id="二、PD、SSD、Local-SSD-的差異"><a href="#二、PD、SSD、Local-SSD-的差異" class="headerlink" title="二、PD、SSD、Local SSD 的差異"></a>二、PD、SSD、Local SSD 的差異</h3><h3 id="PD：又稱為標準磁碟-Standard-Disk-，為-SATA-格式之硬碟，提供大部分情境之作業系統或儲存使用"><a href="#PD：又稱為標準磁碟-Standard-Disk-，為-SATA-格式之硬碟，提供大部分情境之作業系統或儲存使用" class="headerlink" title="PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用"></a>PD：又稱為標準磁碟 ( Standard Disk )，為 SATA 格式之硬碟，提供大部分情境之作業系統或儲存使用</h3><h3 id="SSD：固態硬碟，具備較高的-IOPS，當然價格也較昂貴"><a href="#SSD：固態硬碟，具備較高的-IOPS，當然價格也較昂貴" class="headerlink" title="SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴"></a>SSD：固態硬碟，具備較高的 IOPS，當然價格也較昂貴</h3><h3 id="Local-SSD：本機-SSD-硬碟具備-GCE-上最快的-IOPS-選擇，每次選購必須完整租用整個-Local-SSD-375G-的大小空間，一台新創-VM-機器跟硬碟是分開用網路連接但是-Local-SSD-是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成-SSD-的資料遺失"><a href="#Local-SSD：本機-SSD-硬碟具備-GCE-上最快的-IOPS-選擇，每次選購必須完整租用整個-Local-SSD-375G-的大小空間，一台新創-VM-機器跟硬碟是分開用網路連接但是-Local-SSD-是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成-SSD-的資料遺失" class="headerlink" title="Local SSD：本機 SSD 硬碟具備 GCE 上最快的 IOPS 選擇，每次選購必須完整租用整個 Local SSD 375G 的大小空間，一台新創 VM 機器跟硬碟是分開用網路連接但是 Local SSD 是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成 SSD 的資料遺失"></a>Local SSD：本機 SSD 硬碟具備 GCE 上最快的 IOPS 選擇，每次選購必須完整租用整個 Local SSD 375G 的大小空間，一台新創 VM 機器跟硬碟是分開用網路連接但是 Local SSD 是跟機器接在一起速度上會更快，也因為這如果樣實體機損壞會造成 SSD 的資料遺失</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="目前-Local-SSD-只能在-VM-建立下方的磁碟建立才有"><a href="#目前-Local-SSD-只能在-VM-建立下方的磁碟建立才有" class="headerlink" title="目前 Local SSD 只能在 VM 建立下方的磁碟建立才有"></a>目前 Local SSD 只能在 VM 建立下方的磁碟建立才有</h3><p><img src="images/17.png" alt=" "></p>
@@ -248,6 +259,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GCP/" rel="tag"># GCP</a>
+          </div>
 
         
 
@@ -343,13 +357,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

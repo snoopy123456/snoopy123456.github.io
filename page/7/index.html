@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/windows常用指令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/unnamed.gif">
@@ -170,7 +170,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/06/23/windows常用指令/" class="post-title-link" itemprop="url">windows常用指令</a>
+            <a href="/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/" class="post-title-link" itemprop="url">設定遠端帳號權限為Remote-Desktop-Users</a>
         </h2>
 
         <div class="post-meta">
@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-07-30 16:15:38" itemprop="dateModified" datetime="2020-07-30T16:15:38+08:00">2020-07-30</time>
+                <time title="修改時間：2020-07-30 17:13:02" itemprop="dateModified" datetime="2020-07-30T17:13:02+08:00">2020-07-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,10 +210,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="本文章是作者自己筆記用，會不定時更新指令"><a href="#本文章是作者自己筆記用，會不定時更新指令" class="headerlink" title="本文章是作者自己筆記用，會不定時更新指令"></a>本文章是作者自己筆記用，會不定時更新指令</h4>
+          <h3 id="本文章將介紹把帳號設定為-Remote-Desktop-Users-權限"><a href="#本文章將介紹把帳號設定為-Remote-Desktop-Users-權限" class="headerlink" title="本文章將介紹把帳號設定為 Remote Desktop Users 權限"></a>本文章將介紹把帳號設定為 Remote Desktop Users 權限</h3>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/06/23/windows常用指令/#more" rel="contents">
+              <a class="btn" href="/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -268,8 +268,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 17:13:25" itemprop="dateModified" datetime="2020-07-30T17:13:25+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
+                </span>
+            </span>
 
           
 
@@ -282,21 +291,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠"><a href="#在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠" class="headerlink" title="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠"></a>在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠</h3><h4 id="一、在被控端電腦的開始選單中點選-執行-（-或按-視窗-R-快速鍵-）-開啟執行視窗，輸入-regedit-後按確定按鈕"><a href="#一、在被控端電腦的開始選單中點選-執行-（-或按-視窗-R-快速鍵-）-開啟執行視窗，輸入-regedit-後按確定按鈕" class="headerlink" title="一、在被控端電腦的開始選單中點選 執行 （ 或按 視窗+ R 快速鍵 ） 開啟執行視窗，輸入 regedit 後按確定按鈕"></a>一、在被控端電腦的開始選單中點選 執行 （ 或按 視窗+ R 快速鍵 ） 開啟執行視窗，輸入 regedit 後按確定按鈕</h4><p><img src="images/1.png" alt=" "></p>
-<h4 id="二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼"><a href="#二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼" class="headerlink" title="二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼"></a>二、開啟登錄檔編輯器後，請找到下面這個登錄檔的機碼</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TerminalServer\WinStations\RDP–Tcp\PortNumber</span><br></pre></td></tr></table></figure>
-<p><img src="images/2.png" alt=" "></p>
-<h4 id="三、開啟修改視窗後，請先點選-Decimal-十進位-，然後在-Value-data-數值資料-處輸入新的連接埠編號，如-5566，最後再按下確定修改"><a href="#三、開啟修改視窗後，請先點選-Decimal-十進位-，然後在-Value-data-數值資料-處輸入新的連接埠編號，如-5566，最後再按下確定修改" class="headerlink" title="三、開啟修改視窗後，請先點選 Decimal ( 十進位 )，然後在 Value data ( 數值資料 ) 處輸入新的連接埠編號，如 5566，最後再按下確定修改"></a>三、開啟修改視窗後，請先點選 Decimal ( 十進位 )，然後在 Value data ( 數值資料 ) 處輸入新的連接埠編號，如 5566，最後再按下確定修改</h4><p><img src="images/3.png" alt=" "></p>
-<h4 id="四、進入防火牆-Advanced-settings-進階設定-設置新的遠端-port-進入"><a href="#四、進入防火牆-Advanced-settings-進階設定-設置新的遠端-port-進入" class="headerlink" title="四、進入防火牆 Advanced settings ( 進階設定 ) 設置新的遠端 port 進入"></a>四、進入防火牆 Advanced settings ( 進階設定 ) 設置新的遠端 port 進入</h4><p><img src="images/4.png" alt=" "></p>
-<h4 id="點選-Inbound-Rules-輸入規則-設置"><a href="#點選-Inbound-Rules-輸入規則-設置" class="headerlink" title="點選 Inbound Rules ( 輸入規則 ) 設置"></a>點選 Inbound Rules ( 輸入規則 ) 設置</h4><p><img src="images/5.png" alt=" "></p>
-<h4 id="點選-Nwe-Inbound-Rule-Wizard-新增輸入規則"><a href="#點選-Nwe-Inbound-Rule-Wizard-新增輸入規則" class="headerlink" title="點選 Nwe Inbound Rule Wizard ( 新增輸入規則 )"></a>點選 Nwe Inbound Rule Wizard ( 新增輸入規則 )</h4><p><img src="images/6.png" alt=" "></p>
-<h4 id="點選-port"><a href="#點選-port" class="headerlink" title="點選 port"></a>點選 port</h4><p><img src="images/7.png" alt=" "></p>
-<h4 id="點選-Specific-local-ports-特定本機連接埠-輸入你要的埠號"><a href="#點選-Specific-local-ports-特定本機連接埠-輸入你要的埠號" class="headerlink" title="點選 Specific local ports ( 特定本機連接埠 ) 輸入你要的埠號"></a>點選 Specific local ports ( 特定本機連接埠 ) 輸入你要的埠號</h4><p><img src="images/8.png" alt=" "></p>
-<h4 id="點選-Allow-the-connection-允許連線"><a href="#點選-Allow-the-connection-允許連線" class="headerlink" title="點選 Allow the connection ( 允許連線 )"></a>點選 Allow the connection ( 允許連線 )</h4><p><img src="images/9.png" alt=" "></p>
-<h4 id="預設下一頁"><a href="#預設下一頁" class="headerlink" title="預設下一頁"></a>預設下一頁</h4><p><img src="images/10.png" alt=" "></p>
-<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p><img src="images/11.png" alt=" "></p>
-<h4 id="最後就會看到你加入的-port-名稱了"><a href="#最後就會看到你加入的-port-名稱了" class="headerlink" title="最後就會看到你加入的 port 名稱了"></a>最後就會看到你加入的 port 名稱了</h4><p><img src="images/12.png" alt=" "></p>
-<h4 id="最後讓電腦重開機即可生效"><a href="#最後讓電腦重開機即可生效" class="headerlink" title="最後讓電腦重開機即可生效"></a>最後讓電腦重開機即可生效</h4><h4 id="接下來測試輸入-IP：新埠號"><a href="#接下來測試輸入-IP：新埠號" class="headerlink" title="接下來測試輸入 IP：新埠號"></a>接下來測試輸入 IP：新埠號</h4><p><img src="images/13.png" alt=" "></p>
-<h4 id="這樣就完成囉！"><a href="#這樣就完成囉！" class="headerlink" title="這樣就完成囉！"></a>這樣就完成囉！</h4>
+          <h3 id="在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠"><a href="#在-Windows-系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他-Windows-電腦。Windows-系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的-3389-連接埠，可以用下面的方法將被控端電腦的遠端桌面連線-PORT-改成其他連接埠" class="headerlink" title="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠"></a>在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/23/修改遠端桌面的連接埠-port/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1037,13 +1040,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹把帳號設定為 Remote Desktop Users 權限1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 ) 2. 到 Local Users and Groups ( 本機使用者和群組 ) → Users 可以看到目前有哪些帳號 3. 到 Local Users and Groups ( 本機使用者和群組 ) → Groups 會看到很多群">
+  <meta name="description" content="本文章將介紹把帳號設定為 Remote Desktop Users 權限">
+<meta name="keywords" content="windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="設定遠端帳號權限為Remote-Desktop-Users">
 <meta property="og:url" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹把帳號設定為 Remote Desktop Users 權限1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 ) 2. 到 Local Users and Groups ( 本機使用者和群組 ) → Users 可以看到目前有哪些帳號 3. 到 Local Users and Groups ( 本機使用者和群組 ) → Groups 會看到很多群">
+<meta property="og:description" content="本文章將介紹把帳號設定為 Remote Desktop Users 權限">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/images/2.png">
@@ -37,10 +38,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/images/8.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/images/9.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.892Z">
+<meta property="og:updated_time" content="2020-07-30T09:13:02.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="設定遠端帳號權限為Remote-Desktop-Users">
-<meta name="twitter:description" content="本文章將介紹把帳號設定為 Remote Desktop Users 權限1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 ) 2. 到 Local Users and Groups ( 本機使用者和群組 ) → Users 可以看到目前有哪些帳號 3. 到 Local Users and Groups ( 本機使用者和群組 ) → Groups 會看到很多群">
+<meta name="twitter:description" content="本文章將介紹把帳號設定為 Remote Desktop Users 權限">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/">
@@ -202,8 +203,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 17:13:02" itemprop="dateModified" datetime="2020-07-30T17:13:02+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
+                </span>
+            </span>
 
           
 
@@ -216,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹把帳號設定為-Remote-Desktop-Users-權限"><a href="#本文章將介紹把帳號設定為-Remote-Desktop-Users-權限" class="headerlink" title="本文章將介紹把帳號設定為 Remote Desktop Users 權限"></a>本文章將介紹把帳號設定為 Remote Desktop Users 權限</h3><h4 id="1-在開始的地方點擊滑鼠右鍵選擇-Computer-Management-電腦管理"><a href="#1-在開始的地方點擊滑鼠右鍵選擇-Computer-Management-電腦管理" class="headerlink" title="1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 )"></a>1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 )</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="本文章將介紹把帳號設定為-Remote-Desktop-Users-權限"><a href="#本文章將介紹把帳號設定為-Remote-Desktop-Users-權限" class="headerlink" title="本文章將介紹把帳號設定為 Remote Desktop Users 權限"></a>本文章將介紹把帳號設定為 Remote Desktop Users 權限</h3><a id="more"></a>
+<h4 id="1-在開始的地方點擊滑鼠右鍵選擇-Computer-Management-電腦管理"><a href="#1-在開始的地方點擊滑鼠右鍵選擇-Computer-Management-電腦管理" class="headerlink" title="1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 )"></a>1. 在開始的地方點擊滑鼠右鍵選擇 Computer Management ( 電腦管理 )</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="2-到-Local-Users-and-Groups-本機使用者和群組-→-Users-可以看到目前有哪些帳號"><a href="#2-到-Local-Users-and-Groups-本機使用者和群組-→-Users-可以看到目前有哪些帳號" class="headerlink" title="2. 到 Local Users and Groups ( 本機使用者和群組 ) → Users 可以看到目前有哪些帳號"></a>2. 到 Local Users and Groups ( 本機使用者和群組 ) → Users 可以看到目前有哪些帳號</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="3-到-Local-Users-and-Groups-本機使用者和群組-→-Groups-會看到很多群組，點擊2下-Remote-Desktop-Users"><a href="#3-到-Local-Users-and-Groups-本機使用者和群組-→-Groups-會看到很多群組，點擊2下-Remote-Desktop-Users" class="headerlink" title="3. 到 Local Users and Groups ( 本機使用者和群組 ) → Groups 會看到很多群組，點擊2下 Remote Desktop Users"></a>3. 到 Local Users and Groups ( 本機使用者和群組 ) → Groups 會看到很多群組，點擊2下 Remote Desktop Users</h4><p><img src="images/3.png" alt=" "></p>
 <h4 id="4-點擊2下-Remote-Desktop-Users-點選-Add-後需要設定權限帳號加進去，點選-Check-Names-確認是否有這個帳號，點選-ok"><a href="#4-點擊2下-Remote-Desktop-Users-點選-Add-後需要設定權限帳號加進去，點選-Check-Names-確認是否有這個帳號，點選-ok" class="headerlink" title="4. 點擊2下 Remote Desktop Users 點選 Add 後需要設定權限帳號加進去，點選 Check Names 確認是否有這個帳號，點選 ok"></a>4. 點擊2下 Remote Desktop Users 點選 Add 後需要設定權限帳號加進去，點選 Check Names 確認是否有這個帳號，點選 ok</h4><p><img src="images/4.png" alt=" "><br><img src="images/5.png" alt=" "><br><img src="images/6.png" alt=" "></p>
@@ -232,6 +243,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/windows/" rel="tag"># windows</a>
+          </div>
 
         
 
@@ -239,12 +253,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/06/23/windows常用指令/" rel="prev" title="windows常用指令">
-      <i class="fa fa-chevron-left"></i> windows常用指令
+    <a href="/2018/06/23/修改遠端桌面的連接埠-port/" rel="prev" title="修改遠端桌面的連接埠-port">
+      <i class="fa fa-chevron-left"></i> 修改遠端桌面的連接埠-port
     </a></div>
       <div class="post-nav-item">
-    <a href="/2018/06/23/linux更改時區/" rel="next" title="linux更改時區">
-      linux更改時區 <i class="fa fa-chevron-right"></i>
+    <a href="/2018/06/23/windows常用指令/" rel="next" title="windows常用指令">
+      windows常用指令 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -327,13 +341,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
