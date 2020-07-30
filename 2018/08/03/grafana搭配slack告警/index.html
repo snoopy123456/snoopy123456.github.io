@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本篇文章將介紹把告警傳送到 slack一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app 二、slack 點選 channel，創建頻道 三、為頻道命名 四、點選 got it 正式啟用頻道 五、點選 add people to this channel 加入團隊成員到頻道中 六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知">
+  <meta name="description" content="本篇文章將介紹把告警傳送到 slack">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="grafana搭配slack告警">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本篇文章將介紹把告警傳送到 slack一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app 二、slack 點選 channel，創建頻道 三、為頻道命名 四、點選 got it 正式啟用頻道 五、點選 add people to this channel 加入團隊成員到頻道中 六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知">
+<meta property="og:description" content="本篇文章將介紹把告警傳送到 slack">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/2.png">
@@ -52,10 +53,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/23.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/24.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/25.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.309Z">
+<meta property="og:updated_time" content="2020-07-30T08:42:29.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="grafana搭配slack告警">
-<meta name="twitter:description" content="本篇文章將介紹把告警傳送到 slack一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app 二、slack 點選 channel，創建頻道 三、為頻道命名 四、點選 got it 正式啟用頻道 五、點選 add people to this channel 加入團隊成員到頻道中 六、前往 slack 的a pp Directory 應用程序，登入後右上角選擇要發送告警通知">
+<meta name="twitter:description" content="本篇文章將介紹把告警傳送到 slack">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/03/grafana搭配slack告警/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/03/grafana搭配slack告警/">
@@ -217,8 +218,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:42:29" itemprop="dateModified" datetime="2020-07-30T16:42:29+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -231,7 +241,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本篇文章將介紹把告警傳送到-slack"><a href="#本篇文章將介紹把告警傳送到-slack" class="headerlink" title="本篇文章將介紹把告警傳送到 slack"></a>本篇文章將介紹把告警傳送到 slack</h2><h3 id="一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app"><a href="#一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app" class="headerlink" title="一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app"></a>一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app</h3><p><img src="images/1.png" alt=" "></p>
+        <h2 id="本篇文章將介紹把告警傳送到-slack"><a href="#本篇文章將介紹把告警傳送到-slack" class="headerlink" title="本篇文章將介紹把告警傳送到 slack"></a>本篇文章將介紹把告警傳送到 slack</h2><a id="more"></a>
+<h3 id="一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app"><a href="#一、首先先註冊一個-slack-的帳號與下載-slack-的應用程序或-app" class="headerlink" title="一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app"></a>一、首先先註冊一個 slack 的帳號與下載 slack 的應用程序或 app</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="二、slack-點選-channel，創建頻道"><a href="#二、slack-點選-channel，創建頻道" class="headerlink" title="二、slack 點選 channel，創建頻道"></a>二、slack 點選 channel，創建頻道</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="三、為頻道命名"><a href="#三、為頻道命名" class="headerlink" title="三、為頻道命名"></a>三、為頻道命名</h3><p><img src="images/3.png" alt=" "></p>
 <h3 id="四、點選-got-it-正式啟用頻道"><a href="#四、點選-got-it-正式啟用頻道" class="headerlink" title="四、點選 got it 正式啟用頻道"></a>四、點選 got it 正式啟用頻道</h3><p><img src="images/4.png" alt=" "></p>
@@ -260,6 +271,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -355,13 +369,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

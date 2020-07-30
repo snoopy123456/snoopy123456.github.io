@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="kibana 操作-Visualize、Dashboard、版本：5.6.7Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現1. 點選 + 然後選擇想要新增的圖表 2. 選擇要圖表畫的 index 3. 設定參數 4. 儲存圖表A. 點  圖表才會顯示你參數設定需要的 logB. 有時侯設定好卻沒 log 出現，那是現在這個時間沒有此 log (預設是現在15分鐘)C. 點擊">
+  <meta name="description" content="kibana 操作-Visualize、Dashboard、版本：5.6.7">
+<meta name="keywords" content="ELK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kibana操作-Visualize、Dashboard">
 <meta property="og:url" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="kibana 操作-Visualize、Dashboard、版本：5.6.7Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現1. 點選 + 然後選擇想要新增的圖表 2. 選擇要圖表畫的 index 3. 設定參數 4. 儲存圖表A. 點  圖表才會顯示你參數設定需要的 logB. 有時侯設定好卻沒 log 出現，那是現在這個時間沒有此 log (預設是現在15分鐘)C. 點擊">
+<meta property="og:description" content="kibana 操作-Visualize、Dashboard、版本：5.6.7">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/images/2.png">
@@ -38,10 +39,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/images/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/images/10.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/images/11.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.370Z">
+<meta property="og:updated_time" content="2020-07-30T08:43:22.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kibana操作-Visualize、Dashboard">
-<meta name="twitter:description" content="kibana 操作-Visualize、Dashboard、版本：5.6.7Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現1. 點選 + 然後選擇想要新增的圖表 2. 選擇要圖表畫的 index 3. 設定參數 4. 儲存圖表A. 點  圖表才會顯示你參數設定需要的 logB. 有時侯設定好卻沒 log 出現，那是現在這個時間沒有此 log (預設是現在15分鐘)C. 點擊">
+<meta name="twitter:description" content="kibana 操作-Visualize、Dashboard、版本：5.6.7">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/01/kibana操作-Visualize、Dashboard/">
@@ -203,8 +204,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:43:22" itemprop="dateModified" datetime="2020-07-30T16:43:22+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -217,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="kibana-操作-Visualize、Dashboard、版本：5-6-7"><a href="#kibana-操作-Visualize、Dashboard、版本：5-6-7" class="headerlink" title="kibana 操作-Visualize、Dashboard、版本：5.6.7"></a>kibana 操作-Visualize、Dashboard、版本：5.6.7</h3><h3 id="Visualize-將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現"><a href="#Visualize-將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現" class="headerlink" title="Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現"></a>Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現</h3><h3 id="1-點選-然後選擇想要新增的圖表"><a href="#1-點選-然後選擇想要新增的圖表" class="headerlink" title="1. 點選 + 然後選擇想要新增的圖表"></a>1. 點選 + 然後選擇想要新增的圖表</h3><p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
+        <h3 id="kibana-操作-Visualize、Dashboard、版本：5-6-7"><a href="#kibana-操作-Visualize、Dashboard、版本：5-6-7" class="headerlink" title="kibana 操作-Visualize、Dashboard、版本：5.6.7"></a>kibana 操作-Visualize、Dashboard、版本：5.6.7</h3><a id="more"></a>
+<h3 id="Visualize-將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現"><a href="#Visualize-將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現" class="headerlink" title="Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現"></a>Visualize : 將搜尋出的數據以長條圖、圓餅圖、表格等方式呈現</h3><h3 id="1-點選-然後選擇想要新增的圖表"><a href="#1-點選-然後選擇想要新增的圖表" class="headerlink" title="1. 點選 + 然後選擇想要新增的圖表"></a>1. 點選 + 然後選擇想要新增的圖表</h3><p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
 <h3 id="2-選擇要圖表畫的-index"><a href="#2-選擇要圖表畫的-index" class="headerlink" title="2. 選擇要圖表畫的 index"></a>2. 選擇要圖表畫的 index</h3><p><img src="images/3.png" alt=" "></p>
 <h3 id="3-設定參數"><a href="#3-設定參數" class="headerlink" title="3. 設定參數"></a>3. 設定參數</h3><p><img src="images/4.png" alt=" "></p>
 <h3 id="4-儲存圖表"><a href="#4-儲存圖表" class="headerlink" title="4. 儲存圖表"></a>4. 儲存圖表</h3><h3 id="A-點-圖表才會顯示你參數設定需要的-log"><a href="#A-點-圖表才會顯示你參數設定需要的-log" class="headerlink" title="A. 點  圖表才會顯示你參數設定需要的 log"></a>A. 點 <img src="images/5.png" alt=" "> 圖表才會顯示你參數設定需要的 log</h3><h3 id="B-有時侯設定好卻沒-log-出現，那是現在這個時間沒有此-log-預設是現在15分鐘"><a href="#B-有時侯設定好卻沒-log-出現，那是現在這個時間沒有此-log-預設是現在15分鐘" class="headerlink" title="B. 有時侯設定好卻沒 log 出現，那是現在這個時間沒有此 log (預設是現在15分鐘)"></a>B. 有時侯設定好卻沒 log 出現，那是現在這個時間沒有此 log (預設是現在15分鐘)</h3><h3 id="C-點擊-Save-頂部菜單中的選項，命名然後單擊-Save-保存"><a href="#C-點擊-Save-頂部菜單中的選項，命名然後單擊-Save-保存" class="headerlink" title="C. 點擊 Save 頂部菜單中的選項，命名然後單擊 Save 保存"></a>C. 點擊 Save 頂部菜單中的選項，命名然後單擊 Save 保存</h3><p><img src="images/6.png" alt=" "></p>
@@ -234,6 +245,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ELK/" rel="tag"># ELK</a>
+          </div>
 
         
 
@@ -329,13 +343,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

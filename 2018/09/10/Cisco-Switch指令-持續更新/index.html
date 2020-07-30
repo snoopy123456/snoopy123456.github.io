@@ -20,17 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄switch 指令sh=showsh logging (查 log)en=enableen (進入管理者模式)run=runing-configsh run (查看 running 組態檔內容)conf t=configure terminalconf t (進入組態模式)logging host ip (指定 log 到指定ip 機器)show">
+  <meta name="description" content="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄">
+<meta name="keywords" content="cisoco">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cisco-Switch指令-持續更新">
 <meta property="og:url" content="http://yoursite.com/2018/09/10/Cisco-Switch指令-持續更新/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄switch 指令sh=showsh logging (查 log)en=enableen (進入管理者模式)run=runing-configsh run (查看 running 組態檔內容)conf t=configure terminalconf t (進入組態模式)logging host ip (指定 log 到指定ip 機器)show">
+<meta property="og:description" content="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-04-01T03:30:24.973Z">
+<meta property="og:updated_time" content="2020-07-30T08:39:14.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cisco-Switch指令-持續更新">
-<meta name="twitter:description" content="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄switch 指令sh=showsh logging (查 log)en=enableen (進入管理者模式)run=runing-configsh run (查看 running 組態檔內容)conf t=configure terminalconf t (進入組態模式)logging host ip (指定 log 到指定ip 機器)show">
+<meta name="twitter:description" content="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄">
 
 <link rel="canonical" href="http://yoursite.com/2018/09/10/Cisco-Switch指令-持續更新/">
 
@@ -191,8 +192,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:39:14" itemprop="dateModified" datetime="2020-07-30T16:39:14+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/cisoco/" itemprop="url" rel="index"><span itemprop="name">cisoco</span></a>
+                </span>
+            </span>
 
           
 
@@ -205,7 +215,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄"><a href="#本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄" class="headerlink" title="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄"></a>本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄</h3><h3 id="switch-指令"><a href="#switch-指令" class="headerlink" title="switch 指令"></a>switch 指令</h3><h3 id="sh-show"><a href="#sh-show" class="headerlink" title="sh=show"></a>sh=show</h3><h3 id="sh-logging-查-log"><a href="#sh-logging-查-log" class="headerlink" title="sh logging (查 log)"></a>sh logging (查 log)</h3><h3 id="en-enable"><a href="#en-enable" class="headerlink" title="en=enable"></a>en=enable</h3><h3 id="en-進入管理者模式"><a href="#en-進入管理者模式" class="headerlink" title="en (進入管理者模式)"></a>en (進入管理者模式)</h3><h3 id="run-runing-config"><a href="#run-runing-config" class="headerlink" title="run=runing-config"></a>run=runing-config</h3><h3 id="sh-run-查看-running-組態檔內容"><a href="#sh-run-查看-running-組態檔內容" class="headerlink" title="sh run (查看 running 組態檔內容)"></a>sh run (查看 running 組態檔內容)</h3><h3 id="conf-t-configure-terminal"><a href="#conf-t-configure-terminal" class="headerlink" title="conf t=configure terminal"></a>conf t=configure terminal</h3><h3 id="conf-t-進入組態模式"><a href="#conf-t-進入組態模式" class="headerlink" title="conf t (進入組態模式)"></a>conf t (進入組態模式)</h3><h3 id="logging-host-ip-指定-log-到指定ip-機器"><a href="#logging-host-ip-指定-log-到指定ip-機器" class="headerlink" title="logging host ip (指定 log 到指定ip 機器)"></a>logging host ip (指定 log 到指定ip 機器)</h3><h3 id="show-history-顯示啟動開始執行過的指令"><a href="#show-history-顯示啟動開始執行過的指令" class="headerlink" title="show  history (顯示啟動開始執行過的指令)"></a>show  history (顯示啟動開始執行過的指令)</h3><h3 id="en-→-conf-t-→-int-gi0-3-→-shutdown-關閉一個port"><a href="#en-→-conf-t-→-int-gi0-3-→-shutdown-關閉一個port" class="headerlink" title="en → conf t → int gi0/3 → shutdown (關閉一個port)"></a>en → conf t → int gi0/3 → shutdown (關閉一個port)</h3><h3 id="en-→-conf-t-→-int-gi0-3-→-no-shutdown-開啟一個port"><a href="#en-→-conf-t-→-int-gi0-3-→-no-shutdown-開啟一個port" class="headerlink" title="en → conf t → int gi0/3 → no shutdown (開啟一個port)"></a>en → conf t → int gi0/3 → no shutdown (開啟一個port)</h3>
+        <h3 id="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄"><a href="#本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄" class="headerlink" title="本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄"></a>本篇文章是做筆記用，將會寫入目前有用到的指令做紀錄</h3><a id="more"></a>
+<h3 id="switch-指令"><a href="#switch-指令" class="headerlink" title="switch 指令"></a>switch 指令</h3><h3 id="sh-show"><a href="#sh-show" class="headerlink" title="sh=show"></a>sh=show</h3><h3 id="sh-logging-查-log"><a href="#sh-logging-查-log" class="headerlink" title="sh logging (查 log)"></a>sh logging (查 log)</h3><h3 id="en-enable"><a href="#en-enable" class="headerlink" title="en=enable"></a>en=enable</h3><h3 id="en-進入管理者模式"><a href="#en-進入管理者模式" class="headerlink" title="en (進入管理者模式)"></a>en (進入管理者模式)</h3><h3 id="run-runing-config"><a href="#run-runing-config" class="headerlink" title="run=runing-config"></a>run=runing-config</h3><h3 id="sh-run-查看-running-組態檔內容"><a href="#sh-run-查看-running-組態檔內容" class="headerlink" title="sh run (查看 running 組態檔內容)"></a>sh run (查看 running 組態檔內容)</h3><h3 id="conf-t-configure-terminal"><a href="#conf-t-configure-terminal" class="headerlink" title="conf t=configure terminal"></a>conf t=configure terminal</h3><h3 id="conf-t-進入組態模式"><a href="#conf-t-進入組態模式" class="headerlink" title="conf t (進入組態模式)"></a>conf t (進入組態模式)</h3><h3 id="logging-host-ip-指定-log-到指定ip-機器"><a href="#logging-host-ip-指定-log-到指定ip-機器" class="headerlink" title="logging host ip (指定 log 到指定ip 機器)"></a>logging host ip (指定 log 到指定ip 機器)</h3><h3 id="show-history-顯示啟動開始執行過的指令"><a href="#show-history-顯示啟動開始執行過的指令" class="headerlink" title="show  history (顯示啟動開始執行過的指令)"></a>show  history (顯示啟動開始執行過的指令)</h3><h3 id="en-→-conf-t-→-int-gi0-3-→-shutdown-關閉一個port"><a href="#en-→-conf-t-→-int-gi0-3-→-shutdown-關閉一個port" class="headerlink" title="en → conf t → int gi0/3 → shutdown (關閉一個port)"></a>en → conf t → int gi0/3 → shutdown (關閉一個port)</h3><h3 id="en-→-conf-t-→-int-gi0-3-→-no-shutdown-開啟一個port"><a href="#en-→-conf-t-→-int-gi0-3-→-no-shutdown-開啟一個port" class="headerlink" title="en → conf t → int gi0/3 → no shutdown (開啟一個port)"></a>en → conf t → int gi0/3 → no shutdown (開啟一個port)</h3>
     </div>
 
     
@@ -213,6 +224,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cisoco/" rel="tag"># cisoco</a>
+          </div>
 
         
 
@@ -308,13 +322,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -20,18 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面在 GCP 加入 DNS 網域文章 傳送門GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面grafana 建立文章 傳送門grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )1dock">
+  <meta name="description" content="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="grafana使用網域開啟監控頁面">
 <meta property="og:url" content="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面在 GCP 加入 DNS 網域文章 傳送門GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面grafana 建立文章 傳送門grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )1dock">
+<meta property="og:description" content="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/images/1.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.288Z">
+<meta property="og:updated_time" content="2020-07-30T08:41:54.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="grafana使用網域開啟監控頁面">
-<meta name="twitter:description" content="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面在 GCP 加入 DNS 網域文章 傳送門GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面grafana 建立文章 傳送門grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )1dock">
+<meta name="twitter:description" content="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/02/grafana使用網域開啟監控頁面/">
@@ -193,8 +194,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:41:54" itemprop="dateModified" datetime="2020-07-30T16:41:54+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -207,7 +217,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹使用-GCP-加入-DNS-網域開啟-grafana-監控頁面"><a href="#本文章將介紹使用-GCP-加入-DNS-網域開啟-grafana-監控頁面" class="headerlink" title="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面"></a>本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面</h2><h3 id="在-GCP-加入-DNS-網域文章-傳送門"><a href="#在-GCP-加入-DNS-網域文章-傳送門" class="headerlink" title="在 GCP 加入 DNS 網域文章 傳送門"></a>在 GCP 加入 DNS 網域文章 <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E8%A8%AD%E5%AE%9ADNS%E7%B6%B2%E5%9F%9F/" target="_blank" rel="noopener">傳送門</a></h3><h3 id="GCP-網域加好後，只需要在指令多加-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-”你的網域”-這樣就可以使用網域開啟監控頁面"><a href="#GCP-網域加好後，只需要在指令多加-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-”你的網域”-這樣就可以使用網域開啟監控頁面" class="headerlink" title="GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面"></a>GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面</h3><h3 id="grafana-建立文章-傳送門"><a href="#grafana-建立文章-傳送門" class="headerlink" title="grafana 建立文章 傳送門"></a>grafana 建立文章 <a href="https://snoopy30485.github.io/2018/08/02/grafana%E5%BB%BA%E7%AB%8B/" target="_blank" rel="noopener">傳送門</a></h3><h3 id="grafana-指令-本章使用的網域為-grafana-costworlds-com"><a href="#grafana-指令-本章使用的網域為-grafana-costworlds-com" class="headerlink" title="grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )"></a>grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name grafana --restart=always -p 80:3000 -v /data/grafana:/var/lib/grafana --user root --link influxdb:influxdb -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com grafana/grafana:5.2.4</span><br></pre></td></tr></table></figure>
+        <h2 id="本文章將介紹使用-GCP-加入-DNS-網域開啟-grafana-監控頁面"><a href="#本文章將介紹使用-GCP-加入-DNS-網域開啟-grafana-監控頁面" class="headerlink" title="本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面"></a>本文章將介紹使用 GCP 加入 DNS 網域開啟 grafana 監控頁面</h2><a id="more"></a>
+<h3 id="在-GCP-加入-DNS-網域文章-傳送門"><a href="#在-GCP-加入-DNS-網域文章-傳送門" class="headerlink" title="在 GCP 加入 DNS 網域文章 傳送門"></a>在 GCP 加入 DNS 網域文章 <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E8%A8%AD%E5%AE%9ADNS%E7%B6%B2%E5%9F%9F/" target="_blank" rel="noopener">傳送門</a></h3><h3 id="GCP-網域加好後，只需要在指令多加-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-”你的網域”-這樣就可以使用網域開啟監控頁面"><a href="#GCP-網域加好後，只需要在指令多加-e-GF-AUTH-GOOGLE-ALLOWED-DOMAINS-”你的網域”-這樣就可以使用網域開啟監控頁面" class="headerlink" title="GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面"></a>GCP 網域加好後，只需要在指令多加 -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=”你的網域” 這樣就可以使用網域開啟監控頁面</h3><h3 id="grafana-建立文章-傳送門"><a href="#grafana-建立文章-傳送門" class="headerlink" title="grafana 建立文章 傳送門"></a>grafana 建立文章 <a href="https://snoopy30485.github.io/2018/08/02/grafana%E5%BB%BA%E7%AB%8B/" target="_blank" rel="noopener">傳送門</a></h3><h3 id="grafana-指令-本章使用的網域為-grafana-costworlds-com"><a href="#grafana-指令-本章使用的網域為-grafana-costworlds-com" class="headerlink" title="grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )"></a>grafana 指令 ( 本章使用的網域為 grafana.costworlds.com )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name grafana --restart=always -p 80:3000 -v /data/grafana:/var/lib/grafana --user root --link influxdb:influxdb -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com grafana/grafana:5.2.4</span><br></pre></td></tr></table></figure>
 <h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  influxdb:</span><br><span class="line">    container_name: influxdb</span><br><span class="line">    image: influxdb:1.7.2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8086:8086&quot;</span><br><span class="line">      - &quot;8083:8083&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/influxdb:/var/lib/influxdb</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line"></span><br><span class="line">  grafana:</span><br><span class="line">    container_name: grafana</span><br><span class="line">    image: grafana/grafana:5.2.4</span><br><span class="line">    user: root</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:3000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/grafana:/var/lib/grafana</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line">    depends_on:</span><br><span class="line">      - influxdb</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  grafana:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
 <h3 id="測試，直接使用網域開啟監控頁面，看到畫面就成功了"><a href="#測試，直接使用網域開啟監控頁面，看到畫面就成功了" class="headerlink" title="測試，直接使用網域開啟監控頁面，看到畫面就成功了"></a>測試，直接使用網域開啟監控頁面，看到畫面就成功了</h3><p><img src="images/1.png" alt=" "></p>
 
@@ -218,6 +229,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -313,13 +327,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

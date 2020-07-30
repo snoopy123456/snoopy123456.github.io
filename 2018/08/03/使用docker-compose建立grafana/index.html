@@ -20,17 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹使用 docker-compose 建立 grafana指令安裝 docker-compose1apt-get install -y docker-compose 建立 docker-compose.yml1touch docker-compose.yml 寫入 docker-compose 內容1vi docker-compose.yml 寫入內容123456789101112131">
+  <meta name="description" content="本文章將介紹使用 docker-compose 建立 grafana">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用docker-compose建立grafana">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/使用docker-compose建立grafana/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹使用 docker-compose 建立 grafana指令安裝 docker-compose1apt-get install -y docker-compose 建立 docker-compose.yml1touch docker-compose.yml 寫入 docker-compose 內容1vi docker-compose.yml 寫入內容123456789101112131">
+<meta property="og:description" content="本文章將介紹使用 docker-compose 建立 grafana">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-06-18T08:20:21.817Z">
+<meta property="og:updated_time" content="2020-07-30T08:40:31.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用docker-compose建立grafana">
-<meta name="twitter:description" content="本文章將介紹使用 docker-compose 建立 grafana指令安裝 docker-compose1apt-get install -y docker-compose 建立 docker-compose.yml1touch docker-compose.yml 寫入 docker-compose 內容1vi docker-compose.yml 寫入內容123456789101112131">
+<meta name="twitter:description" content="本文章將介紹使用 docker-compose 建立 grafana">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/03/使用docker-compose建立grafana/">
 
@@ -191,8 +192,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-06-18 16:20:21" itemprop="dateModified" datetime="2020-06-18T16:20:21+08:00">2020-06-18</time>
+                <time title="修改時間：2020-07-30 16:40:31" itemprop="dateModified" datetime="2020-07-30T16:40:31+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -205,7 +215,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹使用-docker-compose-建立-grafana"><a href="#本文章將介紹使用-docker-compose-建立-grafana" class="headerlink" title="本文章將介紹使用 docker-compose 建立 grafana"></a>本文章將介紹使用 docker-compose 建立 grafana</h3><h4 id="指令安裝-docker-compose"><a href="#指令安裝-docker-compose" class="headerlink" title="指令安裝 docker-compose"></a>指令安裝 docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y docker-compose</span><br></pre></td></tr></table></figure>
+        <h3 id="本文章將介紹使用-docker-compose-建立-grafana"><a href="#本文章將介紹使用-docker-compose-建立-grafana" class="headerlink" title="本文章將介紹使用 docker-compose 建立 grafana"></a>本文章將介紹使用 docker-compose 建立 grafana</h3><a id="more"></a>
+<h4 id="指令安裝-docker-compose"><a href="#指令安裝-docker-compose" class="headerlink" title="指令安裝 docker-compose"></a>指令安裝 docker-compose</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y docker-compose</span><br></pre></td></tr></table></figure>
 <h4 id="建立-docker-compose-yml"><a href="#建立-docker-compose-yml" class="headerlink" title="建立 docker-compose.yml"></a>建立 docker-compose.yml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch docker-compose.yml</span><br></pre></td></tr></table></figure>
 <h4 id="寫入-docker-compose-內容"><a href="#寫入-docker-compose-內容" class="headerlink" title="寫入 docker-compose 內容"></a>寫入 docker-compose 內容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
 <h4 id="寫入內容"><a href="#寫入內容" class="headerlink" title="寫入內容"></a>寫入內容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  influxdb:</span><br><span class="line">    container_name: influxdb</span><br><span class="line">    image: influxdb:1.7.2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8086:8086&quot;</span><br><span class="line">      - &quot;8083:8083&quot;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/influxdb:/var/lib/influxdb</span><br><span class="line">    environment:</span><br><span class="line">      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line"></span><br><span class="line">  grafana:</span><br><span class="line">    container_name: grafana</span><br><span class="line">    image: grafana/grafana:5.2.4</span><br><span class="line">    user: root</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:3000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/grafana:/var/lib/grafana</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - GF_AUTH_GOOGLE_ALLOWED_DOMAINS=grafana.costworlds.com</span><br><span class="line">      -e GF_AUTH_DISABLE_LOGIN_FORM=false -e GF_AUTH_GOOGLE_ENABLED=true </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_ID=33574658051-0f9glecg4ujag71t3r2r6i96lc1bdgqe.apps.googleusercontent.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_CLIENT_SECRET=NNDaKWcBni51U7Ya4uYL6-Ay </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOWED_DOMAINS=gmail.com </span><br><span class="line">      -e GF_AUTH_GOOGLE_ALLOW_SIGN_UP=true</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_PROVIDER=gcs</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_KEY_FILE=/var/lib/grafana/proven-cosine-207802-ec7a854d7ba9.json</span><br><span class="line">      -e GF_EXTERNAL_IMAGE_STORAGE_GCS_BUCKET=test-grafana</span><br><span class="line">    networks:</span><br><span class="line">      - grafana</span><br><span class="line">    depends_on:</span><br><span class="line">      - influxdb</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  grafana:</span><br><span class="line">    driver: bridge</span><br></pre></td></tr></table></figure>
@@ -218,6 +229,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -313,13 +327,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

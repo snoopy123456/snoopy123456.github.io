@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹使用 GCP 開啟第三方登入驗證一、建立 google 憑證，到導覽選單 API 和服務 → 憑證 二、到分頁 OAuth 同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或 Google 群組，輸入以授權網域，點選儲存 三、到憑證頁面點選建立憑證，選擇 OAuth 用戶端 ID 四、點選網路應用程式 五、輸入名稱，然">
+  <meta name="description" content="本文章將介紹使用 GCP 開啟第三方登入驗證">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="grafana開啟google第三方登入驗證">
 <meta property="og:url" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹使用 GCP 開啟第三方登入驗證一、建立 google 憑證，到導覽選單 API 和服務 → 憑證 二、到分頁 OAuth 同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或 Google 群組，輸入以授權網域，點選儲存 三、到憑證頁面點選建立憑證，選擇 OAuth 用戶端 ID 四、點選網路應用程式 五、輸入名稱，然">
+<meta property="og:description" content="本文章將介紹使用 GCP 開啟第三方登入驗證">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/images/2.png">
@@ -40,10 +41,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/images/11.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/images/12.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/images/13.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.337Z">
+<meta property="og:updated_time" content="2020-07-30T08:42:41.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="grafana開啟google第三方登入驗證">
-<meta name="twitter:description" content="本文章將介紹使用 GCP 開啟第三方登入驗證一、建立 google 憑證，到導覽選單 API 和服務 → 憑證 二、到分頁 OAuth 同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或 Google 群組，輸入以授權網域，點選儲存 三、到憑證頁面點選建立憑證，選擇 OAuth 用戶端 ID 四、點選網路應用程式 五、輸入名稱，然">
+<meta name="twitter:description" content="本文章將介紹使用 GCP 開啟第三方登入驗證">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/02/grafana開啟google第三方登入驗證/">
@@ -205,8 +206,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:42:41" itemprop="dateModified" datetime="2020-07-30T16:42:41+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -219,7 +229,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹使用-GCP-開啟第三方登入驗證"><a href="#本文章將介紹使用-GCP-開啟第三方登入驗證" class="headerlink" title="本文章將介紹使用 GCP 開啟第三方登入驗證"></a>本文章將介紹使用 GCP 開啟第三方登入驗證</h2><h3 id="一、建立-google-憑證，到導覽選單-API-和服務-→-憑證"><a href="#一、建立-google-憑證，到導覽選單-API-和服務-→-憑證" class="headerlink" title="一、建立 google 憑證，到導覽選單 API 和服務 → 憑證"></a>一、建立 google 憑證，到導覽選單 API 和服務 → 憑證</h3><p><img src="images/1.png" alt=" "></p>
+        <h2 id="本文章將介紹使用-GCP-開啟第三方登入驗證"><a href="#本文章將介紹使用-GCP-開啟第三方登入驗證" class="headerlink" title="本文章將介紹使用 GCP 開啟第三方登入驗證"></a>本文章將介紹使用 GCP 開啟第三方登入驗證</h2><a id="more"></a>
+<h3 id="一、建立-google-憑證，到導覽選單-API-和服務-→-憑證"><a href="#一、建立-google-憑證，到導覽選單-API-和服務-→-憑證" class="headerlink" title="一、建立 google 憑證，到導覽選單 API 和服務 → 憑證"></a>一、建立 google 憑證，到導覽選單 API 和服務 → 憑證</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="二、到分頁-OAuth-同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或-Google-群組，輸入以授權網域，點選儲存"><a href="#二、到分頁-OAuth-同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或-Google-群組，輸入以授權網域，點選儲存" class="headerlink" title="二、到分頁 OAuth 同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或 Google 群組，輸入以授權網域，點選儲存"></a>二、到分頁 OAuth 同意畫面，輸入應用程式名稱，再到支援電子郵件底下，選取您想顯示為公開聯絡人的電子郵件地址，您必須擁有這個電子郵件地址或 Google 群組，輸入以授權網域，點選儲存</h3><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "></p>
 <h3 id="三、到憑證頁面點選建立憑證，選擇-OAuth-用戶端-ID"><a href="#三、到憑證頁面點選建立憑證，選擇-OAuth-用戶端-ID" class="headerlink" title="三、到憑證頁面點選建立憑證，選擇 OAuth 用戶端 ID"></a>三、到憑證頁面點選建立憑證，選擇 OAuth 用戶端 ID</h3><p><img src="images/4.png" alt=" "></p>
 <h3 id="四、點選網路應用程式"><a href="#四、點選網路應用程式" class="headerlink" title="四、點選網路應用程式"></a>四、點選網路應用程式</h3><p><img src="images/5.png" alt=" "></p>
@@ -238,6 +249,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -333,13 +347,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

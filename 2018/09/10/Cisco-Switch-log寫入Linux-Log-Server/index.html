@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器1. en 輸入密碼，進入管理者模式 2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip 3. exit 回到上一層4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip ) 二、 設定 linux 接收 log1. 配置 config：(1)">
+  <meta name="description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器">
+<meta name="keywords" content="cisco">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cisco-Switch-log寫入Linux-Log-Server">
 <meta property="og:url" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器1. en 輸入密碼，進入管理者模式 2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip 3. exit 回到上一層4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip ) 二、 設定 linux 接收 log1. 配置 config：(1)">
+<meta property="og:description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/2.png">
@@ -34,10 +35,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/5.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/6.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/7.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:24.967Z">
+<meta property="og:updated_time" content="2020-07-30T08:38:53.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cisco-Switch-log寫入Linux-Log-Server">
-<meta name="twitter:description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器1. en 輸入密碼，進入管理者模式 2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip 3. exit 回到上一層4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip ) 二、 設定 linux 接收 log1. 配置 config：(1)">
+<meta name="twitter:description" content="一、 進入 Switch 設定輸入 log 到指定 ip 機器">
 <meta name="twitter:image" content="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/09/10/Cisco-Switch-log寫入Linux-Log-Server/">
@@ -199,8 +200,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:38:53" itemprop="dateModified" datetime="2020-07-30T16:38:53+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/cisco/" itemprop="url" rel="index"><span itemprop="name">cisco</span></a>
+                </span>
+            </span>
 
           
 
@@ -213,7 +223,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、-進入-Switch-設定輸入-log-到指定-ip-機器"><a href="#一、-進入-Switch-設定輸入-log-到指定-ip-機器" class="headerlink" title="一、 進入 Switch 設定輸入 log 到指定 ip 機器"></a>一、 進入 Switch 設定輸入 log 到指定 ip 機器</h3><h3 id="1-en-輸入密碼，進入管理者模式"><a href="#1-en-輸入密碼，進入管理者模式" class="headerlink" title="1. en 輸入密碼，進入管理者模式"></a>1. en 輸入密碼，進入管理者模式</h3><p><img src="images/1.png" alt=" "></p>
+        <h3 id="一、-進入-Switch-設定輸入-log-到指定-ip-機器"><a href="#一、-進入-Switch-設定輸入-log-到指定-ip-機器" class="headerlink" title="一、 進入 Switch 設定輸入 log 到指定 ip 機器"></a>一、 進入 Switch 設定輸入 log 到指定 ip 機器</h3><a id="more"></a>
+<h3 id="1-en-輸入密碼，進入管理者模式"><a href="#1-en-輸入密碼，進入管理者模式" class="headerlink" title="1. en 輸入密碼，進入管理者模式"></a>1. en 輸入密碼，進入管理者模式</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip"><a href="#2-conf-t-進入組態模式，設定-log-到指定-ip-→-logging-host-ip" class="headerlink" title="2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip"></a>2. conf t 進入組態模式，設定 log 到指定 ip → logging host ip</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="3-exit-回到上一層"><a href="#3-exit-回到上一層" class="headerlink" title="3. exit 回到上一層"></a>3. exit 回到上一層</h3><h3 id="4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip"><a href="#4-sh-run-查看是否成功，如下圖成功會顯示-logging-ip-為了安全圖片模糊-ip" class="headerlink" title="4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )"></a>4. sh run 查看是否成功，如下圖成功會顯示 logging ip ( 為了安全圖片模糊 ip )</h3><p><img src="images/3.png" alt=" "></p>
 <h3 id="二、-設定-linux-接收-log"><a href="#二、-設定-linux-接收-log" class="headerlink" title="二、 設定 linux 接收 log"></a>二、 設定 linux 接收 log</h3><h3 id="1-配置-config："><a href="#1-配置-config：" class="headerlink" title="1. 配置 config："></a>1. 配置 config：</h3><h3 id="1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解"><a href="#1-vi-etc-syslog-conf-進入-config-拿掉-TCP-與-UDP-reception-的註解" class="headerlink" title="(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解"></a>(1) vi /etc/syslog.conf 進入 config 拿掉 TCP 與 UDP reception 的註解</h3><p><img src="images/4.png" alt=" "></p>
@@ -234,6 +245,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cisco/" rel="tag"># cisco</a>
+          </div>
 
         
 
@@ -329,13 +343,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

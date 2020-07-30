@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch… 也可以到左邊列表點擊齒輪，選擇 data sourc">
+  <meta name="description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="telegraf建立好後設定grafana抓取資料建立圖表">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch… 也可以到左邊列表點擊齒輪，選擇 data sourc">
+<meta property="og:description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/2.png">
@@ -45,10 +46,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/16.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/17.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/18.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.394Z">
+<meta property="og:updated_time" content="2020-07-30T08:40:49.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="telegraf建立好後設定grafana抓取資料建立圖表">
-<meta name="twitter:description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch… 也可以到左邊列表點擊齒輪，選擇 data sourc">
+<meta name="twitter:description" content="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/03/telegraf建立好後設定grafana抓取資料建立圖表/">
@@ -210,8 +211,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:40:49" itemprop="dateModified" datetime="2020-07-30T16:40:49+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -224,7 +234,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表"><a href="#本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表" class="headerlink" title="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表"></a>本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表</h2><h3 id="一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…"><a href="#一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…" class="headerlink" title="一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…"></a>一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…</h3><p><img src="images/1.png" alt=" "></p>
+        <h2 id="本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表"><a href="#本文章將介紹-telegraf-收集完資料傳到-influxdb-後-grafana-抓取資料建立圖表" class="headerlink" title="本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表"></a>本文章將介紹 telegraf 收集完資料傳到 influxdb 後 grafana 抓取資料建立圖表</h2><a id="more"></a>
+<h3 id="一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…"><a href="#一、第一次建好登入可以看到首頁-install-grafana-顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊-add-data-source，這個步驟是在配置我的數據來源-ex：influxdb、elasticsearch…" class="headerlink" title="一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…"></a>一、第一次建好登入可以看到首頁 install grafana 顯示打勾圖案，代表那個步驟完成了，所以接下來我們要做下個步驟點擊 add data source，這個步驟是在配置我的數據來源 ex：influxdb、elasticsearch…</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="也可以到左邊列表點擊齒輪，選擇-data-sources"><a href="#也可以到左邊列表點擊齒輪，選擇-data-sources" class="headerlink" title="也可以到左邊列表點擊齒輪，選擇 data sources"></a>也可以到左邊列表點擊齒輪，選擇 data sources</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="二、開始配置-data-sources"><a href="#二、開始配置-data-sources" class="headerlink" title="二、開始配置 data sources"></a>二、開始配置 data sources</h3><h3 id="進入畫面"><a href="#進入畫面" class="headerlink" title="進入畫面"></a>進入畫面</h3><p><img src="images/3.png" alt=" "></p>
 <h3 id="type-選擇-influxdb"><a href="#type-選擇-influxdb" class="headerlink" title="type 選擇 influxdb"></a>type 選擇 influxdb</h3><p><img src="images/4.png" alt=" "></p>
@@ -249,6 +260,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -344,13 +358,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

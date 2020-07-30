@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹將 grafana 告警圖片上傳到 gcs一、進入 gcp 然後到導覽選單 storage → 瀏覽器 二、點選建立 bucket 三、為值區命名，點擊繼續 四、選擇儲存空間級別，本文章使用 regional 每個級別 gcp 都有解釋，請依個人需求做選擇 五、選擇控制物件的存取權，選擇設定物件層級和值區層級權限 六、進階設定預設，全部選好後點選建立 七、回到瀏覽器畫面可以看到設定好的">
+  <meta name="description" content="本文章將介紹將 grafana 告警圖片上傳到 gcs">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="grafana告警圖保存至GCS">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹將 grafana 告警圖片上傳到 gcs一、進入 gcp 然後到導覽選單 storage → 瀏覽器 二、點選建立 bucket 三、為值區命名，點擊繼續 四、選擇儲存空間級別，本文章使用 regional 每個級別 gcp 都有解釋，請依個人需求做選擇 五、選擇控制物件的存取權，選擇設定物件層級和值區層級權限 六、進階設定預設，全部選好後點選建立 七、回到瀏覽器畫面可以看到設定好的">
+<meta property="og:description" content="本文章將介紹將 grafana 告警圖片上傳到 gcs">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/2.png">
@@ -49,10 +50,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/20.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/21.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/22.png">
-<meta property="og:updated_time" content="2020-05-06T07:07:53.603Z">
+<meta property="og:updated_time" content="2020-07-30T08:42:06.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="grafana告警圖保存至GCS">
-<meta name="twitter:description" content="本文章將介紹將 grafana 告警圖片上傳到 gcs一、進入 gcp 然後到導覽選單 storage → 瀏覽器 二、點選建立 bucket 三、為值區命名，點擊繼續 四、選擇儲存空間級別，本文章使用 regional 每個級別 gcp 都有解釋，請依個人需求做選擇 五、選擇控制物件的存取權，選擇設定物件層級和值區層級權限 六、進階設定預設，全部選好後點選建立 七、回到瀏覽器畫面可以看到設定好的">
+<meta name="twitter:description" content="本文章將介紹將 grafana 告警圖片上傳到 gcs">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/03/grafana告警圖保存至GCS/">
@@ -214,8 +215,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-05-06 15:07:53" itemprop="dateModified" datetime="2020-05-06T15:07:53+08:00">2020-05-06</time>
+                <time title="修改時間：2020-07-30 16:42:06" itemprop="dateModified" datetime="2020-07-30T16:42:06+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -228,7 +238,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹將-grafana-告警圖片上傳到-gcs"><a href="#本文章將介紹將-grafana-告警圖片上傳到-gcs" class="headerlink" title="本文章將介紹將 grafana 告警圖片上傳到 gcs"></a>本文章將介紹將 grafana 告警圖片上傳到 gcs</h2><h3 id="一、進入-gcp-然後到導覽選單-storage-→-瀏覽器"><a href="#一、進入-gcp-然後到導覽選單-storage-→-瀏覽器" class="headerlink" title="一、進入 gcp 然後到導覽選單 storage → 瀏覽器"></a>一、進入 gcp 然後到導覽選單 storage → 瀏覽器</h3><p><img src="images/1.png" alt=" "></p>
+        <h2 id="本文章將介紹將-grafana-告警圖片上傳到-gcs"><a href="#本文章將介紹將-grafana-告警圖片上傳到-gcs" class="headerlink" title="本文章將介紹將 grafana 告警圖片上傳到 gcs"></a>本文章將介紹將 grafana 告警圖片上傳到 gcs</h2><a id="more"></a>
+<h3 id="一、進入-gcp-然後到導覽選單-storage-→-瀏覽器"><a href="#一、進入-gcp-然後到導覽選單-storage-→-瀏覽器" class="headerlink" title="一、進入 gcp 然後到導覽選單 storage → 瀏覽器"></a>一、進入 gcp 然後到導覽選單 storage → 瀏覽器</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="二、點選建立-bucket"><a href="#二、點選建立-bucket" class="headerlink" title="二、點選建立 bucket"></a>二、點選建立 bucket</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="三、為值區命名，點擊繼續"><a href="#三、為值區命名，點擊繼續" class="headerlink" title="三、為值區命名，點擊繼續"></a>三、為值區命名，點擊繼續</h3><p><img src="images/3.png" alt=" "></p>
 <h3 id="四、選擇儲存空間級別，本文章使用-regional-每個級別-gcp-都有解釋，請依個人需求做選擇"><a href="#四、選擇儲存空間級別，本文章使用-regional-每個級別-gcp-都有解釋，請依個人需求做選擇" class="headerlink" title="四、選擇儲存空間級別，本文章使用 regional 每個級別 gcp 都有解釋，請依個人需求做選擇"></a>四、選擇儲存空間級別，本文章使用 regional 每個級別 gcp 都有解釋，請依個人需求做選擇</h3><p><img src="images/4.png" alt=" "></p>
@@ -260,6 +271,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -355,13 +369,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

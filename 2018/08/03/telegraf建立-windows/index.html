@@ -20,22 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹 telegraf 建立 ( windows )1. 下載 telegraf 壓縮檔下載網址：https://github.com/influxdata/telegraf/releases2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 ) 3. 打開 telegraf.conf">
+  <meta name="description" content="本文章將介紹 telegraf 建立 ( windows )">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="telegraf建立-windows">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/telegraf建立-windows/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹 telegraf 建立 ( windows )1. 下載 telegraf 壓縮檔下載網址：https://github.com/influxdata/telegraf/releases2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 ) 3. 打開 telegraf.conf">
+<meta property="og:description" content="本文章將介紹 telegraf 建立 ( windows )">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立-windows/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立-windows/images/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立-windows/images/3.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立-windows/images/4.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/03/telegraf建立-windows/images/5.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.389Z">
+<meta property="og:updated_time" content="2020-07-30T08:41:00.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="telegraf建立-windows">
-<meta name="twitter:description" content="本文章將介紹 telegraf 建立 ( windows )1. 下載 telegraf 壓縮檔下載網址：https://github.com/influxdata/telegraf/releases2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 ) 3. 打開 telegraf.conf">
+<meta name="twitter:description" content="本文章將介紹 telegraf 建立 ( windows )">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/03/telegraf建立-windows/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/08/03/telegraf建立-windows/">
@@ -197,8 +198,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:41:00" itemprop="dateModified" datetime="2020-07-30T16:41:00+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -211,7 +221,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹-telegraf-建立-windows"><a href="#本文章將介紹-telegraf-建立-windows" class="headerlink" title="本文章將介紹 telegraf 建立 ( windows )"></a>本文章將介紹 telegraf 建立 ( windows )</h2><h3 id="1-下載-telegraf-壓縮檔"><a href="#1-下載-telegraf-壓縮檔" class="headerlink" title="1. 下載 telegraf 壓縮檔"></a>1. 下載 telegraf 壓縮檔</h3><h3 id="下載網址：https-github-com-influxdata-telegraf-releases"><a href="#下載網址：https-github-com-influxdata-telegraf-releases" class="headerlink" title="下載網址：https://github.com/influxdata/telegraf/releases"></a>下載網址：<a href="https://github.com/influxdata/telegraf/releases" target="_blank" rel="noopener">https://github.com/influxdata/telegraf/releases</a></h3><h3 id="2-將檔案解壓縮後會有-config-與-exe-檔，放到須監控的機器底下的-D-Service-telegraf-（-若沒有-D-槽，放在系統槽即可"><a href="#2-將檔案解壓縮後會有-config-與-exe-檔，放到須監控的機器底下的-D-Service-telegraf-（-若沒有-D-槽，放在系統槽即可" class="headerlink" title="2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 )"></a>2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 )</h3><p><img src="images/1.png" alt=" "></p>
+        <h2 id="本文章將介紹-telegraf-建立-windows"><a href="#本文章將介紹-telegraf-建立-windows" class="headerlink" title="本文章將介紹 telegraf 建立 ( windows )"></a>本文章將介紹 telegraf 建立 ( windows )</h2><a id="more"></a>
+<h3 id="1-下載-telegraf-壓縮檔"><a href="#1-下載-telegraf-壓縮檔" class="headerlink" title="1. 下載 telegraf 壓縮檔"></a>1. 下載 telegraf 壓縮檔</h3><h3 id="下載網址：https-github-com-influxdata-telegraf-releases"><a href="#下載網址：https-github-com-influxdata-telegraf-releases" class="headerlink" title="下載網址：https://github.com/influxdata/telegraf/releases"></a>下載網址：<a href="https://github.com/influxdata/telegraf/releases" target="_blank" rel="noopener">https://github.com/influxdata/telegraf/releases</a></h3><h3 id="2-將檔案解壓縮後會有-config-與-exe-檔，放到須監控的機器底下的-D-Service-telegraf-（-若沒有-D-槽，放在系統槽即可"><a href="#2-將檔案解壓縮後會有-config-與-exe-檔，放到須監控的機器底下的-D-Service-telegraf-（-若沒有-D-槽，放在系統槽即可" class="headerlink" title="2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 )"></a>2. 將檔案解壓縮後會有 config 與 exe 檔，放到須監控的機器底下的 D:\Service\telegraf\（ 若沒有 D 槽，放在系統槽即可 )</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="3-打開-telegraf-conf-做設定"><a href="#3-打開-telegraf-conf-做設定" class="headerlink" title="3. 打開 telegraf.conf 做設定"></a>3. 打開 telegraf.conf 做設定</h3><h3 id="telegraf-內容：https-snoopy30485-github-io-2018-08-03-telegraf-windows"><a href="#telegraf-內容：https-snoopy30485-github-io-2018-08-03-telegraf-windows" class="headerlink" title="telegraf 內容：https://snoopy30485.github.io/2018/08/03/telegraf-windows/"></a>telegraf 內容：<a href="https://snoopy30485.github.io/2018/08/03/telegraf-windows/" target="_blank" rel="noopener">https://snoopy30485.github.io/2018/08/03/telegraf-windows/</a></h3><h3 id="4-以系統管理員身份開啟-Command-Prompt-cmd-，輸入指令到-telegraf-的路徑下，進行-telegraf-服務安裝並啟動"><a href="#4-以系統管理員身份開啟-Command-Prompt-cmd-，輸入指令到-telegraf-的路徑下，進行-telegraf-服務安裝並啟動" class="headerlink" title="4. 以系統管理員身份開啟 Command Prompt ( cmd )，輸入指令到 telegraf 的路徑下，進行 telegraf 服務安裝並啟動"></a>4. 以系統管理員身份開啟 Command Prompt ( cmd )，輸入指令到 telegraf 的路徑下，進行 telegraf 服務安裝並啟動</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="進入-telegraf-的路徑下"><a href="#進入-telegraf-的路徑下" class="headerlink" title="進入 telegraf 的路徑下"></a>進入 telegraf 的路徑下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:</span><br><span class="line">cd Service/telegraf</span><br></pre></td></tr></table></figure>
 <h3 id="安裝成服務"><a href="#安裝成服務" class="headerlink" title="安裝成服務"></a>安裝成服務</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telegraf.exe --config D:\Service\telegraf\telegraf.conf --service install</span><br></pre></td></tr></table></figure>
@@ -226,6 +237,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -321,13 +335,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

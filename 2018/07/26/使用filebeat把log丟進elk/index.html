@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本章將介紹使用 filebeat 將 log 丟進 elkfilebeat 下載：https://www.elastic.co/downloads/beats/filebeatPS：filebeat 盡量跟 elk 同版本解壓縮 filebeat 到你要的路徑下 開啟 filebeat 資料夾底下的 filebeat.yml 檔，可以看到蒐集器的設定，路徑以自己本機 log 放置位置為主 第183">
+  <meta name="description" content="本章將介紹使用 filebeat 將 log 丟進 elk">
+<meta name="keywords" content="ELK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用filebeat把log丟進elk">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本章將介紹使用 filebeat 將 log 丟進 elkfilebeat 下載：https://www.elastic.co/downloads/beats/filebeatPS：filebeat 盡量跟 elk 同版本解壓縮 filebeat 到你要的路徑下 開啟 filebeat 資料夾底下的 filebeat.yml 檔，可以看到蒐集器的設定，路徑以自己本機 log 放置位置為主 第183">
+<meta property="og:description" content="本章將介紹使用 filebeat 將 log 丟進 elk">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/2.png">
@@ -38,10 +39,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/10.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/11.png">
-<meta property="og:updated_time" content="2020-04-28T02:18:33.262Z">
+<meta property="og:updated_time" content="2020-07-30T08:40:05.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用filebeat把log丟進elk">
-<meta name="twitter:description" content="本章將介紹使用 filebeat 將 log 丟進 elkfilebeat 下載：https://www.elastic.co/downloads/beats/filebeatPS：filebeat 盡量跟 elk 同版本解壓縮 filebeat 到你要的路徑下 開啟 filebeat 資料夾底下的 filebeat.yml 檔，可以看到蒐集器的設定，路徑以自己本機 log 放置位置為主 第183">
+<meta name="twitter:description" content="本章將介紹使用 filebeat 將 log 丟進 elk">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/07/26/使用filebeat把log丟進elk/">
@@ -203,8 +204,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-28 10:18:33" itemprop="dateModified" datetime="2020-04-28T10:18:33+08:00">2020-04-28</time>
+                <time title="修改時間：2020-07-30 16:40:05" itemprop="dateModified" datetime="2020-07-30T16:40:05+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a>
+                </span>
+            </span>
 
           
 
@@ -217,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本章將介紹使用-filebeat-將-log-丟進-elk"><a href="#本章將介紹使用-filebeat-將-log-丟進-elk" class="headerlink" title="本章將介紹使用 filebeat 將 log 丟進 elk"></a>本章將介紹使用 filebeat 將 log 丟進 elk</h3><h4 id="filebeat-下載：https-www-elastic-co-downloads-beats-filebeat"><a href="#filebeat-下載：https-www-elastic-co-downloads-beats-filebeat" class="headerlink" title="filebeat 下載：https://www.elastic.co/downloads/beats/filebeat"></a>filebeat 下載：<a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank" rel="noopener">https://www.elastic.co/downloads/beats/filebeat</a></h4><h4 id="PS：filebeat-盡量跟-elk-同版本"><a href="#PS：filebeat-盡量跟-elk-同版本" class="headerlink" title="PS：filebeat 盡量跟 elk 同版本"></a>PS：filebeat 盡量跟 elk 同版本</h4><h4 id="解壓縮-filebeat-到你要的路徑下"><a href="#解壓縮-filebeat-到你要的路徑下" class="headerlink" title="解壓縮 filebeat 到你要的路徑下"></a>解壓縮 filebeat 到你要的路徑下</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="本章將介紹使用-filebeat-將-log-丟進-elk"><a href="#本章將介紹使用-filebeat-將-log-丟進-elk" class="headerlink" title="本章將介紹使用 filebeat 將 log 丟進 elk"></a>本章將介紹使用 filebeat 將 log 丟進 elk</h3><a id="more"></a>
+<h4 id="filebeat-下載：https-www-elastic-co-downloads-beats-filebeat"><a href="#filebeat-下載：https-www-elastic-co-downloads-beats-filebeat" class="headerlink" title="filebeat 下載：https://www.elastic.co/downloads/beats/filebeat"></a>filebeat 下載：<a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank" rel="noopener">https://www.elastic.co/downloads/beats/filebeat</a></h4><h4 id="PS：filebeat-盡量跟-elk-同版本"><a href="#PS：filebeat-盡量跟-elk-同版本" class="headerlink" title="PS：filebeat 盡量跟 elk 同版本"></a>PS：filebeat 盡量跟 elk 同版本</h4><h4 id="解壓縮-filebeat-到你要的路徑下"><a href="#解壓縮-filebeat-到你要的路徑下" class="headerlink" title="解壓縮 filebeat 到你要的路徑下"></a>解壓縮 filebeat 到你要的路徑下</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="開啟-filebeat-資料夾底下的-filebeat-yml-檔，可以看到蒐集器的設定，路徑以自己本機-log-放置位置為主"><a href="#開啟-filebeat-資料夾底下的-filebeat-yml-檔，可以看到蒐集器的設定，路徑以自己本機-log-放置位置為主" class="headerlink" title="開啟 filebeat 資料夾底下的 filebeat.yml 檔，可以看到蒐集器的設定，路徑以自己本機 log 放置位置為主"></a>開啟 filebeat 資料夾底下的 filebeat.yml 檔，可以看到蒐集器的設定，路徑以自己本機 log 放置位置為主</h4><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "></p>
 <h4 id="第183行的-env-的值，請修改為屆時要在-Kibana-Fields-的名稱"><a href="#第183行的-env-的值，請修改為屆時要在-Kibana-Fields-的名稱" class="headerlink" title="第183行的 env 的值，請修改為屆時要在 Kibana Fields 的名稱"></a>第183行的 env 的值，請修改為屆時要在 Kibana Fields 的名稱</h4><h4 id="第198行請輸入-ELK-機器的內網-IP"><a href="#第198行請輸入-ELK-機器的內網-IP" class="headerlink" title="第198行請輸入 ELK 機器的內網 IP"></a>第198行請輸入 ELK 機器的內網 IP</h4><h4 id="第206行的-key-值，請輸入相同於-Logstash-conf-內-input-底下-key-值"><a href="#第206行的-key-值，請輸入相同於-Logstash-conf-內-input-底下-key-值" class="headerlink" title="第206行的 key 值，請輸入相同於 Logstash.conf 內 input 底下 key 值"></a>第206行的 key 值，請輸入相同於 Logstash.conf 內 input 底下 key 值</h4><h4 id="第357行的-password-值，請輸入相同於-Logstash-conf-內-input-底下的-password-值"><a href="#第357行的-password-值，請輸入相同於-Logstash-conf-內-input-底下的-password-值" class="headerlink" title="第357行的 password 值，請輸入相同於 Logstash.conf 內 input 底下的 password 值"></a>第357行的 password 值，請輸入相同於 Logstash.conf 內 input 底下的 password 值</h4><p><img src="images/4.png" alt=" "></p>
 <h4 id="以系統管理員開啟-Windows-Power-Shell，輸入指令執行安裝-filebeat-服務，並啟動服務"><a href="#以系統管理員開啟-Windows-Power-Shell，輸入指令執行安裝-filebeat-服務，並啟動服務" class="headerlink" title="以系統管理員開啟 Windows Power Shell，輸入指令執行安裝 filebeat 服務，並啟動服務"></a>以系統管理員開啟 Windows Power Shell，輸入指令執行安裝 filebeat 服務，並啟動服務</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line"></span><br><span class="line">cd .\service\filebeat-5.6.7-windows-x86_64 ( 檔案路徑 )  </span><br><span class="line"></span><br><span class="line">.\install-service-filebeat.ps1</span><br><span class="line"></span><br><span class="line">net start filebeat</span><br></pre></td></tr></table></figure>
@@ -236,6 +247,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ELK/" rel="tag"># ELK</a>
+          </div>
 
         
 
@@ -331,13 +345,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

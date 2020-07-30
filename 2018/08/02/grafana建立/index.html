@@ -21,6 +21,7 @@
   </script>
 
   <meta name="description" content="什麼是 Grafana ？Grafana 是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的 CloudWatch、Elasticsearch、Graphite、influxDB 到 OpenStack 的 Gnocchi 或 Google Calendar 等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana 具備豐富的面板選">
+<meta name="keywords" content="grafana">
 <meta property="og:type" content="article">
 <meta property="og:title" content="grafana建立">
 <meta property="og:url" content="http://yoursite.com/2018/08/02/grafana建立/index.html">
@@ -29,7 +30,7 @@
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana建立/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/grafana建立/images/2.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.307Z">
+<meta property="og:updated_time" content="2020-07-30T08:42:18.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="grafana建立">
 <meta name="twitter:description" content="什麼是 Grafana ？Grafana 是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的 CloudWatch、Elasticsearch、Graphite、influxDB 到 OpenStack 的 Gnocchi 或 Google Calendar 等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana 具備豐富的面板選">
@@ -194,8 +195,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:42:18" itemprop="dateModified" datetime="2020-07-30T16:42:18+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/grafana/" itemprop="url" rel="index"><span itemprop="name">grafana</span></a>
+                </span>
+            </span>
 
           
 
@@ -208,7 +218,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="什麼是-Grafana-？"><a href="#什麼是-Grafana-？" class="headerlink" title="什麼是 Grafana ？"></a>什麼是 Grafana ？</h3><h4 id="Grafana-是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的-CloudWatch、Elasticsearch、Graphite、influxDB-到-OpenStack-的-Gnocchi-或-Google-Calendar-等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana-具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩"><a href="#Grafana-是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的-CloudWatch、Elasticsearch、Graphite、influxDB-到-OpenStack-的-Gnocchi-或-Google-Calendar-等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana-具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩" class="headerlink" title="Grafana 是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的 CloudWatch、Elasticsearch、Graphite、influxDB 到 OpenStack 的 Gnocchi 或 Google Calendar 等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana 具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩"></a>Grafana 是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的 CloudWatch、Elasticsearch、Graphite、influxDB 到 OpenStack 的 Gnocchi 或 Google Calendar 等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana 具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩</h4><h3 id="什麼是-InfluxDB-？"><a href="#什麼是-InfluxDB-？" class="headerlink" title="什麼是 InfluxDB ？"></a>什麼是 InfluxDB ？</h3><h4 id="InfluxDB-是一個由-InfluxData-開發的開源時序型資料庫。它由-Go-寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB-被廣泛應用於存儲系統的監控數據"><a href="#InfluxDB-是一個由-InfluxData-開發的開源時序型資料庫。它由-Go-寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB-被廣泛應用於存儲系統的監控數據" class="headerlink" title="InfluxDB 是一個由 InfluxData 開發的開源時序型資料庫。它由 Go 寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB 被廣泛應用於存儲系統的監控數據"></a>InfluxDB 是一個由 InfluxData 開發的開源時序型資料庫。它由 Go 寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB 被廣泛應用於存儲系統的監控數據</h4><hr>
+        <h3 id="什麼是-Grafana-？"><a href="#什麼是-Grafana-？" class="headerlink" title="什麼是 Grafana ？"></a>什麼是 Grafana ？</h3><h4 id="Grafana-是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的-CloudWatch、Elasticsearch、Graphite、influxDB-到-OpenStack-的-Gnocchi-或-Google-Calendar-等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana-具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩"><a href="#Grafana-是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的-CloudWatch、Elasticsearch、Graphite、influxDB-到-OpenStack-的-Gnocchi-或-Google-Calendar-等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana-具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩" class="headerlink" title="Grafana 是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的 CloudWatch、Elasticsearch、Graphite、influxDB 到 OpenStack 的 Gnocchi 或 Google Calendar 等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana 具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩"></a>Grafana 是一套開源的監控及分析平台軟體，可支援許多不同的資料來源為其一大特點，從常用的 CloudWatch、Elasticsearch、Graphite、influxDB 到 OpenStack 的 Gnocchi 或 Google Calendar 等，範圍十分的廣泛，管理者不會因為受限於不同的資料來源而必需使用不同的監控軟體。Grafana 具備豐富的面板選擇，除了基本文字、圖表、表格等，管理者亦可使用如甘特圖、流程圖等面板來顯示所監控的資料及訊息，並可由管理者自行調整顯示資料的色彩</h4><a id="more"></a>
+<h3 id="什麼是-InfluxDB-？"><a href="#什麼是-InfluxDB-？" class="headerlink" title="什麼是 InfluxDB ？"></a>什麼是 InfluxDB ？</h3><h4 id="InfluxDB-是一個由-InfluxData-開發的開源時序型資料庫。它由-Go-寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB-被廣泛應用於存儲系統的監控數據"><a href="#InfluxDB-是一個由-InfluxData-開發的開源時序型資料庫。它由-Go-寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB-被廣泛應用於存儲系統的監控數據" class="headerlink" title="InfluxDB 是一個由 InfluxData 開發的開源時序型資料庫。它由 Go 寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB 被廣泛應用於存儲系統的監控數據"></a>InfluxDB 是一個由 InfluxData 開發的開源時序型資料庫。它由 Go 寫成，著力於高性能地查詢與存儲時序型數據，InfluxDB 被廣泛應用於存儲系統的監控數據</h4><hr>
 <h4 id="Grafana-建立，本文章將使用-ubuntu-16-04、grafana：5-2-4、influxdb：1-7-2"><a href="#Grafana-建立，本文章將使用-ubuntu-16-04、grafana：5-2-4、influxdb：1-7-2" class="headerlink" title="Grafana 建立，本文章將使用 ubuntu 16.04、grafana：5.2.4、influxdb：1.7.2"></a>Grafana 建立，本文章將使用 ubuntu 16.04、grafana：5.2.4、influxdb：1.7.2</h4><h4 id="一、指令建立-grafana-和-influxdb"><a href="#一、指令建立-grafana-和-influxdb" class="headerlink" title="一、指令建立 grafana 和 influxdb"></a>一、指令建立 grafana 和 influxdb</h4><h4 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 <h4 id="安裝-docker"><a href="#安裝-docker" class="headerlink" title="安裝 docker"></a>安裝 docker</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install docker.io</span><br></pre></td></tr></table></figure>
 <h4 id="下載-influxdb-並-run-起來"><a href="#下載-influxdb-並-run-起來" class="headerlink" title="下載 influxdb 並 run 起來"></a>下載 influxdb 並 run 起來</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name influxdb --restart=always -p 8083:8083 -p 8086:8086 -v /data/influxdb:/var/lib/influxdb -e ES_JAVA_OPTS:-Xmx2g -e ES_JAVA_OPTS:-Xms2g influxdb</span><br></pre></td></tr></table></figure>
@@ -228,6 +239,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+          </div>
 
         
 
@@ -323,13 +337,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
