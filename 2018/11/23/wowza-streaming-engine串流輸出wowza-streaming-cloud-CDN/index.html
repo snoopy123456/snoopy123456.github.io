@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN1. 首先登入 wowza cloud 來到 Advanced 頁面 2. 再次點擊 Advanced 選擇 Stream Targets 3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN 4. 設定名稱其他選項預設，點選 Add 加入 5. 下圖是設定好畫面紅框為連接代碼">
+  <meta name="description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN">
+<meta name="keywords" content="流媒體服務器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN">
 <meta property="og:url" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN1. 首先登入 wowza cloud 來到 Advanced 頁面 2. 再次點擊 Advanced 選擇 Stream Targets 3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN 4. 設定名稱其他選項預設，點選 Add 加入 5. 下圖是設定好畫面紅框為連接代碼">
+<meta property="og:description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/2.png">
@@ -44,10 +45,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/15.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/16.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/17.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.580Z">
+<meta property="og:updated_time" content="2020-07-30T08:16:53.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN">
-<meta name="twitter:description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN1. 首先登入 wowza cloud 來到 Advanced 頁面 2. 再次點擊 Advanced 選擇 Stream Targets 3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN 4. 設定名稱其他選項預設，點選 Add 加入 5. 下圖是設定好畫面紅框為連接代碼">
+<meta name="twitter:description" content="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/11/23/wowza-streaming-engine串流輸出wowza-streaming-cloud-CDN/">
@@ -209,8 +210,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:16:53" itemprop="dateModified" datetime="2020-07-30T16:16:53+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -223,7 +233,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN"><a href="#本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN" class="headerlink" title="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN"></a>本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN</h3><h4 id="1-首先登入-wowza-cloud-來到-Advanced-頁面"><a href="#1-首先登入-wowza-cloud-來到-Advanced-頁面" class="headerlink" title="1. 首先登入 wowza cloud 來到 Advanced 頁面"></a>1. 首先登入 wowza cloud 來到 Advanced 頁面</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN"><a href="#本文章將介紹如何使用-wowza-engine-串流輸出到-wowza-cloud-CDN" class="headerlink" title="本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN"></a>本文章將介紹如何使用 wowza engine 串流輸出到 wowza cloud CDN</h3><a id="more"></a>
+<h4 id="1-首先登入-wowza-cloud-來到-Advanced-頁面"><a href="#1-首先登入-wowza-cloud-來到-Advanced-頁面" class="headerlink" title="1. 首先登入 wowza cloud 來到 Advanced 頁面"></a>1. 首先登入 wowza cloud 來到 Advanced 頁面</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="2-再次點擊-Advanced-選擇-Stream-Targets"><a href="#2-再次點擊-Advanced-選擇-Stream-Targets" class="headerlink" title="2. 再次點擊 Advanced 選擇 Stream Targets"></a>2. 再次點擊 Advanced 選擇 Stream Targets</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="3-點擊-Add-Target-選擇-Wowza-CDN-HLS-新增-CDN"><a href="#3-點擊-Add-Target-選擇-Wowza-CDN-HLS-新增-CDN" class="headerlink" title="3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN"></a>3. 點擊 Add Target 選擇 Wowza CDN - HLS 新增 CDN</h4><p><img src="images/3.png" alt=" "></p>
 <h4 id="4-設定名稱其他選項預設，點選-Add-加入"><a href="#4-設定名稱其他選項預設，點選-Add-加入" class="headerlink" title="4. 設定名稱其他選項預設，點選 Add 加入"></a>4. 設定名稱其他選項預設，點選 Add 加入</h4><p><img src="images/4.png" alt=" "></p>
@@ -248,6 +259,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/流媒體服務器/" rel="tag"># 流媒體服務器</a>
+          </div>
 
         
 
@@ -343,13 +357,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作首先登入 wowza streaming cloud 點選 Live Streams 點擊左上方或下方的 Add Live Stream 新增直播 輸入 live stream 選擇地區 選擇輸入進來的方式，本文章使用 wowza streaming engine，下方設定分別為長寬、是否錄製成影片、隱藏字幕類型">
+  <meta name="description" content="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作">
+<meta name="keywords" content="流媒體服務器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wowza-stream-engine串流輸出到wowza-streaming-cloud">
 <meta property="og:url" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作首先登入 wowza streaming cloud 點選 Live Streams 點擊左上方或下方的 Add Live Stream 新增直播 輸入 live stream 選擇地區 選擇輸入進來的方式，本文章使用 wowza streaming engine，下方設定分別為長寬、是否錄製成影片、隱藏字幕類型">
+<meta property="og:description" content="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/2.png">
@@ -51,10 +52,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/22.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/23.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/24.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.474Z">
+<meta property="og:updated_time" content="2020-07-30T08:16:38.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wowza-stream-engine串流輸出到wowza-streaming-cloud">
-<meta name="twitter:description" content="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作首先登入 wowza streaming cloud 點選 Live Streams 點擊左上方或下方的 Add Live Stream 新增直播 輸入 live stream 選擇地區 選擇輸入進來的方式，本文章使用 wowza streaming engine，下方設定分別為長寬、是否錄製成影片、隱藏字幕類型">
+<meta name="twitter:description" content="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/11/23/wowza-stream-engine串流輸出到wowza-streaming-cloud/">
@@ -216,8 +217,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:16:38" itemprop="dateModified" datetime="2020-07-30T16:16:38+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -230,7 +240,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹-wowza-engine-串流輸出到-wowza-cloud-的基本操作"><a href="#本文章將介紹-wowza-engine-串流輸出到-wowza-cloud-的基本操作" class="headerlink" title="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作"></a>本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作</h3><h4 id="首先登入-wowza-streaming-cloud"><a href="#首先登入-wowza-streaming-cloud" class="headerlink" title="首先登入 wowza streaming cloud"></a>首先登入 wowza streaming cloud</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="本文章將介紹-wowza-engine-串流輸出到-wowza-cloud-的基本操作"><a href="#本文章將介紹-wowza-engine-串流輸出到-wowza-cloud-的基本操作" class="headerlink" title="本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作"></a>本文章將介紹 wowza-engine 串流輸出到 wowza-cloud 的基本操作</h3><a id="more"></a>
+<h4 id="首先登入-wowza-streaming-cloud"><a href="#首先登入-wowza-streaming-cloud" class="headerlink" title="首先登入 wowza streaming cloud"></a>首先登入 wowza streaming cloud</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="點選-Live-Streams"><a href="#點選-Live-Streams" class="headerlink" title="點選 Live Streams"></a>點選 Live Streams</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="點擊左上方或下方的-Add-Live-Stream-新增直播"><a href="#點擊左上方或下方的-Add-Live-Stream-新增直播" class="headerlink" title="點擊左上方或下方的 Add Live Stream 新增直播"></a>點擊左上方或下方的 Add Live Stream 新增直播</h4><p><img src="images/3.png" alt=" "></p>
 <h4 id="輸入-live-stream-選擇地區"><a href="#輸入-live-stream-選擇地區" class="headerlink" title="輸入 live stream 選擇地區"></a>輸入 live stream 選擇地區</h4><p><img src="images/4.png" alt=" "></p>
@@ -258,6 +269,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/流媒體服務器/" rel="tag"># 流媒體服務器</a>
+          </div>
 
         
 
@@ -353,13 +367,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

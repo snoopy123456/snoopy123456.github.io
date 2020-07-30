@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本章將講解如何使用 ip camera 串流 wowza先登入 wowza 下圖為登入後畫面，點選上方的 Application 建立一個新的 live Application 進入 Application 後，點選 Live 輸入名稱 進入設定畫面，下圖紅框部分是允許進入格式，剩下的選項預設 ( 有機會會再做篇文章介紹 )，設定好後點擊 Save 儲存 儲存好後會進入下圖畫面，設定隨時都可以更改">
+  <meta name="description" content="本章將講解如何使用 ip camera 串流 wowza">
+<meta name="keywords" content="流媒體服務器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wowza使用ip-camera串流">
 <meta property="og:url" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本章將講解如何使用 ip camera 串流 wowza先登入 wowza 下圖為登入後畫面，點選上方的 Application 建立一個新的 live Application 進入 Application 後，點選 Live 輸入名稱 進入設定畫面，下圖紅框部分是允許進入格式，剩下的選項預設 ( 有機會會再做篇文章介紹 )，設定好後點擊 Save 儲存 儲存好後會進入下圖畫面，設定隨時都可以更改">
+<meta property="og:description" content="本章將講解如何使用 ip camera 串流 wowza">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/images/2.png">
@@ -54,10 +55,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/images/25.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/images/26.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/images/27.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.694Z">
+<meta property="og:updated_time" content="2020-07-30T08:18:00.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wowza使用ip-camera串流">
-<meta name="twitter:description" content="本章將講解如何使用 ip camera 串流 wowza先登入 wowza 下圖為登入後畫面，點選上方的 Application 建立一個新的 live Application 進入 Application 後，點選 Live 輸入名稱 進入設定畫面，下圖紅框部分是允許進入格式，剩下的選項預設 ( 有機會會再做篇文章介紹 )，設定好後點擊 Save 儲存 儲存好後會進入下圖畫面，設定隨時都可以更改">
+<meta name="twitter:description" content="本章將講解如何使用 ip camera 串流 wowza">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/11/02/wowza使用ip-camera串流/">
@@ -219,8 +220,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:18:00" itemprop="dateModified" datetime="2020-07-30T16:18:00+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -233,7 +243,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本章將講解如何使用-ip-camera-串流-wowza"><a href="#本章將講解如何使用-ip-camera-串流-wowza" class="headerlink" title="本章將講解如何使用 ip camera 串流 wowza"></a>本章將講解如何使用 ip camera 串流 wowza</h3><h4 id="先登入-wowza"><a href="#先登入-wowza" class="headerlink" title="先登入 wowza"></a>先登入 wowza</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="本章將講解如何使用-ip-camera-串流-wowza"><a href="#本章將講解如何使用-ip-camera-串流-wowza" class="headerlink" title="本章將講解如何使用 ip camera 串流 wowza"></a>本章將講解如何使用 ip camera 串流 wowza</h3><a id="more"></a>
+<h4 id="先登入-wowza"><a href="#先登入-wowza" class="headerlink" title="先登入 wowza"></a>先登入 wowza</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="下圖為登入後畫面，點選上方的-Application-建立一個新的-live-Application"><a href="#下圖為登入後畫面，點選上方的-Application-建立一個新的-live-Application" class="headerlink" title="下圖為登入後畫面，點選上方的 Application 建立一個新的 live Application"></a>下圖為登入後畫面，點選上方的 Application 建立一個新的 live Application</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="進入-Application-後，點選-Live"><a href="#進入-Application-後，點選-Live" class="headerlink" title="進入 Application 後，點選 Live"></a>進入 Application 後，點選 Live</h4><p><img src="images/4.png" alt=" "></p>
 <h4 id="輸入名稱"><a href="#輸入名稱" class="headerlink" title="輸入名稱"></a>輸入名稱</h4><p><img src="images/3.png" alt=" "></p>
@@ -271,6 +282,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/流媒體服務器/" rel="tag"># 流媒體服務器</a>
+          </div>
 
         
 
@@ -366,13 +380,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

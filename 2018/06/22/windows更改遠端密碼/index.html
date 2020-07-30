@@ -20,22 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="更改遠端登入密碼進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 ) 從 Local Users and Groups 項目中找到 Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇 Set Password 接者點選 Proceed 輸入兩次想更改的登入密碼並按下 OK，之後就可以用自訂的密碼來登入 VM ( 密碼沒辦法設定太簡單，最少需">
+  <meta name="description" content="更改遠端登入密碼">
+<meta name="keywords" content="winodws">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows更改遠端密碼">
 <meta property="og:url" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="更改遠端登入密碼進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 ) 從 Local Users and Groups 項目中找到 Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇 Set Password 接者點選 Proceed 輸入兩次想更改的登入密碼並按下 OK，之後就可以用自訂的密碼來登入 VM ( 密碼沒辦法設定太簡單，最少需">
+<meta property="og:description" content="更改遠端登入密碼">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/images/26.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/images/27.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/images/28.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/images/29.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/images/30.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.448Z">
+<meta property="og:updated_time" content="2020-07-30T08:16:23.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows更改遠端密碼">
-<meta name="twitter:description" content="更改遠端登入密碼進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 ) 從 Local Users and Groups 項目中找到 Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇 Set Password 接者點選 Proceed 輸入兩次想更改的登入密碼並按下 OK，之後就可以用自訂的密碼來登入 VM ( 密碼沒辦法設定太簡單，最少需">
+<meta name="twitter:description" content="更改遠端登入密碼">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/22/windows更改遠端密碼/images/26.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/22/windows更改遠端密碼/">
@@ -197,8 +198,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:16:23" itemprop="dateModified" datetime="2020-07-30T16:16:23+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/winodws/" itemprop="url" rel="index"><span itemprop="name">winodws</span></a>
+                </span>
+            </span>
 
           
 
@@ -211,7 +221,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="更改遠端登入密碼"><a href="#更改遠端登入密碼" class="headerlink" title="更改遠端登入密碼"></a>更改遠端登入密碼</h3><h3 id="進入-VM-後，左下角開始點擊右鍵點選-Computer-Management-中文名稱是電腦管理"><a href="#進入-VM-後，左下角開始點擊右鍵點選-Computer-Management-中文名稱是電腦管理" class="headerlink" title="進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 )"></a>進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 )</h3><p><img src="images/26.png" alt=" "></p>
+        <h3 id="更改遠端登入密碼"><a href="#更改遠端登入密碼" class="headerlink" title="更改遠端登入密碼"></a>更改遠端登入密碼</h3><a id="more"></a>
+<h3 id="進入-VM-後，左下角開始點擊右鍵點選-Computer-Management-中文名稱是電腦管理"><a href="#進入-VM-後，左下角開始點擊右鍵點選-Computer-Management-中文名稱是電腦管理" class="headerlink" title="進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 )"></a>進入 VM 後，左下角開始點擊右鍵點選 Computer Management ( 中文名稱是電腦管理 )</h3><p><img src="images/26.png" alt=" "></p>
 <h3 id="從-Local-Users-and-Groups-項目中找到-Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇-Set-Password"><a href="#從-Local-Users-and-Groups-項目中找到-Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇-Set-Password" class="headerlink" title="從 Local Users and Groups 項目中找到 Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇 Set Password"></a>從 Local Users and Groups 項目中找到 Users，接者再剛開始建立的使用者，點選滑鼠右鍵選擇 Set Password</h3><p><img src="images/27.png" alt=" "></p>
 <h3 id="接者點選-Proceed"><a href="#接者點選-Proceed" class="headerlink" title="接者點選 Proceed"></a>接者點選 Proceed</h3><p><img src="images/28.png" alt=" "></p>
 <h3 id="輸入兩次想更改的登入密碼並按下-OK，之後就可以用自訂的密碼來登入-VM-密碼沒辦法設定太簡單，最少需要配合大小寫加數字"><a href="#輸入兩次想更改的登入密碼並按下-OK，之後就可以用自訂的密碼來登入-VM-密碼沒辦法設定太簡單，最少需要配合大小寫加數字" class="headerlink" title="輸入兩次想更改的登入密碼並按下 OK，之後就可以用自訂的密碼來登入 VM ( 密碼沒辦法設定太簡單，最少需要配合大小寫加數字 )"></a>輸入兩次想更改的登入密碼並按下 OK，之後就可以用自訂的密碼來登入 VM ( 密碼沒辦法設定太簡單，最少需要配合大小寫加數字 )</h3><p><img src="images/29.png" alt=" "></p>
@@ -224,6 +235,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/winodws/" rel="tag"># winodws</a>
+          </div>
 
         
 
@@ -319,13 +333,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
