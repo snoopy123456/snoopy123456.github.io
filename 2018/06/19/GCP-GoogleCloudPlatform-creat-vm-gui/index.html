@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹如何使用 GUI 建立 GCP VM1. 進入 GCP，網址：https://cloud.google.com/2. 登入 Google 帳號3. 點擊畫面右上角控制台進入  4. 建立 VM點選資訊主頁畫面左上方的三條槓導覽選單查看 GCP 產品和服務列表 點選 Compute Engine → VM 執行個體 ( 可點選右邊圖釘把自己常用的工具釘選到最上面 ) 點選建立，建立 VM">
+  <meta name="description" content="本文章將介紹如何使用 GUI 建立 GCP VM">
+<meta name="keywords" content="GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-GoogleCloudPlatform-creat-vm-gui">
 <meta property="og:url" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹如何使用 GUI 建立 GCP VM1. 進入 GCP，網址：https://cloud.google.com/2. 登入 Google 帳號3. 點擊畫面右上角控制台進入  4. 建立 VM點選資訊主頁畫面左上方的三條槓導覽選單查看 GCP 產品和服務列表 點選 Compute Engine → VM 執行個體 ( 可點選右邊圖釘把自己常用的工具釘選到最上面 ) 點選建立，建立 VM">
+<meta property="og:description" content="本文章將介紹如何使用 GUI 建立 GCP VM">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/images/22.1.png">
@@ -51,10 +52,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/images/20.1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/images/24.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/images/25.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:24.994Z">
+<meta property="og:updated_time" content="2020-07-30T09:00:45.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-GoogleCloudPlatform-creat-vm-gui">
-<meta name="twitter:description" content="本文章將介紹如何使用 GUI 建立 GCP VM1. 進入 GCP，網址：https://cloud.google.com/2. 登入 Google 帳號3. 點擊畫面右上角控制台進入  4. 建立 VM點選資訊主頁畫面左上方的三條槓導覽選單查看 GCP 產品和服務列表 點選 Compute Engine → VM 執行個體 ( 可點選右邊圖釘把自己常用的工具釘選到最上面 ) 點選建立，建立 VM">
+<meta name="twitter:description" content="本文章將介紹如何使用 GUI 建立 GCP VM">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/">
@@ -216,8 +217,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:24" itemprop="dateModified" datetime="2020-04-01T11:30:24+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 17:00:45" itemprop="dateModified" datetime="2020-07-30T17:00:45+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GCP/" itemprop="url" rel="index"><span itemprop="name">GCP</span></a>
+                </span>
+            </span>
 
           
 
@@ -230,7 +240,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹如何使用-GUI-建立-GCP-VM"><a href="#本文章將介紹如何使用-GUI-建立-GCP-VM" class="headerlink" title="本文章將介紹如何使用 GUI 建立 GCP VM"></a>本文章將介紹如何使用 GUI 建立 GCP VM</h2><h3 id="1-進入-GCP，網址：https-cloud-google-com"><a href="#1-進入-GCP，網址：https-cloud-google-com" class="headerlink" title="1. 進入 GCP，網址：https://cloud.google.com/"></a>1. 進入 GCP，網址：<a href="https://cloud.google.com/" target="_blank" rel="noopener">https://cloud.google.com/</a></h3><h3 id="2-登入-Google-帳號"><a href="#2-登入-Google-帳號" class="headerlink" title="2. 登入 Google 帳號"></a>2. 登入 Google 帳號</h3><h3 id="3-點擊畫面右上角控制台進入"><a href="#3-點擊畫面右上角控制台進入" class="headerlink" title="3. 點擊畫面右上角控制台進入"></a>3. 點擊畫面右上角控制台進入</h3><p><img src="images/1.png" alt=" "></p>
+        <h2 id="本文章將介紹如何使用-GUI-建立-GCP-VM"><a href="#本文章將介紹如何使用-GUI-建立-GCP-VM" class="headerlink" title="本文章將介紹如何使用 GUI 建立 GCP VM"></a>本文章將介紹如何使用 GUI 建立 GCP VM</h2><a id="more"></a>
+<h3 id="1-進入-GCP，網址：https-cloud-google-com"><a href="#1-進入-GCP，網址：https-cloud-google-com" class="headerlink" title="1. 進入 GCP，網址：https://cloud.google.com/"></a>1. 進入 GCP，網址：<a href="https://cloud.google.com/" target="_blank" rel="noopener">https://cloud.google.com/</a></h3><h3 id="2-登入-Google-帳號"><a href="#2-登入-Google-帳號" class="headerlink" title="2. 登入 Google 帳號"></a>2. 登入 Google 帳號</h3><h3 id="3-點擊畫面右上角控制台進入"><a href="#3-點擊畫面右上角控制台進入" class="headerlink" title="3. 點擊畫面右上角控制台進入"></a>3. 點擊畫面右上角控制台進入</h3><p><img src="images/1.png" alt=" "></p>
 <hr>
 <h3 id="4-建立-VM"><a href="#4-建立-VM" class="headerlink" title="4. 建立 VM"></a>4. 建立 VM</h3><h3 id="點選資訊主頁畫面左上方的三條槓導覽選單查看-GCP-產品和服務列表"><a href="#點選資訊主頁畫面左上方的三條槓導覽選單查看-GCP-產品和服務列表" class="headerlink" title="點選資訊主頁畫面左上方的三條槓導覽選單查看 GCP 產品和服務列表"></a>點選資訊主頁畫面左上方的三條槓導覽選單查看 GCP 產品和服務列表</h3><p><img src="images/22.1.png" alt=" "></p>
 <h3 id="點選-Compute-Engine-→-VM-執行個體-可點選右邊圖釘把自己常用的工具釘選到最上面"><a href="#點選-Compute-Engine-→-VM-執行個體-可點選右邊圖釘把自己常用的工具釘選到最上面" class="headerlink" title="點選 Compute Engine → VM 執行個體 ( 可點選右邊圖釘把自己常用的工具釘選到最上面 )"></a>點選 Compute Engine → VM 執行個體 ( 可點選右邊圖釘把自己常用的工具釘選到最上面 )</h3><p><img src="images/4.1.png" alt=" "></p>
@@ -262,6 +273,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GCP/" rel="tag"># GCP</a>
+          </div>
 
         
 

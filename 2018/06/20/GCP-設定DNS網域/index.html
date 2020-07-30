@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本篇文章降介紹如何在 GCP 設定 DNS 網域租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 ) 一、開啟 GCP 導覽選單選擇網路 → Cloud DNS 二、點選建立區域 三、輸入區域名稱 (名稱隨意)，DNS 要輸入你租的網域名稱，輸入完點選建立 四、建立好了之後會產生兩個記錄集，將記錄類行為 NS 的名稱伺服器複製到你租的網域空間那邊的 DNS">
+  <meta name="description" content="本篇文章降介紹如何在 GCP 設定 DNS 網域">
+<meta name="keywords" content="GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-設定DNS網域">
 <meta property="og:url" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本篇文章降介紹如何在 GCP 設定 DNS 網域租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 ) 一、開啟 GCP 導覽選單選擇網路 → Cloud DNS 二、點選建立區域 三、輸入區域名稱 (名稱隨意)，DNS 要輸入你租的網域名稱，輸入完點選建立 四、建立好了之後會產生兩個記錄集，將記錄類行為 NS 的名稱伺服器複製到你租的網域空間那邊的 DNS">
+<meta property="og:description" content="本篇文章降介紹如何在 GCP 設定 DNS 網域">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/10.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/1.png">
@@ -37,10 +38,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/7.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/8.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/9.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.140Z">
+<meta property="og:updated_time" content="2020-07-30T08:58:55.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-設定DNS網域">
-<meta name="twitter:description" content="本篇文章降介紹如何在 GCP 設定 DNS 網域租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 ) 一、開啟 GCP 導覽選單選擇網路 → Cloud DNS 二、點選建立區域 三、輸入區域名稱 (名稱隨意)，DNS 要輸入你租的網域名稱，輸入完點選建立 四、建立好了之後會產生兩個記錄集，將記錄類行為 NS 的名稱伺服器複製到你租的網域空間那邊的 DNS">
+<meta name="twitter:description" content="本篇文章降介紹如何在 GCP 設定 DNS 網域">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/20/GCP-設定DNS網域/images/10.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/20/GCP-設定DNS網域/">
@@ -202,8 +203,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:58:55" itemprop="dateModified" datetime="2020-07-30T16:58:55+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GCP/" itemprop="url" rel="index"><span itemprop="name">GCP</span></a>
+                </span>
+            </span>
 
           
 
@@ -216,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本篇文章降介紹如何在-GCP-設定-DNS-網域"><a href="#本篇文章降介紹如何在-GCP-設定-DNS-網域" class="headerlink" title="本篇文章降介紹如何在 GCP 設定 DNS 網域"></a>本篇文章降介紹如何在 GCP 設定 DNS 網域</h2><h3 id="租好網域後，接下來到-GCP-設定-DNS-網域-本文章是租用-GoDaddy-網域"><a href="#租好網域後，接下來到-GCP-設定-DNS-網域-本文章是租用-GoDaddy-網域" class="headerlink" title="租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 )"></a>租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 )</h3><p><img src="images/10.png" alt=" "></p>
+        <h2 id="本篇文章降介紹如何在-GCP-設定-DNS-網域"><a href="#本篇文章降介紹如何在-GCP-設定-DNS-網域" class="headerlink" title="本篇文章降介紹如何在 GCP 設定 DNS 網域"></a>本篇文章降介紹如何在 GCP 設定 DNS 網域</h2><a id="more"></a>
+<h3 id="租好網域後，接下來到-GCP-設定-DNS-網域-本文章是租用-GoDaddy-網域"><a href="#租好網域後，接下來到-GCP-設定-DNS-網域-本文章是租用-GoDaddy-網域" class="headerlink" title="租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 )"></a>租好網域後，接下來到 GCP 設定 DNS 網域 ( 本文章是租用 GoDaddy 網域 )</h3><p><img src="images/10.png" alt=" "></p>
 <h3 id="一、開啟-GCP-導覽選單選擇網路-→-Cloud-DNS"><a href="#一、開啟-GCP-導覽選單選擇網路-→-Cloud-DNS" class="headerlink" title="一、開啟 GCP 導覽選單選擇網路 → Cloud DNS"></a>一、開啟 GCP 導覽選單選擇網路 → Cloud DNS</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="二、點選建立區域"><a href="#二、點選建立區域" class="headerlink" title="二、點選建立區域"></a>二、點選建立區域</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="三、輸入區域名稱-名稱隨意-，DNS-要輸入你租的網域名稱，輸入完點選建立"><a href="#三、輸入區域名稱-名稱隨意-，DNS-要輸入你租的網域名稱，輸入完點選建立" class="headerlink" title="三、輸入區域名稱 (名稱隨意)，DNS 要輸入你租的網域名稱，輸入完點選建立"></a>三、輸入區域名稱 (名稱隨意)，DNS 要輸入你租的網域名稱，輸入完點選建立</h3><p><img src="images/3.png" alt=" "></p>
@@ -234,6 +245,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GCP/" rel="tag"># GCP</a>
+          </div>
 
         
 

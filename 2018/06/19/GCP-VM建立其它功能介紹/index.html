@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹一些 GCP 建立 VM 的一些細碎項目創建 VM 的管理介紹創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂 1. 防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的 VM，例如運行 SQL Server，用作許可證管理器的服務器等。這些 VM 可能需要無限期地保持運行，因此您需要一種方法來保護這些 VM 不被刪除 2. 開">
+  <meta name="description" content="本文章將介紹一些 GCP 建立 VM 的一些細碎項目">
+<meta name="keywords" content="GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-VM建立其它功能介紹">
 <meta property="og:url" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹一些 GCP 建立 VM 的一些細碎項目創建 VM 的管理介紹創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂 1. 防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的 VM，例如運行 SQL Server，用作許可證管理器的服務器等。這些 VM 可能需要無限期地保持運行，因此您需要一種方法來保護這些 VM 不被刪除 2. 開">
+<meta property="og:description" content="本文章將介紹一些 GCP 建立 VM 的一些細碎項目">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/images/2.png">
@@ -38,10 +39,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/images/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/images/10.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/images/11.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.023Z">
+<meta property="og:updated_time" content="2020-07-30T08:59:40.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-VM建立其它功能介紹">
-<meta name="twitter:description" content="本文章將介紹一些 GCP 建立 VM 的一些細碎項目創建 VM 的管理介紹創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂 1. 防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的 VM，例如運行 SQL Server，用作許可證管理器的服務器等。這些 VM 可能需要無限期地保持運行，因此您需要一種方法來保護這些 VM 不被刪除 2. 開">
+<meta name="twitter:description" content="本文章將介紹一些 GCP 建立 VM 的一些細碎項目">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/19/GCP-VM建立其它功能介紹/">
@@ -203,8 +204,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:59:40" itemprop="dateModified" datetime="2020-07-30T16:59:40+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GCP/" itemprop="url" rel="index"><span itemprop="name">GCP</span></a>
+                </span>
+            </span>
 
           
 
@@ -217,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="本文章將介紹一些-GCP-建立-VM-的一些細碎項目"><a href="#本文章將介紹一些-GCP-建立-VM-的一些細碎項目" class="headerlink" title="本文章將介紹一些 GCP 建立 VM 的一些細碎項目"></a>本文章將介紹一些 GCP 建立 VM 的一些細碎項目</h2><h3 id="創建-VM-的管理介紹"><a href="#創建-VM-的管理介紹" class="headerlink" title="創建 VM 的管理介紹"></a>創建 VM 的管理介紹</h3><h3 id="創建-VM-時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂"><a href="#創建-VM-時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂" class="headerlink" title="創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂"></a>創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂</h3><p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
+        <h2 id="本文章將介紹一些-GCP-建立-VM-的一些細碎項目"><a href="#本文章將介紹一些-GCP-建立-VM-的一些細碎項目" class="headerlink" title="本文章將介紹一些 GCP 建立 VM 的一些細碎項目"></a>本文章將介紹一些 GCP 建立 VM 的一些細碎項目</h2><a id="more"></a>
+<h3 id="創建-VM-的管理介紹"><a href="#創建-VM-的管理介紹" class="headerlink" title="創建 VM 的管理介紹"></a>創建 VM 的管理介紹</h3><h3 id="創建-VM-時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂"><a href="#創建-VM-時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂" class="headerlink" title="創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂"></a>創建 VM 時點擊下面的管理有很多設定，本章將介紹比較常用設定，大部分設定基本一看就懂</h3><p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
 <h3 id="1-防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的-VM，例如運行-SQL-Server，用作許可證管理器的服務器等。這些-VM-可能需要無限期地保持運行，因此您需要一種方法來保護這些-VM-不被刪除"><a href="#1-防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的-VM，例如運行-SQL-Server，用作許可證管理器的服務器等。這些-VM-可能需要無限期地保持運行，因此您需要一種方法來保護這些-VM-不被刪除" class="headerlink" title="1. 防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的 VM，例如運行 SQL Server，用作許可證管理器的服務器等。這些 VM 可能需要無限期地保持運行，因此您需要一種方法來保護這些 VM 不被刪除"></a>1. 防刪除功能：作為工作的一部分，可能存在某些對運行應用程序或服務至關重要的 VM，例如運行 SQL Server，用作許可證管理器的服務器等。這些 VM 可能需要無限期地保持運行，因此您需要一種方法來保護這些 VM 不被刪除</h3><p><img src="images/3.png" alt=" "></p>
 <h3 id="2-開機指令碼：在虛擬機上創建並運行自己的啟動腳本，以便在每次啟動時執行自動化任務，啟動腳本可以執行許多操作，例如安裝軟件、執行更新，啟用服務以及腳本中定義的任何其他任務"><a href="#2-開機指令碼：在虛擬機上創建並運行自己的啟動腳本，以便在每次啟動時執行自動化任務，啟動腳本可以執行許多操作，例如安裝軟件、執行更新，啟用服務以及腳本中定義的任何其他任務" class="headerlink" title="2. 開機指令碼：在虛擬機上創建並運行自己的啟動腳本，以便在每次啟動時執行自動化任務，啟動腳本可以執行許多操作，例如安裝軟件、執行更新，啟用服務以及腳本中定義的任何其他任務"></a>2. 開機指令碼：在虛擬機上創建並運行自己的啟動腳本，以便在每次啟動時執行自動化任務，啟動腳本可以執行許多操作，例如安裝軟件、執行更新，啟用服務以及腳本中定義的任何其他任務</h3><p><img src="images/4.png" alt=" "></p>
 <h3 id="例如，安裝-Docker-腳本"><a href="#例如，安裝-Docker-腳本" class="headerlink" title="例如，安裝 Docker 腳本"></a>例如，安裝 Docker 腳本</h3><p><img src="images/5.png" alt=" "></p>
@@ -233,6 +244,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GCP/" rel="tag"># GCP</a>
+          </div>
 
         
 

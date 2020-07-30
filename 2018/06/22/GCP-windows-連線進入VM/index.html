@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="連線進入 VM ( windows )總共有3種方法可以進入 VM 本篇文章將依序作介紹RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門一、 使用 GCP 開啟新視窗連線建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件">
+  <meta name="description" content="連線進入 VM ( windows )總共有3種方法可以進入 VM 本篇文章將依序作介紹">
+<meta name="keywords" content="GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-windows-連線進入VM">
 <meta property="og:url" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="連線進入 VM ( windows )總共有3種方法可以進入 VM 本篇文章將依序作介紹RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門一、 使用 GCP 開啟新視窗連線建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件">
+<meta property="og:description" content="連線進入 VM ( windows )總共有3種方法可以進入 VM 本篇文章將依序作介紹">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/images/2.png">
@@ -54,10 +55,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/images/23.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/images/24.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/images/25.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.076Z">
+<meta property="og:updated_time" content="2020-07-30T08:59:27.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-windows-連線進入VM">
-<meta name="twitter:description" content="連線進入 VM ( windows )總共有3種方法可以進入 VM 本篇文章將依序作介紹RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門一、 使用 GCP 開啟新視窗連線建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件">
+<meta name="twitter:description" content="連線進入 VM ( windows )總共有3種方法可以進入 VM 本篇文章將依序作介紹">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/22/GCP-windows-連線進入VM/">
@@ -219,8 +220,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:59:27" itemprop="dateModified" datetime="2020-07-30T16:59:27+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GCP/" itemprop="url" rel="index"><span itemprop="name">GCP</span></a>
+                </span>
+            </span>
 
           
 
@@ -233,7 +243,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="連線進入-VM-windows"><a href="#連線進入-VM-windows" class="headerlink" title="連線進入 VM ( windows )"></a>連線進入 VM ( windows )</h3><h3 id="總共有3種方法可以進入-VM-本篇文章將依序作介紹"><a href="#總共有3種方法可以進入-VM-本篇文章將依序作介紹" class="headerlink" title="總共有3種方法可以進入 VM 本篇文章將依序作介紹"></a>總共有3種方法可以進入 VM 本篇文章將依序作介紹</h3><h3 id="RDP-連線會需要用到-tcp-3389，一般專案開好會有預設防火牆-tcp-3389-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門"><a href="#RDP-連線會需要用到-tcp-3389，一般專案開好會有預設防火牆-tcp-3389-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門" class="headerlink" title="RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門"></a>RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E9%98%B2%E7%81%AB%E7%89%86/" target="_blank" rel="noopener">文章傳送門</a></h3><h3 id="一、-使用-GCP-開啟新視窗連線"><a href="#一、-使用-GCP-開啟新視窗連線" class="headerlink" title="一、 使用 GCP 開啟新視窗連線"></a>一、 使用 GCP 開啟新視窗連線</h3><h3 id="建立好-VM-後有可能尚未準備好接受-RDP-連接，因為所有-OS-組件都需要一段時間才能初始化"><a href="#建立好-VM-後有可能尚未準備好接受-RDP-連接，因為所有-OS-組件都需要一段時間才能初始化" class="headerlink" title="建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件都需要一段時間才能初始化"></a>建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件都需要一段時間才能初始化</h3><h3 id="要查看服務器是否已準備好進行-RDP-連接，請在-Cloud-Shell-終端命令行上運行以下命令-會詢問是否在此區域-y-n，是非題選對就會繼續下去"><a href="#要查看服務器是否已準備好進行-RDP-連接，請在-Cloud-Shell-終端命令行上運行以下命令-會詢問是否在此區域-y-n，是非題選對就會繼續下去" class="headerlink" title="要查看服務器是否已準備好進行 RDP 連接，請在 Cloud Shell 終端命令行上運行以下命令 ( 會詢問是否在此區域 y/n，是非題選對就會繼續下去 )"></a>要查看服務器是否已準備好進行 RDP 連接，請在 Cloud Shell 終端命令行上運行以下命令 ( 會詢問是否在此區域 y/n，是非題選對就會繼續下去 )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances get-serial-port-output ( VM 名稱 )</span><br></pre></td></tr></table></figure>
+        <h3 id="連線進入-VM-windows"><a href="#連線進入-VM-windows" class="headerlink" title="連線進入 VM ( windows )"></a>連線進入 VM ( windows )</h3><h3 id="總共有3種方法可以進入-VM-本篇文章將依序作介紹"><a href="#總共有3種方法可以進入-VM-本篇文章將依序作介紹" class="headerlink" title="總共有3種方法可以進入 VM 本篇文章將依序作介紹"></a>總共有3種方法可以進入 VM 本篇文章將依序作介紹</h3><a id="more"></a>
+<h3 id="RDP-連線會需要用到-tcp-3389，一般專案開好會有預設防火牆-tcp-3389-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門"><a href="#RDP-連線會需要用到-tcp-3389，一般專案開好會有預設防火牆-tcp-3389-但是-VM-跟-IP-全開-建好-VM-可以直接連就是因為這樣-，需要再做設定防火牆文章可以到這裡看-文章傳送門" class="headerlink" title="RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 文章傳送門"></a>RDP 連線會需要用到 tcp:3389，一般專案開好會有預設防火牆 tcp:3389 但是 VM 跟 IP 全開 ( 建好 VM 可以直接連就是因為這樣 )，需要再做設定防火牆文章可以到這裡看 <a href="https://snoopy30485.github.io/2018/06/20/GCP-%E9%98%B2%E7%81%AB%E7%89%86/" target="_blank" rel="noopener">文章傳送門</a></h3><h3 id="一、-使用-GCP-開啟新視窗連線"><a href="#一、-使用-GCP-開啟新視窗連線" class="headerlink" title="一、 使用 GCP 開啟新視窗連線"></a>一、 使用 GCP 開啟新視窗連線</h3><h3 id="建立好-VM-後有可能尚未準備好接受-RDP-連接，因為所有-OS-組件都需要一段時間才能初始化"><a href="#建立好-VM-後有可能尚未準備好接受-RDP-連接，因為所有-OS-組件都需要一段時間才能初始化" class="headerlink" title="建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件都需要一段時間才能初始化"></a>建立好 VM 後有可能尚未準備好接受 RDP 連接，因為所有 OS 組件都需要一段時間才能初始化</h3><h3 id="要查看服務器是否已準備好進行-RDP-連接，請在-Cloud-Shell-終端命令行上運行以下命令-會詢問是否在此區域-y-n，是非題選對就會繼續下去"><a href="#要查看服務器是否已準備好進行-RDP-連接，請在-Cloud-Shell-終端命令行上運行以下命令-會詢問是否在此區域-y-n，是非題選對就會繼續下去" class="headerlink" title="要查看服務器是否已準備好進行 RDP 連接，請在 Cloud Shell 終端命令行上運行以下命令 ( 會詢問是否在此區域 y/n，是非題選對就會繼續下去 )"></a>要查看服務器是否已準備好進行 RDP 連接，請在 Cloud Shell 終端命令行上運行以下命令 ( 會詢問是否在此區域 y/n，是非題選對就會繼續下去 )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud compute instances get-serial-port-output ( VM 名稱 )</span><br></pre></td></tr></table></figure>
 <h3 id="重複該命令，直到在命令輸出中看到以下內容，代表-OS-初始化成功"><a href="#重複該命令，直到在命令輸出中看到以下內容，代表-OS-初始化成功" class="headerlink" title="重複該命令，直到在命令輸出中看到以下內容，代表 OS 初始化成功"></a>重複該命令，直到在命令輸出中看到以下內容，代表 OS 初始化成功</h3><p><img src="images/1.png" alt=" "></p>
 <h3 id="OS-初始化成功後，點擊-VM-右邊的遠端桌面通訊協定旁的-▼-，在點擊設定-Windows-密碼"><a href="#OS-初始化成功後，點擊-VM-右邊的遠端桌面通訊協定旁的-▼-，在點擊設定-Windows-密碼" class="headerlink" title="OS 初始化成功後，點擊 VM 右邊的遠端桌面通訊協定旁的 ▼ ，在點擊設定 Windows 密碼"></a>OS 初始化成功後，點擊 VM 右邊的遠端桌面通訊協定旁的 ▼ ，在點擊設定 Windows 密碼</h3><p><img src="images/2.png" alt=" "></p>
 <h3 id="設定使用者名稱-名稱預設是帳號"><a href="#設定使用者名稱-名稱預設是帳號" class="headerlink" title="設定使用者名稱 ( 名稱預設是帳號 )"></a>設定使用者名稱 ( 名稱預設是帳號 )</h3><p><img src="images/3.png" alt=" "></p>
@@ -268,6 +279,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GCP/" rel="tag"># GCP</a>
+          </div>
 
         
 
