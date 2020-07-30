@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="佛系筆記">
 <meta property="og:description" content="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-05-05T05:37:06.293Z">
+<meta property="og:updated_time" content="2020-07-30T06:58:59.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的網路筆記外傳-子網路切割快速計算法">
 <meta name="twitter:description" content="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2">
@@ -85,7 +85,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Cambiar a barra de navegación">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -99,6 +99,7 @@
       <h1 class="site-title">佛系筆記</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">緣分到了，文件自然就做好了！</p>
   </div>
 
   <div class="site-nav-right">
@@ -114,12 +115,12 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Inicio</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archivo</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
 
   </li>
   </ul>
@@ -154,7 +155,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/unnamed.gif">
-      <meta itemprop="name" content="緣分到了，文件自然就做好了！">
+      <meta itemprop="name" content="無名氏的工作筆記">
       <meta itemprop="description" content="">
     </span>
 
@@ -171,16 +172,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Publicado el</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Creado por: 2020-04-10 13:48:55" itemprop="dateCreated datePublished" datetime="2020-04-10T13:48:55+08:00">2020-04-10</time>
+              <time title="أُنشأ: 2020-04-10 13:48:55" itemprop="dateCreated datePublished" datetime="2020-04-10T13:48:55+08:00">2020-04-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Editado el</span>
-                <time title="Modificado por: 2020-05-05 13:37:06" itemprop="dateModified" datetime="2020-05-05T13:37:06+08:00">2020-05-05</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-07-30 14:58:59" itemprop="dateModified" datetime="2020-07-30T14:58:59+08:00">2020-07-30</time>
               </span>
 
           
@@ -194,7 +195,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址"><a href="#在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址" class="headerlink" title="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址"></a>在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址</h4><h4 id="某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢"><a href="#某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢" class="headerlink" title="某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢"></a>某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢</h4><h4 id="1-子網路的遮罩位址為何"><a href="#1-子網路的遮罩位址為何" class="headerlink" title="1.子網路的遮罩位址為何"></a>1.子網路的遮罩位址為何</h4><h4 id="該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240"><a href="#該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240" class="headerlink" title="該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240"></a>該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240</h4><h4 id="2-可切成幾個子網路"><a href="#2-可切成幾個子網路" class="headerlink" title="2.可切成幾個子網路"></a>2.可切成幾個子網路</h4><h4 id="數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。"><a href="#數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。" class="headerlink" title="數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。"></a>數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。</h4><h4 id="3-每個子網段有幾個-IP-值"><a href="#3-每個子網段有幾個-IP-值" class="headerlink" title="3.每個子網段有幾個 IP 值"></a>3.每個子網段有幾個 IP 值</h4><h4 id="子網路-ip-數為-256-16-2-14-頭尾-IP-要去除"><a href="#子網路-ip-數為-256-16-2-14-頭尾-IP-要去除" class="headerlink" title="子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )"></a>子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )</h4><h4 id="4-每個子網路的-IP-起迄位址"><a href="#4-每個子網路的-IP-起迄位址" class="headerlink" title="4.每個子網路的 IP 起迄位址"></a>4.每個子網路的 IP 起迄位址</h4><h4 id="200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255"><a href="#200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255" class="headerlink" title="200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255"></a>200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255</h4><h4 id="例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。"><a href="#例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。" class="headerlink" title="例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。"></a>例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。</h4>
+        <h4 id="在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址"><a href="#在-IPv4-的協定下，IP-位址是由-4-個-8-位元組成的數字來表達，如-200-1-1-130，一個IP位址分為網路位址-Network-Address-主機位址-Host-Address-，依網路位址所佔的位元數不同而分為A、B、C、D-級網路，IP-數字的-0-及-255-是預設的主機及廣播位址無法使用，所以每個數字可用的-IP-位址變化只有-254-個-256-2-，這也就是一般-C-級網段的-Gateway-IP-都預設-x-x-x-254-的緣故，IPv4-的位址因為-ABCD-型網段的配法而無法完全應用到-254-四次方那樣多的可用-IP-值，隨著世界上主機數遞增，IP-位址漸漸不夠用了，在-IPv6-的應用尚未完全普及之時，就得利用切分子網路-Subnet-的方式來有效分配IP位址" class="headerlink" title="在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址"></a>在 IPv4 的協定下，IP 位址是由 4 個 8 位元組成的數字來表達，如 200.1.1.130，一個IP位址分為網路位址 ( Network Address ) +主機位址 ( Host Address )，依網路位址所佔的位元數不同而分為A、B、C、D 級網路，IP 數字的 0 及 255 是預設的主機及廣播位址無法使用，所以每個數字可用的 IP 位址變化只有 254 個 ( 256-2 )，這也就是一般 C 級網段的 Gateway IP 都預設 x.x.x.254 的緣故，IPv4 的位址因為 ABCD 型網段的配法而無法完全應用到 254 四次方那樣多的可用 IP 值，隨著世界上主機數遞增，IP 位址漸漸不夠用了，在 IPv6 的應用尚未完全普及之時，就得利用切分子網路 ( Subnet ) 的方式來有效分配IP位址</h4><a id="more"></a>
+<h4 id="某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢"><a href="#某台網路主機，它的-IP-及子網路表示法為-200-1-1-130-28，從這樣簡短的字句，你該立刻看出什麼呢" class="headerlink" title="某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢"></a>某台網路主機，它的 IP 及子網路表示法為 200.1.1.130/28，從這樣簡短的字句，你該立刻看出什麼呢</h4><h4 id="1-子網路的遮罩位址為何"><a href="#1-子網路的遮罩位址為何" class="headerlink" title="1.子網路的遮罩位址為何"></a>1.子網路的遮罩位址為何</h4><h4 id="該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240"><a href="#該數字-28-是代表遮罩-IP-位址的網路位址所佔位元數，即：11111111-11111111-11111111-11110000，遮罩位元為-1-者是讓-IP-通過-合法-，0-者為阻擋，所以從上述的-32-位元分布，我們得知它的網段型態是屬於-C-型位址，因此十進位的遮罩位址就是-255-255-255-240-只需要求算右邊那四個-1-，即-128-64-32-16-240" class="headerlink" title="該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240"></a>該數字 28 是代表遮罩 IP 位址的網路位址所佔位元數，即：11111111.11111111.11111111.11110000，遮罩位元為 1 者是讓 IP 通過 ( 合法 )，0 者為阻擋，所以從上述的 32 位元分布，我們得知它的網段型態是屬於 C 型位址，因此十進位的遮罩位址就是 255.255.255.240 ( 只需要求算右邊那四個 1 )，即 128 + 64 + 32 + 16 = 240</h4><h4 id="2-可切成幾個子網路"><a href="#2-可切成幾個子網路" class="headerlink" title="2.可切成幾個子網路"></a>2.可切成幾個子網路</h4><h4 id="數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。"><a href="#數字-1-是讓-IP-通過，所以只要注意-1-的位元變化組合-因為後面的-0-怎麼變化都會被擋住-，-1111-2-4-16，共有-16-種變化。" class="headerlink" title="數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。"></a>數字 1 是讓 IP 通過，所以只要注意 1 的位元變化組合 ( 因為後面的 0 怎麼變化都會被擋住 )，( 1111 ) = 2^4 = 16，共有 16 種變化。</h4><h4 id="3-每個子網段有幾個-IP-值"><a href="#3-每個子網段有幾個-IP-值" class="headerlink" title="3.每個子網段有幾個 IP 值"></a>3.每個子網段有幾個 IP 值</h4><h4 id="子網路-ip-數為-256-16-2-14-頭尾-IP-要去除"><a href="#子網路-ip-數為-256-16-2-14-頭尾-IP-要去除" class="headerlink" title="子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )"></a>子網路 ip 數為 256/16 - 2 = 14 ( 頭尾 IP 要去除 )</h4><h4 id="4-每個子網路的-IP-起迄位址"><a href="#4-每個子網路的-IP-起迄位址" class="headerlink" title="4.每個子網路的 IP 起迄位址"></a>4.每個子網路的 IP 起迄位址</h4><h4 id="200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255"><a href="#200-1-1-0-15，200-1-1-16-31，200-1-1-32-48，…，200-1-1-240-255" class="headerlink" title="200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255"></a>200.1.1.0-15，200.1.1.16-31，200.1.1.32-48，…，200.1.1.240-255</h4><h4 id="例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。"><a href="#例如，主機-IP-為-200-1-1-130-28-的所在子網路起迄IP為-130-16-8，-16-8-128，128-16-1-143-故在-200-1-1-128-143。" class="headerlink" title="例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。"></a>例如，主機 IP 為 200.1.1.130/28 的所在子網路起迄IP為: 130/16 = 8， 16 * 8 = 128，128 + 16 - 1 = 143 故在 200.1.1.128-143。</h4>
     </div>
 
     
@@ -262,10 +264,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Tabla de contenidos
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Inicio
+          عام
         </li>
       </ul>
 
@@ -277,9 +279,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="緣分到了，文件自然就做好了！"
+    <img class="site-author-image" itemprop="image" alt="無名氏的工作筆記"
       src="/images/unnamed.gif">
-  <p class="site-author-name" itemprop="name">緣分到了，文件自然就做好了！</p>
+  <p class="site-author-name" itemprop="name">無名氏的工作筆記</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -288,7 +290,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">72</span>
-          <span class="site-state-item-name">entradas</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
   </nav>
@@ -319,9 +321,9 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">緣分到了，文件自然就做好了！</span>
+  <span class="author" itemprop="copyrightHolder">無名氏的工作筆記</span>
 </div>
-  <div class="powered-by">Creado mediante <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
