@@ -20,48 +20,49 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="什麼是 saltstack？SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收">
+  <meta name="description" content="什麼是 saltstack？SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。">
+<meta name="keywords" content="saltstack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安裝slatstack-第一種架構">
-<meta property="og:url" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/index.html">
+<meta property="og:title" content="安裝saltstack-第一種架構">
+<meta property="og:url" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="什麼是 saltstack？SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收">
+<meta property="og:description" content="什麼是 saltstack？SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/2.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/3.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/4.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/5.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/6.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/7.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/8.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/9.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/10.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/11.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/12.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/13.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/27.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/10.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/14.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/15.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/16.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/17.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/18.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/19.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/20.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/21.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/22.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/23.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/24.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/25.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/26.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.847Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/27.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/18.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/21.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/22.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/23.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/24.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/25.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/26.png">
+<meta property="og:updated_time" content="2020-07-30T08:09:12.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安裝slatstack-第一種架構">
-<meta name="twitter:description" content="什麼是 saltstack？SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/images/1.png">
+<meta name="twitter:title" content="安裝saltstack-第一種架構">
+<meta name="twitter:description" content="什麼是 saltstack？SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/images/1.png">
 
-<link rel="canonical" href="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/">
+<link rel="canonical" href="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/">
 
 
 <script id="page-configurations">
@@ -74,7 +75,7 @@
   };
 </script>
 
-  <title>安裝slatstack-第一種架構 | 佛系筆記</title>
+  <title>安裝saltstack-第一種架構 | 佛系筆記</title>
   
 
 
@@ -190,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/安裝slatstack-第一種架構/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/安裝saltstack-第一種架構/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/unnamed.gif">
@@ -203,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          安裝slatstack-第一種架構
+          安裝saltstack-第一種架構
         </h1>
 
         <div class="post-meta">
@@ -220,8 +221,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:09:12" itemprop="dateModified" datetime="2020-07-30T16:09:12+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/saltstack/" itemprop="url" rel="index"><span itemprop="name">saltstack</span></a>
+                </span>
+            </span>
 
           
 
@@ -234,7 +244,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="什麼是-saltstack？"><a href="#什麼是-saltstack？" class="headerlink" title="什麼是 saltstack？"></a>什麼是 saltstack？</h3><h4 id="SaltStack-是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack-提供了一個動態基礎設施通信總線用於編排-遠程執行、配置管理等等。"><a href="#SaltStack-是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack-提供了一個動態基礎設施通信總線用於編排-遠程執行、配置管理等等。" class="headerlink" title="SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。"></a>SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。</h4><h4 id="saltstack-有三種架構，本文章先介紹第一種架構-master-→-minion-這種架構中-master-和所有-minion-都直接連接，minion-接收來自-master-的指令，完成命令執行或配置管理，如下圖所示"><a href="#saltstack-有三種架構，本文章先介紹第一種架構-master-→-minion-這種架構中-master-和所有-minion-都直接連接，minion-接收來自-master-的指令，完成命令執行或配置管理，如下圖所示" class="headerlink" title="saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收來自 master 的指令，完成命令執行或配置管理，如下圖所示"></a>saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收來自 master 的指令，完成命令執行或配置管理，如下圖所示</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="什麼是-saltstack？"><a href="#什麼是-saltstack？" class="headerlink" title="什麼是 saltstack？"></a>什麼是 saltstack？</h3><h4 id="SaltStack-是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack-提供了一個動態基礎設施通信總線用於編排-遠程執行、配置管理等等。"><a href="#SaltStack-是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack-提供了一個動態基礎設施通信總線用於編排-遠程執行、配置管理等等。" class="headerlink" title="SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。"></a>SaltStack 是一種新的基礎設施管理方法開發軟件，簡單易部署，可伸縮的足以管理成千上萬的服務器，和足夠快的速度控制。SaltStack 提供了一個動態基礎設施通信總線用於編排,遠程執行、配置管理等等。</h4><a id="more"></a>
+<h4 id="saltstack-有三種架構，本文章先介紹第一種架構-master-→-minion-這種架構中-master-和所有-minion-都直接連接，minion-接收來自-master-的指令，完成命令執行或配置管理，如下圖所示"><a href="#saltstack-有三種架構，本文章先介紹第一種架構-master-→-minion-這種架構中-master-和所有-minion-都直接連接，minion-接收來自-master-的指令，完成命令執行或配置管理，如下圖所示" class="headerlink" title="saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收來自 master 的指令，完成命令執行或配置管理，如下圖所示"></a>saltstack 有三種架構，本文章先介紹第一種架構 master → minion 這種架構中 master 和所有 minion 都直接連接，minion 接收來自 master 的指令，完成命令執行或配置管理，如下圖所示</h4><p><img src="images/1.png" alt=" "></p>
 <h3 id="一、安裝-saltstack-master-ubuntu-16-04"><a href="#一、安裝-saltstack-master-ubuntu-16-04" class="headerlink" title="一、安裝 saltstack master ubuntu 16.04"></a>一、安裝 saltstack master ubuntu 16.04</h3><h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
 <p><img src="images/2.png" alt=" "></p>
 <h4 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install salt-master</span><br></pre></td></tr></table></figure>
@@ -280,6 +291,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/saltstack/" rel="tag"># saltstack</a>
+          </div>
 
         
 
@@ -375,13 +389,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了1. 安裝 ansible123將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加sudo apt-add-repository ppa:ansible/ansible  12345更新並安裝sudo apt-g">
+  <meta name="description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了">
+<meta name="keywords" content="ansible">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝ansible-ubuntu">
 <meta property="og:url" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了1. 安裝 ansible123將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加sudo apt-add-repository ppa:ansible/ansible  12345更新並安裝sudo apt-g">
+<meta property="og:description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/2.png">
@@ -35,10 +36,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/5.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/7.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/6.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.824Z">
+<meta property="og:updated_time" content="2020-07-30T08:08:26.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝ansible-ubuntu">
-<meta name="twitter:description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了1. 安裝 ansible123將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加sudo apt-add-repository ppa:ansible/ansible  12345更新並安裝sudo apt-g">
+<meta name="twitter:description" content="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2019/01/03/安裝ansible-ubuntu/">
@@ -200,8 +201,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:08:26" itemprop="dateModified" datetime="2020-07-30T16:08:26+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ansible/" itemprop="url" rel="index"><span itemprop="name">ansible</span></a>
+                </span>
+            </span>
 
           
 
@@ -214,7 +224,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了"><a href="#想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了" class="headerlink" title="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了"></a>想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了</h3><h4 id="1-安裝-ansible"><a href="#1-安裝-ansible" class="headerlink" title="1. 安裝 ansible"></a>1. 安裝 ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
+        <h3 id="想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了"><a href="#想要用-ansible-控制另外一台-ubuntu-機器很簡單，只要安裝好-ansible-設定好-host，並且-SSH-可以連線要被控制的-ubuntu-機器就可以了" class="headerlink" title="想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了"></a>想要用 ansible 控制另外一台 ubuntu 機器很簡單，只要安裝好 ansible 設定好 host，並且 SSH 可以連線要被控制的 ubuntu 機器就可以了</h3><a id="more"></a>
+<h4 id="1-安裝-ansible"><a href="#1-安裝-ansible" class="headerlink" title="1. 安裝 ansible"></a>1. 安裝 ansible</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">將 PPA 添加到系統中，中間需要案 Enter 接受 PPA 增加</span><br><span class="line"></span><br><span class="line">sudo apt-add-repository ppa:ansible/ansible</span><br></pre></td></tr></table></figure>
 <p><img src="images/1.png" alt=" "><br><img src="images/2.png" alt=" "></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">更新並安裝</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y ansible</span><br></pre></td></tr></table></figure>
 <p><img src="images/3.png" alt=" "></p>
@@ -232,6 +243,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ansible/" rel="tag"># ansible</a>
+          </div>
 
         
 
@@ -239,8 +253,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/11/30/安裝slatstack-第一種架構/" rel="prev" title="安裝slatstack-第一種架構">
-      <i class="fa fa-chevron-left"></i> 安裝slatstack-第一種架構
+    <a href="/2018/11/30/安裝saltstack-第一種架構/" rel="prev" title="安裝saltstack-第一種架構">
+      <i class="fa fa-chevron-left"></i> 安裝saltstack-第一種架構
     </a></div>
       <div class="post-nav-item">
     <a href="/2019/01/03/安裝ansible-windows/" rel="next" title="安裝ansible-windows">
@@ -327,13 +341,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
