@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、什麼是 wowzaWowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的">
+  <meta name="description" content="一、什麼是 wowzaWowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。">
+<meta name="keywords" content="流媒體服務器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安裝wowza">
 <meta property="og:url" content="http://yoursite.com/2018/10/29/安裝wowza/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="一、什麼是 wowzaWowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的">
+<meta property="og:description" content="一、什麼是 wowzaWowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/安裝wowza/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/安裝wowza/images/2.png">
@@ -45,10 +46,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/29/安裝wowza/images/15.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/安裝wowza/images/17.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/安裝wowza/images/16.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.866Z">
+<meta property="og:updated_time" content="2020-07-30T08:27:32.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝wowza">
-<meta name="twitter:description" content="一、什麼是 wowzaWowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的">
+<meta name="twitter:description" content="一、什麼是 wowzaWowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。">
 <meta name="twitter:image" content="http://yoursite.com/2018/10/29/安裝wowza/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/10/29/安裝wowza/">
@@ -210,8 +211,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:27:32" itemprop="dateModified" datetime="2020-07-30T16:27:32+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -224,7 +234,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、什麼是-wowza"><a href="#一、什麼是-wowza" class="headerlink" title="一、什麼是 wowza"></a>一、什麼是 wowza</h3><h4 id="Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"><a href="#Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。" class="headerlink" title="Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"></a>Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。</h4><h4 id="1-Wowza-是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。"><a href="#1-Wowza-是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。" class="headerlink" title="1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。"></a>1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。</h4><h4 id="2-Wowza-提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR-性能和發布功能。"><a href="#2-Wowza-提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR-性能和發布功能。" class="headerlink" title="2. Wowza 提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR 性能和發布功能。"></a>2. Wowza 提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR 性能和發布功能。</h4><h4 id="3-用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和-APIs，建立支持你持續發展的工作流的解決方案。"><a href="#3-用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和-APIs，建立支持你持續發展的工作流的解決方案。" class="headerlink" title="3. 用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和 APIs，建立支持你持續發展的工作流的解決方案。"></a>3. 用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和 APIs，建立支持你持續發展的工作流的解決方案。</h4><h4 id="4-Wowza-Streaming-Engine-Manager-可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。"><a href="#4-Wowza-Streaming-Engine-Manager-可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。" class="headerlink" title="4. Wowza Streaming Engine Manager 可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。"></a>4. Wowza Streaming Engine Manager 可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。</h4><h3 id="二、安裝-wowza-for-windows"><a href="#二、安裝-wowza-for-windows" class="headerlink" title="二、安裝 wowza for windows"></a>二、安裝 wowza for windows</h3><h4 id="官方下載網址：https-www-wowza-com-pricing-installer"><a href="#官方下載網址：https-www-wowza-com-pricing-installer" class="headerlink" title="官方下載網址：https://www.wowza.com/pricing/installer"></a>官方下載網址：<a href="https://www.wowza.com/pricing/installer" target="_blank" rel="noopener">https://www.wowza.com/pricing/installer</a></h4><h4 id="下載下方有安裝需求說明"><a href="#下載下方有安裝需求說明" class="headerlink" title="下載下方有安裝需求說明"></a>下載下方有安裝需求說明</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="一、什麼是-wowza"><a href="#一、什麼是-wowza" class="headerlink" title="一、什麼是 wowza"></a>一、什麼是 wowza</h3><h4 id="Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"><a href="#Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。" class="headerlink" title="Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"></a>Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。</h4><a id="more"></a>
+<h4 id="1-Wowza-是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。"><a href="#1-Wowza-是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。" class="headerlink" title="1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。"></a>1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。</h4><h4 id="2-Wowza-提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR-性能和發布功能。"><a href="#2-Wowza-提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR-性能和發布功能。" class="headerlink" title="2. Wowza 提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR 性能和發布功能。"></a>2. Wowza 提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR 性能和發布功能。</h4><h4 id="3-用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和-APIs，建立支持你持續發展的工作流的解決方案。"><a href="#3-用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和-APIs，建立支持你持續發展的工作流的解決方案。" class="headerlink" title="3. 用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和 APIs，建立支持你持續發展的工作流的解決方案。"></a>3. 用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和 APIs，建立支持你持續發展的工作流的解決方案。</h4><h4 id="4-Wowza-Streaming-Engine-Manager-可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。"><a href="#4-Wowza-Streaming-Engine-Manager-可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。" class="headerlink" title="4. Wowza Streaming Engine Manager 可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。"></a>4. Wowza Streaming Engine Manager 可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。</h4><h3 id="二、安裝-wowza-for-windows"><a href="#二、安裝-wowza-for-windows" class="headerlink" title="二、安裝 wowza for windows"></a>二、安裝 wowza for windows</h3><h4 id="官方下載網址：https-www-wowza-com-pricing-installer"><a href="#官方下載網址：https-www-wowza-com-pricing-installer" class="headerlink" title="官方下載網址：https://www.wowza.com/pricing/installer"></a>官方下載網址：<a href="https://www.wowza.com/pricing/installer" target="_blank" rel="noopener">https://www.wowza.com/pricing/installer</a></h4><h4 id="下載下方有安裝需求說明"><a href="#下載下方有安裝需求說明" class="headerlink" title="下載下方有安裝需求說明"></a>下載下方有安裝需求說明</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="開始安裝"><a href="#開始安裝" class="headerlink" title="開始安裝"></a>開始安裝</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="輸入金鑰"><a href="#輸入金鑰" class="headerlink" title="輸入金鑰"></a>輸入金鑰</h4><p><img src="images/3.png" alt=" "></p>
 <h4 id="設定-wowza-web-登入帳密"><a href="#設定-wowza-web-登入帳密" class="headerlink" title="設定 wowza web 登入帳密"></a>設定 wowza web 登入帳密</h4><p><img src="images/4.png" alt=" "></p>
@@ -253,6 +264,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/流媒體服務器/" rel="tag"># 流媒體服務器</a>
+          </div>
 
         
 

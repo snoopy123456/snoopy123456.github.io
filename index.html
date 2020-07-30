@@ -916,8 +916,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:25:26" itemprop="dateModified" datetime="2020-07-30T16:25:26+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -930,19 +939,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="本文章將介紹如何調整-HLS-低延遲"><a href="#本文章將介紹如何調整-HLS-低延遲" class="headerlink" title="本文章將介紹如何調整 HLS 低延遲"></a>本文章將介紹如何調整 HLS 低延遲</h3><h4 id="1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit"><a href="#1-首先在-Applications-選擇想設定低延遲的-Live-Applications-點擊-Edit" class="headerlink" title="1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit"></a>1. 首先在 Applications 選擇想設定低延遲的 Live Applications 點擊 Edit</h4><p><img src="images/1.png" alt=" "></p>
-<h4 id="2-選擇-Low-latency-stream-ideal-for-chat-applications"><a href="#2-選擇-Low-latency-stream-ideal-for-chat-applications" class="headerlink" title="2. 選擇 Low-latency stream ( ideal for chat applications )"></a>2. 選擇 Low-latency stream ( ideal for chat applications )</h4><p><img src="images/2.png" alt=" "></p>
-<h4 id="3-設定好後點選-Save-需要重新整理"><a href="#3-設定好後點選-Save-需要重新整理" class="headerlink" title="3. 設定好後點選 Save 需要重新整理"></a>3. 設定好後點選 Save 需要重新整理</h4><p><img src="images/3.png" alt=" "></p>
-<h4 id="4-也可以再建立-Live-Applications-的時候先設定好"><a href="#4-也可以再建立-Live-Applications-的時候先設定好" class="headerlink" title="4. 也可以再建立 Live Applications 的時候先設定好"></a>4. 也可以再建立 Live Applications 的時候先設定好</h4><p><img src="images/4.png" alt=" "></p>
-<h4 id="5-設定好-Low-latency-stream-點選上面分頁-Properties"><a href="#5-設定好-Low-latency-stream-點選上面分頁-Properties" class="headerlink" title="5. 設定好 Low-latency stream 點選上面分頁 Properties"></a>5. 設定好 Low-latency stream 點選上面分頁 Properties</h4><p><img src="images/5.png" alt=" "></p>
-<h4 id="6-Quick-Links-選擇-Cupertino-Streaming-Packetizer"><a href="#6-Quick-Links-選擇-Cupertino-Streaming-Packetizer" class="headerlink" title="6. Quick Links 選擇 Cupertino Streaming Packetizer"></a>6. Quick Links 選擇 Cupertino Streaming Packetizer</h4><p><img src="images/6.png" alt=" "></p>
-<h4 id="7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12"><a href="#7-點選-Edit-後開始設定裡面參數-cupertinoChunkDurationTarget-設定-1000-1000毫秒等於1秒-、cupertinoMaxChunkCount-設定-50、cupertinoPlaylistChunkCount-設定-12" class="headerlink" title="7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12"></a>7. 點選 Edit 後開始設定裡面參數 cupertinoChunkDurationTarget 設定 1000 ( 1000毫秒等於1秒 )、cupertinoMaxChunkCount 設定 50、cupertinoPlaylistChunkCount 設定 12</h4><p><img src="images/7.png" alt=" "><br><img src="images/8.png" alt=" "></p>
-<h4 id="8-設定好後一樣要重新整理"><a href="#8-設定好後一樣要重新整理" class="headerlink" title="8. 設定好後一樣要重新整理"></a>8. 設定好後一樣要重新整理</h4><p><img src="images/9.png" alt=" "></p>
-<h4 id="9-設定好後回到-Quick-Links-選擇-Custom"><a href="#9-設定好後回到-Quick-Links-選擇-Custom" class="headerlink" title="9. 設定好後回到 Quick Links 選擇 Custom"></a>9. 設定好後回到 Quick Links 選擇 Custom</h4><p><img src="images/10.png" alt=" "></p>
-<h4 id="10-點選-Edit-點選-Add-Custom-Property-後開始設定參數"><a href="#10-點選-Edit-點選-Add-Custom-Property-後開始設定參數" class="headerlink" title="10. 點選 Edit 點選 Add Custom Property 後開始設定參數"></a>10. 點選 Edit 點選 Add Custom Property 後開始設定參數</h4><p><img src="images/11.png" alt=" "><br><img src="images/12.png" alt=" "></p>
-<h4 id="11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"><a href="#11-參數為-Path：-Root-Application-LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6" class="headerlink" title="11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6"></a>11. 參數為 Path：/Root/Application/LiveStreamPacketizer、Name：cupertinoMinPlaylistChunkCount、Type：Integer、Value：6</h4><p><img src="images/13.png" alt=" "></p>
-<h4 id="12-設定好後一樣要重新整理"><a href="#12-設定好後一樣要重新整理" class="headerlink" title="12. 設定好後一樣要重新整理"></a>12. 設定好後一樣要重新整理</h4><p><img src="images/9.png" alt=" "></p>
-<h4 id="到這邊就設定完成了"><a href="#到這邊就設定完成了" class="headerlink" title="到這邊就設定完成了"></a>到這邊就設定完成了</h4>
+          <h3 id="本文章將介紹如何調整-HLS-低延遲"><a href="#本文章將介紹如何調整-HLS-低延遲" class="headerlink" title="本文章將介紹如何調整 HLS 低延遲"></a>本文章將介紹如何調整 HLS 低延遲</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/23/設定wowza-HLS低延遲/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

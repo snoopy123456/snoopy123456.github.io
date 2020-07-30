@@ -592,8 +592,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:26:53" itemprop="dateModified" datetime="2020-07-30T16:26:53+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -606,23 +615,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="AMS-Original-安裝包下載：點我下載"><a href="#AMS-Original-安裝包下載：點我下載" class="headerlink" title="AMS_Original 安裝包下載：點我下載"></a>AMS_Original 安裝包下載：<a href="https://drive.google.com/open?id=1ZoMojUk21mlRwmCl90mylBCVHpClugQ-" target="_blank" rel="noopener">點我下載</a></h3><h4 id="將安裝包放入後按照下方指令開始安裝"><a href="#將安裝包放入後按照下方指令開始安裝" class="headerlink" title="將安裝包放入後按照下方指令開始安裝"></a>將安裝包放入後按照下方指令開始安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf ams-edge.tar.gz</span><br><span class="line"></span><br><span class="line">cd AMS_5_0_6_r6102/</span><br><span class="line"></span><br><span class="line">./installAMS</span><br></pre></td></tr></table></figure>
-<h4 id="下完指令安裝畫面，按下-Enter-確認安裝-AMS，再按-Enter-or-Space-鍵直到閱讀完-License"><a href="#下完指令安裝畫面，按下-Enter-確認安裝-AMS，再按-Enter-or-Space-鍵直到閱讀完-License" class="headerlink" title="下完指令安裝畫面，按下 Enter 確認安裝 AMS，再按 Enter or Space 鍵直到閱讀完 License"></a>下完指令安裝畫面，按下 Enter 確認安裝 AMS，再按 Enter or Space 鍵直到閱讀完 License</h4><p><img src="images/1.png" alt=" "></p>
-<h4 id="是否同意，輸入-y"><a href="#是否同意，輸入-y" class="headerlink" title="是否同意，輸入 y"></a>是否同意，輸入 y</h4><p><img src="images/2.png" alt=" "></p>
-<h4 id="輸入序號"><a href="#輸入序號" class="headerlink" title="輸入序號"></a>輸入序號</h4><p><img src="images/3.png" alt=" "></p>
-<h4 id="安裝目錄-opt-adobe-ams-，直接按-Enter"><a href="#安裝目錄-opt-adobe-ams-，直接按-Enter" class="headerlink" title="安裝目錄 ( /opt/adobe/ams )，直接按 Enter"></a>安裝目錄 ( /opt/adobe/ams )，直接按 Enter</h4><p><img src="images/4.png" alt=" "></p>
-<h4 id="輸入管理員名稱：administrator"><a href="#輸入管理員名稱：administrator" class="headerlink" title="輸入管理員名稱：administrator"></a>輸入管理員名稱：administrator</h4><p><img src="images/5.png" alt=" "></p>
-<h4 id="輸入管理員密碼：xxxxxxxx"><a href="#輸入管理員密碼：xxxxxxxx" class="headerlink" title="輸入管理員密碼：xxxxxxxx"></a>輸入管理員密碼：xxxxxxxx</h4><p><img src="images/6.png" alt=" "></p>
-<h4 id="密碼二次輸入"><a href="#密碼二次輸入" class="headerlink" title="密碼二次輸入"></a>密碼二次輸入</h4><p><img src="images/7.png" alt=" "></p>
-<h4 id="接下來都用預設，Enter"><a href="#接下來都用預設，Enter" class="headerlink" title="接下來都用預設，Enter"></a>接下來都用預設，Enter</h4><p><img src="images/8.png" alt=" "></p>
-<h4 id="完成後總結圖如下，再輸入-y-確認安裝"><a href="#完成後總結圖如下，再輸入-y-確認安裝" class="headerlink" title="完成後總結圖如下，再輸入 y 確認安裝"></a>完成後總結圖如下，再輸入 y 確認安裝</h4><p><img src="images/9.png" alt=" "></p>
-<h4 id="輸入-AMS-original-Lan-IP"><a href="#輸入-AMS-original-Lan-IP" class="headerlink" title="輸入 AMS-original Lan IP"></a>輸入 AMS-original Lan IP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;208c&lt;RouteEntry&gt;*:*;10.140.0.3:1935&lt;/RouteEntry&gt;&apos; /opt/adobe/ams/conf/_defaultRoot_/_defaultVHost_/Vhost.xml </span><br><span class="line"></span><br><span class="line">10.140.0.3 為本章使用 original Lan IP</span><br></pre></td></tr></table></figure>
-<h4 id="重啟-AMS-服務"><a href="#重啟-AMS-服務" class="headerlink" title="重啟 AMS 服務"></a>重啟 AMS 服務</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ams restart</span><br></pre></td></tr></table></figure>
-<h4 id="確認-AMS-啟動狀態-有時候會不成功服務需多重起幾次"><a href="#確認-AMS-啟動狀態-有時候會不成功服務需多重起幾次" class="headerlink" title="確認 AMS 啟動狀態 ( 有時候會不成功服務需多重起幾次 )"></a>確認 AMS 啟動狀態 ( 有時候會不成功服務需多重起幾次 )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ams status</span><br></pre></td></tr></table></figure>
-<p><img src="images/10.png" alt=" "></p>
-<h4 id="wowza-是使用-1935-port-記得打開-1935-port"><a href="#wowza-是使用-1935-port-記得打開-1935-port" class="headerlink" title="wowza 是使用 1935 port 記得打開 1935 port"></a>wowza 是使用 1935 port 記得打開 1935 port</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 22 ( 記得要先開啟 22 再開其他 port )</span><br><span class="line"></span><br><span class="line">sudo ufw allow 1935</span><br></pre></td></tr></table></figure>
-<p><img src="images/11.png" alt=" "></p>
-<h4 id="到這邊-edge-安裝跟設定就完成了"><a href="#到這邊-edge-安裝跟設定就完成了" class="headerlink" title="到這邊 edge 安裝跟設定就完成了"></a>到這邊 edge 安裝跟設定就完成了</h4>
+          <h3 id="AMS-Original-安裝包下載：點我下載"><a href="#AMS-Original-安裝包下載：點我下載" class="headerlink" title="AMS_Original 安裝包下載：點我下載"></a>AMS_Original 安裝包下載：<a href="https://drive.google.com/open?id=1ZoMojUk21mlRwmCl90mylBCVHpClugQ-" target="_blank" rel="noopener">點我下載</a></h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/09/安裝AMS-Edge-ubuntu/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -672,8 +673,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:27:05" itemprop="dateModified" datetime="2020-07-30T16:27:05+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -686,28 +696,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="AMS-Original-安裝包下載：點我下載"><a href="#AMS-Original-安裝包下載：點我下載" class="headerlink" title="AMS_Original 安裝包下載：點我下載"></a>AMS_Original 安裝包下載：<a href="https://drive.google.com/open?id=1ZoMojUk21mlRwmCl90mylBCVHpClugQ-" target="_blank" rel="noopener">點我下載</a></h3><h4 id="將安裝包放入後按照下方指令開始安裝"><a href="#將安裝包放入後按照下方指令開始安裝" class="headerlink" title="將安裝包放入後按照下方指令開始安裝"></a>將安裝包放入後按照下方指令開始安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf ams-original.tar.gz</span><br><span class="line"></span><br><span class="line">cd AMS_5_0_6_r6102/</span><br><span class="line"></span><br><span class="line">./installAMS</span><br></pre></td></tr></table></figure>
-<h4 id="下完指令安裝畫面，按下-Enter-確認安裝-AMS，再按-Enter-or-Space-鍵直到閱讀完-License"><a href="#下完指令安裝畫面，按下-Enter-確認安裝-AMS，再按-Enter-or-Space-鍵直到閱讀完-License" class="headerlink" title="下完指令安裝畫面，按下 Enter 確認安裝 AMS，再按 Enter or Space 鍵直到閱讀完 License"></a>下完指令安裝畫面，按下 Enter 確認安裝 AMS，再按 Enter or Space 鍵直到閱讀完 License</h4><p><img src="images/1.png" alt=" "></p>
-<h4 id="是否同意，輸入-y"><a href="#是否同意，輸入-y" class="headerlink" title="是否同意，輸入 y"></a>是否同意，輸入 y</h4><p><img src="images/2.png" alt=" "></p>
-<h4 id="輸入序號"><a href="#輸入序號" class="headerlink" title="輸入序號"></a>輸入序號</h4><p><img src="images/3.png" alt=" "></p>
-<h4 id="安裝目錄-opt-adobe-ams-，直接按-Enter"><a href="#安裝目錄-opt-adobe-ams-，直接按-Enter" class="headerlink" title="安裝目錄 ( /opt/adobe/ams )，直接按 Enter"></a>安裝目錄 ( /opt/adobe/ams )，直接按 Enter</h4><p><img src="images/4.png" alt=" "></p>
-<h4 id="輸入管理員名稱：administrator"><a href="#輸入管理員名稱：administrator" class="headerlink" title="輸入管理員名稱：administrator"></a>輸入管理員名稱：administrator</h4><p><img src="images/5.png" alt=" "></p>
-<h4 id="輸入管理員密碼：xxxxxxxx"><a href="#輸入管理員密碼：xxxxxxxx" class="headerlink" title="輸入管理員密碼：xxxxxxxx"></a>輸入管理員密碼：xxxxxxxx</h4><p><img src="images/6.png" alt=" "></p>
-<h4 id="密碼二次輸入"><a href="#密碼二次輸入" class="headerlink" title="密碼二次輸入"></a>密碼二次輸入</h4><p><img src="images/7.png" alt=" "></p>
-<h4 id="接下來都用預設，Enter"><a href="#接下來都用預設，Enter" class="headerlink" title="接下來都用預設，Enter"></a>接下來都用預設，Enter</h4><p><img src="images/8.png" alt=" "></p>
-<h4 id="完成後總結圖如下，再輸入-y-確認安裝"><a href="#完成後總結圖如下，再輸入-y-確認安裝" class="headerlink" title="完成後總結圖如下，再輸入 y 確認安裝"></a>完成後總結圖如下，再輸入 y 確認安裝</h4><p><img src="images/9.png" alt=" "></p>
-<h4 id="重啟-AMS-服務"><a href="#重啟-AMS-服務" class="headerlink" title="重啟 AMS 服務"></a>重啟 AMS 服務</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ams restart</span><br></pre></td></tr></table></figure>
-<h4 id="確認-AMS-啟動狀態-有時候會不成功服務需多重起幾次-，狀態檢查完按-Q-離開"><a href="#確認-AMS-啟動狀態-有時候會不成功服務需多重起幾次-，狀態檢查完按-Q-離開" class="headerlink" title="確認 AMS 啟動狀態 ( 有時候會不成功服務需多重起幾次 )，狀態檢查完按 Q 離開"></a>確認 AMS 啟動狀態 ( 有時候會不成功服務需多重起幾次 )，狀態檢查完按 Q 離開</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ams status</span><br></pre></td></tr></table></figure>
-<p><img src="images/10.png" alt=" "></p>
-<h4 id="wowza-是使用-1935-port-記得打開-1935-port"><a href="#wowza-是使用-1935-port-記得打開-1935-port" class="headerlink" title="wowza 是使用 1935 port 記得打開 1935 port"></a>wowza 是使用 1935 port 記得打開 1935 port</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 22 ( 記得要先開啟 22 再開其他 port )</span><br><span class="line"></span><br><span class="line">sudo ufw allow 1935</span><br></pre></td></tr></table></figure>
-<p><img src="images/11.png" alt=" "></p>
-<h4 id="進入-opt-adobe-ams-applications-建立一個資料夾-此資料夾是給-wowza-用的"><a href="#進入-opt-adobe-ams-applications-建立一個資料夾-此資料夾是給-wowza-用的" class="headerlink" title="進入 /opt/adobe/ams/applications 建立一個資料夾 ( 此資料夾是給 wowza 用的 )"></a>進入 /opt/adobe/ams/applications 建立一個資料夾 ( 此資料夾是給 wowza 用的 )</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/adobe/ams/applications</span><br></pre></td></tr></table></figure>
-<p><img src="images/12.png" alt=" "></p>
-<h4 id="建立一個資料夾"><a href="#建立一個資料夾" class="headerlink" title="建立一個資料夾"></a>建立一個資料夾</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir 隨意資料夾名稱</span><br><span class="line"></span><br><span class="line">ex： mkdir test</span><br></pre></td></tr></table></figure>
-<p><img src="images/13.png" alt=" "></p>
-<h4 id="調到最高權限"><a href="#調到最高權限" class="headerlink" title="調到最高權限"></a>調到最高權限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 資料夾名稱</span><br><span class="line"></span><br><span class="line">ex： chmod 777 test</span><br></pre></td></tr></table></figure>
-<p><img src="images/14.png" alt=" "></p>
-<h4 id="到這邊-original-安裝跟設定就完成了"><a href="#到這邊-original-安裝跟設定就完成了" class="headerlink" title="到這邊 original 安裝跟設定就完成了"></a>到這邊 original 安裝跟設定就完成了</h4>
+          <h3 id="AMS-Original-安裝包下載：點我下載"><a href="#AMS-Original-安裝包下載：點我下載" class="headerlink" title="AMS_Original 安裝包下載：點我下載"></a>AMS_Original 安裝包下載：<a href="https://drive.google.com/open?id=1ZoMojUk21mlRwmCl90mylBCVHpClugQ-" target="_blank" rel="noopener">點我下載</a></h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/08/安裝AMS-Original-ubuntu/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -838,8 +835,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:27:32" itemprop="dateModified" datetime="2020-07-30T16:27:32+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/流媒體服務器/" itemprop="url" rel="index"><span itemprop="name">流媒體服務器</span></a>
+                </span>
+            </span>
 
           
 
@@ -852,28 +858,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="一、什麼是-wowza"><a href="#一、什麼是-wowza" class="headerlink" title="一、什麼是 wowza"></a>一、什麼是 wowza</h3><h4 id="Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"><a href="#Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。" class="headerlink" title="Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"></a>Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。</h4><h4 id="1-Wowza-是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。"><a href="#1-Wowza-是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。" class="headerlink" title="1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。"></a>1. Wowza 是一個不論平台、多格式、多屏幕軟件。它接受任何的視頻格式，一次性轉碼，可靠地進行多格式傳輸，並以最大可能的質量傳輸到任何地方的任何連接設備。</h4><h4 id="2-Wowza-提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR-性能和發布功能。"><a href="#2-Wowza-提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR-性能和發布功能。" class="headerlink" title="2. Wowza 提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR 性能和發布功能。"></a>2. Wowza 提供豐富的功能專為流暢的現場內容而設計，包括位碼流暢性，DVR 性能和發布功能。</h4><h4 id="3-用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和-APIs，建立支持你持續發展的工作流的解決方案。"><a href="#3-用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和-APIs，建立支持你持續發展的工作流的解決方案。" class="headerlink" title="3. 用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和 APIs，建立支持你持續發展的工作流的解決方案。"></a>3. 用融合了其他系統和第三方解決方案的外延軟件，自定義你的流線型作品。平衡軟件強大的組件和 APIs，建立支持你持續發展的工作流的解決方案。</h4><h4 id="4-Wowza-Streaming-Engine-Manager-可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。"><a href="#4-Wowza-Streaming-Engine-Manager-可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。" class="headerlink" title="4. Wowza Streaming Engine Manager 可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。"></a>4. Wowza Streaming Engine Manager 可以從一個電腦或者任何的移動設備管理，監察和測量視頻和音頻。</h4><h3 id="二、安裝-wowza-for-windows"><a href="#二、安裝-wowza-for-windows" class="headerlink" title="二、安裝 wowza for windows"></a>二、安裝 wowza for windows</h3><h4 id="官方下載網址：https-www-wowza-com-pricing-installer"><a href="#官方下載網址：https-www-wowza-com-pricing-installer" class="headerlink" title="官方下載網址：https://www.wowza.com/pricing/installer"></a>官方下載網址：<a href="https://www.wowza.com/pricing/installer" target="_blank" rel="noopener">https://www.wowza.com/pricing/installer</a></h4><h4 id="下載下方有安裝需求說明"><a href="#下載下方有安裝需求說明" class="headerlink" title="下載下方有安裝需求說明"></a>下載下方有安裝需求說明</h4><p><img src="images/1.png" alt=" "></p>
-<h4 id="開始安裝"><a href="#開始安裝" class="headerlink" title="開始安裝"></a>開始安裝</h4><p><img src="images/2.png" alt=" "></p>
-<h4 id="輸入金鑰"><a href="#輸入金鑰" class="headerlink" title="輸入金鑰"></a>輸入金鑰</h4><p><img src="images/3.png" alt=" "></p>
-<h4 id="設定-wowza-web-登入帳密"><a href="#設定-wowza-web-登入帳密" class="headerlink" title="設定 wowza web 登入帳密"></a>設定 wowza web 登入帳密</h4><p><img src="images/4.png" alt=" "></p>
-<h4 id="設定安裝好開啟-web-wowza"><a href="#設定安裝好開啟-web-wowza" class="headerlink" title="設定安裝好開啟 web wowza"></a>設定安裝好開啟 web wowza</h4><p><img src="images/5.png" alt=" "></p>
-<h4 id="設定安裝位置"><a href="#設定安裝位置" class="headerlink" title="設定安裝位置"></a>設定安裝位置</h4><p><img src="images/6.png" alt=" "></p>
-<h4 id="打開網頁輸入-外網-IP-8088-登入測試-如果是本機-IP-可以輸入-127-0-0-1-或是內網-IP-，出現下圖畫面就是安裝成功了，如果是別台電腦打開-wowza-web-防火牆-8088-port-記得開"><a href="#打開網頁輸入-外網-IP-8088-登入測試-如果是本機-IP-可以輸入-127-0-0-1-或是內網-IP-，出現下圖畫面就是安裝成功了，如果是別台電腦打開-wowza-web-防火牆-8088-port-記得開" class="headerlink" title="打開網頁輸入 外網 IP:8088 登入測試 ( 如果是本機 IP 可以輸入 127.0.0.1 或是內網 IP )，出現下圖畫面就是安裝成功了，如果是別台電腦打開 wowza web 防火牆 8088 port 記得開"></a>打開網頁輸入 外網 IP:8088 登入測試 ( 如果是本機 IP 可以輸入 127.0.0.1 或是內網 IP )，出現下圖畫面就是安裝成功了，如果是別台電腦打開 wowza web 防火牆 8088 port 記得開</h4><p><img src="images/16.png" alt=" "></p>
-<h3 id="三、安裝-wowza-for-ubuntu-16-04"><a href="#三、安裝-wowza-for-ubuntu-16-04" class="headerlink" title="三、安裝 wowza for ubuntu 16.04"></a>三、安裝 wowza for ubuntu 16.04</h3><h4 id="官方下載網址：https-www-wowza-com-pricing-installer-一樣的地方"><a href="#官方下載網址：https-www-wowza-com-pricing-installer-一樣的地方" class="headerlink" title="官方下載網址：https://www.wowza.com/pricing/installer ( 一樣的地方 )"></a>官方下載網址：<a href="https://www.wowza.com/pricing/installer" target="_blank" rel="noopener">https://www.wowza.com/pricing/installer</a> ( 一樣的地方 )</h4><h4 id="下載下方有安裝指令"><a href="#下載下方有安裝指令" class="headerlink" title="下載下方有安裝指令"></a>下載下方有安裝指令</h4><p><img src="images/7.png" alt=" "></p>
-<h4 id="輸入官方給的指令安裝，接下來會出現條款一直按-Enter-到下一步"><a href="#輸入官方給的指令安裝，接下來會出現條款一直按-Enter-到下一步" class="headerlink" title="輸入官方給的指令安裝，接下來會出現條款一直按 Enter 到下一步"></a>輸入官方給的指令安裝，接下來會出現條款一直按 Enter 到下一步</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x WowzaStreamingEngine-4.7.6-linux-x64-installer.run</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./WowzaStreamingEngine-4.7.6-linux-x64-installer.run</span><br></pre></td></tr></table></figure>
-<p><img src="images/8.png" alt=" "></p>
-<h4 id="讀完條約會出現同意-不同意，輸入-y-同意"><a href="#讀完條約會出現同意-不同意，輸入-y-同意" class="headerlink" title="讀完條約會出現同意/不同意，輸入 y 同意"></a>讀完條約會出現同意/不同意，輸入 y 同意</h4><p><img src="images/9.png" alt=" "></p>
-<h4 id="同意完會出現金鑰輸入，輸入金鑰"><a href="#同意完會出現金鑰輸入，輸入金鑰" class="headerlink" title="同意完會出現金鑰輸入，輸入金鑰"></a>同意完會出現金鑰輸入，輸入金鑰</h4><p><img src="images/10.png" alt=" "></p>
-<h4 id="輸完金鑰，鑰需要輸入帳密-登入-wowza-web-用-，先輸入帳號"><a href="#輸完金鑰，鑰需要輸入帳密-登入-wowza-web-用-，先輸入帳號" class="headerlink" title="輸完金鑰，鑰需要輸入帳密 ( 登入 wowza web 用 )，先輸入帳號"></a>輸完金鑰，鑰需要輸入帳密 ( 登入 wowza web 用 )，先輸入帳號</h4><p><img src="images/11.png" alt=" "></p>
-<h4 id="輸完帳號會問密碼，輸入2次後-OK"><a href="#輸完帳號會問密碼，輸入2次後-OK" class="headerlink" title="輸完帳號會問密碼，輸入2次後 OK"></a>輸完帳號會問密碼，輸入2次後 OK</h4><p><img src="images/12.png" alt=" "></p>
-<h4 id="設定安裝完自動啟動-wowza"><a href="#設定安裝完自動啟動-wowza" class="headerlink" title="設定安裝完自動啟動 wowza"></a>設定安裝完自動啟動 wowza</h4><p><img src="images/13.png" alt=" "></p>
-<h4 id="詢問是否安裝"><a href="#詢問是否安裝" class="headerlink" title="詢問是否安裝"></a>詢問是否安裝</h4><p><img src="images/14.png" alt=" "></p>
-<h4 id="跑完讀條，出現圖文字就是完成了"><a href="#跑完讀條，出現圖文字就是完成了" class="headerlink" title="跑完讀條，出現圖文字就是完成了"></a>跑完讀條，出現圖文字就是完成了</h4><p><img src="images/15.png" alt=" "></p>
-<h4 id="開啟-port"><a href="#開啟-port" class="headerlink" title="開啟 port"></a>開啟 port</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 22 ( 記得要先開啟 22 再開其他 port )</span><br><span class="line"></span><br><span class="line">sudo ufw allow 1935 ( wowza 串流 port )</span><br><span class="line"></span><br><span class="line">sudo ufw allow 8088 ( wowza 網頁 port )</span><br></pre></td></tr></table></figure>
-<p><img src="images/17.png" alt=" "></p>
-<h4 id="一樣打開網頁測試-在別台電腦開啟網頁輸入-機器外網-IP：8088"><a href="#一樣打開網頁測試-在別台電腦開啟網頁輸入-機器外網-IP：8088" class="headerlink" title="一樣打開網頁測試 ( 在別台電腦開啟網頁輸入 機器外網 IP：8088 )"></a>一樣打開網頁測試 ( 在別台電腦開啟網頁輸入 機器外網 IP：8088 )</h4><p><img src="images/16.png" alt=" "></p>
-
+          <h3 id="一、什麼是-wowza"><a href="#一、什麼是-wowza" class="headerlink" title="一、什麼是 wowza"></a>一、什麼是 wowza</h3><h4 id="Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"><a href="#Wowza-Streaming-Engine-是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza-Streaming-Engine-都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。" class="headerlink" title="Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。"></a>Wowza Streaming Engine 是媒體服務器軟件，提供可靠性強，流暢度高的高質量視頻和音頻到任何設備的傳輸。無論是在雲端還是當前操作，Wowza Streaming Engine 都可以提供組件，讓我們不僅可以保證工作流的流暢性還有安全性。</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/10/29/安裝wowza/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
