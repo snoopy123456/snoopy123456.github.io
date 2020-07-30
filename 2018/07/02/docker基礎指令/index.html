@@ -20,17 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢create：建立 Container 並執行指令run：同 createkill：刪除執行中的 Container，但 Container 還是存在，只是死了。rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了pause：暫停執行中的 Container，仍暫有記憶體停，服務不中">
+  <meta name="description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker基礎指令">
 <meta property="og:url" content="http://yoursite.com/2018/07/02/docker基礎指令/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢create：建立 Container 並執行指令run：同 createkill：刪除執行中的 Container，但 Container 還是存在，只是死了。rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了pause：暫停執行中的 Container，仍暫有記憶體停，服務不中">
+<meta property="og:description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-05-07T06:37:20.731Z">
+<meta property="og:updated_time" content="2020-07-30T08:49:17.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker基礎指令">
-<meta name="twitter:description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢create：建立 Container 並執行指令run：同 createkill：刪除執行中的 Container，但 Container 還是存在，只是死了。rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了pause：暫停執行中的 Container，仍暫有記憶體停，服務不中">
+<meta name="twitter:description" content="這邊列出 docker有關 Container 指令的分類，供作者自己查詢">
 
 <link rel="canonical" href="http://yoursite.com/2018/07/02/docker基礎指令/">
 
@@ -191,8 +192,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-05-07 14:37:20" itemprop="dateModified" datetime="2020-05-07T14:37:20+08:00">2020-05-07</time>
+                <time title="修改時間：2020-07-30 16:49:17" itemprop="dateModified" datetime="2020-07-30T16:49:17+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
 
           
 
@@ -205,7 +215,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="這邊列出-docker有關-Container-指令的分類，供作者自己查詢"><a href="#這邊列出-docker有關-Container-指令的分類，供作者自己查詢" class="headerlink" title="這邊列出 docker有關 Container 指令的分類，供作者自己查詢"></a>這邊列出 docker有關 Container 指令的分類，供作者自己查詢</h4><h4 id="create：建立-Container-並執行指令"><a href="#create：建立-Container-並執行指令" class="headerlink" title="create：建立 Container 並執行指令"></a>create：建立 Container 並執行指令</h4><h4 id="run：同-create"><a href="#run：同-create" class="headerlink" title="run：同 create"></a>run：同 create</h4><h4 id="kill：刪除執行中的-Container，但-Container-還是存在，只是死了。"><a href="#kill：刪除執行中的-Container，但-Container-還是存在，只是死了。" class="headerlink" title="kill：刪除執行中的 Container，但 Container 還是存在，只是死了。"></a>kill：刪除執行中的 Container，但 Container 還是存在，只是死了。</h4><h4 id="rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了"><a href="#rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了" class="headerlink" title="rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了"></a>rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了</h4><h4 id="pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷"><a href="#pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷" class="headerlink" title="pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷"></a>pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷</h4><h4 id="unpause：恢復暫停中的-Container"><a href="#unpause：恢復暫停中的-Container" class="headerlink" title="unpause：恢復暫停中的 Container"></a>unpause：恢復暫停中的 Container</h4><h4 id="stop：停止執行中的-Container，但不暫有記憶體，服務中斷"><a href="#stop：停止執行中的-Container，但不暫有記憶體，服務中斷" class="headerlink" title="stop：停止執行中的 Container，但不暫有記憶體，服務中斷"></a>stop：停止執行中的 Container，但不暫有記憶體，服務中斷</h4><h4 id="start：啟動停止中的-Container"><a href="#start：啟動停止中的-Container" class="headerlink" title="start：啟動停止中的 Container"></a>start：啟動停止中的 Container</h4><h4 id="restart：重新啟動-Container"><a href="#restart：重新啟動-Container" class="headerlink" title="restart：重新啟動 Container"></a>restart：重新啟動 Container</h4><h4 id="wait：讓-Container-暫停直到-Container-停止為止"><a href="#wait：讓-Container-暫停直到-Container-停止為止" class="headerlink" title="wait：讓 Container 暫停直到 Container 停止為止"></a>wait：讓 Container 暫停直到 Container 停止為止</h4><h4 id="rename：更名-Container"><a href="#rename：更名-Container" class="headerlink" title="rename：更名 Container"></a>rename：更名 Container</h4><h4 id="Container-的狀態"><a href="#Container-的狀態" class="headerlink" title="Container 的狀態"></a>Container 的狀態</h4><h4 id="inspect：檢查-Container-的狀態"><a href="#inspect：檢查-Container-的狀態" class="headerlink" title="inspect：檢查 Container 的狀態"></a>inspect：檢查 Container 的狀態</h4><h4 id="stats：查看-Container-的-CPU、記憶體及網路使用"><a href="#stats：查看-Container-的-CPU、記憶體及網路使用" class="headerlink" title="stats：查看 Container 的 CPU、記憶體及網路使用"></a>stats：查看 Container 的 CPU、記憶體及網路使用</h4><h4 id="port：查看-Container-的通訊埠使用"><a href="#port：查看-Container-的通訊埠使用" class="headerlink" title="port：查看 Container 的通訊埠使用"></a>port：查看 Container 的通訊埠使用</h4><h4 id="ps：查看-Container-使用狀態"><a href="#ps：查看-Container-使用狀態" class="headerlink" title="ps：查看 Container 使用狀態"></a>ps：查看 Container 使用狀態</h4><h4 id="top：查看-Container-在主系統中的記憶體使用"><a href="#top：查看-Container-在主系統中的記憶體使用" class="headerlink" title="top：查看 Container 在主系統中的記憶體使用"></a>top：查看 Container 在主系統中的記憶體使用</h4><h4 id="dip：查看-Container-的-IP"><a href="#dip：查看-Container-的-IP" class="headerlink" title="dip：查看 Container 的 IP"></a>dip：查看 Container 的 IP</h4><h4 id="dpid：查看-Container-的-pid"><a href="#dpid：查看-Container-的-pid" class="headerlink" title="dpid：查看 Container 的 pid"></a>dpid：查看 Container 的 pid</h4><h4 id="Container執行時的操作"><a href="#Container執行時的操作" class="headerlink" title="Container執行時的操作"></a>Container執行時的操作</h4><h4 id="exec：在外部向Container內執行指令"><a href="#exec：在外部向Container內執行指令" class="headerlink" title="exec：在外部向Container內執行指令"></a>exec：在外部向Container內執行指令</h4><h4 id="exec-it-contain-bin-bash"><a href="#exec-it-contain-bin-bash" class="headerlink" title="exec -it contain /bin/bash"></a>exec -it contain /bin/bash</h4><h4 id="logs：將Container內的輸出顯示到螢幕上"><a href="#logs：將Container內的輸出顯示到螢幕上" class="headerlink" title="logs：將Container內的輸出顯示到螢幕上"></a>logs：將Container內的輸出顯示到螢幕上</h4><h4 id="docker-logs-–tail-50-container"><a href="#docker-logs-–tail-50-container" class="headerlink" title="docker logs –tail=50 container"></a>docker logs –tail=50 container</h4><h4 id="Container和主系統之間的操作"><a href="#Container和主系統之間的操作" class="headerlink" title="Container和主系統之間的操作"></a>Container和主系統之間的操作</h4><h4 id="cp：複製Container內的檔案到主系統"><a href="#cp：複製Container內的檔案到主系統" class="headerlink" title="cp：複製Container內的檔案到主系統"></a>cp：複製Container內的檔案到主系統</h4><h4 id="container-log"><a href="#container-log" class="headerlink" title="container log"></a>container log</h4><h4 id="var-lib-docker-contains-contain-id"><a href="#var-lib-docker-contains-contain-id" class="headerlink" title="var/lib/docker/contains/contain id"></a>var/lib/docker/contains/contain id</h4><h4 id="exec-it-influxdb-influxd"><a href="#exec-it-influxdb-influxd" class="headerlink" title="exec -it influxdb influxd"></a>exec -it influxdb influxd</h4><h4 id="show-datebase"><a href="#show-datebase" class="headerlink" title="show datebase"></a>show datebase</h4><h4 id="show-table"><a href="#show-table" class="headerlink" title="show (table)"></a>show (table)</h4><h4 id="docker-rm-f-docker-ps-aq-刪除全部容器"><a href="#docker-rm-f-docker-ps-aq-刪除全部容器" class="headerlink" title="docker rm -f $(docker ps -aq) 刪除全部容器"></a>docker rm -f $(docker ps -aq) 刪除全部容器</h4><h4 id="docker-rmi-f-docker-images-aq-刪除全部-images"><a href="#docker-rmi-f-docker-images-aq-刪除全部-images" class="headerlink" title="docker rmi -f $(docker images -aq) 刪除全部 images"></a>docker rmi -f $(docker images -aq) 刪除全部 images</h4>
+        <h4 id="這邊列出-docker有關-Container-指令的分類，供作者自己查詢"><a href="#這邊列出-docker有關-Container-指令的分類，供作者自己查詢" class="headerlink" title="這邊列出 docker有關 Container 指令的分類，供作者自己查詢"></a>這邊列出 docker有關 Container 指令的分類，供作者自己查詢</h4><a id="more"></a>
+<h4 id="create：建立-Container-並執行指令"><a href="#create：建立-Container-並執行指令" class="headerlink" title="create：建立 Container 並執行指令"></a>create：建立 Container 並執行指令</h4><h4 id="run：同-create"><a href="#run：同-create" class="headerlink" title="run：同 create"></a>run：同 create</h4><h4 id="kill：刪除執行中的-Container，但-Container-還是存在，只是死了。"><a href="#kill：刪除執行中的-Container，但-Container-還是存在，只是死了。" class="headerlink" title="kill：刪除執行中的 Container，但 Container 還是存在，只是死了。"></a>kill：刪除執行中的 Container，但 Container 還是存在，只是死了。</h4><h4 id="rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了"><a href="#rm：刪除-Container-停止或運行中都行-，Container-就從這世上消失了" class="headerlink" title="rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了"></a>rm：刪除 Container ( 停止或運行中都行 )，Container 就從這世上消失了</h4><h4 id="pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷"><a href="#pause：暫停執行中的-Container，仍暫有記憶體停，服務不中斷" class="headerlink" title="pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷"></a>pause：暫停執行中的 Container，仍暫有記憶體停，服務不中斷</h4><h4 id="unpause：恢復暫停中的-Container"><a href="#unpause：恢復暫停中的-Container" class="headerlink" title="unpause：恢復暫停中的 Container"></a>unpause：恢復暫停中的 Container</h4><h4 id="stop：停止執行中的-Container，但不暫有記憶體，服務中斷"><a href="#stop：停止執行中的-Container，但不暫有記憶體，服務中斷" class="headerlink" title="stop：停止執行中的 Container，但不暫有記憶體，服務中斷"></a>stop：停止執行中的 Container，但不暫有記憶體，服務中斷</h4><h4 id="start：啟動停止中的-Container"><a href="#start：啟動停止中的-Container" class="headerlink" title="start：啟動停止中的 Container"></a>start：啟動停止中的 Container</h4><h4 id="restart：重新啟動-Container"><a href="#restart：重新啟動-Container" class="headerlink" title="restart：重新啟動 Container"></a>restart：重新啟動 Container</h4><h4 id="wait：讓-Container-暫停直到-Container-停止為止"><a href="#wait：讓-Container-暫停直到-Container-停止為止" class="headerlink" title="wait：讓 Container 暫停直到 Container 停止為止"></a>wait：讓 Container 暫停直到 Container 停止為止</h4><h4 id="rename：更名-Container"><a href="#rename：更名-Container" class="headerlink" title="rename：更名 Container"></a>rename：更名 Container</h4><h4 id="Container-的狀態"><a href="#Container-的狀態" class="headerlink" title="Container 的狀態"></a>Container 的狀態</h4><h4 id="inspect：檢查-Container-的狀態"><a href="#inspect：檢查-Container-的狀態" class="headerlink" title="inspect：檢查 Container 的狀態"></a>inspect：檢查 Container 的狀態</h4><h4 id="stats：查看-Container-的-CPU、記憶體及網路使用"><a href="#stats：查看-Container-的-CPU、記憶體及網路使用" class="headerlink" title="stats：查看 Container 的 CPU、記憶體及網路使用"></a>stats：查看 Container 的 CPU、記憶體及網路使用</h4><h4 id="port：查看-Container-的通訊埠使用"><a href="#port：查看-Container-的通訊埠使用" class="headerlink" title="port：查看 Container 的通訊埠使用"></a>port：查看 Container 的通訊埠使用</h4><h4 id="ps：查看-Container-使用狀態"><a href="#ps：查看-Container-使用狀態" class="headerlink" title="ps：查看 Container 使用狀態"></a>ps：查看 Container 使用狀態</h4><h4 id="top：查看-Container-在主系統中的記憶體使用"><a href="#top：查看-Container-在主系統中的記憶體使用" class="headerlink" title="top：查看 Container 在主系統中的記憶體使用"></a>top：查看 Container 在主系統中的記憶體使用</h4><h4 id="dip：查看-Container-的-IP"><a href="#dip：查看-Container-的-IP" class="headerlink" title="dip：查看 Container 的 IP"></a>dip：查看 Container 的 IP</h4><h4 id="dpid：查看-Container-的-pid"><a href="#dpid：查看-Container-的-pid" class="headerlink" title="dpid：查看 Container 的 pid"></a>dpid：查看 Container 的 pid</h4><h4 id="Container執行時的操作"><a href="#Container執行時的操作" class="headerlink" title="Container執行時的操作"></a>Container執行時的操作</h4><h4 id="exec：在外部向Container內執行指令"><a href="#exec：在外部向Container內執行指令" class="headerlink" title="exec：在外部向Container內執行指令"></a>exec：在外部向Container內執行指令</h4><h4 id="exec-it-contain-bin-bash"><a href="#exec-it-contain-bin-bash" class="headerlink" title="exec -it contain /bin/bash"></a>exec -it contain /bin/bash</h4><h4 id="logs：將Container內的輸出顯示到螢幕上"><a href="#logs：將Container內的輸出顯示到螢幕上" class="headerlink" title="logs：將Container內的輸出顯示到螢幕上"></a>logs：將Container內的輸出顯示到螢幕上</h4><h4 id="docker-logs-–tail-50-container"><a href="#docker-logs-–tail-50-container" class="headerlink" title="docker logs –tail=50 container"></a>docker logs –tail=50 container</h4><h4 id="Container和主系統之間的操作"><a href="#Container和主系統之間的操作" class="headerlink" title="Container和主系統之間的操作"></a>Container和主系統之間的操作</h4><h4 id="cp：複製Container內的檔案到主系統"><a href="#cp：複製Container內的檔案到主系統" class="headerlink" title="cp：複製Container內的檔案到主系統"></a>cp：複製Container內的檔案到主系統</h4><h4 id="container-log"><a href="#container-log" class="headerlink" title="container log"></a>container log</h4><h4 id="var-lib-docker-contains-contain-id"><a href="#var-lib-docker-contains-contain-id" class="headerlink" title="var/lib/docker/contains/contain id"></a>var/lib/docker/contains/contain id</h4><h4 id="exec-it-influxdb-influxd"><a href="#exec-it-influxdb-influxd" class="headerlink" title="exec -it influxdb influxd"></a>exec -it influxdb influxd</h4><h4 id="show-datebase"><a href="#show-datebase" class="headerlink" title="show datebase"></a>show datebase</h4><h4 id="show-table"><a href="#show-table" class="headerlink" title="show (table)"></a>show (table)</h4><h4 id="docker-rm-f-docker-ps-aq-刪除全部容器"><a href="#docker-rm-f-docker-ps-aq-刪除全部容器" class="headerlink" title="docker rm -f $(docker ps -aq) 刪除全部容器"></a>docker rm -f $(docker ps -aq) 刪除全部容器</h4><h4 id="docker-rmi-f-docker-images-aq-刪除全部-images"><a href="#docker-rmi-f-docker-images-aq-刪除全部-images" class="headerlink" title="docker rmi -f $(docker images -aq) 刪除全部 images"></a>docker rmi -f $(docker images -aq) 刪除全部 images</h4>
     </div>
 
     
@@ -213,6 +224,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
 
         
 
@@ -308,13 +322,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹 linux 硬碟分割上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟1. 安裝 linux 的硬碟分割畫面選擇手動分割 2. 清除原本分割磁碟表 3. 來到磁碟分割，選擇磁碟 4. 建立新的磁碟分割表 5. 選擇空白磁碟 6. 選擇建立新分割區，然後輸入要分割的磁碟容量 7. 類型選擇：主分割區、分割位置：開始位置PS：此步驟使用根本篇文章一樣">
+  <meta name="description" content="本文章將介紹 linux 硬碟分割">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux硬碟分割">
 <meta property="og:url" content="http://yoursite.com/2018/06/29/linux硬碟分割/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹 linux 硬碟分割上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟1. 安裝 linux 的硬碟分割畫面選擇手動分割 2. 清除原本分割磁碟表 3. 來到磁碟分割，選擇磁碟 4. 建立新的磁碟分割表 5. 選擇空白磁碟 6. 選擇建立新分割區，然後輸入要分割的磁碟容量 7. 類型選擇：主分割區、分割位置：開始位置PS：此步驟使用根本篇文章一樣">
+<meta property="og:description" content="本文章將介紹 linux 硬碟分割">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/2.png">
@@ -49,10 +50,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/20.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/21.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/22.png">
-<meta property="og:updated_time" content="2020-04-10T05:46:19.502Z">
+<meta property="og:updated_time" content="2020-07-30T08:50:14.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux硬碟分割">
-<meta name="twitter:description" content="本文章將介紹 linux 硬碟分割上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟1. 安裝 linux 的硬碟分割畫面選擇手動分割 2. 清除原本分割磁碟表 3. 來到磁碟分割，選擇磁碟 4. 建立新的磁碟分割表 5. 選擇空白磁碟 6. 選擇建立新分割區，然後輸入要分割的磁碟容量 7. 類型選擇：主分割區、分割位置：開始位置PS：此步驟使用根本篇文章一樣">
+<meta name="twitter:description" content="本文章將介紹 linux 硬碟分割">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/29/linux硬碟分割/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/29/linux硬碟分割/">
@@ -214,8 +215,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-10 13:46:19" itemprop="dateModified" datetime="2020-04-10T13:46:19+08:00">2020-04-10</time>
+                <time title="修改時間：2020-07-30 16:50:14" itemprop="dateModified" datetime="2020-07-30T16:50:14+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
 
           
 
@@ -228,7 +238,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹-linux-硬碟分割"><a href="#本文章將介紹-linux-硬碟分割" class="headerlink" title="本文章將介紹 linux 硬碟分割"></a>本文章將介紹 linux 硬碟分割</h3><h4 id="上一章-VirtualBox-安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟"><a href="#上一章-VirtualBox-安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟" class="headerlink" title="上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟"></a>上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟</h4><h4 id="1-安裝-linux-的硬碟分割畫面選擇手動分割"><a href="#1-安裝-linux-的硬碟分割畫面選擇手動分割" class="headerlink" title="1. 安裝 linux 的硬碟分割畫面選擇手動分割"></a>1. 安裝 linux 的硬碟分割畫面選擇手動分割</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="本文章將介紹-linux-硬碟分割"><a href="#本文章將介紹-linux-硬碟分割" class="headerlink" title="本文章將介紹 linux 硬碟分割"></a>本文章將介紹 linux 硬碟分割</h3><a id="more"></a>
+<h4 id="上一章-VirtualBox-安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟"><a href="#上一章-VirtualBox-安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟" class="headerlink" title="上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟"></a>上一章 VirtualBox 安裝系統練習，使用系統給的自動分割，本章將使用手動分割硬碟</h4><h4 id="1-安裝-linux-的硬碟分割畫面選擇手動分割"><a href="#1-安裝-linux-的硬碟分割畫面選擇手動分割" class="headerlink" title="1. 安裝 linux 的硬碟分割畫面選擇手動分割"></a>1. 安裝 linux 的硬碟分割畫面選擇手動分割</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="2-清除原本分割磁碟表"><a href="#2-清除原本分割磁碟表" class="headerlink" title="2. 清除原本分割磁碟表"></a>2. 清除原本分割磁碟表</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="3-來到磁碟分割，選擇磁碟"><a href="#3-來到磁碟分割，選擇磁碟" class="headerlink" title="3. 來到磁碟分割，選擇磁碟"></a>3. 來到磁碟分割，選擇磁碟</h4><p><img src="images/3.png" alt=" "><br><img src="images/4.png" alt=" "></p>
 <h4 id="4-建立新的磁碟分割表"><a href="#4-建立新的磁碟分割表" class="headerlink" title="4. 建立新的磁碟分割表"></a>4. 建立新的磁碟分割表</h4><p><img src="images/5.png" alt=" "></p>
@@ -252,6 +263,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
 
         
 
@@ -347,13 +361,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

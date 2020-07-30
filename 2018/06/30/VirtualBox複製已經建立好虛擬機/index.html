@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff ) 2. 機器列表上右鍵 → 再製 3. 重新命名，其他選項預設 4. 選擇完整再製 5. 讀條跑完，下圖可以看到成功再製">
+  <meta name="description" content="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間">
+<meta name="keywords" content="VirtualBox">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VirtualBox複製已經建立好虛擬機">
 <meta property="og:url" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff ) 2. 機器列表上右鍵 → 再製 3. 重新命名，其他選項預設 4. 選擇完整再製 5. 讀條跑完，下圖可以看到成功再製">
+<meta property="og:description" content="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/images/2.png">
@@ -33,10 +34,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/images/4.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/images/5.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/images/6.png">
-<meta property="og:updated_time" content="2020-04-01T03:30:25.236Z">
+<meta property="og:updated_time" content="2020-07-30T08:51:48.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VirtualBox複製已經建立好虛擬機">
-<meta name="twitter:description" content="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff ) 2. 機器列表上右鍵 → 再製 3. 重新命名，其他選項預設 4. 選擇完整再製 5. 讀條跑完，下圖可以看到成功再製">
+<meta name="twitter:description" content="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/30/VirtualBox複製已經建立好虛擬機/">
@@ -198,8 +199,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-01 11:30:25" itemprop="dateModified" datetime="2020-04-01T11:30:25+08:00">2020-04-01</time>
+                <time title="修改時間：2020-07-30 16:51:48" itemprop="dateModified" datetime="2020-07-30T16:51:48+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VirtualBox/" itemprop="url" rel="index"><span itemprop="name">VirtualBox</span></a>
+                </span>
+            </span>
 
           
 
@@ -212,7 +222,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間"><a href="#安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間" class="headerlink" title="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間"></a>安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間</h3><h4 id="1-先將虛擬機關機，點擊右上-X-選擇機器關機，或下指令-sudo-shutdown-h-now-sudo-poweroff"><a href="#1-先將虛擬機關機，點擊右上-X-選擇機器關機，或下指令-sudo-shutdown-h-now-sudo-poweroff" class="headerlink" title="1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff )"></a>1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff )</h4><p><img src="images/1.png" alt=" "></p>
+        <h3 id="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間"><a href="#安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間" class="headerlink" title="安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間"></a>安裝完系統之後，可以再製一個新的虛擬機器，如果你不小心把系統弄壞，或想要在使用新的系統環境時，就不用再重新安裝新的系統了，這會方便及省下一些時間</h3><a id="more"></a>
+<h4 id="1-先將虛擬機關機，點擊右上-X-選擇機器關機，或下指令-sudo-shutdown-h-now-sudo-poweroff"><a href="#1-先將虛擬機關機，點擊右上-X-選擇機器關機，或下指令-sudo-shutdown-h-now-sudo-poweroff" class="headerlink" title="1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff )"></a>1. 先將虛擬機關機，點擊右上 X 選擇機器關機，或下指令 sudo shutdown -h now ( sudo poweroff )</h4><p><img src="images/1.png" alt=" "></p>
 <h4 id="2-機器列表上右鍵-→-再製"><a href="#2-機器列表上右鍵-→-再製" class="headerlink" title="2. 機器列表上右鍵 → 再製"></a>2. 機器列表上右鍵 → 再製</h4><p><img src="images/2.png" alt=" "></p>
 <h4 id="3-重新命名，其他選項預設"><a href="#3-重新命名，其他選項預設" class="headerlink" title="3. 重新命名，其他選項預設"></a>3. 重新命名，其他選項預設</h4><p><img src="images/3.png" alt=" "></p>
 <h4 id="4-選擇完整再製"><a href="#4-選擇完整再製" class="headerlink" title="4. 選擇完整再製"></a>4. 選擇完整再製</h4><p><img src="images/4.png" alt=" "></p>
@@ -225,6 +236,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VirtualBox/" rel="tag"># VirtualBox</a>
+          </div>
 
         
 
@@ -320,13 +334,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

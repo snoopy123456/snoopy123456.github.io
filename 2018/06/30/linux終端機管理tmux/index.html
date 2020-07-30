@@ -20,12 +20,13 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機安裝 tmuxubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝1sudo apt-get install -y tmux 下指令進入 tmux 環境1tmux  基本介紹：當我們執行 tmux 指令時，就會建立一個新的 session，在一個 session 中可以建立多個 windows，而每個 wind">
+  <meta name="description" content="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux終端機管理tmux">
 <meta property="og:url" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/index.html">
 <meta property="og:site_name" content="佛系筆記">
-<meta property="og:description" content="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機安裝 tmuxubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝1sudo apt-get install -y tmux 下指令進入 tmux 環境1tmux  基本介紹：當我們執行 tmux 指令時，就會建立一個新的 session，在一個 session 中可以建立多個 windows，而每個 wind">
+<meta property="og:description" content="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機">
 <meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/2.png">
@@ -38,10 +39,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/10.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/11.png">
-<meta property="og:updated_time" content="2020-04-28T07:45:40.708Z">
+<meta property="og:updated_time" content="2020-07-30T08:50:26.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux終端機管理tmux">
-<meta name="twitter:description" content="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機安裝 tmuxubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝1sudo apt-get install -y tmux 下指令進入 tmux 環境1tmux  基本介紹：當我們執行 tmux 指令時，就會建立一個新的 session，在一個 session 中可以建立多個 windows，而每個 wind">
+<meta name="twitter:description" content="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/30/linux終端機管理tmux/images/1.png">
 
 <link rel="canonical" href="http://yoursite.com/2018/06/30/linux終端機管理tmux/">
@@ -203,8 +204,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-28 15:45:40" itemprop="dateModified" datetime="2020-04-28T15:45:40+08:00">2020-04-28</time>
+                <time title="修改時間：2020-07-30 16:50:26" itemprop="dateModified" datetime="2020-07-30T16:50:26+08:00">2020-07-30</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
 
           
 
@@ -217,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="本文章將介紹使用指令-tmux-終端機管理工具，分割視窗、同時開啟多個終端機"><a href="#本文章將介紹使用指令-tmux-終端機管理工具，分割視窗、同時開啟多個終端機" class="headerlink" title="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機"></a>本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機</h3><h4 id="安裝-tmux"><a href="#安裝-tmux" class="headerlink" title="安裝 tmux"></a>安裝 tmux</h4><h4 id="ubuntu-16-04-預設有安裝，如果使用此版本可以跳過安裝"><a href="#ubuntu-16-04-預設有安裝，如果使用此版本可以跳過安裝" class="headerlink" title="ubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝"></a>ubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y tmux</span><br></pre></td></tr></table></figure>
+        <h3 id="本文章將介紹使用指令-tmux-終端機管理工具，分割視窗、同時開啟多個終端機"><a href="#本文章將介紹使用指令-tmux-終端機管理工具，分割視窗、同時開啟多個終端機" class="headerlink" title="本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機"></a>本文章將介紹使用指令 tmux 終端機管理工具，分割視窗、同時開啟多個終端機</h3><a id="more"></a>
+<h4 id="安裝-tmux"><a href="#安裝-tmux" class="headerlink" title="安裝 tmux"></a>安裝 tmux</h4><h4 id="ubuntu-16-04-預設有安裝，如果使用此版本可以跳過安裝"><a href="#ubuntu-16-04-預設有安裝，如果使用此版本可以跳過安裝" class="headerlink" title="ubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝"></a>ubuntu 16.04 預設有安裝，如果使用此版本可以跳過安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y tmux</span><br></pre></td></tr></table></figure>
 <h4 id="下指令進入-tmux-環境"><a href="#下指令進入-tmux-環境" class="headerlink" title="下指令進入 tmux 環境"></a>下指令進入 tmux 環境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
 <p><img src="images/1.png" alt=" "></p>
 <h4 id="基本介紹："><a href="#基本介紹：" class="headerlink" title="基本介紹："></a>基本介紹：</h4><h4 id="當我們執行-tmux-指令時，就會建立一個新的-session，在一個-session-中可以建立多個-windows，而每個-window-又可以分割成多個-panes，在下方的狀態列中會顯示目前所處的-session-與-window-編號"><a href="#當我們執行-tmux-指令時，就會建立一個新的-session，在一個-session-中可以建立多個-windows，而每個-window-又可以分割成多個-panes，在下方的狀態列中會顯示目前所處的-session-與-window-編號" class="headerlink" title="當我們執行 tmux 指令時，就會建立一個新的 session，在一個 session 中可以建立多個 windows，而每個 window 又可以分割成多個 panes，在下方的狀態列中會顯示目前所處的 session 與 window 編號"></a>當我們執行 tmux 指令時，就會建立一個新的 session，在一個 session 中可以建立多個 windows，而每個 window 又可以分割成多個 panes，在下方的狀態列中會顯示目前所處的 session 與 window 編號</h4><h4 id="在狀態列中最左側的編號是目前的-session-編號，接著是目前-session-之中所有的-windows-編號以及正在執行的程式名稱，目前所處的-windows-會以星號（-）標示，以這個例子來說目前就是處於編號-2-的-window-中"><a href="#在狀態列中最左側的編號是目前的-session-編號，接著是目前-session-之中所有的-windows-編號以及正在執行的程式名稱，目前所處的-windows-會以星號（-）標示，以這個例子來說目前就是處於編號-2-的-window-中" class="headerlink" title="在狀態列中最左側的編號是目前的 session 編號，接著是目前 session 之中所有的 windows 編號以及正在執行的程式名稱，目前所處的 windows 會以星號（*）標示，以這個例子來說目前就是處於編號 2 的 window 中"></a>在狀態列中最左側的編號是目前的 session 編號，接著是目前 session 之中所有的 windows 編號以及正在執行的程式名稱，目前所處的 windows 會以星號（*）標示，以這個例子來說目前就是處於編號 2 的 window 中</h4><h4 id="每一個-window-視窗都可以分割成多個-panes，每一個-pane-都是各自獨立的-shell，可以個別進行不同的工作，例如一邊使用-Vim-寫程式，另外一邊在-shell-中編譯、執行程式等"><a href="#每一個-window-視窗都可以分割成多個-panes，每一個-pane-都是各自獨立的-shell，可以個別進行不同的工作，例如一邊使用-Vim-寫程式，另外一邊在-shell-中編譯、執行程式等" class="headerlink" title="每一個 window 視窗都可以分割成多個 panes，每一個 pane 都是各自獨立的 shell，可以個別進行不同的工作，例如一邊使用 Vim 寫程式，另外一邊在 shell 中編譯、執行程式等"></a>每一個 window 視窗都可以分割成多個 panes，每一個 pane 都是各自獨立的 shell，可以個別進行不同的工作，例如一邊使用 Vim 寫程式，另外一邊在 shell 中編譯、執行程式等</h4><p><img src="images/2.png" alt=" "></p>
@@ -240,6 +251,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
 
         
 
@@ -335,13 +349,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
