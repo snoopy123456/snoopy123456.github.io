@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="佛系筆記">
-<meta property="og:url" content="http://yoursite.com/archives/2018/06/page/3/index.html">
+  <meta name="description" content="linux 指令筆記，持續更新">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux指令筆記">
+<meta property="og:url" content="http://yoursite.com/2020/08/14/linux指令筆記/index.html">
 <meta property="og:site_name" content="佛系筆記">
+<meta property="og:description" content="linux 指令筆記，持續更新">
 <meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2020-08-14T05:45:25.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="佛系筆記">
+<meta name="twitter:title" content="linux指令筆記">
+<meta name="twitter:description" content="linux 指令筆記，持續更新">
 
-<link rel="canonical" href="http://yoursite.com/archives/2018/06/page/3/">
+<link rel="canonical" href="http://yoursite.com/2020/08/14/linux指令筆記/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>歸檔 | 佛系筆記</title>
+  <title>linux指令筆記 | 佛系筆記</title>
   
 
 
@@ -150,215 +155,90 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">好! 目前共有 76 篇文章。 繼續努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/14/linux指令筆記/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/unnamed.gif">
+      <meta itemprop="name" content="無名氏的工作筆記">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="佛系筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux指令筆記
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-08-14 13:37:24 / 修改時間：13:45:25" itemprop="dateCreated datePublished" datetime="2020-08-14T13:37:24+08:00">2020-08-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2018</span>
+        <h3 id="linux-指令筆記，持續更新"><a href="#linux-指令筆記，持續更新" class="headerlink" title="linux 指令筆記，持續更新"></a>linux 指令筆記，持續更新</h3><a id="more"></a>
+<h4 id="ubuntu-sudo-不用輸入密碼設定"><a href="#ubuntu-sudo-不用輸入密碼設定" class="headerlink" title="ubuntu sudo 不用輸入密碼設定"></a>ubuntu sudo 不用輸入密碼設定</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/sudoers</span><br><span class="line"></span><br><span class="line">編輯設定檔</span><br><span class="line">%sudo ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line">改成</span><br><span class="line">%sudo ALL=(ALL:ALL) NOPASSWD:ALL</span><br><span class="line"></span><br><span class="line">存檔</span><br><span class="line">:wq!</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-22T15:31:25+08:00"
-              content="2018-06-22">
-          06-22
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/22/GCP-windows-連線進入VM/" itemprop="url">
-            <span itemprop="name">GCP-windows-連線進入VM</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-21T14:47:21+08:00"
-              content="2018-06-21">
-          06-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/21/GCP-ubuntu-連線進入VM/" itemprop="url">
-            <span itemprop="name">GCP-ubuntu-連線進入VM</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-20T09:51:16+08:00"
-              content="2018-06-20">
-          06-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/20/GCP-設定DNS網域/" itemprop="url">
-            <span itemprop="name">GCP-設定DNS網域</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-20T09:51:15+08:00"
-              content="2018-06-20">
-          06-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/20/GCP-網路/" itemprop="url">
-            <span itemprop="name">GCP-網路</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-20T08:51:15+08:00"
-              content="2018-06-20">
-          06-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/20/GCP-防火牆/" itemprop="url">
-            <span itemprop="name">GCP-防火牆</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-19T16:42:47+08:00"
-              content="2018-06-19">
-          06-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/19/GCP-VM建立其它功能介紹/" itemprop="url">
-            <span itemprop="name">GCP-VM建立其它功能介紹</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-19T15:42:47+08:00"
-              content="2018-06-19">
-          06-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-指令/" itemprop="url">
-            <span itemprop="name">GCP-GoogleCloudPlatform-creat-vm-指令</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-19T10:54:37+08:00"
-              content="2018-06-19">
-          06-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/19/GCP-GoogleCloudPlatform-creat-vm-gui/" itemprop="url">
-            <span itemprop="name">GCP-GoogleCloudPlatform-creat-vm-gui</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-06-18T10:00:00+08:00"
-              content="2018-06-18">
-          06-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/06/18/GCP-建立專案/" itemprop="url">
-            <span itemprop="name">GCP-建立專案</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        
 
 
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/12/設定-gitignore忽略清單/" rel="prev" title="設定.gitignore忽略清單">
+      <i class="fa fa-chevron-left"></i> 設定.gitignore忽略清單
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/06/page/2/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/archives/2018/06/">1</a><a class="page-number" href="/archives/2018/06/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
 
 
 
@@ -410,6 +290,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-指令筆記，持續更新"><span class="nav-number">1.</span> <span class="nav-text">linux 指令筆記，持續更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ubuntu-sudo-不用輸入密碼設定"><span class="nav-number">1.1.</span> <span class="nav-text">ubuntu sudo 不用輸入密碼設定</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
