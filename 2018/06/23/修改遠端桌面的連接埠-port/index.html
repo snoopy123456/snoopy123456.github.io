@@ -17,37 +17,37 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"snoopy123456.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"snoopy30485.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠">
 <meta name="keywords" content="windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="修改遠端桌面的連接埠-port">
-<meta property="og:url" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/index.html">
+<meta property="og:url" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/index.html">
 <meta property="og:site_name" content="佛系筆記">
 <meta property="og:description" content="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/1.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/2.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/3.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/4.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/5.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/6.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/7.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/8.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/9.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/10.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/11.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/12.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/13.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/1.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/2.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/3.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/4.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/5.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/6.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/7.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/8.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/9.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/10.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/11.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/12.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/13.png">
 <meta property="og:updated_time" content="2020-07-30T09:13:25.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改遠端桌面的連接埠-port">
 <meta name="twitter:description" content="在 Windows 系統中有個「遠端桌面連線」的功能，可以讓我們以遠端控的方式登入、操作其他 Windows 電腦。Windows 系統遠端桌面連線預設所使用的連接埠（PORT）為「3389」，如果你不希望老是有人透過這個PORT來「踹」你的密碼，或是家裡或公司有其他電腦已佔用預設的 3389 連接埠，可以用下面的方法將被控端電腦的遠端桌面連線 PORT 改成其他連接埠">
-<meta name="twitter:image" content="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/1.png">
+<meta name="twitter:image" content="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/images/1.png">
 
-<link rel="canonical" href="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/">
+<link rel="canonical" href="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/">
 
 
 <script id="page-configurations">
@@ -204,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/">
+    <link itemprop="mainEntityOfPage" href="https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/unnamed.gif">
@@ -308,8 +308,8 @@
       <i class="fa fa-chevron-left"></i> windows更改遠端密碼
     </a></div>
       <div class="post-nav-item">
-    <a href="/2018/06/23/windows常用指令/" rel="next" title="windows常用指令">
-      windows常用指令 <i class="fa fa-chevron-right"></i>
+    <a href="/2018/06/23/設定遠端帳號權限為Remote-Desktop-Users/" rel="next" title="設定遠端帳號權限為Remote-Desktop-Users">
+      設定遠端帳號權限為Remote-Desktop-Users <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -498,7 +498,7 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://snoopy123456.github.io/2018/06/23/修改遠端桌面的連接埠-port/";
+    this.page.url = "https://snoopy30485.github.io/2018/06/23/修改遠端桌面的連接埠-port/";
     this.page.identifier = "2018/06/23/修改遠端桌面的連接埠-port/";
     this.page.title = "修改遠端桌面的連接埠-port";
     };

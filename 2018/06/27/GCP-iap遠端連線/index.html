@@ -17,43 +17,43 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"snoopy123456.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"snoopy30485.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本文章將介紹如何用 iap 遠端">
 <meta name="keywords" content="GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP-iap遠端連線">
-<meta property="og:url" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/index.html">
+<meta property="og:url" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/index.html">
 <meta property="og:site_name" content="佛系筆記">
 <meta property="og:description" content="本文章將介紹如何用 iap 遠端">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/1.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/2.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/3.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/4.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/5.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/6.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/7.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/8.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/9.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/10.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/11.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/12.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/13.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/14.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/15.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/16.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/17.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/18.png">
-<meta property="og:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/19.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/1.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/2.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/3.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/4.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/5.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/6.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/7.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/8.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/9.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/10.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/11.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/12.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/13.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/14.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/15.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/16.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/17.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/18.png">
+<meta property="og:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/19.png">
 <meta property="og:updated_time" content="2020-07-30T09:00:14.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP-iap遠端連線">
 <meta name="twitter:description" content="本文章將介紹如何用 iap 遠端">
-<meta name="twitter:image" content="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/images/1.png">
+<meta name="twitter:image" content="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/images/1.png">
 
-<link rel="canonical" href="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/">
+<link rel="canonical" href="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/">
 
 
 <script id="page-configurations">
@@ -210,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/">
+    <link itemprop="mainEntityOfPage" href="https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/unnamed.gif">
@@ -278,7 +278,7 @@
 
       
         <h3 id="本文章將介紹如何用-iap-遠端"><a href="#本文章將介紹如何用-iap-遠端" class="headerlink" title="本文章將介紹如何用 iap 遠端"></a>本文章將介紹如何用 iap 遠端</h3><a id="more"></a>
-<h4 id="1-首先打開本機-google-SDK-輸入下面指令"><a href="#1-首先打開本機-google-SDK-輸入下面指令" class="headerlink" title="1. 首先打開本機 google SDK 輸入下面指令"></a>1. 首先打開本機 google SDK 輸入下面指令</h4><h4 id="沒有安裝-google-SDK-可到本篇文章查看如何安裝"><a href="#沒有安裝-google-SDK-可到本篇文章查看如何安裝" class="headerlink" title="沒有安裝 google SDK 可到本篇文章查看如何安裝"></a>沒有安裝 google SDK 可到<a href="https://snoopy30485.github.io/2018/06/27/google-command-SDK%E5%AE%89%E8%A3%9D/" target="_blank" rel="noopener">本篇文章</a>查看如何安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth login</span><br></pre></td></tr></table></figure>
+<h4 id="1-首先打開本機-google-SDK-輸入下面指令"><a href="#1-首先打開本機-google-SDK-輸入下面指令" class="headerlink" title="1. 首先打開本機 google SDK 輸入下面指令"></a>1. 首先打開本機 google SDK 輸入下面指令</h4><h4 id="沒有安裝-google-SDK-可到本篇文章查看如何安裝"><a href="#沒有安裝-google-SDK-可到本篇文章查看如何安裝" class="headerlink" title="沒有安裝 google SDK 可到本篇文章查看如何安裝"></a>沒有安裝 google SDK 可到<a href="https://snoopy30485.github.io/2018/06/27/google-command-SDK%E5%AE%89%E8%A3%9D/">本篇文章</a>查看如何安裝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud auth login</span><br></pre></td></tr></table></figure>
 <p><img src="images/1.png" alt=" "></p>
 <h4 id="2-指令輸入完會自動開啟分頁讓你選擇帳號，輸入完帳號後點選允許，出現通過驗證就是成功了"><a href="#2-指令輸入完會自動開啟分頁讓你選擇帳號，輸入完帳號後點選允許，出現通過驗證就是成功了" class="headerlink" title="2. 指令輸入完會自動開啟分頁讓你選擇帳號，輸入完帳號後點選允許，出現通過驗證就是成功了"></a>2. 指令輸入完會自動開啟分頁讓你選擇帳號，輸入完帳號後點選允許，出現通過驗證就是成功了</h4><p><img src="images/2.png" alt=" "><br><img src="images/3.png" alt=" "><br><img src="images/4.png" alt=" "></p>
 <h4 id="3-輸入指令選擇專案"><a href="#3-輸入指令選擇專案" class="headerlink" title="3. 輸入指令選擇專案"></a>3. 輸入指令選擇專案</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcloud config set project [Project] ( Project 為專案 ID )</span><br><span class="line"></span><br><span class="line">ex：gcloud config set project proven-cosine-207802</span><br></pre></td></tr></table></figure>
@@ -511,7 +511,7 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://snoopy123456.github.io/2018/06/27/GCP-iap遠端連線/";
+    this.page.url = "https://snoopy30485.github.io/2018/06/27/GCP-iap遠端連線/";
     this.page.identifier = "2018/06/27/GCP-iap遠端連線/";
     this.page.title = "GCP-iap遠端連線";
     };
